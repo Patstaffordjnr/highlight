@@ -3,6 +3,11 @@
   box-sizing: border-box;
 }
 
+/*
+*[class*="col-"] {
+ border: dotted;
+}
+*/
 .row::after {
   content: "";
   clear: both;
@@ -14,28 +19,46 @@
   padding: 15px;
 }
 
-*[class*="col-"] {
- border: dotted white;
-}
 
 /*----------------------------------------DE STJLE*/
+
+#logo{
+  opacity: .9;
+
+}
+
 html {
   font-family: "Helvetica", sans-serif;
   color: white;
+  
 }
 
 body {
-  background-color: black;
+  background-color: white;
+  
+  background-image: url("assets/berlin.jpg");
+  background-size: 1580px 1220px;
+ 
 }
 /*----------------------------------------COMPONENTS*/
 
-.header {
+
+#header {
   text-align: center;
   font-size: 12px;
 }
 
+#sidebar-1 {
+  text-align: center;
+  font-size: 12px;
+}
 
-.footer {
+#sidebar-2 {
+  text-align: center;
+  font-size: 12px;
+}
+
+#footer {
   text-align: center;
   font-size: 12px;
 }
@@ -45,6 +68,7 @@ body {
 /* For mobile phones: */
 [class*="col-"] {
   width: 100%;
+  
 }
 
 @media only screen and (min-width: 600px) {
