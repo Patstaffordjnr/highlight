@@ -1,78 +1,25 @@
 .nav-container{
+  background-color: pink;
 
   padding:none;
-  max-height: 250px;
-
 }
 
-/*
-.circletop:hover{
-    
-    opacity: 1;
-    z-index: 1;
-  }
-
-
-  .circleleft:hover{
-
-    opacity: 1;
-    z-index: 0;
-    
-  }
-.circleright:hover{
- 
-  opacity: 1;
-  z-index: 0;
-  }
-
-*/
-
-.circletop:hover{
-    transition-delay:.1s;
-    opacity: 1;
-    z-index: 4;
-  }
-
-
-
-.circleleft:hover{
-   transition-delay:.1s;
-    opacity: 1;
-    z-index: 5;
-  }
-
-  .circleright:hover{
-    transition-delay:.1s;  
-    opacity: 1;
-    z-index: 6;
-    }
-
-/*
-.circletop{
- mix-blend-mode: multiply;
-
+.circle-container{
+  background-color: red;
+  height:270px;
+  width: 270px;
+  margin:0 auto; 
+  position: relative;
 }
-
-.circleleft{
-  mix-blend-mode: multiply;
- }
-
- .circleright{
-  mix-blend-mode: multiply;
- }
-*/
 
 
 .circletop{
-
   background-color: cyan;
   height:180px;
   width:180px;
   border-radius: 50%;
-  margin:0 auto; 
-  position: relative;
-  opacity: .5;
-  z-index: 1;
+  position: absolute;
+  left: 45px;
 }
 
 .circleleft{
@@ -80,32 +27,20 @@ background-color: magenta;
 height:180px;
 width:180px;
 border-radius: 50%;
-position: relative;
-margin:0 auto; 
-right: -50px;
-bottom: 90px;
-opacity: .5;
-z-index: 2;
-
+position: absolute;
+top:90px;
 }
 
 .circleright{
   background-color: yellow;
-
   height:180px;
   width:180px;
   border-radius: 50%;
-  position: relative;
-  margin:0 auto; 
-  right: 50px;
-  bottom: 270px;
-  opacity: .5;
-  z-index: 3;
-
+  position: absolute;
+  left: 90px;
+  top: 90px;
   }
 
-/*
-#circle { mix-blend-mode: darken; }
-*/
 
+#circle { mix-blend-mode: darken; }
 

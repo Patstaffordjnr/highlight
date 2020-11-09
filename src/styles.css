@@ -3,11 +3,12 @@
   box-sizing: border-box;
 }
 
-/*
+
 *[class*="col-"] {
  border: dotted;
 }
-*/
+
+
 .row::after {
   content: "";
   clear: both;
@@ -21,6 +22,8 @@
 
 
 /*----------------------------------------DE STJLE*/
+
+
 
 #logo{
   opacity: .9;
@@ -36,14 +39,19 @@ html {
 body {
   background-color: white;
   
-  background-image: url("assets/berlin.jpg");
-  background-size: 1580px 1220px;
+  /* background-image: url("assets/berlinbackground.jpg"); */
+ 
+  background-size: 2180px 1720px;
+  background-position-x: -500px;
+  background-position-y: -200px;
+  
  
 }
 /*----------------------------------------COMPONENTS*/
 
 
 #header {
+
   text-align: center;
   font-size: 12px;
 }
