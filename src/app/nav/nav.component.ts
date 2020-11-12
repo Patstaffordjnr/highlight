@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { ControlContainer } from '@angular/forms';
 
 @Component({
   selector: 'app-nav',
@@ -15,47 +16,63 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+
+isInCircle (mouseEvent: MouseEvent, elementR2ef: ElementRef): boolean {
+  const domRect = elementR2ef.nativeElement.getBoundingClientRect();
+
+  const radius = (domRect.right - domRect.left) / 2;
+
+  const mouseCoorinates = this.pointFromMouseEvent(mouseEvent);
+  const centerDiv =  this.pointFromDomRect(domRect);
+
+
+  const radius_2 = Math.pow(radius, 2);
+  const x_2 = Math.pow(centerDiv.x - mouseCoorinates.x, 2);
+  const y_2 = Math.pow(centerDiv.y - mouseCoorinates.y, 2);
+  const result = radius_2 - (x_2 + y_2);
+
+  let inside = false;
+
+  if(result > 0) {
+    inside = true;
+  } 
+  return inside;
+}
+
+
  navigationPrime(mouseEvent: MouseEvent): void {
 
-    const width = (this.circleTop.nativeElement.getBoundingClientRect().right - 
-      this.circleTop.nativeElement.getBoundingClientRect().left) / 2;
-    const mouseCoorinates = this.printCoordinates(mouseEvent);
-    const centerDiv =  this.printCenterCordinates(this.circleTop.nativeElement.getBoundingClientRect());
+  
 
-    mouseCoorinates.print();
-    centerDiv.print();
-    
-    const radius_2 = Math.pow(width, 2);
-    const x_2 = Math.pow(centerDiv.x - mouseCoorinates.x, 2);
-    const y_2 = Math.pow(centerDiv.y - mouseCoorinates.y, 2);
-    const result = radius_2 - (x_2 + y_2);
+  const isInTopCircle = this.isInCircle(mouseEvent, this.circleTop);
+  const isInLeftCircle = this.isInCircle(mouseEvent, this.circleLeft);
+  const isInRightCircle = this.isInCircle(mouseEvent, this.circleRight);
 
-    if(result > 0) {
-      console.log('Inside circle 1');
-    } else if (result === 0) {
-      console.log('On the circumference of circle 1');
-    } else {
-      console.log('Outside');
-    }
+
+ if (isInTopCircle && isInLeftCircle && isInRightCircle){
+  console.log(`Patrick is superdumb`);
+ } else if (isInTopCircle && isInLeftCircle){
+  console.log(`Patrick is dumb top left`); 
+ } else if (isInTopCircle && isInRightCircle){
+  console.log(`Patrick is dumb top right`);
+  }  else if (isInLeftCircle && isInRightCircle){
+    console.log(`Patrick is dumb left right`);
+  }  else if (isInTopCircle) {
+      console.log(`paul is dumb top`)
+  } else if (isInLeftCircle) {
+    console.log(`paul is dumb left`)
+  } else if (isInRightCircle) {
+    console.log(`paul is dumb rightkvlbjk`)
   }
 
+ }
 
-
-  // int d = r^2 - ((center_x-x)^2 + (center_y-y)^2);
-
-  // if(d>0)
-  //   print("inside");
-  // else if(d==0)
-  //   print("on the circumference");
-  // else
-  //   print("outside");
-
- printCoordinates(mouseEvent: MouseEvent):  Point{
+pointFromMouseEvent (mouseEvent: MouseEvent):  Point{
   return new Point(mouseEvent.clientX, mouseEvent.clientY);  
  }
 
-  printCenterCordinates(domRect: DOMRect): Point{
-    
+  pointFromDomRect(domRect: DOMRect): Point {
     const xLine1 = domRect.right - domRect.left;
     const xLine2 = xLine1 / 2;
     const x = domRect.right - xLine2;
