@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { User } from '../app/user/user';
+
 
 declare const google: any;
 
@@ -25,10 +25,7 @@ export class AppComponent implements OnInit {
 
 
 
-  user: User = {
-    id: 1,
-    name: 'Patrick Stafford'
-  };
+
 
 
 

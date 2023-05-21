@@ -6,6 +6,7 @@ import { CreateEventComponent } from './create-event/create-event.component';
 import { UserLogInComponent } from './user-log-in/user-log-in.component';
 import { GoogleMapComponent } from './google-map/google-map.component';
 import { CreateUserComponent } from './create-user/create-user.component';
+import { UserComponent } from './user/user.component';
 
 
 
@@ -16,6 +17,8 @@ const routes: Routes = [
   { path: 'googleMapComponent', component: GoogleMapComponent },
   { path: 'userLogIn', component: UserLogInComponent },
   { path: 'createUser', component: CreateUserComponent },
+  { path: 'user', component: UserComponent },
+  
   
   
 ];

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-user-log-in',
@@ -21,7 +24,7 @@ export class UserLogInComponent implements OnInit {
   
   
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -30,6 +33,9 @@ export class UserLogInComponent implements OnInit {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.loginForm.value);
+    
+
+    this.router.navigate(['/home']);
   }
 
   login(): void {
