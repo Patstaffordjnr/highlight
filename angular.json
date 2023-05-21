@@ -20,10 +20,16 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/leaflet/dist/images",
+                "output": "assets/"
+              }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/leaflet/dist/leaflet.css"
             ],
             "scripts": [],
             "vendorChunk": true,
@@ -95,7 +101,12 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+
+  "src/assets/js/gmaps.js"
+
+              
+            ]
           }
         },
         "e2e": {
@@ -113,7 +124,6 @@
       }
     }
   },
-  "defaultProject": "highlight",
   "cli": {
     "analytics": false
   }
