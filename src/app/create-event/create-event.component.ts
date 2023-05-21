@@ -6,8 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-event.component.css']
 })
 export class CreateEventComponent implements OnInit {
+
+  date = new Date();
+
   
-  constructor() { }
+  constructor() { 
+
+    console.log(this.date);
+  }
 
   ngOnInit(): void {
   }

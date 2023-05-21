@@ -1,0 +1,10 @@
+.gig-type-date-container {
+    /* flex: 1; */
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    
+    flex-direction: row; /* Set the direction to horizontal */
+    background-color: purple;
+}

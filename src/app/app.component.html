@@ -1,6 +1,39 @@
-<a [routerLink]="['/home']">
-  <img src="/assets/highlight.jpg" height="40" width="40" priority>
-</a>
+
+<app-main-header></app-main-header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="googleMap hidden" #mapContainer id="map" (click)="onMapClick($event)"></div>
 
@@ -8,20 +41,6 @@
 
 <router-outlet></router-outlet>
 
-
 <div class ="addressDisplay hidden">
 <h1>{{address}}</h1> 
 </div>
-
-<!-- 
-<h1>{{band}}</h1>
-<h2>{{user.name}}</h2>
-<h2>{{user.id}}</h2>
-
-
-<div>
-  <label for="name">Hero name: </label>
-  <input id="name" [(ngModel)]="user.name" placeholder="name">
-</div> -->
-
-<!-- <h1>{{marker?.getPosition()?.toString()}}</h1> -->

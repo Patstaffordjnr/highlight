@@ -15,6 +15,8 @@ import { UserService } from './user.service';
 import { FormsModule } from '@angular/forms';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MainHeaderComponent } from './main-header/main-header.component';
+import { GigTypeDateComponent } from './gig-type-date/gig-type-date.component';
 
 
 @NgModule({
@@ -27,6 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     GoogleMapComponent,
     UserComponent,
     CreateUserComponent,
+    MainHeaderComponent,
+    GigTypeDateComponent,
   
     
   ],
