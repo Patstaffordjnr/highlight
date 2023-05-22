@@ -5,27 +5,32 @@
     <div (click)="onPress()">
       date
     </div>
-
+  
     <div class="calendar-container" [ngClass]="{'hidden': !showCalendar}">
-        <div class="pagination">
-            <button (click)="prevMonth()">&lt;</button>
-            <h2>{{ currentDate | date: 'MMMM yyyy' }}</h2>
-            <button (click)="nextMonth()">&gt;</button>
+      <div class="pagination">
+        <button (click)="prevMonth()">&lt;</button>
+        <h2>{{ currentDate | date: 'MMMM yyyy' }}</h2>
+        <button (click)="nextMonth()">&gt;</button>
+      </div>
+  
+      <div class="calendar-table">
+        <div class="divTableRow days-of-week">
+          <div *ngFor="let day of daysOfWeek" class="divTableCell">{{ day }}</div>
         </div>
-                <table class="calendar-table">
-                    <tr>
-                    <th *ngFor="let day of daysOfWeek">{{ day }}</th>
-                    </tr>
-                    <tr *ngFor="let week of weeks">
-                    <td *ngFor="let day of week"
-                    (click)="selectDay(day)"
-                    [ngClass]="{'selected': day === selectedDay}">
-                    {{ day }}
-                    </td>
-                    </tr>
-                </table>
-    </div>
+  
+        <div class="divTableBody">
+          <div class="divTableRow" *ngFor="let week of weeks">
+            <div *ngFor="let day of week" (click)="selectDay(day)" class="divTableCell" [ngClass]="{'selected': day === selectedDay}">
+              {{ day }}
+            </div>
     <div>
-      end
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <div>
+    end
+  </div>
+  
