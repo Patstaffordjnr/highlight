@@ -1,0 +1,13 @@
+<div class = "calender" (click)="onPress()">
+{{ inputDate }}
+</div>
+<div class = "calender-container" [ngClass]="showDialog ? '' : 'hidden'">
+{{year}}
+<div (click)="previousMonth()" ><a><</a></div>{{month}}<div (click)="nextMonth()"><a>></a></div>
+{{day}}
+ 
+<div  *ngFor="let day of monthDays" (click)="daySelect(day)">
+  {{ day }}
+</div>
+
+</div>

@@ -17,6 +17,8 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MainHeaderComponent } from './main-header/main-header.component';
 import { GigTypeDateComponent } from './gig-type-date/gig-type-date.component';
+import { CalenderComponent } from './calender/calender.component';
+
 
 
 @NgModule({
@@ -31,6 +33,9 @@ import { GigTypeDateComponent } from './gig-type-date/gig-type-date.component';
     CreateUserComponent,
     MainHeaderComponent,
     GigTypeDateComponent,
+    CalenderComponent,
+
+    
   
     
   ],
@@ -39,7 +44,8 @@ import { GigTypeDateComponent } from './gig-type-date/gig-type-date.component';
     AppRoutingModule,
     LeafletModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

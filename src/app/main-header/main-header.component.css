@@ -1,5 +1,7 @@
 .main-header-container {
-    flex:1;
+    display: flex;
     
     background-color: yellow;
+    justify-content: center;
+    align-items: center;
 }

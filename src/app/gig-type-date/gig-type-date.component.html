@@ -1,36 +1,91 @@
+
 <div class="gig-type-date-container">
-    <div>
-      type
-    </div>
-    <div (click)="onPress()">
-      date
-    </div>
-  
-    <div class="calendar-container" [ngClass]="{'hidden': !showCalendar}">
+<div>
+  Type
+</div>
+<app-calender [inputDate]="from"></app-calender>
+<div>
+  To
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="gig-type-date-container"> -->
+    <!-- <div class="gig-type">Type</div> -->
+    <!-- <div class="date" (click)="onPress()">Date</div> -->
+    <!-- <div class="calendar-container" [ngClass]="{'hidden': !showCalendar}">
       <div class="pagination">
         <button (click)="prevMonth()">&lt;</button>
         <h2>{{ currentDate | date: 'MMMM yyyy' }}</h2>
         <button (click)="nextMonth()">&gt;</button>
       </div>
-  
-      <div class="calendar-table">
-        <div class="divTableRow days-of-week">
-          <div *ngFor="let day of daysOfWeek" class="divTableCell">{{ day }}</div>
-        </div>
-  
-        <div class="divTableBody">
-          <div class="divTableRow" *ngFor="let week of weeks">
-            <div *ngFor="let day of week" (click)="selectDay(day)" class="divTableCell" [ngClass]="{'selected': day === selectedDay}">
-              {{ day }}
-            </div>
-    <div>
-
-          </div>
-        </div>
-      </div>
+      <table class="calendar-table">
+        <thead>
+          <tr>
+            <th *ngFor="let day of daysOfWeek">{{ day }}</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let week of weeks">
+                <td *ngFor="let day of week" (click)="selectDay(day)" [ngClass]="{'selected': day === selectedDay}">
+                  {{ day }}
+                </td>
+              </tr>
+          
+        </tbody>
+      </table>
     </div>
-  </div>
-  <div>
-    end
-  </div>
+    <div class="end">End</div> -->
+  <!-- </div> -->
   

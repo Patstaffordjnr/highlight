@@ -1,0 +1,14 @@
+.calender{ 
+    display: flex;
+    background-color: darkgreen;
+    z-index: 10;
+    /* position: absolute; */
+    
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+}
+
+.hidden {
+    display: none;
+  }
