@@ -18,6 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MainHeaderComponent } from './main-header/main-header.component';
 import { GigTypeDateComponent } from './gig-type-date/gig-type-date.component';
 import { CalenderComponent } from './calender/calender.component';
+import { SiteComponent } from './site/site.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 
@@ -34,6 +36,8 @@ import { CalenderComponent } from './calender/calender.component';
     MainHeaderComponent,
     GigTypeDateComponent,
     CalenderComponent,
+    SiteComponent,
+    SignupComponent,
 
     
   

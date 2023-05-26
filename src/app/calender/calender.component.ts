@@ -11,7 +11,7 @@ export class CalenderComponent implements OnInit {
   @Input() inputDate: Date;
   showDialog: Boolean = false;
 
-  
+  weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]  
   currentDateTimeYear: Date = new Date();
   day: string = this.currentDateTimeYear.toLocaleString('default', { weekday: 'long' });
   dayNumber: number = this.currentDateTimeYear.getDate()
@@ -83,6 +83,8 @@ export class CalenderComponent implements OnInit {
 
   onPress(): void {
    this.showDialog = !this.showDialog
+   
+   document.querySelector('.calender-div').classList.remove('hidden');
   }
 
 }

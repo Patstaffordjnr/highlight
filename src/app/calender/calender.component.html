@@ -1,13 +1,21 @@
 <div class = "calender" (click)="onPress()">
 {{ inputDate }}
 </div>
+<div class = "calender-div hidden">
 <div class = "calender-container" [ngClass]="showDialog ? '' : 'hidden'">
 {{year}}
 <div (click)="previousMonth()" ><a><</a></div>{{month}}<div (click)="nextMonth()"><a>></a></div>
 {{day}}
- 
+ <br>
+<div class = "calender-container">
+
+<div  class = "week-day-header" *ngFor="let weekDay of weekDays"><div class = "week-day-container">{{weekDay}}</div></div>
+<br>
 <div  *ngFor="let day of monthDays" (click)="daySelect(day)">
+  
+  <div class = "day-container">
   {{ day }}
 </div>
-
+</div>
+</div>
 </div>
