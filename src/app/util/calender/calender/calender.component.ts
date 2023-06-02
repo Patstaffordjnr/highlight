@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-
 @Component({
   selector: 'app-calender',
   templateUrl: './calender.component.html',
@@ -18,45 +17,83 @@ export class CalenderComponent implements OnInit {
   month: string = this.currentDateTimeYear.toLocaleString('default', { month: 'long' });
   monthNumber: number = this.currentDateTimeYear.getMonth() +1;
   year: number = this.currentDateTimeYear.getFullYear();
+  yearNumber = Number(this.year);
   monthDays = [];
-
+  calenderFirstDayOfMonth = new Date( this.yearNumber, this.monthNumber -1, this.dayNumber);
+  nullDays = [];
   startGetNumberOfDays(month: number, year: number): number {
-    // The month argument is 0-based (0 for January, 1 for February, etc.)
-    // To handle 1-based month input, subtract 1 from the month value
     const lastDayOfMonth = new Date(year, month, 0).getDate();
     return lastDayOfMonth;
   }
 
-
+  getDayOfWeek(date: Date): string {
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const dayOfWeekIndex = date.getDay();
+    const dayOfWeek = daysOfWeek[dayOfWeekIndex];
+    return dayOfWeek;
+  }
 
   constructor() {
 
-    let startingNumberOfDays = this.startGetNumberOfDays(this.monthNumber, this.year);
-     for (let i = 1; i < startingNumberOfDays + 1; i++) {
-     this.monthDays.push(i);
+    this.calenderFirstDayOfMonth = new Date(this.yearNumber, this.monthNumber , this.dayNumber);
+    // console.log(this.calenderFirstDayOfMonth);
+    let monthsFirstDay = this.calenderFirstDayOfMonth.toLocaleString('en-US', { weekday: 'long' }).substring(0,3);
+    
+    
+    for(let day of this.weekDays) 
+    { 
+      if(day == monthsFirstDay) {
+         console.log(`${day}`)
+      } else {
+        this.monthDays.push(null);
+        console.log("NULL")
+
+      }
+
+      // for(let day of this.weekDays) 
+      // { 
+      //   if(day == monthsFirstDay) {
+      //      console.log(`${day}`)
+      //   } else {
+      //     this.monthDays.push(null);
+      //     console.log("NULL")
+  
+      //   }
+  
+
     }
-   }
+
+    let startingNumberOfDays = this.startGetNumberOfDays(this.monthNumber, this.year);
+    for (let i = 0; i < startingNumberOfDays; i++) {
+      this.monthDays.push(i + 1);
+    }
+    
+  }
 
   ngOnInit(): void {
 
   }
 
   getNumberOfDays(month: number, year: number): number {
-    // The month argument is 0-based (0 for January, 1 for February, etc.)
-    // To handle 1-based month input, subtract 1 from the month value
     const lastDayOfMonth = new Date(year, month, 0).getDate();
     return lastDayOfMonth;
   }
 
   nextMonth(): void {
+    
     this.currentDateTimeYear.setMonth(this.currentDateTimeYear.getMonth() + 1);
     this.updateCalendar();
     this.monthNumber = this.monthNumber + 1;
     this.monthDays.length = 0;
     let nextMonthDays = this.getNumberOfDays(this.monthNumber, this.year)
+
+    this.calenderFirstDayOfMonth = new Date(this.yearNumber, this.monthNumber - 1, 1);
+
     for (let i = 1; i < nextMonthDays + 1; i++) {
       this.monthDays.push(i);
      }
+  // console.log(this.calenderFirstDayOfMonth.getDay());
+  // console.log(this.calenderFirstDayOfMonth.toLocaleString('en-US', { weekday: 'long' }));
   }
 
   previousMonth(): void {
@@ -64,12 +101,15 @@ export class CalenderComponent implements OnInit {
     this.updateCalendar();
     this.monthNumber = this.monthNumber - 1;
     this.monthDays.length = 0;
-    let previousMonthDays = this.getNumberOfDays(this.monthNumber, this.year)
+    let previousMonthDays = this.getNumberOfDays(this.monthNumber, this.year);
+
+    this.calenderFirstDayOfMonth = new Date(this.yearNumber, this.monthNumber - 1, 1);
+   
     for (let i = 1; i < previousMonthDays + 1; i++) {
       this.monthDays.push(i);
      }
+     this.calenderFirstDayOfMonth = new Date(this.yearNumber, this.monthNumber - 1, 1);
   }
-
 
   updateCalendar(): void {
     this.day = this.currentDateTimeYear.toLocaleString('default', { weekday: 'long' });
@@ -79,12 +119,14 @@ export class CalenderComponent implements OnInit {
 
   daySelect(day: number) {
     console.log(day);
+    
   }
 
   onPress(): void {
    this.showDialog = !this.showDialog
    
    document.querySelector('.calender-div').classList.remove('hidden');
+   console.log(this.calenderFirstDayOfMonth);
   }
-
+  
 }

@@ -22,20 +22,25 @@
   /* justify-content: center; */
   justify-content: space-evenly;
 }
-.calender-container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    
-    border-color: black;
 
+.calender-controls {
+  display: flex;
+  background-color: rgb(139, 46, 111);
+  max-width: 200px;
+  min-width: 200px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
 }
+ 
+
 .calender-container {
   display: grid;
   grid-template-columns: repeat(7, 1fr); /* Create 7 equal-width columns */
-  grid-gap: 5px; /* Add some space between grid items */
+  grid-gap: 2.5px; /* Add some space between grid items */
+  justify-content: center;
+  align-items: center;
+
 }
 
 .day-container {
