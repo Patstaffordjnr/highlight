@@ -1,3 +1,4 @@
+import { WeekDay } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -20,7 +21,7 @@ export class CalenderComponent implements OnInit {
   yearNumber = Number(this.year);
   monthDays = [];
   calenderFirstDayOfMonth = new Date( this.yearNumber, this.monthNumber -1, this.dayNumber);
-  nullDays = [];
+
   startGetNumberOfDays(month: number, year: number): number {
     const lastDayOfMonth = new Date(year, month, 0).getDate();
     return lastDayOfMonth;
@@ -34,40 +35,22 @@ export class CalenderComponent implements OnInit {
   }
 
   constructor() {
+    let date = new Date();
+    let firstDay = new Date(date.getFullYear(), date.getMonth(), 1).toLocaleString('en-US', { weekday: 'long' }).substring(0,3);;
 
-    this.calenderFirstDayOfMonth = new Date(this.yearNumber, this.monthNumber , this.dayNumber);
-    // console.log(this.calenderFirstDayOfMonth);
-    let monthsFirstDay = this.calenderFirstDayOfMonth.toLocaleString('en-US', { weekday: 'long' }).substring(0,3);
-    
-    
-    for(let day of this.weekDays) 
-    { 
-      if(day == monthsFirstDay) {
-         console.log(`${day}`)
-      } else {
-        this.monthDays.push(null);
-        console.log("NULL")
-
-      }
-
-      // for(let day of this.weekDays) 
-      // { 
-      //   if(day == monthsFirstDay) {
-      //      console.log(`${day}`)
-      //   } else {
-      //     this.monthDays.push(null);
-      //     console.log("NULL")
-  
-      //   }
-  
-
-    }
+    this.weekDays.map((day, i) => {
+      if(day == firstDay) {
+        for(let x = 0; x < i; x++) {
+          this.monthDays.push(null);
+        }
+      } 
+    })
 
     let startingNumberOfDays = this.startGetNumberOfDays(this.monthNumber, this.year);
     for (let i = 0; i < startingNumberOfDays; i++) {
       this.monthDays.push(i + 1);
     }
-    
+
   }
 
   ngOnInit(): void {
@@ -86,14 +69,22 @@ export class CalenderComponent implements OnInit {
     this.monthNumber = this.monthNumber + 1;
     this.monthDays.length = 0;
     let nextMonthDays = this.getNumberOfDays(this.monthNumber, this.year)
+    let firstDayNextMonth = new Date(this.year, this.monthNumber - 1, 1).toLocaleString('en-US', { weekday: 'long' }).substring(0,3);
+    console.log(firstDayNextMonth);
 
-    this.calenderFirstDayOfMonth = new Date(this.yearNumber, this.monthNumber - 1, 1);
+    this.weekDays.map((day, i) => {
+      if(day == firstDayNextMonth) {
+        for(let x = 0; x < i; x++) {
+          this.monthDays.push(null);
+        }
+      } 
+    })
+
+    
 
     for (let i = 1; i < nextMonthDays + 1; i++) {
       this.monthDays.push(i);
      }
-  // console.log(this.calenderFirstDayOfMonth.getDay());
-  // console.log(this.calenderFirstDayOfMonth.toLocaleString('en-US', { weekday: 'long' }));
   }
 
   previousMonth(): void {
@@ -103,12 +94,22 @@ export class CalenderComponent implements OnInit {
     this.monthDays.length = 0;
     let previousMonthDays = this.getNumberOfDays(this.monthNumber, this.year);
 
-    this.calenderFirstDayOfMonth = new Date(this.yearNumber, this.monthNumber - 1, 1);
-   
+    let firstDayPreviousMonth = new Date(this.year, this.monthNumber - 1, 1).toLocaleString('en-US', { weekday: 'long' }).substring(0,3);
+    console.log(firstDayPreviousMonth);
+
+    this.weekDays.map((day, i) => {
+      if(day == firstDayPreviousMonth) {
+        for(let x = 0; x < i; x++) {
+          this.monthDays.push(null);
+        }
+      } 
+    })
+
+
     for (let i = 1; i < previousMonthDays + 1; i++) {
       this.monthDays.push(i);
      }
-     this.calenderFirstDayOfMonth = new Date(this.yearNumber, this.monthNumber - 1, 1);
+   
   }
 
   updateCalendar(): void {
@@ -126,7 +127,7 @@ export class CalenderComponent implements OnInit {
    this.showDialog = !this.showDialog
    
    document.querySelector('.calender-div').classList.remove('hidden');
-   console.log(this.calenderFirstDayOfMonth);
+  //  console.log(this.calenderFirstDayOfMonth);
   }
   
 }
