@@ -20,6 +20,7 @@ import { SignUpComponent } from './main/sign-up/sign-up.component';
 import { CreateGigComponent } from './main/create-gig/create-gig.component';
 import { EditUserComponent } from './main/edit-user/edit-user.component';
 import { UserComponent } from './model/user/user.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 
 
@@ -38,6 +39,7 @@ import { UserComponent } from './model/user/user.component';
     CreateGigComponent,
     EditUserComponent,
     UserComponent,
+    ProgressBarComponent,
  
   ],
   imports: [

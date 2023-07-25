@@ -22,9 +22,18 @@ export class CalenderComponent implements OnInit {
   monthDays = [];
   calenderFirstDayOfMonth = new Date( this.yearNumber, this.monthNumber -1, this.dayNumber);
 
+  calenderTime = this.currentDateTimeYear.toLocaleTimeString();
+  currentTime: string;
+
+
   startGetNumberOfDays(month: number, year: number): number {
     const lastDayOfMonth = new Date(year, month, 0).getDate();
     return lastDayOfMonth;
+  }
+
+  updateTime() {
+    const date = new Date();
+    this.currentTime = date.toLocaleTimeString();
   }
 
   getDayOfWeek(date: Date): string {
@@ -50,11 +59,16 @@ export class CalenderComponent implements OnInit {
     for (let i = 0; i < startingNumberOfDays; i++) {
       this.monthDays.push(i + 1);
     }
-
   }
 
   ngOnInit(): void {
 
+    this.updateTime();
+
+  // Update the time every second
+  setInterval(() => {
+    this.updateTime();
+  }, 1000);
   }
 
   getNumberOfDays(month: number, year: number): number {
@@ -70,7 +84,6 @@ export class CalenderComponent implements OnInit {
     this.monthDays.length = 0;
     let nextMonthDays = this.getNumberOfDays(this.monthNumber, this.year)
     let firstDayNextMonth = new Date(this.year, this.monthNumber - 1, 1).toLocaleString('en-US', { weekday: 'long' }).substring(0,3);
-    console.log(firstDayNextMonth);
 
     this.weekDays.map((day, i) => {
       if(day == firstDayNextMonth) {
@@ -79,8 +92,6 @@ export class CalenderComponent implements OnInit {
         }
       } 
     })
-
-    
 
     for (let i = 1; i < nextMonthDays + 1; i++) {
       this.monthDays.push(i);
@@ -93,9 +104,7 @@ export class CalenderComponent implements OnInit {
     this.monthNumber = this.monthNumber - 1;
     this.monthDays.length = 0;
     let previousMonthDays = this.getNumberOfDays(this.monthNumber, this.year);
-
     let firstDayPreviousMonth = new Date(this.year, this.monthNumber - 1, 1).toLocaleString('en-US', { weekday: 'long' }).substring(0,3);
-    console.log(firstDayPreviousMonth);
 
     this.weekDays.map((day, i) => {
       if(day == firstDayPreviousMonth) {
@@ -119,15 +128,18 @@ export class CalenderComponent implements OnInit {
   }
 
   daySelect(day: number) {
-    console.log(day);
-    
+    let date = new Date();
+    let selectedDayTo = new Date( this.yearNumber, this.monthNumber- 1, day);
+    console.log(selectedDayTo);
+    this.inputDate = selectedDayTo;
+
+
   }
 
   onPress(): void {
    this.showDialog = !this.showDialog
-   
+  
    document.querySelector('.calender-div').classList.remove('hidden');
-  //  console.log(this.calenderFirstDayOfMonth);
   }
   
 }

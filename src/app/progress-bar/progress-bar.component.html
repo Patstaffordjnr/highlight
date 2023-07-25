@@ -1,0 +1,8 @@
+<div class="progress-bar">
+  <br>
+  <div *ngFor="let hour of hours" (click)="hourSelect($event, hour)" >
+    <div class="hourAM-container" #hourDiv>
+      {{ hour }}
+    </div>
+  </div>
+</div>

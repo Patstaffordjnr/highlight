@@ -15,7 +15,7 @@
 
 
 .calender-div {
-  background-color: lightsalmon;
+  background-color: white;
   max-width: 200px;
   min-width: 200px;
   flex-wrap: wrap;
@@ -25,7 +25,7 @@
 
 .calender-controls {
   display: flex;
-  background-color: rgb(139, 46, 111);
+  background-color: white;
   max-width: 200px;
   min-width: 200px;
   flex-wrap: wrap;
@@ -40,11 +40,12 @@
   grid-gap: 2.5px; /* Add some space between grid items */
   justify-content: center;
   align-items: center;
+  border: 40px;
 
 }
 
 .day-container {
-  background-color: aqua;
+  background-color:white;
   display: flex;
   justify-content: center;
   align-items: center;

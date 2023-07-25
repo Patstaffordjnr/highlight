@@ -1,0 +1,23 @@
+.progress-bar{ 
+    display: flex;
+    background-color: rgb(0, 60, 100);
+    z-index: 10;
+    /* position: absolute; */
+    
+    
+    justify-content: space-evenly;
+    align-items: center;
+    max-width: 365px;
+    font-size: 50%;
+    color: white
+
+    /* display: grid;
+    grid-template-columns: repeat(7, 1fr); 
+    grid-gap: 2.5px; */
+}
+
+.hour-container{
+    display: flex
+    
+
+}

@@ -3,7 +3,9 @@
 </div>
 <!-- <div class = "calender-container" [ngClass]="showDialog ? '' : 'hidden'"></div> -->
 
+Current time: {{ currentTime }}
 
+{{ calenderTime }}
 <div class="calender-div hidden">
   <div class="calender-controls">
     {{year}}
@@ -25,4 +27,8 @@
     </div>
   </div>
   <br>
+
+</div>
+<div>
+  <div><app-progress-bar></app-progress-bar></div>
 </div>
