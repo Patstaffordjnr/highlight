@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Output, EventEmitter, ViewChild, Input } from '@angular/core';
 
 
 
@@ -10,6 +10,10 @@ declare const google: any;
   styleUrls: ['./google-map.component.css']
 })
 export class GoogleMapComponent implements OnInit {
+
+
+
+  @Input('selectedDate') public selectedDate: Date;
 
   @Output() addressClicked = new EventEmitter<string>();
   title = 'highlight';
@@ -30,6 +34,10 @@ export class GoogleMapComponent implements OnInit {
       this.initMap();
       this.geocoder = new google.maps.Geocoder();
     });
+  }
+
+  ngOnChanges(): void {
+    console.log(this.selectedDate);
   }
 
    loadGoogleMaps(callback: () => void) {

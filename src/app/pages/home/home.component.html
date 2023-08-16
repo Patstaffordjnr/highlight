@@ -2,8 +2,7 @@
 <app-main-header></app-main-header>
 
 
-<app-calender
+<app-calender (selectDateEvent)="selectDateEventProcess($event)"  ></app-calender>
+<app-google-map [selectedDate]="selectedDate"> </app-google-map>
 
-(selectDateEvent)="selectDateEventProcess($event)" 
 
-></app-calender>
