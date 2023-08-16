@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { HomeComponent } from './home/home.component';
 import { CreateEventComponent } from './create-event/create-event.component';
 
 import { GoogleMapComponent } from './google-map/google-map.component';
@@ -22,6 +21,7 @@ import { EditUserComponent } from './main/edit-user/edit-user.component';
 import { UserComponent } from './model/user/user.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { LogInComponent } from './main/log-in/log-in.component';
+import { HomeComponent } from './pages/home/home.component';
 
 
 
@@ -29,7 +29,6 @@ import { LogInComponent } from './main/log-in/log-in.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     CreateEventComponent,
     GoogleMapComponent,
     MainHeaderComponent,
@@ -42,6 +41,7 @@ import { LogInComponent } from './main/log-in/log-in.component';
     UserComponent,
     ProgressBarComponent,
     LogInComponent,
+    HomeComponent,
 
  
   ],

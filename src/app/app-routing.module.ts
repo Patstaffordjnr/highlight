@@ -6,10 +6,12 @@ import { SignUpComponent } from './main/sign-up/sign-up.component';
 import { LogInComponent } from './main/log-in/log-in.component';
 import { CreateGigComponent } from './main/create-gig/create-gig.component';
 import { GoogleMapComponent } from './google-map/google-map.component';
-
+import { HomeComponent } from './pages/home/home.component';
 
 
 const routes: Routes = [
+  { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'user', component: UserComponent },
   { path: 'signUp', component: SignUpComponent },
   { path: 'userLogIn', component: LogInComponent },
