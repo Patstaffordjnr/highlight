@@ -8,11 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  selectedDate: Date;
+
   ngOnInit(): void {
   }
 
 
   selectDateEventProcess(selectedDate: Date) : void {
-    console.log(selectedDate);
+    this.selectedDate = selectedDate;
+    console.log("Got date from calendar component")
   }
 }
