@@ -5,7 +5,7 @@ import { UserComponent } from './model/user/user.component';
 import { SignUpComponent } from './main/sign-up/sign-up.component';
 import { LogInComponent } from './main/log-in/log-in.component';
 import { CreateGigComponent } from './main/create-gig/create-gig.component';
-import { GoogleMapComponent } from './google-map/google-map.component';
+import { GoogleMapComponent } from './util/google-map/google-map.component';
 import { HomeComponent } from './pages/home/home.component';
 
 

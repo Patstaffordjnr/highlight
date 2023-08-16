@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { CreateEventComponent } from './create-event/create-event.component';
 
-import { GoogleMapComponent } from './google-map/google-map.component';
+import { GoogleMapComponent } from './util/google-map/google-map.component';
 
 import { FormBuilder, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
