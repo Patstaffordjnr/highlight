@@ -1,0 +1,11 @@
+.home{
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        justify-content: center;
+        align-items: center;
+        /* border-width:2px;
+        border-style:solid;
+        border-color:black; */
+
+}

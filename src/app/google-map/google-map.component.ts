@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-google-map',
@@ -6,12 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./google-map.component.css']
 })
 export class GoogleMapComponent implements OnInit {
+  @Output() addressClicked = new EventEmitter<string>();
 
 
   googleMap = document.querySelector('.googleMap');
   placeMarkerButton = document.querySelector('.placeMarkerButton');
   displayAddress = document.querySelector('.addressDisplay');
 
+
+
+  
   constructor() { 
 
     this.googleMap.classList.remove('hidden');
@@ -20,6 +26,8 @@ export class GoogleMapComponent implements OnInit {
     
 
   }
+
+  
 
   ngOnInit(): void {
   }

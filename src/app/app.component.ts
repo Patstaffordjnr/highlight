@@ -84,6 +84,16 @@ export class AppComponent implements OnInit {
     console.log('Map clicked!', event);
   }
   
+
+
+
+
+
+
+
+
+  
+
   placeMarker() {
     if (!this.markerPlaced) {
       if (this.mapClickListener) {

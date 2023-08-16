@@ -10,7 +10,7 @@ import { CreateEventComponent } from './create-event/create-event.component';
 
 import { GoogleMapComponent } from './google-map/google-map.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MainHeaderComponent } from './util/main-header/main-header/main-header.component';
 import { GigTypeDateComponent } from './util/gig-type-date/gig-type-date/gig-type-date.component';
@@ -21,6 +21,8 @@ import { CreateGigComponent } from './main/create-gig/create-gig.component';
 import { EditUserComponent } from './main/edit-user/edit-user.component';
 import { UserComponent } from './model/user/user.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { LogInComponent } from './main/log-in/log-in.component';
+
 
 
 
@@ -30,7 +32,6 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
     HomeComponent,
     CreateEventComponent,
     GoogleMapComponent,
-  
     MainHeaderComponent,
     GigTypeDateComponent,
     CalenderComponent,
@@ -40,6 +41,8 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
     EditUserComponent,
     UserComponent,
     ProgressBarComponent,
+    LogInComponent,
+
  
   ],
   imports: [
@@ -48,6 +51,7 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
     LeafletModule,
     FormsModule,
     ReactiveFormsModule,
+
     
   ],
   providers: [],

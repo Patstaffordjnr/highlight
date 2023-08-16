@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-create-event',
@@ -9,8 +11,18 @@ export class CreateEventComponent implements OnInit {
 
   date = new Date();
 
+  checkoutForm = this.formBuilder.group({
+    name: new FormControl(''),
+    address: ''
+  });
+
+
+  // favoriteColorControl = new FormControl('');
   
-  constructor() { 
+  constructor(
+    private formBuilder: FormBuilder,
+  ) { 
+    
 
     console.log(this.date);
   }
