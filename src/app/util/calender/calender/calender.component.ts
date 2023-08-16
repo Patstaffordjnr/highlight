@@ -1,5 +1,5 @@
 import { WeekDay } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-calender',
@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CalenderComponent implements OnInit {
 
-  @Input() inputDate: Date;
+  @Output() selectDateEvent: EventEmitter<Date> = new EventEmitter<any>();  
   showDialog: Boolean = false;
 
   weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]  
@@ -30,7 +30,7 @@ export class CalenderComponent implements OnInit {
     const lastDayOfMonth = new Date(year, month, 0).getDate();
     return lastDayOfMonth;
   }
-
+  
   updateTime() {
     const date = new Date();
     this.currentTime = date.toLocaleTimeString();
@@ -130,10 +130,7 @@ export class CalenderComponent implements OnInit {
   daySelect(day: number) {
     let date = new Date();
     let selectedDayTo = new Date( this.yearNumber, this.monthNumber- 1, day);
-    console.log(selectedDayTo);
-    this.inputDate = selectedDayTo;
-
-
+    this.selectDateEvent.emit(selectedDayTo);
   }
 
   onPress(): void {
