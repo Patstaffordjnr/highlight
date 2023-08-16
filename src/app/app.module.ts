@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { HomeComponent } from './home/home.component';
-import { CreateEventComponent } from './create-event/create-event.component';
+import { CreateEventComponent } from './util/create-event/create-event.component';
 
-import { GoogleMapComponent } from './google-map/google-map.component';
+import { GoogleMapComponent } from './util/google-map/google-map.component';
 
 import { FormBuilder, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -20,8 +20,9 @@ import { SignUpComponent } from './main/sign-up/sign-up.component';
 import { CreateGigComponent } from './main/create-gig/create-gig.component';
 import { EditUserComponent } from './main/edit-user/edit-user.component';
 import { UserComponent } from './model/user/user.component';
-import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { ProgressBarComponent } from './util/progress-bar/progress-bar.component';
 import { LogInComponent } from './main/log-in/log-in.component';
+import { HomeBlancComponent } from './home-blanc/home-blanc.component';
 
 
 
@@ -42,6 +43,7 @@ import { LogInComponent } from './main/log-in/log-in.component';
     UserComponent,
     ProgressBarComponent,
     LogInComponent,
+    HomeBlancComponent,
 
  
   ],
