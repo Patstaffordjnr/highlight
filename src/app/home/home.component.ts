@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,24 +7,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  // googleRouterLink = document.querySelector('.routerLink');
+  // googleMapOpenClose: Boolean = false;
+  createEventVisible: boolean = false;
+  googleMapEventVisible: boolean = false;
+  calenderMapEventVisible: boolean = false;
 
-  googleMap = document.querySelector('.googleMap');
-  placeMarkerButton = document.querySelector('.placeMarkerButton');
-  displayAddress = document.querySelector('.addressDisplay');
   
-
+  googleRouterLink = document.querySelector('.routerLink');
+  
+  
   constructor() { 
 
-    // console.log(this.googleRouterLink);
-    this.googleMap.classList.add('hidden');
-    this.placeMarkerButton.classList.add('hidden');
-    this.displayAddress.classList.add('hidden');
-  
   }
+
 
   ngOnInit(): void {
   }
+  onClick(): void {
+    alert('blah');
+  }
+
+  openSaysMe(linkText: string): void {
+    console.log(`remove classList of ${linkText}`);
+
+    
+    if (linkText === 'Create Event' && this.createEventVisible == false) {
+      this.createEventVisible = true;
+    } else if ( linkText === 'Create Event' && this.createEventVisible == true) {
+      this.createEventVisible = false;
+    }
+
+    if (linkText === 'Google Map' && this.googleMapEventVisible == false) {
+      this.googleMapEventVisible = true;
+    } else if ( linkText === 'Google Map' && this.googleMapEventVisible == true) {
+      this.googleMapEventVisible = false;
+    }
+
+    if (linkText === 'Calender' && this.calenderMapEventVisible == false) {
+      this.calenderMapEventVisible = true;
+    } else if ( linkText === 'Calender' && this.calenderMapEventVisible == true) {
+      this.calenderMapEventVisible = false;
+    }
+  }
+
+  
 
 
 }

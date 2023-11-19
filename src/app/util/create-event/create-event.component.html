@@ -1,13 +1,8 @@
 <div class="create-event">
-    <a>Create Event</a>
-
-</div>
-<div class="create-event">
-    
-
-    <form [formGroup]="checkoutForm">
-      <p>Address: <input type="text" formControlName="name"></p>
-      <p>{{ checkoutForm.get('name').value }}</p>
-    </form>
-
-</div>
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    <br>
+    <p><button class="placeMarkerButton" (click)="placeMarker()" id="placeMarkerButton">{{ buttonText }}</button>: {{markerAddress}}</p>
+    <a>Start Date & Time: <input type="datetime-local" formControlName="startDateTime"></a>&nbsp;<a>Finish Date & Time: <input type="datetime-local" formControlName="finishDateTime"></a>
+    <button type="submit">Submit</button>
+  </form>
+</div>   

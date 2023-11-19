@@ -2,7 +2,15 @@
     background-color: whitesmoke;
 }
 
-#map {
-    height: 500px;
-    width: 100%;
-   }
+
+
+  .main-header{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    justify-content: center;
+    align-items: center
+  }
+  .hidden {
+    display: none;
+  }

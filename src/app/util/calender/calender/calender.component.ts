@@ -1,5 +1,6 @@
 import { WeekDay } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-calender',
@@ -8,7 +9,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CalenderComponent implements OnInit {
 
-  @Input() inputDate: Date;
+
+  calenderVisible: boolean = false;
+  
+  @Output() selectDateEvent: EventEmitter<Date> = new EventEmitter<any>();  
   showDialog: Boolean = false;
 
   weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]  
@@ -62,10 +66,10 @@ export class CalenderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    
     this.updateTime();
-
   // Update the time every second
+
   setInterval(() => {
     this.updateTime();
   }, 1000);
@@ -114,11 +118,9 @@ export class CalenderComponent implements OnInit {
       } 
     })
 
-
     for (let i = 1; i < previousMonthDays + 1; i++) {
       this.monthDays.push(i);
      }
-   
   }
 
   updateCalendar(): void {
@@ -130,15 +132,12 @@ export class CalenderComponent implements OnInit {
   daySelect(day: number) {
     let date = new Date();
     let selectedDayTo = new Date( this.yearNumber, this.monthNumber- 1, day);
-    console.log(selectedDayTo);
-    this.inputDate = selectedDayTo;
-
-
+    this.selectDateEvent.emit(selectedDayTo);
+    (console.log(selectedDayTo))
   }
 
   onPress(): void {
    this.showDialog = !this.showDialog
-  
    document.querySelector('.calender-div').classList.remove('hidden');
   }
   

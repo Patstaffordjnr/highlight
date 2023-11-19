@@ -10,8 +10,7 @@ import { CreateEventComponent } from './util/create-event/create-event.component
 
 import { GoogleMapComponent } from './util/google-map/google-map.component';
 
-import { FormBuilder, FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainHeaderComponent } from './util/main-header/main-header/main-header.component';
 import { GigTypeDateComponent } from './util/gig-type-date/gig-type-date/gig-type-date.component';
 import { CalenderComponent } from './util/calender/calender/calender.component';

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { FormControl, FormBuilder } from '@angular/forms';
+import { SharedService } from '../shared.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-create-event',
@@ -8,26 +9,39 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./create-event.component.css']
 })
 export class CreateEventComponent implements OnInit {
-
-  date = new Date();
-
+  markerAddress: string;
+  buttonText: string = 'Address ';
+ 
   checkoutForm = this.formBuilder.group({
     name: new FormControl(''),
-    address: ''
+    address: '',  // Assuming this is the form control for markerAddress
+    startDateTime: new FormControl(''),
+    finishDateTime: new FormControl(''),
   });
 
-
-  // favoriteColorControl = new FormControl('');
-  
   constructor(
     private formBuilder: FormBuilder,
-  ) { 
-    
-
-    console.log(this.date);
+    private sharedService: SharedService,
+    private zone: NgZone
+  ) {
+    this.sharedService.markerAddress$.subscribe((address) => {
+      this.markerAddress = address;
+      // Set the markerAddress value in the form group
+      this.checkoutForm.patchValue({
+        address: address
+      });
+    });
   }
 
   ngOnInit(): void {
   }
 
+  placeMarker() {
+    this.sharedService.updateCreateEventMarkerToBePlaced(true);
+  }
+
+  onSubmit() {
+    // TODO: Use EventEmitter with form value
+    console.warn(this.checkoutForm.value);
+  }
 }

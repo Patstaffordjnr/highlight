@@ -1,17 +1,23 @@
-  <div class = "home">
-    <nav>
-      <a class = "googleMapHomeButton" routerLink="/googleMapComponent">Google Map</a>
-    </nav>
-  <nav>
-    <a routerLink="/createEvent">Create Event</a>
-  </nav>
-<nav>
-    <a routerLink="/userLogIn">Log In</a>
-  </nav>
-  <nav>
-    <a routerLink="/user">User</a>
-  </nav>
-  <nav>
-    <a routerLink="/signUp">Sign Up</a>
-  </nav>
+<div class = "home">
+<!-- <h1>HOME</h1> -->
+<div class ="Calender" >
+  <a (click)= "openSaysMe('Calender')">Time</a>
+  <app-calender *ngIf="calenderMapEventVisible" ></app-calender>
+</div>
+
+<div class ="a1" id = "a1">
+  <a (click)= "openSaysMe('Google Map')">Google Maps</a>
+  <app-google-map *ngIf="googleMapEventVisible" class = "google-map "[selectedDate]="selectedDate"></app-google-map>
+</div>
+
+
+<div class="a">
+  <a (click)="openSaysMe('Create Event')">Create Event</a>
+  <!-- Conditionally render the Create Event component -->
+  <app-create-event *ngIf="createEventVisible"></app-create-event>
+
+</div>
+
+
+
 </div>
