@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormControl, FormBuilder } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SharedService } from '../shared.service';
 import { formatDate } from '@angular/common';
 
@@ -11,13 +11,14 @@ import { formatDate } from '@angular/common';
 export class CreateEventComponent implements OnInit {
   markerAddress: string;
   buttonText: string = 'Address ';
- 
+
   checkoutForm = this.formBuilder.group({
     name: new FormControl(''),
-    address: '',  // Assuming this is the form control for markerAddress
+    address: '',
     startDateTime: new FormControl(''),
     finishDateTime: new FormControl(''),
-  });
+    length: new FormControl('')
+  })
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,7 +27,6 @@ export class CreateEventComponent implements OnInit {
   ) {
     this.sharedService.markerAddress$.subscribe((address) => {
       this.markerAddress = address;
-      // Set the markerAddress value in the form group
       this.checkoutForm.patchValue({
         address: address
       });
@@ -41,7 +41,10 @@ export class CreateEventComponent implements OnInit {
   }
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.warn(this.checkoutForm.value);
+  
+      console.warn(this.checkoutForm.value);
+    
   }
+
+
 }

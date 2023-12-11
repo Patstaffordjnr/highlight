@@ -7,11 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  // googleMapOpenClose: Boolean = false;
+  // googleMapOpenClose: Boolean = false
+  registerEventVisible: boolean = false;
   createEventVisible: boolean = false;
   googleMapEventVisible: boolean = false;
   calenderMapEventVisible: boolean = false;
-
+  logInEventVisible: boolean = false;
+  userEventVisible: boolean = false;
   
   googleRouterLink = document.querySelector('.routerLink');
   
@@ -30,7 +32,18 @@ export class HomeComponent implements OnInit {
   openSaysMe(linkText: string): void {
     console.log(`remove classList of ${linkText}`);
 
-    
+    if (linkText === 'Register' && this.registerEventVisible == false) {
+      this.registerEventVisible = true;
+    } else if ( linkText === 'Register' && this.registerEventVisible == true) {
+      this.registerEventVisible = false;
+    }
+
+    if (linkText === 'Log In' && this. logInEventVisible == false) {
+      this.logInEventVisible = true;
+    } else if ( linkText === 'Log In' && this.logInEventVisible == true) {
+      this.logInEventVisible = false;
+    }
+
     if (linkText === 'Create Event' && this.createEventVisible == false) {
       this.createEventVisible = true;
     } else if ( linkText === 'Create Event' && this.createEventVisible == true) {
@@ -41,6 +54,12 @@ export class HomeComponent implements OnInit {
       this.googleMapEventVisible = true;
     } else if ( linkText === 'Google Map' && this.googleMapEventVisible == true) {
       this.googleMapEventVisible = false;
+    }
+
+    if (linkText === 'User' && this.userEventVisible == false) {
+      this.userEventVisible = true;
+    } else if ( linkText === 'User' && this.userEventVisible == true) {
+      this.userEventVisible = false;
     }
 
     if (linkText === 'Calender' && this.calenderMapEventVisible == false) {

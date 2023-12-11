@@ -13,7 +13,8 @@ export class HomeBlancComponent implements OnInit {
   // selectedDate: Date;
   mapVisible: boolean = false;  // Control the visibility of the map component
   calendarVisible: boolean = false;
-
+  logInVisible: boolean = false;
+  userVisible: boolean = false;
 
 
   constructor() { }
@@ -37,7 +38,18 @@ export class HomeBlancComponent implements OnInit {
     
   }
 
+  toggleLogIn() {
+    this.logInVisible = !this.logInVisible;
+    
+  }
+
   toggleCalendarVisibility() {
     this.calendarVisible = !this.calendarVisible;
   }
+
+  toggleUserVisibility() {
+    this.userVisible = !this.userVisible;
+  }
+
+
 }
