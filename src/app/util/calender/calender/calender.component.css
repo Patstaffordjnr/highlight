@@ -70,3 +70,13 @@
   justify-content: center;
   align-items: center;
 }
+
+.aon{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+
+
+}

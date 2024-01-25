@@ -7,14 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  // googleMapOpenClose: Boolean = false
-  registerEventVisible: boolean = false;
-  createEventVisible: boolean = false;
-  googleMapEventVisible: boolean = false;
-  calenderMapEventVisible: boolean = false;
-  logInEventVisible: boolean = false;
-  userEventVisible: boolean = false;
-  
+
+  componentVisibility = {
+    register: { visible: false, fontSize: '20px', textAlign: 'center' },
+    logIn: { visible: false, fontSize: '20px', textAlign: 'center' },
+    createEvent: { visible: false, fontSize: '20px', textAlign: 'center' },
+    googleMap: { visible: false, fontSize: '20px',  textAlign: 'center'},
+    eventsDisplpay: { visible: false, fontSize: '20px',textAlign: 'center' },
+    user: { visible: false, fontSize: '20px',textAlign: 'center' },
+    editUser: { visible: false, fontSize: '20px',textAlign: 'center' },
+    calendar: { visible: false, fontSize: '20px', textAlign: 'center' }, // Corrected spelling
+  };
+
   googleRouterLink = document.querySelector('.routerLink');
   
   
@@ -26,50 +30,17 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
   onClick(): void {
-    alert('blah');
+    alert('click');
   }
 
-  openSaysMe(linkText: string): void {
-    console.log(`remove classList of ${linkText}`);
+  openSaysMe(component: string): void {
+    console.log(`remove classList of ${component}`);
 
-    if (linkText === 'Register' && this.registerEventVisible == false) {
-      this.registerEventVisible = true;
-    } else if ( linkText === 'Register' && this.registerEventVisible == true) {
-      this.registerEventVisible = false;
-    }
+    // Toggle the visibility of the selected component
+    this.componentVisibility[component].visible = !this.componentVisibility[component].visible;
 
-    if (linkText === 'Log In' && this. logInEventVisible == false) {
-      this.logInEventVisible = true;
-    } else if ( linkText === 'Log In' && this.logInEventVisible == true) {
-      this.logInEventVisible = false;
-    }
+    // Toggle the font size along with visibility
+    this.componentVisibility[component].fontSize = this.componentVisibility[component].visible ? '16px' : '20px';
 
-    if (linkText === 'Create Event' && this.createEventVisible == false) {
-      this.createEventVisible = true;
-    } else if ( linkText === 'Create Event' && this.createEventVisible == true) {
-      this.createEventVisible = false;
-    }
-
-    if (linkText === 'Google Map' && this.googleMapEventVisible == false) {
-      this.googleMapEventVisible = true;
-    } else if ( linkText === 'Google Map' && this.googleMapEventVisible == true) {
-      this.googleMapEventVisible = false;
-    }
-
-    if (linkText === 'User' && this.userEventVisible == false) {
-      this.userEventVisible = true;
-    } else if ( linkText === 'User' && this.userEventVisible == true) {
-      this.userEventVisible = false;
-    }
-
-    if (linkText === 'Calender' && this.calenderMapEventVisible == false) {
-      this.calenderMapEventVisible = true;
-    } else if ( linkText === 'Calender' && this.calenderMapEventVisible == true) {
-      this.calenderMapEventVisible = false;
-    }
   }
-
-  
-
-
 }

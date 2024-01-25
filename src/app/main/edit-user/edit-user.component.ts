@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditUserComponent implements OnInit {
 
+  userRoles = ['Busker', 'User', 'Admin'];
+  userRole;
+
+  
   constructor() { }
 
   ngOnInit(): void {

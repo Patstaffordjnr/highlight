@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// import { }
 
 @Component({
   selector: 'app-role',
@@ -6,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./role.component.css']
 })
 export class RoleComponent implements OnInit {
+
+  
+role = ['Busker', 'User', 'Admin']
+
+
 
   constructor() { }
 

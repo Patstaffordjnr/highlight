@@ -1,1 +1,20 @@
-<p>edit-user works!</p>
+
+<div class = "userUI" id = "userUi">
+<label for="first-name">First Name:</label><input id="first-name" type="text" >
+<label for="last-name">last-name:</label><input id="last-name" type="text" >
+<label for="user-id">User ID:</label><input id="user-id" type="text" >
+<label for="user-dob">DOB:</label><input id="user-dob" type="text" >
+<label for="user-password">Password:</label><input id="user-password" type="text" >
+<br>
+
+<label>User Role:</label>
+<div *ngFor="let role of userRoles; let i = index">
+  <input type="checkbox" (change)="updateRole(role)" [disabled]="isCheckboxDisabled">
+  <a [class.disabled]="isTextDisabled" (click)="onRoleClick(role)">{{ role }}</a>
+</div>
+
+<br>
+<label for="user-email">Email:</label><input id="user-email" type="text" >
+</div>
+
+<br>

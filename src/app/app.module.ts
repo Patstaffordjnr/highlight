@@ -16,12 +16,13 @@ import { GigTypeDateComponent } from './util/gig-type-date/gig-type-date/gig-typ
 import { CalenderComponent } from './util/calender/calender/calender.component';
 import { SiteComponent } from '../app/main/site/site.component';
 import { SignUpComponent } from './main/sign-up/sign-up.component';
-import { CreateGigComponent } from './main/create-gig/create-gig.component';
 import { EditUserComponent } from './main/edit-user/edit-user.component';
 import { UserComponent } from './model/user/user.component';
 import { ProgressBarComponent } from './util/progress-bar/progress-bar.component';
 import { LogInComponent } from './main/log-in/log-in.component';
 import { HomeBlancComponent } from './home-blanc/home-blanc.component';
+import { ContemporaryEventsComponent } from './util/contemporary-events/contemporary-events.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -37,12 +38,12 @@ import { HomeBlancComponent } from './home-blanc/home-blanc.component';
     CalenderComponent,
     SiteComponent,
     SignUpComponent,
-    CreateGigComponent,
     EditUserComponent,
     UserComponent,
     ProgressBarComponent,
     LogInComponent,
     HomeBlancComponent,
+    ContemporaryEventsComponent,
 
  
   ],
@@ -52,6 +53,7 @@ import { HomeBlancComponent } from './home-blanc/home-blanc.component';
     LeafletModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
 
     
   ],

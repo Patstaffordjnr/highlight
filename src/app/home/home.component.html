@@ -1,46 +1,44 @@
+
+
 <div class = "home">
-<!-- <h1>HOME</h1> -->
-
-<div class="a">
-  <a (click)="openSaysMe('Register')">Register</a>
-  <!-- Conditionally render the Create Event component -->
-
-<app-sign-up *ngIf="registerEventVisible"></app-sign-up>
-
+  <div class="register" [style.fontSize] = "componentVisibility.register.fontSize" [style.textAlign]="componentVisibility.register.textAlign">
+    <a class = "uiFont" (click)="openSaysMe('register')">Register</a>
+  <app-sign-up *ngIf="componentVisibility.register.visible"></app-sign-up>
 </div>
 
-<div class ="Log in" >
-  <a (click)= "openSaysMe('Log In')">Log In</a>
-  <app-log-in *ngIf="logInEventVisible" ></app-log-in>
+<div class="logIn" [style.fontSize] = "componentVisibility.logIn.fontSize" [style.textAlign]="componentVisibility.logIn.textAlign">
+  <a class = "uiFont" (click)="openSaysMe('logIn')">Log In</a>
+<app-log-in *ngIf="componentVisibility.logIn.visible"></app-log-in>
 </div>
 
-
-
-
-<div class ="Calender" >
-  <a (click)= "openSaysMe('Calender')">Time</a>
-  <app-calender *ngIf="calenderMapEventVisible" ></app-calender>
+<div class="calendar" [style.fontSize] = "componentVisibility.calendar.fontSize" [style.textAlign]="componentVisibility.calendar.textAlign">
+  <a class = "uiFont" (click)="openSaysMe('calendar')">Calender</a>
+<app-calender *ngIf="componentVisibility.calendar.visible"></app-calender>
 </div>
 
-<div class ="a1" id = "a1">
-  <a (click)= "openSaysMe('Google Map')">Google Maps</a>
-  <app-google-map *ngIf="googleMapEventVisible" class = "google-map "[selectedDate]="selectedDate"></app-google-map>
+<div class="googleMap" [style.fontSize] = "componentVisibility.googleMap.fontSize" [style.textAlign]="componentVisibility.googleMap.textAlign">
+  <a class = "uiFont" (click)="openSaysMe('googleMap')">Google Maps</a>
+<app-google-map *ngIf="componentVisibility.googleMap.visible"></app-google-map>
 </div>
 
-<div class ="User" >
-  <a (click)= "openSaysMe('User')">User</a>
-  <app-user *ngIf="userEventVisible" ></app-user>
+<div class="eventsDisplpay" [style.fontSize] = "componentVisibility.eventsDisplpay.fontSize" [style.textAlign]="componentVisibility.eventsDisplpay.textAlign">
+  <a class = "uiFont"  (click)="openSaysMe('eventsDisplpay')">Events</a>
+<app-contemporary-events *ngIf="componentVisibility.eventsDisplpay.visible"></app-contemporary-events>
 </div>
 
-
-<div class="Create Event">
-  <a (click)="openSaysMe('Create Event')">Create Event</a>
-  <!-- Conditionally render the Create Event component -->
-  <app-create-event *ngIf="createEventVisible"></app-create-event>
-
+<div class="user" [style.fontSize] = "componentVisibility.user.fontSize" [style.textAlign]="componentVisibility.user.textAlign">
+  <a class = "uiFont" (click)="openSaysMe('user')">User</a>
+<app-user *ngIf="componentVisibility.user.visible"></app-user>
 </div>
 
-
-
-
+<div class="editUser" [style.fontSize] = "componentVisibility.editUser.fontSize" [style.textAlign]="componentVisibility.editUser.textAlign">
+  <a class = "uiFont" (click)="openSaysMe('editUser')">Edit User</a>
+  <app-edit-user *ngIf="componentVisibility.editUser.visible"></app-edit-user>
 </div>
+
+<div class="createEvent" [style.fontSize] = "componentVisibility.createEvent.fontSize" [style.textAlign]="componentVisibility.createEvent.textAlign">
+  <a class = "uiFont"  (click)="openSaysMe('createEvent')">Create Event</a>
+<app-create-event *ngIf="componentVisibility.createEvent.visible"></app-create-event>
+</div>
+</div>
+
