@@ -23,7 +23,8 @@ import { LogInComponent } from './main/log-in/log-in.component';
 import { HomeBlancComponent } from './home-blanc/home-blanc.component';
 import { ContemporaryEventsComponent } from './util/contemporary-events/contemporary-events.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { CorsInterceptor } from 'src/app/cors.interceptor';
 
 
 
@@ -57,7 +58,9 @@ import { HttpClientModule } from '@angular/common/http';
 
     
   ],
-  providers: [],
+  providers: [
+    // CorsInterceptor,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

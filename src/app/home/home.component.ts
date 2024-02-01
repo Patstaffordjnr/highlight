@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   }
 
   openSaysMe(component: string): void {
-    console.log(`remove classList of ${component}`);
+    // console.log(`remove classList of ${component}`);
 
     // Toggle the visibility of the selected component
     this.componentVisibility[component].visible = !this.componentVisibility[component].visible;

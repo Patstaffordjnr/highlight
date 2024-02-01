@@ -19,7 +19,7 @@ export class ProgressBarComponent implements OnInit {
 
   constructor() {
 
-    console.log(`${this.currentHour}:${this.mm}`);
+    // console.log(`${this.currentHour}:${this.mm}`);
   }
 
   ngOnInit(): void {
