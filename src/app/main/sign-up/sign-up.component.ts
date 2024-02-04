@@ -30,39 +30,17 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.authClientService.signInMethod$.subscribe((authorized) => {
-      if (authorized) {
-      } else {
-      }
-    });
-
-    this.authClientService.helloAuthClientBuoyMethod$.subscribe((authorized) => {
-      if (authorized) {
-        console.log("Hello World");
-      } else {
-      }
-    });
   }
 
 
   onSubmit() {
-
-
-    // console.log(this.userForm);
 
     this.userForm.patchValue({
       roles: this.roles
     });
 
     let data = this.userForm.value;
-    // console.log(a);
     this.authClientService.updateUserSignIn(data);
-    // console.log(this.authClientService.updateUserSignIn(a));
-
-
-this.authClientService.signInMethod(true);
-this.authClientService.helloAuthClientBuoyMethod(true);
 
     const role = this.userForm.get('roles').value;
     this.sharedService.updateUser(role);
@@ -73,7 +51,6 @@ this.authClientService.helloAuthClientBuoyMethod(true);
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      // Add other headers if needed
     });
 
   
@@ -84,16 +61,13 @@ this.authClientService.helloAuthClientBuoyMethod(true);
     };
   
     this.userService.makePostRequest(url, headers, body);
-
-    // console.log(body);
   }
 
   onRoleClick(role: string) {
 
     this.userRole = role;
     this.sharedService.updateRole(role);
-
-  
+    
     if (this.roles.includes(role)) {
       this.roles.splice(this.roles.indexOf(role), 1);
     } else {

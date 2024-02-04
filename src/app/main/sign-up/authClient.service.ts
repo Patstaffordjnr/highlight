@@ -1,49 +1,33 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthClientService {
-  private signIn = new BehaviorSubject<boolean>(false);
-  private helloAuthClientBuoy = new BehaviorSubject<boolean>(false);
-
 
   private userSignInFormData = new BehaviorSubject<any>(null);
   userSignIn$ = this.userSignInFormData.asObservable();
 
+  constructor(private http: HttpClient) {
+  }
 
-  updateUserSignIn(userSignIn: any): void {
+  async updateUserSignIn(userSignIn: any): Promise<any>{
     this.userSignInFormData.next(userSignIn);
 
-    let userEmail = userSignIn.email;
-    let userPassword = userSignIn.password;
-    let userRole = userSignIn.roles
-    console.log(userEmail,userPassword, userRole );
+    let userDetails = { 
+      email: userSignIn.email,
+      password: userSignIn.password,
+      roles: userSignIn.roles,
+    }
+    
+    const url = 'http://localhost:8085/open/register'
+    let response = await this.http.post<any>(url, userDetails).toPromise();
 
+    console.log(`Email: ${response.email}, Password: ${response.password}, Roles: ${response.roles}`);
+    return this.http.post<any>(url, userDetails);
   }
 
 
-
-
-
-  signInMethod(status: boolean) {
-    this.signIn.next(status);
-  }
-
-  helloAuthClientBuoyMethod(status: boolean) {
-    this.helloAuthClientBuoy.next(status);
-  }
-
-
-
-  get signInMethod$(): Observable<boolean> {
-    return this.signIn.asObservable(); // Use asObservable to expose only Observable part
-  }
-
-  get helloAuthClientBuoyMethod$(): Observable<boolean> {
-    return this.helloAuthClientBuoy.asObservable(); // Use asObservable to expose only Observable part
-  }
-
-  
 }
