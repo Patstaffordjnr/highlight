@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { SharedService } from 'src/app/util/shared.service';
-
+import { LogInService } from './log-in.service'
 
 @Component({
   selector: 'app-log-in',
@@ -10,13 +9,13 @@ import { SharedService } from 'src/app/util/shared.service';
 })
 export class LogInComponent implements OnInit {
 
-  userForm: FormGroup;
+  userDTO: FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder, private sharedService: SharedService) { 
-    this.userForm = this.formBuilder.group({
-      email: [''],
-      userPassword: [''],
+  constructor(private formBuilder: FormBuilder, private logInService: LogInService ) { 
+    this.userDTO = this.formBuilder.group({
+      email: '',
+      password: '',
     });
   }
 
@@ -24,9 +23,15 @@ export class LogInComponent implements OnInit {
   }
 
   onSubmit() {
-    this.sharedService.updateFormData(this.userForm.value);
-    // console.log( this.sharedService);
-    console.log(`as`);
+
+
+    // console.log(`Email: ${this.userForm.value.email}, Password: ${this.userForm.value.password}`);
+    // console.log(this.userD.value);
+
+    this.logInService.loggingInService(this.userDTO);
+      // this.authClientService.updateUserSignIn(this.userForm.value);
+    
+
   }
 
 }

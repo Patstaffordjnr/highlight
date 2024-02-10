@@ -19,24 +19,8 @@ export class UserComponent implements OnInit {
 
 
 
-  constructor(private sharedService: SharedService) { 
-    this.sharedService.formData$.subscribe((formData) => {
-      if (formData) {
-        // Update your component properties with the new form data
-        this.email = formData.email;
-        this.userPassword = formData.userPassword;
-        this.userRole = formData.userRole; // Assuming you have userRole in your form data
-      }
-    });
+  constructor() { 
 
-    this.sharedService.userSpareService$.subscribe((userSpareService) => {
-      this.userSpareService = userSpareService;
-    });
-
-    this.sharedService.formData$.subscribe((formData) => {
-      console.log('Received formData:', formData);
-      // Rest of the code...
-    });
   }
 
   ngOnInit(): void {
