@@ -16,7 +16,16 @@ export class LogInService {
   constructor(private http: HttpClient ) {
   }
 
+  
+  async whoAmI(){    
+    let response = await this.http.get<any>("http://localhost:8085/user/whoAmI", { withCredentials: true }).toPromise();
+    console.log(response)
+  }
+
 async loggingInService(userDTO){
+
+    // let response2 = await this.http.get<any>("http://localhost:8085/csrf").toPromise();
+
     console.log(`Email: ${userDTO.value.email}, Password: ${userDTO.value.password}`);
 
     this.userDTO = { 
@@ -26,7 +35,7 @@ async loggingInService(userDTO){
     let url =  'http://localhost:8085/api/auth/login' ;
 
 
-    let response = await this.http.post<any>(url, this.userDTO).toPromise();
+    let response = await this.http.post<any>(url, this.userDTO, { withCredentials: true }).toPromise();
     console.log(response);
 
 }

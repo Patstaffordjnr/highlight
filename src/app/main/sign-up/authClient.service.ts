@@ -10,8 +10,8 @@ import { HttpClient } from '@angular/common/http';
 export class AuthClientService {
 
   userDTO = { 
-    email: '',
-    password: '',
+    email: 'dumb',
+    password: 'dumb',
     roles: [],
   }
 
@@ -22,6 +22,10 @@ export class AuthClientService {
   }
 
   async updateUserSignIn(userSignIn: any): Promise<any>{
+    debugger;
+
+    // await this.http.get<any>("http://localhost:8085/csrf").toPromise();
+
     this.userSignIn.next(userSignIn);
 
     this.userDTO = { 

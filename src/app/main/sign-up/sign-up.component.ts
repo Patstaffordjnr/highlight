@@ -22,8 +22,8 @@ export class SignUpComponent implements OnInit {
 
   constructor(private authClientService: AuthClientService, private formBuilder: FormBuilder, private sharedService: SharedService, private userService: UserService) {
     this.userForm = this.formBuilder.group({
-      email: [''],
-      password: [''],
+      email: ['dumb'],
+      password: ['dumb'],
       roles: this.roles,
     });
   }

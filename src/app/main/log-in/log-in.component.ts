@@ -14,12 +14,16 @@ export class LogInComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private logInService: LogInService ) { 
     this.userDTO = this.formBuilder.group({
-      email: '',
-      password: '',
+      email: 'dumb',
+      password: 'dumb',
     });
   }
 
   ngOnInit(): void {
+  }
+
+  whoAmI() {
+    this.logInService.whoAmI();
   }
 
   onSubmit() {
