@@ -39,6 +39,10 @@ export class SignUpComponent implements OnInit {
     });
     
     this.authClientService.updateUserSignIn(this.userForm.value);
+
+
+
+  
   }
 
   onRoleClick(role: string) {
