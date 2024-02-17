@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, Output, EventEmitter, ViewChild, Input, AfterViewInit } from '@angular/core';
 
 import { ChangeDetectorRef } from '@angular/core';
-import { SharedService } from 'src/app/util/shared.service';
+import { GoogleMapService } from './google-map.service';
 
 
 
@@ -31,7 +31,7 @@ export class GoogleMapComponent implements AfterViewInit {
   createEventMarkerToBePlaced = false;
   mapClickListener: google.maps.MapsEventListener;
 
-  constructor(private sharedService: SharedService, 
+  constructor(private googleMapService: GoogleMapService, 
     private cd: ChangeDetectorRef) {
     
    }
@@ -44,7 +44,7 @@ export class GoogleMapComponent implements AfterViewInit {
       this.geocoder = new google.maps.Geocoder();
     });
 
-    this.sharedService.createEventMarkerToBePlaced$.subscribe((createEventMarkerToBePlaced) => {
+    this.googleMapService.createEventMarkerToBePlaced$.subscribe((createEventMarkerToBePlaced) => {
       if (createEventMarkerToBePlaced) {
 
         this.placeMarker()
@@ -158,7 +158,7 @@ export class GoogleMapComponent implements AfterViewInit {
           const formattedAddress = results[0].formatted_address;
           this.address = formattedAddress;
           this.addressClicked.emit(formattedAddress); // Emit the updated address
-          this.sharedService.updateMarkerAddress(formattedAddress);
+          this.googleMapService.updateMarkerAddress(formattedAddress);
         } else {
           this.address = 'Address not found';
         }
