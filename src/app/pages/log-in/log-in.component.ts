@@ -9,14 +9,13 @@ import { LogInService } from './log-in.service';
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.css'],
-  // imports: [NgFor, ReactiveFormsModule, JsonPipe],
 })
 export class LogInComponent implements OnInit {
 
   
   loginForm = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required, Validators.min(4)],
+    email: ['dumb@dumb.com', [Validators.required, Validators.email]],
+    password: ['dumb', [Validators.required, Validators.minLength(4)]],
   });
 
 

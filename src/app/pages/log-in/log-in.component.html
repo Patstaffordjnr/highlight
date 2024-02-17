@@ -1,34 +1,13 @@
-<!-- <br>
-<br>
-<div class = "log-in" >
-    <form [formGroup]="loginRequest" (ngSubmit)="onSubmit()">
-    <div class="form-item">
-        <label for="email">Email</label>
-        <input id="email" type="text" formControlName="email">
-    <br>
-        <label for="password">Password</label>
-        <input id="password" type="text" formControlName="password">
-
-  </div>
-<br>
-    <button type="submit">Log In</button>
-</form> 
-</div>
-
-<div>
-
-    <button  (click)="whoAmI()">Who Am I</button>
-</div>
-<br>
-<br> -->
-
-
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <label for="email">Email: </label>
-    <input id="femail" type="text" formControlName="email" required>
+    <input id="email" type="text" formControlName="email" required>
+    <div *ngIf="loginForm.get('email').errors?.['required']">Email is required.</div>
+    <div *ngIf="loginForm.get('email').errors?.['email']">Not an email.</div>
   
     <label for="password">Password: </label>
     <input id="password" type="password" formControlName="password">
+    <div *ngIf="loginForm.get('password').errors?.['required']">Password required.</div>
+    <div *ngIf="loginForm.get('password').errors?.['minlength']">Neeed more character.</div>
 
     <button type="submit" [disabled]="!loginForm.valid">Submit</button>
   </form>
@@ -39,3 +18,4 @@
   
   <p>Form Status: {{ loginForm.status }}</p>
   
+  <p>Form asdads: {{ loginForm.get('password').errors?.['minLength'] }}</p>
