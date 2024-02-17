@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SharedService } from '../shared.service';
 import { formatDate } from '@angular/common';
+import { SharedService } from 'src/app/util/shared.service';
 
 @Component({
   selector: 'app-create-event',

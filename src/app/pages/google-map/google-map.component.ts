@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, Output, EventEmitter, ViewChild, Input, AfterViewInit } from '@angular/core';
-import { SharedService } from '../shared.service';
+
 import { ChangeDetectorRef } from '@angular/core';
+import { SharedService } from 'src/app/util/shared.service';
 
 
 
