@@ -1,24 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { LogInService } from './log-in.service'
-import { LoginRequest } from './login-request';
+import { JsonPipe, NgFor } from '@angular/common';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Validators } from '@angular/forms';
+import { FormArray } from '@angular/forms';
+import { LogInService } from './log-in.service';
 
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.css'],
+  // imports: [NgFor, ReactiveFormsModule, JsonPipe],
 })
 export class LogInComponent implements OnInit {
 
-  loginRequest: LoginRequest
-  loginForm: FormGroup;
+  
+  loginForm = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required, Validators.min(4)],
+  });
 
 
   constructor(private formBuilder: FormBuilder, private logInService: LogInService ) { 
-    this.loginForm = this.formBuilder.group({
-      email: 'dumb',
-      password: 'dumb',
-    });
+   
   }
 
   ngOnInit(): void {
@@ -29,7 +32,6 @@ export class LogInComponent implements OnInit {
   }
 
   onSubmit() {
-
     // this.logInService.loggingInService(this.userDTO);
       // this.authClientService.updateUserSignIn(this.userForm.value);
     

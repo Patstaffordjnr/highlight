@@ -7,7 +7,7 @@ import { GoogleMapComponent } from './pages/google-map/google-map.component';
 import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  { path: '',   redirectTo: '/userLogIn', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'user', component: UserComponent },
   { path: 'signUp', component: SignUpComponent },

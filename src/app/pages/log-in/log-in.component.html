@@ -1,4 +1,4 @@
-<br>
+<!-- <br>
 <br>
 <div class = "log-in" >
     <form [formGroup]="loginRequest" (ngSubmit)="onSubmit()">
@@ -20,4 +20,22 @@
     <button  (click)="whoAmI()">Who Am I</button>
 </div>
 <br>
-<br>
+<br> -->
+
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <label for="email">Email: </label>
+    <input id="femail" type="text" formControlName="email" required>
+  
+    <label for="password">Password: </label>
+    <input id="password" type="password" formControlName="password">
+
+    <button type="submit" [disabled]="!loginForm.valid">Submit</button>
+  </form>
+  
+  <hr>
+  
+  <p>Form Value: {{ loginForm.value | json }}</p>
+  
+  <p>Form Status: {{ loginForm.status }}</p>
+  
