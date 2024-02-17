@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { HomeComponent } from './home/home.component';
 import { CreateEventComponent } from './util/create-event/create-event.component';
 
@@ -51,7 +50,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LeafletModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
