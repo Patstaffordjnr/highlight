@@ -16,7 +16,6 @@ import { EditUserComponent } from './main/edit-user/edit-user.component';
 import { UserComponent } from './pages/user/user.component';
 import { ProgressBarComponent } from './util/progress-bar/progress-bar.component';
 import { LogInComponent } from './pages/log-in/log-in.component';
-import { HomeBlancComponent } from './home-blanc/home-blanc.component';
 import { ContemporaryEventsComponent } from './util/contemporary-events/contemporary-events.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -30,6 +29,8 @@ import { GoogleMapComponent } from './pages/google-map/google-map.component';
   declarations: [
     AppComponent,
     HomeComponent,
+    UserComponent,
+
     CreateEventComponent,
     GoogleMapComponent,
     MainHeaderComponent,
@@ -38,10 +39,8 @@ import { GoogleMapComponent } from './pages/google-map/google-map.component';
     SiteComponent,
     SignUpComponent,
     EditUserComponent,
-    UserComponent,
     ProgressBarComponent,
     LogInComponent,
-    HomeBlancComponent,
     ContemporaryEventsComponent,
 
  
