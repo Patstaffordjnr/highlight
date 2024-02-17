@@ -1,40 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { JsonPipe, NgFor } from '@angular/common';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
-import { LogInService } from './log-in.service';
+import { LoginClient } from './log-in.client';
+import { LoginRequest } from './login-request';
+import { RouterService } from 'src/app/util/router.service';
 
 @Component({
-  selector: 'app-log-in',
+  selector: 'log-in',
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.css'],
 })
 export class LogInComponent implements OnInit {
-
-  
-  loginForm = this.formBuilder.group({
-    email: ['dumb@dumb.com', [Validators.required, Validators.email]],
-    password: ['dumb', [Validators.required, Validators.minLength(4)]],
-  });
-
-
-  constructor(private formBuilder: FormBuilder, private logInService: LogInService ) { 
-   
+ 
+  form: FormGroup;
+  loginRequest = new LoginRequest('dumb@dumb.com', 'dumb')  
+ 
+  constructor(private formBuilder: FormBuilder, private loginClient: LoginClient, private routerService: RouterService) { 
+    this.form = this.formBuilder.group({
+      email: [this.loginRequest.email, [Validators.required, Validators.email]],
+      password: [this.loginRequest.password, [Validators.required, Validators.minLength(4)]],
+    });
   }
 
   ngOnInit(): void {
-  }
-
-  whoAmI() {
-    this.logInService.whoAmI();
-  }
-
-  onSubmit() {
-    // this.logInService.loggingInService(this.userDTO);
-      // this.authClientService.updateUserSignIn(this.userForm.value);
-    
 
   }
 
+  async onSubmit() {
+    var successful = await this.loginClient.logIn(this.loginRequest);
+    if(successful) {
+      this.routerService.toLoginPage()
+      console.log('successful')
+    } else {
+      console.log('something wrong')
+    }
+  }  
+  
 }

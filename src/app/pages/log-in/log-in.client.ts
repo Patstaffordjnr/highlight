@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SignUpRequest } from './sign-up-request';
-import { SignUpResponse } from './sign-up-response';
 import { HttpHeaders } from '@angular/common/http';
+import { LoginRequest } from './login-request';
+import { User } from 'src/app/model/user';
 
 @Injectable({
   providedIn: 'root',
 })
 
-export class SignUpClient {
+export class LoginClient {
 
 
   constructor(private http: HttpClient ) {
@@ -20,15 +20,16 @@ export class SignUpClient {
     console.log(response)
   }
 
-  async signIn(signUpRequest: SignUpRequest): Promise<Boolean>{
+  async logIn(loginRequest: LoginRequest): Promise<Boolean>{
     
-      let url =  'http://localhost:8085/open/signUp' ;
+      let url =  'http://localhost:8085/api/auth/login' ;
 
       let headers = new HttpHeaders({
         'Content-Type': 'application/json'
       });
-
-      // var boom = await this.http.post<SignUpResponse>(url, JSON.stringify(signUpRequest), { headers: headers}).toPromise();
+      
+      debugger;;
+      var boom = await this.http.post<User>(url, JSON.stringify(loginRequest), { withCredentials: true, headers: headers}).toPromise();
 
       return true;
   }

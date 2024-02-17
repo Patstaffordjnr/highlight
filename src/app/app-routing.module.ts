@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'user', component: UserComponent },
   { path: 'signUp', component: SignUpComponent },
-  { path: 'userLogIn', component: LogInComponent },
+  { path: 'login', component: LogInComponent },
   { path: 'map', component: GoogleMapComponent },
 
 ];
