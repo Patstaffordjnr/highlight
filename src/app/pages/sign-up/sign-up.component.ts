@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { JsonPipe, NgFor } from '@angular/common';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { SignUpService } from './sign-up.service';
 import { UserRole } from 'src/app/model/user-role';
 import { SignUpRequest } from './sign-up-request';
-
 
 @Component({
   selector: 'app-sign-up',
@@ -19,7 +18,8 @@ export class SignUpComponent implements OnInit {
       return isNaN(Number(item));
   });
 
-  signUpRequest = new SignUpRequest('', [], '')
+  signUpRequest = new SignUpRequest('dumb@dumb.com', [UserRole.ADMIN,  UserRole.USER], 'dumb')
+
 
   signUpForm = this.formBuilder.group({
     email: [this.signUpRequest.email, [Validators.required, Validators.email]],
@@ -28,19 +28,16 @@ export class SignUpComponent implements OnInit {
   });
  
   constructor(private formBuilder: FormBuilder, private signUpService: SignUpService ) { 
-    this.signUpRequest = new SignUpRequest('', [], '')
   }
   
   onUserRoleUpdate(event: Event): void {
     var checkBoxEvent = event.target as HTMLInputElement
-    console.log(UserRole[checkBoxEvent.value])
     var roleClicked = UserRole[checkBoxEvent.value]
     if(checkBoxEvent.checked) {
       this.signUpRequest.roles.push(roleClicked)
     } else {
-      this.signUpRequest.roles.splice(roleClicked, 1);
+      this.signUpRequest.roles = this.signUpRequest.roles.filter((e, i) => e !== roleClicked); 
     }
-    console.log(this.signUpRequest.roles)
   }
 
   ngOnInit(): void {
@@ -49,5 +46,9 @@ export class SignUpComponent implements OnInit {
 
   onSubmit() {
 
+  }
+
+  isChecked(userRole: UserRole): Boolean {
+    return this.signUpRequest.roles.includes(userRole)
   }
 }
