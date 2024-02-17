@@ -5,11 +5,11 @@ export class SignUpRequest extends User {
     public password: String;
     
     constructor(
-        id: String, 
         email: String, 
         roles: UserRole[],
-        password: String) {
-            super(id, email, roles)
+        password: String,
+        id?: String) {
+            super(email, roles, id)
             this.password = password;
     }
 }

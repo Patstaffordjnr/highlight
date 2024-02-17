@@ -5,11 +5,11 @@ export class User {
     public email: String;
     public roles: UserRole[];
     constructor(
-        id: String, 
         email: String, 
-        roles: UserRole[]) {
-            this.id = id;
+        roles: UserRole[],        
+        id?: String) {
             this.email = email;
             this.roles = roles;
+            this.id = id;
     }
 }

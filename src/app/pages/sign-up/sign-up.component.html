@@ -38,6 +38,15 @@
       <div *ngIf="signUpForm.get('password').errors?.['required']">Password required.</div>
       <div *ngIf="signUpForm.get('password').errors?.['minlength']">Neeed more character.</div>
   
+
+      <div *ngFor="let userRole of allUserRoles; let i=index" class="col-md-2">
+        <label>
+          <input type="checkbox" [value]="userRole" (change)="onUserRoleUpdate($event)">
+          {{userRole}}
+        </label>
+      </div>
+
+
       <button type="submit" [disabled]="!signUpForm.valid">Submit</button>
     </form>
     
