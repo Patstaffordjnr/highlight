@@ -3,10 +3,11 @@ import { JsonPipe, NgFor } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
-import { SignUpService } from './sign-up.service';
+import { SignUpClient } from './sign-up.client';
 import { UserRole } from 'src/app/model/user-role';
 import { SignUpRequest } from './sign-up-request';
 import { minSelectedCheckboxes } from 'src/app/util/validators/checkbox-validator';
+import { RouterService } from 'src/app/util/router.service';
 
 
 @Component({
@@ -16,14 +17,12 @@ import { minSelectedCheckboxes } from 'src/app/util/validators/checkbox-validato
 })
 export class SignUpComponent implements OnInit {
   form: FormGroup;
-
   allUserRoles = Object.keys(UserRole).filter((item) => {
       return isNaN(Number(item));
   });
-
   signUpRequest = new SignUpRequest('dumb@dumb.com', [UserRole.ADMIN, UserRole.BUSKER, UserRole.USER], 'dumb')  
  
-  constructor(private formBuilder: FormBuilder, private signUpService: SignUpService ) { 
+  constructor(private formBuilder: FormBuilder, private signUpClient: SignUpClient, private routerService: RouterService) { 
     this.form = this.formBuilder.group({
       email: [this.signUpRequest.email, [Validators.required, Validators.email]],
       password: [this.signUpRequest.password, [Validators.required, Validators.minLength(4)]],
@@ -52,9 +51,16 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
-  onSubmit() {
+  async onSubmit() {
+    var successful = await this.signUpClient.signIn(this.signUpRequest);
+    if(successful) {
+      console.log('successful')
+    } else {
+      console.log('something wrong')
+    }
   }  
   
 }
