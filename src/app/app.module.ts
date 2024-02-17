@@ -14,9 +14,8 @@ import { UserComponent } from './pages/user/user.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { LogInComponent } from './pages/log-in/log-in.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CreateEventComponent } from './components/create-event/create-event.component';
 import { GoogleMapComponent } from './pages/google-map/google-map.component';
+import { CreateEventComponent } from './components/create-event/create-event.component';
 // import { CorsInterceptor } from 'src/app/cors.interceptor';
 
 

@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LogInService } from './log-in.service'
+import { LoginRequest } from './login-request';
 
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
-  styleUrls: ['./log-in.component.css']
+  styleUrls: ['./log-in.component.css'],
 })
 export class LogInComponent implements OnInit {
 
-  userDTO: FormGroup;
+  loginRequest: LoginRequest
+  loginForm: FormGroup;
 
 
   constructor(private formBuilder: FormBuilder, private logInService: LogInService ) { 
-    this.userDTO = this.formBuilder.group({
+    this.loginForm = this.formBuilder.group({
       email: 'dumb',
       password: 'dumb',
     });
@@ -28,11 +30,7 @@ export class LogInComponent implements OnInit {
 
   onSubmit() {
 
-
-    // console.log(`Email: ${this.userForm.value.email}, Password: ${this.userForm.value.password}`);
-    // console.log(this.userD.value);
-
-    this.logInService.loggingInService(this.userDTO);
+    // this.logInService.loggingInService(this.userDTO);
       // this.authClientService.updateUserSignIn(this.userForm.value);
     
 

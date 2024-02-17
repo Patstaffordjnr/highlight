@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedService } from 'src/app/util/shared.service';
 
 @Component({
   selector: 'app-user',

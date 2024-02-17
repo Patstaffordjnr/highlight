@@ -1,7 +1,7 @@
 <br>
 <br>
 <div class = "log-in" >
-    <form [formGroup]="userDTO" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginRequest" (ngSubmit)="onSubmit()">
     <div class="form-item">
         <label for="email">Email</label>
         <input id="email" type="text" formControlName="email">
