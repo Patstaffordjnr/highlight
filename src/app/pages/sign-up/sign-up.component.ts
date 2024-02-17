@@ -8,12 +8,6 @@ import { UserRole } from 'src/app/model/user-role';
 import { SignUpRequest } from './sign-up-request';
 import { minSelectedCheckboxes } from 'src/app/util/validators/checkbox-validator';
 
-// export type UserFormControls = {
-//   userRoles: FormControl<UserRole[]>;
-// };
-
-// export type UserFormGroup = FormGroup<UserFormControls>;
-
 
 @Component({
   selector: 'app-sign-up',
@@ -27,13 +21,7 @@ export class SignUpComponent implements OnInit {
       return isNaN(Number(item));
   });
 
-  signUpRequest = new SignUpRequest('dumb@dumb.com', [UserRole.ADMIN,  UserRole.USER], 'dumb')
-
-  // userFormGroup: UserFormGroup = new FormGroup<UserFormControls>({
-  //   userRoles: new FormControl([UserRole.ADMIN]),
-  // });
-
-  
+  signUpRequest = new SignUpRequest('dumb@dumb.com', [UserRole.ADMIN,  UserRole.USER], 'dumb')  
  
   constructor(private formBuilder: FormBuilder, private signUpService: SignUpService ) { 
     this.form = this.formBuilder.group({
@@ -45,7 +33,8 @@ export class SignUpComponent implements OnInit {
   }
 
   private addCheckboxes() {
-    this.allUserRoles.forEach(userRole => this.userRolesFormArray.push(new FormControl(this.isChecked(UserRole[userRole]))));
+    this.allUserRoles.forEach(userRole => this.userRolesFormArray.push(new FormControl(
+      this.signUpRequest.roles.includes(UserRole[userRole]))));
   }
 
   onUserRoleUpdate(event: Event): void {
@@ -67,11 +56,6 @@ export class SignUpComponent implements OnInit {
 
   onSubmit() {
 
-  }
-
-  isChecked(userRole: UserRole): Boolean {
-    console.log(userRole)
-    return this.signUpRequest.roles.includes(userRole)
-  }
+  }  
   
 }
