@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LogInService } from '../main/log-in/log-in.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoginClient } from '../log-in/log-in.client';
 
 @Component({
   selector: 'app-home',
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   googleRouterLink = document.querySelector('.routerLink');
   
   
-  constructor(private logInService: LogInService, private httpClient: HttpClient) { 
+  constructor(private logInService: LoginClient, private httpClient: HttpClient) { 
 
   }
 
@@ -42,31 +42,31 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    this.logInService.updatedUser$.subscribe((response) => {
-      // Handle potential null response safely
-      if (!response) { 
-         }
-        else {
+    // this.logInService.updatedUser$.subscribe((response) => {
+    //   // Handle potential null response safely
+    //   if (!response) { 
+    //      }
+    //     else {
 
-          this.userDTO.email = response.email;
-          this.userDTO.password = response.password;
-          this.roles = response.roles;
-          this.token = response.token;
-          this.id = response.id;
+    //       this.userDTO.email = response.email;
+    //       this.userDTO.password = response.password;
+    //       this.roles = response.roles;
+    //       this.token = response.token;
+    //       this.id = response.id;
 
 
-          let url = 'http://localhost:8085/admin/whoAmI';
-          let headers = new HttpHeaders({
+    //       let url = 'http://localhost:8085/admin/whoAmI';
+    //       let headers = new HttpHeaders({
             
-          'Content-Type' : 'appilication/json',
-          'Authorization' : `Bearer: ${response.token}`
-          });
+    //       'Content-Type' : 'appilication/json',
+    //       'Authorization' : `Bearer: ${response.token}`
+    //       });
 
-          this.httpClient.get<String>(url, {headers}).subscribe(response => {
-            console.log(response);
-          })
-        }
-      });
+    //       this.httpClient.get<String>(url, {headers}).subscribe(response => {
+    //         console.log(response);
+    //       })
+    //     }
+    //   });
 
   }
 

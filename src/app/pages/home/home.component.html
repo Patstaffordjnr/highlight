@@ -26,11 +26,6 @@
 <app-log-in *ngIf="componentVisibility.logIn.visible"></app-log-in>
 </div>
 
-<div class="calendar" [style.fontSize] = "componentVisibility.calendar.fontSize" [style.textAlign]="componentVisibility.calendar.textAlign">
-  <a class = "uiFont" (click)="openSaysMe('calendar')">Calender</a>
-<app-calender *ngIf="componentVisibility.calendar.visible"></app-calender>
-</div>
-
 <div class="googleMap" [style.fontSize] = "componentVisibility.googleMap.fontSize" [style.textAlign]="componentVisibility.googleMap.textAlign">
   <a class = "uiFont" (click)="openSaysMe('googleMap')">Google Maps</a>
 <app-google-map *ngIf="componentVisibility.googleMap.visible"></app-google-map>

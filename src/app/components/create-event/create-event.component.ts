@@ -1,6 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SharedService } from '../shared.service';
 import { formatDate } from '@angular/common';
 
 @Component({
@@ -22,22 +21,21 @@ export class CreateEventComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private sharedService: SharedService,
     private zone: NgZone
   ) {
-    this.sharedService.markerAddress$.subscribe((address) => {
-      this.markerAddress = address;
-      this.checkoutForm.patchValue({
-        address: address
-      });
-    });
+    // this.sharedService.markerAddress$.subscribe((address) => {
+    //   this.markerAddress = address;
+    //   this.checkoutForm.patchValue({
+    //     address: address
+    //   });
+    // });
   }
 
   ngOnInit(): void {
   }
 
   placeMarker() {
-    this.sharedService.updateCreateEventMarkerToBePlaced(true);
+    // this.sharedService.updateCreateEventMarkerToBePlaced(true);
   }
 
   onSubmit() {
