@@ -3,10 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 
-@Injectable({
-  providedIn: 'root',
-})
-
+@Injectable()
 export class AuthClientService {
 
   userDTO = { 

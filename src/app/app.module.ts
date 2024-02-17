@@ -16,6 +16,7 @@ import { LogInComponent } from './pages/log-in/log-in.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GoogleMapComponent } from './pages/google-map/google-map.component';
 import { CreateEventComponent } from './components/create-event/create-event.component';
+import { AuthClientService } from './util/authClient.service';
 // import { CorsInterceptor } from 'src/app/cors.interceptor';
 
 
@@ -47,6 +48,7 @@ import { CreateEventComponent } from './components/create-event/create-event.com
   ],
   providers: [
     // CorsInterceptor,
+    AuthClientService
   ],
   bootstrap: [AppComponent]
 })
