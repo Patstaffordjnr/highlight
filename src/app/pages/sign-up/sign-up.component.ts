@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { AuthClientService } from '../../util/authClient.service';
-import { UserService } from 'src/app/user.service';
+import { JsonPipe, NgFor } from '@angular/common';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Validators } from '@angular/forms';
+import { FormArray } from '@angular/forms';
+import { SignUpService } from './sign-up.service';
+
 
 @Component({
   selector: 'app-sign-up',
@@ -10,44 +13,22 @@ import { UserService } from 'src/app/user.service';
 })
 export class SignUpComponent implements OnInit {
 
-  userForm: FormGroup;
-  userRoles = ['BUSKER', 'USER', 'ADMIN'];
-  userRole;
-  roles = [];
 
-  isCheckboxDisabled = false;
-  isTextDisabled = false;
-
-  constructor(private authClientService: AuthClientService, private formBuilder: FormBuilder, private userService: UserService) {
-    this.userForm = this.formBuilder.group({
-      email: ['dumb'],
-      password: ['dumb'],
-      roles: this.roles,
-    });
+  signUpForm = this.formBuilder.group({
+    email: ['dumb@dumb.com', [Validators.required, Validators.email]],
+    password: ['dumb', [Validators.required, Validators.minLength(4)]],
+  });
+ 
+  constructor(private formBuilder: FormBuilder, private signUpService: SignUpService ) { 
+   
   }
+
 
   ngOnInit(): void {
   }
 
 
   onSubmit() {
-
-    this.userForm.patchValue({
-      roles: this.roles
-    });
-    
-    this.authClientService.updateUserSignIn(this.userForm.value);
-  }
-
-  onRoleClick(role: string) {
-
-    this.userRole = role;
-
-    if (this.roles.includes(role)) {
-      this.roles.splice(this.roles.indexOf(role), 1);
-    } else {
-      this.roles.push(role);
-    }
 
   }
 }

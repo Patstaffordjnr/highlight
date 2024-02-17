@@ -1,13 +1,13 @@
-import { USER_ROLE } from "./user-role";
+import { UserRole } from "./user-role";
 
 export class User {
     public id: String;
     public email: String;
-    public roles: USER_ROLE[];
+    public roles: UserRole[];
     constructor(
         id: String, 
         email: String, 
-        roles: USER_ROLE[]) {
+        roles: UserRole[]) {
             this.id = id;
             this.email = email;
             this.roles = roles;
