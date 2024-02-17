@@ -7,15 +7,12 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MainHeaderComponent } from './util/main-header/main-header/main-header.component';
-import { GigTypeDateComponent } from './util/gig-type-date/gig-type-date/gig-type-date.component';
-import { CalenderComponent } from './util/calender/calender/calender.component';
-import { SiteComponent } from '../app/main/site/site.component';
+import { MainHeaderComponent } from './components/main-header/main-header.component';
+import { CalenderComponent } from './components/calender/calender.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { UserComponent } from './pages/user/user.component';
-import { ProgressBarComponent } from './util/progress-bar/progress-bar.component';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { LogInComponent } from './pages/log-in/log-in.component';
-import { ContemporaryEventsComponent } from './util/contemporary-events/contemporary-events.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CreateEventComponent } from './components/create-event/create-event.component';
@@ -26,24 +23,19 @@ import { GoogleMapComponent } from './pages/google-map/google-map.component';
 
 @NgModule({
   declarations: [
+    //Pages
     AppComponent,
     HomeComponent,
     UserComponent,
-
-    GoogleMapComponent,
-    MainHeaderComponent,
-    GigTypeDateComponent,
-    CalenderComponent,
-    SiteComponent,
+    GoogleMapComponent,    
     SignUpComponent,
-    ProgressBarComponent,
     LogInComponent,
-    ContemporaryEventsComponent,
 
-
+    //Components
+    MainHeaderComponent,
     CreateEventComponent,
-
- 
+    CalenderComponent,
+    ProgressBarComponent, 
   ],
   imports: [
     BrowserModule,
