@@ -21,7 +21,7 @@ export class SignUpComponent implements OnInit {
       return isNaN(Number(item));
   });
 
-  signUpRequest = new SignUpRequest('dumb@dumb.com', [UserRole.ADMIN,  UserRole.USER], 'dumb')  
+  signUpRequest = new SignUpRequest('dumb@dumb.com', [UserRole.ADMIN, UserRole.BUSKER, UserRole.USER], 'dumb')  
  
   constructor(private formBuilder: FormBuilder, private signUpService: SignUpService ) { 
     this.form = this.formBuilder.group({
@@ -55,7 +55,6 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
-
   }  
   
 }
