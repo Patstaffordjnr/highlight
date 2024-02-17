@@ -27,33 +27,38 @@
 
 
 
-    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <label for="email">Email: </label>
       <input id="email" type="text" formControlName="email" required>
-      <div *ngIf="signUpForm.get('email').errors?.['required']">Email is required.</div>
-      <div *ngIf="signUpForm.get('email').errors?.['email']">Not an email.</div>
+      <div *ngIf="form.get('email').errors?.['required']">Email is required.</div>
+      <div *ngIf="form.get('email').errors?.['email']">Not an email.</div>
     
       <label for="password">Password: </label>
       <input id="password" type="password" formControlName="password">
-      <div *ngIf="signUpForm.get('password').errors?.['required']">Password required.</div>
-      <div *ngIf="signUpForm.get('password').errors?.['minlength']">Neeed more character.</div>
+      <div *ngIf="form.get('password').errors?.['required']">Password required.</div>
+      <div *ngIf="form.get('password').errors?.['minlength']">Neeed more character.</div>
   
-
+<!-- 
       <div *ngFor="let userRole of allUserRoles; let i=index" class="col-md-2">
         <label>
           <input type="checkbox" [value]="userRole" (change)="onUserRoleUpdate($event)" [checked]="isChecked(userRole)" >
           {{userRole}}
         </label>
-      </div>
+      </div> -->
+
+      <label formArrayName="userRoles" *ngFor="let userRole of userRolesFormArray.controls; let i = index">
+        <input type="checkbox" [formControlName]="i">
+        {{allUserRoles[i].name}}
+      </label>
 
 
-      <button type="submit" [disabled]="!signUpForm.valid">Submit</button>
+      <button type="submit" [disabled]="!form.valid">Submit</button>
     </form>
     
     <hr>
     
-    <p>Form Value: {{ signUpForm.value | json }}</p>
+    <p>Form Value: {{ form.value | json }}</p>
     
-    <p>Form Status: {{ signUpForm.status }}</p>
+    <p>Form Status: {{ form.status }}</p>
     
-    <p>Form asdads: {{ signUpForm.get('password').errors?.['minLength'] }}</p>
+    <p>Form asdads: {{ form.get('password').errors?.['minLength'] }}</p>
