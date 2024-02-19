@@ -35,6 +35,7 @@ export class RouterService {
   }
   
   async toLogoutPage(): Promise<void> {    
+    this.clearCookie();
     this.currentUserService.setUser(null);
     this.toLoginPage();
   }
