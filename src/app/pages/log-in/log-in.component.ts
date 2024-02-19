@@ -42,5 +42,11 @@ export class LogInComponent implements OnInit {
   async getForbidden() {
     await this.loginClient.getForbidden();
   }
+
+  async clearCookie() {
+    await this.routerService.clearCookie();
+  }
+
+  
   
 }

@@ -19,7 +19,6 @@ export class CurrentUserService {
 @Injectable()
 export class PermissionsService {
   async canActivate(currentUser: CurrentUserService, url: string): Promise<boolean> {
-    debugger;
     var user = await currentUser.getUser();
 
    
@@ -38,7 +37,6 @@ export class PermissionsService {
     return false;
   }
   canMatch(currentUser: CurrentUserService): boolean {
-    debugger;
     return true;
   }
 }

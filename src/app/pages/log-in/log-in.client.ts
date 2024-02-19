@@ -11,7 +11,7 @@ import { User } from 'src/app/model/user';
 export class LoginClient {
 
 
-  constructor(private http: HttpClient ) {
+  constructor(private http: HttpClient) {
   }
 
   
