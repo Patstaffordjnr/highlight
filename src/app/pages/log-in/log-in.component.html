@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <label for="email">Email: </label>
-    <input id="email" type="text" formControlName="email" required>
+    <input id="email" type="text" formControlName="email">
     <div *ngIf="form.get('email').errors?.['required']">Email is required.</div>
     <div *ngIf="form.get('email').errors?.['email']">Not an email.</div>
   

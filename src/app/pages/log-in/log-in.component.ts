@@ -15,12 +15,11 @@ import { RouterService } from 'src/app/util/router.service';
 export class LogInComponent implements OnInit {
  
   form: FormGroup;
-  loginRequest = new LoginRequest('dumb@dumb.com', 'dumb')  
  
   constructor(private formBuilder: FormBuilder, private loginClient: LoginClient, private routerService: RouterService) { 
     this.form = this.formBuilder.group({
-      email: [this.loginRequest.email, [Validators.required, Validators.email]],
-      password: [this.loginRequest.password, [Validators.required, Validators.minLength(4)]],
+      email: ['dumb@dumb.com', [Validators.required, Validators.email]],
+      password: ['dumb', [Validators.required, Validators.minLength(4)]],
     });
   }
 
@@ -28,8 +27,12 @@ export class LogInComponent implements OnInit {
 
   }
 
+  generateRequest(): LoginRequest {
+    return new LoginRequest(this.form.get('email').value, this.form.get('password').value)
+  }
+
   async onSubmit() {
-    var loggedInUser = await this.loginClient.logIn(this.loginRequest);
+    var loggedInUser = await this.loginClient.logIn(this.generateRequest());
     if(loggedInUser) {
       this.routerService.setUser(loggedInUser);
       this.routerService.toHomePage();
