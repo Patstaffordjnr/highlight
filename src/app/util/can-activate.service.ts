@@ -21,6 +21,7 @@ export class PermissionsService {
   async canActivate(currentUser: CurrentUserService, url: string): Promise<boolean> {
     var user = await currentUser.getUser();
 
+
    
     if(!user) {
         return false;

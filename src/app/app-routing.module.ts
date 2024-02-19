@@ -9,13 +9,13 @@ import { AdminHomeComponent } from './pages/admin/home/admin-home.component';
 import { canActivateTeam } from './util/can-activate.service';
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/signUp', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent , canActivate: [canActivateTeam],},
+  { path: '',   redirectTo: '/login', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent, canActivate: [canActivateTeam]},
   { path: 'user', component: UserComponent },
-  { path: 'signUp', component: SignUpComponent },
+  { path: 'signup', component: SignUpComponent },
   { path: 'login', component: LogInComponent },
   { path: 'map', component: GoogleMapComponent },
-  { path: 'admin/home', component: AdminHomeComponent },
+  { path: 'admin/home', component: AdminHomeComponent, canActivate: [canActivateTeam]},
 
 ];
 
