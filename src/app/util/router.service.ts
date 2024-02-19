@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../model/user';
+import { CurrentUserService } from './can-activate.service';
 
 
 @Injectable()
 export class RouterService {
 
-  private user: User = null;
-
-  constructor(protected router: Router) {
+  constructor(protected router: Router, private currentUserService: CurrentUserService) {
 
   }
 
   setUser(user: User) {
-    this.user = user;
+    this.currentUserService.setUser(user);
   }
 
   toLoginPage() {
@@ -26,7 +25,7 @@ export class RouterService {
   }
   
   async toLogoutPage(): Promise<void> {
-    this.user = null;
+    this.currentUserService.setUser(null);
     this.toLoginPage();
   }
 

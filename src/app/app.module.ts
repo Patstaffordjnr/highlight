@@ -20,6 +20,7 @@ import { AuthClientService } from './util/auth-client.service';
 import { RouterService } from './util/router.service';
 import { ErrorInterceptor } from './util/interceptors/noop-interceptor.service';
 import { AdminHomeComponent } from './pages/admin/home/admin-home.component';
+import { CurrentUserService, PermissionsService } from './util/can-activate.service';
 // import { CorsInterceptor } from 'src/app/cors.interceptor';
 
 
@@ -55,6 +56,8 @@ import { AdminHomeComponent } from './pages/admin/home/admin-home.component';
     AuthClientService,
     RouterService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    CurrentUserService,
+    PermissionsService,
   ],
   bootstrap: [AppComponent]
 })
