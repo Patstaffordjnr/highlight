@@ -20,19 +20,20 @@ export class LoginClient {
     console.log(response)
   }
 
-  async logIn(loginRequest: LoginRequest): Promise<Boolean>{
-    
+  async logIn(loginRequest: LoginRequest): Promise<User>{    
       let url =  'http://localhost:8085/api/auth/login' ;
-
       let headers = new HttpHeaders({
         'Content-Type': 'application/json'
-      });
-      
-      debugger;;
-      var boom = await this.http.post<User>(url, JSON.stringify(loginRequest), { withCredentials: true, headers: headers}).toPromise();
-
-      return true;
+      });      
+      return await this.http.post<User>(url, JSON.stringify(loginRequest), { withCredentials: true, headers: headers}).toPromise();
   }
+
+  async getForbidden(){    
+    let response = await this.http.get<any>("http://localhost:8085/open/getForbidden", { withCredentials: true }).toPromise();
+    console.log(response)
+    debugger;
+  }
+
 
 
 }

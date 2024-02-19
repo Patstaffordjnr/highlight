@@ -29,13 +29,16 @@ export class LogInComponent implements OnInit {
   }
 
   async onSubmit() {
-    var successful = await this.loginClient.logIn(this.loginRequest);
-    if(successful) {
-      this.routerService.toLoginPage()
-      console.log('successful')
-    } else {
-      console.log('something wrong')
-    }
-  }  
+    var loggedInUser = await this.loginClient.logIn(this.loginRequest);
+    debugger;
+    if(loggedInUser) {
+      this.routerService.setUser(loggedInUser);
+      this.routerService.toHomePage();
+    }  
+  }
+
+  async getForbidden() {
+    await this.loginClient.getForbidden();
+  }
   
 }

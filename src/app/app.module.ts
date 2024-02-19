@@ -13,11 +13,12 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { UserComponent } from './pages/user/user.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { LogInComponent } from './pages/log-in/log-in.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { GoogleMapComponent } from './pages/google-map/google-map.component';
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { AuthClientService } from './util/auth-client.service';
 import { RouterService } from './util/router.service';
+import { ErrorInterceptor } from './util/interceptors/noop-interceptor.service';
 // import { CorsInterceptor } from 'src/app/cors.interceptor';
 
 
@@ -50,7 +51,8 @@ import { RouterService } from './util/router.service';
   providers: [
     // CorsInterceptor,
     AuthClientService,
-    RouterService
+    RouterService,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
