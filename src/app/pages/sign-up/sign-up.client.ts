@@ -20,17 +20,15 @@ export class SignUpClient {
     console.log(response)
   }
 
-  async signIn(signUpRequest: SignUpRequest): Promise<Boolean>{
-    
+  async signIn(signUpRequest: SignUpRequest): Promise<SignUpResponse>{
+    console.log(signUpRequest);
       let url =  'http://localhost:8085/open/signUp' ;
 
       let headers = new HttpHeaders({
         'Content-Type': 'application/json'
       });
 
-      // var boom = await this.http.post<SignUpResponse>(url, JSON.stringify(signUpRequest), { headers: headers}).toPromise();
-
-      return true;
+      return await this.http.post<SignUpResponse>(url, JSON.stringify(signUpRequest), { headers: headers}).toPromise();
   }
 
 

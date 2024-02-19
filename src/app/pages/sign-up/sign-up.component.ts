@@ -20,30 +20,29 @@ export class SignUpComponent implements OnInit {
   allUserRoles = Object.keys(UserRole).filter((item) => {
       return isNaN(Number(item));
   });
-  signUpRequest = new SignUpRequest('dumb@dumb.com', [UserRole.ADMIN, UserRole.BUSKER, UserRole.USER], 'dumb')  
  
   constructor(private formBuilder: FormBuilder, private signUpClient: SignUpClient, private routerService: RouterService) { 
     this.form = this.formBuilder.group({
-      email: [this.signUpRequest.email, [Validators.required, Validators.email]],
-      password: [this.signUpRequest.password, [Validators.required, Validators.minLength(4)]],
+      email: ['busker@dumb.com', [Validators.required, Validators.email]],
+      password: ['dumb', [Validators.required, Validators.minLength(4)]],
       userRoles: new FormArray([], minSelectedCheckboxes(1))
     });
     this.addCheckboxes();
   }
 
-  private addCheckboxes() {
-    this.allUserRoles.forEach(userRole => this.userRolesFormArray.push(new FormControl(
-      this.signUpRequest.roles.includes(UserRole[userRole]))));
+  generateRequest(): SignUpRequest {
+    const selectedRoled: UserRole[] = this.form.get('userRoles').value.filter((value) => value == true).map((value, index) => { 
+      return Object.keys(UserRole)[index];
+    })
+    return new SignUpRequest(this.form.get('email').value, 
+      selectedRoled, 
+      this.form.get('password').value)
   }
 
-  onUserRoleUpdate(event: Event): void {
-    var checkBoxEvent = event.target as HTMLInputElement
-    var roleClicked = UserRole[checkBoxEvent.value]
-    if(checkBoxEvent.checked) {
-      this.signUpRequest.roles.push(roleClicked)
-    } else {
-      this.signUpRequest.roles = this.signUpRequest.roles.filter((e, i) => e !== roleClicked); 
-    }
+
+  private addCheckboxes() {
+    this.allUserRoles.forEach(userRole => this.userRolesFormArray.push(new FormControl(
+      [UserRole.ADMIN, UserRole.BUSKER, UserRole.USER].includes(UserRole[userRole]))));
   }
 
   get userRolesFormArray() {
@@ -55,7 +54,7 @@ export class SignUpComponent implements OnInit {
   }
 
   async onSubmit() {
-    var successful = await this.signUpClient.signIn(this.signUpRequest);
+    var successful = await this.signUpClient.signIn(this.generateRequest());
     if(successful) {
       this.routerService.toLoginPage()
       console.log('successful')
