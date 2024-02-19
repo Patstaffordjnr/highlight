@@ -27,7 +27,13 @@ export class RouterService {
   
   async toLogoutPage(): Promise<void> {
     this.user = null;
-    this.toHomePage();
+    this.toLoginPage();
   }
+
+
+  async toAdminHomePage(): Promise<void> {
+    this.router.navigate(['/admin/home']);
+  }
+
 }
 

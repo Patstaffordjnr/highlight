@@ -30,7 +30,6 @@ export class LogInComponent implements OnInit {
 
   async onSubmit() {
     var loggedInUser = await this.loginClient.logIn(this.loginRequest);
-    debugger;
     if(loggedInUser) {
       this.routerService.setUser(loggedInUser);
       this.routerService.toHomePage();

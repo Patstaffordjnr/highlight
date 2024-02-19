@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginClient } from '../log-in/log-in.client';
+import { RouterService } from 'src/app/util/router.service';
 
 @Component({
   selector: 'app-home',
@@ -32,7 +33,7 @@ export class HomeComponent implements OnInit {
   googleRouterLink = document.querySelector('.routerLink');
   
   
-  constructor(private logInService: LoginClient, private httpClient: HttpClient) { 
+  constructor(private logInService: LoginClient, private httpClient: HttpClient, private routerService: RouterService) { 
 
   }
 
@@ -71,6 +72,13 @@ export class HomeComponent implements OnInit {
   }
 
     
+  async toAdminHomePage(): Promise<void> {
+    this.routerService.toAdminHomePage();
+  }
+
+  async logOff(): Promise<void> {
+    this.routerService.toLogoutPage();
+  }
 
   onClick(): void {
     alert('click');

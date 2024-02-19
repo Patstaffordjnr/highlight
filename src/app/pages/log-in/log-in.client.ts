@@ -31,7 +31,7 @@ export class LoginClient {
   async getForbidden(){    
     let response = await this.http.get<any>("http://localhost:8085/open/getForbidden", { withCredentials: true }).toPromise();
     console.log(response)
-    debugger;
+    
   }
 
 

@@ -19,6 +19,7 @@ import { CreateEventComponent } from './components/create-event/create-event.com
 import { AuthClientService } from './util/auth-client.service';
 import { RouterService } from './util/router.service';
 import { ErrorInterceptor } from './util/interceptors/noop-interceptor.service';
+import { AdminHomeComponent } from './pages/admin/home/admin-home.component';
 // import { CorsInterceptor } from 'src/app/cors.interceptor';
 
 
@@ -32,6 +33,7 @@ import { ErrorInterceptor } from './util/interceptors/noop-interceptor.service';
     GoogleMapComponent,    
     SignUpComponent,
     LogInComponent,
+    AdminHomeComponent,
 
     //Components
     MainHeaderComponent,
