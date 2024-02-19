@@ -9,7 +9,7 @@ import { AdminHomeComponent } from './pages/admin/home/admin-home.component';
 import { canActivateTeam } from './util/can-activate.service';
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/signUp', pathMatch: 'full' },
+  { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent , canActivate: [canActivateTeam],},
   { path: 'user', component: UserComponent },
   { path: 'signUp', component: SignUpComponent },

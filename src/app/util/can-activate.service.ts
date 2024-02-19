@@ -1,6 +1,7 @@
 import { Injectable, inject } from "@angular/core";
 import { User } from "../model/user";
 import { ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot } from "@angular/router";
+import { UserRole } from "../model/user-role";
 
 @Injectable()
 export class CurrentUserService {
@@ -10,16 +11,31 @@ export class CurrentUserService {
         this.currentUser = user;
     }
 
-    async getUser(user: User): Promise<User> {
+    async getUser(): Promise<User> {
         return this.currentUser;
     }
 }
 
 @Injectable()
 export class PermissionsService {
-  canActivate(currentUser: CurrentUserService): boolean {
+  async canActivate(currentUser: CurrentUserService, url: string): Promise<boolean> {
     debugger;
-    return true;
+    var user = await currentUser.getUser();
+
+   
+    if(!user) {
+        return false;
+    }
+
+    if(url === "/home" && [UserRole.ADMIN, UserRole.BUSKER, UserRole.USER].some(obj => user.roles.includes(obj))) {
+        return true;
+    }
+
+    if(url === "/admin/home" && [UserRole.ADMIN].some(obj => user.roles.includes(obj))) {
+        return true;
+    }
+
+    return false;
   }
   canMatch(currentUser: CurrentUserService): boolean {
     debugger;
@@ -31,5 +47,5 @@ export const canActivateTeam: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot,
 ) => {
-  return inject(PermissionsService).canActivate(inject(CurrentUserService));
+  return inject(PermissionsService).canActivate(inject(CurrentUserService), state.url);
 };
