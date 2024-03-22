@@ -28,7 +28,7 @@ export class EventComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(1)]],
       eventType: ['', [Validators.required]],
       eventLat: [Number, [Validators.required, this.validateCoordinate]],
-      eventLng: [Number, [Validators.required, ]],
+      eventLng: [Number, [Validators.required, this.validateCoordinate]],
       address:  [''],
       startDateTime:  ['', [Validators.required]],
       finishDateTime:  ['', [Validators.required]],
