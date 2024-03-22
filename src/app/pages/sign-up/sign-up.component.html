@@ -8,7 +8,7 @@
       <label for="password">Password: </label>
       <input id="password" type="password" formControlName="password" >
       <div *ngIf="form.get('password').errors?.['required']">Password required.</div>
-      <div *ngIf="form.get('password').errors?.['minlength']">Neeed more character.</div>
+      <div *ngIf="form.get('password').errors?.['minlength']">Need more character.</div>
 
       <label formArrayName="userRoles" *ngFor="let userRole of userRolesFormArray.controls; let i = index">
         <input type="checkbox" [formControlName]="i">

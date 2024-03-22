@@ -5,16 +5,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class GoogleMapService {
-  private createEventMarkerToBePlaced = new BehaviorSubject<boolean>(false);
-  private markerAddress = new BehaviorSubject<string>('');
+private markerPlacedSubject = new BehaviorSubject<boolean>(false)
 
-  updateMarkerAddress(address: string) {
-    this.markerAddress.next(address);
-  }
+markerPlaced$ = this.markerPlacedSubject.asObservable();
 
-  get createEventMarkerToBePlaced$(): Observable<boolean> {
-    return this.createEventMarkerToBePlaced.asObservable();
-  }
+updateMarkerPlacementStatus(status: boolean) {
+  this.markerPlacedSubject.next(status);
+}
+
 }
 
 

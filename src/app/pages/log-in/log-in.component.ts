@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { JsonPipe, NgFor } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup} from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { FormArray } from '@angular/forms';
+
 import { LoginClient } from './log-in.client';
 import { LoginRequest } from './login-request';
 import { RouterService } from 'src/app/util/router.service';
@@ -18,7 +17,7 @@ export class LogInComponent implements OnInit {
  
   constructor(private formBuilder: FormBuilder, private loginClient: LoginClient, private routerService: RouterService) { 
     this.form = this.formBuilder.group({
-      email: ['dumb@dumb.com', [Validators.required, Validators.email]],
+      email: ['133@dumb.com', [Validators.required, Validators.email]],
       password: ['dumb', [Validators.required, Validators.minLength(4)]],
     });
   }

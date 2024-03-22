@@ -57,9 +57,8 @@ export class SignUpComponent implements OnInit {
     var successful = await this.signUpClient.signIn(this.generateRequest());
     if(successful) {
       this.routerService.toLoginPage()
-      console.log('successful')
     } else {
-      console.log('something wrong')
+      alert('something wrong')
     }
   }  
   

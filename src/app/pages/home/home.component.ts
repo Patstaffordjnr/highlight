@@ -94,4 +94,9 @@ export class HomeComponent implements OnInit {
     this.componentVisibility[component].fontSize = this.componentVisibility[component].visible ? '16px' : '20px';
 
   }
+
+
+  async toCreateEventPage(): Promise<void> {
+    this.routerService.toCreateEventPage();
+  }
 }

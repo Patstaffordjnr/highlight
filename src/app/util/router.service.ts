@@ -30,6 +30,10 @@ export class RouterService {
     this.router.navigate(['/signup']);
   }
 
+  toCreateEventPage() {
+    this.router.navigate(['/createevent']);
+  }
+
   async clearCookie(): Promise<void> {
     let response = await this.http.get<any>("http://localhost:8085/api/auth/logout", { withCredentials: true }).toPromise();
   }

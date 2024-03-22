@@ -35,6 +35,10 @@ export class PermissionsService {
         return true;
     }
 
+    if(url === "/createevent" && [UserRole.ADMIN, UserRole.BUSKER].some(obj => user.roles.includes(obj))) {
+      return true;
+  }
+
     return false;
   }
   canMatch(currentUser: CurrentUserService): boolean {

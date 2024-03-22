@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { SharedService } from 'src/app/util/shared.service';
-import { UserService } from 'src/app/user.service';
-import { HttpHeaders } from '@angular/common/http';
-import { AuthClientService } from './authClient.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -20,7 +16,7 @@ export class SignUpComponent implements OnInit {
   isCheckboxDisabled = false;
   isTextDisabled = false;
 
-  constructor(private authClientService: AuthClientService, private formBuilder: FormBuilder, private sharedService: SharedService, private userService: UserService) {
+  constructor(private formBuilder: FormBuilder) {
     this.userForm = this.formBuilder.group({
       email: [''],
       password: [''],
@@ -31,24 +27,15 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   onSubmit() {
-
     this.userForm.patchValue({
       roles: this.roles
     });
-    
-    this.authClientService.updateUserSignIn(this.userForm.value);
-
-
-
-  
   }
 
   onRoleClick(role: string) {
 
     this.userRole = role;
-
     if (this.roles.includes(role)) {
       this.roles.splice(this.roles.indexOf(role), 1);
     } else {

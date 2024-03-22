@@ -15,7 +15,7 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
 import { LogInComponent } from './pages/log-in/log-in.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { GoogleMapComponent } from './pages/google-map/google-map.component';
-import { CreateEventComponent } from './components/create-event/create-event.component';
+import { EventComponent } from './components/event/event.component';
 import { AuthClientService } from './util/auth-client.service';
 import { RouterService } from './util/router.service';
 import { ErrorInterceptor } from './util/interceptors/noop-interceptor.service';
@@ -38,7 +38,7 @@ import { CurrentUserService, PermissionsService } from './util/can-activate.serv
 
     //Components
     MainHeaderComponent,
-    CreateEventComponent,
+    EventComponent,
     CalenderComponent,
     ProgressBarComponent, 
   ],
