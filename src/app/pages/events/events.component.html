@@ -1,0 +1,22 @@
+
+
+<!-- <div>
+        <div *ngFor="let event of events">            
+            <div>{{event.id}}</div>
+            <div>{{event.title}}</div>
+        </div>
+</div> -->
+
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Title</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let event of events">            
+                    <td>{{event.id}}</td>
+                    <td>{{event.title}}</td>
+                </tr>
+            </tbody>
+        </table>
+        
