@@ -1,22 +1,14 @@
 .home{
-                display: flex;
-                background-color:white;
-                z-index: 10;
-                font-size: medium;
-                justify-content: center;
-                align-items: center;
-                border-radius: 25px;
-                border: 6px solid whitesmoke;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-}
-/* .hidden{
-        opacity: 0;
-}
 
-.calender{
-        font-size: medium
-}
-
-.uiFont{
-        font-weight: bolder;
-} */
+        background-color:white;
+        font-size: medium;
+        border-radius: 25px;
+        border: 6px solid whitesmoke;
+    
+    }
