@@ -8,6 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AdminHomeComponent } from './pages/admin/home/admin-home.component';
 import { canActivateTeam } from './util/can-activate.service';
 import { EventComponent } from './components/event/event.component'
+import { EventsComponent } from './components/events/events.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'map', component: GoogleMapComponent },
   { path: 'admin/home', component: AdminHomeComponent, canActivate: [canActivateTeam]},
   { path: 'createevent', component: EventComponent, canActivate: [canActivateTeam] },
+  { path: 'events', component: EventsComponent},
 
 ];
 

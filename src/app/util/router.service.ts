@@ -34,6 +34,10 @@ export class RouterService {
     this.router.navigate(['/createevent']);
   }
 
+  toEventsPage() {
+    this.router.navigate(['/events']);
+  }
+
   async clearCookie(): Promise<void> {
     let response = await this.http.get<any>("http://localhost:8085/api/auth/logout", { withCredentials: true }).toPromise();
   }
