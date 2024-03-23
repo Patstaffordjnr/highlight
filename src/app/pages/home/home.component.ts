@@ -42,7 +42,6 @@ export class HomeComponent implements OnInit {
     this.routerService.toCreateEventPage();
   }
   async toEventsPage(): Promise<void> {
-    console.log(`X`);
     this.routerService.toEventsPage();
   }
 }

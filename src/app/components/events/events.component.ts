@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { EventsClient } from './events-client';
 
 @Component({
   selector: 'app-events',
@@ -7,64 +8,27 @@ import { Component } from '@angular/core';
   templateUrl: './events.component.html',
   styleUrl: './events.component.css'
 })
-export class EventsComponent {
+export class EventsComponent implements OnInit{
+  events: any[] = [];
 
-//        contemporaryEvents = [
-//         {
-//   name: "Patrick Stafford",
-//   eventType: "BUSKER",
-//   eventLat: 54.23332,
-//   eventLng: 32.23123,
-//   address: "Killesk House, Campile, New Ross, Co. Wexford",
-//   startDateTime: "2024-04-02T21:00",
-//   finishDateTime: "2024-04-02T00:00",
-// },
-// {
-//   name: "Snoop Doggy Dog",
-//   eventType: "BUSKER",
-//   eventLat: 90.23332,
-//   eventLng: 70.23123,
-//   address: "North Havenwood, California",
-//   startDateTime: "2024-04-02T21:00",
-//   finishDateTime: "2024-04-02T00:00",
-// },
-// {
-//   name: "Big Thief",
-//   eventType: "BUSKER",
-//   eventLat: 40.23332,
-//   eventLng: 42.23123,
-//   address: "North Avenue, New York",
-//   startDateTime: "2024-04-02T21:00",
-//   finishDateTime: "2024-04-02T00:00",
-// }
-// ]
+  
 
+constructor(private eventsClient: EventsClient) {
 
-
-
-
-
-
-
-currentIndex = 0;
-
-
-
-// getCurrentGig(): string {
-//   return this.contemporaryEvents[this.currentIndex]?.name;
-// }
-
-// async nextGigName(): Promise<void> {
-//   this.currentIndex = (this.currentIndex + 1) % this.contemporaryEvents.length; // Handle wrapping around
-// }
-
-// async previousGigName(): Promise<void> {
-//   this.currentIndex = (this.currentIndex - 1 + this.contemporaryEvents.length) % this.contemporaryEvents.length; // Handle wrapping around
-// }
-
-
-
+  
+  
 }
+
+ngOnInit() { 
+  this.eventsClient.getEvents(1, 10) // Adjust currentPage and noOfProducts
+  .then(events => this.events = events)
+  .catch(error => console.error('Error fetching events:', error));
+}
+    
+}
+
+
+
 
 
 
