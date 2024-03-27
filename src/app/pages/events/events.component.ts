@@ -1,48 +1,48 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsClient } from './events-client';
 import { Event } from '../../model/event'
+import { NgFor } from '@angular/common';
 @Component({
   selector: 'app-events',
   standalone: true,
-  imports: [],
+  imports: [NgFor],
   templateUrl: './events.component.html',
   styleUrl: './events.component.css'
 })
 export class EventsComponent implements OnInit{
   events: Event[] = [];
 
-  
-
 constructor(private eventsClient: EventsClient) {
 
-  
-  
 }
 
-ngOnInit() { 
-//   this.eventsClient.getEvents(1, 10) // Adjust page and size
-//   .then(events => this.events = events)
-//   .catch(error => console.error('Error fetching events:', error));
-//   console.log(this.events);
-// }
-
-}
-
-getEvents() {
- 
-
-    this.eventsClient.getEvents(1, 10) // Adjust page and size
+async ngOnInit() { 
+  await this.eventsClient.getEvents(1, 10) // Adjust page and size
   .then(events => this.events = events)
   .catch(error => console.error('Error fetching events:', error));
   console.log(this.events);
 }
+
+selectedEvent?: Event;
+onSelect(event: Event): Event {
+  console.log(event);
+ return  this.selectedEvent = event;
+}
+async getEvents() {
+ 
+
+//     this.eventsClient.getEvents(1, 10) // Adjust page and size
+//   .then(events => this.events = events)
+//   .catch(error => console.error('Error fetching events:', error));
+//   console.log(this.events);
+// }
 }
     
 
 
 
 
-
+}
 
 
 

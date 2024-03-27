@@ -1,1 +1,33 @@
-<button (click)="getEvents()">GET Events</button>
+<div class = "events">
+<br>
+<table class="table">
+    <thead>
+        <tr>
+          <th>EventType</th>
+          <th>Event Lat</th>
+          <th>Event Lng</th>
+          <th>Event Start</th>
+          <th>Event End</th>
+        </tr>
+      </thead>
+    <tbody>
+        <tr  *ngFor="let event of events" (click)="onSelect(event)">
+          <td>{{event.eventType}}</td>
+          <td>{{event.lat}}</td>
+          <td>{{event.long}}</td>
+          <td>{{event.startAt}}</td>
+          <td>{{event.endAt}}</td>
+        </tr>
+      </tbody>
+    </table>
+<br>    
+</div>
+
+<!-- <ul class="heroes">
+    <li *ngFor="let hero of heroes">
+      <button [class.selected]="hero === selectedHero" type="button" (click)="onSelect(hero)">
+        <span class="badge">{{hero.id}}</span>
+        <span class="name">{{hero.name}}</span>
+      </button>
+    </li>
+  </ul> -->
