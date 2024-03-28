@@ -14,25 +14,14 @@ export class GoogleMapComponent implements AfterViewInit {
   
   isMarkerPlaced = false;
   // marker: google.maps.Marker | null = null;
-  markers: google.maps.Marker[] = [];
-
-
-
-
+  markers: google.maps.Marker[] = [];//#endregion
+  
   selectAddressButtonText = "Select Address";
   geocoder: any;
   map: google.maps.Map;
   mapClickListener: google.maps.MapsEventListener;
 
-  constructor(private googleMapService: GoogleMapService, 
-    private cd: ChangeDetectorRef) {
-      this.googleMapService.markerPlaced$.subscribe((markerPlaced) => {
-        if(markerPlaced) {
-          console.log(`YO`);
-        } else {
-      
-        }
-      })
+  constructor() {
    }
 
   ngAfterViewInit(): void {
@@ -72,24 +61,23 @@ export class GoogleMapComponent implements AfterViewInit {
 
           };
           this.map.setCenter(coords);
-
-
         })}
-
 
 }
 
 
-
 selectAddress() {
   this.isMarkerPlaced = true;
-  // this.marker = null
+
+  if(this.markers.length > 0) {
+    const markerToRemove = this.markers[0];
+    markerToRemove.setMap(null);
+    this.markers.shift();
+  }
 
 
   if (this.isMarkerPlaced) {
     // Add click event listener to add markers
-    // this.map.
-   
     this.mapClickListener = google.maps.event.addListener(this.map, 'click', (event: google.maps.MouseEvent) => {
 
       // Get the clicked location coordinates (latitude and longitude)
@@ -98,17 +86,12 @@ selectAddress() {
 
       // Create a new marker object with the clicked location
 
-
-
       const marker = new google.maps.Marker({
         position: { lat, lng },
         map: this.map
       });
-
-      console.log(this.markers)
-
-      // console.log(marker);
-
+      this.markers.push(marker);
+      console.log(this.markers);
 
       this.isMarkerPlaced = false
       google.maps.event.removeListener(this.mapClickListener);
@@ -120,17 +103,8 @@ selectAddress() {
 
   }
 }
-removeMarker(){
-
-
-}
 
 onMapClick(event: PointerEvent) {
-// console.log( event.y);
-// console.log( event.x)
- 
-
-
 
 }
 }
