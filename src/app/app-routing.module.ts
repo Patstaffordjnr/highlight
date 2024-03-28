@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'admin/home', component: AdminHomeComponent, canActivate: [canActivateTeam]},
   { path: 'createevent', component: EventComponent, canActivate: [canActivateTeam] },
   { path: 'events', component: EventsComponent},
+  { path: 'googlemap', component: GoogleMapComponent},
 
 ];
 

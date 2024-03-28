@@ -41,6 +41,9 @@ export class HomeComponent implements OnInit {
   async toCreateEventPage(): Promise<void> {
     this.routerService.toCreateEventPage();
   }
+  async toGoogleMapPage(): Promise<void> {
+    this.routerService.toGoogleMapsPage();
+  }
   async toEventsPage(): Promise<void> {
     this.routerService.toEventsPage();
   }

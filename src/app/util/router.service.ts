@@ -25,6 +25,10 @@ export class RouterService {
     this.router.navigate(['/home']);
   }
 
+  toGoogleMapsPage() {
+    this.router.navigate(['/googlemap']);
+  }
+
 
   toSignUpPage() {
     this.router.navigate(['/signup']);

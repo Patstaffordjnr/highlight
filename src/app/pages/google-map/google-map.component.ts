@@ -1,6 +1,6 @@
-import { Component, ElementRef, OnInit, Output, EventEmitter, ViewChild, Input, AfterViewInit } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
+import { Component, ElementRef, OnInit, Output, EventEmitter, ViewChild, Input, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { GoogleMapService } from './google-map.service';
+
 
 
 @Component({
@@ -10,12 +10,16 @@ import { GoogleMapService } from './google-map.service';
 })
 export class GoogleMapComponent implements AfterViewInit {
 
-  // @Input('selectedDate') public selectedDate: Date;
-
-  // @Output() addressClicked = new EventEmitter<string>();
-
   @ViewChild('mapContainer', { static: false }) mapContainer: ElementRef;
+  
+  isMarkerPlaced = false;
+  // marker: google.maps.Marker | null = null;
+  markers: google.maps.Marker[] = [];
 
+
+
+
+  selectAddressButtonText = "Select Address";
   geocoder: any;
   map: google.maps.Map;
   mapClickListener: google.maps.MapsEventListener;
@@ -77,8 +81,56 @@ export class GoogleMapComponent implements AfterViewInit {
 
 
 
+selectAddress() {
+  this.isMarkerPlaced = true;
+  // this.marker = null
 
-onMapClick(event: MouseEvent) {
-  console.log('Map clicked!', event);
+
+  if (this.isMarkerPlaced) {
+    // Add click event listener to add markers
+    // this.map.
+   
+    this.mapClickListener = google.maps.event.addListener(this.map, 'click', (event: google.maps.MouseEvent) => {
+
+      // Get the clicked location coordinates (latitude and longitude)
+      const lat = event.latLng.lat();
+      const lng = event.latLng.lng();
+
+      // Create a new marker object with the clicked location
+
+
+
+      const marker = new google.maps.Marker({
+        position: { lat, lng },
+        map: this.map
+      });
+
+      console.log(this.markers)
+
+      // console.log(marker);
+
+
+      this.isMarkerPlaced = false
+      google.maps.event.removeListener(this.mapClickListener);
+
+      // (Optional) Call your GoogleMapService to handle marker placement logic
+      // this.googleMapService.placeMarker(marker); // Assuming the service has such a method
+    });
+  } else {
+
+  }
+}
+removeMarker(){
+
+
+}
+
+onMapClick(event: PointerEvent) {
+// console.log( event.y);
+// console.log( event.x)
+ 
+
+
+
 }
 }

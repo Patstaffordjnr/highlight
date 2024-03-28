@@ -1,7 +1,9 @@
 
-
-<br>
+<div class = "googleMapContainer">
 <br>
 <div class="googleMap" #mapContainer id="map" (click)="onMapClick($event)"></div>
 <br>
-<!-- <button class="placeMarkerButton " id="place-marker-btn" (click)="placeMarker()"> {{ placeMarkerButtonMessage }}</button> -->
+<button class="placeMarkerButton " (click)="selectAddress()"> {{ selectAddressButtonText }}</button>
+<button  (click)="removeMarker()"> Remove Marker</button>
+</div>
+<br>
