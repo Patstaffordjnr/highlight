@@ -51,11 +51,13 @@ export class EventComponent implements OnInit {
   }
 
   selectAddress() {
-this.googleMapService.updateMarkerPlacementStatus(true);
-this.googleMapService.markerAddress$.subscribe((markerAddress) => {
+  this.googleMapService.updateMarkerPlacementStatus(true);
+  this.googleMapService.markerAddress$.subscribe((markerAddress) => {
+  
   this.markerAddressObject = [markerAddress];
   this.markerLat = this.markerAddressObject[0].lat;
   this.markerLng = this.markerAddressObject[0].lng;
+  this.checkoutForm.patchValue({ eventLat: this.markerLat, eventLng: this.markerLng });
     })
 
   }
