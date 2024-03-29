@@ -7,18 +7,26 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class GoogleMapService {
 private markerPlacedSubject = new BehaviorSubject<boolean>(false);
-private markerAddressSubject = new BehaviorSubject<Object>([]);
+private markerLatLngSubject = new BehaviorSubject<Object>([]);
+private eventAddressSubject = new BehaviorSubject<string>("");
 
 markerPlaced$ = this.markerPlacedSubject.asObservable();
-markerAddress$ = this.markerAddressSubject.asObservable();
+eventLatLng$ = this.markerLatLngSubject.asObservable();
+eventAddress$ = this.eventAddressSubject.asObservable();
 
 
 updateMarkerPlacementStatus(status: boolean) {
   this.markerPlacedSubject.next(status);
+
 }
 
-updateMarkerAddress(address: object) {
-  this.markerAddressSubject.next(address);
+updateEventLatLng(eventLatLng: object) {
+  this.markerLatLngSubject.next(eventLatLng);
+  console.log(eventLatLng);
+}
+
+updateEventAddress(eventAddress: string){
+  this.eventAddressSubject.next(eventAddress);
 }
 
 }

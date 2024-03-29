@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, Output, EventEmitter, ViewChild, Input, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { GoogleMapService } from './google-map.service';
-
-
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-google-map',
@@ -13,17 +12,18 @@ export class GoogleMapComponent implements AfterViewInit {
   @ViewChild('mapContainer', { static: false }) mapContainer: ElementRef;
   
   isMarkerPlaced = false;
+
   // marker: google.maps.Marker | null = null;
   markers: google.maps.Marker[] = [];//#endregion
-
   markerAddressLatLng = {};
-  
+  markerAddress: string;
+
   selectAddressButtonText = "Select Address";
   geocoder: any;
   map: google.maps.Map;
   mapClickListener: google.maps.MapsEventListener;
 
-  constructor(private googleMapService: GoogleMapService) {
+  constructor(private googleMapService: GoogleMapService, private http: HttpClient) {
     this.googleMapService.markerPlaced$.subscribe((markerPlaced => {
       if(markerPlaced) {
         this.isMarkerPlaced = true
@@ -31,14 +31,9 @@ export class GoogleMapComponent implements AfterViewInit {
       }
 
     }));
+   }
 
   
-   }
-   
-
-
-
-
   ngAfterViewInit(): void {
     // Run your initialization code here
     this.loadGoogleMaps(() => {
@@ -80,8 +75,8 @@ export class GoogleMapComponent implements AfterViewInit {
 
 }
 
-updateEventAddress(address) {
-  this.googleMapService.updateMarkerAddress(address);
+updateEventLatLng(eventLatLng) {
+  this.googleMapService.updateEventLatLng(eventLatLng);
 }
 
 
@@ -94,7 +89,6 @@ selectAddress() {
     this.markers.shift();
   }
 
-
   if (this.isMarkerPlaced) {
     // Add click event listener to add markers
     this.mapClickListener = google.maps.event.addListener(this.map, 'click', (event: google.maps.MouseEvent) => {
@@ -104,26 +98,53 @@ selectAddress() {
       const lng = event.latLng.lng();
 
       // Create a new marker object with the clicked location
-
    this.markerAddressLatLng = {lat, lng}
-   this.updateEventAddress(this.markerAddressLatLng)
-
+   this.updateEventLatLng(this.markerAddressLatLng)
 
       const marker = new google.maps.Marker({
         position: { lat, lng },
         map: this.map
       });
       this.markers.push(marker);
-      this.isMarkerPlaced = false
+
       google.maps.event.removeListener(this.mapClickListener);
 
       // (Optional) Call your GoogleMapService to handle marker placement logic
       // this.googleMapService.placeMarker(marker); // Assuming the service has such a method
+
+      if(this.markers.length > 0) {
+    this.getAddressFromCoordinates(lat, lng);
+      }
+
+      this.isMarkerPlaced = false
     });
   } else {
 
   }
 }
+
+updateEventAddress(eventAddress: string) {
+  this.googleMapService.updateEventAddress(eventAddress);
+}
+
+async getAddressFromCoordinates(latitude: number, longitude: number) {
+  const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyA5mnnydr-3HjuPTwkoNmVUHAYy77CVSmQ`; // Replace with your API endpoint and key
+  await this.http.get(geocodingUrl)
+   .subscribe((response: any) => {
+     if (response.results && response.results.length > 0) {
+       const address = response.results[0].formatted_address;
+       this.updateEventAddress(address);
+
+     } else {
+       console.error("Failed to retrieve address from coordinates.");
+     }
+   },
+   (error) => {
+     console.error("Error during geocoding:", error);
+   });
+}
+
+
 
 onMapClick(event: PointerEvent) {
 

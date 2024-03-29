@@ -12,9 +12,10 @@ import { HttpHeaders } from '@angular/common/http';
 export class EventComponent implements OnInit {
 
   typesOfEvents = ["Busker"];
-
+  address;
   markerAddress: string;
   markerAddressObject: Object;
+  addressToBeGeocoded = false;
 
   markerLat: number;
   markerLng: number;
@@ -22,13 +23,10 @@ export class EventComponent implements OnInit {
   buttonText: string = 'Select Address';
   checkoutForm: FormGroup
 
-  // password: ['dumb', [Validators.required, Validators.minLength(4)]]
-
-  
-  
   constructor(
     private formBuilder: FormBuilder,
-    private googleMapService: GoogleMapService
+    private googleMapService: GoogleMapService,
+    private http: HttpClient
   ) {
 
 
@@ -50,20 +48,29 @@ export class EventComponent implements OnInit {
 
   }
 
-  selectAddress() {
+
+
+  async selectAddress() {
   this.googleMapService.updateMarkerPlacementStatus(true);
-  this.googleMapService.markerAddress$.subscribe((markerAddress) => {
+  this.googleMapService.eventLatLng$.subscribe((markerAddress) => {
   
   this.markerAddressObject = [markerAddress];
   this.markerLat = this.markerAddressObject[0].lat;
   this.markerLng = this.markerAddressObject[0].lng;
   this.checkoutForm.patchValue({ eventLat: this.markerLat, eventLng: this.markerLng });
     })
+  this.addressToBeGeocoded = true;
+
+
+    this.googleMapService.eventAddress$.subscribe((markerAddress => {
+      if(markerAddress) {
+        this.address = markerAddress;
+        this.checkoutForm.get('address').setValue(markerAddress);
+      }
+
+    }));
 
   }
-
-
-
 
   validateCoordinate(control: AbstractControl): { [key: string]: any} | null {
 
