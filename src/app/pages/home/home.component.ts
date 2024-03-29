@@ -9,7 +9,15 @@ import { RouterService } from 'src/app/util/router.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+// ---------------------------------------------------------
 
+calenderEventVisible: boolean = false; 
+googleMapEventVisible: boolean = false; 
+createEventEventVisible: boolean = false; 
+
+eventsEventVisible: boolean = false; 
+
+// ---------------------------------------------------------
    userDTO = {
     email: '',
     password: '', 
@@ -30,6 +38,32 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
     
+
+
+
+
+
+
+
+// -----------------------------------------------
+
+openCalender() {
+  this.calenderEventVisible = !this.calenderEventVisible
+}
+openGoogleMap() {
+  this.googleMapEventVisible = !this.googleMapEventVisible;
+}
+openCreateEvent() {
+  this.createEventEventVisible = !this.createEventEventVisible;
+}
+openEvents() {
+  this.eventsEventVisible = !this.eventsEventVisible;
+}
+
+// ------------------------------------------------
+
+
+
   async toAdminHomePage(): Promise<void> {
     this.routerService.toAdminHomePage();
   }

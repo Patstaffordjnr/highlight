@@ -21,6 +21,7 @@ import { RouterService } from './util/router.service';
 import { ErrorInterceptor } from './util/interceptors/noop-interceptor.service';
 import { AdminHomeComponent } from './pages/admin/home/admin-home.component';
 import { CurrentUserService, PermissionsService } from './util/can-activate.service';
+import { EventsComponent } from './pages/events/events.component';
 // import { CorsInterceptor } from 'src/app/cors.interceptor';
 
 
@@ -39,6 +40,7 @@ import { CurrentUserService, PermissionsService } from './util/can-activate.serv
     //Components
     MainHeaderComponent,
     EventComponent,
+
     CalenderComponent,
     ProgressBarComponent, 
   ],
@@ -48,6 +50,7 @@ import { CurrentUserService, PermissionsService } from './util/can-activate.serv
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    EventsComponent,
 
     
   ],

@@ -14,6 +14,11 @@ export class EventComponent implements OnInit {
   typesOfEvents = ["Busker"];
 
   markerAddress: string;
+  markerAddressObject: Object;
+
+  markerLat: number;
+  markerLng: number;
+
   buttonText: string = 'Select Address';
   checkoutForm: FormGroup
 
@@ -23,8 +28,10 @@ export class EventComponent implements OnInit {
   
   constructor(
     private formBuilder: FormBuilder,
-    private googleMapsService: GoogleMapService
+    private googleMapService: GoogleMapService
   ) {
+
+
 
     this.checkoutForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(1)]],
@@ -43,9 +50,18 @@ export class EventComponent implements OnInit {
 
   }
 
-  placeMarker() {
-this.googleMapsService.updateMarkerPlacementStatus(true);
+  selectAddress() {
+this.googleMapService.updateMarkerPlacementStatus(true);
+this.googleMapService.markerAddress$.subscribe((markerAddress) => {
+  this.markerAddressObject = [markerAddress];
+  this.markerLat = this.markerAddressObject[0].lat;
+  this.markerLng = this.markerAddressObject[0].lng;
+    })
+
   }
+
+
+
 
   validateCoordinate(control: AbstractControl): { [key: string]: any} | null {
 

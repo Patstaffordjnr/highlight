@@ -1,7 +1,31 @@
-<div class = "home">
+<!-- <div class = "home">
 <button (click)="toGoogleMapPage()">Google Map</button>
 <button (click)="toCreateEventPage()">Create Event</button>
 <button (click)="toEventsPage()">Events</button>
 <button (click)="logOff()">logOff</button>
 <button (click)="toAdminHomePage()">toAdminHomePage</button>
+</div> -->
+
+
+
+<div class = "home">
+    <br>
+    <div class = "calender">
+        <a (click) = "openCalender()">Calender</a>
+        <app-calender *ngIf="calenderEventVisible"></app-calender>
+    </div>
+    <div class = "googleMap">
+        <a (click) = "openGoogleMap()">Google Map</a>
+        <app-google-map *ngIf="googleMapEventVisible"></app-google-map>
+    </div>
+    <div class = "createEvent">
+        <a (click) = "openCreateEvent()">Create Event</a>
+        <app-event *ngIf="createEventEventVisible"></app-event>
+    </div>
+    <div class = "events">
+        <a (click) = "openEvents()">Events</a>
+        <app-events *ngIf="eventsEventVisible"></app-events>
+
+</div>
+
 </div>

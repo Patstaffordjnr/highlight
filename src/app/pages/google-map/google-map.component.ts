@@ -15,14 +15,29 @@ export class GoogleMapComponent implements AfterViewInit {
   isMarkerPlaced = false;
   // marker: google.maps.Marker | null = null;
   markers: google.maps.Marker[] = [];//#endregion
+
+  markerAddressLatLng = {};
   
   selectAddressButtonText = "Select Address";
   geocoder: any;
   map: google.maps.Map;
   mapClickListener: google.maps.MapsEventListener;
 
-  constructor() {
+  constructor(private googleMapService: GoogleMapService) {
+    this.googleMapService.markerPlaced$.subscribe((markerPlaced => {
+      if(markerPlaced) {
+        this.isMarkerPlaced = true
+        this.selectAddress();
+      }
+
+    }));
+
+  
    }
+   
+
+
+
 
   ngAfterViewInit(): void {
     // Run your initialization code here
@@ -65,6 +80,10 @@ export class GoogleMapComponent implements AfterViewInit {
 
 }
 
+updateEventAddress(address) {
+  this.googleMapService.updateMarkerAddress(address);
+}
+
 
 selectAddress() {
   this.isMarkerPlaced = true;
@@ -86,13 +105,15 @@ selectAddress() {
 
       // Create a new marker object with the clicked location
 
+   this.markerAddressLatLng = {lat, lng}
+   this.updateEventAddress(this.markerAddressLatLng)
+
+
       const marker = new google.maps.Marker({
         position: { lat, lng },
         map: this.map
       });
       this.markers.push(marker);
-      console.log(this.markers);
-
       this.isMarkerPlaced = false
       google.maps.event.removeListener(this.mapClickListener);
 

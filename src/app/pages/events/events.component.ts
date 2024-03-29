@@ -20,7 +20,6 @@ async ngOnInit() {
   await this.eventsClient.getEvents(1, 10) // Adjust page and size
   .then(events => this.events = events)
   .catch(error => console.error('Error fetching events:', error));
-  console.log(this.events);
 }
 
 selectedEvent?: Event;
@@ -30,17 +29,8 @@ onSelect(event: Event): Event {
 }
 async getEvents() {
  
-
-//     this.eventsClient.getEvents(1, 10) // Adjust page and size
-//   .then(events => this.events = events)
-//   .catch(error => console.error('Error fetching events:', error));
-//   console.log(this.events);
-// }
 }
     
-
-
-
 
 }
 
