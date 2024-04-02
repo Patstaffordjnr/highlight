@@ -57,6 +57,8 @@ export class EventComponent implements OnInit {
   this.markerAddressObject = [markerAddress];
   this.markerLat = this.markerAddressObject[0].lat;
   this.markerLng = this.markerAddressObject[0].lng;
+
+  console.log(this.markerLat, this.markerLng);
   this.checkoutForm.patchValue({ eventLat: this.markerLat, eventLng: this.markerLng });
     })
   this.addressToBeGeocoded = true;

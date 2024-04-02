@@ -10,19 +10,19 @@
 
 <div class = "home">
     <br>
-    <div class = "calender">
+    <div class = "calenderHeading">
         <a (click) = "openCalender()">Calender</a>
         <app-calender *ngIf="calenderEventVisible"></app-calender>
     </div>
-    <div class = "googleMap">
+    <div class = "googleMapHeading">
         <a (click) = "openGoogleMap()">Google Map</a>
         <app-google-map *ngIf="googleMapEventVisible"></app-google-map>
     </div>
-    <div class = "createEvent">
+    <div class = "createEventHeading">
         <a (click) = "openCreateEvent()">Create Event</a>
         <app-event *ngIf="createEventEventVisible"></app-event>
     </div>
-    <div class = "events">
+    <div class = "eventsHeading">
         <a (click) = "openEvents()">Events</a>
         <app-events *ngIf="eventsEventVisible"></app-events>
 

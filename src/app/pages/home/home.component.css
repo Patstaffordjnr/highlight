@@ -12,3 +12,38 @@
         /* border: 6px solid whitesmoke; */
     
     }
+
+    .calenderHeading {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        font-weight: bold;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .googleMapHeading {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        font-weight: bold;
+        justify-content: center;
+        align-items: center;
+    }
+    .createEventHeading {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        font-weight: bold;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .eventsHeading {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        font-weight: bold;
+        justify-content: center;
+        align-items: center;
+    }

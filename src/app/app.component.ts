@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { GoogleMapService } from '../app/pages/google-map/google-map.service';
+
 
 
 declare const google: any;
@@ -11,6 +13,10 @@ declare const google: any;
 export class AppComponent implements OnInit {
 
   title = 'highlight';
+
+  constructor(private googleMapService: GoogleMapService) {
+
+  }
 
   ngOnInit() {
 

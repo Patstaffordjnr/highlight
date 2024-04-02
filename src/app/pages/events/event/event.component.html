@@ -8,12 +8,10 @@
     <a>Name: <input type="string" formControlName="name"></a>
     <div *ngIf="checkoutForm.get('name').errors?.['minlength']">Neeed more character.</div>
     <a>Type: </a> <select formControlName ="eventType"><option *ngFor="let type of typesOfEvents" [ngValue]="type">{{type}}</option></select>
-    <br>
     <div>
       <button type = "button" (click) = selectAddress()>Select Address</button>
       {{address}}
     </div>
-    <br>
     <a>Start Date & Time: <input type="datetime-local" formControlName="startDateTime"></a>
     <br>
     <a>Finish Date & Time: <input type="datetime-local" formControlName="finishDateTime"></a>
