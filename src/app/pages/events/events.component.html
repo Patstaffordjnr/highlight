@@ -1,3 +1,7 @@
+<div>
+  {{currentIndex}}
+</div>
+
 <div class="events">
   <br>
   <br>
@@ -10,7 +14,6 @@
   <th>{{ eventEndAt }}</th> -->
   <br>
   <div class = "gigUi">
-
     <table class="gigUITable">
     <thead class="gigUITableHead">
     <tr>
@@ -33,8 +36,17 @@
     <td></td>
   </tbody>
   <tbody>
-    <td><a>User Role</a></td>
+    <td></td>
     <td><a>Event Description</a></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tbody>
+  <tbody>
+    <td><a>User Role</a></td>
+    <td></td>
     <td></td>
     <td></td>
     <td></td>
@@ -56,17 +68,8 @@
     <td></td>
     <td></td>
     <td></td>
-    <td></td>
-    <td></td>
-  </tbody>
-  <tbody>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
     <td>{{ eventStartAt }}</td>
-    <td>{{ eventEndAt }}/td>
+    <td>{{ eventEndAt }}</td>
   </tbody>
     </table>
 
@@ -79,8 +82,8 @@
       <tr>
         <th>User</th>
         <th>User Role</th>
-        <th>Event Title</th>
         <th>EventType</th>
+        <th>Event Title</th>
         <th>Event Description</th>
         <th>Event Address</th>
         <th>Event Start</th>
@@ -91,8 +94,8 @@
       <tr *ngFor="let event of events" (click)="onSelect(event)">
         <td>(To be called)</td>
         <td>(To be called)</td>
-        <td>{{ event.title }}</td>
         <td>{{ event.eventType }}</td>
+        <td>{{ event.title }}</td>
         <td>(To be created)</td>
         <td>(To be converted from Lat Lng)</td>
         <td>{{ event.startAt }}</td>
@@ -103,8 +106,13 @@
   <br>
 
   <div class="eventPagination">
-    <button (click)="previous10Events()">Previous Page</button>
-    <button (click)="next10Events()">Next Page</button>
 
+    <button (click) = "previous2PagesOfEvents()">2 Previous Pages</button>
+    <button (click)="previousPageOfEvents()">Previous Page</button>
+
+    <button *ngFor="let page of pageNumberSelect" (click)="onSelectPage(page)">{{page}}</button>
+
+    <button (click)="nextPageOfEvents()">Next Page</button>
+    <button (click) = "next2PagesOfEvents()">2 Previous Pages</button>
   </div>
 </div>

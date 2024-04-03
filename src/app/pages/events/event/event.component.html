@@ -8,6 +8,9 @@
     <a>Name: <input type="string" formControlName="name"></a>
     <div *ngIf="checkoutForm.get('name').errors?.['minlength']">Neeed more character.</div>
     <a>Type: </a> <select formControlName ="eventType"><option *ngFor="let type of typesOfEvents" [ngValue]="type">{{type}}</option></select>
+    <br>
+    <a>Event Description: <input type="string" formControlName="eventDescription"></a>
+    <br>
     <div>
       <button type = "button" (click) = selectAddress()>Select Address</button>
       {{address}}

@@ -188,18 +188,13 @@ let lng = await [event][0].long;
 
 async updateEvents(eventsToBeDisplayed) {
 
-
-eventsToBeDisplayed.map(((event, i) => {
-
-  this.placeEventMarkers(event);
-
+  eventsToBeDisplayed.map(((event, i) => {
+    this.placeEventMarkers(event);
 }))
 
 }
 
-
 onMapClick(event: PointerEvent) {
-  
 }
 
 }

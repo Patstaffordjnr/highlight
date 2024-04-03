@@ -29,14 +29,13 @@ export class EventComponent implements OnInit {
     private http: HttpClient
   ) {
 
-
-
     this.checkoutForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(1)]],
       eventType: ['', [Validators.required]],
+      eventDescription:  ['', [Validators.required]],
       eventLat: [Number, [Validators.required, this.validateCoordinate]],
       eventLng: [Number, [Validators.required, this.validateCoordinate]],
-      address:  [''],
+      address:  ['', [Validators.required]],
       startDateTime:  ['', [Validators.required]],
       finishDateTime:  ['', [Validators.required]],
   
@@ -48,10 +47,6 @@ export class EventComponent implements OnInit {
 
   }
 
-
-
-  
-
   async selectAddress() {
   this.googleMapService.updateMarkerPlacementStatus(true);
   this.googleMapService.eventLatLng$.subscribe((markerAddress) => {
@@ -59,12 +54,10 @@ export class EventComponent implements OnInit {
   this.markerAddressObject = [markerAddress];
   this.markerLat = this.markerAddressObject[0].lat;
   this.markerLng = this.markerAddressObject[0].lng;
-
-  console.log(this.markerLat, this.markerLng);
+  
   this.checkoutForm.patchValue({ eventLat: this.markerLat, eventLng: this.markerLng });
     })
   this.addressToBeGeocoded = true;
-
 
     this.googleMapService.eventAddress$.subscribe((markerAddress => {
       if(markerAddress) {
@@ -85,10 +78,6 @@ export class EventComponent implements OnInit {
     return null
 
   }
-
-
-
-
 
   onSubmit() {
       console.warn(this.checkoutForm.value);

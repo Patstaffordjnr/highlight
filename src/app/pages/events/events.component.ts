@@ -13,6 +13,11 @@ import { GoogleMapService } from '../google-map/google-map.service';
 export class EventsComponent implements OnInit{
   events: Event[] = [];
 
+  pageNumberSelect = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  pagesToBeDisplayed = 0;
+
+
+
   eventUserName;
   eventUserRole;
   eventTitle;
@@ -23,6 +28,7 @@ export class EventsComponent implements OnInit{
 
 
   currentIndex = 0;
+
 
 constructor(private eventsClient: EventsClient, private googleMapService: GoogleMapService) {
 
@@ -50,20 +56,51 @@ onSelect(event: Event): Event {
  return  this.selectedEvent = event;
 }
 
-async next10Events() {
+async nextPageOfEvents() {
 
+    // let emptyArray = []
     this.currentIndex = this.currentIndex + 1;
     this.events = await this.eventsClient.getEvents(this.currentIndex, 10);
+
+
+    // this.pageNumberSelect.forEach((page) => {
+    //   this.pagesToBeDisplayed  = this.pagesToBeDisplayed  + 1;
+
+      // emptyArray.push(this.pagesToBeDisplayed);
+      // console.log(this.pagesToBeDisplayed);
+
+    // })
+
+    // console.log(emptyArray);
+
 }
 
-async previous10Events() {
 
+next2PagesOfEvents() {
+
+  console.log(`Mup`);
+}
+
+async onSelectPage(page) {
+  // console.log(page);
+  this.events = await this.eventsClient.getEvents(page, 10);
+
+
+}
+
+
+async previousPageOfEvents() {
 
   this.currentIndex = this.currentIndex - 1;
   this.events = await this.eventsClient.getEvents(this.currentIndex, 10);
 
 }
 
+
+previous2PagesOfEvents() {
+
+  console.log(`Down`);
+}
 }
 
 
