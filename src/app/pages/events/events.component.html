@@ -1,29 +1,110 @@
-<div class = "events">
-<br>
+<div class="events">
+  <br>
+  <br>
+  <!-- <th>{{ eventUserName }}</th>
+  <th>{{ eventUserRole }}</th>
+  <th>{{ eventTitle }}</th>
+  <th>{{ eventType }}</th>
+  <th>{{ eventAddress }}</th>
+  <th>{{ eventStartAt }}</th>
+  <th>{{ eventEndAt }}</th> -->
+  <br>
+  <div class = "gigUi">
 
-
-<br>
-
-<br>
-<table class="table">
-    <thead>
-        <tr>
-          <th>EventType</th>
-          <th>Event Lat</th>
-          <th>Event Lng</th>
-          <th>Event Start</th>
-          <th>Event End</th>
-        </tr>
-      </thead>
-    <tbody>
-        <tr  *ngFor="let event of events" (click)="onSelect(event)">
-          <td>{{event.eventType}}</td>
-          <td>{{event.lat}}</td>
-          <td>{{event.long}}</td>
-          <td>{{event.startAt}}</td>
-          <td>{{event.endAt}}</td>
-        </tr>
-      </tbody>
+    <table class="gigUITable">
+    <thead class="gigUITableHead">
+    <tr>
+  <th><a>Profile Picture</a></th>
+  <th><a>UserName</a></th>
+  <th></th>
+  <th></th>
+  <th></th>
+  <th></th>
+  <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <td></td>
+    <td>{{ eventUserName }}</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tbody>
+  <tbody>
+    <td><a>User Role</a></td>
+    <td><a>Event Description</a></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tbody>
+  <tbody>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tbody>
+  <tbody>
+    <td>User Address</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tbody>
+  <tbody>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>{{ eventStartAt }}</td>
+    <td>{{ eventEndAt }}/td>
+  </tbody>
     </table>
-<br>    
+
+
+
+</div>
+
+  <table class="table">
+    <thead class="tableHead">
+      <tr>
+        <th>User</th>
+        <th>User Role</th>
+        <th>Event Title</th>
+        <th>EventType</th>
+        <th>Event Description</th>
+        <th>Event Address</th>
+        <th>Event Start</th>
+        <th>Event Finish</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let event of events" (click)="onSelect(event)">
+        <td>(To be called)</td>
+        <td>(To be called)</td>
+        <td>{{ event.title }}</td>
+        <td>{{ event.eventType }}</td>
+        <td>(To be created)</td>
+        <td>(To be converted from Lat Lng)</td>
+        <td>{{ event.startAt }}</td>
+        <td>{{ event.endAt }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+
+  <div class="eventPagination">
+    <button (click)="previous10Events()">Previous Page</button>
+    <button (click)="next10Events()">Next Page</button>
+
+  </div>
 </div>

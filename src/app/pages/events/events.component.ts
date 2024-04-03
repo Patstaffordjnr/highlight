@@ -13,25 +13,57 @@ import { GoogleMapService } from '../google-map/google-map.service';
 export class EventsComponent implements OnInit{
   events: Event[] = [];
 
+  eventUserName;
+  eventUserRole;
+  eventTitle;
+  eventType;
+  eventAddress;
+  eventStartAt;
+  eventEndAt;
 
+
+  currentIndex = 0;
 
 constructor(private eventsClient: EventsClient, private googleMapService: GoogleMapService) {
 
 }
 
 async ngOnInit() { 
-  await this.eventsClient.getEvents(1, 10) // Adjust page and size
-  .then(events => this.events = events)
-  .catch(error => console.error('Error fetching events:', error));
-  this.googleMapService.updateEventsToBeDisplayed(this.events);
+
+  this.currentIndex = this.currentIndex;
+  this.events = await this.eventsClient.getEvents(this.currentIndex, 10)
+
 }
 
 selectedEvent?: Event;
 onSelect(event: Event): Event {
-  console.log(event);
+  this.eventUserName = 
+  this.eventUserRole =
+  this.eventTitle = event.title;
+  this.eventType =  event.eventType;
+  this.eventAddress = `LAT: ${event.lat}, LNG; ${event.long}`
+  this.eventStartAt = event.endAt;
+  this.eventEndAt = event.startAt;
+   
+  this.eventTitle = event.title;
+  this.eventType = event.eventType;
  return  this.selectedEvent = event;
 }
-    
+
+async next10Events() {
+
+    this.currentIndex = this.currentIndex + 1;
+    this.events = await this.eventsClient.getEvents(this.currentIndex, 10);
+}
+
+async previous10Events() {
+
+
+  this.currentIndex = this.currentIndex - 1;
+  this.events = await this.eventsClient.getEvents(this.currentIndex, 10);
+
+}
+
 }
 
 

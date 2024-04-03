@@ -152,15 +152,14 @@ async getAddressFromCoordinates(latitude: number, longitude: number) {
    });
 }
 
+
+
 async placeEventMarkers(event) {
   
-  let x = await [event][0].lat;
-  let y = await [event][0].long;
+let lat = await [event][0].lat;
+let lng = await [event][0].long;
 
-let lat = x;
-let lng = y;
-
-console.log(`Lat: ${lat}, Lng: ${lng}`);
+// console.log(`Lat: ${lat}, Lng: ${lng}`);
     // Create a new marker object with the clicked location
 
     const marker = new google.maps.Marker({
@@ -168,64 +167,33 @@ console.log(`Lat: ${lat}, Lng: ${lng}`);
       map: this.map
     });
     this.markers.push(marker);
+  const infoWindow = new google.maps.InfoWindow({
+    content: `
+      <b>${event.title}</b><br>
+      <i>${event.eventType}</i><br>
+      Start: ${event.startAt}<br>
+      End: ${event.endAt}
+    `,
+  });
 
-    console.log(this.markers);
+  marker.addListener('click', () => {
+    infoWindow.open(this.map, marker);
+    
+  }
+  
+  );
+  
 }
+
+
 async updateEvents(eventsToBeDisplayed) {
 
-eventsToBeDisplayed[0].lat = 52.30549741995185;
-eventsToBeDisplayed[0].long = -6.935912119262688;
-
-
-eventsToBeDisplayed[1].lat = 52.30602222954823;
-eventsToBeDisplayed[1].long = -6.913081156127922;
-
-eventsToBeDisplayed[2].lat = 52.302873278655305;
-eventsToBeDisplayed[2].long = -6.887846933715813;
-
-eventsToBeDisplayed[3].lat = 52.29300511556882;
-eventsToBeDisplayed[3].long = -6.9355687965087816;
-  
-
-eventsToBeDisplayed[4].lat = 52.29311010759907;
-eventsToBeDisplayed[4].long = -6.9094762672119066;
-
-eventsToBeDisplayed[5].lat = 52.293215099380475;
-eventsToBeDisplayed[5].long = -6.8888769019775316;
-
-eventsToBeDisplayed[6].lat = 52.27897631074111;
-eventsToBeDisplayed[6].long = -6.938037872314453;
-
-eventsToBeDisplayed[7].lat = 52.2797741285011;
-eventsToBeDisplayed[7].long = -6.916322708129883;
-
-eventsToBeDisplayed[8].lat = 52.268430137416665;
-eventsToBeDisplayed[8].long = -6.964387893676758;
-
-eventsToBeDisplayed[9].lat = 52.26720562683071;
-eventsToBeDisplayed[9].long = -6.9412994384765625;
 
 eventsToBeDisplayed.map(((event, i) => {
-
-
-
-  let eventTitle = event.title;
-  let eventType = event.eventType;
-  let eventStart = event.startAt;
-  let eventFinish = event.endAt;
-  let eventLat = event.lat;
-  let eventLng = event.lng
-  let eventId = event.id;
-  let eventUserId = event.userId;
-
-
-
 
   this.placeEventMarkers(event);
 
 }))
-
-
 
 }
 

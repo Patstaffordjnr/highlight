@@ -50,6 +50,8 @@ export class EventComponent implements OnInit {
 
 
 
+  
+
   async selectAddress() {
   this.googleMapService.updateMarkerPlacementStatus(true);
   this.googleMapService.eventLatLng$.subscribe((markerAddress) => {

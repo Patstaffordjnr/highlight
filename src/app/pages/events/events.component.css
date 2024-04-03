@@ -12,3 +12,30 @@
     border: 6px solid whitesmoke;
 
 }
+
+.eventPagination {
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+
+    background-color:white;
+    font-size: medium;
+
+}
+
+.gigUi{
+    border-radius: 25px;
+    border: 1px solid black;
+
+}
+/* 
+.tableHead {
+
+    background-color:white;
+    font-size: medium;
+    border-radius: 25px;
+    border: 6px solid whitesmoke;
+
+} */
