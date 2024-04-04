@@ -2,16 +2,20 @@
   {{currentIndex}}
 </div>
 
+<br>
+
+<div><span>Event Array: </span>{{eventResponseList.results}}</div>
+<div><span>Event Total Size: </span>{{eventResponseList.totalSize}}</div>
+
+  <li *ngFor="let event of eventResponseList.results" (click)="onSelect(event)">
+    {{event.id}}
+  </li>
+
+
 <div class="events">
   <br>
   <br>
-  <!-- <th>{{ eventUserName }}</th>
-  <th>{{ eventUserRole }}</th>
-  <th>{{ eventTitle }}</th>
-  <th>{{ eventType }}</th>
-  <th>{{ eventAddress }}</th>
-  <th>{{ eventStartAt }}</th>
-  <th>{{ eventEndAt }}</th> -->
+  <br>
   <br>
   <div class = "gigUi">
     <table class="gigUITable">

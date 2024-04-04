@@ -9,14 +9,11 @@ import { Event } from 'src/app/model/event';
 
 export class EventsClient {
 
-
   constructor(private http: HttpClient) {
-
 
   }
 
   
-
   async getEvents(currentPage: Number, noOfProducts: Number): Promise<Event[]>{ 
     
     let params = new HttpParams().set("pageNumber",1).set("pageSize", 10);
