@@ -106,13 +106,14 @@
   <br>
 
   <div class="eventPagination">
-
+    <button (click) = "previous10PagesOfEvents()">10 Previous Pages</button>
     <button (click) = "previous2PagesOfEvents()">2 Previous Pages</button>
     <button (click)="previousPageOfEvents()">Previous Page</button>
 
     <button *ngFor="let page of pageNumberSelect" (click)="onSelectPage(page)">{{page}}</button>
 
     <button (click)="nextPageOfEvents()">Next Page</button>
-    <button (click) = "next2PagesOfEvents()">2 Previous Pages</button>
+    <button (click) = "next2PagesOfEvents()">Next 2 Pages</button>
+    <button (click) = "next10PagesOfEvents()">Next 10 Pages</button>
   </div>
 </div>
