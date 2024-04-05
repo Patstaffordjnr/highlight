@@ -17,6 +17,8 @@ createEventEventVisible: boolean = false;
 
 eventsEventVisible: boolean = false; 
 
+eventTableVisible: boolean = false;
+
 // ---------------------------------------------------------
    userDTO = {
     email: '',
@@ -59,6 +61,14 @@ openCreateEvent() {
 openEvents() {
   this.eventsEventVisible = !this.eventsEventVisible;
 }
+
+
+openEventTable() {
+  console.log(`A`);
+  this.eventTableVisible = !this.eventTableVisible;
+}
+
+
 
 // ------------------------------------------------
 

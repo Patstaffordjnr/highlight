@@ -9,6 +9,7 @@ import { AdminHomeComponent } from './pages/admin/home/admin-home.component';
 import { canActivateTeam } from './util/can-activate.service';
 import { EventComponent } from './pages/events/event/event.component'
 import { EventsComponent } from './pages/events/events.component';
+import { EventTableComponent } from './pages/events/event-table/event-table.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'createevent', component: EventComponent, canActivate: [canActivateTeam] },
   { path: 'events', component: EventsComponent},
   { path: 'googlemap', component: GoogleMapComponent},
+  { path: 'eventtable', component: EventTableComponent},
 
 ];
 

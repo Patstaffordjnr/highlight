@@ -23,8 +23,7 @@ import { AdminHomeComponent } from './pages/admin/home/admin-home.component';
 import { CurrentUserService, PermissionsService } from './util/can-activate.service';
 import { EventsComponent } from './pages/events/events.component';
 // import { CorsInterceptor } from 'src/app/cors.interceptor';
-
-
+import { EventTableComponent } from './pages/events/event-table/event-table.component';
 
 @NgModule({
   declarations: [
@@ -36,10 +35,12 @@ import { EventsComponent } from './pages/events/events.component';
     SignUpComponent,
     LogInComponent,
     AdminHomeComponent,
+    
 
     //Components
     MainHeaderComponent,
     EventComponent,
+    
 
     CalenderComponent,
     ProgressBarComponent, 
@@ -51,6 +52,7 @@ import { EventsComponent } from './pages/events/events.component';
     ReactiveFormsModule,
     HttpClientModule,
     EventsComponent,
+    EventTableComponent,
 
     
   ],

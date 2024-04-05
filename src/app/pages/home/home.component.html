@@ -25,7 +25,9 @@
     <div class = "eventsHeading">
         <a (click) = "openEvents()">Events</a>
         <app-events *ngIf="eventsEventVisible"></app-events>
-
-</div>
-
+    </div>
+    <div class = "eventTableHeading">
+        <a (click) = "openEventTable()">Events Table</a>
+        <app-event-table *ngIf="eventTableVisible"></app-event-table>
+    </div>
 </div>
