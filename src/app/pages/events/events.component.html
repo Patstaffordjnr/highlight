@@ -2,122 +2,80 @@
   {{currentIndex}}
 </div>
 
+<div *ngIf="selectedEvent" class ="eventUiPopUp">
+    <div class = "uiPopUp">
+      <div class='row'>
+        <div class='column'>
+          <div class='left'>
+            <a>PROFILE</a>
+            <br>
+            <a>PICTURE</a>
+            <br>
+            <br>
+            <a>UserName</a>
+            <br>
+            <a>{{selectedEvent.eventType}}</a>
+          </div>
+        </div>
+        <div class='columnTop'>
+          <div class='right'>
+            <a>{{selectedEvent.title}}</a>
+            <br>
+            <a>Event Description/</a>
+          </div>
+        </div>
+      </div>  <div class='row'>
+        <div class='column'>
+          <div class='left'>
+            <a>Event Address</a>
+          </div>
+        </div>
+        <div class='columnTop'>
+          <div class='right'>
+            <a>{{selectedEvent.startAt}}</a>/
+            <a>{{selectedEvent.endAt}}</a>
+          </div>
+        </div>
+        </div> 
+    </div>
+</div>
+
+<br>
 <br>
 
-<div><span>Event Array: </span>{{eventResponseList.results}}</div>
-<div><span>Event Total Size: </span>{{eventResponseList.totalSize}}</div>
-
-  <li *ngFor="let event of eventResponseList.results" (click)="onSelect(event)">
-    {{event.id}}
-  </li>
 
 
-<div class="events">
-  <br>
-  <br>
-  <br>
-  <br>
-  <div class = "gigUi">
-    <table class="gigUITable">
-    <thead class="gigUITableHead">
-    <tr>
-  <th><a>Profile Picture</a></th>
-  <th><a>UserName</a></th>
-  <th></th>
-  <th></th>
-  <th></th>
-  <th></th>
-  <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <td></td>
-    <td>{{ eventUserName }}</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tbody>
-  <tbody>
-    <td></td>
-    <td><a>Event Description</a></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tbody>
-  <tbody>
-    <td><a>User Role</a></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tbody>
-  <tbody>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tbody>
-  <tbody>
-    <td>User Address</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>{{ eventStartAt }}</td>
-    <td>{{ eventEndAt }}</td>
-  </tbody>
+
+
+
+
+
+
+  <div class = "eventList">
+    <table class="table">
+      <thead class="tableHead">
+        <tr>
+          <th>User Name</th>
+          <th>Event Type</th>
+          <th>Event Title</th>
+          <th>Event Description</th>
+          <th>Event Address</th>
+          <th>Start</th>
+          <th>Finish</th>
+          </tr>
+          <tbody>
+          <tr *ngFor="let event of eventResponseList.results" [class.selected]="event === selectedEvent" (click)="onSelect(event)" >
+            <td>UserName</td>
+            <td>{{event.eventType}}</td>
+            <td>{{event.title}}</td>
+            <td>Gig In pub</td>
+            <td>Y34 EY27 Killesk House Campile New Ross Co.Wexford</td>
+            <td>{{event.startAt}}</td>
+            <td>{{event.endAt}}</td>
+          </tr>
+       </tbody>
     </table>
-
-
-
-</div>
-
-  <table class="table">
-    <thead class="tableHead">
-      <tr>
-        <th>User</th>
-        <th>User Role</th>
-        <th>EventType</th>
-        <th>Event Title</th>
-        <th>Event Description</th>
-        <th>Event Address</th>
-        <th>Event Start</th>
-        <th>Event Finish</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let event of events" (click)="onSelect(event)">
-        <td>(To be called)</td>
-        <td>(To be called)</td>
-        <td>{{ event.eventType }}</td>
-        <td>{{ event.title }}</td>
-        <td>(To be created)</td>
-        <td>(To be converted from Lat Lng)</td>
-        <td>{{ event.startAt }}</td>
-        <td>{{ event.endAt }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <br>
-
   <div class="eventPagination">
-    <button (click) = "previous10PagesOfEvents()">10 Previous Pages</button>
-    <button (click) = "previous2PagesOfEvents()">2 Previous Pages</button>
     <button (click)="previousPageOfEvents()">Previous Page</button>
-
-    <button *ngFor="let page of pageNumberSelect" (click)="onSelectPage(page)">{{page}}</button>
-
     <button (click)="nextPageOfEvents()">Next Page</button>
-    <button (click) = "next2PagesOfEvents()">Next 2 Pages</button>
-    <button (click) = "next10PagesOfEvents()">Next 10 Pages</button>
   </div>
-</div>

@@ -14,7 +14,7 @@ export class EventsClient {
   }
 
   
-  async getEvents(currentPage: Number, noOfProducts: Number): Promise<Event[]>{ 
+  async getEvents(currentPage: Number, noOfProducts: Number): Promise<{}>{ 
     
     let params = new HttpParams().set("pageNumber",1).set("pageSize", 10);
 
@@ -24,7 +24,7 @@ export class EventsClient {
       'Content-Type': 'application/json'
     });      
     
-    return this.http.get<Event[]>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
+    return this.http.get<{}>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
     
   }
 }
