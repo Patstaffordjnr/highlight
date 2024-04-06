@@ -41,12 +41,6 @@ eventTableVisible: boolean = false;
   }
     
 
-
-
-
-
-
-
 // -----------------------------------------------
 
 openCalender() {
@@ -62,9 +56,7 @@ openEvents() {
   this.eventsEventVisible = !this.eventsEventVisible;
 }
 
-
 openEventTable() {
-  console.log(`A`);
   this.eventTableVisible = !this.eventTableVisible;
 }
 

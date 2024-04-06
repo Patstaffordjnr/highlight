@@ -24,6 +24,8 @@ import { CurrentUserService, PermissionsService } from './util/can-activate.serv
 import { EventsComponent } from './pages/events/events.component';
 // import { CorsInterceptor } from 'src/app/cors.interceptor';
 import { EventTableComponent } from './pages/events/event-table/event-table.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [
@@ -53,6 +55,7 @@ import { EventTableComponent } from './pages/events/event-table/event-table.comp
     HttpClientModule,
     EventsComponent,
     EventTableComponent,
+    MatDialogModule,
 
     
   ],
