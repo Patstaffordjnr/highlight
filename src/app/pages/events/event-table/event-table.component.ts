@@ -56,9 +56,10 @@ onSelect(event: Event[]): Event[] {
 
 async nextPageOfEvents() {
   this.currentIndex = this.currentIndex + 1;
-  let a = await this.eventsClient.getEvents(this.currentIndex, 10)
-  // this.eventResponseList = a
-
+  let nextPageGetRequest = await this.eventsClient.getEvents(this.currentIndex, 10)
+  this.reveivedOject = nextPageGetRequest;
+  this.eventResponseList.results = this.reveivedOject.results;
+  this.eventResponseList.total = this.reveivedOject.total;
 }
 
 async previousPageOfEvents() {
@@ -68,6 +69,10 @@ async previousPageOfEvents() {
     return
   }
   this.currentIndex = this.currentIndex - 1;
+  let previousPageGetRequest = await this.eventsClient.getEvents(this.currentIndex, 10)
+  this.reveivedOject = previousPageGetRequest;
+  this.eventResponseList.results = this.reveivedOject.results;
+  this.eventResponseList.total = this.reveivedOject.total;
  
 }
 
