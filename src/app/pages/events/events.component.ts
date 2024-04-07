@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { EventService } from './event-service'
 import {
   MatDialog,
@@ -7,6 +7,7 @@ import {
   MatDialogClose,
   MatDialogTitle,
   MatDialogContent,
+  MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { Event } from 'src/app/model/event';
@@ -22,12 +23,23 @@ import { CommonModule, NgFor } from '@angular/common';
 })
 
 export class EventsComponent {
+
 eventPopUp: Event[];
 
+currentEvent;
   constructor(private eventService: EventService, public dialog: MatDialog) {
-    this.eventService.eventToBeDisplayed$.subscribe(eventSubject => {
-      this.eventPopUp = eventSubject;
-    });
+}
+
+async ngOnInit() { 
+  this.eventService.eventToBeDisplayed$.subscribe(eventSubject => {
+    this.eventPopUp = eventSubject;
+    this.currentDisplay(this.eventPopUp)
+  });
+
+}
+
+async currentDisplay(currentEvent: Event[]) {
+  this.currentEvent = await currentEvent
 }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
@@ -35,6 +47,14 @@ eventPopUp: Event[];
       width: '250px',
       enterAnimationDuration,
       exitAnimationDuration,
+      data: { 
+        title: this.currentEvent?.title,
+        eventType: this.currentEvent?.eventType,
+        eventLat: this.currentEvent?.lat,
+        eventLng: this.currentEvent?.long,
+        eventStart: this.currentEvent?.startAt,
+        eventFinish: this.currentEvent?.endAt,
+       }
     });
   }
 
@@ -47,8 +67,15 @@ eventPopUp: Event[];
   imports: [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent],
 })
 export class DialogAnimationsExampleDialog {
-  constructor(public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>) {}
+  constructor(
+    public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: { title: string,
+      eventType: string,
+      eventLat: number,
+      eventLng: number,
+      eventStart: Date,
+      eventFinish: Date,
+    } // Inject data
+  ) {}
 }
-
-
 

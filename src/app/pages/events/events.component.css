@@ -2,3 +2,17 @@ button {
     margin-right: 8px;
   }
   
+.aa{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+    
+        background-color: black;
+        font-size: medium;
+        border-radius: 25px;
+        border: 6px solid whitesmoke;
+
+    }

@@ -19,7 +19,7 @@ import { EventService } from '../event-service';
 export class EventTableComponent implements OnInit {
 
   currentIndex = 0;
-  reveivedOject
+  reveivedObject
 
 eventResponseList: PageListResponse = {
   total: 0,
@@ -35,9 +35,9 @@ async ngOnInit() {
 
   this.currentIndex = this.currentIndex;
   let initialEventList =   await this.eventsClient.getEvents(this.currentIndex, 10)
-  this.reveivedOject =  initialEventList;
-  this.eventResponseList.total = this.reveivedOject.total;
-  this.eventResponseList.results = this.reveivedOject.results;
+  this.reveivedObject =  initialEventList;
+  this.eventResponseList.total = this.reveivedObject.total;
+  this.eventResponseList.results = this.reveivedObject.results;
   // console.log(this.eventResponseList);
 }
 
@@ -57,9 +57,9 @@ onSelect(event: Event[]): Event[] {
 async nextPageOfEvents() {
   this.currentIndex = this.currentIndex + 1;
   let nextPageGetRequest = await this.eventsClient.getEvents(this.currentIndex, 10)
-  this.reveivedOject = nextPageGetRequest;
-  this.eventResponseList.results = this.reveivedOject.results;
-  this.eventResponseList.total = this.reveivedOject.total;
+  this.reveivedObject = nextPageGetRequest;
+  this.eventResponseList.results = this.reveivedObject.results;
+  this.eventResponseList.total = this.reveivedObject.total;
 }
 
 async previousPageOfEvents() {
@@ -70,9 +70,9 @@ async previousPageOfEvents() {
   }
   this.currentIndex = this.currentIndex - 1;
   let previousPageGetRequest = await this.eventsClient.getEvents(this.currentIndex, 10)
-  this.reveivedOject = previousPageGetRequest;
-  this.eventResponseList.results = this.reveivedOject.results;
-  this.eventResponseList.total = this.reveivedOject.total;
+  this.reveivedObject = previousPageGetRequest;
+  this.eventResponseList.results = this.reveivedObject.results;
+  this.eventResponseList.total = this.reveivedObject.total;
  
 }
 
