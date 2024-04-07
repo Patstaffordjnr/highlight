@@ -1,0 +1,8 @@
+.main {
+    background-color: orangered;
+    z-index: 0; /* Ensure higher specificity or adjust positioning of overlapping elements */
+
+    justify-content: center;
+    align-items: center;
+}
+

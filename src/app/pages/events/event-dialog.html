@@ -1,5 +1,6 @@
-<h2 mat-dialog-title>UserName: UserName </h2>
-<mat-dialog-content>
+<div class = "main">
+<h2 mat-dialog-title class = "a">UserName: UserName </h2>
+<mat-dialog-content class = "a">
 Event Information: {{data.title}}
 Event Type: {{ data.eventType }}
 Address = lat: {{ data.eventLat }}, lng: {{ data.eventLng }} 
@@ -10,18 +11,13 @@ Event Finish:  {{data.eventFinish}}
   <button mat-button mat-dialog-close>No</button>
   <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
 </mat-dialog-actions>
+</div>
 
 
-
-
-<!-- <h3 mat-dialog-title>{{data.title}}</h3></mat-dialog-title>
-<div class = "aa">
-    <mat-dialog-content>
-        Event Information: {{data.title}}
-        </mat-dialog-content>
-        <mat-dialog-actions>
-            <button mat-button mat-dialog-close>No</button>
-            <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
-          </mat-dialog-actions>
-        
-</div> -->
+<!-- <mat-dialog-container class="a"> <h2 mat-dialog-title>UserName: UserName </h2>
+  <mat-dialog-content>
+    
+    </mat-dialog-content>
+  <mat-dialog-actions>
+    </mat-dialog-actions>
+</mat-dialog-container> -->

@@ -8,16 +8,17 @@ import {
   MatDialogTitle,
   MatDialogContent,
   MAT_DIALOG_DATA,
+  MatDialogContainer,
+
 } from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { Event } from 'src/app/model/event';
 import { CommonModule, NgFor } from '@angular/common';
 
-
 @Component({
   selector: 'app-events',
   standalone: true,
-  imports:  [MatButtonModule, NgFor, CommonModule],
+  imports:  [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent],
   templateUrl: './events.component.html',
   styleUrl: './events.component.css'
 })
@@ -55,7 +56,9 @@ async currentDisplay(currentEvent: Event[]) {
         eventStart: this.currentEvent?.startAt,
         eventFinish: this.currentEvent?.endAt,
        }
+       
     });
+    
   }
 
 }
@@ -65,10 +68,12 @@ async currentDisplay(currentEvent: Event[]) {
   templateUrl: './event-dialog.html',
   standalone: true,
   imports: [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent],
+  styleUrl: './event-dialog.css'
 })
 export class DialogAnimationsExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>,
+    
     @Inject(MAT_DIALOG_DATA) public data: { title: string,
       eventType: string,
       eventLat: number,
