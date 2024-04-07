@@ -1,10 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { CalenderComponent } from 'src/app/components/calender/calender.component';
-
 import { RouterService } from 'src/app/util/router.service';
-
-
 
 @Component({
   selector: 'app-user-interface-nav',
@@ -12,24 +9,17 @@ import { RouterService } from 'src/app/util/router.service';
   styleUrl: './user-interface-nav.component.css'
 })
 
-
 export class UserInterfaceNavComponent {
-
-
 
 calenderEventVisible: boolean = false; 
 googleMapEventVisible: boolean = false; 
 createEventEventVisible: boolean = false; 
-
 eventsEventVisible: boolean = false; 
-
 eventTableVisible: boolean = false;
-
 
 constructor() {
   
 }
-
 
 openCalender() {
   this.calenderEventVisible = !this.calenderEventVisible
@@ -49,7 +39,5 @@ openEvents() {
 openEventTable() {
   this.eventTableVisible = !this.eventTableVisible;
 }
-
-
 
 }
