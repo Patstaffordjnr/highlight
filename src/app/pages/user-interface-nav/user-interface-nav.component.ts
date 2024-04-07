@@ -22,8 +22,7 @@ constructor() {
 }
 
 openCalender() {
-  this.calenderEventVisible = !this.calenderEventVisible
-  console.log('Paddy Smash and Sausages');
+  this.calenderEventVisible = !this.calenderEventVisible;
   console.log(this.calenderEventVisible);
 }
 openGoogleMap() {
