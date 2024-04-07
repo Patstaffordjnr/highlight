@@ -1,0 +1,58 @@
+.home{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    /* background-color:white; */
+    font-size: medium;
+    /* border-radius: 25px; */
+    /* border: 6px solid whitesmoke; */
+
+}
+
+.eventTableHeading {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+
+.calenderHeading {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+
+.googleMapHeading {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+.createEventHeading {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+
+.eventsHeading {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}

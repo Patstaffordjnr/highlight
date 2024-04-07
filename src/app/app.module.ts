@@ -25,6 +25,7 @@ import { EventsComponent } from './pages/events/events.component';
 // import { CorsInterceptor } from 'src/app/cors.interceptor';
 import { EventTableComponent } from './pages/events/event-table/event-table.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { UserInterfaceNavComponent } from './pages/user-interface-nav/user-interface-nav.component';
 
 
 @NgModule({
@@ -37,6 +38,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     SignUpComponent,
     LogInComponent,
     AdminHomeComponent,
+    UserInterfaceNavComponent,
+
     
 
     //Components
