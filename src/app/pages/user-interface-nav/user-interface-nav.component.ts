@@ -43,6 +43,5 @@ openEventTable() {
 
 yo(){
   this.yoVisible = !this.yoVisible;
-  console.log(`yo`);
 }
 }
