@@ -16,7 +16,7 @@ googleMapEventVisible: boolean = false;
 createEventEventVisible: boolean = false; 
 eventsEventVisible: boolean = false; 
 eventTableVisible: boolean = false;
-yoVisible: boolean = false;
+eventModalVisible: boolean = false;
 
 constructor() {
   
@@ -41,7 +41,7 @@ openEventTable() {
 }
 
 
-yo(){
-  this.yoVisible = !this.yoVisible;
+openEventModal(){
+  this.eventModalVisible = !this.eventModalVisible;
 }
 }

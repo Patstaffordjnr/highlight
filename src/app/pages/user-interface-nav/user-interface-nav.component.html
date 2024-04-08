@@ -22,9 +22,11 @@
         <app-event-table *ngIf="eventTableVisible"></app-event-table>
     </div> -->
 
-    <div class = "yoHeading">
-        <a (click) = "yo()">Event Pop Up</a>
-        <app-modal-component *ngIf="yoVisible"></app-modal-component>
+    <div class = "EventModalHeading">
+        <a (click) = "openEventModal()">Event Modal</a>
+        <!-- <app-modal-component *ngIf="eventModalVisible"></app-modal-component> -->
+        <app-event-modal *ngIf="eventModalVisible"></app-event-modal>
+
     </div>
 </div>
 
