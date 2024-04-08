@@ -1,24 +1,13 @@
 import { Component, Inject } from '@angular/core';
 import { EventService } from './event-service'
-import {
-  MatDialog,
-  MatDialogRef,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogTitle,
-  MatDialogContent,
-  MAT_DIALOG_DATA,
-  MatDialogContainer,
 
-} from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
 import { Event } from 'src/app/model/event';
 import { CommonModule, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-events',
   standalone: true,
-  imports:  [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent],
+  imports:  [],
   templateUrl: './events.component.html',
   styleUrl: './events.component.css'
 })
@@ -28,7 +17,7 @@ export class EventsComponent {
 eventPopUp: Event[];
 
 currentEvent;
-  constructor(private eventService: EventService, public dialog: MatDialog) {
+  constructor(private eventService: EventService) {
 }
 
 async ngOnInit() { 
@@ -40,47 +29,11 @@ async ngOnInit() {
 }
 
 async currentDisplay(currentEvent: Event[]) {
-  this.currentEvent = await currentEvent
+  this.currentEvent = await currentEvent;
+  console.log(this.currentEvent);
 }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(DialogAnimationsExampleDialog, {
-      width: '250px',
-      enterAnimationDuration,
-      exitAnimationDuration,
-      data: { 
-        title: this.currentEvent?.title,
-        eventType: this.currentEvent?.eventType,
-        eventLat: this.currentEvent?.lat,
-        eventLng: this.currentEvent?.long,
-        eventStart: this.currentEvent?.startAt,
-        eventFinish: this.currentEvent?.endAt,
-       }
-       
-    });
-    
-  }
 
 }
 
-@Component({
-  selector: './event-dialog.html',
-  templateUrl: './event-dialog.html',
-  standalone: true,
-  imports: [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent],
-  styleUrl: './event-dialog.css'
-})
-export class DialogAnimationsExampleDialog {
-  constructor(
-    public dialogRef: MatDialogRef<DialogAnimationsExampleDialog>,
-    
-    @Inject(MAT_DIALOG_DATA) public data: { title: string,
-      eventType: string,
-      eventLat: number,
-      eventLng: number,
-      eventStart: Date,
-      eventFinish: Date,
-    } // Inject data
-  ) {}
-}
 

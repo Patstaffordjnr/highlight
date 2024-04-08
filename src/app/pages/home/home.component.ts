@@ -1,26 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginClient } from '../log-in/log-in.client';
 import { RouterService } from 'src/app/util/router.service';
 import { UserInterfaceNavComponent } from '../user-interface-nav/user-interface-nav.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
+
 export class HomeComponent implements OnInit {
-// ---------------------------------------------------------
 
-calenderEventVisible: boolean = false; 
-googleMapEventVisible: boolean = false; 
-createEventEventVisible: boolean = false; 
-
-eventsEventVisible: boolean = false; 
-
-eventTableVisible: boolean = false;
-
-// ---------------------------------------------------------
    userDTO = {
     email: '',
     password: '', 
@@ -35,37 +28,30 @@ eventTableVisible: boolean = false;
   constructor(private httpClient: HttpClient, private routerService: RouterService) { 
   }
 
-  makePostRequest(url: string, headers: HttpHeaders): Promise<any> {
-    return this.httpClient.post(url, { headers }).toPromise();
-  }
-  ngOnInit(): void {
-  }
+  @ViewChild('modal', { read: ViewContainerRef })
+  entry!: ViewContainerRef;
+  sub!: Subscription;
+
+  ngOnInit(): void {}
+  
+
+
+
+
+
+
     
 
 // -----------------------------------------------
 
-openCalender() {
-  this.calenderEventVisible = !this.calenderEventVisible
-}
-openGoogleMap() {
-  this.googleMapEventVisible = !this.googleMapEventVisible;
-}
-openCreateEvent() {
-  this.createEventEventVisible = !this.createEventEventVisible;
-}
-openEvents() {
-  this.eventsEventVisible = !this.eventsEventVisible;
-}
 
-openEventTable() {
-  this.eventTableVisible = !this.eventTableVisible;
-}
 
+makePostRequest(url: string, headers: HttpHeaders): Promise<any> {
+  return this.httpClient.post(url, { headers }).toPromise();
+}
 
 
 // ------------------------------------------------
-
-
 
   async toAdminHomePage(): Promise<void> {
     this.routerService.toAdminHomePage();
@@ -75,13 +61,4 @@ openEventTable() {
     this.routerService.toLogoutPage();
   }
 
-  async toCreateEventPage(): Promise<void> {
-    this.routerService.toCreateEventPage();
-  }
-  async toGoogleMapPage(): Promise<void> {
-    this.routerService.toGoogleMapsPage();
-  }
-  async toEventsPage(): Promise<void> {
-    this.routerService.toEventsPage();
-  }
 }

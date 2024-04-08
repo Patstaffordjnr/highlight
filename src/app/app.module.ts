@@ -28,6 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { UserInterfaceNavComponent } from './pages/user-interface-nav/user-interface-nav.component';
 
 
+
 @NgModule({
   declarations: [
     //Pages
@@ -39,6 +40,7 @@ import { UserInterfaceNavComponent } from './pages/user-interface-nav/user-inter
     LogInComponent,
     AdminHomeComponent,
     UserInterfaceNavComponent,
+   
 
     
 
@@ -59,6 +61,7 @@ import { UserInterfaceNavComponent } from './pages/user-interface-nav/user-inter
     EventsComponent,
     EventTableComponent,
     MatDialogModule,
+
 
     
   ],
