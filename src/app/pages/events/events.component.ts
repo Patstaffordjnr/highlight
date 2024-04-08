@@ -1,7 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { EventService } from './event-service'
-import { ModalComponent } from './event-modal/modal-component';
-
 import { Event } from 'src/app/model/event';
 import { CommonModule, NgFor } from '@angular/common';
 

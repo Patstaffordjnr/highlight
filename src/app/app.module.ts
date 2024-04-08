@@ -26,9 +26,8 @@ import { EventsComponent } from './pages/events/events.component';
 import { EventTableComponent } from './pages/events/event-table/event-table.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UserInterfaceNavComponent } from './pages/user-interface-nav/user-interface-nav.component';
-import { ModalComponent } from './pages/events/event-modal/modal-component';
-import { EventModalComponent } from './pages/events/event-modal/event-modal';
-import { ModalServiceComponent } from './pages/events/event-modal/modal-service';
+import { ModalEvent } from './pages/events/event-modal/modal-event';
+import { ModalService } from './pages/events/event-modal/modal-service';
 
 
 
@@ -43,20 +42,12 @@ import { ModalServiceComponent } from './pages/events/event-modal/modal-service'
     LogInComponent,
     AdminHomeComponent,
     UserInterfaceNavComponent,
+    ModalEvent,
    
-
-    
-
     //Components
     MainHeaderComponent,
     EventComponent,
     EventsComponent,
-    ModalComponent,
-    EventModalComponent,
-
-    
-    
-
     CalenderComponent,
     ProgressBarComponent, 
   ],
@@ -80,7 +71,7 @@ import { ModalServiceComponent } from './pages/events/event-modal/modal-service'
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     CurrentUserService,
     PermissionsService,
-    ModalServiceComponent
+    ModalService,
   ],
   bootstrap: [AppComponent]
 })

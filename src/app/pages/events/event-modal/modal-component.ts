@@ -1,16 +1,17 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
 
+
+
 @Component({
-  selector: 'app-modal-component',
-  templateUrl: './event-modal.html',
-  styleUrl: './event-modal.css'
-})
+    selector: 'modal-component',
+    templateUrl: './modal-event.html',
+    styleUrl: 'modal-component.css'
+  })
+
+
 export class ModalComponent implements OnInit, OnDestroy {
-
     constructor() {}
-
-
-
+  
     @Input() title: string = '';
     @Input() body: string = '';
     @Output() closeMeEvent = new EventEmitter();
@@ -18,7 +19,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
       console.log('Modal init');
     }
-
+  
     closeMe() {
       this.closeMeEvent.emit();
     }
@@ -29,7 +30,5 @@ export class ModalComponent implements OnInit, OnDestroy {
    ngOnDestroy(): void {
       console.log(' Modal destroyed');
     }
-
-
-}
   
+  }
