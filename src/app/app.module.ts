@@ -26,6 +26,7 @@ import { EventsComponent } from './pages/events/events.component';
 import { EventTableComponent } from './pages/events/event-table/event-table.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UserInterfaceNavComponent } from './pages/user-interface-nav/user-interface-nav.component';
+import { ModalComponent } from './pages/events/event-modal/modal-component';
 
 
 
@@ -47,6 +48,9 @@ import { UserInterfaceNavComponent } from './pages/user-interface-nav/user-inter
     //Components
     MainHeaderComponent,
     EventComponent,
+    EventsComponent,
+    ModalComponent,
+    
     
 
     CalenderComponent,
@@ -58,7 +62,6 @@ import { UserInterfaceNavComponent } from './pages/user-interface-nav/user-inter
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    EventsComponent,
     EventTableComponent,
     MatDialogModule,
 
