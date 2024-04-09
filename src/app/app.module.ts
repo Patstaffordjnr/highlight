@@ -28,6 +28,7 @@ import { UserInterfaceNavComponent } from './pages/user-interface-nav/user-inter
 import { ModalComponent } from './pages/events/event-modal/modal-component';
 import { EventModalComponent } from './pages/events/event-modal/event-modal';
 import { ModalServiceComponent } from './pages/events/event-modal/modal-service';
+import { DialogComponent } from './components/modal/modal.component';
 
 
 
@@ -66,6 +67,7 @@ import { ModalServiceComponent } from './pages/events/event-modal/modal-service'
     ReactiveFormsModule,
     HttpClientModule,
     EventTableComponent,
+    DialogComponent,
 
   ],
   providers: [
