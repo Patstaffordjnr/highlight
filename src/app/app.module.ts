@@ -28,7 +28,6 @@ import { UserInterfaceNavComponent } from './pages/user-interface-nav/user-inter
 import { ModalComponent } from './pages/events/event-modal/modal-component';
 import { EventModalComponent } from './pages/events/event-modal/event-modal';
 import { ModalServiceComponent } from './pages/events/event-modal/modal-service';
-import { DialogComponent } from './components/modal/modal.component';
 import { TestModalComponent } from './components/test-modal/test-modal.component';
 
 
@@ -69,7 +68,6 @@ import { TestModalComponent } from './components/test-modal/test-modal.component
     ReactiveFormsModule,
     HttpClientModule,
     EventTableComponent,
-    DialogComponent,
   ],
   providers: [
     // CorsInterceptor,
