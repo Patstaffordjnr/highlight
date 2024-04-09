@@ -12,7 +12,7 @@ import { EventsComponent } from './pages/events/events.component';
 import { EventTableComponent } from './pages/events/event-table/event-table.component';
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/login', pathMatch: 'full' },
+  { path: '',   redirectTo: '/events', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, canActivate: [canActivateTeam]},
   { path: 'user', component: UserComponent },
   { path: 'signup', component: SignUpComponent },

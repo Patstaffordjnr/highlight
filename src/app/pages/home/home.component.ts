@@ -36,11 +36,11 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {}
   
 
-  @ViewChild('modal', {static: false}) modal: EventModalComponent
+  // @ViewChild('modal', {static: false}) modal: EventModalComponent
 
-  openModal() {
-    this.modal.open();
-  }
+  // openModal() {
+  //   this.modal.open();
+  // }
 
 
 

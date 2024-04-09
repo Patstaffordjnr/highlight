@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { EventService } from './event-service'
 
 import { Event } from 'src/app/model/event';
 import { CommonModule, NgFor } from '@angular/common';
+import { EventModalComponent } from 'src/app/components/event-modal/event-modal.component';
 
 @Component({
   selector: 'app-events',
@@ -11,6 +12,10 @@ import { CommonModule, NgFor } from '@angular/common';
 })
 
 export class EventsComponent {
+
+@ViewChild('modal', {static: false}) modal: EventModalComponent
+
+
 
 eventPopUp: Event[];
 
@@ -31,6 +36,10 @@ async currentDisplay(currentEvent: Event[]) {
   console.log(this.currentEvent);
 }
 
+
+openModal() {
+  this.modal.open();
+}
 
 }
 
