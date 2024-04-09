@@ -24,8 +24,6 @@ import { CurrentUserService, PermissionsService } from './util/can-activate.serv
 import { EventsComponent } from './pages/events/events.component';
 import { EventTableComponent } from './pages/events/event-table/event-table.component';
 import { UserInterfaceNavComponent } from './pages/user-interface-nav/user-interface-nav.component';
-import { ModalComponent } from './pages/events/event-modal/modal-component';
-import { ModalServiceComponent } from './pages/events/event-modal/modal-service';
 import { EventModalComponent } from './components/event-modal/event-modal.component';
 
 
@@ -49,7 +47,6 @@ import { EventModalComponent } from './components/event-modal/event-modal.compon
     MainHeaderComponent,
     EventComponent,
     EventsComponent,
-    ModalComponent,
     EventModalComponent,
 
     
@@ -74,7 +71,6 @@ import { EventModalComponent } from './components/event-modal/event-modal.compon
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     CurrentUserService,
     PermissionsService,
-    ModalServiceComponent
   ],
   bootstrap: [AppComponent]
 })
