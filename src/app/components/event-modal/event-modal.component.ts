@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'event-app-modal',
@@ -8,6 +8,9 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 export class EventModalComponent {
 
   @ViewChild('myModal', {static: false}) modal: ElementRef;
+
+  @Input() event: Event;
+  @Output() selectDateEvent: EventEmitter<Event> = new EventEmitter<Event>();  
 
   open() {
     this.modal.nativeElement.style.display = 'block';
