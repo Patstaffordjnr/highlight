@@ -22,13 +22,11 @@ import { ErrorInterceptor } from './util/interceptors/noop-interceptor.service';
 import { AdminHomeComponent } from './pages/admin/home/admin-home.component';
 import { CurrentUserService, PermissionsService } from './util/can-activate.service';
 import { EventsComponent } from './pages/events/events.component';
-// import { CorsInterceptor } from 'src/app/cors.interceptor';
 import { EventTableComponent } from './pages/events/event-table/event-table.component';
 import { UserInterfaceNavComponent } from './pages/user-interface-nav/user-interface-nav.component';
 import { ModalComponent } from './pages/events/event-modal/modal-component';
-import { EventModalComponent } from './pages/events/event-modal/event-modal';
 import { ModalServiceComponent } from './pages/events/event-modal/modal-service';
-import { TestModalComponent } from './components/test-modal/test-modal.component';
+import { EventModalComponent } from './components/event-modal/event-modal.component';
 
 
 
@@ -59,7 +57,7 @@ import { TestModalComponent } from './components/test-modal/test-modal.component
 
     CalenderComponent,
     ProgressBarComponent, 
-    TestModalComponent,
+    EventModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@ import { LoginClient } from '../log-in/log-in.client';
 import { RouterService } from 'src/app/util/router.service';
 import { UserInterfaceNavComponent } from '../user-interface-nav/user-interface-nav.component';
 import { Subscription } from 'rxjs';
-import { TestModalComponent } from 'src/app/components/test-modal/test-modal.component';
+import { EventModalComponent } from 'src/app/components/event-modal/event-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {}
   
 
-  @ViewChild('modal', {static: false}) modal: TestModalComponent
+  @ViewChild('modal', {static: false}) modal: EventModalComponent
 
   openModal() {
     this.modal.open();

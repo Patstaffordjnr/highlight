@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
-  selector: 'test-app-modal',
-  templateUrl: './test-modal.component.html',
-  styleUrls: ['./test-modal.component.css']
+  selector: 'event-app-modal',
+  templateUrl: './event-modal.component.html',
+  styleUrls: ['./event-modal.component.css']
 })
-export class TestModalComponent {
+export class EventModalComponent {
 
   @ViewChild('myModal', {static: false}) modal: ElementRef;
 
