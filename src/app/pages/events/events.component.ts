@@ -1,7 +1,4 @@
-import { Component, Inject } from '@angular/core';
-import { EventService } from './event-service'
-import { Event } from 'src/app/model/event';
-import { CommonModule, NgFor } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-events',
@@ -11,24 +8,6 @@ import { CommonModule, NgFor } from '@angular/common';
 
 export class EventsComponent {
 
-eventPopUp: Event[];
-
-currentEvent;
-  constructor(private eventService: EventService) {
-}
-
-async ngOnInit() { 
-  this.eventService.eventToBeDisplayed$.subscribe(eventSubject => {
-    this.eventPopUp = eventSubject;
-    this.currentDisplay(this.eventPopUp)
-  });
-
-}
-
-async currentDisplay(currentEvent: Event[]) {
-  this.currentEvent = await currentEvent;
-  console.log(this.currentEvent);
-}
 
 
 }

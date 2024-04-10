@@ -1,0 +1,31 @@
+/* dialog {
+    background-color: rgba(32, 82, 221, 0.5);
+    color: white;
+    border-color: transparent;
+    overflow: hidden;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 20px 8px #d0d0d0;
+    height: 100px;
+    width: 200px;
+ } */
+ 
+ dialog::backdrop {
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 0, 0, 0.2),
+      rgba(255, 0, 0, 0.2) 1px,
+      rgba(255, 0, 0, 0.3) 1px,
+      rgba(255, 0, 0, 0.3) 20px
+    );
+  }
+
+  dialog::backdrop {
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 0, 0, 0.2),
+      rgba(255, 0, 0, 0.2) 1px,
+      rgba(255, 0, 0, 0.3) 1px,
+      rgba(255, 0, 0, 0.3) 20px
+    );
+  }

@@ -1,0 +1,56 @@
+<dialog #myDialog [open]="dialogOpen" id="my-dialog">
+  <form method="dialog">
+    <div>
+    <br>
+    <a>{{title}}</a>
+    <br>
+    <a>{{eventType}}</a>
+    <br>
+    <a>{{lat}}</a>
+    <br>
+    <a>{{long}}</a>
+    <br>
+    <a>{{startAt}}</a>
+    <br>
+    <a>{{endAt}}</a>
+    <br>
+    <a>{{createdAt}}</a>
+    <br>
+    <a>{{updatedAt}}</a>
+    <br>
+    <a>{{id}}</a>
+    <br>
+    </div>
+    <menu>
+    <button type="submit" value="confirmBtn" (click)="toggleModalConfirm()">Confirm</button>
+      <button (click)="toggleModalClose()">Close dialog</button>
+    </menu>
+  </form>
+</dialog>
+<!-- <button (click)="toggleModalOpen()">Open Modal</button> -->
+
+<!-- <dialog id="favDialog">
+  <form method="dialog">
+    <input
+      type="submit"
+      aria-label="close"
+      value="X"
+      name="Xbutton"
+      formnovalidate />
+    <p>
+      <label
+        >Favorite animal:
+        <select name="favAnimal" required>
+          <option></option>
+          <option>Brine shrimp</option>
+          <option>Red panda</option>
+          <option>Spider monkey</option>
+        </select>
+      </label>
+    </p>
+    <menu>
+      <button type="reset" value="resetBtn">Reset</button>
+      <button type="submit" value="confirmBtn">Confirm</button>
+    </menu>
+  </form>
+</dialog> -->

@@ -24,7 +24,6 @@ constructor() {
 
 openCalender() {
   this.calenderEventVisible = !this.calenderEventVisible;
-  console.log(this.calenderEventVisible);
 }
 openGoogleMap() {
   this.googleMapEventVisible = !this.googleMapEventVisible;
@@ -40,8 +39,4 @@ openEventTable() {
   this.eventTableVisible = !this.eventTableVisible;
 }
 
-
-openEventModal(){
-  this.eventModalVisible = !this.eventModalVisible;
-}
 }
