@@ -2,45 +2,6 @@
 <div>
     {{currentIndex}}
   </div>
-<!--   
-  <div *ngIf="selectedEvent" class ="eventUiPopUp">
-      <div class = "uiPopUp">
-        <div class='row'>
-          <div class='column'>
-            <div class='left'>
-              <a>PROFILE</a>
-              <br>
-              <a>PICTURE</a>
-              <br>
-              <br>
-              <a>UserName</a>
-              <br>
-              <a>{{selectedEvent.eventType}}</a>
-            </div>
-          </div>
-          <div class='columnTop'>
-            <div class='right'>
-              <a>{{selectedEvent.title}}</a>
-              <br>
-              <a>Event Description/</a>
-            </div>
-          </div>
-        </div>  <div class='row'>
-          <div class='column'>
-            <div class='left'>
-              <a>Event Address</a>
-            </div>
-          </div>
-          <div class='columnTop'>
-            <div class='right'>
-              <a>{{selectedEvent.startAt}}</a>/
-              <a>{{selectedEvent.endAt}}</a>
-            </div>
-          </div>
-          </div> 
-      </div>
-  </div>
-   -->
   <br>
   <br>
     <div class = "eventList">
@@ -69,6 +30,9 @@
       </table>
     <div class="eventPagination">
       <button (click)="previousPageOfEvents()">Previous Page</button>
+      <button *ngFor = "let i of arr">
+        {{i}}
+      </button>
       <button (click)="nextPageOfEvents()">Next Page</button>
     </div>
   

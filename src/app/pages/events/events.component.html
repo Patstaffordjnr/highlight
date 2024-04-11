@@ -1,4 +1,8 @@
 <div>
+<div class = "createEventHeading">
+    <a (click) = "openCreateEvent()">Create Event</a>
+    <app-event *ngIf="createEventEventVisible"></app-event>
+</div>
 <app-event-modal></app-event-modal>
 <app-event-table ></app-event-table>
 </div>

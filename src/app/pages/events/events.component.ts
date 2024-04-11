@@ -7,8 +7,10 @@ import { Component } from '@angular/core';
 })
 
 export class EventsComponent {
-
-
+  createEventEventVisible: boolean = false; 
+  openCreateEvent() {
+    this.createEventEventVisible = !this.createEventEventVisible;
+  }
 
 }
 

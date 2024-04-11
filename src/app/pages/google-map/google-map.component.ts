@@ -152,8 +152,6 @@ async getAddressFromCoordinates(latitude: number, longitude: number) {
    });
 }
 
-
-
 async placeEventMarkers(event) {
   
 let lat = await [event][0].lat;
