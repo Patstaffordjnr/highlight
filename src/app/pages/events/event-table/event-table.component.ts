@@ -14,15 +14,16 @@ import { EventService } from '../event-service';
   styleUrl: './event-table.component.css'
 })
 
-
 export class EventTableComponent implements OnInit {
 
   currentIndex = 0;
   reveivedObject
 
-  arr = [0,1,2,3,4,5]
+  pageNumberArray = []
   totalNumberOfEvents;
   totalNumberOfPages;
+  noOfEventsPerPage = 10;
+  lastElementOfCurrentArr = this.pageNumberArray.slice(-1);
 
 eventResponseList: PageListResponse = {
   total: 0,
@@ -39,39 +40,54 @@ async ngOnInit() {
   this.reveivedObject =  initialEventList;
   this.eventResponseList.total = this.reveivedObject.total;
   this.eventResponseList.results = this.reveivedObject.results;
-
   this.pageNumberOrchestration(this.reveivedObject.results.length, this.reveivedObject.total, this.currentIndex)
-
 }
 
-pageNumberOrchestration(noOfEventsPerPage, noOfPages, injectedCurrentIndex){
-  let totalNumberOfEvents = noOfEventsPerPage * noOfPages;
-  let totalPages = totalNumberOfEvents / noOfEventsPerPage;
+pageNumberOrchestration(injectedNoOfEventsPerPage, injectedNoOfPages, injectedCurrentIndex){
+ 
+  if (injectedCurrentIndex < 3) {
+    return  this.pageNumberArray = [0,1,2,3,4]
+  } else if (injectedCurrentIndex < (injectedNoOfPages)) {
 
-
-
-  if(injectedCurrentIndex  < totalPages) {
+    let y = [0,1,2,3,4];
+    let x = []
     
-    injectedCurrentIndex
-    let newArr = [];
-    let x = this.arr.map((pageNumber, index) => {
-      newArr.push(index + injectedCurrentIndex)
-    })
-
-    this.arr = [];
-    this.arr = newArr;
+    let totalNumberOfEvents = injectedNoOfEventsPerPage * injectedNoOfPages;
+    let totalPages = totalNumberOfEvents / injectedNoOfEventsPerPage;
+    
+    for (let rep = 1; rep <= totalPages; rep++) {
+      x.push(rep)
+    }
   
-    return 
-  } else {
+  this.pageNumberArray = [];
 
-  }
+  y.forEach(element => {
+    if(element > this.totalNumberOfPages) {
+      return
+    } else {
+      this.pageNumberArray.push((element + injectedCurrentIndex) - 3);
+    }
+
+  });
+}
 
 }
 
+
+async pageSelect(selectedPage: number){
+  if(selectedPage > this.totalNumberOfPages) {
+    return 
+  }
+  this.currentIndex = selectedPage;
+  let selectedEventList =   await this.eventsClient.getEvents(this.currentIndex, 10)
+    this.reveivedObject =  selectedEventList;
+    this.eventResponseList.total = this.reveivedObject.total;
+    this.eventResponseList.results = this.reveivedObject.results;
+  this.pageNumberOrchestration(this.reveivedObject.results.length, this.reveivedObject.total, this.currentIndex)
+}
 
 async eventDisplay(eventSubject: Event[]) {
 return await this.eventService.updateEvent(eventSubject)
-  // console.log(eventSubject);
 }
 
 selectedEvent?: Event[];
@@ -82,37 +98,27 @@ onSelect(event: Event[]): Event[] {
 }
 
 async nextPageOfEvents() {
-console.log(this.arr);
-  
-let lastElementOfCurrentArr = this.arr.slice(-1);
+  if(this.currentIndex < this.eventResponseList.total) {
+    this.currentIndex = this.currentIndex + 1;
+    let initialEventList =   await this.eventsClient.getEvents(this.currentIndex, 10)
+    this.reveivedObject =  initialEventList;
+    this.eventResponseList.total = this.reveivedObject.total;
+    this.eventResponseList.results = this.reveivedObject.results;
+    this.pageNumberOrchestration(this.reveivedObject.results.length, this.reveivedObject.total, this.currentIndex)
+  } else return
 
-  this.currentIndex = this.currentIndex + 1;
-  let nextPageGetRequest = await this.eventsClient.getEvents(this.currentIndex, 10)
-  this.reveivedObject = nextPageGetRequest;
-  this.eventResponseList.results = this.reveivedObject.results;
-  this.eventResponseList.total = this.reveivedObject.total;
+  }
 
-  this.pageNumberOrchestration(this.reveivedObject.results.length, this.reveivedObject.total, this.currentIndex)
-
-
-
-
-}
 
 async previousPageOfEvents() {
-
-  console.log(this.arr);
-  if(this.currentIndex === 0 ) {
-    this.currentIndex == 0 
-    return
-  }
+    if(this.currentIndex === 0 ) {
+    return this.currentIndex == 0 ;
+    }
   this.currentIndex = this.currentIndex - 1;
-  let previousPageGetRequest = await this.eventsClient.getEvents(this.currentIndex, 10)
-  this.reveivedObject = previousPageGetRequest;
-  this.eventResponseList.results = this.reveivedObject.results;
+  let initialEventList =   await this.eventsClient.getEvents(this.currentIndex, 10)
+  this.reveivedObject =  initialEventList;
   this.eventResponseList.total = this.reveivedObject.total;
+  this.eventResponseList.results = this.reveivedObject.results;
   this.pageNumberOrchestration(this.reveivedObject.results.length, this.reveivedObject.total, this.currentIndex)
 }
-
-
 }

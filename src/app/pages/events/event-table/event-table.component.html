@@ -30,7 +30,7 @@
       </table>
     <div class="eventPagination">
       <button (click)="previousPageOfEvents()">Previous Page</button>
-      <button *ngFor = "let i of arr">
+      <button *ngFor = "let i of pageNumberArray" (click) = "pageSelect(i)">
         {{i}}
       </button>
       <button (click)="nextPageOfEvents()">Next Page</button>
