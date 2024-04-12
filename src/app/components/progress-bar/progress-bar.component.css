@@ -7,7 +7,9 @@
     justify-content: center; /* Center the content horizontally */
     align-items: center; /* Center the content vertically */
     max-width: 365px;
-    font-size: 50%;
+    min-height: 20px;
+    min-width: 400px;
+    font-size: 65%;
     color: black;
     border-radius: 25px;
     border: 2px solid whitesmoke;
@@ -21,8 +23,16 @@
   }
 
 .progress-bar-select {
-    background-color: black;
+    /* background-color: black; */
     z-index: 12;
     position: absolute;
 
+}
+
+.dot {
+  height: 20px;
+  width: 20px;
+  background-color: black;
+  border-radius: 50%;
+  display: inline-block;
 }
