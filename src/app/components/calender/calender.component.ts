@@ -9,6 +9,10 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class CalenderComponent implements OnInit {
 
+  selectedDay: number;
+  selectedDayBlack: number
+  selectedDayOnCalender: Date;
+  selectedDayMonthOnCalender: string;
 
   calenderVisible: boolean = false;
   
@@ -81,7 +85,7 @@ export class CalenderComponent implements OnInit {
   }
 
   nextMonth(): void {
-    
+
     this.currentDateTimeYear.setMonth(this.currentDateTimeYear.getMonth() + 1);
     this.updateCalendar();
     this.monthNumber = this.monthNumber + 1;
@@ -100,9 +104,17 @@ export class CalenderComponent implements OnInit {
     for (let i = 1; i < nextMonthDays + 1; i++) {
       this.monthDays.push(i);
      }
+
+this.selectedDay = undefined;
+     if(this.selectedDayMonthOnCalender === this.month) {
+      this.selectedDay = this.selectedDayBlack;
+     }
+
   }
 
   previousMonth(): void {
+
+  
     this.currentDateTimeYear.setMonth(this.currentDateTimeYear.getMonth() - 1);
     this.updateCalendar();
     this.monthNumber = this.monthNumber - 1;
@@ -121,6 +133,13 @@ export class CalenderComponent implements OnInit {
     for (let i = 1; i < previousMonthDays + 1; i++) {
       this.monthDays.push(i);
      }
+
+     this.selectedDay = undefined;4
+     if(this.selectedDayMonthOnCalender === this.month) {
+     this.selectedDay = this.selectedDayBlack;
+      return 
+     }
+    
   }
 
   updateCalendar(): void {
@@ -130,8 +149,15 @@ export class CalenderComponent implements OnInit {
   }
 
   daySelect(day: number) {
-    let date = new Date();
+
     let selectedDayTo = new Date( this.yearNumber, this.monthNumber- 1, day);
+
+    this.selectedDay = day;
+    this.selectedDayOnCalender = selectedDayTo;
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October","November", "December"];
+    let selectedDayMonth = monthNames[selectedDayTo.getMonth()];
+    this.selectedDayMonthOnCalender = selectedDayMonth;
+    this.selectedDayBlack = day;
     this.selectDateEvent.emit(selectedDayTo);
     (console.log(selectedDayTo))
   }

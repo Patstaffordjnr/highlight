@@ -4,13 +4,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-
-    /* background-color:white; */
-    font-size: medium;
-    /* border-radius: 25px; */
-    /* border: 6px solid whitesmoke; */
-
+    background-color:white;
+    border-radius: 25px;
+    border: 6px solid whitesmoke;
+    max-width: 1260px;
+    min-width: 450px;
+    /* min-height: 250px; */
+    font-size: bold;
 }
 
 .eventTableHeading {
@@ -65,4 +65,5 @@
     font-weight: bold;
     justify-content: center;
     align-items: center;
+
 }

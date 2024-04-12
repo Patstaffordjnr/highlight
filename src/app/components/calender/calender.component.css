@@ -7,14 +7,15 @@
     
     justify-content: center;
     align-items: center;
-    max-width: 400px;
+
 
     /* border-width:2px;
     border-style:solid;
     border-color:black; */
 
-    border-radius: 25px;
-    border: 2px solid whitesmoke;
+    /* border-radius: 25px; */
+    /* border: 2px solid whitesmoke; */
+
     /* padding: 20px;
     width: 200px;
     height: 150px; */
@@ -29,8 +30,8 @@
 
 .calender-div {
   background-color: white;
-  max-width: 200px;
-  min-width: 200px;
+  /* max-width: 200px;
+  min-width: 200px; */
   flex-wrap: wrap;
   /* justify-content: center; */
   justify-content: space-evenly;
@@ -40,14 +41,17 @@
   border-color:black; */
 
   border-radius: 25px;
-  border: 2px solid whitesmoke;
+  border: 6px solid whitesmoke;
+  max-width: 400px;
+  min-width: 400px;
 }
 
 .calender-controls {
   display: flex;
   background-color: white;
-  max-width: 200px;
-  min-width: 200px;
+  /* max-width: 200px;
+  min-width: 200px; */
+  
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
@@ -71,7 +75,7 @@
   align-items: center;
 }
 
-.aon{
+.a{
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -79,4 +83,17 @@
   align-items: center;
 
 
+}
+
+/* .calender-div a.selected {
+  background-color: black;
+  border: 2px solid black;
+  color: black;
+} */
+
+.calender-div a.selected {
+  /* Existing styles... */
+  /* z-index: 29; */
+  border: 2px solid black; /* Add border style and color */
+  /* background-color: black; */
 }

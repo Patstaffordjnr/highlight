@@ -7,5 +7,16 @@
     align-items: center;
     border-radius: 25px;
     border: 6px solid whitesmoke;
+    max-width: 1260px;
+    min-width: 450px;
+    min-height: 250px;
 
 }
+
+.a{ 
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }

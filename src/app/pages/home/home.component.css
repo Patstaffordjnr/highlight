@@ -56,3 +56,13 @@
         justify-content: center;
         align-items: center;
     }
+
+.a{ 
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 450px;
+    min-height: 250px;
+    }

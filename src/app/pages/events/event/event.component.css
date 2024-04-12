@@ -1,6 +1,10 @@
 .event{ 
     display: flex;
     background-color:white;
+    max-width: 1210px;
+
+    min-height: 300px;
+    min-width: 450px;
     z-index: 10;
     /* position: absolute; */
     font-size: medium;
@@ -11,5 +15,9 @@
 
     border-radius: 25px;
     border: 6px solid whitesmoke;
+
+
+
+    max-width: 1260px;
 
 }

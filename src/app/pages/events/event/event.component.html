@@ -1,21 +1,31 @@
+<br>
 <div class="event">
+  <br>
   <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
     <a>Name: <input type="string" formControlName="name"></a>
-    <div *ngIf="checkoutForm.get('name').errors?.['minlength']">Neeed more character.</div>
+    <br>
+    <br>
     <a>Type: </a> <select formControlName ="eventType"><option *ngFor="let type of typesOfEvents" [ngValue]="type">{{type}}</option></select>
+    <br>
     <br>
     <a>Event Description: <input type="string" formControlName="eventDescription"></a>
     <br>
+    <br>
     <div>
       <button type = "button" (click) = selectAddress()>Select Address</button>
+      <br>
       {{address}}
     </div>
+    <br>
     <a>Start Date & Time: <input type="datetime-local" formControlName="startDateTime"></a>
+    <br>
     <br>
     <a>Finish Date & Time: <input type="datetime-local" formControlName="finishDateTime"></a>
    <br>
     <button type="submit" [disabled]="!checkoutForm.valid">Submit</button>
   </form>
+  <br>
 </div>   
-
-
+<br>
+<!-- 
+<div *ngIf="checkoutForm.get('name').errors?.['minlength']">Neeed more character.</div> -->

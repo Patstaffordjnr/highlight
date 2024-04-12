@@ -1,6 +1,8 @@
 #map {
     height: 500px;
     width: 100vw;
+    max-width: 1260px;
+
    }
 
    .hidden {
@@ -13,11 +15,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* max-width: 1260px;
+    min-width: 450px;
+    min-height: 250px; */
 
 
     background-color:white;
     font-size: medium;
     border-radius: 25px;
-    border: 6px solid whitesmoke;
+    /* border: 6px solid whitesmoke; */
 
 }

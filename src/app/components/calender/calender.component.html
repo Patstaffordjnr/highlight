@@ -1,12 +1,6 @@
-<!-- <div class = "calender" (click)="onPress()">
-Select date 
-</div> -->
-<!-- <div class = "calender-container" [ngClass]="showDialog ? '' : 'hidden'"></div> -->
-<div class = "aon">
+<div class = "a">
 <br>
 Current time: {{ currentTime }}
-
-<!-- {{ calenderTime }} -->
 <div class="calender-div">
   <div class="calender-controls">
     {{year}}
@@ -20,20 +14,15 @@ Current time: {{ currentTime }}
     <div class="week-day-header" *ngFor="let weekDay of weekDays">
       <div class="week-day-container">{{weekDay}}</div>
     </div>
-
-    <div *ngFor="let day of monthDays" (click)="daySelect(day)">
-      <div class="day-container">
+    <a class="day-container"*ngFor="let day of monthDays" [class.selected]="day === selectedDay" (click)="daySelect(day)">
         {{ day }}
-      </div>
-    </div>
+    </a>
   </div>
   <br>
-
 </div>
 <div>
   <br>
   <div><app-progress-bar></app-progress-bar></div>
 </div>
 </div>
-
 <br>
