@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {CdkDrag} from '@angular/cdk/drag-drop';
+
 
 @Component({
   selector: 'app-progress-bar',
@@ -17,13 +19,16 @@ export class ProgressBarComponent implements OnInit {
   session = "AM";
   hours = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"];
 
+  isDragging = false;
+  initialClickX: number = 0;
+
   constructor() {
 
     // console.log(`${this.currentHour}:${this.mm}`);
   }
 
   ngOnInit(): void {
-
+    
     
   }
 
@@ -60,6 +65,10 @@ export class ProgressBarComponent implements OnInit {
 }
 
 
+
+
+
+
 clock(event) {
 
   const divClockElement: HTMLDivElement = this.clockhourSelect.nativeElement;
@@ -88,4 +97,6 @@ clock(event) {
   }
 
 }
+
+
 }
