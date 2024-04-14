@@ -1,8 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-
-import { CdkDrag, CdkDragHandle, CdkDragMove } from '@angular/cdk/drag-drop'; // Import CdkDragMove
-import { DragDropModule} from '@angular/cdk/drag-drop';
-
+import { CdkDragMove } from '@angular/cdk/drag-drop'; // Import CdkDragMove
 
 @Component({
   selector: 'app-progress-bar',
@@ -31,15 +28,22 @@ export class ProgressBarComponent implements OnInit {
   }
 
   clock(hour: number, minutes: number) {
-    if(hour == 12 && minutes > 0) {
-      this.mapTime = `24:00`
-    } else {
+    if(hour == 0 && minutes == 0) {
+      this.mapTime = `00:00 AM`
+    } else if(hour == 24 && minutes > 0) {
+      this.mapTime = `24:00 PM`
+    }  else {
+    // -------------------------------------------------------------------------------
     const injectedHour = hour < 10 ? `0${hour}` : String(hour);
     const injectedMinutes = minutes < 10 ? `0${minutes}` : String(minutes);
-    this.mapTime = `${injectedHour}:${injectedMinutes}`;
+    //--------------------------------------------------------------------------------GEMINI 
+    if(Number(injectedHour) > 12) {
+      this.mapTime = `${injectedHour}:${injectedMinutes} PM`
+    } else {
+      this.mapTime = `${injectedHour}:${injectedMinutes} AM`
+    }
     }
 
-   
   }
 
   onDragMoved(event: CdkDragMove<any>) {
