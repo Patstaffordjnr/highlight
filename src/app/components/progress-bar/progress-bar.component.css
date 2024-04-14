@@ -1,14 +1,11 @@
 .progress-bar {
-    display: grid; /* Use CSS grid */
-    grid-template-columns: repeat(24, 1fr); /* Create 24 equal-width columns */
-    gap: 2px; /* Add a small gap between grid cells (adjust as needed) */
-    background-color: white;
+    height: 20px;
+    width: 365px;
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
     z-index: 10;
-    justify-content: center; /* Center the content horizontally */
-    align-items: center; /* Center the content vertically */
-    max-width: 365px;
-    min-height: 20px;
-    min-width: 400px;
+    justify-content: center;
+    align-items: center; 
     font-size: 65%;
     color: black;
     border-radius: 25px;
@@ -17,22 +14,44 @@
   }
   
   .hourAM-container {
+    border-radius: 2px;
+  }
+
+  .pm{
     display: flex;
     justify-content: center;
-    
+    align-content: center;
+    position: relative;
+
   }
 
 .progress-bar-select {
-    /* background-color: black; */
+  display: flex;
+  justify-content: center;
+  align-content: center;
     z-index: 12;
     position: absolute;
 
 }
 
+.dot-boundary {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 384px;
+  position: relative;
+  left: -10px
+  
+}
 .dot {
   height: 20px;
   width: 20px;
-  background-color: black;
+    opacity: 90%;
+  background-color: whitesmoke;
   border-radius: 50%;
   display: inline-block;
+  position: relative; 
 }
+
+
+

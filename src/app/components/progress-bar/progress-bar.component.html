@@ -1,11 +1,15 @@
-<div class="progress-bar" (click)="clock($event)" #clockhourSelect>
+<div class="progress-bar" #clockhourSelect>
   <div *ngFor="let hour of hours" (click)="hourSelect($event)">
     <div class="hourAM-container" id="progress-bar" #hourDiv>
       {{ hour }}
     </div>
   </div>
-  <div class="progress-bar-select" id="progress-bar-select" #hourSelectDiv>
-    <span class="dot"></span>
+  <div class="progress-bar-select" id="progress-bar-select" #a>
+    <div class = "dot-boundary">
+  <span class="dot" cdkDragBoundary=".dot-boundary" cdkDragLockAxis="x" (cdkDragMoved)="onDragMoved($event)" cdkDrag ></span>
+</div>
   </div>
 </div>
-
+<br>
+{{mapTime}}
+<br>

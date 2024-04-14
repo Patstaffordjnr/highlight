@@ -22,11 +22,11 @@ import { ErrorInterceptor } from './util/interceptors/noop-interceptor.service';
 import { AdminHomeComponent } from './pages/admin/home/admin-home.component';
 import { CurrentUserService, PermissionsService } from './util/can-activate.service';
 import { EventsComponent } from './pages/events/events.component';
-// import { CorsInterceptor } from 'src/app/cors.interceptor';
 import { EventTableComponent } from './pages/events/event-table/event-table.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { UserInterfaceNavComponent } from './pages/user-interface-nav/user-interface-nav.component';
 import { EventModalComponent } from './pages/events/event-modal/event-modal.component';
+
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -58,7 +58,7 @@ import { EventModalComponent } from './pages/events/event-modal/event-modal.comp
     ReactiveFormsModule,
     HttpClientModule,
     EventTableComponent,
-    MatDialogModule,
+    DragDropModule,
     
   ],
   providers: [

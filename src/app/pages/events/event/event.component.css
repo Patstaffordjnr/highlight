@@ -4,7 +4,7 @@
     max-width: 1210px;
 
     min-height: 300px;
-    min-width: 450px;
+    max-width: 365px;
     z-index: 10;
     /* position: absolute; */
     font-size: medium;

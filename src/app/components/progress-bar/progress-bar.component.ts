@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import {CdkDrag} from '@angular/cdk/drag-drop';
+
+import { CdkDrag, CdkDragHandle, CdkDragMove } from '@angular/cdk/drag-drop'; // Import CdkDragMove
+import { DragDropModule} from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -8,95 +10,57 @@ import {CdkDrag} from '@angular/cdk/drag-drop';
   styleUrls: ['./progress-bar.component.css']
 })
 export class ProgressBarComponent implements OnInit {
-  @ViewChild('hourDiv') hourDiv: ElementRef;
-  @ViewChild('hourSelectDiv') hourSelectDiv: ElementRef;
-  @ViewChild('clockhourSelect') clockhourSelect: ElementRef;
+
+  @ViewChild('a') a: ElementRef;
+
+  mapTime
 
   date = new Date();
   currentHour = this.date.getHours();
   mm = this.date.getMinutes();
   ss = this.date.getSeconds();
   session = "AM";
-  hours = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"];
-
-  isDragging = false;
-  initialClickX: number = 0;
+  hours = ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"];
 
   constructor() {
 
-    // console.log(`${this.currentHour}:${this.mm}`);
   }
 
   ngOnInit(): void {
     
-    
   }
 
-  hourSelect(event: MouseEvent) {
-  const divElement: HTMLDivElement = this.hourDiv.nativeElement;
-  let divHourElement: HTMLDivElement = this.hourSelectDiv.nativeElement;
-  const divLeft = divElement.offsetLeft;
-  const divWidth = divElement.offsetWidth;
+  clock(hour, minutes) {
+  console.log(`Time: ${hour}:${minutes}`);
 
-  const clickX = event.clientX;
-
-  const clickOffsetPercentage = ((clickX - divLeft) / divWidth) * 100;
-
-  let day = 2600;
-  let click = Math.round(clickOffsetPercentage);
-  let hourBy26 = day / 24;
-  let SixtyMins = click / hourBy26;
-  let displayHour = Math.floor(SixtyMins) + 1;
-  let sessionz = "AM";
-
-  let minuteByHour = hourBy26 / 60;
-  let minutes = Math.round((click / minuteByHour) - displayHour * 60 + 60);
-
-  if (displayHour > 12) {
-    sessionz = "PM";
-  } else if (displayHour < 12) {
-    sessionz = "AM";
+  this.mapTime = `Time: ${hour}:${minutes}`
   }
 
-  // console.log(`${displayHour}:${minutes} ${sessionz}`);
+  onDragMoved(event: CdkDragMove<any>) {
 
-  divHourElement.style.position = 'absolute';
-  divHourElement.style.left = event.clientX + 'px';
-}
+    let dotPosition = event.pointerPosition.x;
+    let divElement: HTMLDivElement = this.a.nativeElement;
+    let divLeft = divElement.offsetLeft;
+    let divRight = (divLeft + divElement.offsetWidth);
+    let hourLength = (365) / 24
+    let dotX = dotPosition - divLeft
 
+    if(dotPosition < divLeft) {
+      dotPosition = divLeft;
+      console.log(`Too little`);
+      return 
+    } else if(dotPosition > divRight) {
+      console.log(`Too Much`);
+      return
+    } else {
+      let xValueHour = dotX / hourLength;
+      let hour = Math.trunc(xValueHour);
+      let minutesToBeCalculated = String(xValueHour % 1);
+      let minutesMinusDecimalPoint = minutesToBeCalculated.slice(minutesToBeCalculated.indexOf(".") + 1);
+      let secondsPercentage = Number(minutesMinusDecimalPoint.substring(0, 2));
+      let minutes = Math.trunc((secondsPercentage / 100) * 60)
+      this.clock(hour, minutes)
+    }
 
-
-
-
-
-clock(event) {
-
-  const divClockElement: HTMLDivElement = this.clockhourSelect.nativeElement;
-  const divLeft = divClockElement.offsetLeft;
-  const divWidth = divClockElement.offsetWidth;
-
-  const clickX = event.clientX;
-  const clickOffsetPercentage = ((clickX - divLeft) / divWidth) * 100;
-  let hour = Math.round(clickOffsetPercentage / (100 / 24));
-  let minutes = Math.round(clickOffsetPercentage *((24 * 60) / 100)) ;
-  let hours = clickOffsetPercentage / (100 / 24);
-  let clockDialMinutes =  ((minutes - (60 * hour))) + 30;
-  let session = "am";
-
-  if(hour > 12) {
-
-    session = "pm"
   }
-
-  if(minutes > 60) {
-
-    
-    console.log(`The time is ${hour}:${clockDialMinutes} ${session}`);
-  } else if (minutes < 60) {
-    console.log(`The time is ${0}:${clockDialMinutes} ${session}`);
-  }
-
-}
-
-
 }
