@@ -30,10 +30,16 @@ export class ProgressBarComponent implements OnInit {
     
   }
 
-  clock(hour, minutes) {
-  console.log(`Time: ${hour}:${minutes}`);
+  clock(hour: number, minutes: number) {
+    if(hour == 12 && minutes > 0) {
+      this.mapTime = `24:00`
+    } else {
+    const injectedHour = hour < 10 ? `0${hour}` : String(hour);
+    const injectedMinutes = minutes < 10 ? `0${minutes}` : String(minutes);
+    this.mapTime = `${injectedHour}:${injectedMinutes}`;
+    }
 
-  this.mapTime = `Time: ${hour}:${minutes}`
+   
   }
 
   onDragMoved(event: CdkDragMove<any>) {
@@ -47,10 +53,11 @@ export class ProgressBarComponent implements OnInit {
 
     if(dotPosition < divLeft) {
       dotPosition = divLeft;
-      console.log(`Too little`);
-      return 
+      let hour = 0;
+      let minutes = 0;
+      return this.clock( hour, minutes)
     } else if(dotPosition > divRight) {
-      console.log(`Too Much`);
+      // console.log(`Too Much`);
       return
     } else {
       let xValueHour = dotX / hourLength;
@@ -61,6 +68,6 @@ export class ProgressBarComponent implements OnInit {
       let minutes = Math.trunc((secondsPercentage / 100) * 60)
       this.clock(hour, minutes)
     }
-
   }
+
 }
