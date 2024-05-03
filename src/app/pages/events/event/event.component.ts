@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef  } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { GoogleMapService } from 'src/app/pages/google-map/google-map.service';
 import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-event',
@@ -26,13 +25,13 @@ export class EventComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private googleMapService: GoogleMapService,
-    private http: HttpClient
+    private http: HttpClient,
+    private cdRef: ChangeDetectorRef
   ) {
 
     this.checkoutForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(1)]],
       eventType: ['', [Validators.required]],
-      eventDescription:  ['', [Validators.required]],
       eventLat: [Number, [Validators.required, this.validateCoordinate]],
       eventLng: [Number, [Validators.required, this.validateCoordinate]],
       address:  ['', [Validators.required]],
@@ -43,30 +42,26 @@ export class EventComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this.googleMapService.eventAddress$.subscribe((markerAddress) => {
+      if (markerAddress) {
+        this.address = markerAddress;
+        console.log(this.address);
+        this.cdRef.detectChanges();
+      }
+    });
 
   }
 
+
   async selectAddress() {
   this.googleMapService.updateMarkerPlacementStatus(true);
-  this.googleMapService.eventLatLng$.subscribe((markerAddress) => {
-  
+  await this.googleMapService.eventLatLng$.subscribe((markerAddress) => {
   this.markerAddressObject = [markerAddress];
   this.markerLat = this.markerAddressObject[0].lat;
   this.markerLng = this.markerAddressObject[0].lng;
-  
-  this.checkoutForm.patchValue({ eventLat: this.markerLat, eventLng: this.markerLng });
-    })
-  this.addressToBeGeocoded = true;
-
-    this.googleMapService.eventAddress$.subscribe((markerAddress => {
-      if(markerAddress) {
-        this.address = markerAddress;
-        this.checkoutForm.get('address').setValue(markerAddress);
-      }
-
-    }));
-
+  })
+  this.ngOnInit();
   }
 
   validateCoordinate(control: AbstractControl): { [key: string]: any} | null {

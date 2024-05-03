@@ -25,8 +25,8 @@ import { EventsComponent } from './pages/events/events.component';
 import { EventTableComponent } from './pages/events/event-table/event-table.component';
 import { UserInterfaceNavComponent } from './pages/user-interface-nav/user-interface-nav.component';
 import { EventModalComponent } from './pages/events/event-modal/event-modal.component';
-
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -48,6 +48,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     CalenderComponent,
     ProgressBarComponent, 
     EventModalComponent,
+    FooterComponent,
 
 
   ],

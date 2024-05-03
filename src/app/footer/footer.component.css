@@ -1,0 +1,17 @@
+.footer{ 
+display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* .staffordTM{
+
+    height: 25%;
+    width:   25%;
+} */
+
+.a{
+    max-height: 15%;  /* Adjust as needed */
+    max-width: 15%;   /* Adjust as needed */
+  }

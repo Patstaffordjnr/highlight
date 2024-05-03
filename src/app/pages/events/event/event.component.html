@@ -1,31 +1,30 @@
-<br>
+
+<div class = "eventContainer">
 <div class="event">
-  <br>
-  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+  <form class="event" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    <div class = "name">
     <a>Name: <input type="string" formControlName="name"></a>
-    <br>
-    <br>
-    <a>Type: </a> <select formControlName ="eventType"><option *ngFor="let type of typesOfEvents" [ngValue]="type">{{type}}</option></select>
-    <br>
-    <br>
-    <a>Event Description: <input type="string" formControlName="eventDescription"></a>
-    <br>
-    <br>
-    <div>
-      <button type = "button" (click) = selectAddress()>Select Address</button>
-      <br>
-      {{address}}
     </div>
-    <br>
-    <a>Start Date & Time: <input type="datetime-local" formControlName="startDateTime"></a>
-    <br>
-    <br>
-    <a>Finish Date & Time: <input type="datetime-local" formControlName="finishDateTime"></a>
-   <br>
+    <div class = "type">
+    <a>Type: </a> <select formControlName ="eventType"><option *ngFor="let type of typesOfEvents" [ngValue]="type">{{type}}</option></select>
+    </div>
+    <div class = "selectAddress">
+    <button type = "button" (click) = selectAddress()>Select Address: </button>
+    <a>{{ address}}</a>
+
+    </div>
+    <div class = "start">
+    <a>Start Date & Time: <br><input type="datetime-local" formControlName="startDateTime"></a>
+    </div>
+    <div class = "finish">
+    <a>Finish Date & Time: <br><input type="datetime-local" formControlName="finishDateTime"></a>
+    </div>
+    <div class = "submit">
     <button type="submit" [disabled]="!checkoutForm.valid">Submit</button>
+    </div>
   </form>
   <br>
 </div>   
-<br>
+</div>
 <!-- 
 <div *ngIf="checkoutForm.get('name').errors?.['minlength']">Neeed more character.</div> -->

@@ -1,23 +1,58 @@
-.event{ 
-    display: flex;
-    background-color:white;
-    max-width: 1210px;
+.event {
+    display: grid;
+    grid-template-columns: repeat(4, 75px); /* Four columns of equal width */
+    grid-template-rows: repeat(6, 50px);   /* Four rows of equal height */
+    gap: 10px;  /* Add some spacing between grid items (optional) */
+  }
 
-    min-height: 300px;
-    max-width: 365px;
-    z-index: 10;
-    /* position: absolute; */
-    font-size: medium;
-    
-    justify-content: center;
-    align-items: center;
-    /* max-width: 400px; */
-
-    border-radius: 25px;
-    border: 6px solid whitesmoke;
-
-
-
-    max-width: 1260px;
-
+.name {
+    grid-column-start: 1;
+    grid-row-start: 1;  /* Top-left corner: column 1, row 1 */
+  }
+  
+.type{
+    grid-column-start: 4;
+    grid-row-start: 1;  /* Top-left corner: column 1, row 1 */
 }
+.selectAddress{
+    grid-column-start: 1;
+    grid-row-start: 2;  /* Top-left corner: column 1, row 1 */
+
+  }
+
+  .start {
+    grid-column-start: 1;
+    grid-row-start: 3;  /* Top-left corner: column 1, row 1 */
+
+  }
+  .finish {
+    grid-column-start: 1;
+    grid-row-start: 4;  /* Top-left corner: column 1, row 1 */
+
+  }
+
+  .start {
+    grid-column-start: 1;
+    grid-row-start: 5;  /* Top-left corner: column 1, row 1 */
+
+
+  }
+
+  .submit {
+    grid-column-start: 1;
+    grid-row-start: 6;  /* Top-left corner: column 1, row 1 */
+align-items: center;
+
+  }
+/* <div class = "selectAddress">
+<button type = "button" (click) = selectAddress()>Select Address: </button><a>: {{address}}</a>
+</div>
+<div class = "start">
+<a>Start Date & Time: <br><input type="datetime-local" formControlName="startDateTime"></a>
+</div>
+<div class = "finish">
+<a>Finish Date & Time: <br><input type="datetime-local" formControlName="finishDateTime"></a>
+</div>
+<div class = "submit">
+<button type="submit" [disabled]="!checkoutForm.valid">Submit</button>
+</div> */

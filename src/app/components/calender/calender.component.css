@@ -34,9 +34,7 @@
 .calender-controls {
   display: flex;
   background-color: white;
-  /* max-width: 200px;
-  min-width: 200px; */
-  
+
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
