@@ -74,6 +74,10 @@ export class EventComponent implements OnInit {
 
   }
 
+  z() {
+    console.log(`yo`);
+  }
+
   onSubmit() {
       console.warn(this.checkoutForm.value);
   }

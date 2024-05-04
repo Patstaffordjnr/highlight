@@ -13,14 +13,26 @@ declare const google: any;
 export class AppComponent implements OnInit {
 
   title = 'highlight';
+  currentTime: string;
 
   constructor(private googleMapService: GoogleMapService) {
 
   }
 
+
+  updateTime() {
+    const date = new Date();
+    this.currentTime = date.toLocaleTimeString();
+  }
   ngOnInit() {
+    this.updateTime();
+    // Update the time every second
+  
+    setInterval(() => {
+      this.updateTime();
+    }, 1000);
 
   }
 
-  
+
 }

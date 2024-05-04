@@ -1,58 +1,74 @@
-.event {
+.eventContainer {
+  border-radius: 25px;
+  border: 6px solid whitesmoke;
+  min-width: 365px;
+  /* background-color: aquamarine; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+
+.checkoutForm {
     display: grid;
-    grid-template-columns: repeat(4, 75px); /* Four columns of equal width */
-    grid-template-rows: repeat(6, 50px);   /* Four rows of equal height */
-    gap: 10px;  /* Add some spacing between grid items (optional) */
+    grid-template-columns: repeat(4, 75px);
+    grid-template-rows: repeat(5, 50px);
+    gap: 10px;
+    /* max-width: 365px; */
+    /* background-color: hotpink; */
+    /* opacity: 50%; */
+    margin: auto;
   }
 
 .name {
     grid-column-start: 1;
-    grid-row-start: 1;  /* Top-left corner: column 1, row 1 */
+    grid-row-start: 1;
   }
   
 .type{
     grid-column-start: 4;
-    grid-row-start: 1;  /* Top-left corner: column 1, row 1 */
+    grid-row-start: 1;
 }
-.selectAddress{
+.selectAddressButton{
+    grid-column-start: 4;
+    grid-row-start: 2;
+    display: inline-block;
+  }
+  .address{
     grid-column-start: 1;
-    grid-row-start: 2;  /* Top-left corner: column 1, row 1 */
-
+    grid-column-end: span 3;
+    grid-row-start: 2;
+    display: inline-block;
   }
 
   .start {
     grid-column-start: 1;
-    grid-row-start: 3;  /* Top-left corner: column 1, row 1 */
+    grid-row-start: 3;
 
+  }
+  .startTimeButton{
+    grid-column-start: 4;
+    grid-row-start: 3;
   }
   .finish {
     grid-column-start: 1;
-    grid-row-start: 4;  /* Top-left corner: column 1, row 1 */
-
+    grid-row-start: 4;
   }
-
-  .start {
-    grid-column-start: 1;
-    grid-row-start: 5;  /* Top-left corner: column 1, row 1 */
-
-
+  .finishTimeButton{
+    grid-column-start: 4;
+    grid-row-start: 4;
   }
-
   .submit {
-    grid-column-start: 1;
-    grid-row-start: 6;  /* Top-left corner: column 1, row 1 */
-align-items: center;
 
+    grid-row-start: 5;
+    grid-column-end: span 4;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
   }
-/* <div class = "selectAddress">
-<button type = "button" (click) = selectAddress()>Select Address: </button><a>: {{address}}</a>
-</div>
-<div class = "start">
-<a>Start Date & Time: <br><input type="datetime-local" formControlName="startDateTime"></a>
-</div>
-<div class = "finish">
-<a>Finish Date & Time: <br><input type="datetime-local" formControlName="finishDateTime"></a>
-</div>
-<div class = "submit">
-<button type="submit" [disabled]="!checkoutForm.valid">Submit</button>
-</div> */
