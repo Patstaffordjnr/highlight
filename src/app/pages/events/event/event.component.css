@@ -1,8 +1,103 @@
+
+.flex-grid {
+  display: flex;
+  background-color: none;
+}
+
+.col {
+  flex: 1;
+  display: flex; 
+}
+
 .eventContainer {
+  min-width: 365px;
+  max-width: 365px;
+  border-radius: 25px;
+  border: 6px solid whitesmoke;
+  display: flex; 
+}
+.checkoutForm {
+  top: -20px;
+  background-color: none;
+  max-width: 365px;
+}
+.name {
+  margin-left: 10px;
+  background-color: none;
+}
+.type{
+  background-color: none;
+  justify-content: left; 
+  margin-left: 45px;
+}
+.selectAddressButton{
+  margin-left: 10px;
+  background-color: none;
+}
+.address{
+  margin-left: -10px;
+  background-color: none;
+  justify-content: left; 
+}
+.start{
+  margin-left: 10px;
+  background-color: none;
+}
+.startTimeButton{
+  background-color: none;
+  justify-content: left; 
+  margin-left: 200px;
+}
+.startTimeSelect{
+  margin-left: -6px;
+  background-color: none;
+}
+.finish {
+  margin-left: 10px;
+  background-color: none;
+}
+.finishTimeButton{
+  background-color: none;
+  justify-content: left; 
+  margin-left: 200px;
+}
+.finishTimeSelect{
+  margin-left: -6px;
+  background-color: none;
+}
+.submit{
+  background-color: none;
+  
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+.hardcodedButton{
+  width: 65px;
+  height: 65px;
+}
+
+
+
+
+/* 
+display: flex;
+flex-wrap: wrap;
+flex-direction: column;
+font-weight: bold;
+justify-content: center;
+align-items: center; */
+
+
+
+
+
+/* .eventContainer {
   border-radius: 25px;
   border: 6px solid whitesmoke;
   min-width: 365px;
-  /* background-color: aquamarine; */
+  background-color: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,16 +105,11 @@
 
 }
 
-
-
 .checkoutForm {
     display: grid;
     grid-template-columns: repeat(4, 75px);
     grid-template-rows: repeat(5, 50px);
     gap: 10px;
-    /* max-width: 365px; */
-    /* background-color: hotpink; */
-    /* opacity: 50%; */
     margin: auto;
   }
 
@@ -53,6 +143,13 @@
     grid-column-start: 4;
     grid-row-start: 3;
   }
+  .startTimeSelect{
+    grid-column-start: 1;
+    grid-row-start: 5;
+    background-color: none;
+  
+  }
+
   .finish {
     grid-column-start: 1;
     grid-row-start: 4;
@@ -61,8 +158,9 @@
     grid-column-start: 4;
     grid-row-start: 4;
   }
-  .submit {
+  
 
+  .submit {
     grid-row-start: 5;
     grid-column-end: span 4;
     display: flex;
@@ -71,4 +169,4 @@
     font-weight: bold;
     justify-content: center;
     align-items: center;
-  }
+  } */

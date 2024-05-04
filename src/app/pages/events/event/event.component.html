@@ -1,35 +1,57 @@
-
 <div class = "eventContainer">
   <br>
 <div class="event">
   <div>
-  <form class="checkoutForm" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-    <div class = "name">
-    <a>Name: <input type="string" formControlName="name"></a>
+  <form class="checkoutForm"  [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+    <div class="flex-grid">
+    <div class = "name col">
+    <a>Name : <input type="string" formControlName="name"></a>
     </div>
-    <div class = "type">
-    <a>Type: </a> <select formControlName ="eventType"><option *ngFor="let type of typesOfEvents" [ngValue]="type">{{type}}</option></select>
+    <div class = "type col">
+    <a>Type :  </a> <select formControlName ="eventType"><option *ngFor="let type of typesOfEvents" [ngValue]="type">{{type}}</option></select>
     </div>
-    <div class = "selectAddressButton">
+  </div>
+<br>
+    <div class="flex-grid">
+    <div class = "selectAddressButton col">
     <button type = "button" (click) = selectAddress()>Select Address: </button>
     </div>
-    <div class = "address">
+    <div class = "address col">
     <a>{{ address}}</a>
     </div>
-    <div class = "start">
-    <a>Start Time & Date:</a>
+  </div>
+  <br>
+  <br>
+    <div class="flex-grid">
+    <div class = "start col">
+    <a>Start Time & Date :</a>
     </div>
-    <div class = "startTimeButton">
-      <button type = "button" (click) = z()>Select Time & Date: </button>
+    <div class = "startTimeButton col">
+      <button type = "button" class = "hardcodedButton" (click) = startTimeSelectToggle()>Select Time & Date: </button>
       </div>
-    <div class = "finish">
-    <a>Finish Time & Date: </a>
     </div>
-    <div class = "finishTimeButton">
-      <button type = "button" (click) = z()>Finish Time & Date: </button>
+    <div class="flex-grid">
+    <div class = "startTimeSelect col" >
+      <app-calender  *ngIf="calenderStartEventVisible" class = "calenderStart"></app-calender>
+    </div>
+    </div>
+    <br>
+      <div class="flex-grid">
+    <div class = "finish col">
+    <a>Finish Time & Date : </a>
+    </div>
+    <div class = "finishTimeButton col">
+      <button type = "button" class = "hardcodedButton" (click) = finishTimeSelectToggle()>Finish Time & Date: </button>
       </div>
-    <div class = "submit">
-    <button type="submit" [disabled]="!checkoutForm.valid">Submit</button>
+    </div>
+    <div class="flex-grid">
+    <div class = "finishTimeSelect col" >
+      <app-calender  *ngIf="calenderFinishEventVisible" class = "calenderFinish"></app-calender>
+    </div>
+  </div>
+  <br>
+    <div class = "submit col">
+    <button type="submit" class = "hardcodedButton" [disabled]="!checkoutForm.valid">Submit</button>
     </div>
   </form>
 </div>

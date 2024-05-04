@@ -10,6 +10,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EventComponent implements OnInit {
 
+  calenderStartEventVisible = false;
+  calenderFinishEventVisible = false
+
   typesOfEvents = ["Busker"];
   address;
   markerAddress: string;
@@ -74,10 +77,15 @@ export class EventComponent implements OnInit {
 
   }
 
-  z() {
-    console.log(`yo`);
+  startTimeSelectToggle() {
+    this.calenderStartEventVisible = !this.calenderStartEventVisible
+    
   }
 
+  finishTimeSelectToggle() {
+    this.calenderFinishEventVisible = !this.calenderFinishEventVisible
+    
+  }
   onSubmit() {
       console.warn(this.checkoutForm.value);
   }
