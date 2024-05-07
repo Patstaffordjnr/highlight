@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angu
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginClient } from '../log-in/log-in.client';
 import { RouterService } from 'src/app/util/router.service';
-import { UserInterfaceNavComponent } from '../user-interface-nav/user-interface-nav.component';
+import { UserInterfaceNavComponent } from '../../util/user-interface-nav/user-interface-nav.component';
 import { Subscription } from 'rxjs';
 
 @Component({

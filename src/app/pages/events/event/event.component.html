@@ -14,7 +14,7 @@
 <br>
     <div class="flex-grid">
     <div class = "selectAddressButton col">
-    <button type = "button" (click) = selectAddress()>Select Address: </button>
+    <button type = "button" class = "hardcodedButton" (click) = selectAddress()>Select Address: </button>
     </div>
     <div class = "address col">
     <a>{{ address}}</a>
@@ -23,22 +23,43 @@
   <br>
   <br>
     <div class="flex-grid">
-    <div class = "start col">
-    <a>Start Time & Date :</a>
+    <div class = "startDateDisplayText col">
+    <a>Start Date :</a>
+    </div>
+    <div class = "startDateDisplay col">
+      <a>{{startDate}}</a>
+    </div>
+    <div class = "startTimeDisplayText col">
+      <a>Start Time :</a>
+      </div>
+    <div class = "startTimeDisplay col">
+      <a>{{startTime}}</a>
     </div>
     <div class = "startTimeButton col">
       <button type = "button" class = "hardcodedButton" (click) = startTimeSelectToggle()>Select Time & Date: </button>
       </div>
     </div>
     <div class="flex-grid">
-    <div class = "startTimeSelect col" >
-      <app-calender  *ngIf="calenderStartEventVisible" class = "calenderStart"></app-calender>
+    <div class = "startDateSelect col" >
+      <app-calender *ngIf="calenderStartEventVisible" class = "calenderStartDate" (selectDateEvent)="onStartDateSelected($event)"></app-calender>
     </div>
+    </div>
+    <div class = "startTimeSelect col">
+      <app-progress-bar *ngIf="calenderStartEventVisible" class = "calenderStartTime" (selectTimeEvent)="onStartTimeSelected($event)"></app-progress-bar>
     </div>
     <br>
       <div class="flex-grid">
-    <div class = "finish col">
-    <a>Finish Time & Date : </a>
+    <div class = "finishDateDisplayText col">
+    <a>Finish Date : </a>
+    </div>
+    <div class = "finishDateDisplay col">
+    <a>{{finishDate}}</a>
+    </div>
+    <div class = "finishTimeDisplayText col">
+      <a>Finish Time :</a>
+      </div>
+    <div class = "finishTimeDisplay col">
+      <a>{{finishTime}}</a>
     </div>
     <div class = "finishTimeButton col">
       <button type = "button" class = "hardcodedButton" (click) = finishTimeSelectToggle()>Finish Time & Date: </button>
@@ -46,8 +67,11 @@
     </div>
     <div class="flex-grid">
     <div class = "finishTimeSelect col" >
-      <app-calender  *ngIf="calenderFinishEventVisible" class = "calenderFinish"></app-calender>
+      <app-calender  *ngIf="calenderFinishEventVisible" class = "calenderFinish" (selectDateEvent)="onFinishDateSelected($event)"></app-calender>
     </div>
+  </div>
+  <div class = "finishTimeSelect col">
+    <app-progress-bar *ngIf="calenderFinishEventVisible" class = "calenderStartTime" (selectTimeEvent)="onFinishTimeSelected($event)"></app-progress-bar>
   </div>
   <br>
     <div class = "submit col">

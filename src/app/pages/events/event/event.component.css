@@ -22,7 +22,6 @@
   max-width: 365px;
 }
 .name {
-  margin-left: 10px;
   background-color: none;
 }
 .type{
@@ -31,56 +30,109 @@
   margin-left: 45px;
 }
 .selectAddressButton{
-  margin-left: 10px;
   background-color: none;
 }
 .address{
-  margin-left: -10px;
+  margin-left: -90px;
   background-color: none;
   justify-content: left; 
 }
-.start{
-  margin-left: 10px;
+.startDateDisplayText{
   background-color: none;
+  text-align: center;
+}
+.startDateDisplay{
+  background-color:  none;
+  text-align: center;
 }
 .startTimeButton{
   background-color: none;
   justify-content: left; 
-  margin-left: 200px;
 }
-.startTimeSelect{
+.startTimeDisplayText{
+  background-color:  none;
+  text-align: center;
+
+}
+.startTimeDisplay{
+  background-color:  none;
+  text-align: center;
+}
+.startDateSelect{
   margin-left: -6px;
   background-color: none;
 }
-.finish {
-  margin-left: 10px;
+
+.startTimeSelect{
   background-color: none;
+}
+
+.finishDateDisplayText {
+  background-color:  none;
+  text-align: center;
+}
+.finishDateDisplay {
+  background-color:  none;
+  text-align: left;
+}
+.finishTimeDisplayText{
+  text-align: center;
+  background-color:  none;
+
+}
+.finishTimeDisplay{
+  background-color:  none;
+
 }
 .finishTimeButton{
   background-color: none;
   justify-content: left; 
-  margin-left: 200px;
 }
 .finishTimeSelect{
   margin-left: -6px;
   background-color: none;
 }
 .submit{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: none;
-  
-display: flex;
-justify-content: center;
-align-items: center;
-
 }
 .hardcodedButton{
   width: 65px;
   height: 65px;
 }
 
+/* 
+<div class = "eventContainer">
+<div class="event">
+  <form class="checkoutForm" 
+    <div class = "name col">
+    <div class = "type col">
+    <div class = "selectAddressButton col">
+    <div class = "address col">
+    <div class = "startDate col">
+    <div class = "startDateDisplay col">
+    <div class = "start col">
+    <div class = "startTimeDisplay col">
+    <div class = "startTimeButton col">
+    <div class = "startDateSelect col" >
+      <app-calender *ngIf="calenderStartEventVisible" class = "calenderStartDate" (selectDateEvent)="onStartDateSelected($event)"></app-calender>
+    <div class = "startTimeSelect col">
+      <app-progress-bar *ngIf="calenderStartEventVisible" class = "calenderStartTime" (selectTimeEvent)="onStartTimeSelected($event)"></app-progress-bar>
+    <div class = "finishDate col">
+    <div class = "finishDisplay col">
+    <div class = "finishTime col">
+    <div class = "finihsDisplay col">
+    <div class = "finishTimeButton col">
+    <div class = "finishTimeSelect col" >
+     class = "calenderFinish
+  <div class = "finishTimeSelect col">
+class = "calenderStartTime" 
+    <div class = "submit col">
+    <button type="submit" class = "hardcodedButton" [disabled]="!checkoutForm.valid">Submit</button> */
 
-
-
+/* ------------------ */
 /* 
 display: flex;
 flex-wrap: wrap;

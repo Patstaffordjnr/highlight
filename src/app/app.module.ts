@@ -23,10 +23,12 @@ import { AdminHomeComponent } from './pages/admin/home/admin-home.component';
 import { CurrentUserService, PermissionsService } from './util/can-activate.service';
 import { EventsComponent } from './pages/events/events.component';
 import { EventTableComponent } from './pages/events/event-table/event-table.component';
-import { UserInterfaceNavComponent } from './pages/user-interface-nav/user-interface-nav.component';
+import { UserInterfaceNavComponent } from './util/user-interface-nav/user-interface-nav.component';
 import { EventModalComponent } from './pages/events/event-modal/event-modal.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FooterComponent } from './footer/footer.component';
+import { GlobalDateAndTimeComponent } from './util/global-date-and-time/global-date-and-time.component';
+import { GlobalDateAndTimeComponentService } from './util/global-date-and-time/global-date-and-time.service';
 
 
 @NgModule({
@@ -49,6 +51,7 @@ import { FooterComponent } from './footer/footer.component';
     ProgressBarComponent, 
     EventModalComponent,
     FooterComponent,
+    GlobalDateAndTimeComponent,
 
 
   ],
@@ -69,6 +72,7 @@ import { FooterComponent } from './footer/footer.component';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     CurrentUserService,
     PermissionsService,
+    GlobalDateAndTimeComponentService,
   ],
   bootstrap: [AppComponent]
 })

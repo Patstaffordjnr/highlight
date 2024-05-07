@@ -1,27 +1,21 @@
-<div class = "a">
 <br>
-<!-- Current time: {{ currentTime }} -->
-<div class="calender-div">
-  <div class="calender-controls">
-    {{year}}
-    <div (click)="previousMonth()"><a><</a></div>
-    {{month}}
-    <div (click)="nextMonth()"><a>></a></div>
-    {{day}}
-  </div>
-
-  <div class="calender-container">
-    <div class="week-day-header" *ngFor="let weekDay of weekDays">
-      <div class="week-day-container">{{weekDay}}</div>
+<div class="calenderContainer">
+  <div class="calender-div">
+    <div class="calender-controls">
+      <b>{{ year }}</b>
+      <div (click)="previousMonth()"><a>&lt;</a></div>
+      <b>{{ month }}</b>
+      <div (click)="nextMonth()"><a>&gt;</a></div>
+      <b>{{ day }}</b>
     </div>
-    <a class="day-container"*ngFor="let day of monthDays" [class.selected]="day === selectedDay" (click)="daySelect(day)">
+    <div class="calender-container">
+      <div class="week-day-header" *ngFor="let weekDay of weekDays">
+        <div class="week-day-container">{{ weekDay }}</div>
+      </div>
+      <a class="day-container" *ngFor="let day of monthDays"
+         [class.selected]="day === selectedDay"
+         (click)="daySelect(day)">
         {{ day }}
-    </a>
+      </a>
+    </div>
   </div>
-  <br>
-</div>
-<div>
-  <br>
-  <div><app-progress-bar></app-progress-bar></div>
-</div>
-</div>

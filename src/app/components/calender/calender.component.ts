@@ -15,8 +15,9 @@ export class CalenderComponent implements OnInit {
   selectedDayMonthOnCalender: string;
 
   calenderVisible: boolean = false;
-  
-  @Output() selectDateEvent: EventEmitter<Date> = new EventEmitter<any>();  
+
+  @Output() selectDateEvent = new EventEmitter<Date>();
+
   showDialog: Boolean = false;
 
   weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]  
@@ -70,13 +71,17 @@ export class CalenderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
     this.updateTime();
-  // Update the time every second
 
   setInterval(() => {
     this.updateTime();
   }, 1000);
+
+  }
+
+  emitDay(selectedDate: Date, ) {
+    this.selectDateEvent.emit(selectedDate);
+    // console.log(selectedDate);
   }
 
   getNumberOfDays(month: number, year: number): number {
@@ -109,12 +114,9 @@ this.selectedDay = undefined;
      if(this.selectedDayMonthOnCalender === this.month) {
       this.selectedDay = this.selectedDayBlack;
      }
-
   }
 
   previousMonth(): void {
-
-  
     this.currentDateTimeYear.setMonth(this.currentDateTimeYear.getMonth() - 1);
     this.updateCalendar();
     this.monthNumber = this.monthNumber - 1;
@@ -139,7 +141,6 @@ this.selectedDay = undefined;
      this.selectedDay = this.selectedDayBlack;
       return 
      }
-    
   }
 
   updateCalendar(): void {
@@ -148,23 +149,23 @@ this.selectedDay = undefined;
     this.year = this.currentDateTimeYear.getFullYear();
   }
 
+
+
   daySelect(day: number) {
-
     let selectedDayTo = new Date( this.yearNumber, this.monthNumber- 1, day);
-
     this.selectedDay = day;
     this.selectedDayOnCalender = selectedDayTo;
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October","November", "December"];
     let selectedDayMonth = monthNames[selectedDayTo.getMonth()];
     this.selectedDayMonthOnCalender = selectedDayMonth;
     this.selectedDayBlack = day;
-    this.selectDateEvent.emit(selectedDayTo);
-    (console.log(selectedDayTo))
+    this.emitDay(selectedDayTo);
+
   }
 
-  onPress(): void {
-   this.showDialog = !this.showDialog
-   document.querySelector('.calender-div').classList.remove('hidden');
-  }
+  // onPress(): void {
+  //  this.showDialog = !this.showDialog
+  //  document.querySelector('.calender-div').classList.remove('hidden');
+  // }
   
 }

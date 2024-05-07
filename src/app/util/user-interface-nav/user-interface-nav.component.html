@@ -1,7 +1,9 @@
+<app-global-date-and-time></app-global-date-and-time>
 <div class = "home">
     <div class = "calenderHeading">
         <a (click) = "openCalender()">Calender</a>
-        <app-calender *ngIf="calenderEventVisible"></app-calender>
+        <app-calender *ngIf="calenderEventVisible" (selectDateEvent)="onGlobalDateSelected($event)"></app-calender>
+        <app-progress-bar *ngIf="calenderEventVisible" (selectTimeEvent)="onGlobalTimeSelected($event)"></app-progress-bar>
     </div>
     <div class = "googleMapHeading">
         <a (click) = "openGoogleMap()">Map</a>

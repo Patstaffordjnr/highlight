@@ -4,12 +4,9 @@
       {{ hour }}
     </div>
   </div>
-  <div class="progress-bar-select" id="progress-bar-select" #a>
+  <div class="progress-bar-select" id="progress-bar-select" #progressBarDiv>
     <div class = "dot-boundary">
   <span class="dot" cdkDragBoundary=".dot-boundary" cdkDragLockAxis="x" (cdkDragMoved)="onDragMoved($event)" cdkDrag ></span>
 </div>
   </div>
 </div>
-<br>
-{{mapTime}}
-<br>

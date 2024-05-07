@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, ChangeDetectorRef  } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Component, OnInit, Input, ChangeDetectorRef, EventEmitter  } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 import { GoogleMapService } from 'src/app/pages/google-map/google-map.service';
 import { HttpClient } from '@angular/common/http';
+import { CalenderComponent } from 'src/app/components/calender/calender.component';
 
 @Component({
   selector: 'app-event',
@@ -10,15 +11,23 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EventComponent implements OnInit {
 
+
+
   calenderStartEventVisible = false;
-  calenderFinishEventVisible = false
+  calenderFinishEventVisible = false;
+
+  startDate: string;
+  startTime: string;
+
+  finishDate: string;
+  finishTime: string;
 
   typesOfEvents = ["Busker"];
   address;
   markerAddress: string;
   markerAddressObject: Object;
-  addressToBeGeocoded = false;
 
+  addressToBeGeocoded = false;
   markerLat: number;
   markerLng: number;
 
@@ -40,12 +49,10 @@ export class EventComponent implements OnInit {
       address:  ['', [Validators.required]],
       startDateTime:  ['', [Validators.required]],
       finishDateTime:  ['', [Validators.required]],
-  
     })
+}
 
-  }
-
-  async ngOnInit() {
+async ngOnInit() {
     await this.googleMapService.eventAddress$.subscribe((markerAddress) => {
       if (markerAddress) {
         this.address = markerAddress;
@@ -53,11 +60,9 @@ export class EventComponent implements OnInit {
         this.cdRef.detectChanges();
       }
     });
-
   }
 
-
-  async selectAddress() {
+async selectAddress() {
   this.googleMapService.updateMarkerPlacementStatus(true);
   await this.googleMapService.eventLatLng$.subscribe((markerAddress) => {
   this.markerAddressObject = [markerAddress];
@@ -74,20 +79,39 @@ export class EventComponent implements OnInit {
       return { 'invalidCoordinate': true };
     }
     return null
-
   }
 
-  startTimeSelectToggle() {
+startTimeSelectToggle() {
     this.calenderStartEventVisible = !this.calenderStartEventVisible
-    
   }
 
-  finishTimeSelectToggle() {
+finishTimeSelectToggle() {
     this.calenderFinishEventVisible = !this.calenderFinishEventVisible
     
   }
-  onSubmit() {
+onSubmit() {
       console.warn(this.checkoutForm.value);
   }
+
+onStartDateSelected($event) {
+
+  const startDateWithoutTime = new Date($event.getFullYear(), $event.getMonth(), $event.getDate()).toLocaleDateString();;
+  // console.log(startDateWithoutTime);
+    this.startDate = startDateWithoutTime;
+}
+
+onStartTimeSelected($event) {
+ this.startTime = $event
+}
+
+onFinishDateSelected($event) {
+  const finishDateWithoutTime = new Date($event.getFullYear(), $event.getMonth(), $event.getDate()).toLocaleDateString();;
+  // console.log(finishDateWithoutTime);
+    this.finishDate = finishDateWithoutTime;
+}
+
+onFinishTimeSelected($event) {
+  this.finishTime = $event
+}
 
 }

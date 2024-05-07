@@ -1,5 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { CdkDragMove } from '@angular/cdk/drag-drop'; // Import CdkDragMove
+import { Time } from '@angular/common';
+import { GlobalDateAndTimeComponentService } from '../../util/global-date-and-time/global-date-and-time.service'
+
 
 @Component({
   selector: 'app-progress-bar',
@@ -8,7 +11,8 @@ import { CdkDragMove } from '@angular/cdk/drag-drop'; // Import CdkDragMove
 })
 export class ProgressBarComponent implements OnInit {
 
-  @ViewChild('a') a: ElementRef;
+  @ViewChild('progressBarDiv') progressBarDiv: ElementRef;
+  @Output() selectTimeEvent = new EventEmitter<String>();
 
 
 
@@ -19,7 +23,7 @@ export class ProgressBarComponent implements OnInit {
   session = "AM";
   hours = ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"];
   mapTime
-  constructor() {
+  constructor(private globalDateAndTimeComponentService: GlobalDateAndTimeComponentService) {
 
   }
 
@@ -27,11 +31,20 @@ export class ProgressBarComponent implements OnInit {
     
   }
 
+  emitTime(hour, minutes) {
+    let time = `${hour}:${minutes}`
+    this.selectTimeEvent.emit(time);
+    // this.globalDateAndTimeComponentService.updateGlobalTimeSubject(time);
+  }
+
+
   clock(hour: number, minutes: number) {
     if(hour == 0 && minutes == 0) {
       this.mapTime = `00:00 AM`
+      this.emitTime('00', '00');
     } else if(hour == 24 && minutes > 0) {
       this.mapTime = `24:00 PM`
+      this.emitTime('00', '00');
     }  else {
     // -------------------------------------------------------------------------------
     const injectedHour = hour < 10 ? `0${hour}` : String(hour);
@@ -39,8 +52,10 @@ export class ProgressBarComponent implements OnInit {
     //--------------------------------------------------------------------------------GEMINI 
     if(Number(injectedHour) > 12) {
       this.mapTime = `${injectedHour}:${injectedMinutes} PM`
+      this.emitTime(injectedHour, injectedMinutes);
     } else {
       this.mapTime = `${injectedHour}:${injectedMinutes} AM`
+      this.emitTime(injectedHour, injectedMinutes);
     }
     }
 
@@ -49,7 +64,7 @@ export class ProgressBarComponent implements OnInit {
   onDragMoved(event: CdkDragMove<any>) {
 
     let dotPosition = event.pointerPosition.x;
-    let divElement: HTMLDivElement = this.a.nativeElement;
+    let divElement: HTMLDivElement = this.progressBarDiv.nativeElement;
     let divLeft = divElement.offsetLeft;
     let divRight = (divLeft + divElement.offsetWidth);
     let hourLength = (365) / 24

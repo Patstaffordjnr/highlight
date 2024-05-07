@@ -1,7 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { CalenderComponent } from 'src/app/components/calender/calender.component';
-import { RouterService } from 'src/app/util/router.service';
+import { GlobalDateAndTimeComponentService } from '../global-date-and-time/global-date-and-time.service'
 
 @Component({
   selector: 'app-user-interface-nav',
@@ -18,8 +16,14 @@ eventsEventVisible: boolean = false;
 eventTableVisible: boolean = false;
 eventModalVisible: boolean = false;
 
-constructor() {
+constructor(private globalDateAndTimeComponentService: GlobalDateAndTimeComponentService) {
   
+}
+onGlobalDateSelected($event){
+  this.globalDateAndTimeComponentService.updateGlobalDateSubject($event);
+}
+onGlobalTimeSelected($event){
+  this.globalDateAndTimeComponentService.updateGlobalTimeSubject($event);
 }
 
 openCalender() {
