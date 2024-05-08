@@ -1,28 +1,61 @@
 .log-in-div{ 
-    background-color:yellow;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    }
+    background-color:none;
+}
 
+.flex-grid {
+    display: flex;
+    background-color: none;
+}
+  
+  .col {
+    flex: 1;
+    display: flex; 
+}
 
 .log-in{
-    background-color:aqua;
+    background-color:none;
     width: 365px;
-
-    /* display: flex;
-    background-color:white;
-    z-index: 10;
-    font-size: medium;
-    justify-content: center;
-    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-radius: 25px;
     border: 6px solid whitesmoke;
-    max-width: 1260px;
-    min-width: 376px;
-    min-height: 150px; */
+    max-width: 365px;
+    min-width: 365px;
 
+}
+
+.email-label{
+    background-color:none;
+    display: flex;
+    justify-content: right;
+
+    
+}
+
+.email-input{
+    background-color:none;
+ 
+
+}
+
+.password-label{
+    
+    background-color:none;
+    display: flex;
+    justify-content: right;
+}
+
+.password-input{
+    background-color:none;
+}
+
+.submit-button{
+    background-color:none;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
 }
 

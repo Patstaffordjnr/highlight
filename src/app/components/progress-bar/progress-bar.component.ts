@@ -46,12 +46,12 @@ export class ProgressBarComponent implements OnInit {
     let div60 = divLengthByTwentyFour / 60;
     let divMinutes = div60 * minutes;
 
-    // let dotX = ((divLength / 100) * hourPercentOfX) + divMinutes;
+    let dotX = ((divLength / 100) * hourPercentOfX) + divMinutes;
 
-    let dotX = (divLengthByTwentyFour * hour)
+    // let dotX = (divLengthByTwentyFour * hour)
 
     const dotElement: HTMLElement = this.dot.nativeElement;
-    dotElement.style.left =`${dotX - 10}px`
+    dotElement.style.left =`${dotX}px`
 
   }
 

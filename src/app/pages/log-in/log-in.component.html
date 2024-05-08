@@ -1,30 +1,33 @@
-
-
 <div class = "log-in-div">
-
 <div class = "log-in">
-
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    
-    <label for="email">Email: </label>
-
+  <div class="flex-grid">
+    <div class = "email-label col">
+    <label for="email">Email :&nbsp;</label>
+    </div>
+    <div class = "email-input col">
     <input id="email" type="text" formControlName="email">
-
-    <label for="password">Password: </label>
-
-
+    </div>
+  </div>
+  <br>
+  <div class="flex-grid">
+    <div class = "password-label col">
+    <label for="password">Password :&nbsp; </label>
+    </div>
+    <div class = "password-input col">
     <input id="password" type="password" formControlName="password">
-
-
+    </div>
+  </div>
+    <div class = "submit-button">
     <button type="submit" [disabled]="!form.valid">Submit</button>
-
+  </div>
   </form>
 
-</div>
+<!-- </div>
 <button (click)="getForbidden()">getForbidden</button>
 
 <button (click)="clearCookie()">clearCookie</button>
-</div>
+</div> -->
 
 <!-- <div *ngIf="form.get('email').errors?.['required']">Email is required.</div>
 <div *ngIf="form.get('email').errors?.['email']">Not an email.</div> -->
