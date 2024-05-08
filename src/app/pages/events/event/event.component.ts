@@ -43,25 +43,39 @@ export class EventComponent implements OnInit {
     private cdRef: ChangeDetectorRef
   ) {
 
+
     this.checkoutForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(1)]],
-      eventType: ['', [Validators.required]],
-      eventLat: [Number, [Validators.required, this.validateCoordinate]],
-      eventLng: [Number, [Validators.required, this.validateCoordinate]],
-      address:  ['', [Validators.required]],
-      startDateTime:  ['', [Validators.required]],
-      finishDateTime:  ['', [Validators.required]],
+      name: [''],
+      eventType: [''],
+      eventLat: [Number],
+      eventLng: [Number],
+      address:  [''],
+      startDateTime:  [Date],
+      finishDateTime:  [Date],
     })
+    // this.checkoutForm = this.formBuilder.group({
+    //   name: ['', [Validators.required, Validators.minLength(1)]],
+    //   eventType: ['', [Validators.required]],
+    //   eventLat: [Number, [Validators.required, this.validateCoordinate]],
+    //   eventLng: [Number, [Validators.required, this.validateCoordinate]],
+    //   address:  ['', [Validators.required]],
+    //   startDateTime:  ['', [Validators.required]],
+    //   finishDateTime:  ['', [Validators.required]],
+    // })
 }
 
 async ngOnInit() {
     await this.googleMapService.eventAddress$.subscribe((markerAddress) => {
       if (markerAddress) {
         this.address = markerAddress;
-        console.log(this.address);
+        this.checkoutForm.get('address').patchValue(
+          this.address
+        );
+        // console.log(this.address);
         this.cdRef.detectChanges();
       }
     });
+
   }
 
 async selectAddress() {
@@ -70,6 +84,14 @@ async selectAddress() {
   this.markerAddressObject = [markerAddress];
   this.markerLat = this.markerAddressObject[0].lat;
   this.markerLng = this.markerAddressObject[0].lng;
+
+this.checkoutForm.get('eventLat').patchValue(
+  this.markerLat
+);
+this.checkoutForm.get('eventLng').patchValue(
+  this.markerLng
+);
+  
   })
   this.ngOnInit();
   }
@@ -82,23 +104,6 @@ async selectAddress() {
     }
     return null
   }
-
-// checkForTimeAndDate(control: AbstractControl): { [key: string]: any} | null {
-
-//   const startTime = this.startDateAndTime;
-//   const finishTime = control.value;
-
-//   if (!startTime || !finishTime) {
-//     // Not both times are selected, so avoid validation error
-//     return null;
-//   }
-
-//   if (finishTime.getTime() <= startTime.getTime()) {
-//     return { 'invalidTimeRange': true };
-//   }
-  
-//   return null;
-// }
 
 
 startTimeSelectToggle() {
@@ -126,7 +131,6 @@ onStartDateSelected($event) {
       this.startDateAndTime.getHours(),
       this.startDateAndTime.getMinutes(),
       0)
-
 }
 
 onStartTimeSelected($event) {
@@ -135,6 +139,10 @@ onStartTimeSelected($event) {
  const hours = parseInt(timeParts[0], 10);
  const minutes = parseInt(timeParts[1], 10);
 
+ this.checkoutForm.get('startDateTime').patchValue(
+  new Date(this.startDateAndTime.getFullYear(), this.startDateAndTime.getMonth(), this.startDateAndTime.getDate(), hours, minutes, 0)
+);
+
  this.startDateAndTime = new Date(
   this.startDateAndTime.getFullYear(),
   this.startDateAndTime.getMonth(),
@@ -142,14 +150,12 @@ onStartTimeSelected($event) {
   hours,
  minutes,
   0)
-
 }
 
 onFinishDateSelected($event) {
   const finishDateWithoutTime = new Date($event.getFullYear(), $event.getMonth(), $event.getDate()).toLocaleDateString();;
   // console.log(finishDateWithoutTime);
     this.finishDate = finishDateWithoutTime;
-
 
     this.finishDateAndTime = new Date(
       $event.getFullYear(),
@@ -158,9 +164,6 @@ onFinishDateSelected($event) {
       this.finishDateAndTime.getHours(),
       this.finishDateAndTime.getMinutes(),
       0)
-
-
-
 }
 
 onFinishTimeSelected($event) {
@@ -168,6 +171,7 @@ onFinishTimeSelected($event) {
   const timeParts = $event.split(':');
   const hours = parseInt(timeParts[0], 10);
   const minutes = parseInt(timeParts[1], 10);
+
   this.finishDateAndTime = new Date(
     this.finishDateAndTime.getFullYear(),
     this.finishDateAndTime.getMonth(),
@@ -175,6 +179,10 @@ onFinishTimeSelected($event) {
     hours,
    minutes,
     0)
+
+    this.checkoutForm.get('finishDateTime').patchValue(
+      new Date(this.finishDateAndTime.getFullYear(), this.finishDateAndTime.getMonth(), this.finishDateAndTime.getDate(), hours, minutes, 0)
+    );
 }
 
 }
