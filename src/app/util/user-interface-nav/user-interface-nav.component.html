@@ -5,10 +5,12 @@
         <app-calender *ngIf="calenderEventVisible" (selectDateEvent)="onGlobalDateSelected($event)"></app-calender>
         <app-progress-bar *ngIf="calenderEventVisible" (selectTimeEvent)="onGlobalTimeSelected($event)"></app-progress-bar>
     </div>
+    <br>
     <div class = "googleMapHeading">
         <a (click) = "openGoogleMap()">Map</a>
         <app-google-map *ngIf="googleMapEventVisible"></app-google-map>
     </div>
+    <br>
     <div class = "eventsHeading">
         <a (click) = "openEvents()">Events</a>
         <app-events *ngIf="eventsEventVisible"></app-events>

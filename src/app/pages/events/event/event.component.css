@@ -88,8 +88,10 @@
   background-color: none;
   justify-content: left; 
 }
-.finishTimeSelect{
+.finishDateSelect {
   margin-left: -6px;
+}
+.finishTimeSelect{
   background-color: none;
 }
 .submit{

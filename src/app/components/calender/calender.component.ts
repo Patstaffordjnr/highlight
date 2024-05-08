@@ -14,6 +14,9 @@ export class CalenderComponent implements OnInit {
   selectedDayOnCalender: Date;
   selectedDayMonthOnCalender: string;
 
+  startDate = new Date();
+
+  
   calenderVisible: boolean = false;
 
   @Output() selectDateEvent = new EventEmitter<Date>();
@@ -53,7 +56,13 @@ export class CalenderComponent implements OnInit {
   }
 
   constructor() {
-    let date = new Date();
+
+   
+    const currentDay = this.startDate.getDate(); // Get current day
+    this.daySelect(currentDay);
+  
+
+    const date = new Date();
     let firstDay = new Date(date.getFullYear(), date.getMonth(), 1).toLocaleString('en-US', { weekday: 'long' }).substring(0,3);;
 
     this.weekDays.map((day, i) => {
@@ -78,6 +87,7 @@ export class CalenderComponent implements OnInit {
   }, 1000);
 
   }
+
 
   emitDay(selectedDate: Date, ) {
     this.selectDateEvent.emit(selectedDate);

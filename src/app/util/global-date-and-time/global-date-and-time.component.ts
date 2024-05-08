@@ -37,7 +37,7 @@ export class GlobalDateAndTimeComponent {
         const minutes = parseInt(minutesString, 10);
   
         let globalDateAndTime = new Date(this.globalDateAndTime.getFullYear(), this.globalDateAndTime.getMonth(), this.globalDateAndTime.getDate(), hours, minutes, this.globalDateAndTime.getSeconds(), this.globalDateAndTime.getMilliseconds())
-        console.log(globalTime);
+        // console.log(globalTime);
         this.globalDateAndTime = globalDateAndTime
       }
     });

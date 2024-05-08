@@ -12,9 +12,8 @@ import { GlobalDateAndTimeComponentService } from '../../util/global-date-and-ti
 export class ProgressBarComponent implements OnInit {
 
   @ViewChild('progressBarDiv') progressBarDiv: ElementRef;
+  @ViewChild('dot') dot: ElementRef;
   @Output() selectTimeEvent = new EventEmitter<String>();
-
-
 
   date = new Date();
   currentHour = this.date.getHours();
@@ -24,17 +23,37 @@ export class ProgressBarComponent implements OnInit {
   hours = ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"];
   mapTime
   constructor(private globalDateAndTimeComponentService: GlobalDateAndTimeComponentService) {
-
   }
 
   ngOnInit(): void {
-    
+  }
+
+  ngAfterViewInit() {
+    const date = new Date();
+    this.onStartUpMoveDotToPosition(date);
+  }
+  onStartUpMoveDotToPosition(time) {
+    console.log(`Start Up current time: ${time}`);
+    const progressBarElement: HTMLElement = this.progressBarDiv.nativeElement;
+    let hour = time.getHours();
+    let minutes = time.getMinutes();
+
+    let hourPercentOfX = (hour / 24) * 100
+    let minutePercentOfX = (minutes / 60) * 100;
+    let divLeft = progressBarElement.offsetLeft;
+    let divRight = (divLeft + progressBarElement.offsetWidth);
+    let divLength = divRight - divLeft;
+    let divLengthByTwentyFour = (divLength / 24);
+    let div60 = divLengthByTwentyFour / 60;
+    let divMinutes = div60 * minutes;
+    let dotX = ((divLength / 100) * hourPercentOfX) + divMinutes;
+    const dotElement: HTMLElement = this.dot.nativeElement;
+    dotElement.style.left =`${dotX}px`
   }
 
   emitTime(hour, minutes) {
     let time = `${hour}:${minutes}`
     this.selectTimeEvent.emit(time);
-    // this.globalDateAndTimeComponentService.updateGlobalTimeSubject(time);
   }
 
 

@@ -36,7 +36,7 @@
 
 .dot-boundary {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-content: center;
   width: 384px;
   position: relative;
@@ -47,7 +47,7 @@
   height: 20px;
   width: 20px;
     opacity: 90%;
-  background-color: yellow;
+  background-color: seagreen;
   border-radius: 50%;
   display: inline-block;
   position: relative; 

@@ -66,12 +66,12 @@
       </div>
     </div>
     <div class="flex-grid">
-    <div class = "finishTimeSelect col" >
-      <app-calender  *ngIf="calenderFinishEventVisible" class = "calenderFinish" (selectDateEvent)="onFinishDateSelected($event)"></app-calender>
+    <div class = "finishDateSelect col" >
+      <app-calender  *ngIf="calenderFinishEventVisible" class = "calenderFinishDate" (selectDateEvent)="onFinishDateSelected($event)"></app-calender>
     </div>
   </div>
   <div class = "finishTimeSelect col">
-    <app-progress-bar *ngIf="calenderFinishEventVisible" class = "calenderStartTime" (selectTimeEvent)="onFinishTimeSelected($event)"></app-progress-bar>
+    <app-progress-bar *ngIf="calenderFinishEventVisible" class = "progressBarFinishTime" (selectTimeEvent)="onFinishTimeSelected($event)"></app-progress-bar>
   </div>
   <br>
     <div class = "submit col">
