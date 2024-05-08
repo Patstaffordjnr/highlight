@@ -1,5 +1,6 @@
 <app-global-date-and-time></app-global-date-and-time>
 <div class = "home">
+    <br>
     <div class = "calenderHeading">
         <a (click) = "openCalender()">Calender</a>
         <app-calender *ngIf="calenderEventVisible" (selectDateEvent)="onGlobalDateSelected($event)"></app-calender>
@@ -15,4 +16,5 @@
         <a (click) = "openEvents()">Events</a>
         <app-events *ngIf="eventsEventVisible"></app-events>
     </div>
+    <br>
 </div>

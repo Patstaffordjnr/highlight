@@ -33,7 +33,7 @@ export class ProgressBarComponent implements OnInit {
     this.onStartUpMoveDotToPosition(date);
   }
   onStartUpMoveDotToPosition(time) {
-    console.log(`Start Up current time: ${time}`);
+    // console.log(`Start Up current time: ${time}`);
     const progressBarElement: HTMLElement = this.progressBarDiv.nativeElement;
     let hour = time.getHours();
     let minutes = time.getMinutes();
