@@ -31,32 +31,41 @@
   background-color: none;
   /* opacity: 50%; */
   max-width: 365px;
+  min-width: 365px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .name {
+  padding-left: 10px;
   background-color: none;
-  justify-content: left; 
-  text-align: left;
+  /* justify-content: left; 
+  text-align: left; */
+  left: 20px;
 }
 
 .type{
+  padding-right: 10px;
   background-color: none;
   justify-content: right; 
   /* margin-left: 45px; */
 }
 
 .selectAddressButton{
+  padding-left: 10px;
   justify-content: left; 
   background-color: none;
+  text-align: left;
 }
 
 .address{
-  margin-left: -90px;
+  margin-left: -60px;
   background-color: none;
-  justify-content: right; 
+  justify-content: left; 
 }
 
 .startDateDisplayText{
+  padding-left: 10px;
   background-color: none;
   text-align: left;
 }
@@ -69,6 +78,7 @@
 .startTimeButton{
   background-color: none;
   justify-content: right; 
+  padding-right: 10px;
 }
 
 .startTimeDisplayText{
@@ -93,6 +103,7 @@
 .finishDateDisplayText {
   background-color:  none;
   text-align: left;
+  padding-left: 10px;
 }
 .finishDateDisplay {
   background-color:  none;
@@ -110,6 +121,7 @@
 .finishTimeButton{
   background-color: none;
   justify-content: right; 
+  padding-right: 10px;
 }
 
 .finishDateSelect {
@@ -132,6 +144,10 @@
   height: 65px;
 }
 
+.hardcodedButtonSlim{
+  width: 65px;
+  height: 32.5px;
+}
 /* 
 <div class = "eventContainer">
 <div class="event">

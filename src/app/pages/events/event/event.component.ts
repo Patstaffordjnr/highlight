@@ -11,10 +11,12 @@ import { CalenderComponent } from 'src/app/components/calender/calender.componen
 })
 export class EventComponent implements OnInit {
 
-
-
   calenderStartEventVisible = false;
   calenderFinishEventVisible = false;
+
+  startDateAndTime = new Date;
+  finishDateAndTime = new Date;
+  
 
   startDate: string;
   startTime: string;
@@ -81,6 +83,24 @@ async selectAddress() {
     return null
   }
 
+// checkForTimeAndDate(control: AbstractControl): { [key: string]: any} | null {
+
+//   const startTime = this.startDateAndTime;
+//   const finishTime = control.value;
+
+//   if (!startTime || !finishTime) {
+//     // Not both times are selected, so avoid validation error
+//     return null;
+//   }
+
+//   if (finishTime.getTime() <= startTime.getTime()) {
+//     return { 'invalidTimeRange': true };
+//   }
+  
+//   return null;
+// }
+
+
 startTimeSelectToggle() {
     this.calenderStartEventVisible = !this.calenderStartEventVisible
   }
@@ -98,20 +118,63 @@ onStartDateSelected($event) {
   const startDateWithoutTime = new Date($event.getFullYear(), $event.getMonth(), $event.getDate()).toLocaleDateString();;
   // console.log(startDateWithoutTime);
     this.startDate = startDateWithoutTime;
+
+    this.startDateAndTime = new Date(
+      $event.getFullYear(),
+      $event.getMonth(),
+      $event.getDate(), 
+      this.startDateAndTime.getHours(),
+      this.startDateAndTime.getMinutes(),
+      0)
+
 }
 
 onStartTimeSelected($event) {
  this.startTime = $event
+ const timeParts = $event.split(':');
+ const hours = parseInt(timeParts[0], 10);
+ const minutes = parseInt(timeParts[1], 10);
+
+ this.startDateAndTime = new Date(
+  this.startDateAndTime.getFullYear(),
+  this.startDateAndTime.getMonth(),
+  this.startDateAndTime.getDate(), 
+  hours,
+ minutes,
+  0)
+
 }
 
 onFinishDateSelected($event) {
   const finishDateWithoutTime = new Date($event.getFullYear(), $event.getMonth(), $event.getDate()).toLocaleDateString();;
   // console.log(finishDateWithoutTime);
     this.finishDate = finishDateWithoutTime;
+
+
+    this.finishDateAndTime = new Date(
+      $event.getFullYear(),
+      $event.getMonth(),
+      $event.getDate(), 
+      this.finishDateAndTime.getHours(),
+      this.finishDateAndTime.getMinutes(),
+      0)
+
+
+
 }
 
 onFinishTimeSelected($event) {
   this.finishTime = $event
+  const timeParts = $event.split(':');
+  const hours = parseInt(timeParts[0], 10);
+  const minutes = parseInt(timeParts[1], 10);
+  this.finishDateAndTime = new Date(
+    this.finishDateAndTime.getFullYear(),
+    this.finishDateAndTime.getMonth(),
+    this.finishDateAndTime.getDate(), 
+    hours,
+   minutes,
+    0)
 }
 
 }

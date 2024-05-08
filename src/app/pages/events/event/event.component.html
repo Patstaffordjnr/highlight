@@ -73,9 +73,8 @@
   <div class = "finishTimeSelect col">
     <app-progress-bar *ngIf="calenderFinishEventVisible" class = "progressBarFinishTime" (selectTimeEvent)="onFinishTimeSelected($event)"></app-progress-bar>
   </div>
-  <br>
     <div class = "submit col">
-    <button type="submit" class = "hardcodedButton" [disabled]="!checkoutForm.valid">Submit</button>
+    <button type="submit" class = "hardcodedButtonSlim" [disabled]="!checkoutForm.valid">Submit</button>
     </div>
   </form>
 </div>
