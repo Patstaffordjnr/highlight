@@ -1,22 +1,30 @@
-<div class = "a">
+
+
+<div class = "log-in-div">
+
 <div class = "log-in">
+
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    
     <label for="email">Email: </label>
+
     <input id="email" type="text" formControlName="email">
-    <div *ngIf="form.get('email').errors?.['required']">Email is required.</div>
-    <div *ngIf="form.get('email').errors?.['email']">Not an email.</div>
-  <br>
-  <br>
+
     <label for="password">Password: </label>
+
+
     <input id="password" type="password" formControlName="password">
-    <div *ngIf="form.get('password').errors?.['required']">Password required.</div>
-    <div *ngIf="form.get('password').errors?.['minlength']">Neeed more character.</div>
-<br>
-<br>
+
+
     <button type="submit" [disabled]="!form.valid">Submit</button>
+
   </form>
+
 </div>
 <button (click)="getForbidden()">getForbidden</button>
 
 <button (click)="clearCookie()">clearCookie</button>
 </div>
+
+<!-- <div *ngIf="form.get('email').errors?.['required']">Email is required.</div>
+<div *ngIf="form.get('email').errors?.['email']">Not an email.</div> -->

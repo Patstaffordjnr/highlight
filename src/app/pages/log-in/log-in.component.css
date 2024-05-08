@@ -1,5 +1,18 @@
-.log-in{
+.log-in-div{ 
+    background-color:yellow;
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+
+
+.log-in{
+    background-color:aqua;
+    width: 365px;
+
+    /* display: flex;
     background-color:white;
     z-index: 10;
     font-size: medium;
@@ -9,14 +22,7 @@
     border: 6px solid whitesmoke;
     max-width: 1260px;
     min-width: 376px;
-    min-height: 150px;
+    min-height: 150px; */
 
 }
 
-.a{ 
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    }
