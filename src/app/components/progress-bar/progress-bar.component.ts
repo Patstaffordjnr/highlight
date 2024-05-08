@@ -33,22 +33,34 @@ export class ProgressBarComponent implements OnInit {
     this.onStartUpMoveDotToPosition(date);
   }
   onStartUpMoveDotToPosition(time) {
-    // console.log(`Start Up current time: ${time}`);
+
+    console.log(`Start Up current time: ${time}`);
     const progressBarElement: HTMLElement = this.progressBarDiv.nativeElement;
+    // progressBarElement.style.backgroundColor = "black";
     let hour = time.getHours();
     let minutes = time.getMinutes();
-
+    // console.log(hour, minutes);
     let hourPercentOfX = (hour / 24) * 100
-    let minutePercentOfX = (minutes / 60) * 100;
+    // console.log(hourPercentOfX);
     let divLeft = progressBarElement.offsetLeft;
+
+    console.log(divLeft);
     let divRight = (divLeft + progressBarElement.offsetWidth);
+    console.log(divRight);
     let divLength = divRight - divLeft;
+    console.log(divLength);
     let divLengthByTwentyFour = (divLength / 24);
-    let div60 = divLengthByTwentyFour / 60;
+        let div60 = divLengthByTwentyFour / 60;
     let divMinutes = div60 * minutes;
-    let dotX = ((divLength / 100) * hourPercentOfX) + divMinutes;
-    const dotElement: HTMLElement = this.dot.nativeElement;
-    dotElement.style.left =`${dotX}px`
+    // let dotX = ((divLength / 100) * hourPercentOfX) + divMinutes;
+
+    let dotX = (divLengthByTwentyFour * hour)
+    console.log(dotX);
+        const dotElement: HTMLElement = this.dot.nativeElement;
+  dotElement.style.left =`${dotX - 10}px`
+
+
+    // dotElement.style.left =`${200}px`
   }
 
   emitTime(hour, minutes) {
