@@ -41,7 +41,7 @@
     </div>
     <div class="flex-grid">
     <div class = "startDateSelect col" >
-      <app-calender *ngIf="calenderStartEventVisible" class = "calenderStartDate" (selectDateEvent)="onStartDateSelected($event)"></app-calender>
+      <app-calender *ngIf="calenderStartEventVisible" class = "calenderStartDate"  (selectDateEvent)="onStartDateSelected($event)"></app-calender>
     </div>
     </div>
     <div class = "startTimeSelect col">
@@ -67,11 +67,11 @@
     </div>
     <div class="flex-grid">
     <div class = "finishDateSelect col" >
-      <app-calender  *ngIf="calenderFinishEventVisible" class = "calenderFinishDate" (selectDateEvent)="onFinishDateSelected($event)"></app-calender>
+      <app-calender  *ngIf="calenderFinishEventVisible" class = "calenderFinishDate"  (selectDateEvent)="onFinishDateSelected($event)"></app-calender>
     </div>
   </div>
   <div class = "finishTimeSelect col">
-    <app-progress-bar *ngIf="calenderFinishEventVisible" class = "progressBarFinishTime" (selectTimeEvent)="onFinishTimeSelected($event)"></app-progress-bar>
+    <app-progress-bar *ngIf="calenderFinishEventVisible" class = "progressBarFinishTime"  (selectTimeEvent)="onFinishTimeSelected($event)"></app-progress-bar>
   </div>
     <div class = "submit col">
     <button type="submit" class = "hardcodedButtonSlim" [disabled]="!checkoutForm.valid">Submit</button>

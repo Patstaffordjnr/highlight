@@ -17,7 +17,6 @@ export class EventComponent implements OnInit {
   startDateAndTime = new Date;
   finishDateAndTime = new Date;
   
-
   startDate: string;
   startTime: string;
 
@@ -53,15 +52,7 @@ export class EventComponent implements OnInit {
       startDateTime:  [Date],
       finishDateTime:  [Date],
     })
-    // this.checkoutForm = this.formBuilder.group({
-    //   name: ['', [Validators.required, Validators.minLength(1)]],
-    //   eventType: ['', [Validators.required]],
-    //   eventLat: [Number, [Validators.required, this.validateCoordinate]],
-    //   eventLng: [Number, [Validators.required, this.validateCoordinate]],
-    //   address:  ['', [Validators.required]],
-    //   startDateTime:  ['', [Validators.required]],
-    //   finishDateTime:  ['', [Validators.required]],
-    // })
+    
 }
 
 async ngOnInit() {
