@@ -185,8 +185,13 @@ this.selectedDay = undefined;
   }
 
 daySelect(day: number) {
+
+ 
   this.selectedDay = day;
-  let date = new Date(this.year, this.monthNumber - 1, day);
+  let date = new Date(this.year, this.monthNumber - 1, day, this.currentDateTimeYear.getHours(),
+  this.currentDateTimeYear.getMinutes(), 
+  this.currentDateTimeYear.getSeconds());
+  this.currentDateTimeYear = date;
   this.emitDay(date); 
   this.selectedDayBlack = day;
   this.selectedDayOnCalendar
@@ -194,6 +199,7 @@ daySelect(day: number) {
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October","November", "December"];
   let selectedDayMonth = monthNames[date.getMonth()];
   this.selectedDayMonthOnCalendar = selectedDayMonth;
+  // this.currentDateTimeYear.
 
   }
 

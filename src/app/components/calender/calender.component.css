@@ -12,7 +12,6 @@
 }
 
 .calender-div {
-  /* background-color: white; */
   flex-wrap: wrap;
   justify-content: space-evenly;
   border-radius: 25px;
@@ -25,6 +24,7 @@
   text-align: center;
 }
 .calender-controls {
+  padding-top: 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -32,6 +32,9 @@
 }
 
 .calender-container {
+  padding-top: 10px;
+  padding-bottom: 10px;
+/* background-color: aqua; */
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 2.5px;
@@ -47,6 +50,7 @@
 }
 
 .calenderContainer {
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
