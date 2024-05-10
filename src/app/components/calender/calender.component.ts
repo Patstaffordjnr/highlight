@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-calender',
@@ -7,26 +7,29 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class CalenderComponent implements OnInit {
 
+  
   currentDateTimeYear: Date = new Date();
+  day: string = this.currentDateTimeYear.toLocaleString('default', { weekday: 'long' });
+  month: string = this.currentDateTimeYear.toLocaleString('default', { month: 'long' });
+  year: number = this.currentDateTimeYear.getFullYear();
+  // currentTime: string;
 
   calenderVisible: boolean = false;
   weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]  
 
   selectedDay: number;
   selectedDayBlack: number
-  selectedDayMonthOnCalender: string;
-  selectedDayOnCalender: Date;
+  selectedDayMonthOnCalendar: string;
+  selectedDayOnCalendar: Date;
 
-  day: string = this.currentDateTimeYear.toLocaleString('default', { weekday: 'long' });
+ 
   dayNumber: number = this.currentDateTimeYear.getDate()
-  month: string = this.currentDateTimeYear.toLocaleString('default', { month: 'long' });
   monthNumber: number = this.currentDateTimeYear.getMonth() +1;
-  year: number = this.currentDateTimeYear.getFullYear();
   yearNumber = Number(this.year);
   monthDays = [];
   calenderFirstDayOfMonth = new Date( this.yearNumber, this.monthNumber -1, this.dayNumber);
   calenderTime = this.currentDateTimeYear.toLocaleTimeString();
-  currentTime: string;
+
  
   
   @Output() selectDateEvent = new EventEmitter<Date>();
@@ -34,8 +37,7 @@ export class CalenderComponent implements OnInit {
 
   constructor() {
     
-    const date = new Date();
-    let firstDay = new Date(date.getFullYear(), date.getMonth(), 1).toLocaleString('en-US', { weekday: 'long' }).substring(0,3);;
+    let firstDay = new Date(this.currentDateTimeYear.getFullYear(), this.currentDateTimeYear.getMonth(), 1).toLocaleString('en-US', { weekday: 'long' }).substring(0,3);;
 
     this.weekDays.map((day, i) => {
       if(day == firstDay) {
@@ -52,16 +54,62 @@ export class CalenderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.componentInputDay(this.selectedDate);
+    if(this.selectedDate) {
+      this.componentInputDay(this.selectedDate);
+    }
+      
 
+    
   }
 
   async componentInputDay(selectedDate: Date) {
-    console.log(selectedDate);
 
-    if(!selectedDate){
-      return 
-    }
+    this.currentDateTimeYear = selectedDate;
+    this.day = selectedDate.toLocaleString('default', { weekday: 'long' });
+    this.month = selectedDate.toLocaleString('default', { month: 'long' });
+    this.year = selectedDate.getFullYear();
+
+    let firstDayOfMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth()).toLocaleString('en-US', { weekday: 'long' }).substring(0,3);
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October","November", "December"];
+    let inputDateMonth = monthNames[selectedDate?.getMonth()];
+    const month = selectedDate.getMonth();
+    console.log(month + 1);
+    let year = selectedDate.getFullYear();
+    const lastDay = new Date(year, month + 1, 0);
+    let monthDays = lastDay.getDate();
+
+    this.selectedDay = selectedDate.getDate();
+
+    this.selectedDayMonthOnCalendar = inputDateMonth;
+    this.selectedDayOnCalendar = selectedDate;
+
+    this.dayNumber = selectedDate.getDate();
+    this.monthNumber = selectedDate.getMonth() + 1;
+    this.yearNumber = selectedDate.getFullYear();
+
+    this.calenderFirstDayOfMonth
+    this.calenderTime
+
+
+
+    this.monthDays.length = 0;
+    this.weekDays.map((day, i) => {
+    if(day == firstDayOfMonth) {
+      for(let x = 0; x < i; x++) {
+        this.monthDays.push(null);
+      }
+    } 
+  })
+
+  for (let i = 1; i < monthDays + 1; i++) {
+    this.monthDays.push(i);
+   }
+
+
+    // if(!selectedDate){
+    //   return 
+    // }
+  
 
   // let inputDate = selectedDate;
   // this.selectedDayOnCalender = inputDate;
@@ -127,6 +175,7 @@ export class CalenderComponent implements OnInit {
 
   emitDay(selectedDate: Date) {
     this.selectDateEvent.emit(selectedDate);
+    this.currentDateTimeYear = selectedDate;
     // console.log(selectedDate);
   }
 
@@ -135,10 +184,10 @@ export class CalenderComponent implements OnInit {
     return lastDayOfMonth;
   }
 
-  updateTime() {
-    const date = new Date();
-    this.currentTime = date.toLocaleTimeString();
-  }
+  // updateTime() {
+  //   const date = new Date();
+  //   this.currentTime = date.toLocaleTimeString();
+  // }
 
   getDayOfWeek(date: Date): string {
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -174,7 +223,7 @@ export class CalenderComponent implements OnInit {
      }
 
 this.selectedDay = undefined;
-     if(this.selectedDayMonthOnCalender === this.month) {
+     if(this.selectedDayMonthOnCalendar === this.month) {
       this.selectedDay = this.selectedDayBlack;
      }
   }
@@ -199,8 +248,8 @@ this.selectedDay = undefined;
       this.monthDays.push(i);
      }
 
-     this.selectedDay = undefined;4
-     if(this.selectedDayMonthOnCalender === this.month) {
+     this.selectedDay = undefined;
+     if(this.selectedDayMonthOnCalendar === this.month) {
      this.selectedDay = this.selectedDayBlack;
       return 
      }
@@ -212,15 +261,23 @@ this.selectedDay = undefined;
     this.year = this.currentDateTimeYear.getFullYear();
   }
 
-  daySelect(day: number) {
-    let selectedDayTo = new Date( this.yearNumber, this.monthNumber- 1, day);
-    this.selectedDay = day;
-    this.selectedDayOnCalender = selectedDayTo;
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October","November", "December"];
-    let selectedDayMonth = monthNames[selectedDayTo.getMonth()];
-    this.selectedDayMonthOnCalender = selectedDayMonth;
-    this.selectedDayBlack = day;
-    this.emitDay(selectedDayTo);
+
+
+daySelect(day: number) {
+  this.selectedDay = day;
+
+  let date = new Date(this.year, this.monthNumber - 1, day);
+  console.log(date);
+  this.emitDay(date); 
+
+   this.selectedDayBlack = day;
+   this.selectedDayOnCalendar
+   this.selectedDayOnCalendar = date
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October","November", "December"];
+    let selectedDayMonth = monthNames[date.getMonth()];
+    this.selectedDayMonthOnCalendar = selectedDayMonth;
+   
+
   }
 
 }
