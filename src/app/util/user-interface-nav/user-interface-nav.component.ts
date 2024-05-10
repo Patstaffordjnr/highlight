@@ -7,13 +7,9 @@ import { GlobalDateAndTimeComponentService } from '../global-date-and-time/globa
   styleUrl: './user-interface-nav.component.css'
 })
 
-
-
 export class UserInterfaceNavComponent {
 
-
-  globalDateAndTime: Date = new Date;
-
+globalDateAndTime: Date = new Date;
 
 calenderEventVisible: boolean = false; 
 googleMapEventVisible: boolean = false; 
@@ -22,20 +18,26 @@ eventsEventVisible: boolean = false;
 eventTableVisible: boolean = false;
 eventModalVisible: boolean = false;
 
-
-
 constructor(private globalDateAndTimeComponentService: GlobalDateAndTimeComponentService) {
-  
+
 }
 onGlobalDateSelected($event){
+
   this.globalDateAndTimeComponentService.updateGlobalDateSubject($event);
   let calenderDate = new Date($event.getFullYear(), $event.getMonth(), $event.getDate(),
   this.globalDateAndTime.getHours(), this.globalDateAndTime.getMinutes(),
   this.globalDateAndTime.getSeconds(), this.globalDateAndTime.getMilliseconds());
   this.globalDateAndTime = calenderDate;
+
 }
 onGlobalTimeSelected($event){
+
   this.globalDateAndTimeComponentService.updateGlobalTimeSubject($event);
+  const [hourString, minuteString] = $event.split(':');
+  let hour = Number(hourString);
+  let minute = Number(minuteString);
+  let calenderDate = new Date(this.globalDateAndTime.getFullYear(), this.globalDateAndTime.getMonth(), this.globalDateAndTime.getDate(), hour, minute, 0, 0);
+  this.globalDateAndTime = calenderDate;
 
 }
 
@@ -51,7 +53,6 @@ openCreateEvent() {
 openEvents() {
   this.eventsEventVisible = !this.eventsEventVisible;
 }
-
 openEventTable() {
   this.eventTableVisible = !this.eventTableVisible;
 }

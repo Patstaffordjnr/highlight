@@ -1,6 +1,5 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { CdkDragMove } from '@angular/cdk/drag-drop'; // Import CdkDragMove
-import { Time } from '@angular/common';
 import { GlobalDateAndTimeComponentService } from '../../util/global-date-and-time/global-date-and-time.service'
 
 
@@ -15,6 +14,7 @@ export class ProgressBarComponent implements OnInit {
   @ViewChild('dot') dot: ElementRef;
   @Output() selectTimeEvent = new EventEmitter<String>();
 
+  @Input() selectedTime: Date;
   date = new Date();
   currentHour = this.date.getHours();
   mm = this.date.getMinutes();
@@ -22,6 +22,8 @@ export class ProgressBarComponent implements OnInit {
   session = "AM";
   hours = ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"];
   mapTime
+
+
   constructor(private globalDateAndTimeComponentService: GlobalDateAndTimeComponentService) {
   }
 
@@ -29,21 +31,27 @@ export class ProgressBarComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    const date = new Date();
-    this.onStartUpMoveDotToPosition(date);
+    if(this.selectedTime) {
+      this.onStartUpMoveDotToPosition(this.selectedTime);
+    }
   }
   onStartUpMoveDotToPosition(time) {
+    const timeString = time.toString().trim();
+    const [hourString, minuteString] = timeString.split(":");
+
     const progressBarElement: HTMLElement = this.progressBarDiv.nativeElement;
     let hour = time.getHours();
-    let minutes = time.getMinutes();
+    let minutes = Number(minuteString);
     let hourPercentOfX = (hour / 24) * 100
+
     let divLeft = progressBarElement.offsetLeft;
     let divRight = (divLeft + progressBarElement.offsetWidth);
     let divLength = divRight - divLeft;
     let divLengthByTwentyFour = (divLength / 24);
     let div60 = divLengthByTwentyFour / 60;
     let divMinutes = div60 * minutes;
-    let dotX = ((divLength / 100) * hourPercentOfX) + divMinutes;
+
+    let dotX = ((divLength / 100) * hourPercentOfX);
 
     const dotElement: HTMLElement = this.dot.nativeElement;
     dotElement.style.left =`${dotX}px`

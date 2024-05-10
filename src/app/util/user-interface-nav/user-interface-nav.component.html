@@ -3,7 +3,7 @@
     <div class = "calenderHeading">
         <a (click) = "openCalender()">Calender</a>
         <app-calender *ngIf="calenderEventVisible" [selectedDate]="globalDateAndTime" (selectDateEvent)="onGlobalDateSelected($event)"></app-calender>
-        <app-progress-bar *ngIf="calenderEventVisible" (selectTimeEvent)="onGlobalTimeSelected($event)"></app-progress-bar>
+        <app-progress-bar *ngIf="calenderEventVisible" [selectedTime]="globalDateAndTime" (selectTimeEvent)="onGlobalTimeSelected($event)"></app-progress-bar>
     </div>
     <br>
     <div class = "globalDateAndTime">

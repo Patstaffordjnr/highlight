@@ -60,6 +60,11 @@ export class CalenderComponent implements OnInit {
   async componentInputDay(selectedDate: Date) {
 
     this.currentDateTimeYear = selectedDate;
+    this.currentDateTimeYear = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), selectedDate.getHours(), selectedDate.getMinutes(), 0)
+   
+
+
+
     this.day = selectedDate.toLocaleString('default', { weekday: 'long' });
     this.month = selectedDate.toLocaleString('default', { month: 'long' });
     this.year = selectedDate.getFullYear();
@@ -81,6 +86,7 @@ export class CalenderComponent implements OnInit {
     this.dayNumber = selectedDate.getDate();
     this.monthNumber = selectedDate.getMonth() + 1;
     this.yearNumber = selectedDate.getFullYear();
+
 
     this.calenderFirstDayOfMonth
     this.calenderTime
@@ -199,8 +205,6 @@ daySelect(day: number) {
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October","November", "December"];
   let selectedDayMonth = monthNames[date.getMonth()];
   this.selectedDayMonthOnCalendar = selectedDayMonth;
-  // this.currentDateTimeYear.
-
   }
 
 }
