@@ -1,4 +1,3 @@
-
 .flex-grid {
   display: flex;
   background-color: none;
@@ -29,7 +28,6 @@
 .checkoutForm {
   top: -20px;
   background-color: none;
-  /* opacity: 50%; */
   max-width: 365px;
   min-width: 365px;
   padding-top: 10px;
@@ -39,8 +37,6 @@
 .name {
   padding-left: 10px;
   background-color: none;
-  /* justify-content: left; 
-  text-align: left; */
   left: 20px;
 }
 
@@ -48,7 +44,6 @@
   padding-right: 10px;
   background-color: none;
   justify-content: right; 
-  /* margin-left: 45px; */
 }
 
 .selectAddressButton{
@@ -148,122 +143,3 @@
   width: 65px;
   height: 32.5px;
 }
-/* 
-<div class = "eventContainer">
-<div class="event">
-  <form class="checkoutForm" 
-    <div class = "name col">
-    <div class = "type col">
-    <div class = "selectAddressButton col">
-    <div class = "address col">
-    <div class = "startDate col">
-    <div class = "startDateDisplay col">
-    <div class = "start col">
-    <div class = "startTimeDisplay col">
-    <div class = "startTimeButton col">
-    <div class = "startDateSelect col" >
-      <app-calender *ngIf="calenderStartEventVisible" class = "calenderStartDate" (selectDateEvent)="onStartDateSelected($event)"></app-calender>
-    <div class = "startTimeSelect col">
-      <app-progress-bar *ngIf="calenderStartEventVisible" class = "calenderStartTime" (selectTimeEvent)="onStartTimeSelected($event)"></app-progress-bar>
-    <div class = "finishDate col">
-    <div class = "finishDisplay col">
-    <div class = "finishTime col">
-    <div class = "finihsDisplay col">
-    <div class = "finishTimeButton col">
-    <div class = "finishTimeSelect col" >
-     class = "calenderFinish
-  <div class = "finishTimeSelect col">
-class = "calenderStartTime" 
-    <div class = "submit col">
-    <button type="submit" class = "hardcodedButton" [disabled]="!checkoutForm.valid">Submit</button> */
-
-/* ------------------ */
-/* 
-display: flex;
-flex-wrap: wrap;
-flex-direction: column;
-font-weight: bold;
-justify-content: center;
-align-items: center; */
-
-
-
-
-
-/* .eventContainer {
-  border-radius: 25px;
-  border: 6px solid whitesmoke;
-  min-width: 365px;
-  background-color: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-}
-
-.checkoutForm {
-    display: grid;
-    grid-template-columns: repeat(4, 75px);
-    grid-template-rows: repeat(5, 50px);
-    gap: 10px;
-    margin: auto;
-  }
-
-.name {
-    grid-column-start: 1;
-    grid-row-start: 1;
-  }
-  
-.type{
-    grid-column-start: 4;
-    grid-row-start: 1;
-}
-.selectAddressButton{
-    grid-column-start: 4;
-    grid-row-start: 2;
-    display: inline-block;
-  }
-  .address{
-    grid-column-start: 1;
-    grid-column-end: span 3;
-    grid-row-start: 2;
-    display: inline-block;
-  }
-
-  .start {
-    grid-column-start: 1;
-    grid-row-start: 3;
-
-  }
-  .startTimeButton{
-    grid-column-start: 4;
-    grid-row-start: 3;
-  }
-  .startTimeSelect{
-    grid-column-start: 1;
-    grid-row-start: 5;
-    background-color: none;
-  
-  }
-
-  .finish {
-    grid-column-start: 1;
-    grid-row-start: 4;
-  }
-  .finishTimeButton{
-    grid-column-start: 4;
-    grid-row-start: 4;
-  }
-  
-
-  .submit {
-    grid-row-start: 5;
-    grid-column-end: span 4;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    font-weight: bold;
-    justify-content: center;
-    align-items: center;
-  } */

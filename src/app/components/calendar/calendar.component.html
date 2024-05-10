@@ -3,10 +3,7 @@
   <div class="calender-div">
     <div class="calender-controls">
       <b>{{ year }}</b>
-      <!-- <div (click)="previousMonth()"><a>&lt;</a></div> -->
       <b>{{ month }}</b>
-      <!-- <div (click)="nextMonth()"><a>&gt;</a></div> -->
-      <!-- <b>{{ day }}</b> -->
     </div>
     <div class="calender-container">
       <div class="week-day-header" *ngFor="let weekDay of weekDays">
@@ -23,4 +20,3 @@
     <div class = "previousMonth col" (click)="previousMonth()" ></div>
     <div class = "nextMonth col" (click)="nextMonth()" ></div>
   </div>
-  <!-- {{currentDateTimeYear}} -->

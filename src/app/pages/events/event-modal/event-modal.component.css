@@ -1,36 +1,40 @@
 dialog {
-    /* background-color: rgba(32, 82, 221, 0.5); */
-    /* color: white; */
-    /* border-color: transparent;
-    overflow: hidden;
-    border-radius: 5px;
-    cursor: pointer; */
     box-shadow: 0 0 20px 8px #d0d0d0;
     border-radius: 25px;
     border: 6px solid whitesmoke;
     max-width: 1260px;
-    /* height: 100px;
-    width: 200px; */
- }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
  
- /* dialog::backdrop {
-    background: repeating-linear-gradient(
-      45deg,
-      rgba(255, 0, 0, 0.2),
-      rgba(255, 0, 0, 0.2) 1px,
-      rgba(255, 0, 0, 0.3) 1px,
-      rgba(255, 0, 0, 0.3) 20px
-    );
+ .flex-grid {
+    display: flex;
+    background-color: none;
+  }
+  
+  .col {
+    flex: 1;
+    display: flex; 
   }
 
-  dialog::backdrop {
-    background: repeating-linear-gradient(
-      45deg,
-      rgba(255, 0, 0, 0.2),
-      rgba(255, 0, 0, 0.2) 1px,
-      rgba(255, 0, 0, 0.3) 1px,
-      rgba(255, 0, 0, 0.3) 20px
-    ); */
 
-    
-  /* } */
+.event-title{
+    background-color: bisque;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.event-title-input {
+    background-color: darkorange;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+}
+  /* .event{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */

@@ -1,11 +1,11 @@
 import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 
 @Component({
-  selector: 'app-calender',
-  templateUrl: './calender.component.html',
-  styleUrls: ['./calender.component.css']
+  selector: 'app-calendar',
+  templateUrl: './calendar.component.html',
+  styleUrls: ['./calendar.component.css']
 })
-export class CalenderComponent implements OnInit {
+export class CalendarComponent implements OnInit {
 
   calenderVisible: boolean = false;
 
@@ -28,7 +28,6 @@ export class CalenderComponent implements OnInit {
   calenderFirstDayOfMonth = new Date( this.yearNumber, this.monthNumber -1, this.dayNumber);
   calenderTime = this.currentDateTimeYear.toLocaleTimeString();
 
-  
   @Output() selectDateEvent = new EventEmitter<Date>();
   @Input() selectedDate: Date;
 
@@ -62,9 +61,6 @@ export class CalenderComponent implements OnInit {
     this.currentDateTimeYear = selectedDate;
     this.currentDateTimeYear = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), selectedDate.getHours(), selectedDate.getMinutes(), 0)
    
-
-
-
     this.day = selectedDate.toLocaleString('default', { weekday: 'long' });
     this.month = selectedDate.toLocaleString('default', { month: 'long' });
     this.year = selectedDate.getFullYear();
@@ -150,7 +146,7 @@ export class CalenderComponent implements OnInit {
       this.monthDays.push(i);
      }
 
-this.selectedDay = undefined;
+  this.selectedDay = undefined;
      if(this.selectedDayMonthOnCalendar === this.month) {
       console.log(`a`);
       this.selectedDay = this.selectedDayBlack;
@@ -190,9 +186,8 @@ this.selectedDay = undefined;
     this.year = this.currentDateTimeYear.getFullYear();
   }
 
-daySelect(day: number) {
+  daySelect(day: number) {
 
- 
   this.selectedDay = day;
   let date = new Date(this.year, this.monthNumber - 1, day, this.currentDateTimeYear.getHours(),
   this.currentDateTimeYear.getMinutes(), 

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { EventService } from '../event-service';
 import { Event } from 'src/app/model/event';
 import { EventType } from '@angular/router';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-event-modal',
@@ -13,6 +14,8 @@ export class EventModalComponent implements OnInit {
 
   dialogOpen: boolean = false;
   @ViewChild('myDialog', { static: true }) myDialog: HTMLDialogElement;
+
+  checkoutForm: FormGroup
 
   eventModal: Event[];
   currentEvent
@@ -27,10 +30,24 @@ export class EventModalComponent implements OnInit {
   public updatedAt: Date;
   public id: String;
 
-  constructor(private eventService: EventService) {
+
+  constructor(private eventService: EventService, private formBuilder: FormBuilder,) {
     this.eventService.eventToBeDisplayed$.subscribe(eventSubject => {
       this.dialogOpen = false;
+
+      this.checkoutForm = this.formBuilder.group({
+        name: [''],
+        eventType: [''],
+        eventLat: [Number],
+        eventLng: [Number],
+        address:  [''],
+        startDateTime:  [Date],
+        finishDateTime:  [Date],
+      })
+
     this.currentDisplay(eventSubject)
+
+    
     });
   }
 
@@ -54,8 +71,13 @@ export class EventModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    
   }
 
+  onSubmit(checkoutForm) {
+    console.log(checkoutForm);
+
+  }
   toggleModalOpen() {
     this.dialogOpen = true;
   }

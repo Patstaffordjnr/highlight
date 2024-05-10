@@ -1,4 +1,46 @@
-<dialog #myDialog [open]="dialogOpen" id="my-dialog">
+<dialog #myDialog [open]="dialogOpen" id="my-dialog" class="checkoutForm"  (ngSubmit)="onSubmit(checkoutForm)">
+  <form class="checkoutForm"  [formGroup]="checkoutForm" method="dialog">
+    <div>
+
+      <div class = "event-title">
+        <a>Event Title</a>
+      </div>
+      <div class = "event-title-input">
+        <a>Event Title Input</a>
+      </div>
+      <div class = "event-type">
+        <a>Event Type</a>
+      </div>
+      <div class = "event-type-input">
+        <a>Event Type Input</a>
+      </div>
+    
+    </div>
+    <menu>
+      <button type="submit" value="confirmBtn" (click)="toggleModalConfirm()">Edit</button>
+      <button (click)="toggleModalClose()">Close dialog</button>
+    <button type="submit" value="confirmBtn" (click)="toggleModalConfirm()">Confirm</button>
+      <button (click)="toggleModalClose()">Close dialog</button>
+    </menu>
+  </form>
+</dialog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <dialog #myDialog [open]="dialogOpen" id="my-dialog">
   <form method="dialog">
     <div>
     <br>
@@ -28,4 +70,4 @@
       <button (click)="toggleModalClose()">Close dialog</button>
     </menu>
   </form>
-</dialog>
+</dialog> -->

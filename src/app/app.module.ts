@@ -8,7 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainHeaderComponent } from './components/main-header/main-header.component';
-import { CalenderComponent } from './components/calender/calender.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { UserComponent } from './pages/user/user.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
@@ -47,7 +47,7 @@ import { GlobalDateAndTimeComponentService } from './util/global-date-and-time/g
     MainHeaderComponent,
     EventComponent,
     EventsComponent,
-    CalenderComponent,
+    CalendarComponent,
     ProgressBarComponent, 
     EventModalComponent,
     FooterComponent,

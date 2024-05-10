@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ChangeDetectorRef, EventEmitter  } from '@ang
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
 import { GoogleMapService } from 'src/app/pages/google-map/google-map.service';
 import { HttpClient } from '@angular/common/http';
-import { CalenderComponent } from 'src/app/components/calender/calender.component';
+import { CalendarComponent } from 'src/app/components/calendar/calendar.component';
 
 @Component({
   selector: 'app-event',
@@ -42,7 +42,6 @@ export class EventComponent implements OnInit {
     private cdRef: ChangeDetectorRef
   ) {
 
-
     this.checkoutForm = this.formBuilder.group({
       name: [''],
       eventType: [''],
@@ -76,18 +75,18 @@ async selectAddress() {
   this.markerLat = this.markerAddressObject[0].lat;
   this.markerLng = this.markerAddressObject[0].lng;
 
-this.checkoutForm.get('eventLat').patchValue(
-  this.markerLat
-);
-this.checkoutForm.get('eventLng').patchValue(
-  this.markerLng
-);
+  this.checkoutForm.get('eventLat').patchValue(
+    this.markerLat
+  );
+  this.checkoutForm.get('eventLng').patchValue(
+    this.markerLng
+  );
   
   })
   this.ngOnInit();
   }
 
-  validateCoordinate(control: AbstractControl): { [key: string]: any} | null {
+validateCoordinate(control: AbstractControl): { [key: string]: any} | null {
 
     let value = control.value;
     if (isNaN(value) || value < -90 || value > 90) {
@@ -98,82 +97,82 @@ this.checkoutForm.get('eventLng').patchValue(
 
 
 startTimeSelectToggle() {
-    this.calenderStartEventVisible = !this.calenderStartEventVisible
-  }
+      this.calenderStartEventVisible = !this.calenderStartEventVisible
+    }
 
 finishTimeSelectToggle() {
-    this.calenderFinishEventVisible = !this.calenderFinishEventVisible
-    
-  }
+      this.calenderFinishEventVisible = !this.calenderFinishEventVisible
+      
+    }
 onSubmit() {
-      console.warn(this.checkoutForm.value);
-  }
+        console.warn(this.checkoutForm.value);
+    }
 
 onStartDateSelected($event) {
 
-  const startDateWithoutTime = new Date($event.getFullYear(), $event.getMonth(), $event.getDate()).toLocaleDateString();;
-  // console.log(startDateWithoutTime);
-    this.startDate = startDateWithoutTime;
+    const startDateWithoutTime = new Date($event.getFullYear(), $event.getMonth(), $event.getDate()).toLocaleDateString();;
+    // console.log(startDateWithoutTime);
+      this.startDate = startDateWithoutTime;
 
-    this.startDateAndTime = new Date(
-      $event.getFullYear(),
-      $event.getMonth(),
-      $event.getDate(), 
-      this.startDateAndTime.getHours(),
-      this.startDateAndTime.getMinutes(),
-      0)
-}
+      this.startDateAndTime = new Date(
+        $event.getFullYear(),
+        $event.getMonth(),
+        $event.getDate(), 
+        this.startDateAndTime.getHours(),
+        this.startDateAndTime.getMinutes(),
+        0)
+  }
 
 onStartTimeSelected($event) {
- this.startTime = $event
- const timeParts = $event.split(':');
- const hours = parseInt(timeParts[0], 10);
- const minutes = parseInt(timeParts[1], 10);
-
- this.checkoutForm.get('startDateTime').patchValue(
-  new Date(this.startDateAndTime.getFullYear(), this.startDateAndTime.getMonth(), this.startDateAndTime.getDate(), hours, minutes, 0)
-);
-
- this.startDateAndTime = new Date(
-  this.startDateAndTime.getFullYear(),
-  this.startDateAndTime.getMonth(),
-  this.startDateAndTime.getDate(), 
-  hours,
- minutes,
-  0)
-}
-
-onFinishDateSelected($event) {
-  const finishDateWithoutTime = new Date($event.getFullYear(), $event.getMonth(), $event.getDate()).toLocaleDateString();;
-  // console.log(finishDateWithoutTime);
-    this.finishDate = finishDateWithoutTime;
-
-    this.finishDateAndTime = new Date(
-      $event.getFullYear(),
-      $event.getMonth(),
-      $event.getDate(), 
-      this.finishDateAndTime.getHours(),
-      this.finishDateAndTime.getMinutes(),
-      0)
-}
-
-onFinishTimeSelected($event) {
-  this.finishTime = $event
+  this.startTime = $event
   const timeParts = $event.split(':');
   const hours = parseInt(timeParts[0], 10);
   const minutes = parseInt(timeParts[1], 10);
 
-  this.finishDateAndTime = new Date(
-    this.finishDateAndTime.getFullYear(),
-    this.finishDateAndTime.getMonth(),
-    this.finishDateAndTime.getDate(), 
-    hours,
-   minutes,
-    0)
+  this.checkoutForm.get('startDateTime').patchValue(
+    new Date(this.startDateAndTime.getFullYear(), this.startDateAndTime.getMonth(), this.startDateAndTime.getDate(), hours, minutes, 0)
+  );
 
-    this.checkoutForm.get('finishDateTime').patchValue(
-      new Date(this.finishDateAndTime.getFullYear(), this.finishDateAndTime.getMonth(), this.finishDateAndTime.getDate(), hours, minutes, 0)
-    );
-}
+  this.startDateAndTime = new Date(
+    this.startDateAndTime.getFullYear(),
+    this.startDateAndTime.getMonth(),
+    this.startDateAndTime.getDate(), 
+    hours,
+  minutes,
+    0)
+  }
+
+  onFinishDateSelected($event) {
+    const finishDateWithoutTime = new Date($event.getFullYear(), $event.getMonth(), $event.getDate()).toLocaleDateString();;
+    // console.log(finishDateWithoutTime);
+      this.finishDate = finishDateWithoutTime;
+
+      this.finishDateAndTime = new Date(
+        $event.getFullYear(),
+        $event.getMonth(),
+        $event.getDate(), 
+        this.finishDateAndTime.getHours(),
+        this.finishDateAndTime.getMinutes(),
+        0)
+  }
+
+  onFinishTimeSelected($event) {
+    this.finishTime = $event
+    const timeParts = $event.split(':');
+    const hours = parseInt(timeParts[0], 10);
+    const minutes = parseInt(timeParts[1], 10);
+
+    this.finishDateAndTime = new Date(
+      this.finishDateAndTime.getFullYear(),
+      this.finishDateAndTime.getMonth(),
+      this.finishDateAndTime.getDate(), 
+      hours,
+    minutes,
+      0)
+
+      this.checkoutForm.get('finishDateTime').patchValue(
+        new Date(this.finishDateAndTime.getFullYear(), this.finishDateAndTime.getMonth(), this.finishDateAndTime.getDate(), hours, minutes, 0)
+      );
+  }
 
 }

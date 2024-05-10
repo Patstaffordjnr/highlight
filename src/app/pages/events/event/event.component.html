@@ -41,7 +41,7 @@
     </div>
     <div class="flex-grid">
     <div class = "startDateSelect col" >
-      <app-calender *ngIf="calenderStartEventVisible" class = "calenderStartDate" [selectedDate]="startDateAndTime" (selectDateEvent)="onStartDateSelected($event)"></app-calender>
+      <app-calendar *ngIf="calenderStartEventVisible" class = "calenderStartDate" [selectedDate]="startDateAndTime" (selectDateEvent)="onStartDateSelected($event)"></app-calendar>
     </div>
     </div>
     <div class = "startTimeSelect col">
@@ -67,7 +67,7 @@
     </div>
     <div class="flex-grid">
     <div class = "finishDateSelect col" >
-      <app-calender  *ngIf="calenderFinishEventVisible" class = "calenderFinishDate" [selectedDate]="finishDateAndTime" (selectDateEvent)="onFinishDateSelected($event)"></app-calender>
+      <app-calendar  *ngIf="calenderFinishEventVisible" class = "calenderFinishDate" [selectedDate]="finishDateAndTime" (selectDateEvent)="onFinishDateSelected($event)"></app-calendar>
     </div>
   </div>
   <div class = "finishTimeSelect col">

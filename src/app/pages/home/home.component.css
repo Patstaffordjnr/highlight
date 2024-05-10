@@ -1,11 +1,13 @@
+
+
+
+
 .home{
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
-
         /* background-color:white; */
         font-size: medium;
         /* border-radius: 25px; */
@@ -57,7 +59,7 @@
         align-items: center;
     }
 
-.a{ 
+.home{ 
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;

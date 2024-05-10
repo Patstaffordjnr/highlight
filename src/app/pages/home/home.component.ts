@@ -11,17 +11,12 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 
-
 export class HomeComponent implements OnInit {
 
-   userDTO = {
-    email: '',
-    password: '', 
-    }
-
-    roles: '';
-    token: '';
-    id:'';
+  userDTO = { email: '', password: '', }
+  roles: '';
+  token: '';
+  id:'';
 
   googleRouterLink = document.querySelector('.routerLink');
   
@@ -33,25 +28,10 @@ export class HomeComponent implements OnInit {
   sub!: Subscription;
 
   ngOnInit(): void {}
-  
 
-
-
-
-
-
-    
-
-// -----------------------------------------------
-
-
-
-makePostRequest(url: string, headers: HttpHeaders): Promise<any> {
-  return this.httpClient.post(url, { headers }).toPromise();
-}
-
-
-// ------------------------------------------------
+  makePostRequest(url: string, headers: HttpHeaders): Promise<any> {
+    return this.httpClient.post(url, { headers }).toPromise();
+  }
 
   async toAdminHomePage(): Promise<void> {
     this.routerService.toAdminHomePage();

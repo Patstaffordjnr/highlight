@@ -2,7 +2,6 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { CdkDragMove } from '@angular/cdk/drag-drop'; // Import CdkDragMove
 import { GlobalDateAndTimeComponentService } from '../../util/global-date-and-time/global-date-and-time.service'
 
-
 @Component({
   selector: 'app-progress-bar',
   templateUrl: './progress-bar.component.html',
@@ -24,7 +23,7 @@ export class ProgressBarComponent implements OnInit {
   mapTime
 
 
-  constructor(private globalDateAndTimeComponentService: GlobalDateAndTimeComponentService) {
+  constructor() {
   }
 
   ngOnInit(): void {

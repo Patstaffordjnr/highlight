@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CalenderComponent } from './calender.component';
+import { CalenderComponent } from './calendar.component';
 
 describe('CalenderComponent', () => {
   let component: CalenderComponent;

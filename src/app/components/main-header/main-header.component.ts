@@ -9,18 +9,12 @@ export class MainHeaderComponent implements OnInit {
 
   constructor(private routerService: RouterService) {
 
-    
    }
 
-
    async toHomePage(): Promise<void> {
-
-    this.routerService.toHomePage();
+    await this.routerService.toHomePage();
   }
 
   ngOnInit(): void {
   }
-
-
-
 }

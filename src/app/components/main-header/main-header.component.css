@@ -5,11 +5,6 @@
     justify-content: center;
     align-items: center;
     z-index: 13;
-    /* border-width:2px;
-    border-style:solid;
-    border-color:black; */
-
-
 }
 
 .header-image img{
@@ -17,11 +12,7 @@
     align-items: center;
     max-width: 15%;
     max-height: 15%;
-
-
-
 }
-
 
 .header-image {
     display: flex;
@@ -29,17 +20,8 @@
     justify-content: center;
     align-items: center;
     z-index: 0;
-
-    
 }
 
 .header-progress-bar{ 
     z-index: 23;
 }
-
-/* .x{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top:200px
-} */
