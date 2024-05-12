@@ -1,18 +1,18 @@
 <dialog #myDialog *ngIf = "dialogOpen" id="my-dialog" class="dialog" (ngSubmit)="onSubmit(checkoutForm)">
-<form class="checkoutForm"  [formGroup]="checkoutForm" method="dialog">
+
+  <form class="checkoutForm"  [formGroup]="checkoutForm" method="dialog">
   <div class = "formDiv">
 <div class =  "formContainer">
   
   <div class="flex-grid col">
-    <div class = "event-title col">
-      <a>Title :</a>
-    </div>
-    <div class = "event-title-input col">
-    <!-- <a *ngIf= "!editDialog">{{eventTitle}}</a> -->
-    <a *ngIf= "!editDialog">Uisce: Jimmy Jones Band</a>
-    <input *ngIf= "editDialog" type="string" formControlName="eventTitle" placeholder="{{eventTitle}}">
 
+    <div class = "event-title col">
+    <a>Title :
+    </a>
+    <a *ngIf= "!editDialog">{{eventTitle}}</a>
+    <input *ngIf= "editDialog" type="string" formControlName="eventTitle" placeholder="{{eventTitle}}">
     </div>
+
     <div class = "event-type col">
       <a>Type : </a>
     </div>
@@ -40,13 +40,13 @@
       <a>Start Time   :</a>
     </div>
     <div class = "start-time col">
-      <a>{{startAt}}</a>
+      <a>{{ startAt | date:'shortTime' }}</a>
     </div>
     <div class = "start-date-display col">
       <a>Start Date :</a>
     </div>
     <div class = "start-date col">
-      <a>{{startAt}}</a>
+      <a>{{ startAt | date:'mediumDate' }}</a>
     </div>
     <div class = "start-select col">
       <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "startSelect()">Select Start</button>
@@ -59,13 +59,14 @@
       <a>Finish Time :</a>
     </div>
     <div class = "finish-time col">
-      <a>03:00</a>
+      <a>{{ endAt | date:'shortTime' }}</a>
+
     </div>
     <div class = "finish-date-display col">
       <a>Finish Date :</a>
     </div>
     <div class = "finish-date col">
-      <a>Y34 EY27</a>
+      <a>{{ endAt | date:'mediumDate' }}</a>
     </div>
     <div class = "finish-select col">
       <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "finishSelect()">Select Finish</button>

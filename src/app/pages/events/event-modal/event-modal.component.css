@@ -6,18 +6,13 @@
 
 .col {
   flex: 1;
-
 }
 
-
 .formDiv{
-  /* background-color: deepskyblue; */
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
-
 
 dialog {
   background-color: beige;
@@ -26,91 +21,81 @@ dialog {
     border: 6px solid whitesmoke;
     max-width: 1260px;
     display: flex;
+    padding: 0px;
+    min-width: 365px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
    
   }
 
 .formContainer {
     background-color: none;
-    max-width: 365px;
-
 
   }
+
 .checkoutForm {
-    background-color: none;
+  background-color: yellow;
+  padding-top: 10px;
+  width: 345px;
+  background-color: none;
   }
   
 .event-title{
-    background-color: bisque;
+    background-color: olive;
+    min-width: 50%;
     max-height: 65px;
     min-height: 65px;
-  }
-  
-.event-title-input{
-    background-color: coral;
-    min-width: 83px;
-    max-height: 65px;
-
   }
 
   .event-type{
     background-color: azure;
-    /* max-width: 65px; */
-    min-width: 65px;
     max-height: 65px;
     min-height: 65px;
-
-
   }
+
 .event-type-input{
     background-color: greenyellow;
     min-width: 65px;
     max-height: 65px;
-
-
+    min-width: 91.25px;
   }
   
 .address{
     background-color: lime;
-
   }
   
 .address-input{
- 
     background-color: white;
     justify-content: right;
     text-align: right;
     min-height: 65px;
-
-
   }
   
 .start-time-display{
     background-color: blueviolet;
-  
+    text-align: left;
+    
   }
   
 .start-time{
     background-color: darkgray;
-    /* max-width: 74.460px; */
     min-width: 65px;
     max-height: 65px;
     min-height: 65px;
-  
   }
   
-  
+
 .start-date-display{
     background-color: violet;
-
   }
   
 .start-date{
     background-color: limegreen;
-    /* max-width: 74.460px; */
     min-width: 65px;
     max-height: 65px;
     min-height: 65px;
-
 
   }
   
@@ -124,7 +109,6 @@ dialog {
 
   }
   
-  
 .finish-time-display{
     background-color: peachpuff;
 
@@ -132,7 +116,7 @@ dialog {
   
 .finish-time{
     background-color: green;
-  
+
   }
   
 .finish-date-display{
