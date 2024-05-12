@@ -1,73 +1,86 @@
-<dialog #myDialog [open]="dialogOpen" id="my-dialog" class="checkoutForm"  (ngSubmit)="onSubmit(checkoutForm)">
-  <form class="checkoutForm"  [formGroup]="checkoutForm" method="dialog">
-    <div>
-
-      <div class = "event-title">
-        <a>Event Title</a>
-      </div>
-      <div class = "event-title-input">
-        <a>Event Title Input</a>
-      </div>
-      <div class = "event-type">
-        <a>Event Type</a>
-      </div>
-      <div class = "event-type-input">
-        <a>Event Type Input</a>
-      </div>
-    
+<dialog #myDialog *ngIf = "dialogOpen" id="my-dialog" class="dialog" (ngSubmit)="onSubmit(checkoutForm)">
+<form class="checkoutForm"  [formGroup]="checkoutForm" method="dialog">
+  <div class = "formDiv">
+<div class =  "formContainer">
+  
+  <div class="flex-grid col">
+    <div class = "event-title col">
+      <a>Title :</a>
     </div>
-    <menu>
-      <button type="submit" value="confirmBtn" (click)="toggleModalConfirm()">Edit</button>
-      <button (click)="toggleModalClose()">Close dialog</button>
-    <button type="submit" value="confirmBtn" (click)="toggleModalConfirm()">Confirm</button>
-      <button (click)="toggleModalClose()">Close dialog</button>
-    </menu>
-  </form>
+    <div class = "event-title-input col">
+    <!-- <a *ngIf= "!editDialog">{{eventTitle}}</a> -->
+    <a *ngIf= "!editDialog">Uisce: Jimmy Jones Band</a>
+    <input *ngIf= "editDialog" type="string" formControlName="eventTitle" placeholder="{{eventTitle}}">
+
+    </div>
+    <div class = "event-type col">
+      <a>Type : </a>
+    </div>
+    <div class = "event-type-input col">
+      <a *ngIf= "!editDialog" >{{eventType}}</a>
+      <select *ngIf= "editDialog" formControlName ="eventType"><option *ngFor="let type of typesOfEvents" [ngValue]="type">{{type}}</option></select>
+    </div>
+  </div>
+
+  <div class="flex-grid">
+    <div class = "address col">
+      <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "finishSelect()">Select Address</button>
+    </div>
+    <div class = "address-input col">
+      <input *ngIf= "editDialog" type="string" formControlName="address" placeholder="{{address}}">
+      <a  *ngIf= "!editDialog">{{address}}</a>
+      <a *ngIf= "!editDialog">{{lat}}</a>
+      <br>
+      <a *ngIf= "!editDialog"> {{lng}}</a>
+    </div>
+  </div>
+
+  <div class="flex-grid">
+    <div class = "start-time-display col">
+      <a>Start Time   :</a>
+    </div>
+    <div class = "start-time col">
+      <a>{{startAt}}</a>
+    </div>
+    <div class = "start-date-display col">
+      <a>Start Date :</a>
+    </div>
+    <div class = "start-date col">
+      <a>{{startAt}}</a>
+    </div>
+    <div class = "start-select col">
+      <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "startSelect()">Select Start</button>
+    </div>
+
+  </div>
+  
+  <div class="flex-grid">
+    <div class = "finish-time-display col">
+      <a>Finish Time :</a>
+    </div>
+    <div class = "finish-time col">
+      <a>03:00</a>
+    </div>
+    <div class = "finish-date-display col">
+      <a>Finish Date :</a>
+    </div>
+    <div class = "finish-date col">
+      <a>Y34 EY27</a>
+    </div>
+    <div class = "finish-select col">
+      <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "finishSelect()">Select Finish</button>
+    </div>
+  </div>
+</div>
+</div>
+<div class = "menuDiv"> 
+<menu class = "menu">
+
+  <button (click)="toggleModalEdit()" class = "hardcodedButtonSlim">Edit</button>
+  <button (click)="toggleModalClose()">Close</button>
+  <button type="submit" value="confirmBtn" (click)="toggleModalConfirm()" class = "hardcodedButtonSlim">Confirm</button>
+  <button  class = "hardcodedButtonSlim">Delete</button>
+</menu>
+</div>
+</form>
 </dialog>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <dialog #myDialog [open]="dialogOpen" id="my-dialog">
-  <form method="dialog">
-    <div>
-    <br>
-    <a>{{title}}</a>
-    <br>
-    <a>{{eventType}}</a>
-    <br>
-    <a>{{lat}}</a>
-    <br>
-    <a>{{long}}</a>
-    <br>
-    <a>{{startAt}}</a>
-    <br>
-    <a>{{endAt}}</a>
-    <br>
-    <a>{{createdAt}}</a>
-    <br>
-    <a>{{updatedAt}}</a>
-    <br>
-    <a>{{id}}</a>
-    <br>
-    </div>
-    <menu>
-      <button type="submit" value="confirmBtn" (click)="toggleModalConfirm()">Edit</button>
-      <button (click)="toggleModalClose()">Close dialog</button>
-    <button type="submit" value="confirmBtn" (click)="toggleModalConfirm()">Confirm</button>
-      <button (click)="toggleModalClose()">Close dialog</button>
-    </menu>
-  </form>
-</dialog> -->

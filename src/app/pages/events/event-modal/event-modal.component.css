@@ -1,40 +1,182 @@
+.flex-grid {
+  display: flex;
+  background-color: none;
+  justify-content: space-between;
+}
+
+.col {
+  flex: 1;
+
+}
+
+
+.formDiv{
+  /* background-color: deepskyblue; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
 dialog {
+  background-color: beige;
     box-shadow: 0 0 20px 8px #d0d0d0;
     border-radius: 25px;
     border: 6px solid whitesmoke;
     max-width: 1260px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+   
   }
-  
- 
- .flex-grid {
-    display: flex;
+
+.formContainer {
+    background-color: none;
+    max-width: 365px;
+
+
+  }
+.checkoutForm {
     background-color: none;
   }
   
-  .col {
-    flex: 1;
-    display: flex; 
-  }
-
-
 .event-title{
     background-color: bisque;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-}
-.event-title-input {
-    background-color: darkorange;
-    display: flex;
-    justify-content: left;
-    align-items: center;
+    max-height: 65px;
+    min-height: 65px;
+  }
+  
+.event-title-input{
+    background-color: coral;
+    min-width: 83px;
+    max-height: 65px;
 
-}
-  /* .event{
+  }
+
+  .event-type{
+    background-color: azure;
+    /* max-width: 65px; */
+    min-width: 65px;
+    max-height: 65px;
+    min-height: 65px;
+
+
+  }
+.event-type-input{
+    background-color: greenyellow;
+    min-width: 65px;
+    max-height: 65px;
+
+
+  }
+  
+.address{
+    background-color: lime;
+
+  }
+  
+.address-input{
+ 
+    background-color: white;
+    justify-content: right;
+    text-align: right;
+    min-height: 65px;
+
+
+  }
+  
+.start-time-display{
+    background-color: blueviolet;
+  
+  }
+  
+.start-time{
+    background-color: darkgray;
+    /* max-width: 74.460px; */
+    min-width: 65px;
+    max-height: 65px;
+    min-height: 65px;
+  
+  }
+  
+  
+.start-date-display{
+    background-color: violet;
+
+  }
+  
+.start-date{
+    background-color: limegreen;
+    /* max-width: 74.460px; */
+    min-width: 65px;
+    max-height: 65px;
+    min-height: 65px;
+
+
+  }
+  
+.start-select{
+    background-color: deeppink;
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
-  } */
+    min-height: 65px;
+    max-height: 65px;
+
+  }
+  
+  
+.finish-time-display{
+    background-color: peachpuff;
+
+  }
+  
+.finish-time{
+    background-color: green;
+  
+  }
+  
+.finish-date-display{
+    background-color: lightseagreen;
+
+  }
+  
+.finish-date{
+    background-color: crimson;
+    min-height: 65px;
+    max-height: 65px;
+  
+  }
+  
+.finish-select{ 
+    background-color: gold;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    min-height: 65px;
+    max-height: 65px;
+  }
+
+ .menuDiv{
+  flex: none;
+  background-color: coral;
+
+  }
+
+  menu {
+    margin-right: 40px;
+    margin-left: 0px;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: none;
+    /* padding: none; */
+  }
+
+  .hardcodedButton{
+    width: 65px;
+    height: 65px;
+  }
+  
+  .hardcodedButtonSlim{
+    width: 65px;
+    height: 32.5px;
+  }

@@ -8,12 +8,6 @@
   display: flex; 
 }
 
-.event{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .eventContainer {
   display: flex;
   justify-content: center;
@@ -23,6 +17,12 @@
   max-width: 365px;
   border-radius: 25px;
   border: 6px solid whitesmoke;
+}
+
+.event{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .checkoutForm {
@@ -55,7 +55,7 @@
 
 .address{
   margin-left: -60px;
-  background-color: none;
+  background-color: yellow;
   justify-content: left; 
 }
 
@@ -63,6 +63,7 @@
   padding-left: 10px;
   background-color: none;
   text-align: left;
+  
 }
 
 .startDateDisplay{

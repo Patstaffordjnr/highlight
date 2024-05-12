@@ -13,17 +13,18 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class EventModalComponent implements OnInit {
 
   dialogOpen: boolean = false;
+  editDialog: boolean = false;
   @ViewChild('myDialog', { static: true }) myDialog: HTMLDialogElement;
-
+  typesOfEvents = ["Busker"];
   checkoutForm: FormGroup
 
   eventModal: Event[];
   currentEvent
 
-  public title: String;
+  public eventTitle: String;
   public eventType: EventType;
   public lat: Number
-  public long: Number
+  public lng: Number
   public startAt: Date;
   public endAt: Date;
   public createdAt: Date;
@@ -36,7 +37,7 @@ export class EventModalComponent implements OnInit {
       this.dialogOpen = false;
 
       this.checkoutForm = this.formBuilder.group({
-        name: [''],
+        eventTitle: [''],
         eventType: [''],
         eventLat: [Number],
         eventLng: [Number],
@@ -53,10 +54,10 @@ export class EventModalComponent implements OnInit {
 
   async currentDisplay(SelecteCurrentEvent: Event[]) {
     this.currentEvent = await SelecteCurrentEvent
-        this.title = this.currentEvent.title;
+        this.eventTitle = this.currentEvent.title;
         this.eventType = this.currentEvent.eventType;
         this.lat = this.currentEvent.lat;
-        this.long = this.currentEvent.long;
+        this.lng = this.currentEvent.long;
         this.startAt = this.currentEvent.startAt;
         this.endAt = this.currentEvent.endAt;
         this.createdAt = this.currentEvent.createdAt;
@@ -76,6 +77,11 @@ export class EventModalComponent implements OnInit {
 
   onSubmit(checkoutForm) {
     console.log(checkoutForm);
+
+  }
+
+  toggleModalEdit() {
+    this.editDialog = !this.editDialog;
 
   }
   toggleModalOpen() {
