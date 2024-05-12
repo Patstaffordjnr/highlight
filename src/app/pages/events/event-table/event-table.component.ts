@@ -5,6 +5,7 @@ import { CommonModule, NgFor } from '@angular/common';
 import { GoogleMapService } from '../../google-map/google-map.service';
 import { PageListResponse } from '.././page-list-reponse';
 import { EventService } from '../event-service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-event-table',
@@ -40,6 +41,35 @@ async ngOnInit() {
   this.reveivedObject =  initialEventList;
   this.eventResponseList.total = this.reveivedObject.total;
   this.eventResponseList.results = this.reveivedObject.results;
+  
+// ---------------------------------------------------FAKE LAT AND LNG DATA
+  this.eventResponseList.results.forEach((x, c) => {
+   if(c == 0) {
+    this.reveivedObject.results[0].lat = 52.306747678867126;
+    this.reveivedObject.results[0].long = -6.922702893237298;
+   }
+
+   if(c == 1) {
+    this.reveivedObject.results[1].lat = 52.304758322184604 
+    this.reveivedObject.results[1].long = -6.928453549365227
+   }
+   
+   if(c == 2) {
+    this.reveivedObject.results[2].lat = 52.30108441949439
+    this.reveivedObject.results[2].long = -6.932745083789055
+   }
+   if(c == 3) {
+    this.reveivedObject.results[3].lat = 52.29688530029103
+    this.reveivedObject.results[3].long = -6.937551602343743
+   }
+
+   if(c == 4) {
+    this.reveivedObject.results[4].lat = 52.29426064859362
+    this.reveivedObject.results[4].long = -6.941328152636712
+   }
+
+  });
+// -------------------------------------------------ENDS HERE CAN BE DELETED
   this.pageNumberOrchestration(this.reveivedObject.results.length, this.reveivedObject.total, this.currentIndex)
 }
 

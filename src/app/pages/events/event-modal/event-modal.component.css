@@ -15,7 +15,7 @@
 }
 
 dialog {
-  background-color: beige;
+  /* background-color: beige; */
     box-shadow: 0 0 20px 8px #d0d0d0;
     border-radius: 25px;
     border: 6px solid whitesmoke;
@@ -27,60 +27,60 @@ dialog {
     justify-content: center;
     align-items: center;
 
-   
   }
 
 .formContainer {
     background-color: none;
-
   }
 
 .checkoutForm {
-  background-color: yellow;
+  /* background-color: yellow; */
   padding-top: 10px;
   width: 345px;
   background-color: none;
   }
   
 .event-title{
-    background-color: olive;
+    /* background-color: olive; */
     min-width: 50%;
     max-height: 65px;
     min-height: 65px;
   }
 
-  .event-type{
-    background-color: azure;
+.event-type{
+    /* background-color: azure; */
     max-height: 65px;
     min-height: 65px;
+    text-align: right;
   }
 
 .event-type-input{
-    background-color: greenyellow;
+    /* background-color: greenyellow; */
     min-width: 65px;
     max-height: 65px;
     min-width: 91.25px;
   }
   
 .address{
-    background-color: lime;
+    /* background-color: lime; */
+    min-width: 50%;
   }
   
 .address-input{
-    background-color: white;
+    /* background-color: white; */
     justify-content: right;
     text-align: right;
     min-height: 65px;
   }
   
 .start-time-display{
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     text-align: left;
     
   }
   
 .start-time{
-    background-color: darkgray;
+    /* background-color: darkgray; */
     min-width: 65px;
     max-height: 65px;
     min-height: 65px;
@@ -88,11 +88,11 @@ dialog {
   
 
 .start-date-display{
-    background-color: violet;
+    /* background-color: none; */
   }
   
 .start-date{
-    background-color: limegreen;
+    /* background-color: limegreen; */
     min-width: 65px;
     max-height: 65px;
     min-height: 65px;
@@ -100,7 +100,7 @@ dialog {
   }
   
 .start-select{
-    background-color: deeppink;
+    /* background-color: deeppink; */
     display: flex;
     justify-content: right;
     align-items: center;
@@ -110,29 +110,29 @@ dialog {
   }
   
 .finish-time-display{
-    background-color: peachpuff;
+    background-color: none;
 
   }
   
 .finish-time{
-    background-color: green;
+    background-color: none;
 
   }
   
 .finish-date-display{
-    background-color: lightseagreen;
+    background-color: none;
 
   }
   
 .finish-date{
-    background-color: crimson;
+    /* background-color: crimson; */
     min-height: 65px;
     max-height: 65px;
   
   }
   
 .finish-select{ 
-    background-color: gold;
+    /* background-color: gold; */
     display: flex;
     justify-content: right;
     align-items: center;
@@ -142,7 +142,7 @@ dialog {
 
  .menuDiv{
   flex: none;
-  background-color: coral;
+  /* background-color: coral; */
 
   }
 

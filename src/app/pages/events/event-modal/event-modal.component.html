@@ -9,15 +9,16 @@
     <div class = "event-title col">
     <a>Title :
     </a>
+    <br>
     <a *ngIf= "!editDialog">{{eventTitle}}</a>
     <input *ngIf= "editDialog" type="string" formControlName="eventTitle" placeholder="{{eventTitle}}">
     </div>
 
     <div class = "event-type col">
-      <a>Type : </a>
+      <a>Type :</a>
     </div>
     <div class = "event-type-input col">
-      <a *ngIf= "!editDialog" >{{eventType}}</a>
+      <a *ngIf= "!editDialog" >&nbsp;{{eventType}}</a>
       <select *ngIf= "editDialog" formControlName ="eventType"><option *ngFor="let type of typesOfEvents" [ngValue]="type">{{type}}</option></select>
     </div>
   </div>
