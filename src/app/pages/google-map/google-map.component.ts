@@ -16,7 +16,7 @@ export class GoogleMapComponent implements AfterViewInit {
   eventsToBeDisplayed = [];
 
   // marker: google.maps.Marker | null = null;
-  markers: google.maps.Marker[] = [];//#endregion
+  markers: google.maps.Marker[] = []
   markerAddressLatLng = {};
   markerAddress: string;
 
@@ -24,6 +24,11 @@ export class GoogleMapComponent implements AfterViewInit {
   geocoder: any;
   map: google.maps.Map;
   mapClickListener: google.maps.MapsEventListener;
+
+  userCurrentGeolocationLat
+  userCurrentGeolocationLng
+
+  mapCenter;
 
   constructor(private googleMapService: GoogleMapService, private http: HttpClient) {
     this.googleMapService.markerPlaced$.subscribe((markerPlaced => {
@@ -38,7 +43,7 @@ export class GoogleMapComponent implements AfterViewInit {
     this.updateEvents(this.eventsToBeDisplayed);
   });
 
-   }
+}
 
   
   ngAfterViewInit(): void {
@@ -46,8 +51,8 @@ export class GoogleMapComponent implements AfterViewInit {
     this.loadGoogleMaps(() => {
       this.initMap();
       this.geocoder = new google.maps.Geocoder();
-    });
 
+    });
   }
 
   loadGoogleMaps(callback: () => void) {
@@ -61,27 +66,37 @@ export class GoogleMapComponent implements AfterViewInit {
     }
   }
 
-  initMap() {
+  async initMap() {
     const initialCoords: google.maps.LatLngLiteral = { lat: 41.73061, lng: -73.935242 };
     const mapOptions: google.maps.MapOptions = {
       center: initialCoords,
       zoom: 13
     };
-    this.map = new google.maps.Map(this.mapContainer.nativeElement, mapOptions);
-
+    
+    this.map = await new google.maps.Map(this.mapContainer.nativeElement, mapOptions);
+    
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const coords = {
-           
             lat: position.coords.latitude,
             lng: position.coords.longitude
-
           };
+
+          this.getCurrentLocation(coords.lat, coords.lng)
+
           this.map.setCenter(coords);
         })}
 
 }
+
+getCurrentLocation(lat, lng){
+console.log(`lat:${lat}, lng:${lng}`);
+
+    this.userCurrentGeolocationLat = lat;
+    this.userCurrentGeolocationLng = lng;
+}
+
 
 updateEventLatLng(eventLatLng) {
   this.googleMapService.updateEventLatLng(eventLatLng);
@@ -193,6 +208,25 @@ async updateEvents(eventsToBeDisplayed) {
 }
 
 onMapClick(event: PointerEvent) {
+
+  const center = this.map.getCenter();
+  const lat = center.lat();
+  const lng = center.lng();
+
+  console.log(`Center coordinates after click: lat: ${lat}, lng: ${lng}`);
+  
+
+  
+  // console.log(event);
+
+  // console.log(event.clientX);
+  // console.log(event.clientY);
+
+  // console.log(event.pageX);
+  // console.log(event.pageY);
+
+  // console.log(event.view);
+
 }
 
 }

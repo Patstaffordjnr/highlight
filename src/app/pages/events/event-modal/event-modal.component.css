@@ -42,38 +42,61 @@ dialog {
   
 .event-title{
     /* background-color: olive; */
-    min-width: 50%;
+    min-width: 60%;
     max-height: 65px;
     min-height: 65px;
+  }
+
+.event-title-input-div{
+    height: 32.55px;
+    width: 195px;
   }
 
 .event-type{
     /* background-color: azure; */
     max-height: 65px;
     min-height: 65px;
+    display: flex;
+    text-align: right;
+    justify-content: right;
     text-align: right;
   }
 
 .event-type-input{
-    /* background-color: greenyellow; */
-    min-width: 65px;
-    max-height: 65px;
-    min-width: 91.25px;
-  }
+    text-align: right;
+    justify-content: right;
   
+  }
+
+  .event-type-input-div{
+    background-color: none;
+  }
 .address{
+  padding-top: 10px;
     /* background-color: lime; */
-    min-width: 50%;
+    max-width: 20%;
   }
+
+  .address-input-div{
+
+    height: 32.5px;
+    width: 190px;
   
+  }
+.address-display{
+  padding-top: 10px;
+    max-width: 22%;
+  }
 .address-input{
+  padding-top: 10px;
     /* background-color: white; */
     justify-content: right;
-    text-align: right;
+    text-align: left;
     min-height: 65px;
   }
   
 .start-time-display{
+  padding-top: 10px;
     /* background-color: blueviolet; */
     text-align: left;
     
@@ -81,6 +104,7 @@ dialog {
   
 .start-time{
     /* background-color: darkgray; */
+    padding-top: 10px;
     min-width: 65px;
     max-height: 65px;
     min-height: 65px;
@@ -88,11 +112,13 @@ dialog {
   
 
 .start-date-display{
-    /* background-color: none; */
+  padding-top: 10px;
+    background-color: none;
   }
   
 .start-date{
     /* background-color: limegreen; */
+    padding-top: 10px;
     min-width: 65px;
     max-height: 65px;
     min-height: 65px;
@@ -101,6 +127,7 @@ dialog {
   
 .start-select{
     /* background-color: deeppink; */
+    padding-top: 10px;
     display: flex;
     justify-content: right;
     align-items: center;
@@ -110,21 +137,25 @@ dialog {
   }
   
 .finish-time-display{
+  padding-top: 10px;
     background-color: none;
 
   }
   
 .finish-time{
+  padding-top: 10px;
     background-color: none;
 
   }
   
 .finish-date-display{
+  padding-top: 10px;
     background-color: none;
 
   }
   
 .finish-date{
+  padding-top: 10px;
     /* background-color: crimson; */
     min-height: 65px;
     max-height: 65px;
@@ -132,6 +163,7 @@ dialog {
   }
   
 .finish-select{ 
+  padding-top: 10px;
     /* background-color: gold; */
     display: flex;
     justify-content: right;

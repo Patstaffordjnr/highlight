@@ -30,7 +30,10 @@ const routes: Routes = [
   { path: 'progressbar', component: ProgressBarComponent},
   { path: 'globaldateandtime', component: GlobalDateAndTimeComponent},
   { path: 'event', component: EventComponent},
-
+  { path: '', component: HomeComponent, children: [
+    { path: '', outlet: 'map', component: GoogleMapComponent },
+    { path: '', outlet: 'events', component: EventsComponent },
+  ]},
 ];
 
 @NgModule({

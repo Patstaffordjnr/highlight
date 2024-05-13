@@ -6,6 +6,7 @@ import { GoogleMapService } from '../../google-map/google-map.service';
 import { PageListResponse } from '.././page-list-reponse';
 import { EventService } from '../event-service';
 import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-event-table',
@@ -26,12 +27,14 @@ export class EventTableComponent implements OnInit {
   noOfEventsPerPage = 10;
   lastElementOfCurrentArr = this.pageNumberArray.slice(-1);
 
+  eventAddress = [];
+
 eventResponseList: PageListResponse = {
   total: 0,
  results: []
 };
 
-constructor(private eventsClient: EventsClient, private eventService: EventService) {
+constructor(private eventsClient: EventsClient, private eventService: EventService,  private http: HttpClient) {
 }
 
 async ngOnInit() { 
@@ -41,7 +44,7 @@ async ngOnInit() {
   this.reveivedObject =  initialEventList;
   this.eventResponseList.total = this.reveivedObject.total;
   this.eventResponseList.results = this.reveivedObject.results;
-  
+
 // ---------------------------------------------------FAKE LAT AND LNG DATA
   this.eventResponseList.results.forEach((x, c) => {
    if(c == 0) {
@@ -70,8 +73,33 @@ async ngOnInit() {
 
   });
 // -------------------------------------------------ENDS HERE CAN BE DELETED
+
+this.reveivedObject.results.forEach((x, c) => {
+this.getAddressFromCoordinates(x.lat, x.long);
+})
+
   this.pageNumberOrchestration(this.reveivedObject.results.length, this.reveivedObject.total, this.currentIndex)
 }
+
+
+async getAddressFromCoordinates(latitude: number, longitude: number) {
+  const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyA5mnnydr-3HjuPTwkoNmVUHAYy77CVSmQ`; // Replace with your API endpoint and key
+  await this.http.get(geocodingUrl)
+   .subscribe((response: any) => {
+     if (response.results && response.results.length > 0) {
+       const address = response.results[0].formatted_address;
+       this.eventAddress.push(address);
+      //  console.log(address);
+
+     } else {
+      //  console.error("Failed to retrieve address from coordinates.");
+     }
+   },
+   (error) => {
+    //  console.error("Error during geocoding:", error);
+   });
+}
+
 
 pageNumberOrchestration(injectedNoOfEventsPerPage, injectedNoOfPages, injectedCurrentIndex){
  

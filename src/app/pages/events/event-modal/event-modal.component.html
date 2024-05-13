@@ -3,7 +3,6 @@
   <form class="checkoutForm"  [formGroup]="checkoutForm" method="dialog">
   <div class = "formDiv">
 <div class =  "formContainer">
-  
   <div class="flex-grid col">
 
     <div class = "event-title col">
@@ -11,7 +10,7 @@
     </a>
     <br>
     <a *ngIf= "!editDialog">{{eventTitle}}</a>
-    <input *ngIf= "editDialog" type="string" formControlName="eventTitle" placeholder="{{eventTitle}}">
+    <input class = "event-title-input-div"  *ngIf= "editDialog" type="string" formControlName="eventTitle" placeholder="{{eventTitle}}">
     </div>
 
     <div class = "event-type col">
@@ -27,50 +26,52 @@
     <div class = "address col">
       <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "finishSelect()">Select Address</button>
     </div>
+    <div class = "address-display col">
+      <a>Address :</a>
+    </div>
     <div class = "address-input col">
-      <input *ngIf= "editDialog" type="string" formControlName="address" placeholder="{{address}}">
-      <a  *ngIf= "!editDialog">{{address}}</a>
-      <a *ngIf= "!editDialog">{{lat}}</a>
+      <input class = "address-input-div" *ngIf= "editDialog" type="string" formControlName="address" placeholder="{{currentEventAddress}}">
+      <a *ngIf= "!editDialog"> &nbsp; {{currentEventAddress}}</a>
       <br>
-      <a *ngIf= "!editDialog"> {{lng}}</a>
     </div>
   </div>
 
   <div class="flex-grid">
-    <div class = "start-time-display col">
-      <a>Start Time   :</a>
-    </div>
-    <div class = "start-time col">
-      <a>{{ startAt | date:'shortTime' }}</a>
-    </div>
+
     <div class = "start-date-display col">
       <a>Start Date :</a>
     </div>
     <div class = "start-date col">
       <a>{{ startAt | date:'mediumDate' }}</a>
     </div>
+    <div class = "start-time-display col">
+      <a>Start Time   :</a>
+    </div>
+    <div class = "start-time col">
+      <a>{{ startAt | date:'shortTime' }}</a>
+    </div>
     <div class = "start-select col">
-      <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "startSelect()">Select Start</button>
+      <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "startSelect()">Select Start Time & Date</button>
     </div>
 
   </div>
   
   <div class="flex-grid">
-    <div class = "finish-time-display col">
-      <a>Finish Time :</a>
-    </div>
-    <div class = "finish-time col">
-      <a>{{ endAt | date:'shortTime' }}</a>
 
-    </div>
     <div class = "finish-date-display col">
       <a>Finish Date :</a>
     </div>
     <div class = "finish-date col">
       <a>{{ endAt | date:'mediumDate' }}</a>
     </div>
+    <div class = "finish-time-display col">
+      <a>Finish Time :</a>
+    </div>
+    <div class = "finish-time col">
+      <a>{{ endAt | date:'shortTime' }}</a>
+    </div>
     <div class = "finish-select col">
-      <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "finishSelect()">Select Finish</button>
+      <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "finishSelect()">Select Finish Time & Date</button>
     </div>
   </div>
 </div>
