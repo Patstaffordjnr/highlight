@@ -15,6 +15,10 @@ export class EventModalComponent implements OnInit {
 
   dialogOpen: boolean = false;
   editDialog: boolean = false;
+
+  calenderStartEventVisible = false;
+  calenderFinishEventVisible = false;
+
   @ViewChild('myDialog', { static: true }) myDialog: HTMLDialogElement;
   typesOfEvents = ["Busker"];
   checkoutForm: FormGroup
@@ -136,5 +140,13 @@ export class EventModalComponent implements OnInit {
   }
 
   
+startTimeSelectToggle() {
+      this.calenderStartEventVisible = !this.calenderStartEventVisible
+    }
+
+finishTimeSelectToggle() {
+      this.calenderFinishEventVisible = !this.calenderFinishEventVisible
+      
+    }
   
 }

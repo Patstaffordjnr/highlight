@@ -13,8 +13,8 @@
   justify-content: center;
   align-items: center;
   background-color: none;
-  min-width: 365px;
-  max-width: 365px;
+  min-width: 340px;
+  max-width: 340px;
   border-radius: 25px;
   border: 6px solid whitesmoke;
 }
@@ -28,8 +28,8 @@
 .checkoutForm {
   top: -20px;
   background-color: none;
-  max-width: 365px;
-  min-width: 365px;
+  max-width: 340px;
+  min-width: 340px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -55,7 +55,7 @@
 
 .address{
   margin-left: -60px;
-  background-color: yellow;
+  /* background-color: yellow; */
   justify-content: left; 
 }
 
@@ -88,12 +88,14 @@
 }
 
 .startDateSelect{
-  margin-left: -6px;
+  display: flex;
+  justify-content: center;
   background-color: none;
 }
 
 .startTimeSelect{
-  background-color: none;
+  display: flex;
+  justify-content: center;
 }
 
 .finishDateDisplayText {
@@ -112,6 +114,7 @@
 }
 .finishTimeDisplay{
   background-color:  none;
+
 }
 
 .finishTimeButton{
@@ -121,11 +124,16 @@
 }
 
 .finishDateSelect {
-  margin-left: -6px;
+  background-color: none;
+  display: flex;
+  justify-content: center;
+
 }
 
 .finishTimeSelect{
   background-color: none;
+  display: flex;
+  justify-content: center;
 }
 
 .submit{

@@ -132,9 +132,6 @@ selectAddress() {
 
       google.maps.event.removeListener(this.mapClickListener);
 
-      // (Optional) Call your GoogleMapService to handle marker placement logic
-      // this.googleMapService.placeMarker(marker); // Assuming the service has such a method
-
       if(this.markers.length > 0) {
     this.getAddressFromCoordinates(lat, lng);
       }
@@ -156,7 +153,9 @@ async getAddressFromCoordinates(latitude: number, longitude: number) {
    .subscribe((response: any) => {
      if (response.results && response.results.length > 0) {
        const address = response.results[0].formatted_address;
-       this.updateEventAddress(address);
+      //  this.updateEventAddress(address);
+      console.log(address);
+      return address
 
      } else {
        console.error("Failed to retrieve address from coordinates.");
@@ -207,13 +206,16 @@ async updateEvents(eventsToBeDisplayed) {
 
 }
 
-onMapClick(event: PointerEvent) {
+async onMapClick(event: PointerEvent) {
 
   const center = this.map.getCenter();
   const lat = center.lat();
   const lng = center.lng();
 
   console.log(`Center coordinates after click: lat: ${lat}, lng: ${lng}`);
+  
+  this.getAddressFromCoordinates(lat, lng);
+  // this.mapCenter = currentAddress;
   
 
   

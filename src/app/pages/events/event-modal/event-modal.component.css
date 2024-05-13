@@ -8,6 +8,14 @@
   flex: 1;
 }
 
+.detail-text{
+  font-weight: bold;
+
+}
+.subject-text{
+  font-weight: normal;
+
+}
 .formDiv{
   display: flex;
   justify-content: center;
@@ -15,166 +23,193 @@
 }
 
 dialog {
-  /* background-color: beige; */
     box-shadow: 0 0 20px 8px #d0d0d0;
     border-radius: 25px;
     border: 6px solid whitesmoke;
-    max-width: 1260px;
-    display: flex;
-    padding: 0px;
-    min-width: 365px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0px;
+
 
   }
 
 .formContainer {
     background-color: none;
+    padding: 0px;
+
+    max-width: 320px;
+
   }
 
 .checkoutForm {
-  /* background-color: yellow; */
-  padding-top: 10px;
-  width: 345px;
-  background-color: none;
+  padding: 10px;
+  margin: 0px;
   }
   
 .event-title{
-    /* background-color: olive; */
-    min-width: 60%;
-    max-height: 65px;
-    min-height: 65px;
+    min-width: 50%;
+    /* height: 63.6px; */
+    height: 63.6px;
+
+    /* background-color: antiquewhite; */
+    max-height: 25%;
+    min-height: 25%;
   }
 
 .event-title-input-div{
-    height: 32.55px;
-    width: 195px;
+  /* background-color: darkgreen; */
+
+ 
   }
 
 .event-type{
-    /* background-color: azure; */
-    max-height: 65px;
-    min-height: 65px;
-    display: flex;
-    text-align: right;
-    justify-content: right;
-    text-align: right;
+    /* background-color: green; */
   }
 
 .event-type-input{
-    text-align: right;
-    justify-content: right;
-  
+  /* background-color: greenyellow; */
+  text-align: right;
+
   }
 
-  .event-type-input-div{
-    background-color: none;
+.event-type-input-div{
+    /* background-color: grey; */
+    width: 100%;
   }
+
+
 .address{
+  /* background-color: goldenrod; */
   padding-top: 10px;
-    /* background-color: lime; */
-    max-width: 20%;
-  }
+  min-height: 63.6px;
+  min-width: 25%;
+  max-width: 25%;
+  padding-bottom: 10px;
 
-  .address-input-div{
+}
 
-    height: 32.5px;
-    width: 190px;
-  
-  }
+.address-button{
+    /* background-color: aqua; */
+    display: flex;
+    align-items: flex-end;
+    min-height: 50%;
+    bottom: 0;
+
+}
+
+
 .address-display{
   padding-top: 10px;
-    max-width: 22%;
-  }
+  max-width: 25%;
+  min-width: 25%;
+  max-height: 63.6px;
+  /* background-color: khaki; */
+
+}
+
 .address-input{
   padding-top: 10px;
-    /* background-color: white; */
-    justify-content: right;
-    text-align: left;
-    min-height: 65px;
+
+  max-height: 25%;
+  max-width: 75%;
+  min-width: 75%;
+  /* background-color: whitesmoke; */
+
+}
+
+.address-input-div{
+
+    /* background-color: navajowhite; */
+    min-width: 97%;
+    min-height: 41.5%;
+  
   }
   
 .start-time-display{
   padding-top: 10px;
     /* background-color: blueviolet; */
-    text-align: left;
     
   }
   
 .start-time{
+  padding-top: 10px;
     /* background-color: darkgray; */
-    padding-top: 10px;
-    min-width: 65px;
-    max-height: 65px;
-    min-height: 65px;
+
   }
   
 
 .start-date-display{
   padding-top: 10px;
-    background-color: none;
+  /* background-color: aqua; */
   }
   
 .start-date{
+  padding-top: 10px;
     /* background-color: limegreen; */
-    padding-top: 10px;
-    min-width: 65px;
-    max-height: 65px;
-    min-height: 65px;
-
   }
   
 .start-select{
-    /* background-color: deeppink; */
-    padding-top: 10px;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    min-height: 65px;
-    max-height: 65px;
 
+    /* background-color: deeppink; */
+    min-width: 20%;
+    min-height: 20%;
   }
   
+  .startDateSelect{
+    /* background-color: aliceblue; */
+    display: flex;
+    /* margin-left: 0px;
+    left: 10px; */
+    justify-content: center;
+    background-color: none;
+  }
+  
+  .startTimeSelect{
+    display: flex;
+    justify-content: center;
+  }
 .finish-time-display{
   padding-top: 10px;
-    background-color: none;
 
+  /* background-color: lightblue */
   }
   
 .finish-time{
   padding-top: 10px;
-    background-color: none;
+
+    /* background-color: dodgerblue; */
 
   }
   
 .finish-date-display{
   padding-top: 10px;
-    background-color: none;
+  /* background-color: blue; */
 
   }
   
 .finish-date{
   padding-top: 10px;
-    /* background-color: crimson; */
-    min-height: 65px;
-    max-height: 65px;
-  
+  /* background-color: navy */
+
   }
   
 .finish-select{ 
-  padding-top: 10px;
-    /* background-color: gold; */
+  /* background-color: slategray; */
+  min-width: 20%;
+  min-height: 20%;
+  display: flex;
+  justify-content: center;
+
+  }
+  .finishTimeSelect{
     display: flex;
-    justify-content: right;
-    align-items: center;
-    min-height: 65px;
-    max-height: 65px;
+    justify-content: center;
   }
 
  .menuDiv{
+  /* background-color: white; */
   flex: none;
-  /* background-color: coral; */
 
   }
 
@@ -184,15 +219,15 @@ dialog {
     display: flex;
     justify-content: space-evenly;
     background-color: none;
-    /* padding: none; */
+
   }
 
   .hardcodedButton{
-    width: 65px;
-    height: 65px;
+    /* width: 65px; */
+    /* height: 65px; */
   }
   
   .hardcodedButtonSlim{
-    width: 65px;
-    height: 32.5px;
+    /* width: 65px; */
+    /* height: 32.5px; */
   }

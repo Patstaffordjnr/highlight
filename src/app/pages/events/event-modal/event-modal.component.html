@@ -6,32 +6,31 @@
   <div class="flex-grid col">
 
     <div class = "event-title col">
-    <a>Title :
+    <a class = "detail-text">Title :
     </a>
     <br>
-    <a *ngIf= "!editDialog">{{eventTitle}}</a>
+    <a class = "subject-text" *ngIf= "!editDialog">{{eventTitle}}</a>
     <input class = "event-title-input-div"  *ngIf= "editDialog" type="string" formControlName="eventTitle" placeholder="{{eventTitle}}">
     </div>
-
     <div class = "event-type col">
-      <a>Type :</a>
+      <!-- <a>Type :</a> -->
     </div>
     <div class = "event-type-input col">
-      <a *ngIf= "!editDialog" >&nbsp;{{eventType}}</a>
-      <select *ngIf= "editDialog" formControlName ="eventType"><option *ngFor="let type of typesOfEvents" [ngValue]="type">{{type}}</option></select>
+      <a class = "detail-text">Type :</a>
+      <br>
+      <a class = "subject-text" *ngIf= "!editDialog" >&nbsp;{{eventType}}</a>
+      <select class = "event-type-input-div" *ngIf= "editDialog" formControlName ="eventType"><option *ngFor="let type of typesOfEvents" [ngValue]="type" placeholder="{{eventType}}" >{{type}}</option></select>
     </div>
   </div>
 
   <div class="flex-grid">
     <div class = "address col">
-      <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "finishSelect()">Select Address</button>
-    </div>
-    <div class = "address-display col">
-      <a>Address :</a>
+      <a class = "detail-text" *ngIf= "!editDialog">Address :</a>
+      <button  *ngIf= "editDialog" class = "address-button" (click) = "finishSelect()">Select Address</button>
     </div>
     <div class = "address-input col">
       <input class = "address-input-div" *ngIf= "editDialog" type="string" formControlName="address" placeholder="{{currentEventAddress}}">
-      <a *ngIf= "!editDialog"> &nbsp; {{currentEventAddress}}</a>
+      <a class = "subject-text" *ngIf= "!editDialog">{{currentEventAddress}}</a>
       <br>
     </div>
   </div>
@@ -39,46 +38,64 @@
   <div class="flex-grid">
 
     <div class = "start-date-display col">
-      <a>Start Date :</a>
+      <a class = "detail-text" >Start <br>Date :</a>
     </div>
     <div class = "start-date col">
-      <a>{{ startAt | date:'mediumDate' }}</a>
+      <a class = "subject-text">{{ startAt | date:'mediumDate' }}</a>
     </div>
     <div class = "start-time-display col">
-      <a>Start Time   :</a>
+      <a class = "detail-text" >Start <br>Time   :</a>
     </div>
     <div class = "start-time col">
-      <a>{{ startAt | date:'shortTime' }}</a>
-    </div>
-    <div class = "start-select col">
-      <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "startSelect()">Select Start Time & Date</button>
+      <a class = "subject-text">{{ startAt | date:'shortTime' }}</a>
     </div>
 
+
+    <div *ngIf= "editDialog" class = "start-select col">
+      <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "startTimeSelectToggle()">Start Time & Date</button>
+    </div>
   </div>
-  
+    <div class = "startDateSelect col" >
+      <app-calendar *ngIf="calenderStartEventVisible" class = "calenderStartDate" [selectedDate]="startDateAndTime" (selectDateEvent)="onStartDateSelected($event)"></app-calendar>
+    </div>
+    <div class = "startTimeSelect col">
+      <app-progress-bar *ngIf="calenderStartEventVisible" class = "calenderStartTime" [selectedTime]="startDateAndTime" (selectTimeEvent)="onStartTimeSelected($event)"></app-progress-bar>
+    </div>
+    <br>
+
+
   <div class="flex-grid">
 
     <div class = "finish-date-display col">
-      <a>Finish Date :</a>
+      <a class = "subject-text" class = "detail-text" >Finish Date :</a>
     </div>
     <div class = "finish-date col">
-      <a>{{ endAt | date:'mediumDate' }}</a>
+      <a class = "subject-text">{{ endAt | date:'mediumDate' }}</a>
     </div>
     <div class = "finish-time-display col">
-      <a>Finish Time :</a>
+      <a class = "detail-text" >Finish Time :</a>
     </div>
     <div class = "finish-time col">
-      <a>{{ endAt | date:'shortTime' }}</a>
+      <a class = "subject-text">{{ endAt | date:'shortTime' }}</a>
     </div>
-    <div class = "finish-select col">
-      <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "finishSelect()">Select Finish Time & Date</button>
+    <div *ngIf= "editDialog" class = "finish-select col">
+      <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "finishTimeSelectToggle()">Finish Time & Date</button>
     </div>
   </div>
+
+
+    <div class = "finishDateSelect col" >
+      <app-calendar  *ngIf="calenderFinishEventVisible" class = "calenderFinishDate" [selectedDate]="finishDateAndTime" (selectDateEvent)="onFinishDateSelected($event)"></app-calendar>
+    </div>
+
+  <div class = "finishTimeSelect col">
+    <app-progress-bar *ngIf="calenderFinishEventVisible" class = "progressBarFinishTime"  [selectedTime]="finishDateAndTime" (selectTimeEvent)="onFinishTimeSelected($event)"></app-progress-bar>
+  </div>
+
 </div>
 </div>
 <div class = "menuDiv"> 
 <menu class = "menu">
-
   <button (click)="toggleModalEdit()" class = "hardcodedButtonSlim">Edit</button>
   <button (click)="toggleModalClose()">Close</button>
   <button type="submit" value="confirmBtn" (click)="toggleModalConfirm()" class = "hardcodedButtonSlim">Confirm</button>

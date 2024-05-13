@@ -1,6 +1,17 @@
+.border{
+  border-radius: 25px;
+  border: 6px solid whitesmoke;
+  width: 340px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  
+
+}
+
 .progress-bar {
     height: 20px;
-    width: 365px;
+    width: 330px;
     display: grid;
     grid-template-columns: repeat(24, 1fr);
     z-index: 10;
@@ -8,8 +19,7 @@
     align-items: center; 
     font-size: 65%;
     color: black;
-    border-radius: 25px;
-    border: 2px solid whitesmoke;
+ 
     
   }
   
@@ -37,14 +47,14 @@
 .dot-boundary {
   display: flex;
   align-content: center;
-  width: 384px;
+  width: 350px;
   position: relative;
   left: -10px
   
 }
 .dot {
-  height: 20px;
-  width: 20px;
+  height: 30px;
+  width: 30px;
     opacity: 90%;
   background-color: seagreen;
   border-radius: 50%;

@@ -44,8 +44,10 @@ export class ProgressBarComponent implements OnInit {
     let hourPercentOfX = (hour / 24) * 100
 
     let divLeft = progressBarElement.offsetLeft;
+    console.log(divLeft);
     let divRight = (divLeft + progressBarElement.offsetWidth);
-    let divLength = divRight - divLeft;
+    console.log(divRight);
+    let divLength = (divRight - divLeft);
     let divLengthByTwentyFour = (divLength / 24);
     let div60 = divLengthByTwentyFour / 60;
     let divMinutes = div60 * minutes;
@@ -59,6 +61,7 @@ export class ProgressBarComponent implements OnInit {
 
   emitTime(hour, minutes) {
     let time = `${hour}:${minutes}`
+    console.log(hour, minutes);
     this.selectTimeEvent.emit(time);
   }
 

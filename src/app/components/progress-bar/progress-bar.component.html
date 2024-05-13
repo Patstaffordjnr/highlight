@@ -1,4 +1,5 @@
 <br>
+<div class = "border">
 <div class="progress-bar" #clockhourSelect>
   <div *ngFor="let hour of hours" (click)="hourSelect($event)">
     <div class="hourAM-container" id="progress-bar" #hourDiv>
@@ -10,4 +11,5 @@
   <span class="dot" #dot cdkDragBoundary=".dot-boundary" cdkDragLockAxis="x" (cdkDragMoved)="onDragMoved($event)" cdkDrag ></span>
 </div>
   </div>
+</div>
 </div>

@@ -39,15 +39,17 @@
       <button type = "button" class = "hardcodedButton" (click) = startTimeSelectToggle()>Select Time & Date: </button>
       </div>
     </div>
-    <div class="flex-grid">
+
     <div class = "startDateSelect col" >
       <app-calendar *ngIf="calenderStartEventVisible" class = "calenderStartDate" [selectedDate]="startDateAndTime" (selectDateEvent)="onStartDateSelected($event)"></app-calendar>
     </div>
-    </div>
+ 
     <div class = "startTimeSelect col">
       <app-progress-bar *ngIf="calenderStartEventVisible" class = "calenderStartTime" [selectedTime]="startDateAndTime" (selectTimeEvent)="onStartTimeSelected($event)"></app-progress-bar>
     </div>
     <br>
+
+
       <div class="flex-grid">
     <div class = "finishDateDisplayText col">
     <a>Finish Date : </a>
@@ -65,14 +67,17 @@
       <button type = "button" class = "hardcodedButton" (click) = finishTimeSelectToggle()>Finish Time & Date: </button>
       </div>
     </div>
-    <div class="flex-grid">
+
+
+
     <div class = "finishDateSelect col" >
       <app-calendar  *ngIf="calenderFinishEventVisible" class = "calenderFinishDate" [selectedDate]="finishDateAndTime" (selectDateEvent)="onFinishDateSelected($event)"></app-calendar>
     </div>
-  </div>
+
   <div class = "finishTimeSelect col">
     <app-progress-bar *ngIf="calenderFinishEventVisible" class = "progressBarFinishTime"  [selectedTime]="finishDateAndTime" (selectTimeEvent)="onFinishTimeSelected($event)"></app-progress-bar>
   </div>
+
     <div class = "submit col">
     <button type="submit" class = "hardcodedButtonSlim" [disabled]="!checkoutForm.valid">Submit</button>
     </div>

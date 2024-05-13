@@ -15,8 +15,9 @@
   justify-content: space-evenly;
   border-radius: 25px;
   border: 6px solid whitesmoke;
-  max-width: 365px;
-  min-width: 365px;
+  max-width: 340px;
+  min-width: 340px;
+  min-height: 265px;
 }
 
 .week-day-container {
@@ -44,6 +45,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 30px;
+  width: 30px;
 
 }
 
@@ -56,11 +59,11 @@
 }
 
 .calender-div a.selected {
+  background-color: pink;
   display: flex;
-  margin-left: 30%;
-  height: 20px;
-  width: 20px;
-  opacity: 90%;
+  /* margin-left: 27.5%; */
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
 }
 
@@ -75,14 +78,14 @@
 
 .previousMonth{
   background-color: deepskyblue;
-  height: 20px;
-  width: 20px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
 }
 
 .nextMonth{
   background-color: yellow;
-  height: 20px;
-  width: 20px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
 }
