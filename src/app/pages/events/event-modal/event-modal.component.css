@@ -168,6 +168,14 @@ dialog {
   .startTimeSelect{
     display: flex;
     justify-content: center;
+    /* background-color: aqua; */
+  }
+
+  .calender-start-time{
+    /* background-color: darkgreen; */
+    background-color: none;
+    display: flex;
+    justify-content: center;
   }
 .finish-time-display{
   padding-top: 10px;
@@ -201,10 +209,12 @@ dialog {
   display: flex;
   justify-content: center;
 
+
   }
   .finishTimeSelect{
     display: flex;
     justify-content: center;
+
   }
 
  .menuDiv{

@@ -50,17 +50,18 @@
       <a class = "detail-text" >Start <br>Time   :</a>
     </div>
     <div class = "start-time col">
-      <a class = "subject-text">{{ startAt | date:'shortTime' }}</a>
+      <a class = "subject-text">{{ startDateAndTime | date:'shortTime' }}</a>
     </div>
-
-
     <div *ngIf= "editDialog" class = "start-select col">
       <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "startTimeSelectToggle()">Start Time & Date</button>
     </div>
   </div>
+
+
     <div class = "startDateSelect col" >
       <app-calendar *ngIf="calenderStartEventVisible" class = "calenderStartDate" [selectedDate]="startDateAndTime" (selectDateEvent)="onStartDateSelected($event)"></app-calendar>
     </div>
+
     <div class = "startTimeSelect col">
       <app-progress-bar *ngIf="calenderStartEventVisible" class = "calenderStartTime" [selectedTime]="startDateAndTime" (selectTimeEvent)="onStartTimeSelected($event)"></app-progress-bar>
     </div>

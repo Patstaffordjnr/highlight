@@ -83,6 +83,14 @@ if(selecteCurrentEvent.length != 0) {
       this.getAddressFromCoordinates(this.currentEvent.lat, this.currentEvent.long);
       this.onStartDateSelected(this.startAt);
       this.onFinishDateSelected(this.endAt);
+
+      let startAtHour = String(this.startAt).substring(11, 13);
+      let startAtMinute = String(this.startAt).substring(14, 16);
+      let startTime = `${startAtHour}:${startAtMinute}`
+      this.startDateAndTime = new Date(this.startDateAndTime.getFullYear(), this.startDateAndTime.getMonth(), this.startDateAndTime.getDate(), Number(startAtHour), Number(startAtMinute), 0)
+      console.log(this.startDateAndTime);
+  
+
     }
 
     if(this.currentEvent.lat > 0) {
@@ -105,7 +113,7 @@ if(selecteCurrentEvent.length != 0) {
        if (response.results && response.results.length > 0) {
          const address = response.results[0].formatted_address;
          this.currentEventAddress = address;
-         console.log(address);
+        //  console.log(address);
         //  this.eventAddress.push(address);
         //  console.log(address);
   
@@ -132,6 +140,13 @@ const day = Number($event.substring(8, 10));
   }
 
 }
+
+
+onStartTimeSelected($event) {
+console.log($event);
+  
+  }
+
 
 onFinishDateSelected($event) {
 

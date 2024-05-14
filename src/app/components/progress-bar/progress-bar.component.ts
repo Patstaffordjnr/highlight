@@ -44,9 +44,9 @@ export class ProgressBarComponent implements OnInit {
     let hourPercentOfX = (hour / 24) * 100
 
     let divLeft = progressBarElement.offsetLeft;
-    console.log(divLeft);
+    // console.log(divLeft);
     let divRight = (divLeft + progressBarElement.offsetWidth);
-    console.log(divRight);
+    // console.log(divRight);
     let divLength = (divRight - divLeft);
     let divLengthByTwentyFour = (divLength / 24);
     let div60 = divLengthByTwentyFour / 60;
@@ -55,7 +55,7 @@ export class ProgressBarComponent implements OnInit {
     let dotX = ((divLength / 100) * hourPercentOfX);
 
     const dotElement: HTMLElement = this.dot.nativeElement;
-    dotElement.style.left =`${dotX}px`
+    dotElement.style.left =`${dotX - 10}px`
 
   }
 
@@ -95,8 +95,18 @@ export class ProgressBarComponent implements OnInit {
     let divElement: HTMLDivElement = this.progressBarDiv.nativeElement;
     let divLeft = divElement.offsetLeft;
     let divRight = (divLeft + divElement.offsetWidth);
-    let hourLength = (365) / 24
+    let hourLength = (330) / 24
     let dotX = dotPosition - divLeft
+
+console.log(`Dot position: ${dotPosition}`);
+console.log(`Div Left: ${divLeft}`);
+console.log(`Div Right: ${divRight}`);
+
+
+
+
+
+
 
     if(dotPosition < divLeft) {
       dotPosition = divLeft;
