@@ -144,6 +144,7 @@ const day = Number($event.substring(8, 10));
 
 onStartTimeSelected($event) {
 console.log($event);
+
   
   }
 

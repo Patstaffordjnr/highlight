@@ -173,6 +173,7 @@ dialog {
 
   .calender-start-time{
     /* background-color: darkgreen; */
+    width: 360px;
     background-color: none;
     display: flex;
     justify-content: center;

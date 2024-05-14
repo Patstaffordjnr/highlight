@@ -47,19 +47,20 @@
 .dot-boundary {
   display: flex;
   align-content: center;
-  width: 350px;
+  width: 360px;
   position: relative;
-  left: -10px
+  left: -15px
   
 }
 .dot {
+
   height: 30px;
   width: 30px;
     opacity: 90%;
   background-color: seagreen;
   border-radius: 50%;
-  display: inline-block;
-  position: relative; 
+  cursor: pointer;
+
 }
 
 
