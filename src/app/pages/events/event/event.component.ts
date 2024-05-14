@@ -4,6 +4,8 @@ import { GoogleMapService } from 'src/app/pages/google-map/google-map.service';
 import { HttpClient } from '@angular/common/http';
 import { CalendarComponent } from 'src/app/components/calendar/calendar.component';
 
+
+
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
@@ -109,7 +111,8 @@ onSubmit() {
     }
 
 onStartDateSelected($event) {
-
+  console.log($event);
+  console.log(typeof($event));
     const startDateWithoutTime = new Date($event.getFullYear(), $event.getMonth(), $event.getDate()).toLocaleDateString();;
     // console.log(startDateWithoutTime);
       this.startDate = startDateWithoutTime;
@@ -174,5 +177,7 @@ onStartTimeSelected($event) {
         new Date(this.finishDateAndTime.getFullYear(), this.finishDateAndTime.getMonth(), this.finishDateAndTime.getDate(), hours, minutes, 0)
       );
   }
+
+
 
 }

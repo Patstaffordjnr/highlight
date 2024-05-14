@@ -64,6 +64,7 @@ import { GlobalDateAndTimeComponentService } from './util/global-date-and-time/g
     EventTableComponent,
     DragDropModule,
 
+
     
   ],
   providers: [

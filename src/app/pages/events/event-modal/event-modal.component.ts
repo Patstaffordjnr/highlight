@@ -27,7 +27,14 @@ export class EventModalComponent implements OnInit {
   currentEvent
   currentEventAddress
 
- 
+  startDateAndTime = new Date;
+  finishDateAndTime = new Date;
+  
+  startDate: string;
+  startTime: string;
+
+  finishDate: string;
+  finishTime: string;
 
   public eventTitle: String;
   public eventType: EventType;
@@ -44,8 +51,6 @@ export class EventModalComponent implements OnInit {
     this.eventService.eventToBeDisplayed$.subscribe(eventSubject => {
       this.dialogOpen = false;
 
-      
-
       this.checkoutForm = this.formBuilder.group({
         eventTitle: [''],
         eventType: [''],
@@ -56,18 +61,14 @@ export class EventModalComponent implements OnInit {
         finishDateTime:  [Date],
       })
 
-    this.currentDisplay(eventSubject)
-
-    
+    this.currentDisplay(eventSubject);
     });
+
   }
 
-  async currentDisplay(SelecteCurrentEvent: Event[]) {
+async currentDisplay(selecteCurrentEvent: Event[]) {
 
-
-
-    
-    this.currentEvent = await SelecteCurrentEvent
+    this.currentEvent = await selecteCurrentEvent
         this.eventTitle = this.currentEvent.title;
         this.eventType = this.currentEvent.eventType;
         this.lat = this.currentEvent.lat;
@@ -78,22 +79,23 @@ export class EventModalComponent implements OnInit {
         this.updatedAt = this.currentEvent.updatedAt;
         this.id = this.currentEvent.id;
 
-        if(SelecteCurrentEvent.length != 0) {
-          console.log(SelecteCurrentEvent);
-          console.log(this.currentEvent.lat, this.currentEvent.long);
-          this.getAddressFromCoordinates(this.currentEvent.lat, this.currentEvent.long);
-        }
-
+if(selecteCurrentEvent.length != 0) {
+      this.getAddressFromCoordinates(this.currentEvent.lat, this.currentEvent.long);
+      this.onStartDateSelected(this.startAt);
+      this.onFinishDateSelected(this.endAt);
+    }
 
     if(this.currentEvent.lat > 0) {
       this.dialogOpen = true;
+      this.onStartDateSelected(this.startAt);
     } else {
       this.dialogOpen = false;
     }
+
   }
 
   ngOnInit() {
-    
+  
   }
 
   async getAddressFromCoordinates(latitude: number, longitude: number) {
@@ -117,14 +119,43 @@ export class EventModalComponent implements OnInit {
   }
 
 
-  onSubmit(checkoutForm) {
-    console.log(checkoutForm);
+onStartDateSelected($event) {
 
+  if(typeof($event) == "string"){
+    const year = Number($event.substring(0, 4));
+const month = Number($event.substring(5, 7));
+const day = Number($event.substring(8, 10));
+    this.startDateAndTime = new Date(year, month - 1, day, this.startDateAndTime.getHours(), this.startDateAndTime.getMinutes(), 0)
+  } else {
+    this.startDateAndTime = new Date($event.getFullYear(), $event.getMonth(), $event.getDate(), this.startDateAndTime.getHours(), this.startDateAndTime.getMinutes(), 0)
+    console.log(`Start Date Chosen from Event Calender: ${this.startDateAndTime}`);
+  }
+
+}
+
+onFinishDateSelected($event) {
+
+  if(typeof($event) == "string"){
+    const year = Number($event.substring(0, 4));
+const month = Number($event.substring(5, 7));
+const day = Number($event.substring(8, 10));
+    this.finishDateAndTime = new Date(year, month - 1, day, this.finishDateAndTime.getHours(), this.finishDateAndTime.getMinutes(), 0)
+  } else {
+    this.finishDateAndTime = new Date($event.getFullYear(), $event.getMonth(), $event.getDate(), this.finishDateAndTime.getHours(), this.finishDateAndTime.getMinutes(), 0)
+    console.log(`Finish Date Chosen from Event Calender: ${this.startDateAndTime}`);
+  }
+
+}
+
+  
+  onSubmit(checkoutForm) {
+      console.log(checkoutForm);
   }
 
   toggleModalEdit() {
     this.editDialog = !this.editDialog;
-
+    this.calenderStartEventVisible = false;
+    this.calenderFinishEventVisible = false;
   }
   toggleModalOpen() {
     this.dialogOpen = true;
@@ -138,15 +169,13 @@ export class EventModalComponent implements OnInit {
     this.dialogOpen = false;
     console.log(`Modal Confirm`);
   }
-
   
-startTimeSelectToggle() {
+  startTimeSelectToggle() {
       this.calenderStartEventVisible = !this.calenderStartEventVisible
     }
 
-finishTimeSelectToggle() {
+  finishTimeSelectToggle() {
       this.calenderFinishEventVisible = !this.calenderFinishEventVisible
       
     }
-  
 }

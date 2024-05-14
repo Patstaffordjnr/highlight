@@ -9,6 +9,7 @@
       <div class="week-day-header" *ngFor="let weekDay of weekDays">
         <div class="week-day-container">{{ weekDay }}</div>
       </div>
+
       <a class="day-container" *ngFor="let day of monthDays"
          [class.selected]="day === selectedDay"
          (click)="daySelect(day)">

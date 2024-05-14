@@ -12,6 +12,7 @@
     <a class = "subject-text" *ngIf= "!editDialog">{{eventTitle}}</a>
     <input class = "event-title-input-div"  *ngIf= "editDialog" type="string" formControlName="eventTitle" placeholder="{{eventTitle}}">
     </div>
+
     <div class = "event-type col">
       <!-- <a>Type :</a> -->
     </div>
@@ -22,6 +23,8 @@
       <select class = "event-type-input-div" *ngIf= "editDialog" formControlName ="eventType"><option *ngFor="let type of typesOfEvents" [ngValue]="type" placeholder="{{eventType}}" >{{type}}</option></select>
     </div>
   </div>
+
+
 
   <div class="flex-grid">
     <div class = "address col">
@@ -41,7 +44,7 @@
       <a class = "detail-text" >Start <br>Date :</a>
     </div>
     <div class = "start-date col">
-      <a class = "subject-text">{{ startAt | date:'mediumDate' }}</a>
+      <a class = "subject-text">{{startDateAndTime  | date:'mediumDate' }}</a>
     </div>
     <div class = "start-time-display col">
       <a class = "detail-text" >Start <br>Time   :</a>
@@ -70,7 +73,7 @@
       <a class = "subject-text" class = "detail-text" >Finish Date :</a>
     </div>
     <div class = "finish-date col">
-      <a class = "subject-text">{{ endAt | date:'mediumDate' }}</a>
+      <a class = "subject-text">{{ finishDateAndTime | date:'mediumDate' }}</a>
     </div>
     <div class = "finish-time-display col">
       <a class = "detail-text" >Finish Time :</a>
@@ -85,7 +88,7 @@
 
 
     <div class = "finishDateSelect col" >
-      <app-calendar  *ngIf="calenderFinishEventVisible" class = "calenderFinishDate" [selectedDate]="finishDateAndTime" (selectDateEvent)="onFinishDateSelected($event)"></app-calendar>
+      <app-calendar  *ngIf="calenderFinishEventVisible"   class = "calenderFinishDate" [selectedDate]="finishDateAndTime" (selectDateEvent)="onFinishDateSelected($event)"></app-calendar>
     </div>
 
   <div class = "finishTimeSelect col">

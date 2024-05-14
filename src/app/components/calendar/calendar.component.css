@@ -12,7 +12,7 @@
 
 .calender-div {
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   border-radius: 25px;
   border: 6px solid whitesmoke;
   max-width: 340px;
