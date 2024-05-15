@@ -13,6 +13,9 @@ import { CalendarComponent } from 'src/app/components/calendar/calendar.componen
 })
 export class EventComponent implements OnInit {
 
+
+  google: any
+
   calenderStartEventVisible = false;
   calenderFinishEventVisible = false;
 
@@ -67,9 +70,31 @@ async ngOnInit() {
         this.cdRef.detectChanges();
       }
     });
+   this.initAutocomplete();
+  }
+
+
+  initAutocomplete() {
+    const addressInput = document.getElementById('addressInput') as HTMLInputElement;
+    if (!addressInput) return;
+  
+    const autocomplete = new google.maps.places.Autocomplete(addressInput);
+    autocomplete.addListener("place_changed", () => {
+      const place = autocomplete.getPlace();
+      if (!place) return;
+  
+      this.address = place.formatted_address;
+      this.markerLat = place.geometry.location.lat();
+      this.markerLng = place.geometry.location.lng();
+
+      this.checkoutForm.get('address').patchValue(this.address);
+      this.checkoutForm.get('eventLat').patchValue(this.markerLat);
+      this.checkoutForm.get('eventLng').patchValue(this.markerLng);
+    });
 
   }
 
+  
 async selectAddress() {
   this.googleMapService.updateMarkerPlacementStatus(true);
   await this.googleMapService.eventLatLng$.subscribe((markerAddress) => {

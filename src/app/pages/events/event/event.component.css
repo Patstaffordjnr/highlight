@@ -54,15 +54,22 @@
 }
 
 .address{
-  margin-left: -60px;
+ min-width: 75%;
   /* background-color: yellow; */
   justify-content: left; 
 }
+.address-input-div{
+  min-width: 95%;
+  
+   /* background-color: yellow; */
+   justify-content: left; 
+ }
 
 .startDateDisplayText{
   padding-left: 10px;
   background-color: none;
   text-align: left;
+
   
 }
 
