@@ -84,17 +84,17 @@ if(selecteCurrentEvent.length != 0) {
       this.onStartDateSelected(this.startAt);
       this.onFinishDateSelected(this.endAt);
 
-      // let startAtHour = String(this.startAt).substring(11, 13);
-      // let startAtMinute = String(this.startAt).substring(14, 16);
-      // let startTime = `${startAtHour}:${startAtMinute}`
-      // console.log(startTime);
-      // this.startDateAndTime = new Date(this.startDateAndTime.getFullYear(), this.startDateAndTime.getMonth(), this.startDateAndTime.getDate(), Number(startAtHour), Number(startAtMinute), 0);
+      let startAtHour = String(this.startAt).substring(11, 13);
+      let startAtMinute = String(this.startAt).substring(14, 16);
+      let startTime = `${startAtHour}:${startAtMinute}`
+      console.log(startTime);
+      this.startDateAndTime = new Date(this.startDateAndTime.getFullYear(), this.startDateAndTime.getMonth(), this.startDateAndTime.getDate(), Number(startAtHour), Number(startAtMinute), 0);
       // console.log(this.startDateAndTime);
 
-      // let finishAtHour = String(this.endAt).substring(11, 13);
-      // let finishAtMinute = String(this.endAt).substring(14, 16);
-      // let finsishTime = `${finishAtHour}:${finishAtMinute}`;
-      // this.finishDateAndTime = new Date(this.finishDateAndTime.getFullYear(), this.finishDateAndTime.getMonth(), this.finishDateAndTime.getDate(), Number(finishAtHour), Number(finishAtMinute), 0);
+      let finishAtHour = String(this.endAt).substring(11, 13);
+      let finishAtMinute = String(this.endAt).substring(14, 16);
+      let finsishTime = `${finishAtHour}:${finishAtMinute}`;
+      this.finishDateAndTime = new Date(this.finishDateAndTime.getFullYear(), this.finishDateAndTime.getMonth(), this.finishDateAndTime.getDate(), Number(finishAtHour), Number(finishAtMinute), 0);
       // console.log(this.finishDateAndTime);
   
 

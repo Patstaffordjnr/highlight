@@ -45,6 +45,7 @@
 }
 
 .dot-boundary {
+  /* background-color: crimson; */
   display: flex;
   align-content: center;
   width: 360px;
@@ -53,13 +54,12 @@
   
 }
 .dot {
-
+  background-color: lightcoral;
   height: 30px;
   width: 30px;
-    opacity: 90%;
-  background-color: seagreen;
+  opacity: 90%;
   border-radius: 50%;
-  cursor: pointer;
+  position: relative;
 
 }
 

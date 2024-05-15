@@ -1,7 +1,5 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { CdkDragMove } from '@angular/cdk/drag-drop'; // Import CdkDragMove
-import { GlobalDateAndTimeComponentService } from '../../util/global-date-and-time/global-date-and-time.service'
-import { min } from 'rxjs/operators';
 
 @Component({
   selector: 'app-progress-bar',
@@ -24,18 +22,19 @@ export class ProgressBarComponent implements OnInit {
   hours = ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"];
   mapTime
 
+  constructor(private changeDetector: ChangeDetectorRef) {
 
-  constructor() {
   }
 
   ngOnInit(): void {
+
   }
 
   ngAfterViewInit() {
 
     if(this.selectedTime) {
-            this.onStartUpMoveDotToPosition(this.selectedTime);
-          }
+      this.onStartUpMoveDotToPosition(this.selectedTime);
+    }
  
   }
   emitTime(hour, minutes) {
@@ -44,30 +43,22 @@ export class ProgressBarComponent implements OnInit {
         this.selectTimeEvent.emit(time);
       }
 
-      onStartUpMoveDotToPosition(time) {
-            const timeString = time.toString().trim();
-            console.log(timeString);
-            // const [hourString, minuteString] = timeString.split(":");
-        
-            // const progressBarElement: HTMLElement = this.progressBarDiv.nativeElement;
-            // let hour = time.getHours();
-            // let minutes = Number(minuteString);
-            // let hourPercentOfX = (hour / 24) * 100
-        
-            // let divLeft = progressBarElement.offsetLeft;
-            // // console.log(divLeft);
-            // let divRight = (divLeft + progressBarElement.offsetWidth);
-            // // console.log(divRight);
-            // let divLength = (divRight - divLeft);
-            // let divLengthByTwentyFour = (divLength / 24);
-            // let div60 = divLengthByTwentyFour / 60;
-            // let divMinutes = div60 * minutes;
-        
-            // let dotX = ((divLength / 100) * hourPercentOfX);
-        
-            // const dotElement: HTMLElement = this.dot.nativeElement;
-            // dotElement.style.left =`${dotX - 10}px`
-        
+ onStartUpMoveDotToPosition(time) {
+
+    const dotElement: HTMLElement = this.dot.nativeElement;
+    const progressBarElement: HTMLElement = this.progressBarDiv.nativeElement;
+    let divLeft = progressBarElement.offsetLeft;
+    let divRight = (divLeft + progressBarElement.offsetWidth);
+    let divLength = (divRight - divLeft);
+
+    let hour = time.getHours();
+    let minutes = time.getMinutes();
+    let hourPercentOfProgressBar = (divLength / 24) * hour
+    let minutePercentOfProgressBar = ((divLength / (24 * 60)* minutes))
+    let timeToBeDisplayed = hourPercentOfProgressBar -10;
+     
+    dotElement.style.left = `${timeToBeDisplayed}px`;
+          
           }
         
 
@@ -139,6 +130,7 @@ export class ProgressBarComponent implements OnInit {
       injectedHour = "00";
       injectedMinutes = "00";
     }
+  
     this.emitTime(injectedHour, injectedMinutes);
 
   }

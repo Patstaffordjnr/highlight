@@ -58,13 +58,13 @@ dialog {
   }
 
 .event-title-input-div{
-  /* background-color: darkgreen; */
+  background-color: none;
 
  
   }
 
 .event-type{
-    /* background-color: green; */
+    background-color: none;
   }
 
 .event-type-input{
@@ -234,11 +234,13 @@ dialog {
   }
 
   .hardcodedButton{
+    background-color: none;
     /* width: 65px; */
     /* height: 65px; */
   }
   
   .hardcodedButtonSlim{
+    background-color: none;
     /* width: 65px; */
     /* height: 32.5px; */
   }
