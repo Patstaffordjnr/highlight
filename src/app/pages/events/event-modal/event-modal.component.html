@@ -80,7 +80,7 @@
       <a class = "detail-text" >Finish Time :</a>
     </div>
     <div class = "finish-time col">
-      <a class = "subject-text">{{ endAt | date:'shortTime' }}</a>
+      <a class = "subject-text">{{ finishDateAndTime | date:'shortTime' }}</a>
     </div>
     <div *ngIf= "editDialog" class = "finish-select col">
       <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "finishTimeSelectToggle()">Finish Time & Date</button>

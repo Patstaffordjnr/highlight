@@ -84,11 +84,18 @@ if(selecteCurrentEvent.length != 0) {
       this.onStartDateSelected(this.startAt);
       this.onFinishDateSelected(this.endAt);
 
-      let startAtHour = String(this.startAt).substring(11, 13);
-      let startAtMinute = String(this.startAt).substring(14, 16);
-      let startTime = `${startAtHour}:${startAtMinute}`
-      this.startDateAndTime = new Date(this.startDateAndTime.getFullYear(), this.startDateAndTime.getMonth(), this.startDateAndTime.getDate(), Number(startAtHour), Number(startAtMinute), 0)
-      console.log(this.startDateAndTime);
+      // let startAtHour = String(this.startAt).substring(11, 13);
+      // let startAtMinute = String(this.startAt).substring(14, 16);
+      // let startTime = `${startAtHour}:${startAtMinute}`
+      // console.log(startTime);
+      // this.startDateAndTime = new Date(this.startDateAndTime.getFullYear(), this.startDateAndTime.getMonth(), this.startDateAndTime.getDate(), Number(startAtHour), Number(startAtMinute), 0);
+      // console.log(this.startDateAndTime);
+
+      // let finishAtHour = String(this.endAt).substring(11, 13);
+      // let finishAtMinute = String(this.endAt).substring(14, 16);
+      // let finsishTime = `${finishAtHour}:${finishAtMinute}`;
+      // this.finishDateAndTime = new Date(this.finishDateAndTime.getFullYear(), this.finishDateAndTime.getMonth(), this.finishDateAndTime.getDate(), Number(finishAtHour), Number(finishAtMinute), 0);
+      // console.log(this.finishDateAndTime);
   
 
     }
@@ -143,11 +150,18 @@ const day = Number($event.substring(8, 10));
 
 
 onStartTimeSelected($event) {
-console.log($event);
+
+let hour = Number($event.substring(0, 2))
+let minute = Number($event.substring(3, 5))
+
+
+this.startDateAndTime = new Date(this.startDateAndTime.getFullYear(), this.startDateAndTime.getMonth(), this.startDateAndTime.getDate(), hour, minute, 0)
+
 
   
   }
 
+  
 
 onFinishDateSelected($event) {
 
@@ -163,6 +177,18 @@ const day = Number($event.substring(8, 10));
 
 }
 
+
+onFinishTimeSelected($event) {
+
+  let hour = Number($event.substring(0, 2))
+  let minute = Number($event.substring(3, 5))
+  
+  
+  this.finishDateAndTime = new Date(this.finishDateAndTime.getFullYear(), this.finishDateAndTime.getMonth(), this.finishDateAndTime.getDate(), hour, minute, 0)
+  
+  
+    
+    }
   
   onSubmit(checkoutForm) {
       console.log(checkoutForm);
