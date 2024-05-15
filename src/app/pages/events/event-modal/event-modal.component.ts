@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EventModalComponent implements OnInit, AfterViewInit {
   @ViewChild('addressInput') addressInput: ElementRef;
+  google: any
 
   dialogOpen: boolean = false;
   editDialog: boolean = false;
@@ -80,6 +81,7 @@ export class EventModalComponent implements OnInit, AfterViewInit {
       this.getAddressFromCoordinates(this.currentEvent.lat, this.currentEvent.long);
       this.onStartDateSelected(this.startAt);
       this.onFinishDateSelected(this.endAt);
+  
 
       let startAtHour = String(this.startAt).substring(11, 13);
       let startAtMinute = String(this.startAt).substring(14, 16);
@@ -98,22 +100,25 @@ export class EventModalComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngOnInit() {
-    this.initAutocomplete();
+  async ngOnInit() {
+    // this.initAutocomplete();
+    // this.initAutocomplete();
   }
 
-  ngAfterViewInit() {
-    this.initAutocomplete();
+  async ngAfterViewInit() {
+    await this.initAutocomplete();
   }
 
   initAutocomplete() {
-    if (!this.addressInput) return;
-
-    const autocomplete = new google.maps.places.Autocomplete(this.addressInput.nativeElement);
+    console.log(`a`);
+    const addressInput = document.getElementById('addressInput') as HTMLInputElement;
+    if (!addressInput) return;
+  
+    const autocomplete = new google.maps.places.Autocomplete(addressInput);
     autocomplete.addListener("place_changed", () => {
       const place = autocomplete.getPlace();
-      if (!place.geometry) return;
-
+      if (!place) return;
+  
       this.address = place.formatted_address;
       this.markerLat = place.geometry.location.lat();
       this.markerLng = place.geometry.location.lng();
@@ -122,6 +127,7 @@ export class EventModalComponent implements OnInit, AfterViewInit {
       this.checkoutForm.get('eventLat').patchValue(this.markerLat);
       this.checkoutForm.get('eventLng').patchValue(this.markerLng);
     });
+
   }
 
   async getAddressFromCoordinates(latitude: number, longitude: number) {

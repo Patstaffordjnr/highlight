@@ -16,7 +16,12 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './event-table.component.css'
 })
 
+
+
 export class EventTableComponent implements OnInit {
+
+
+
 
   currentIndex = 0;
   reveivedObject

@@ -1,6 +1,5 @@
 
 <dialog #myDialog *ngIf = "dialogOpen" id="my-dialog" class="dialog" (ngSubmit)="onSubmit(checkoutForm)">
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5mnnydr-3HjuPTwkoNmVUHAYy77CVSmQ&libraries=places"></script>
   <form class="checkoutForm"  [formGroup]="checkoutForm" method="dialog">
   <div class = "formDiv">
 <div class =  "formContainer">
@@ -34,7 +33,7 @@
     </div>
     <div class = "address-input col">
 
-      <input class = "address-input-div"  *ngIf= "editDialog" type="text"  id="addressInput" formControlName="address" placeholder="Enter Address">
+      <input #addressInput class = "address-input-div" type="text"  id="addressInput" formControlName="address" placeholder="Enter Address">
       <a class = "subject-text" *ngIf= "!editDialog">{{currentEventAddress}}</a>
       <br>
     </div>
