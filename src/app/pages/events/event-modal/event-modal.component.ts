@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { EventService } from '../event-service';
 import { Event } from 'src/app/model/event';
 import { EventType } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ModalService } from './modal-service';
 
 @Component({
   selector: 'app-event-modal',
@@ -12,7 +13,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EventModalComponent implements OnInit, AfterViewInit {
   @ViewChild('addressInput') addressInput: ElementRef;
-  google: any
+
+  editDisplay = "Edit";
+  display = "Display";
 
   dialogOpen: boolean = false;
   editDialog: boolean = false;
@@ -24,7 +27,7 @@ export class EventModalComponent implements OnInit, AfterViewInit {
   eventModal: Event[];
   currentEvent;
   currentEventAddress;
-  address;
+ 
   markerLat: number;
   markerLng: number;
 
@@ -47,7 +50,13 @@ export class EventModalComponent implements OnInit, AfterViewInit {
   public updatedAt: Date;
   public id: String;
 
-  constructor(private eventService: EventService, private formBuilder: FormBuilder, private http: HttpClient) {
+  google: any
+  address;
+  newAddress;
+  addressPlaceHolder;
+  autoCompleteInitialised = false;
+
+  constructor( private cdRef: ChangeDetectorRef, private eventService: EventService, private formBuilder: FormBuilder, private http: HttpClient, private modalService: ModalService) {
     this.eventService.eventToBeDisplayed$.subscribe(eventSubject => {
       this.dialogOpen = false;
 
@@ -60,12 +69,16 @@ export class EventModalComponent implements OnInit, AfterViewInit {
         startDateTime:  [null],
         finishDateTime:  [null],
       });
-
-      this.currentDisplay(eventSubject);
+      if(eventSubject){
+        this.currentDisplay(eventSubject);
+      
+        
+      }
+     
     });
   }
 
-  async currentDisplay(selecteCurrentEvent: Event[]) {
+  async currentDisplay(selecteCurrentEvent?: Event[]) {
     this.currentEvent = await selecteCurrentEvent;
     this.eventTitle = this.currentEvent.title;
     this.eventType = this.currentEvent.eventType;
@@ -78,11 +91,14 @@ export class EventModalComponent implements OnInit, AfterViewInit {
     this.id = this.currentEvent.id;
 
     if (selecteCurrentEvent.length != 0) {
+      console.log(this.currentEvent.lat, this.currentEvent.long);
       this.getAddressFromCoordinates(this.currentEvent.lat, this.currentEvent.long);
       this.onStartDateSelected(this.startAt);
       this.onFinishDateSelected(this.endAt);
-  
+      await this.getAddressFromCoordinates(Number(this.lat), Number(this.lng))
+      this.editDialog = false;
 
+    
       let startAtHour = String(this.startAt).substring(11, 13);
       let startAtMinute = String(this.startAt).substring(14, 16);
       this.startDateAndTime = new Date(this.startDateAndTime.getFullYear(), this.startDateAndTime.getMonth(), this.startDateAndTime.getDate(), Number(startAtHour), Number(startAtMinute), 0);
@@ -94,23 +110,57 @@ export class EventModalComponent implements OnInit, AfterViewInit {
 
     if (this.currentEvent.lat > 0) {
       this.dialogOpen = true;
+      
       this.onStartDateSelected(this.startAt);
     } else {
       this.dialogOpen = false;
     }
   }
 
-  async ngOnInit() {
-    // this.initAutocomplete();
-    // this.initAutocomplete();
+async ngOnInit() {
+
+
+
+
+    this.modalService.modalDisplay$.subscribe((modalDisplay => {
+      if(modalDisplay) {
+       this.dialogOpen = modalDisplay;
+       this.editDialog = true;
+       this.eventTitle = null;
+       this.eventType = null;
+       this.lat = null;
+       this.lng = null;
+       this.startAt = null;
+       this.endAt = null;
+       this.createdAt = null;
+       this.updatedAt = null;
+       this.id = null;
+
+       this.startDateAndTime = new Date;
+       this.finishDateAndTime = new Date;
+       this.initAutocomplete();
+       
+
+
+      }
+    }));
+
   }
 
-  async ngAfterViewInit() {
-    await this.initAutocomplete();
+async ngAfterViewInit() {
+// if(this.editDialog == true){
+// }
+this.cdRef.detectChanges();
+this.initAutocomplete();
+
+
   }
 
   initAutocomplete() {
-    console.log(`a`);
+  console.log(`initAutocomplete()`);
+  this.autoCompleteInitialised = true;
+  console.log(this.autoCompleteInitialised);
+
     const addressInput = document.getElementById('addressInput') as HTMLInputElement;
     if (!addressInput) return;
   
@@ -131,11 +181,13 @@ export class EventModalComponent implements OnInit, AfterViewInit {
   }
 
   async getAddressFromCoordinates(latitude: number, longitude: number) {
-    const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=YOUR_API_KEY`; // Replace with your API endpoint and key
+    console.log(latitude, longitude);
+    const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyA5mnnydr-3HjuPTwkoNmVUHAYy77CVSmQ`; // Replace with your API endpoint and key
     await this.http.get(geocodingUrl).subscribe((response: any) => {
       if (response.results && response.results.length > 0) {
         const address = response.results[0].formatted_address;
         this.currentEventAddress = address;
+        console.log(address);
       }
     }, (error) => {
       console.error("Error during geocoding:", error);
@@ -180,23 +232,86 @@ export class EventModalComponent implements OnInit, AfterViewInit {
     console.log(checkoutForm);
   }
 
-  toggleModalEdit() {
-    this.editDialog = !this.editDialog;
-    this.calenderStartEventVisible = false;
-    this.calenderFinishEventVisible = false;
+  createEvent(){
+
+    this.editDialog = true;
+    this.eventTitle = null;
+    this.eventType = null;
+    this.lat = null;
+    this.lng = null;
+    this.startAt = null;
+    this.endAt = null;
+    this.createdAt = null;
+    this.updatedAt = null;
+    this.id = null;
+    this.startDateAndTime = new Date;
+    this.finishDateAndTime = new Date;
+
+    this. addressPlaceHolder = null;
+    this.currentEventAddress = "";
+    console.log(`createEvent()`);
+    this.ngAfterViewInit();
+
+  
+    // this.initAutocomplete();
   }
 
+  async toggleModalEdit() {
+    this.editDialog = true;
+    this.calenderStartEventVisible = false;
+    this.calenderFinishEventVisible = false;
+    this.lat = null;
+    this.lng = null;
+
+
+    this. addressPlaceHolder = this.currentEventAddress;
+    this.currentEventAddress = null;
+    console.log(`Edit Event`);
+    this.checkoutForm.get('address').patchValue(this.newAddress);
+    // this.initAutocomplete();
+    this.ngAfterViewInit();
+
+    
+   
+  }
+
+  toggleModalDisplay() {
+    this.editDialog = false;
+    this.calenderStartEventVisible = false;
+    this.calenderFinishEventVisible = false;
+    this.currentEventAddress = this. addressPlaceHolder
+    this.checkoutForm.get('address').patchValue(this.address);
+
+  }
   toggleModalOpen() {
     this.dialogOpen = true;
   }
 
   toggleModalClose() {
+
     this.dialogOpen = false;
+    this.editDialog = true;
+    this.eventTitle = null;
+    this.eventType = null;
+    this.lat = null;
+    this.lng = null;
+    this.startAt = null;
+    this.endAt = null;
+    this.createdAt = null;
+    this.updatedAt = null;
+    this.id = null;
+    this.startDateAndTime = new Date;
+    this.finishDateAndTime = new Date;
+
+    this.modalService.updateModalDisplayStatus(false);
+    this.eventService.clearSelectedEvent();
+    console.log(`Close Modal`);
   }
 
   toggleModalConfirm() {
     this.dialogOpen = false;
-    console.log(`Modal Confirm`);
+    this.modalService.updateModalDisplayStatus(false);
+
   }
 
   startTimeSelectToggle() {

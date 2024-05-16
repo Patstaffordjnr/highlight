@@ -9,6 +9,8 @@
     
 }
 
+
+
 .event{
     display: flex;
     flex-wrap: wrap;
@@ -18,4 +20,12 @@
     align-items: center;
 
   
+  }
+  .create-event-button {
+    background-color: pink;
+    display: flex;
+    /* margin-left: 27.5%; */
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
   }

@@ -33,7 +33,7 @@
     </div>
     <div class = "address-input col">
 
-      <input #addressInput class = "address-input-div" type="text"  id="addressInput" formControlName="address" placeholder="Enter Address">
+      <input *ngIf= "editDialog" #addressInput class = "address-input-div" type="text"  id="addressInput" formControlName="address" placeholder="Enter Address">
       <a class = "subject-text" *ngIf= "!editDialog">{{currentEventAddress}}</a>
       <br>
     </div>
@@ -101,7 +101,9 @@
 </div>
 <div class = "menuDiv"> 
 <menu class = "menu">
-  <button (click)="toggleModalEdit()" class = "hardcodedButtonSlim">Edit</button>
+  <button  (click) = createEvent() class = "hardcodedButtonSlim">Create</button>
+  <button *ngIf= "editDialog" (click)="toggleModalDisplay()" class = "hardcodedButtonSlim">{{display}}</button>
+  <button *ngIf= "!editDialog" (click)="toggleModalEdit()" class = "hardcodedButtonSlim">{{editDisplay}}</button>
   <button (click)="toggleModalClose()">Close</button>
   <button type="submit" value="confirmBtn" (click)="toggleModalConfirm()" class = "hardcodedButtonSlim">Confirm</button>
   <button  class = "hardcodedButtonSlim">Delete</button>

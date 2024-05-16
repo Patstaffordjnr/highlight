@@ -15,4 +15,10 @@ updateEvent(updatedEventSubject: Event[]){
     this.event.next(updatedEventSubject);
   }
 
+  clearSelectedEvent(){
+    this.updateEvent(null);
+
+  
+
+  }
 }

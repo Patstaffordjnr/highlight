@@ -23,6 +23,7 @@
 }
 
 dialog {
+  background-color: none;
     box-shadow: 0 0 20px 8px #d0d0d0;
     border-radius: 25px;
     border: 6px solid whitesmoke;
@@ -225,11 +226,15 @@ dialog {
   }
 
   menu {
+
     margin-right: 40px;
     margin-left: 0px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     background-color: none;
+    padding: 0px;
+    padding-top: 10px ;
+    margin: 0px;
 
   }
 

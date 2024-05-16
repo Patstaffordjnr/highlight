@@ -55,13 +55,13 @@ export class GoogleMapComponent implements AfterViewInit {
     });
   }
 
-  loadGoogleMaps(callback: () => void) {
+  async loadGoogleMaps(callback: () => void) {
     if (window.google) {
       callback();
     } else {
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyA5mnnydr-3HjuPTwkoNmVUHAYy77CVSmQ`;
-      script.onload = callback;
+     script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyA5mnnydr-3HjuPTwkoNmVUHAYy77CVSmQ`;
+     script.onload =  await callback;
       document.body.appendChild(script);
     }
   }
