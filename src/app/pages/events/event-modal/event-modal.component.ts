@@ -201,7 +201,10 @@ this.initAutocomplete();
       const day = Number($event.substring(8, 10));
       this.startDateAndTime = new Date(year, month - 1, day, this.startDateAndTime.getHours(), this.startDateAndTime.getMinutes(), 0);
     } else {
-      this.startDateAndTime = new Date($event.getFullYear(), $event.getMonth(), $event.getDate(), this.startDateAndTime.getHours(), this.startDateAndTime.getMinutes(), 0);
+      console.log("a");
+      console.log(typeof($event))
+      const x = new Date($event * 1000);
+      this.startDateAndTime = new Date(x.getFullYear(), x.getMonth(), x.getDate(), x.getHours(), x.getMinutes(), 0);
     }
   }
 
@@ -213,12 +216,18 @@ this.initAutocomplete();
 
   onFinishDateSelected($event) {
     if (typeof ($event) == "string") {
+      console.log($event);
       const year = Number($event.substring(0, 4));
       const month = Number($event.substring(5, 7));
       const day = Number($event.substring(8, 10));
       this.finishDateAndTime = new Date(year, month - 1, day, this.finishDateAndTime.getHours(), this.finishDateAndTime.getMinutes(), 0);
     } else {
-      this.finishDateAndTime = new Date($event.getFullYear(), $event.getMonth(), $event.getDate(), this.finishDateAndTime.getHours(), this.finishDateAndTime.getMinutes(), 0);
+      
+      const x = new Date($event * 1000);
+
+      this.finishDateAndTime = new Date(x.getFullYear(), x.getMonth(), x.getDate(), x.getHours(), x.getMinutes(), 0);
+
+      
     }
   }
 

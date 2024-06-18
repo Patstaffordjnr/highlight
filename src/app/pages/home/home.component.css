@@ -1,6 +1,12 @@
 
 
-
+.home-container{ 
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
 
 .home{
         display: flex;
@@ -8,13 +14,23 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        /* background-color:white; */
+        background-color: none;
         font-size: medium;
-        /* border-radius: 25px; */
-        /* border: 6px solid whitesmoke; */
+        border-radius: 25px;
+        border: 6px solid whitesmoke;
+        min-width: 450px;
+        min-height: 250px;
     
     }
-
+    .calenderHeading {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        font-weight: bold;
+        justify-content: center;
+        align-items: center;
+    }
+    
     .eventTableHeading {
         display: flex;
         flex-wrap: wrap;
@@ -24,14 +40,7 @@
         align-items: center;
     }
 
-    .calenderHeading {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        font-weight: bold;
-        justify-content: center;
-        align-items: center;
-    }
+
 
     .googleMapHeading {
         display: flex;
@@ -59,12 +68,3 @@
         align-items: center;
     }
 
-.home{ 
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-width: 450px;
-    min-height: 250px;
-    }

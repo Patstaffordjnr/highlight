@@ -13,6 +13,7 @@ private event = new BehaviorSubject<Event[]>([]);
 
 updateEvent(updatedEventSubject: Event[]){
     this.event.next(updatedEventSubject);
+    console.log(updatedEventSubject);
   }
 
   clearSelectedEvent(){
