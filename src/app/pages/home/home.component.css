@@ -6,22 +6,123 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    }
+}
 
 .home{
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: none;
-        font-size: medium;
-        border-radius: 25px;
-        border: 6px solid whitesmoke;
-        min-width: 450px;
-        min-height: 250px;
-    
-    }
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: none;
+    font-size: medium;
+    color: black;
+    border-radius: 25px;
+    border: 6px solid whitesmoke;
+    min-width: 450px;
+    min-height: 250px;
+}
+
+a {
+    color: black; /* Change the text color to black */
+    text-decoration: none; /* Remove the underline */
+}
+
+a:hover {
+    color: gray; /* Optional: Change the color when hovering over the link */
+    text-decoration: underline; /* Optional: Add underline when hovering */
+}
+
+.events-heading {
+    padding: 10px;
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-heading {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+
+.users-heading {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-heading {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.log-out-heading {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     .calenderHeading {
         display: flex;
         flex-wrap: wrap;
@@ -59,12 +160,5 @@
         align-items: center;
     }
 
-    .eventsHeading {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        font-weight: bold;
-        justify-content: center;
-        align-items: center;
-    }
+
 

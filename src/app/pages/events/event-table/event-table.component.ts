@@ -16,12 +16,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './event-table.component.css'
 })
 
-
-
 export class EventTableComponent implements OnInit {
-
-
-
 
   currentIndex = 0;
   reveivedObject
@@ -49,6 +44,35 @@ async ngOnInit() {
   this.reveivedObject =  initialEventList;
   this.eventResponseList.total = this.reveivedObject.total;
   this.eventResponseList.results = this.reveivedObject.results;
+
+  this.reveivedObject.results.forEach((x, c) => {
+
+// console.log("START:",x.startAt, "END:",x.endAt)
+// console.log("START:",x.startAt)
+
+// console.log("END:",x.endAt)
+
+// console.log("START:", new Date(x.endAt * 1000))
+// console.log("END:",new Date(x.startAt * 1000))
+
+
+let startTimeAndDate = new Date(x.startAt * 1000);
+let finishTimeAndDate = new Date(x.endAt * 1000);
+
+
+// console.log("START:",x.startAt, "END:",x.endAt)
+// console.log("START:",x.startAt)
+// console.log("END:",x.endAt)
+
+// console.log("START:", new Date(x.endAt * 1000))
+// console.log("END:",new Date(x.startAt * 1000))
+
+// let endDate = new Date(x.endAt * 1000);
+
+// let finishDateAndTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(), endDate.getHours(), endDate.getMinutes(), 0);
+// console.log(finishDateAndTime);
+
+    })
 
 // ---------------------------------------------------FAKE LAT AND LNG DATA
   this.eventResponseList.results.forEach((x, c) => {

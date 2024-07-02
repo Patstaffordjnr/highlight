@@ -71,8 +71,6 @@ export class EventModalComponent implements OnInit, AfterViewInit {
       });
       if(eventSubject){
         this.currentDisplay(eventSubject);
-      
-        
       }
      
     });
@@ -91,14 +89,16 @@ export class EventModalComponent implements OnInit, AfterViewInit {
     this.id = this.currentEvent.id;
 
     if (selecteCurrentEvent.length != 0) {
-      console.log(this.currentEvent.lat, this.currentEvent.long);
+      // console.log(this.currentEvent.lat, this.currentEvent.long);
       this.getAddressFromCoordinates(this.currentEvent.lat, this.currentEvent.long);
       this.onStartDateSelected(this.startAt);
       this.onFinishDateSelected(this.endAt);
       await this.getAddressFromCoordinates(Number(this.lat), Number(this.lng))
       this.editDialog = false;
 
-    
+      const endAt = new Date(Number(this.endAt) * 1000);
+      const startAt = new Date(Number(this.endAt) * 1000);
+
       let startAtHour = String(this.startAt).substring(11, 13);
       let startAtMinute = String(this.startAt).substring(14, 16);
       this.startDateAndTime = new Date(this.startDateAndTime.getFullYear(), this.startDateAndTime.getMonth(), this.startDateAndTime.getDate(), Number(startAtHour), Number(startAtMinute), 0);
@@ -119,9 +119,6 @@ export class EventModalComponent implements OnInit, AfterViewInit {
 
 async ngOnInit() {
 
-
-
-
     this.modalService.modalDisplay$.subscribe((modalDisplay => {
       if(modalDisplay) {
        this.dialogOpen = modalDisplay;
@@ -139,21 +136,16 @@ async ngOnInit() {
        this.startDateAndTime = new Date;
        this.finishDateAndTime = new Date;
        this.initAutocomplete();
-       
-
-
       }
     }));
+    console.log(`X`, this.endAt);
 
   }
 
 async ngAfterViewInit() {
-// if(this.editDialog == true){
-// }
+
 this.cdRef.detectChanges();
 this.initAutocomplete();
-
-
   }
 
   initAutocomplete() {
@@ -181,13 +173,13 @@ this.initAutocomplete();
   }
 
   async getAddressFromCoordinates(latitude: number, longitude: number) {
-    console.log(latitude, longitude);
+    // console.log(latitude, longitude);
     const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyA5mnnydr-3HjuPTwkoNmVUHAYy77CVSmQ`; // Replace with your API endpoint and key
     await this.http.get(geocodingUrl).subscribe((response: any) => {
       if (response.results && response.results.length > 0) {
         const address = response.results[0].formatted_address;
         this.currentEventAddress = address;
-        console.log(address);
+        // console.log(address);
       }
     }, (error) => {
       console.error("Error during geocoding:", error);
@@ -195,16 +187,18 @@ this.initAutocomplete();
   }
 
   onStartDateSelected($event) {
+    console.log(typeof($event));
+  
     if (typeof ($event) == "string") {
       const year = Number($event.substring(0, 4));
       const month = Number($event.substring(5, 7));
       const day = Number($event.substring(8, 10));
       this.startDateAndTime = new Date(year, month - 1, day, this.startDateAndTime.getHours(), this.startDateAndTime.getMinutes(), 0);
+      console.log(this.startDateAndTime);
     } else {
-      console.log("a");
-      console.log(typeof($event))
       const x = new Date($event * 1000);
       this.startDateAndTime = new Date(x.getFullYear(), x.getMonth(), x.getDate(), x.getHours(), x.getMinutes(), 0);
+      console.log(this.startDateAndTime);
     }
   }
 
@@ -215,19 +209,17 @@ this.initAutocomplete();
   }
 
   onFinishDateSelected($event) {
+    console.log(typeof($event));
     if (typeof ($event) == "string") {
-      console.log($event);
       const year = Number($event.substring(0, 4));
       const month = Number($event.substring(5, 7));
       const day = Number($event.substring(8, 10));
       this.finishDateAndTime = new Date(year, month - 1, day, this.finishDateAndTime.getHours(), this.finishDateAndTime.getMinutes(), 0);
+      console.log(this.finishDateAndTime);
     } else {
-      
       const x = new Date($event * 1000);
-
-      this.finishDateAndTime = new Date(x.getFullYear(), x.getMonth(), x.getDate(), x.getHours(), x.getMinutes(), 0);
-
-      
+      this.finishDateAndTime = new Date(x.getFullYear(), x.getMonth(), x.getDate(), x.getHours(), x.getMinutes(), 0); 
+      console.log(this.finishDateAndTime);
     }
   }
 
@@ -261,8 +253,6 @@ this.initAutocomplete();
     console.log(`createEvent()`);
     this.ngAfterViewInit();
 
-  
-    // this.initAutocomplete();
   }
 
   async toggleModalEdit() {
@@ -272,16 +262,11 @@ this.initAutocomplete();
     this.lat = null;
     this.lng = null;
 
-
     this. addressPlaceHolder = this.currentEventAddress;
     this.currentEventAddress = null;
     console.log(`Edit Event`);
     this.checkoutForm.get('address').patchValue(this.newAddress);
-    // this.initAutocomplete();
     this.ngAfterViewInit();
-
-    
-   
   }
 
   toggleModalDisplay() {
@@ -290,14 +275,13 @@ this.initAutocomplete();
     this.calenderFinishEventVisible = false;
     this.currentEventAddress = this. addressPlaceHolder
     this.checkoutForm.get('address').patchValue(this.address);
-
   }
+
   toggleModalOpen() {
     this.dialogOpen = true;
   }
 
   toggleModalClose() {
-
     this.dialogOpen = false;
     this.editDialog = true;
     this.eventTitle = null;
