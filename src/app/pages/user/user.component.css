@@ -1,10 +1,122 @@
-.user{
-    display: grid;
-    background-color: white;
+.user-container {
+    display: flex;
     justify-content: center;
+    align-items: center;  
+}
+
+.user-ui {
+    display: flex;
+    flex-direction: column; /* Stack flex grids vertically */
+    justify-content: center;
+    align-items: center;
+    background-color: none;
+    min-width: 340px;
+    max-width: 340px;
+    border-radius: 25px;
+    border: 6px solid whitesmoke;
+}
+
+.flex-grid {
+    display: flex;
+    width: 100%; /* Ensure the flex-grid takes full width */
+    background-color: none;
+    margin-bottom: 10px; /* Add space between rows if needed */
+}
+
+.col {
+    flex: 1;
+    display: flex; 
+    justify-content: center; /* Center content within each column */
+    align-items: center; /* Center content within each column */
+}
+
+.user-profile-image-container {
+    /* border: 6px solid whitesmoke; */
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+}
+
+.profile-image {
+    border: 6px solid whitesmoke;
+
+    /* background-color: slategrey; */
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    text-align: center;
     align-items: center;
 }
 
-.hidden{
-    opacity: 0;
-} 
+.user-name-container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    background-color: darkblue;
+    padding: 10px; /* Add padding for spacing */
+    text-align: center; /* Center text */
+}
+
+.user-name {
+    background-color: cornflowerblue;
+    margin-bottom: 5px; /* Add margin for spacing between elements */
+}
+
+.user-role {
+    background-color: crimson;
+}
+
+.user-description-container {
+    background-color: blanchedalmond;
+}
+
+.user-description {
+    background-color: darkviolet;
+}
+
+.user-location-container {
+    background-color: darkcyan;
+}
+
+.user-location {
+    background-color: lightgrey;
+}
+
+.user-social-media-container {
+    background-color: lavender;
+}
+
+.user-social-media {
+    background-color: coral; 
+}
+
+.user-create-event-container {
+    background-color: moccasin;
+}
+
+.user-create-event {
+    background-color: darkred;
+}
+
+.user-edit-event-container {
+    background-color: forestgreen;
+}
+
+.user-edit-event {
+    background-color: lemonchiffon;
+}
+
+.user-event-table-text-container {
+    background-color: wheat;
+}
+
+.user-event-table-text {
+    background-color: azure;
+}
+
+.user-event-table-container {
+    background-color: mediumslateblue;
+}
+
+.user-event-table {
+    background-color: olive;
+}

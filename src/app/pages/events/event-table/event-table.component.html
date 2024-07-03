@@ -3,25 +3,30 @@
     <div class = "eventList">
       <table class="table">
         <thead class="tableHead">
-          <tr>
+          <!-- <tr>
             <th>User Name</th>
             <th>Event Type</th>
             <th>Event Title</th>
             <th>Event Address</th>
             <th>Start</th>
             <th>Finish</th>
-            </tr>
+            </tr> -->
             <tbody>
             <tr *ngFor="let event of eventResponseList.results" [class.selected]="event === selectedEvent" (click)="onSelect(event)" >
               <td>UserName</td>
               <td>{{event.eventType}}</td>
               <td>{{event.title}}</td>
               <td>Y34 EY27 Killesk House Campile New Ross Co.Wexford</td>
+              <br>
               <td>{{event.startAt}}</td>
               <td>{{event.endAt}}</td>
+
             </tr>
+      
+            
          </tbody>
       </table>
+      <br>
     <div class="eventPagination">
       <button (click)="previousPageOfEvents()">Previous Page</button>
       <button *ngFor = "let pageNumber of pageNumberArray" [class.selected]="pageNumber === currentIndex" (click) = "pageSelect(pageNumber)">
