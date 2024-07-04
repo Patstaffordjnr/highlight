@@ -24,25 +24,41 @@ export class EventsComponent implements OnInit {
   async ngOnInit() {
 
     this.globalDateAndTimeComponentService.globalDate$.subscribe((globalDate => {
-    // console.log(globalDate);
     let year = globalDate.getFullYear();
     let month = globalDate.getMonth();
     let day = globalDate.getDate();
+    console.log(globalDate);
 
-     this.globalDateAndTime = new Date(year, month, day, this.globalDateAndTime.getHours(), this.globalDateAndTime.getMinutes(), 0)
+    this.globalDateAndTime = new Date(year, month, day, this.globalDateAndTime.getHours(), this.globalDateAndTime.getMinutes(), 0)
     }))
-//  this.globalDateAndTime = new Date(
-//   this.globalDate.getFullYear(),
-//         $event.getMonth(),
-//         $event.getDate(), 
-//         this.globalDateAndTime.getHours(),
-//         this.globalDateAndTime.getMinutes(),
-//         0)
-
-    // this.globalDateAndTimeComponentService.globalDate$
-    // this.globalDateAndTimeComponentService.globalTime$
 
 
+    this.globalDateAndTimeComponentService.globalTime$.subscribe((globalTime => {
+
+
+      if(globalTime.length > 0) {
+        const hours = globalTime.substring(0, 2);
+        const minutes = globalTime.substring(3, 5);
+        console.log(hours);
+        console.log(minutes);
+
+              this.globalDateAndTime = new Date( this.globalDateAndTime.getFullYear(),
+      this.globalDateAndTime.getMonth(),
+      this.globalDateAndTime.getDate(),
+      Number(hours),
+      Number(minutes),
+       0)
+
+      } else {
+        this.globalDateAndTime = new Date
+        console.log(`a`);
+      }
+
+
+
+
+
+      }))
   }
 
 
@@ -67,10 +83,28 @@ export class EventsComponent implements OnInit {
         this.globalDateAndTime.getMinutes(),
         0)
         console.log(this.globalDateAndTime);
-
         this.globalDateAndTimeComponentService.updateGlobalDateSubject(
           this.globalDateAndTime 
         )
   }
 
+
+  onTimeSelected($event) {
+
+    const hours = $event.substring(0, 2);
+    const minutes = $event.substring(3, 5);
+
+    this.globalDateAndTime = new Date(
+      this.globalDateAndTime.getFullYear(),
+      this.globalDateAndTime.getMonth(),
+      this.globalDateAndTime.getDate(),
+      parseInt(hours, 10),
+      parseInt(minutes, 10),
+      0
+    );
+
+    console.log(this.globalDateAndTime);
+    this.globalDateAndTimeComponentService.updateGlobalTimeSubject($event);
+    this.ngOnInit();
+  }
 }

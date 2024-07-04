@@ -8,7 +8,7 @@
     </div>    
 </div> -->
 <app-calendar [selectedDate]="globalDateAndTime" (selectDateEvent)="onDateSelected($event)"></app-calendar>
-<app-progress-bar></app-progress-bar>
+<app-progress-bar [selectedTime]="globalDateAndTime" (selectTimeEvent)="onTimeSelected($event)"></app-progress-bar>
 <br>
 
 
