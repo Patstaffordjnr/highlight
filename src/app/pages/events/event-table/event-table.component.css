@@ -22,6 +22,7 @@
 }
 
 .eventList {
+  
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -97,3 +98,214 @@
   background-color: whitesmoke;
   color: black;
 }
+
+.flex-grid {
+  display: flex;
+  width: 100%; /* Ensure the flex-grid takes full width */
+  background-color: none;
+  margin-bottom: 10px; /* Add space between rows if needed */
+}
+
+.col {
+  flex: 1;
+  display: flex; 
+  justify-content: center; /* Center content within each column */
+  align-items: center; /* Center content within each column */
+}
+
+
+ul{
+  border: 6px solid whitesmoke;
+  border-radius: 15px;
+  padding-left: 0px;
+
+  display: flex;
+  flex-direction: column; /* Stack flex grids vertically */
+  justify-content: center;
+  align-items: center;
+  background-color: none;
+  min-width: 340px;
+  max-width: 340px;
+  border-radius: 25px;
+  border: 6px solid whitesmoke;
+
+}
+
+.event-profile-image-container{
+  /* background-color: aquamarine;
+  border: 6px solid whitesmoke; */
+  /* height: 75px; */
+  width: 50%;
+  border-radius: 50%;
+
+}
+.event-profile-image{
+
+  background-color: aquamarine;
+  border: 6px solid whitesmoke;
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  text-align: center;
+  align-items: center;
+
+}
+
+.event-user-name-container{
+  background-color: none;
+}
+
+.event-user-name{
+  background-color: none;
+}
+
+.event-type-container{
+  background-color: crimson;
+
+}
+
+.event-type{
+  background-color: none;
+
+}
+
+.event-title-container{
+  background-color: none;
+  /* background-color: darkgrey; */
+
+
+}
+
+.event-title{
+  background-color: none;
+
+  
+}
+
+.event-address-container{
+  background-color: none;
+  /* background-color: lime; */
+
+
+}
+
+.event-address{
+  background-color: none;
+
+
+}
+
+.event-start-date-text-container{
+  background-color: none;
+  justify-content: left;
+
+}
+
+.event-start-date-text{
+  background-color: none;
+
+}
+
+.event-start-date-container{
+  background-color: none;
+  
+
+}
+
+.event-start-date{
+  background-color: none;
+
+}
+
+.event-start-date-container{
+  background-color: none;
+
+}
+
+.event-start-time-text-container{
+  background-color: none;
+  justify-content: left;
+
+}
+
+.event-start-time-text{
+  background-color: none;
+
+}
+
+.event-start-time-container{
+  background-color: none;
+  justify-content: left;
+
+}
+
+.event-start-time{
+  background-color: none;
+  
+
+}
+
+.event-finish-date-text-container{
+  background-color: none;
+  justify-content: left;
+
+}
+
+.event-finish-date-text{
+  background-color: none;
+  
+
+}
+
+.event-finish-date-container{
+  background-color: none;
+  justify-content: left;
+
+}
+
+.event-finish-date{
+  background-color: none;
+  
+
+}
+
+.event-finish-date-container{
+  background-color: none;
+
+}
+
+.event-finish-time-text-container{
+  background-color: none;
+  justify-content: left;
+
+}
+
+.event-finish-time-text{
+  background-color: none
+
+}
+
+.event-finish-time-container{
+  background-color: none;
+  justify-content: left;
+
+
+}
+
+.event-finish-time{
+  background-color: none;
+
+}
+/* 
+.event-start{
+
+}
+
+.event-finish-container{
+  background-color: seagreen;
+
+}
+
+.event-finish{
+
+} */

@@ -138,7 +138,7 @@ async ngOnInit() {
        this.initAutocomplete();
       }
     }));
-    console.log(`X`, this.endAt);
+    // console.log(`X`, this.endAt);
 
   }
 
@@ -149,9 +149,9 @@ this.initAutocomplete();
   }
 
   initAutocomplete() {
-  console.log(`initAutocomplete()`);
+  // console.log(`initAutocomplete()`);
   this.autoCompleteInitialised = true;
-  console.log(this.autoCompleteInitialised);
+  // console.log(this.autoCompleteInitialised);
 
     const addressInput = document.getElementById('addressInput') as HTMLInputElement;
     if (!addressInput) return;

@@ -91,7 +91,7 @@ export class GoogleMapComponent implements AfterViewInit {
 }
 
 getCurrentLocation(lat, lng){
-console.log(`lat:${lat}, lng:${lng}`);
+// console.log(`lat:${lat}, lng:${lng}`);
 
     this.userCurrentGeolocationLat = lat;
     this.userCurrentGeolocationLng = lng;

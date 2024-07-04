@@ -1,31 +1,109 @@
   <br>
   <br>
     <div class = "eventList">
-      <table class="table">
-        <thead class="tableHead">
-          <!-- <tr>
-            <th>User Name</th>
-            <th>Event Type</th>
-            <th>Event Title</th>
-            <th>Event Address</th>
-            <th>Start</th>
-            <th>Finish</th>
-            </tr> -->
-            <tbody>
-            <tr *ngFor="let event of eventResponseList.results" [class.selected]="event === selectedEvent" (click)="onSelect(event)" >
-              <td>UserName</td>
-              <td>{{event.eventType}}</td>
-              <td>{{event.title}}</td>
-              <td>Y34 EY27 Killesk House Campile New Ross Co.Wexford</td>
-              <br>
-              <td>{{event.startAt}}</td>
-              <td>{{event.endAt}}</td>
+    <div class = "event-list">
+        <ul *ngFor="let event of eventResponseList.results" [class.selected]="event === selectedEvent" (click)="onSelect(event)" >
+          <div class="flex-grid">
+          <div class="event-profile-image-container col">
+              <div class="event-profile-image">
+                    <!-- <a>USER Image</a> -->
+              </div>
+          </div>
 
-            </tr>
-      
+          <div class="event-user-name-container col">
+            <div class="event-user-name">
+                  <a>USER Name</a>
+            </div>
             
-         </tbody>
-      </table>
+        </div>
+<!-- 
+        <div class="event-type-container col">
+          <div class="event-type">
+                <a>{{event.eventType}}</a>
+          </div>
+        </div> -->
+          </div>
+
+
+        <div class="flex-grid">
+        <div class="event-title-container col">
+          <div class="event-title">
+                <a>{{event.title}}</a>
+          </div>
+        </div>
+        </div>
+
+        <div class="flex-grid">
+        <div class="event-address-container col">
+          <div class="event-address">
+                <a>ADDRESS</a>
+          </div>
+        </div>
+        </div>
+        <div class="flex-grid">
+          <div class="event-start-date-text-container col">
+            <div class="event-start-date-text">
+              Start
+              <br>
+              Date :
+            </div>
+            <div class = "finishTimeDisplayText col">
+              <a>Finish Time :</a>    </div>
+          </div>
+        <div class="event-start-date-container col">
+          <div class="event-start">
+
+            {{event.startAt * 1000 | date: 'MMM d, y'}}
+          </div>
+        </div>
+
+
+        <div class="event-start-time-text-container col">
+          <div class="event-start-time-text">
+             Start
+             <br>
+             Time :
+          </div>
+        </div>
+        
+        <div class="event-start-time-container col">
+          <div class="event-finish-text">
+            {{event.startAt * 1000 | date: 'shortTime'}}
+          </div>
+        </div>
+
+        </div>
+        <div class="flex-grid">
+          <div class="event-finish-date-text-container col">
+            <div class="event-finish-date-text">
+              Finish
+              <br>
+              Date :
+            </div>
+          </div>
+        <div class="event-finish-date-container col">
+          <div class="event-finish-date">
+            {{event.endAt * 1000 | date: 'MMM d, y'}}
+          </div>
+        </div>
+
+
+        <div class="event-finish-time-text-container col">
+          <div class="event-finish-time-text">
+             Finish
+             <br>
+             Time :
+          </div>
+        </div>
+        
+        <div class="event-finish-time-container col">
+          <div class="event-finish-time">
+            {{event.endAt * 1000 | date: 'shortTime'}}
+          </div>
+        </div>
+        </div>
+        </ul>
+      </div>
       <br>
     <div class="eventPagination">
       <button (click)="previousPageOfEvents()">Previous Page</button>

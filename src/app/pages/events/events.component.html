@@ -7,10 +7,13 @@
     <app-event *ngIf="createEventEventVisible"></app-event>
     </div>    
 </div> -->
-<app-calendar></app-calendar>
+<app-calendar [selectedDate]="globalDateAndTime" (selectDateEvent)="onDateSelected($event)"></app-calendar>
 <app-progress-bar></app-progress-bar>
 <br>
+
+
 <app-global-date-and-time></app-global-date-and-time>
+
 <app-google-map></app-google-map>
 <app-event-modal></app-event-modal>
 <!-- <div class = "create-event-button" (click)="createEvent()" ><br><a>Create Event</a></div> -->

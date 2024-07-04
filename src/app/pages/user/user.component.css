@@ -110,13 +110,21 @@
 }
 
 .user-event-table-text {
-    background-color: azure;
+    left: -25px;
+    /* background-color: azure; */
 }
 
 .user-event-table-container {
-    background-color: mediumslateblue;
+    left: -25px;
+    /* background-color: mediumslateblue; */
+}
+.event-table{
+   position: relative;
+   left: -6px;
+/* background-color: black; */
+
 }
 
 .user-event-table {
-    background-color: olive;
+    /* background-color: azure; */
 }
