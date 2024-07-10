@@ -5,11 +5,7 @@
     font-weight: bold;
     justify-content: center;
     align-items: center;
-
-    
 }
-
-
 
 .event{
     display: flex;
@@ -22,10 +18,16 @@
   
   }
   .create-event-button {
-    background-color: pink;
+    background-color: pink;  display: flex;
+    justify-content: center;
+    align-items: center;
     display: flex;
-    /* margin-left: 27.5%; */
     height: 30px;
     width: 30px;
     border-radius: 50%;
+  }
+
+  .event-table{
+
+
   }

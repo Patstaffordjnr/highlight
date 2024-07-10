@@ -10,7 +10,8 @@
 
 .eventContainer {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  /* justify-content: row; */
   align-items: center;
   background-color: none;
   min-width: 340px;
@@ -20,9 +21,10 @@
 }
 
 .event{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: blue;
+  /* display: flex;
+  justify-content: row;
+  align-items: center; */
 }
 
 .checkoutForm {

@@ -2,10 +2,12 @@
   <br>
     <div class = "eventList">
     <div class = "event-list">
-        <ul *ngFor="let event of eventResponseList.results" [class.selected]="event === selectedEvent" (click)="onSelect(event)" >
+      <div class = "event-ui">
+        <ul class = "user-events" *ngFor="let event of eventResponseList.results" [class.selected]="event === selectedEvent" (click)="onSelect(event)" >
           <div class="flex-grid">
           <div class="event-profile-image-container col">
-              <div class="event-profile-image">
+        
+            <div class="event-profile-image">
                     <!-- <a>USER Image</a> -->
               </div>
           </div>
@@ -23,8 +25,6 @@
           </div>
         </div> -->
           </div>
-
-
         <div class="flex-grid">
         <div class="event-title-container col">
           <div class="event-title">
@@ -47,8 +47,6 @@
               <br>
               Date :
             </div>
-            <div class = "finishTimeDisplayText col">
-              <a>Finish Time :</a>    </div>
           </div>
         <div class="event-start-date-container col">
           <div class="event-start">
@@ -103,6 +101,7 @@
         </div>
         </div>
         </ul>
+      </div>
       </div>
       <br>
     <div class="eventPagination">
