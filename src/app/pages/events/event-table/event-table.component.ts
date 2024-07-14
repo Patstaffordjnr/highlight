@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { EventsClient } from '../events-client';
 import { Event } from '../../../model/event'
 import { CommonModule, NgFor } from '@angular/common';
 import { GoogleMapService } from '../../google-map/google-map.service';
 import { PageListResponse } from '.././page-list-reponse';
 import { EventService } from '../event-service';
-import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -17,6 +16,11 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class EventTableComponent implements OnInit {
+
+  eventsAddressIndexed = []
+
+  eventLatArray = [];
+  eventLngArray = [];
 
   currentIndex = 0;
   reveivedObject
@@ -34,7 +38,7 @@ eventResponseList: PageListResponse = {
  results: []
 };
 
-constructor(private eventsClient: EventsClient, private eventService: EventService,  private http: HttpClient) {
+constructor(private eventsClient: EventsClient, private eventService: EventService,  private http: HttpClient, private cdRef: ChangeDetectorRef) {
 }
 
 async ngOnInit() { 
@@ -45,67 +49,16 @@ async ngOnInit() {
   this.eventResponseList.total = this.reveivedObject.total;
   this.eventResponseList.results = this.reveivedObject.results;
 
-  this.reveivedObject.results.forEach((x, c) => {
-
-// console.log("START:",x.startAt, "END:",x.endAt)
-// console.log("START:",x.startAt)
-
-// console.log("END:",x.endAt)
-
-// console.log("START:", new Date(x.endAt * 1000))
-// console.log("END:",new Date(x.startAt * 1000))
+  // for (let event of this.reveivedObject.results) {
+  //   await this.xFunction(event.lat, event.long);
+  // }
 
 
-let startTimeAndDate = new Date(x.startAt * 1000);
-let finishTimeAndDate = new Date(x.endAt * 1000);
-
-
-// console.log("START:",x.startAt, "END:",x.endAt)
-// console.log("START:",x.startAt)
-// console.log("END:",x.endAt)
-
-// console.log("START:", new Date(x.endAt * 1000))
-// console.log("END:",new Date(x.startAt * 1000))
-
-// let endDate = new Date(x.endAt * 1000);
-
-// let finishDateAndTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(), endDate.getHours(), endDate.getMinutes(), 0);
-// console.log(finishDateAndTime);
-
-    })
-
-// ---------------------------------------------------FAKE LAT AND LNG DATA
-  this.eventResponseList.results.forEach((x, c) => {
-   if(c == 0) {
-    this.reveivedObject.results[0].lat = 52.306747678867126;
-    this.reveivedObject.results[0].long = -6.922702893237298;
-   }
-
-   if(c == 1) {
-    this.reveivedObject.results[1].lat = 52.304758322184604 
-    this.reveivedObject.results[1].long = -6.928453549365227
-   }
-   
-   if(c == 2) {
-    this.reveivedObject.results[2].lat = 52.30108441949439
-    this.reveivedObject.results[2].long = -6.932745083789055
-   }
-   if(c == 3) {
-    this.reveivedObject.results[3].lat = 52.29688530029103
-    this.reveivedObject.results[3].long = -6.937551602343743
-   }
-
-   if(c == 4) {
-    this.reveivedObject.results[4].lat = 52.29426064859362
-    this.reveivedObject.results[4].long = -6.941328152636712
-   }
-
-  });
-// -------------------------------------------------ENDS HERE CAN BE DELETED
-
-this.reveivedObject.results.forEach((x, c) => {
-this.getAddressFromCoordinates(x.lat, x.long);
+ this.reveivedObject.results.forEach(event => {
+  this.addressList(event.lat, event.long);
 })
+
+
 
   this.pageNumberOrchestration(this.reveivedObject.results.length, this.reveivedObject.total, this.currentIndex)
 }
@@ -118,7 +71,8 @@ async getAddressFromCoordinates(latitude: number, longitude: number) {
      if (response.results && response.results.length > 0) {
        const address = response.results[0].formatted_address;
        this.eventAddress.push(address);
-      //  console.log(address);
+      //  this.eventsAddressIndexed.push(address);
+       console.log(address);
 
      } else {
       //  console.error("Failed to retrieve address from coordinates.");
@@ -128,6 +82,32 @@ async getAddressFromCoordinates(latitude: number, longitude: number) {
     //  console.error("Error during geocoding:", error);
    });
 }
+
+ngAfterViewInit() {
+  this.cdRef.detectChanges();
+}
+
+async addressList(latitude: number, longitude: number) {
+  const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyA5mnnydr-3HjuPTwkoNmVUHAYy77CVSmQ`; // Replace with your API endpoint and key
+  await this.http.get(geocodingUrl)
+   .subscribe((response: any) => {
+     if (response.results && response.results.length > 0) {
+       const address = response.results[0].formatted_address;
+       
+       this.eventsAddressIndexed.push(address);
+       console.log(address);
+       this.ngAfterViewInit();
+
+     } else {
+      //  console.error("Failed to retrieve address from coordinates.");
+     }
+   },
+   (error) => {
+    //  console.error("Error during geocoding:", error);
+   });
+}
+
+
 
 
 pageNumberOrchestration(injectedNoOfEventsPerPage, injectedNoOfPages, injectedCurrentIndex){
@@ -174,6 +154,7 @@ async pageSelect(selectedPage: number){
 }
 
 async eventDisplay(eventSubject: Event[]) {
+  console.log(eventSubject);
 return await this.eventService.updateEvent(eventSubject)
 }
 

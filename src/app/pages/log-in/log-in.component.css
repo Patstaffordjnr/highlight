@@ -18,7 +18,7 @@
 .log-in{
     background-color:none;
     width: 365px;
-    padding-top: 10px;
+    padding-top: 14px;
     padding-bottom: 10px;
     border-radius: 25px;
     border: 6px solid whitesmoke;
@@ -32,11 +32,13 @@
     display: flex;
     justify-content: right;
 
+
     
 }
 
 .email-input{
     background-color:none;
+    padding-right: 14px;
  
 
 }
@@ -50,6 +52,8 @@
 
 .password-input{
     background-color:none;
+    padding-right: 14px;
+ 
 }
 
 .submit-button{

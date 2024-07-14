@@ -32,6 +32,7 @@
 
 .user-profile-image-container {
     /* border: 6px solid whitesmoke; */
+    padding-top: 20px;
     height: 75px;
     width: 75px;
     border-radius: 50%;
@@ -51,62 +52,62 @@
 .user-name-container {
     display: flex;
     flex-direction: column; /* Stack elements vertically */
-    background-color: darkblue;
+    background-color: none;
     padding: 10px; /* Add padding for spacing */
     text-align: center; /* Center text */
 }
 
 .user-name {
-    background-color: cornflowerblue;
+    background-color:none;
     margin-bottom: 5px; /* Add margin for spacing between elements */
 }
 
 .user-role {
-    background-color: crimson;
+    background-color: none;
 }
 
 .user-description-container {
-    background-color: blanchedalmond;
+    background-color: none;
 }
 
 .user-description {
-    background-color: darkviolet;
+    background-color: none;
 }
 
 .user-location-container {
-    background-color: darkcyan;
+    background-color: none;
 }
 
 .user-location {
-    background-color: lightgrey;
+    background-color: none;
 }
 
 .user-social-media-container {
-    background-color: lavender;
+    background-color: none;
 }
 
 .user-social-media {
-    background-color: coral; 
+    background-color: none; 
 }
 
 .user-create-event-container {
-    background-color: moccasin;
+    background-color: none;
 }
 
 .user-create-event {
-    background-color: darkred;
+    background-color: none;
 }
 
 .user-edit-event-container {
-    background-color: forestgreen;
+    background-color: none;
 }
 
 .user-edit-event {
-    background-color: lemonchiffon;
+    background-color: none;
 }
 
 .user-event-table-text-container {
-    background-color: wheat;
+    background-color: none;
 }
 
 .user-event-table-text {

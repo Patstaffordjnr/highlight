@@ -175,8 +175,8 @@ export class CalendarComponent implements OnInit {
 
      this.selectedDay = undefined;
      if(this.selectedDayMonthOnCalendar === this.month) {
+      console.log(`a`);
      this.selectedDay = this.selectedDayBlack;
-      return 
      }
   }
 

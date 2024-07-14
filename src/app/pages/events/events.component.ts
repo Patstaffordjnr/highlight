@@ -51,7 +51,7 @@ export class EventsComponent implements OnInit {
 
       } else {
         this.globalDateAndTime = new Date
-        console.log(`a`);
+        // console.log(`a`);
       }
 
 
