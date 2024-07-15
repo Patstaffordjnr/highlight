@@ -27,7 +27,18 @@
     border-radius: 50%;
   }
 
+  .event-table-container{
+
+    display: flex;
+    justify-content: center;
+    max-width: 1300px;
+    background-color: aquamarine;
+    
+
+  }
+
   .event-table{
 
-
+    background-color: blueviolet;
+    
   }
