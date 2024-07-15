@@ -38,6 +38,9 @@ eventResponseList: PageListResponse = {
  results: []
 };
 
+
+address1;
+
 constructor(private eventsClient: EventsClient, private eventService: EventService,  private http: HttpClient, private cdRef: ChangeDetectorRef) {
 }
 
@@ -49,16 +52,9 @@ async ngOnInit() {
   this.eventResponseList.total = this.reveivedObject.total;
   this.eventResponseList.results = this.reveivedObject.results;
 
-  // for (let event of this.reveivedObject.results) {
-  //   await this.xFunction(event.lat, event.long);
-  // }
-
-
  this.reveivedObject.results.forEach(event => {
   this.addressList(event.lat, event.long);
 })
-
-
 
   this.pageNumberOrchestration(this.reveivedObject.results.length, this.reveivedObject.total, this.currentIndex)
 }
@@ -72,8 +68,7 @@ async getAddressFromCoordinates(latitude: number, longitude: number) {
        const address = response.results[0].formatted_address;
        this.eventAddress.push(address);
       //  this.eventsAddressIndexed.push(address);
-       console.log(address);
-
+      //  console.log(address);
      } else {
       //  console.error("Failed to retrieve address from coordinates.");
      }
@@ -87,17 +82,21 @@ ngAfterViewInit() {
   this.cdRef.detectChanges();
 }
 
+
+
+
 async addressList(latitude: number, longitude: number) {
   const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyA5mnnydr-3HjuPTwkoNmVUHAYy77CVSmQ`; // Replace with your API endpoint and key
   await this.http.get(geocodingUrl)
    .subscribe((response: any) => {
      if (response.results && response.results.length > 0) {
        const address = response.results[0].formatted_address;
-       
        this.eventsAddressIndexed.push(address);
-       console.log(address);
-       this.ngAfterViewInit();
+      //  console.log(address);
+      //  console.log(this.eventsAddressIndexed);
+       this.address1 = this.eventAddress[0]
 
+       this.ngAfterViewInit();
      } else {
       //  console.error("Failed to retrieve address from coordinates.");
      }

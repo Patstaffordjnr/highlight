@@ -1,6 +1,6 @@
 <div class="eventList">
   <div class="event-grid">
-    <div *ngFor="let event of eventResponseList.results" [class.selected]="event === selectedEvent" (click)="onSelect(event)" class="event-item">
+    <div *ngFor="let event of eventResponseList.results; let i = index" [class.selected]="event === selectedEvent" (click)="onSelect(event)" class="event-item">
       <div class="flex-grid">
         <div class="event-profile-image-container col">
           <div class="event-profile-image">
@@ -25,10 +25,9 @@
       <div class="flex-grid">
         <div class="event-address-container col">
           <div class="event-address">
+             <br>
             <a>{{eventsAddressIndexed[i]}}</a>
-             <br>
-             <br>
-            <a>{{eventsAddressIndexed}}</a>
+            <br>
           </div>
         </div>
       </div>
