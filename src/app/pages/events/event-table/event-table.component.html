@@ -1,4 +1,5 @@
-<div class="eventList">
+<div class = "event-list-container">
+<div class="event-list">
   <div class="event-grid">
     <div *ngFor="let event of eventResponseList.results; let i = index" [class.selected]="event === selectedEvent" (click)="onSelect(event)" class="event-item">
       <div class="flex-grid">
@@ -89,6 +90,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 <br>
 <div class="eventPagination">

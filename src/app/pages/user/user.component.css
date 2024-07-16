@@ -119,11 +119,12 @@
     left: -25px;
     /* background-color: mediumslateblue; */
 }
-.event-table{
-
-
-}
 
 .user-event-table {
+    background-color: darkblue;
 
 }
+.event-table{
+    background-color: cadetblue;
+    
+    }
