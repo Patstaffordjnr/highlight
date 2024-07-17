@@ -38,37 +38,19 @@
     </div>
 
 
+    <label *ngFor="let sort of sorts; let i = index">
+      <input type="checkbox">
+      {{sort}}
+    </label>
 
-
-
-
-<!-- ----------------------
- 
-<h2>{{hero.name | uppercase}} Details</h2>
-<div><span>id: </span>{{hero.id}}</div>
-<div>
-  <label for="name">Hero name: </label>
-  <input id="name" [(ngModel)]="hero.name" placeholder="name">
-</div>
-
-
-
-
-
------------------------------>
-
-
-
-
-
-
-
-
-
+    <!-- <label formArrayName="buskerType" *ngFor="let buskerType of buskerType; let i = index">
+      <input type="checkbox" [formControlName]="i">
+      {{buskerType[i]}}
+    </label> -->
 
 
     <div class = "sort">
-    <a>Sort by:</a>
+    <!-- <a>Sort by:</a> -->
     </div>
     </div>
 

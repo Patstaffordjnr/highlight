@@ -42,12 +42,10 @@
 }
 
 .table-controls{
-  
-/* background-color: grey; */
+  background-color: none;
 }
 
 .table-control-busker-types{
-
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;

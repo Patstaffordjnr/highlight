@@ -22,7 +22,7 @@ export class EventTableComponent implements OnInit {
 
 
   searchText: string = '';
-
+  sorts = ["Nearest", "Starting Time"];
 
 
   eventsAddressIndexed = []
