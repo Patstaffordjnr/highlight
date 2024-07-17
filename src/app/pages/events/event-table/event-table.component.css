@@ -34,6 +34,67 @@
   flex-basis: 25%;
   flex: 1;
 }
+
+.table-controls-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-controls{
+  
+/* background-color: grey; */
+}
+
+.table-control-busker-types{
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 1200px;
+}
+
+.table-controls-selected{
+
+  background-color: black;
+}
+
+.first-button {
+  background-color: deepskyblue;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.second-button {
+  background-color: hotpink;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.third-button {
+  background-color: red;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.forth-button {
+  background-color: yellow;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.fifth-button {
+  background-color: green;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
 .event-list-container{
   /* background-color: aquamarine; */
     display: flex;

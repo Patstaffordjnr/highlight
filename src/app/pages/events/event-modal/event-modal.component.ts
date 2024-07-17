@@ -179,7 +179,8 @@ this.initAutocomplete();
       if (response.results && response.results.length > 0) {
         const address = response.results[0].formatted_address;
         this.currentEventAddress = address;
-        // console.log(address);
+        console.log(latitude,longitude);
+        console.log(address);
       }
     }, (error) => {
       console.error("Error during geocoding:", error);

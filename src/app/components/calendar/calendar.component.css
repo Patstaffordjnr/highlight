@@ -59,7 +59,7 @@
 }
 
 .calender-div a.selected {
-  background-color: pink;
+  background-color: hotpink;
   display: flex;
   /* margin-left: 27.5%; */
   height: 30px;

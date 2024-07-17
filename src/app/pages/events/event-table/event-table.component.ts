@@ -6,16 +6,24 @@ import { GoogleMapService } from '../../google-map/google-map.service';
 import { PageListResponse } from '.././page-list-reponse';
 import { EventService } from '../event-service';
 import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup , } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
 
+FormsModule
 @Component({
   selector: 'app-event-table',
   standalone: true,
-  imports: [NgFor, CommonModule],
+  imports: [NgFor, CommonModule, FormsModule],
   templateUrl: './event-table.component.html',
   styleUrl: './event-table.component.css'
 })
 
 export class EventTableComponent implements OnInit {
+
+
+  searchText: string = '';
+
+
 
   eventsAddressIndexed = []
 
@@ -33,16 +41,27 @@ export class EventTableComponent implements OnInit {
 
   eventAddress = [];
 
+  form: FormGroup;
+
 eventResponseList: PageListResponse = {
   total: 0,
  results: []
 };
 
 
-address1;
+constructor(private formBuilder: FormBuilder, private eventsClient: EventsClient, private eventService: EventService,  private http: HttpClient, private cdRef: ChangeDetectorRef) {
+  this.form = this.formBuilder.group({
+    searchText: [''],
+  });
 
-constructor(private eventsClient: EventsClient, private eventService: EventService,  private http: HttpClient, private cdRef: ChangeDetectorRef) {
+  // <input id="searchText"  type="searchText" formControlName="searchText">
+  // <div [(ngModel)]="searchText">
+  //   {{searchText}}  
+  // </div>
 }
+
+
+
 
 async ngOnInit() { 
 
@@ -67,6 +86,7 @@ async getAddressFromCoordinates(latitude: number, longitude: number) {
      if (response.results && response.results.length > 0) {
        const address = response.results[0].formatted_address;
        this.eventAddress.push(address);
+       console.log(address);
       //  this.eventsAddressIndexed.push(address);
       //  console.log(address);
      } else {
@@ -94,7 +114,7 @@ async addressList(latitude: number, longitude: number) {
        this.eventsAddressIndexed.push(address);
       //  console.log(address);
       //  console.log(this.eventsAddressIndexed);
-       this.address1 = this.eventAddress[0]
+
 
        this.ngAfterViewInit();
      } else {
@@ -188,4 +208,33 @@ async previousPageOfEvents() {
   this.eventResponseList.results = this.reveivedObject.results;
   this.pageNumberOrchestration(this.reveivedObject.results.length, this.reveivedObject.total, this.currentIndex)
 }
+
+
+
+allFunction(){
+  console.log(`All Function`);
+}
+
+bandFunction(){
+  console.log(`Band Function`);
+}
+
+buskerFunction(){
+  console.log(`Busker Function`);
+}
+
+djFunction(){
+  console.log(`DJ Function`);
+}
+
+performanceFunction(){
+  console.log(`Performance Function`);
+}
+
+search(searchText){
+  console.log(searchText);
+  this.searchText = searchText;
+}
+
+
 }
