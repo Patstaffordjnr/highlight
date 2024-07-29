@@ -1,6 +1,7 @@
-import { Component, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, OnInit} from '@angular/core';
 import { GoogleMapService } from './google-map.service';
 import { HttpClient } from '@angular/common/http';
+import { EventService } from '../events/event-service';
 
 
 @Component({
@@ -8,9 +9,11 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './google-map.component.html',
   styleUrls: ['./google-map.component.css']
 })
-export class GoogleMapComponent implements AfterViewInit {
+export class GoogleMapComponent implements  OnInit, AfterViewInit {
 
   @ViewChild('mapContainer', { static: false }) mapContainer: ElementRef;
+
+
   
   isMarkerPlaced = false;
   eventsToBeDisplayed = [];
@@ -42,6 +45,19 @@ export class GoogleMapComponent implements AfterViewInit {
     this.eventsToBeDisplayed = events;
     this.updateEvents(this.eventsToBeDisplayed);
   });
+
+}
+
+
+async ngOnInit() {
+  
+  this.googleMapService.eventsToBeDisplayed$.subscribe((a => {
+    if(a) {
+      console.log(a);
+  
+    }
+  }));
+
 
 }
 
@@ -91,11 +107,76 @@ export class GoogleMapComponent implements AfterViewInit {
 }
 
 getCurrentLocation(lat, lng){
-// console.log(`lat:${lat}, lng:${lng}`);
-
     this.userCurrentGeolocationLat = lat;
     this.userCurrentGeolocationLng = lng;
 }
+
+async loadEvents(events) {
+  await events;
+
+  events.map(events => {
+    console.log(events);
+
+  })
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 updateEventLatLng(eventLatLng) {
@@ -201,6 +282,7 @@ let lng = await [event][0].long;
 async updateEvents(eventsToBeDisplayed) {
 
   eventsToBeDisplayed.map(((event, i) => {
+    console.log();
     this.placeEventMarkers(event);
 }))
 

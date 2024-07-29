@@ -23,7 +23,12 @@ export class EventTableComponent implements OnInit {
 
   searchText: string = '';
   sorts = ["Nearest", "Starting Time"];
-
+  
+  allEventsVisible = true;
+  bandEventsVisible = true;
+  buskerEventsVisible = true;
+  djEventsVisible = true;
+  performanceEventsVisible = true;
 
   eventsAddressIndexed = []
 
@@ -213,22 +218,35 @@ async previousPageOfEvents() {
 
 allFunction(){
   console.log(`All Function`);
+  this.allEventsVisible = !this.allEventsVisible;
+  console.log(this.allEventsVisible);
+
 }
 
 bandFunction(){
   console.log(`Band Function`);
+  this.bandEventsVisible =  !this.bandEventsVisible;
+  console.log(this.bandEventsVisible);
+
 }
 
 buskerFunction(){
   console.log(`Busker Function`);
+  this.buskerEventsVisible = !this.buskerEventsVisible;
+  console.log(this.buskerEventsVisible);
+
 }
 
 djFunction(){
   console.log(`DJ Function`);
+  this.djEventsVisible = !this.djEventsVisible;
+  console.log(this.djEventsVisible);
 }
 
 performanceFunction(){
   console.log(`Performance Function`);
+  this.performanceEventsVisible = !this.performanceEventsVisible;
+  console.log(this.performanceEventsVisible);
 }
 
 search(searchText){

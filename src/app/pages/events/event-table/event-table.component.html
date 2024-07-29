@@ -1,62 +1,51 @@
 <br>
 <div class = "table-controls-container">
-
   <div class = "table-controls">
-
     <div class="table-control-busker-types">
-  <div class = "first-button" (click) = "allFunction()">
-  </div>
-  <div class = "all">
-  <a>All</a>
-  </div>
-  <div class = "second-button" (click) = "bandFunction()">
-  </div>
-  <div class = "band">
-    <a>Band</a>
+    <div class = "all-button" (click) = "allFunction()" [class.all-button]="allEventsVisible" [class.all-button-selected]="!allEventsVisible">
     </div>
-  <div class = "third-button" (click) = "buskerFunction()">
-  </div>
-  <div class = "busker">
-    <a>Busker</a>
+    <div class = "all">
+      <a>All</a>
+      </div>
+    <div class = "band-button" (click) = "bandFunction()" [class.band-button]="bandEventsVisible" [class.band-button-selected]="!bandEventsVisible">
     </div>
-  <div class = "forth-button" (click) = "djFunction()">
-  </div>
-  <div class = "dj">
-    <a>Dj</a>
+    <div class = "band">
+      <a>Band</a>
+      </div>
+    <div class = "busker-button" (click) = "buskerFunction()" [class.busker-button]="buskerEventsVisible" [class.busker-button-selected]="!buskerEventsVisible">
     </div>
-  <div class = "fifth-button" (click) = "performanceFunction()">
-  </div>
-  <div class = "Performance">
-    <a>Performance</a>
+    <div class = "busker">
+      <a>Busker</a>
+      </div>
+    <div class = "dj-button" (click) = "djFunction()" [class.dj-button]="djEventsVisible" [class.dj-button-selected]="!djEventsVisible">
     </div>
-
-
-
+    <div class = "dj">
+      <a>Dj</a>
+      </div>
+    <div class = "performance-button" (click) = "performanceFunction()" [class.performance-button]="performanceEventsVisible" [class.performance-button-selected]="!performanceEventsVisible">
+    </div>
+    <div class = "Performance">
+      <a>Performance</a>
+      </div>
     <div class = "search" >
-      <input [(ngModel)] = "searchText"  placeholder="Search..."   type = "string" >
-      {{searchText}}  
+        <input [(ngModel)] = "searchText"  placeholder="Search..."   type = "string" >
+        {{searchText}}  
     </div>
-
-
     <label *ngFor="let sort of sorts; let i = index">
       <input type="checkbox">
-      {{sort}}
+        {{sort}}
     </label>
-
-    <!-- <label formArrayName="buskerType" *ngFor="let buskerType of buskerType; let i = index">
-      <input type="checkbox" [formControlName]="i">
-      {{buskerType[i]}}
-    </label> -->
-
-
+      <!-- <label formArrayName="buskerType" *ngFor="let buskerType of buskerType; let i = index">
+        <input type="checkbox" [formControlName]="i">
+        {{buskerType[i]}}
+      </label> -->
     <div class = "sort">
-    <!-- <a>Sort by:</a> -->
+      <!-- <a>Sort by:</a> -->
     </div>
     </div>
-
   </div>
-
 </div>
+<br>
 <br>
 
 <div class = "event-list-container">

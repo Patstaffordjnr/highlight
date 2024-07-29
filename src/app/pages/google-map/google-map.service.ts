@@ -34,6 +34,7 @@ updateEventAddress(eventAddress: string){
 
 updateEventsToBeDisplayed(updatedEvents: Event[]){
   this.eventsToBeDisplayedSubject.next(updatedEvents);
+  console.log(updatedEvents);
 }
 
 }
