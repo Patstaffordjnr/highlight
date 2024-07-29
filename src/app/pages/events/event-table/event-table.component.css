@@ -68,8 +68,8 @@
 .all-button-selected {
   background-color: none;
   border: 3px solid deepskyblue;
-  height: 27px;
-  width: 27px;
+  height: 24px;
+  width: 24px;
   border-radius: 50%;
 }
 
@@ -84,8 +84,8 @@
 .band-button-selected {
   background-color: none;
   border: 3px solid hotpink;
-  height: 27px;
-  width: 27px;
+  height: 24px;
+  width: 24px;
   border-radius: 50%;
 }
 
@@ -101,8 +101,8 @@
 .busker-button-selected {
   background-color: none;
   border: 3px solid red;
-  height: 27px;
-  width: 27px;
+  height: 24px;
+  width: 24px;
   border-radius: 50%;
 }
 
@@ -117,8 +117,8 @@
 .dj-button-selected {
   background-color: none;
   border: 3px solid yellow;
-  height: 27px;
-  width: 27px;
+  height: 24px;
+  width: 24px;
   border-radius: 50%;
 }
 
@@ -133,8 +133,8 @@
 .performance-button-selected {
   background-color: none;
   border: 3px solid green;
-  height: 27px;
-  width: 27px;
+  height: 24px;
+  width: 24px;
   border-radius: 50%;
 }
 

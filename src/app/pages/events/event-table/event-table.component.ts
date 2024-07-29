@@ -41,7 +41,7 @@ export class EventTableComponent implements OnInit {
   pageNumberArray = []
   totalNumberOfEvents;
   totalNumberOfPages;
-  noOfEventsPerPage = 10;
+  noOfEventsPerPage = 8;
   lastElementOfCurrentArr = this.pageNumberArray.slice(-1);
 
   eventAddress = [];
@@ -71,7 +71,7 @@ constructor(private formBuilder: FormBuilder, private eventsClient: EventsClient
 async ngOnInit() { 
 
   this.currentIndex = this.currentIndex;
-  let initialEventList =   await this.eventsClient.getEvents(this.currentIndex, 10)
+  let initialEventList =   await this.eventsClient.getEvents(this.currentIndex, this.noOfEventsPerPage)
   this.reveivedObject =  initialEventList;
   this.eventResponseList.total = this.reveivedObject.total;
   this.eventResponseList.results = this.reveivedObject.results;
@@ -122,7 +122,7 @@ async addressList(latitude: number, longitude: number) {
 
 
        this.ngAfterViewInit();
-     } else {
+     } else {this.noOfEventsPerPage
       //  console.error("Failed to retrieve address from coordinates.");
      }
    },
@@ -170,7 +170,7 @@ async pageSelect(selectedPage: number){
     return 
   }
   this.currentIndex = selectedPage;
-  let selectedEventList =   await this.eventsClient.getEvents(this.currentIndex, 10)
+  let selectedEventList =   await this.eventsClient.getEvents(this.currentIndex, this.noOfEventsPerPage)
     this.reveivedObject =  selectedEventList;
     this.eventResponseList.total = this.reveivedObject.total;
     this.eventResponseList.results = this.reveivedObject.results;
@@ -192,7 +192,7 @@ onSelect(event: Event[]): Event[] {
 async nextPageOfEvents() {
   if(this.currentIndex < this.eventResponseList.total) {
     this.currentIndex = this.currentIndex + 1;
-    let initialEventList =   await this.eventsClient.getEvents(this.currentIndex, 10)
+    let initialEventList =   await this.eventsClient.getEvents(this.currentIndex, this.noOfEventsPerPage)
     this.reveivedObject =  initialEventList;
     this.eventResponseList.total = this.reveivedObject.total;
     this.eventResponseList.results = this.reveivedObject.results;
@@ -207,7 +207,7 @@ async previousPageOfEvents() {
     return this.currentIndex == 0 ;
     }
   this.currentIndex = this.currentIndex - 1;
-  let initialEventList =   await this.eventsClient.getEvents(this.currentIndex, 10)
+  let initialEventList =   await this.eventsClient.getEvents(this.currentIndex, this.noOfEventsPerPage)
   this.reveivedObject =  initialEventList;
   this.eventResponseList.total = this.reveivedObject.total;
   this.eventResponseList.results = this.reveivedObject.results;

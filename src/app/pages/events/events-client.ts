@@ -16,7 +16,7 @@ export class EventsClient {
   
   async getEvents(currentPage: Number, noOfProducts: Number): Promise<{}>{ 
     
-    let params = new HttpParams().set("pageNumber",1).set("pageSize", 10);
+    let params = new HttpParams().set("pageNumber",1).set("pageSize", 8);
 
 
     let url =  `http://localhost:8085/busker/getEvents?pageNumber=${currentPage}&pageSize=${noOfProducts}` ;
@@ -27,6 +27,20 @@ export class EventsClient {
     return this.http.get<{}>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
     
   }
+
+  // async getEventsGenreControl(currentPage: Number, noOfProducts: Number): Promise<{}>{ 
+    
+  //   let params = new HttpParams().set("pageNumber",1).set("pageSize", 10);
+
+
+  //   let url =  `http://localhost:8085/busker/getEvents?pageNumber=${currentPage}&pageSize=${noOfProducts}` ;
+  //   let headers = new HttpHeaders({
+  //     'Content-Type': 'application/json'
+  //   });      
+    
+  //   return this.http.get<{}>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
+    
+  // }
 }
 
 
