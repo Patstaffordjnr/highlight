@@ -25,6 +25,7 @@ export class EventTableComponent implements OnInit {
   sorts = ["Nearest", "Starting Time"];
   
   allEventsVisible = true;
+
   bandEventsVisible = true;
   buskerEventsVisible = true;
   djEventsVisible = true;
@@ -79,6 +80,7 @@ async ngOnInit() {
  this.reveivedObject.results.forEach(event => {
   this.addressList(event.lat, event.long);
 })
+
 
   this.pageNumberOrchestration(this.reveivedObject.results.length, this.reveivedObject.total, this.currentIndex)
 }
@@ -140,6 +142,7 @@ pageNumberOrchestration(injectedNoOfEventsPerPage, injectedNoOfPages, injectedCu
     return  this.pageNumberArray = [0,1,2,3,4]
   } else if (injectedCurrentIndex < (injectedNoOfPages)) {
 
+
     let y = [0,1,2,3,4];
     let x = []
     
@@ -155,6 +158,7 @@ pageNumberOrchestration(injectedNoOfEventsPerPage, injectedNoOfPages, injectedCu
   y.forEach(element => {
     if(element > this.totalNumberOfPages) {
       return
+
     } else {
       this.pageNumberArray.push((element + injectedCurrentIndex) - 3);
     }
@@ -217,36 +221,44 @@ async previousPageOfEvents() {
 
 
 allFunction(){
-  console.log(`All Function`);
+  // console.log(`All Function`);
   this.allEventsVisible = !this.allEventsVisible;
   console.log(this.allEventsVisible);
 
 }
 
-bandFunction(){
-  console.log(`Band Function`);
+async bandFunction(){
+  // console.log(`Band Function`);
   this.bandEventsVisible =  !this.bandEventsVisible;
+  let eventListWithoutBand =   await this.eventsClient.getEventsGenreControl(this.currentIndex, this.noOfEventsPerPage, "Band")
   console.log(this.bandEventsVisible);
-
+  
 }
 
-buskerFunction(){
-  console.log(`Busker Function`);
+async buskerFunction(){
+  // console.log(`Busker Function`);
   this.buskerEventsVisible = !this.buskerEventsVisible;
   console.log(this.buskerEventsVisible);
+  let eventListWithoutBusker =   await this.eventsClient.getEventsGenreControl(this.currentIndex, this.noOfEventsPerPage, "Busker")
+  // console.log(eventListWithoutBusker);
 
 }
 
-djFunction(){
-  console.log(`DJ Function`);
+async djFunction(){
+  // console.log(`DJ Function`);
   this.djEventsVisible = !this.djEventsVisible;
   console.log(this.djEventsVisible);
+  let eventListWithoutDj =   await this.eventsClient.getEventsGenreControl(this.currentIndex, this.noOfEventsPerPage, "Dj")
+  // console.log(eventListWithoutDj);
 }
 
-performanceFunction(){
-  console.log(`Performance Function`);
+async performanceFunction(){
+  // console.log(`Performance Function`);
   this.performanceEventsVisible = !this.performanceEventsVisible;
   console.log(this.performanceEventsVisible);
+
+  let eventListWithoutPerformance =   await this.eventsClient.getEventsGenreControl(this.currentIndex, this.noOfEventsPerPage, "Performance")
+  // console.log(eventListWithoutPerformance);
 }
 
 search(searchText){

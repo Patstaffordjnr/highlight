@@ -9,15 +9,15 @@ import { Event } from 'src/app/model/event';
 
 export class EventsClient {
 
-  constructor(private http: HttpClient) {
+  genreArray = ["Band","Busker","Dj","Performance"];
 
+  constructor(private http: HttpClient) {
   }
 
   
   async getEvents(currentPage: Number, noOfProducts: Number): Promise<{}>{ 
     
     let params = new HttpParams().set("pageNumber",1).set("pageSize", 8);
-
 
     let url =  `http://localhost:8085/busker/getEvents?pageNumber=${currentPage}&pageSize=${noOfProducts}` ;
     let headers = new HttpHeaders({
@@ -28,19 +28,25 @@ export class EventsClient {
     
   }
 
-  // async getEventsGenreControl(currentPage: Number, noOfProducts: Number): Promise<{}>{ 
-    
-  //   let params = new HttpParams().set("pageNumber",1).set("pageSize", 10);
+  async getEventsGenreControl(currentPage: Number, noOfProducts: Number, genre: string): Promise<{}> {
+    // Update the genre array by toggling the presence of the genre
+    if (this.genreArray.includes(genre)) {
+      this.genreArray = this.genreArray.filter(g => g !== genre);
+    } else {
+      this.genreArray.push(genre);
+    }
 
+    console.log(this.genreArray);
 
-  //   let url =  `http://localhost:8085/busker/getEvents?pageNumber=${currentPage}&pageSize=${noOfProducts}` ;
-  //   let headers = new HttpHeaders({
-  //     'Content-Type': 'application/json'
-  //   });      
-    
-  //   return this.http.get<{}>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
-    
-  // }
+    let params = new HttpParams().set("pageNumber", 1).set("pageSize", 8);
+
+    let url = `http://localhost:8085/busker/getEvents?pageNumber=${currentPage}&pageSize=${noOfProducts}`;
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<{}>(url, { withCredentials: true, headers: headers, params: params }).toPromise();
+  }
 }
 
 
