@@ -32,13 +32,17 @@ export class EventsClient {
     // Update the genre array by toggling the presence of the genre
     if (this.genreArray.includes(genre)) {
       this.genreArray = this.genreArray.filter(g => g !== genre);
+      this.genreArray.sort();
+
     } else {
       this.genreArray.push(genre);
+      this.genreArray.sort();
+
     }
 
     console.log(this.genreArray);
 
-    let params = new HttpParams().set("pageNumber", 1).set("pageSize", 8);
+    let params = new HttpParams().set("pageNumber", 1).set("pageSize", 8)
 
     let url = `http://localhost:8085/busker/getEvents?pageNumber=${currentPage}&pageSize=${noOfProducts}`;
     let headers = new HttpHeaders({
