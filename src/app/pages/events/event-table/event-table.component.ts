@@ -55,7 +55,7 @@ eventResponseList: PageListResponse = {
 };
 
 
-constructor(private formBuilder: FormBuilder, private eventsClient: EventsClient, private eventService: EventService,  private http: HttpClient, private cdRef: ChangeDetectorRef) {
+constructor(private formBuilder: FormBuilder, private eventsClient: EventsClient, private eventService: EventService,  private http: HttpClient, private googleMapService: GoogleMapService, private cdRef: ChangeDetectorRef) {
   this.form = this.formBuilder.group({
     searchText: [''],
   });
@@ -76,6 +76,8 @@ async ngOnInit() {
   this.reveivedObject =  initialEventList;
   this.eventResponseList.total = this.reveivedObject.total;
   this.eventResponseList.results = this.reveivedObject.results;
+
+  this.googleMapService.updateEventsToBeDisplayed(this.eventResponseList.results);
 
  this.reveivedObject.results.forEach(event => {
   this.addressList(event.lat, event.long);
@@ -179,11 +181,18 @@ async pageSelect(selectedPage: number){
     this.eventResponseList.total = this.reveivedObject.total;
     this.eventResponseList.results = this.reveivedObject.results;
   this.pageNumberOrchestration(this.reveivedObject.results.length, this.reveivedObject.total, this.currentIndex)
+  this.googleMapService.updateEventsToBeDisplayed(this.eventResponseList.results);
+
 }
 
 async eventDisplay(eventSubject: Event[]) {
   console.log(eventSubject);
-return await this.eventService.updateEvent(eventSubject)
+  
+
+
+await this.eventService.updateEvent(eventSubject)
+
+return 
 }
 
 selectedEvent?: Event[];
@@ -200,7 +209,9 @@ async nextPageOfEvents() {
     this.reveivedObject =  initialEventList;
     this.eventResponseList.total = this.reveivedObject.total;
     this.eventResponseList.results = this.reveivedObject.results;
+    this.googleMapService.updateEventsToBeDisplayed(this.eventResponseList.results);
     this.pageNumberOrchestration(this.reveivedObject.results.length, this.reveivedObject.total, this.currentIndex)
+
   } else return
 
   }
@@ -215,6 +226,7 @@ async previousPageOfEvents() {
   this.reveivedObject =  initialEventList;
   this.eventResponseList.total = this.reveivedObject.total;
   this.eventResponseList.results = this.reveivedObject.results;
+  this.googleMapService.updateEventsToBeDisplayed(this.eventResponseList.results);
   this.pageNumberOrchestration(this.reveivedObject.results.length, this.reveivedObject.total, this.currentIndex)
 }
 

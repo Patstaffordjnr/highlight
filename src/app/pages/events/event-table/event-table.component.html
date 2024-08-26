@@ -47,7 +47,14 @@
 </div>
 <br>
 <br>
-
+<div class="eventPagination">
+  <button (click)="previousPageOfEvents()">Previous Page</button>
+  <button *ngFor="let pageNumber of pageNumberArray" [class.selected]="pageNumber === currentIndex" (click)="pageSelect(pageNumber)">
+    {{pageNumber}}
+  </button>
+  <button (click)="nextPageOfEvents()">Next Page</button>
+</div>
+<br>
 <div class = "event-list-container">
 <div class="event-list">
   <div class="event-grid">
@@ -141,11 +148,4 @@
   </div>
 </div>
 </div>
-<br>
-<div class="eventPagination">
-  <button (click)="previousPageOfEvents()">Previous Page</button>
-  <button *ngFor="let pageNumber of pageNumberArray" [class.selected]="pageNumber === currentIndex" (click)="pageSelect(pageNumber)">
-    {{pageNumber}}
-  </button>
-  <button (click)="nextPageOfEvents()">Next Page</button>
-</div>
+

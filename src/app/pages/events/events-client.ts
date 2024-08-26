@@ -39,10 +39,11 @@ export class EventsClient {
       this.genreArray.sort();
 
     }
+    const genreString = this.genreArray.join(',');
 
     console.log(this.genreArray);
 
-    let params = new HttpParams().set("pageNumber", 1).set("pageSize", 8)
+    let params = new HttpParams().set("pageNumber", 1).set("pageSize", 8).set("genres", genreString)
 
     let url = `http://localhost:8085/busker/getEvents?pageNumber=${currentPage}&pageSize=${noOfProducts}`;
     let headers = new HttpHeaders({

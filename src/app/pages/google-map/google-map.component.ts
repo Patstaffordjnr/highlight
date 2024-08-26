@@ -13,8 +13,6 @@ export class GoogleMapComponent implements  OnInit, AfterViewInit {
 
   @ViewChild('mapContainer', { static: false }) mapContainer: ElementRef;
 
-
-  
   isMarkerPlaced = false;
   eventsToBeDisplayed = [];
 
@@ -42,7 +40,9 @@ export class GoogleMapComponent implements  OnInit, AfterViewInit {
     }));
 
    this.googleMapService.eventsToBeDisplayed$.subscribe(events => {
+
     this.eventsToBeDisplayed = events;
+
     this.updateEvents(this.eventsToBeDisplayed);
   });
 
@@ -259,6 +259,10 @@ let lng = await [event][0].long;
       position: { lat, lng },
       map: this.map
     });
+    
+
+
+
     this.markers.push(marker);
   const infoWindow = new google.maps.InfoWindow({
     content: `
@@ -280,9 +284,11 @@ let lng = await [event][0].long;
 
 
 async updateEvents(eventsToBeDisplayed) {
-
+  this.markers.forEach(marker => {
+    marker.setMap(null);
+  });
   eventsToBeDisplayed.map(((event, i) => {
-    console.log();
+    
     this.placeEventMarkers(event);
 }))
 
