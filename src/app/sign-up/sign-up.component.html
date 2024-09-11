@@ -1,0 +1,22 @@
+
+<div class = "sign-up-container">
+
+    <p>sign-up works!</p>
+
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <label for="email">Email: </label>
+        <input id="email" type="text" formControlName="email" >
+
+        <label for="password">Password: </label>
+        <input id="password" type="password" formControlName="password" >
+
+
+        <!-- <label formArrayName="userRoles" *ngFor="let userRole of userRolesFormArray.controls; let i = index">
+          <input type="checkbox" [formControlName]="i">
+          {{allUserRoles[i]}}
+        </label> -->
+    
+        <button type="submit" [disabled]="!form.valid">Submit</button>
+      </form>
+</div>
