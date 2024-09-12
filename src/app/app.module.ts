@@ -6,9 +6,12 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogInComponent } from './log-in/log-in.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './common/footer/footer.component';
 import { HeaderComponent } from './common/header/header.component';
+import { RouterService } from './util/router.service';
+import { ErrorInterceptor } from './util/interceptors/noop-interceptor.service';
+import { CurrentUserService, PermissionsService } from './util/can-activate.service';
 
 
 @NgModule({
@@ -33,7 +36,10 @@ import { HeaderComponent } from './common/header/header.component';
 
   ],
   providers: [
-    // CorsInterceptor,
+    RouterService,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    CurrentUserService,
+    PermissionsService,
 
   ],
   bootstrap: [AppComponent]

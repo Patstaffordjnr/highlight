@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { LoginClient } from './log-in.client';
-// import { RouterService } from ''
+import { RouterService } from 'src/app/util/router.service';
 
 @Component({
   selector: 'app-log-in',
@@ -12,12 +12,12 @@ import { LoginClient } from './log-in.client';
   // imports: [],
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.css'
-})  // await this.routerService.clearCookie();
+})  
 export class LogInComponent {
 
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private loginClient: LoginClient) {
+  constructor(private formBuilder: FormBuilder, private loginClient: LoginClient, private routerService: RouterService) {
 
     this.form = this.formBuilder.group({
       email: ['busker@dumb.com'],
@@ -50,10 +50,10 @@ generateRequest(): LoginRequest {
 
 async onSubmit() {
   var loggedInUser = await this.loginClient.logIn(this.generateRequest());
-  // if(loggedInUser) {
-  //   this.routerService.setUser(loggedInUser);
-  //   this.routerService.toHomePage();
-  // }  
+  if(loggedInUser) {
+    this.routerService.setUser(loggedInUser);
+    this.routerService.toHomePage();
+  }  
 }
 
 async getForbidden() {
@@ -61,7 +61,7 @@ async getForbidden() {
 }
 
 async clearCookie() {
-  // await this.routerService.clearCookie();
+  await this.routerService.clearCookie();
 }
 
 
