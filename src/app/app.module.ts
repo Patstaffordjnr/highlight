@@ -7,6 +7,8 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogInComponent } from './log-in/log-in.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './common/footer/footer.component';
+import { HeaderComponent } from './common/header/header.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     SignUpComponent,
     MainMenuComponent,
-    LogInComponent
+    LogInComponent,
+    HeaderComponent,
+    FooterComponent
 
     //Components
   ],
