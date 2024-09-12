@@ -5,10 +5,12 @@ import { AppComponent } from './app.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { LogInComponent } from './log-in/log-in.component';
+import { HomeComponent } from './home/home.component';
 
 
 
 const routes: Routes = [
+  { path: 'home', component: HomeComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'login', component: LogInComponent },
   { path: 'mainmenu', component: MainMenuComponent }
