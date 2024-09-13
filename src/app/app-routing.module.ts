@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes,RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
-import { LogInComponent } from './log-in/log-in.component';
+import { LogInComponent } from './pages/log-in/log-in.component';
 import { HomeComponent } from './home/home.component';
 
 

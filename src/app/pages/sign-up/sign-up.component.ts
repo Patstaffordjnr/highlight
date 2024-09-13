@@ -3,10 +3,10 @@ import { JsonPipe, NgFor } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
-import { SignUpClient } from '../sign-up/sign-up.client';
+import { SignUpClient } from './sign-up.client';
 import { UserRole } from 'src/app/model/user-roles';
-import { SignUpRequest } from '../sign-up/sign-up-request';
-import { minSelectedCheckboxes } from '../util/validators/checkbox-validator';
+import { SignUpRequest } from './sign-up-request';
+import { minSelectedCheckboxes } from '../../util/validators/checkbox-validator';
 import { RouterService } from 'src/app/util/router.service';
 
 
