@@ -12,6 +12,8 @@ import { HeaderComponent } from './common/header/header.component';
 import { RouterService } from './util/router.service';
 import { ErrorInterceptor } from './util/interceptors/noop-interceptor.service';
 import { CurrentUserService, PermissionsService } from './util/can-activate.service';
+import { CalendarComponent } from './common/calendar/calendar.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { CurrentUserService, PermissionsService } from './util/can-activate.serv
     MainMenuComponent,
     LogInComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent,
+    CalendarComponent
 
   ],
   imports: [

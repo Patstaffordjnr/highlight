@@ -1,3 +1,27 @@
-.header-container{
-    background-color: coral;
+.header-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    z-index: 13;
+}
+
+.header-image img{
+    justify-content: center;
+    align-items: center;
+    max-width: 15%;
+    max-height: 15%;
+}
+
+.header-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+}
+
+.header-progress-bar{ 
+    z-index: 23;
 }
