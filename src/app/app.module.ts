@@ -17,6 +17,9 @@ import { CurrentUserService, PermissionsService } from './util/can-activate.serv
 @NgModule({
   declarations: [
     //Pages
+
+
+    //Components,
     AppComponent,
     SignUpComponent,
     MainMenuComponent,
@@ -24,10 +27,8 @@ import { CurrentUserService, PermissionsService } from './util/can-activate.serv
     HeaderComponent,
     FooterComponent
 
-    //Components
   ],
   imports: [
-    
     BrowserModule,
     AppRoutingModule,
     FormsModule,

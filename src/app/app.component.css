@@ -1,0 +1,39 @@
+
+.display-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: darkviolet;
+    min-height: 90vh
+
+
+}
+.flex-grid {
+    display: flex;
+    background-color: none;
+}
+  
+  .col {
+    flex: 1;
+    display: flex; 
+}
+
+
+.header-container{
+
+
+}
+.main-menu-container{
+
+}
+.router-outlet-container{
+
+}
+.footer-container{
+    
+
+}
+
+
+
+
