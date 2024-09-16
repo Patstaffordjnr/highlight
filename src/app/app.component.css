@@ -1,12 +1,9 @@
-
 .display-container{
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: darkviolet;
-    min-height: 90vh
-
-
+    min-height: 91vh
 }
 .flex-grid {
     display: flex;
@@ -18,20 +15,21 @@
     display: flex; 
 }
 
-
 .header-container{
-
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .main-menu-container{
-
+    width: 100vmax;
 }
 .router-outlet-container{
-
 }
-.footer-container{
-    
 
+.footer-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 

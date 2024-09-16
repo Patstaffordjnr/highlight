@@ -1,4 +1,17 @@
 .main-menu-container{
     background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
 
+}
+.flex-grid {
+    display: flex;
+    background-color: none;
+}
+  
+  .col {
+    flex: 1;
+    display: flex; 
 }
