@@ -1,4 +1,6 @@
 <div class = "home-container">
-    <app-calendar [selectedDate]="displayTime"></app-calendar>
+    <app-calendar 
+    [selectedDate]="displayTime"    
+    (selectDateEvent)="selectDateEventProcess($event)"></app-calendar>
 </div>
 

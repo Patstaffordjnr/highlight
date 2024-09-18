@@ -28,8 +28,8 @@ export class CalendarComponent implements OnInit {
   calenderFirstDayOfMonth = new Date( this.yearNumber, this.monthNumber -1, this.dayNumber);
   calenderTime = this.currentDateTimeYear.toLocaleTimeString();
 
-  @Output() selectDateEvent = new EventEmitter<Date>();
   @Input() selectedDate: Date;
+  @Output() selectDateEvent = new EventEmitter<Date>();
 
   constructor() {
     

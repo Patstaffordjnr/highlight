@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { DisplayTimeService } from '../home/display-time.service'
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -9,19 +8,19 @@ import { DisplayTimeService } from '../home/display-time.service'
 
 
 
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   displayTime = new Date();
 
 
-  constructor(private displayTimeService: DisplayTimeService) {
-
-    this.displayTimeService.displayTime$.subscribe((displayTime) => {
-      if(displayTime) {
-        console.log(displayTime);
-        // const [hoursString, minutesString] = globalTime.split(':');}
+  constructor() {
   }
-})
 
-}
+  ngOnInit(): void {
+
+  }
+
+  selectDateEventProcess(selectDate: Date) {
+    console.log(selectDate)
+  }
 }
