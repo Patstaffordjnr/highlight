@@ -52,7 +52,6 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     
     if(this.selectedDate) {
-      console.log(this.selectedDate);
       this.componentInputDay(this.selectedDate);
     }
       

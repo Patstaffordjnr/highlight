@@ -1,6 +1,9 @@
 <div class = "home-container">
     <app-calendar 
-    [selectedDate]="displayTime"    
-    (selectDateEvent)="selectDateEventProcess($event)"></app-calendar>
+    [selectedDate]="from"    
+    (selectDateEvent)="updateFromDateEvent($event)"></app-calendar>
+    <app-calendar 
+    [selectedDate]="to"    
+    (selectDateEvent)="updateToDateEvent($event)"></app-calendar>
 </div>
 
