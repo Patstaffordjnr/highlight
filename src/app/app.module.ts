@@ -14,6 +14,7 @@ import { ErrorInterceptor } from './util/interceptors/noop-interceptor.service';
 import { CurrentUserService, PermissionsService } from './util/can-activate.service';
 import { CalendarComponent } from './common/calendar/calendar.component';
 import { HomeComponent } from './home/home.component';
+import { DisplayTimeService } from './home/display-time.service';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { HomeComponent } from './home/home.component';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     CurrentUserService,
     PermissionsService,
+    DisplayTimeService,
 
   ],
   bootstrap: [AppComponent]
