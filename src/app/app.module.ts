@@ -3,7 +3,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
-import { MainMenuComponent } from './main-menu/main-menu.component';
+import { MainMenuComponent } from './pages/main-menu/main-menu.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogInComponent } from './pages/log-in/log-in.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -13,7 +13,7 @@ import { RouterService } from './util/router.service';
 import { ErrorInterceptor } from './util/interceptors/noop-interceptor.service';
 import { CurrentUserService, PermissionsService } from './util/can-activate.service';
 import { CalendarComponent } from './common/calendar/calendar.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 
 
 @NgModule({
