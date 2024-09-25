@@ -1,6 +1,17 @@
-<div class = "main-menu-container">
-    <h1>Main Menu</h1>
-    <a href = "signup">Sign Up</a>
-    <br>
-    <a href = "login">Log In</a>
-</div>
+<div *ngIf="!isLoggedIn">
+    <div class="main-menu-container">
+      <h1>Not Logged In Main Menu</h1>
+      <a href="signup">Sign Up</a>
+      <br />
+      <a href="login">Log In</a>
+    </div>
+  </div>
+  
+  <div *ngIf="isLoggedIn">
+    <div class="log-in-main-menu-container">
+      <h1>Welcome to the Logged-In Menu</h1>
+      <button (click)="logout()">Log Out</button>
+    </div>
+
+  </div>
+  

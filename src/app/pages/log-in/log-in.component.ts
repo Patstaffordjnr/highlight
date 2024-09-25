@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { LoginClient } from './log-in.client';
 import { RouterService } from 'src/app/util/router.service';
+import { AuthService } from 'src/app/util/auth.service';
 
 @Component({
   selector: 'app-log-in',
@@ -15,7 +16,7 @@ export class LogInComponent {
 
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private loginClient: LoginClient, private routerService: RouterService) {
+  constructor(private formBuilder: FormBuilder, private loginClient: LoginClient, private routerService: RouterService, private authService: AuthService) {
 
     this.form = this.formBuilder.group({
       email: ['busker@dumb.com'],
@@ -34,6 +35,7 @@ generateRequest(): LoginRequest {
 async onSubmit() {
   var loggedInUser = await this.loginClient.logIn(this.generateRequest());
   if(loggedInUser) {
+    this.authService.login()
     this.routerService.setUser(loggedInUser);
     this.routerService.toHomePage();
   }  
