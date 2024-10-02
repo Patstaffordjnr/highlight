@@ -3,3 +3,11 @@
     <img src="/assets/highlight.jpg" routerLink="/home" (click)="toHomePage()" alt="image" >
     </div>
 </div>
+
+<div class = "menu-container">
+    <div class="hamburger-menu" (click) = "toggleMenu()" >
+        <!-- Hamburger icon for mobile -->
+        ☰
+      </div>
+    <app-main-menu  *ngIf="menuVisible"></app-main-menu>
+</div>

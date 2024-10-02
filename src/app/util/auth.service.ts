@@ -1,29 +1,32 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { UserRole } from '../model/user-roles';
+import { CurrentUserService } from './can-activate.service';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false); // Initialize as not logged in
+ 
+  constructor(private currentUserService: CurrentUserService) {}
 
-  constructor() {}
-
-  // Observable to expose the logged-in state
   get isLoggedIn$(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }
 
-  // Check if the user is authenticated (for internal use)
+  
   isAuthenticated(): boolean {
     return this.loggedIn.value;
   }
 
   // Login method
-  login() {
+ async login() {
     this.loggedIn.next(true);
     console.log('Logged In');
     console.log(this.loggedIn.value);
+
   }
 
   // Logout method

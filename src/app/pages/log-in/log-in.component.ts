@@ -37,6 +37,8 @@ async onSubmit() {
   if(loggedInUser) {
     this.authService.login()
     this.routerService.setUser(loggedInUser);
+    
+
     this.routerService.toHomePage();
   }  
 }

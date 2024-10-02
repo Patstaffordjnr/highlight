@@ -1,0 +1,38 @@
+<div *ngIf="!isLoggedIn">
+    <div class="main-menu-container">
+      <h1>Not Logged In Main Menu</h1>
+      <a href="signup">Sign Up</a>
+      <br>
+      <a href="login">Log In</a>
+      <br>
+      <a href="users">Users</a>
+      </div>
+  </div>
+  
+  <div *ngIf="isLoggedIn">
+    <div class="log-in-main-menu-container">
+      <div *ngIf= "user" class = "nav-user">
+        <a href="user">User</a>
+      </div>
+      <div *ngIf= "user" class = "nav-users">
+        Users
+      </div>
+      <div *ngIf= "busker" class = "nav-create-event">
+        Create Event
+      </div>
+      <div *ngIf= "admin" class = "nav-edit-events">
+        Edit Events
+      </div>
+      <div *ngIf= "admin" class = "nav-edit-users">
+        Edit Users
+      </div>
+      <div class = "nav-log-out">
+      <button (click)="logout()">Log Out</button>
+      </div>
+    </div>
+  </div>
+
+  
+
+  
+  
