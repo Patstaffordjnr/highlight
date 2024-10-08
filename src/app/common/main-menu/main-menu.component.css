@@ -1,21 +1,32 @@
-.main-menu-container{
-    background-color: aqua;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 10px;
+.burger-menu {
+    display: inline-block;
+    cursor: pointer;
+    padding-right: 15px;
+  }
+  
+  .burger-menu div {
+    width: 35px;
+    height: 5px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
+    border-radius: 5px; /* Make edges rounded */
+  }
+  
+  .change .bar1 {
+    transform: rotate(-45deg) translate(-8px, 8px);
+  }
+  
+  .change .bar2 {
+    opacity: 0;
+  }
+  
+  .change .bar3 {
+    transform: rotate(45deg) translate(-8px, -8px);
+  }
+  
 
-}
-
-.log-in-main-menu-container {
-    background-color: dodgerblue;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-.flex-grid {
+  .flex-grid {
     display: flex;
     background-color: none;
 }
@@ -24,3 +35,36 @@
     flex: 1;
     display: flex; 
 }
+
+.main-menu-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:none;
+
+}
+
+.sign-up{
+  padding-right: 15px;
+
+}
+
+.log-in{
+  padding-right: 15px;
+
+
+}
+
+.users{
+  padding-right: 15px;
+
+}
+
+  
+  .log-in-main-menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:none;
+   
+  }

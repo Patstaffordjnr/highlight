@@ -7,7 +7,6 @@ import { RouterService } from 'src/app/util/router.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  menuVisible = true;
 
   constructor(private routerService: RouterService) {
 
@@ -17,8 +16,5 @@ export class HeaderComponent {
     await this.routerService.toHomePage();
   }
 
-  toggleMenu() {
-    this.menuVisible = !this.menuVisible;
-  }
 
 }

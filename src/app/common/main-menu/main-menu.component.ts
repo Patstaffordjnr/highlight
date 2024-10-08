@@ -11,6 +11,8 @@ import { CurrentUserService } from 'src/app/util/can-activate.service';
   styleUrls: ['./main-menu.component.css'],
 })
 export class MainMenuComponent implements OnInit {
+  menuVisible = true;
+
   isLoggedIn = false;
   userRoles = [];
   user = false;
@@ -48,6 +50,11 @@ export class MainMenuComponent implements OnInit {
       }
 
     })
+  }
+
+
+  toggleMenu() {
+    this.menuVisible = !this.menuVisible;
   }
 
   logout() {
