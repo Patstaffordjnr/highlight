@@ -41,30 +41,52 @@
     justify-content: center;
     align-items: center;
     background-color:none;
-
 }
 
-.sign-up{
-  padding-right: 15px;
-
-}
-
-.log-in{
-  padding-right: 15px;
-
-
-}
-
-.users{
-  padding-right: 15px;
-
-}
-
-  
-  .log-in-main-menu-container {
+.log-in-main-menu-container {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color:none;
-   
-  }
+}
+
+
+.home{
+    padding: 15px;
+}
+  
+.sign-up{
+  padding: 15px;
+}
+
+.log-in{
+  padding: 15px;
+}
+
+.users{
+  padding: 15px;
+}
+
+.nav-user{
+  padding: 15px;
+}
+
+.nav-users{
+  padding: 15px;
+}
+.nav-edit-events{
+  padding: 15px;
+}
+.nav-edit-events{
+  padding: 15px;
+}
+.nav-edit-users{
+  padding: 15px;
+}
+.nav-log-out{
+  padding: 15px;
+}
+
+.hidden{
+  opacity: 0%;
+}

@@ -1,65 +1,47 @@
 <div  class="main-menu-container flex-grid"  *ngIf="!isLoggedIn">
-
   <div class="burger-menu" (click)="toggleMenu()">
     <div class="bar1"></div>
     <div class="bar2"></div>
     <div class="bar3"></div>
   </div>
-
+  <div class = "home" *ngIf="menuVisible">
+    <a routerLink = "/home">Home</a>
+    </div>
     <div class = "sign-up" *ngIf="menuVisible">
-      <a href="signup">Sign Up</a>
+      <a routerLink = "signup">Sign Up</a>
     </div>
-
     <div class = "log-in" *ngIf="menuVisible">
-      <a href="login">Log In</a>
+      <a routerLink = "login">Log In</a>
     </div>
-
     <div class = "users" *ngIf="menuVisible">
-      <a href="users">Users</a>
+      <a routerLink = "users">Users</a>
     </div>
-
   </div>
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <div class="log-in-main-menu-container" *ngIf="isLoggedIn">
+  <div  class="log-in-main-menu-container flex-grid"  *ngIf="isLoggedIn">
     <div class="burger-menu" (click)="toggleMenu()">
       <div class="bar1"></div>
       <div class="bar2"></div>
       <div class="bar3"></div>
     </div>
-
-    <div *ngIf="menuVisible">
-      <div *ngIf= "user" class = "nav-user">
+    <div class = "home" *ngIf="menuVisible">
+      <a routerLink="/home">Home</a>
+    </div>
+      <div class = "nav-user" [ngClass]="{'hidden': !user}" *ngIf= "menuVisible" >
         <a routerLink="/user">User</a>
       </div>
-      <div *ngIf= "user" class = "nav-users">
+      <div class = "nav-users" *ngIf= "menuVisible">
         <a routerLink="/users">Users</a>
       </div>
-      <div *ngIf= "admin" class = "nav-edit-events">
+      <div class = "nav-edit-events" [ngClass]="{'hidden': !admin}" *ngIf= "menuVisible">
         <a routerLink="/editevents">Edit Events</a>
       </div>
-      <div *ngIf= "admin" class = "nav-edit-users">
+      <div class = "nav-edit-users" [ngClass]="{'hidden': !admin}" *ngIf= "menuVisible">
         <a routerLink="/editusers">Edit Users</a>
       </div>
-      <div class = "nav-log-out">
+      <div class = "nav-log-out" *ngIf= "menuVisible">
       <button (click)="logout()">Log Out</button>
       </div>
     </div>
-  </div>
 
-  
-
-  
   
