@@ -18,6 +18,7 @@ import { DisplayTimeService } from './home/display-time.service';
 import { MapComponent } from './common/map/map.component';
 import { EventService } from './common/event/event-service';
 import { EventsTableComponent } from './common/events-table/events-table.component';
+import { ProgressBarComponent } from './common/progress-bar/progress-bar.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { EventsTableComponent } from './common/events-table/events-table.compone
     HomeComponent,
     CalendarComponent,
     MapComponent,
-    EventsTableComponent
+    EventsTableComponent,
+    ProgressBarComponent
 
   ],
   imports: [
