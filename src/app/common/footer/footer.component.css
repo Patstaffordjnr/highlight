@@ -1,4 +1,11 @@
 .footer-container{
-    background-color: brown;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
+}
+
+.footer-image{
+    width: 250px; /* Set desired width */
+    height: auto; /* Maintain aspect ratio */
 }

@@ -1,14 +1,25 @@
 <br>
-
-<div class = "log-in-container">
-
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <label for="email">Email: </label>
-        <input id="email" type="text" formControlName="email" >
-
-        <label for="password">Password: </label>
-        <input id="password" type="password" formControlName="password" >
-    
-        <button type="submit" [disabled]="!form.valid">Submit</button>
-      </form>
-</div>
+<div class = "log-in-div">
+  <div class = "log-in">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="flex-grid">
+      <div class = "email-label col">
+      <label for="email">Email :&nbsp;</label>
+      </div>
+      <div class = "email-input col">
+      <input id="email" type="text" formControlName="email">
+      </div>
+    </div>
+    <br>
+    <div class="flex-grid">
+      <div class = "password-label col">
+      <label for="password">Password :&nbsp; </label>
+      </div>
+      <div class = "password-input col">
+      <input id="password" type="password" formControlName="password">
+      </div>
+    </div>
+      <div class = "submit-button">
+      <button type="submit" [disabled]="!form.valid">Submit</button>
+    </div>
+    </form>

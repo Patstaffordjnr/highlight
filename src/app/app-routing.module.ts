@@ -10,8 +10,6 @@ import { UsersComponent } from './pages/users/users.component';
 import { EditEventsComponent } from './pages/edit-events/edit-events.component';
 import { EditUsersComponent } from './pages/edit-users/edit-users.component';
 
-
-
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },

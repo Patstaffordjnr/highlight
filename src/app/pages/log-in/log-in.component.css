@@ -1,4 +1,66 @@
-.log-in-container{
-    background-color: goldenrod;
 
+
+.log-in-div{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:none;
+}
+
+.flex-grid {
+    display: flex;
+    background-color: none;
+}
+  
+  .col {
+    flex: 1;
+    display: flex; 
+}
+
+.log-in{
+    background-color:none;
+    width: 365px;
+    padding-top: 14px;
+    padding-bottom: 10px;
+    border-radius: 25px;
+    border: 6px solid whitesmoke;
+    max-width: 340px;
+    min-width: 340px;
+
+}
+
+.email-label{
+    background-color:none;
+    display: flex;
+    justify-content: right;
+
+
+    
+}
+
+.email-input{
+    background-color:none;
+    padding-right: 14px;
+ 
+
+}
+
+.password-label{
+    
+    background-color:none;
+    display: flex;
+    justify-content: right;
+}
+
+.password-input{
+    background-color:none;
+    padding-right: 14px;
+ 
+}
+
+.submit-button{
+    background-color:none;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
 }

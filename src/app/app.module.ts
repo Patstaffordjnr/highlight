@@ -15,12 +15,12 @@ import { CurrentUserService, PermissionsService } from './util/can-activate.serv
 import { CalendarComponent } from './common/calendar/calendar.component';
 import { HomeComponent } from './home/home.component';
 import { DisplayTimeService } from './home/display-time.service';
+import { MapComponent } from './common/map/map.component';
 
 
 @NgModule({
   declarations: [
     //Pages
-
 
     //Components,
     AppComponent,
@@ -30,7 +30,8 @@ import { DisplayTimeService } from './home/display-time.service';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    CalendarComponent
+    CalendarComponent,
+    MapComponent,
 
   ],
   imports: [
