@@ -16,6 +16,8 @@ import { CalendarComponent } from './common/calendar/calendar.component';
 import { HomeComponent } from './home/home.component';
 import { DisplayTimeService } from './home/display-time.service';
 import { MapComponent } from './common/map/map.component';
+import { EventService } from './common/event/event-service';
+import { EventsTableComponent } from './common/events-table/events-table.component';
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import { MapComponent } from './common/map/map.component';
     HomeComponent,
     CalendarComponent,
     MapComponent,
+    EventsTableComponent
 
   ],
   imports: [
@@ -48,6 +51,7 @@ import { MapComponent } from './common/map/map.component';
     CurrentUserService,
     PermissionsService,
     DisplayTimeService,
+    EventService
 
   ],
   bootstrap: [AppComponent]
