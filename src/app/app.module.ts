@@ -6,7 +6,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { MainMenuComponent } from './common/main-menu/main-menu.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogInComponent } from './pages/log-in/log-in.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FooterComponent } from './common/footer/footer.component';
 import { HeaderComponent } from './common/header/header.component';
 import { RouterService } from './util/router.service';
@@ -19,43 +19,43 @@ import { MapComponent } from './common/map/map.component';
 import { EventService } from './common/event/event-service';
 import { EventsTableComponent } from './common/events-table/events-table.component';
 import { ProgressBarComponent } from './common/progress-bar/progress-bar.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
-@NgModule({
-  declarations: [
-    //Pages
+@NgModule({ declarations: [
+        //Pages
 
-    //Components,
-    AppComponent,
-    SignUpComponent,
-    MainMenuComponent,
-    LogInComponent,
-    HeaderComponent,
-    FooterComponent,
-    HomeComponent,
-    CalendarComponent,
-    MapComponent,
-    EventsTableComponent,
-    ProgressBarComponent
-
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-
-  ],
-  providers: [
-    RouterService,
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    CurrentUserService,
-    PermissionsService,
-    DisplayTimeService,
-    EventService
-
-  ],
-  bootstrap: [AppComponent]
-})
+        //Components,
+        AppComponent,
+        SignUpComponent,
+        MainMenuComponent,
+        LogInComponent,
+        HeaderComponent,
+        FooterComponent,
+        HomeComponent,
+        CalendarComponent,
+        MapComponent,
+        EventsTableComponent,
+        ProgressBarComponent
+    ],
+    bootstrap: [
+        AppComponent],
+    
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DragDropModule,
+    ],
+        
+        providers: [
+        RouterService,
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+        CurrentUserService,
+        PermissionsService,
+        DisplayTimeService,
+        EventService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }

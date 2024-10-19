@@ -2,7 +2,8 @@
 <div class = "home-container">
     <app-calendar class = "calendar" [selectedDate]="displayTime"></app-calendar>
     <br>
-    <app-progress-bar></app-progress-bar>
+    <app-progress-bar class = "progress-bar" [selectedTime]="displayTime"></app-progress-bar>
+    <br>
     <br>
     <app-map class = "map"></app-map>
     <br>
