@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as L from 'leaflet';
-
+import { MapService } from './map-service'
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -8,6 +8,10 @@ import * as L from 'leaflet';
 })
 export class MapComponent implements OnInit, OnDestroy {
   private map: L.Map | undefined;
+
+  constructor(private mapService: MapService) {
+
+  }
 
   ngOnInit(): void {
     this.initMap();
@@ -20,7 +24,14 @@ export class MapComponent implements OnInit, OnDestroy {
       zoom: 13
     });
 
-    // Add OpenStreetMap tiles
+    let bounds = this.map.getBounds();
+    let minLat = bounds.getSouth();
+    let maxLat = bounds.getNorth();
+    let minLong = bounds.getWest();
+    let maxLong = bounds.getEast();
+
+    this.mapService.updateEvent(bounds, minLat, maxLat, minLong, maxLong )
+    // // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '© OpenStreetMap contributors'
@@ -36,9 +47,14 @@ export class MapComponent implements OnInit, OnDestroy {
     });
   }
 
+
+
+
   ngOnDestroy(): void {
     if (this.map) {
       this.map.remove();
     }
   }
+
+  
 }

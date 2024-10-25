@@ -26,8 +26,6 @@ export class LoginClient {
         'Content-Type': 'application/json'
       });      
 
-
-
       return await this.http.post<User>(url, JSON.stringify(loginRequest), { withCredentials: true, headers: headers}).toPromise();
   }
 

@@ -11,9 +11,14 @@ private event = new BehaviorSubject<Event[]>([]);
 
     eventToBeDisplayed$ = this.event.asObservable();
 
+
+
+
 updateEvent(updatedEventSubject: Event[]){
     this.event.next(updatedEventSubject);
   }
+
+
 
   clearSelectedEvent(){
     this.updateEvent(null);
