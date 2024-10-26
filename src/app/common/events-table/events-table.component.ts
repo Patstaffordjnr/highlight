@@ -12,21 +12,38 @@ export class EventsTableComponent implements OnInit {
 currentIndex = 0;
 noOfProducts = 10;
 
+responseFromServer;
+
 
 constructor (private eventsClient: EventsClient, private mapService: MapService) {
 
 }
 
 async ngOnInit() { 
-  await this.eventsClient.getEvents(this.currentIndex, this.noOfProducts);
+  let response = await this.eventsClient.getEvents(this.currentIndex, this.noOfProducts);
+  this.responseFromServer = response
+  console.log(this.currentIndex);
+  console.log(this.responseFromServer);
   
-
 }
 
-async BRAH() {
-  // await this.eventsClient.getEvents(this.currentIndex, this.noOfProducts);
-  console.log(`BRAH`);
 
+async currentIndexPlus() {
+  this.currentIndex = this.currentIndex + 1;
+  let response = await this.eventsClient.getEvents(this.currentIndex, this.noOfProducts);
+  this.responseFromServer = response
+  console.log(this.currentIndex);
+  console.log(this.responseFromServer);
 }
+
+
+async currentIndexMinus() {
+  this.currentIndex = this.currentIndex - 1;
+  let response = await this.eventsClient.getEvents(this.currentIndex, this.noOfProducts);
+  this.responseFromServer = response
+  console.log(this.currentIndex);
+  console.log(this.responseFromServer);
+}
+
 
 }

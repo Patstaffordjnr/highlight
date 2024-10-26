@@ -10,6 +10,8 @@ export class CurrentUserService {
     private userRoles = new BehaviorSubject<UserRole[]>(null)
 
     userRole$ = this.userRoles.asObservable();
+
+    
     async setUser(user: User): Promise<void> {
         this.currentUser = user;
         this.userRoles.next(user.roles);
