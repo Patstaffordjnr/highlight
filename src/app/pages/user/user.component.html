@@ -5,16 +5,6 @@
         </div>
 
         <div class = "user-ui">
-                        <div class = "start-date-display col">
-                                <a class = "detail-text" >{{currentUser.id}}</a>
-                        </div>
-                        <div class = "start-date col">
-                                <a class = "subject-text">{{currentUser.email}}</a>
-                        </div>
-                        <div class = "start-time-display col">
-                                <a class = "detail-text" >{{currentUser.roles}}</a>
-                        </div>
-                        <br>
                 <div class="flex-grid">
                                 <div class="event-profile-image-container col">
                                   <div class="event-profile-image">
@@ -23,9 +13,25 @@
                                 </div>
                                 <div class="event-user-name-container col">
                                   <div class="event-user-name">
-                                    <a>USER Name</a>
+                                    <a>{{currentUser.id}}</a>
                                   </div>
                                 </div>
+                </div>
+
+                <br>
+                <div class="flex-grid">
+                <div class="event-user-name-container col">
+                         <div class="event-user-name">
+                <a>{{currentUser.email}}</a>
+                </div>
+                </div>
+                
+                <div class="flex-grid">
+                        <div class="event-user-name-container col">
+                                <div class="event-user-name">
+                                  <a>{{currentUser.roles}}</a>
+                                </div>
+        </div>
 </div>
 </div>
 
