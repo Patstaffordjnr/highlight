@@ -11,19 +11,28 @@ import { CurrentUserService } from '../../util/can-activate.service'
 })
 export class UserComponent {
 
+    currentUser: User = {
+    id: "string",
+    email: "string",
+    roles: [],
+  };
+
 
 
   constructor(private currentUserService: CurrentUserService) {
 
-
   }
-
-
 
   async ngOnInit() {
 
     let user = await this.currentUserService.getUser()
-    console.log(user);
+    user.email
+    console.log(user.id);
+    this.currentUser.id = user.id;
+    this.currentUser.email =  user.email;
+    this.currentUser.roles = user.roles;
+
+
 
   }
   
