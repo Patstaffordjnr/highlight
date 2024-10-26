@@ -1,11 +1,51 @@
 
 <div class="user-container">
-        <h1>Who Am I?</h1>
-        <a>   {{currentUser.id}}</a>
-        <a>   {{currentUser.email}}</a>
-        <a>   {{currentUser.roles}}</a>
+        <div class = "user-display col">
+        <h2 class = "title-text" >User</h2>
+        </div>
 
-
+        <div class = "user-ui">
+                        <div class = "start-date-display col">
+                                <a class = "detail-text" >{{currentUser.id}}</a>
+                        </div>
+                        <div class = "start-date col">
+                                <a class = "subject-text">{{currentUser.email}}</a>
+                        </div>
+                        <div class = "start-time-display col">
+                                <a class = "detail-text" >{{currentUser.roles}}</a>
+                        </div>
+                        <br>
+                <div class="flex-grid">
+                                <div class="event-profile-image-container col">
+                                  <div class="event-profile-image">
+                                    <!-- <a>USER Image</a> -->
+                                  </div>
+                                </div>
+                                <div class="event-user-name-container col">
+                                  <div class="event-user-name">
+                                    <a>USER Name</a>
+                                  </div>
+                                </div>
+</div>
 </div>
 
-    
+
+
+<!-- <div class="flex-grid">
+
+        <div class = "start-date-display col">
+          <a class = "detail-text" >Start <br>Date :</a>
+        </div>
+        <div class = "start-date col">
+          <a class = "subject-text">{{startDateAndTime  | date:'mediumDate' }}</a>
+        </div>
+        <div class = "start-time-display col">
+          <a class = "detail-text" >Start <br>Time   :</a>
+        </div>
+        <div class = "start-time col">
+          <a class = "subject-text">{{ startDateAndTime | date:'shortTime' }}</a>
+        </div>
+        <div *ngIf= "editDialog" class = "start-select col">
+          <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "startTimeSelectToggle()">Start Time & Date</button>
+        </div>
+      </div> -->
