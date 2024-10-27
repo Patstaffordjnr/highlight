@@ -1,11 +1,106 @@
 
+.flex-grid {
+  display: flex;
+  background-color: none;
+}
+
+.col {
+  flex: 1;
+  display: flex; 
+}
+
+.user-div-container{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:none;
+  /* background-color: antiquewhite; */
+}
+
+.user-div{
+  /* background-color: cornsilk; */
+  width: 365px;
+  padding-top: 14px;
+  padding-bottom: 10px;
+  border-radius: 25px;
+  border: 6px solid whitesmoke;
+  min-width: 40px;
+  min-height: 540px;
+
+}
+
+.user-profile-image-container {
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.user-profile-image {
+  /* background-color: aquamarine; */
+  border: 6px solid whitesmoke;
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  text-align: center;
+  align-items: center;
+}
+
+.user-details-container{
+
+}
+
+.user-details{
+
+
+}
+.user-id{
+}
+.user-id-text{
+}
+
+
+.user-email-container{
+  /* background-color: blueviolet; */
+  display: flex;
+  align-items: end;
+}
+.user-email{
+
+}
+.user-email-text{
+  text-align: left;
+}
+
+
+.user-roles-container{
+  /* background-color: goldenrod; */
+  width: 25%;
+}
+.user-roles{
+  /* background-color:  chartreuse; */
+}
+.user-address{
+  /* background-color:  darkseagreen; */
+}
+
+
+/* 
+
+
+
+
+
+
+
+
 .user-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 
-    
   }
   
   .flex-grid {
@@ -25,19 +120,19 @@
       padding-top: 14px;
       padding-bottom: 10px;
       border-radius: 25px;
-      border: 6px solid whitesmoke;
+      border: 6px solid whitesmoke; */
       /* /* max-width: 340px;  */
       /* min-width: 340px; */
   
   
-  }
+  /* }
 
-  .event-profile-image-container {
+  .user-profile-image-container {
     width: 50%;
     border-radius: 50%;
   }
   
-  .event-profile-image {
+  .user-profile-image {
     background-color: aquamarine;
     border: 6px solid whitesmoke;
     height: 75px;
@@ -46,3 +141,34 @@
     text-align: center;
     align-items: center;
   }
+
+
+
+.user-name-container{
+
+}
+
+
+.user-name{
+
+}
+
+
+.user-email{
+
+  display: flex;
+  background-color: none;
+  align-items: center;
+  text-align: center;
+
+}
+
+.user-role-container{
+
+
+}
+
+.user-role{
+
+}
+ */

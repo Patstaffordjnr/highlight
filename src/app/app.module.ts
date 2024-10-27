@@ -20,6 +20,7 @@ import { EventService } from './common/event/event-service';
 import { EventsTableComponent } from './common/events-table/events-table.component';
 import { ProgressBarComponent } from './common/progress-bar/progress-bar.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { UserComponent } from './pages/user/user.component';
 
 
 @NgModule({ declarations: [
@@ -36,7 +37,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
         CalendarComponent,
         MapComponent,
         EventsTableComponent,
-        ProgressBarComponent
+        ProgressBarComponent,
+        UserComponent
     ],
     bootstrap: [
         AppComponent],
