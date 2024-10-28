@@ -4,9 +4,7 @@
     <br>
     <app-progress-bar class = "progress-bar" [selectedTime]="globalDate" (selectTimeEvent)="onTimeSelected($event)"></app-progress-bar>
     <br>
-    <div class= "global-time">
-        {{globalDate}}
-    </div>
+    <div class= "global-date">  <h3>{{ globalDate | date: 'EEE MMM d y HH:mm:ss' }}</h3>   </div>
     <br>
     <app-map class = "map"></app-map>
     <br>

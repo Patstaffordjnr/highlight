@@ -25,7 +25,6 @@ export class EventsClient implements OnInit{
 
   ngOnInit() {
     this.mapService.mapCurrentLocationDetails$.subscribe((mapDetails) => {
-      console.log(mapDetails);
       const [ bounds, minLat, maxLat, minLong, maxLong ] = mapDetails;
       this.bounds = bounds;
       this.minLat = minLat;
@@ -40,8 +39,7 @@ async getEvents(currentPage: Number, noOfProducts: Number): Promise<{}>{
   this.ngOnInit();
 
   let time = new Date()
-  console.log(time.toISOString());
-
+  return
 
   const params = new HttpParams()
   .set('time', time.toISOString())
@@ -56,8 +54,8 @@ let url =  `http://localhost:8085/busker/getEvents?pageNumber=${currentPage}&pag
       'Content-Type': 'application/json'
     });      
 
-    let x = await this.http.get<{}>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
-    console.log(x);
+    // let response = await this.http.get<{}>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
+    // console.log(response);
 
     return await this.http.get<{}>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
 

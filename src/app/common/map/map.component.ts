@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as L from 'leaflet';
-import { MapService } from './map-service'
+import { MapService } from './map-service';
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -9,18 +10,37 @@ import { MapService } from './map-service'
 export class MapComponent implements OnInit, OnDestroy {
   private map: L.Map | undefined;
 
-  constructor(private mapService: MapService) {
-
-  }
+  constructor(private mapService: MapService) {}
 
   ngOnInit(): void {
     this.initMap();
   }
 
   private initMap(): void {
-    // Center the map over Waterford, Ireland with zoom level 13
+    // Check if geolocation is available
+    if (navigator.geolocation) {
+      // Get the user's current position
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userLatitude = position.coords.latitude;
+          const userLongitude = position.coords.longitude;
+          this.loadMap(userLatitude, userLongitude);
+        },
+        () => {
+          // If location access is denied, fallback to Waterford coordinates
+          this.loadMap(52.2593, -7.1101);
+        }
+      );
+    } else {
+      // Fallback if geolocation is unavailable
+      this.loadMap(52.2593, -7.1101);
+    }
+  }
+
+  private loadMap(lat: number, lng: number): void {
+    // Initialize the map centered at the provided lat/lng
     this.map = L.map('map', {
-      center: [52.2593, -7.1101], // Waterford coordinates
+      center: [lat, lng],
       zoom: 13
     });
 
@@ -30,18 +50,19 @@ export class MapComponent implements OnInit, OnDestroy {
     let minLong = bounds.getWest();
     let maxLong = bounds.getEast();
 
-    this.mapService.updateEvent(bounds, minLat, maxLat, minLong, maxLong )
-    // // Add OpenStreetMap tiles
+    // this.mapService.updateEvent(bounds, minLat, maxLat, minLong, maxLong);
+
+    // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '© OpenStreetMap contributors'
     }).addTo(this.map);
 
-    // Optional: Add a marker at the center of Waterford
-    const marker = L.marker([52.2593, -7.1101]).addTo(this.map);
-    marker.bindPopup('<b>Welcome to Waterford!</b>').openPopup();
+    // Add a marker at the user's current location
+    const marker = L.marker([lat, lng]).addTo(this.map);
+    marker.bindPopup('<b>You are here!</b>').openPopup();
 
-    // Add click event listener to log the coordinates of the clicked location
+    // Log coordinates on map click
     this.map.on('click', (event: L.LeafletMouseEvent) => {
       console.log('Map clicked at:', event.latlng);
     });
@@ -52,6 +73,4 @@ export class MapComponent implements OnInit, OnDestroy {
       this.map.remove();
     }
   }
-
-  
 }

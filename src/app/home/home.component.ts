@@ -12,7 +12,6 @@ export class HomeComponent {
 
  globalDate = new Date();
 
-
   constructor(private globalDateService: GlobalDateService) {
 
 }
@@ -20,14 +19,10 @@ export class HomeComponent {
 async ngOnInit() { 
 
   this.globalDateService.globalDate$.subscribe((globalDate) => {
-    if(globalDate) {
-      console.log(globalDate);
-      this.globalDate = globalDate;
-      // const [hoursString, minutesString] = globalTime.split(':');}
-}
-})
-
-
+      if(globalDate) {
+          this.globalDate = globalDate;
+      }
+  })
 }
 
 onDateSelected(selectedDate: Date) {

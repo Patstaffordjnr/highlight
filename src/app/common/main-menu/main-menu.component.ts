@@ -25,26 +25,22 @@ export class MainMenuComponent implements OnInit {
 
     this.authService.isLoggedIn$.subscribe((loggedIn: boolean) => {
       this.isLoggedIn = loggedIn;
-      console.log('Logged In Status Changed:', this.isLoggedIn);
+      // console.log('Logged In Status Changed:', this.isLoggedIn);
     });
 
     await this.currentUserService.userRole$.subscribe(userRoles => {
       this.userRoles = userRoles
-      console.log(userRoles);
 
       if(userRoles){
               if (this.userRoles.includes("ADMIN")) {
-        console.log("User is Admin");
         this.admin = true;
       }
       
       if (this.userRoles.includes("BUSKER")) {
-        console.log("User is Busker");
         this.busker = true;
       }
       
       if (this.userRoles.includes("USER")) {
-        console.log("User is Regular User");
         this.user = true;
       }
       }

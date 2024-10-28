@@ -33,7 +33,6 @@ export class ProgressBarComponent implements OnInit {
   ngAfterViewInit() {
 
     if(this.selectedTime) {
-      console.log(this.selectedTime);
       this.onStartUpMoveDotToPosition(this.selectedTime);
     }
  

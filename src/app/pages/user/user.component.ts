@@ -40,19 +40,15 @@ export class UserComponent {
     let a = this.currentUser.roles.filter((userRole) => {
       if(String(userRole) === "USER") {
         this.userRoles = ['USER'];
-        console.log(`USER`);
         return "USER";
 
     } else if (String(userRole) === "BUSKER") {
       this.userRoles = ['BUSKER'];
-
-      console.log(`BUSKER`);
       return "BUSKER";
 
       
     } else if (String(userRole) === "ADMIN") {
       this.userRoles = ['ADMIN'];
-      console.log(`ADMIN`);
       return "ADMIN";
     }
     })
