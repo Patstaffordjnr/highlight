@@ -37,7 +37,6 @@ export class UserComponent {
     this.currentUser.email =  user.email;
     this.currentUser.roles = user.roles;
 
-
     let a = this.currentUser.roles.filter((userRole) => {
       if(String(userRole) === "USER") {
         this.userRoles = ['USER'];
@@ -58,11 +57,6 @@ export class UserComponent {
     }
     })
 
-    console.log(a);
-
-
-
-    
   }
   
   async onSubmit() {

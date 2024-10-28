@@ -9,36 +9,35 @@
   display: flex; 
 }
 
+.title-text-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
 .user-div-container{ 
   display: flex;
   justify-content: center;
   align-items: center;
   background-color:none;
-  /* background-color: antiquewhite; */
 }
 
 .user-div{
-  /* background-color: cornsilk; */
   width: 365px;
   padding-top: 14px;
   padding-bottom: 10px;
   border-radius: 25px;
   border: 6px solid whitesmoke;
-  min-width: 40px;
-  min-height: 540px;
 
 }
 
 .user-profile-image-container {
-  /* background-color: blue; */
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 
 .user-profile-image {
-  /* background-color: aquamarine; */
   border: 6px solid whitesmoke;
   height: 75px;
   width: 75px;
@@ -48,127 +47,80 @@
 }
 
 .user-details-container{
-
+    width: 100%;
 }
 
-.user-details{
-
-
+.user-id-container{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  align-self: flex-end;
+  
 }
 .user-id{
+  
 }
 .user-id-text{
 }
 
-
 .user-email-container{
-  /* background-color: blueviolet; */
+  width: 100%;
   display: flex;
   align-items: end;
 }
 .user-email{
+  display: flex;
+  align-items: end;
+   margin-left: -60px;
 
 }
 .user-email-text{
   text-align: left;
 }
-
+.user-email-textb{
+  
+  background-color: azure;
+  text-align: right;
+}
 
 .user-roles-container{
-  /* background-color: goldenrod; */
   width: 25%;
 }
 .user-roles{
-  /* background-color:  chartreuse; */
 }
 .user-address{
-  /* background-color:  darkseagreen; */
 }
 
-
-/* 
-
-
-
-
-
-
-
-
-.user-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-
-  }
-  
-  .flex-grid {
-    display: flex;
-    background-color: none;
-    justify-content: space-between;
-  }
-  
-  .col {
-    flex: 1;
-  }
-  
-  .user-ui{
-    
-      background-color:none;
-      width: 365px;
-      padding-top: 14px;
-      padding-bottom: 10px;
-      border-radius: 25px;
-      border: 6px solid whitesmoke; */
-      /* /* max-width: 340px;  */
-      /* min-width: 340px; */
-  
-  
-  /* }
-
-  .user-profile-image-container {
-    width: 50%;
-    border-radius: 50%;
-  }
-  
-  .user-profile-image {
-    background-color: aquamarine;
-    border: 6px solid whitesmoke;
-    height: 75px;
-    width: 75px;
-    border-radius: 50%;
-    text-align: center;
-    align-items: center;
-  }
-
-
-
-.user-name-container{
-
+.border{ 
+  background-color: whitesmoke;
+  height: 6px;
 }
 
-
-.user-name{
-
-}
-
-
-.user-email{
-
-  display: flex;
-  background-color: none;
+.user-controls{
+  background-color: darkslategray;
+  justify-content: center;
   align-items: center;
-  text-align: center;
+}
+
+.user-controls-a{
+background-color: darkseagreen;
+width: 50%;
 
 }
 
-.user-role-container{
-
-
+.user-controls-b{
+  background-color: crimson;
+  width: 50%;
+  
 }
 
-.user-role{
-
+.user-controls-text-a{
+    background-color: whitesmoke;
+    width: 100%;
 }
- */
+    
+.user-controls-text-b{
+      background-color: wheat;
+      width: 100%;
+}
