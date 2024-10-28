@@ -1,8 +1,172 @@
-.edit-users-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.flex-grid {
+  display: flex;
+  background-color: none;
+}
+
+.col {
+  flex: 1;
+  display: flex; 
+}
+
+.title-text-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.user-div-container{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:none;
+}
+
+.user-div{
+  width: 365px;
+  padding-top: 14px;
+  padding-bottom: 10px;
+  border-radius: 25px;
+  border: 6px solid whitesmoke;
+
+}
+
+.user-profile-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-profile-image {
+  border: 6px solid whitesmoke;
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  text-align: center;
+  align-items: center;
+}
+
+.user-details-container{
     width: 100%;
-    
-  }
+}
+
+.user-id-container{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  align-self: flex-end;
   
+}
+.user-id{
+  
+}
+.user-id-text{
+}
+
+.user-email-container{
+  width: 100%;
+  display: flex;
+  align-items: end;
+}
+.user-email{
+  display: flex;
+  align-items: end;
+   margin-left: -60px;
+
+}
+.user-email-text{
+  text-align: left;
+}
+.user-email-textb{
+  
+  background-color: azure;
+  text-align: right;
+  position: fixed;
+
+}
+
+.user-roles-container{
+  width: 25%;
+}
+.user-roles{
+}
+.user-address{
+}
+
+.border{ 
+  background-color: whitesmoke;
+  height: 6px;
+}
+
+.user-controls{
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.user-controls-a{
+width: 50%;
+
+}
+
+.user-controls-a-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.user-controls-b-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.user-controls-b{
+  width: 50%;
+
+}
+
+.user-controls-text-a{
+    width: 100%;
+    background-color: deepskyblue;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+
+}
+    
+.user-controls-text-b{
+      width: 100%;
+      background-color: coral;
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+
+}
+
+@media (max-width: 767px) {
+  .user-div {
+    width: 365px;
+    /* background-color: darkblue; */
+  }
+}
+
+@media (min-width: 768px) {
+  .user-div {
+ 
+    width: 90%;
+    margin: 0 auto;
+    /* background-color: blanchedalmond; */
+  }
+}
+
+
+/* .all-button {
+  background-color: deepskyblue;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+} */
+

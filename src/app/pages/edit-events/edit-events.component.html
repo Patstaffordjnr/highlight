@@ -1,3 +1,136 @@
-<div class = "edit-events-container">
-    <p>edit-events works!</p>
-</div>
+<div class = "title-text-container">
+    <h2 class = "title-text" >Edit Events</h2>
+    </div>
+    <br>
+    <div class="user-div-container">
+      <div class="user-div">
+    
+        <div class="flex-grid">
+          <div class="user-profile-image-container col">
+            <div class="user-profile-image"></div>
+          </div>
+          <div class="user-details-container col">
+            <div class="user-id-container">
+              <div class="user-id">
+                <a class="user-id-text">{{currentUser.id}}</a>
+                <br>
+                <br>
+                <a class="user-email-text">{{currentUser.email}}</a>
+              </div>
+            </div>
+          </div>
+          <div class="user-roles-container col">
+            <div class="user-role">
+              <a class="user-roles">{{userRoles}}</a>
+              <br>
+              <a class="user-address">address</a>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="border flex-grid">
+        </div>
+          <div class="user-controls flex-grid">
+            <div class="user-controls-a">
+              <div class="user-controls-a-button">
+            <div class="user-controls-text-a" (click) = "a()"></div>
+            </div>
+            </div>
+            <br>
+            <div class="user-controls-b">
+              <div class="user-controls-b-button">
+            <div class="user-controls-text-b" (click) = "b()"></div>
+              </div>
+          </div>
+          </div>
+      </div>
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- 
+    <div class="user-container">
+            <div class = "user-display col">
+            <h2 class = "title-text" >User</h2>
+            </div>
+    (ngSubmit)="onSubmit()"
+            <div class = "user-ui">
+    
+            <div class="flex-grid">
+    
+                    <div class="user-profile-image-container col">
+                    <div class="user-profile-image">
+                  <a>USER Image</a> -->
+                    <!-- </div>
+                    </div>
+    
+                    <div class="user-name-container col">
+                    <div class="user-name">
+                    <a>{{currentUser.id}}</a>
+                    </div>
+                    <div class="user-email">
+                            <a>{{currentUser.email}}</a>
+                    </div>
+                    </div>
+                    <div class="user-role-container col">
+                            <div class="user-role">
+                            <a>{{currentUser.roles}}</a>
+                    </div>
+                    </div>
+    
+            </div>
+    
+                    <br>
+    
+             <div class="flex-grid">
+    
+                    <div class="event-user-name-container col">
+                    <div class="event-user-name">
+                    <a>{{currentUser.email}}</a>
+                    </div>
+                    </div>
+                    <div class="flex-grid">
+                    <div class="event-user-name-container col">
+                    <div class="event-user-name">
+                    <a>{{currentUser.roles}}</a>
+                     </div>
+    
+            </div>
+    
+            </div>
+    </div> --> 
+    
+    
+    
+    
+    
+    
+    <!-- <div class="flex-grid">
+    
+            <div class = "start-date-display col">
+              <a class = "detail-text" >Start <br>Date :</a>
+            </div>
+            <div class = "start-date col">
+              <a class = "subject-text">{{startDateAndTime  | date:'mediumDate' }}</a>
+            </div>
+            <div class = "start-time-display col">
+              <a class = "detail-text" >Start <br>Time   :</a>
+            </div>
+            <div class = "start-time col">
+              <a class = "subject-text">{{ startDateAndTime | date:'shortTime' }}</a>
+            </div>
+            <div *ngIf= "editDialog" class = "start-select col">
+              <button *ngIf= "editDialog" class = "hardcodedButton" (click) = "startTimeSelectToggle()">Start Time & Date</button>
+            </div>
+          </div> -->

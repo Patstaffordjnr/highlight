@@ -40,7 +40,7 @@ export class ProgressBarComponent implements OnInit {
   }
   emitTime(hour, minutes) {
         let time = `${hour}:${minutes}`
-        console.log(time);
+        // console.log(time);
         this.selectTimeEvent.emit(time);
       }
 
