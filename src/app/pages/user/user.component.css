@@ -82,6 +82,8 @@
   
   background-color: azure;
   text-align: right;
+  position: fixed;
+
 }
 
 .user-roles-container{
@@ -98,29 +100,57 @@
 }
 
 .user-controls{
-  background-color: darkslategray;
   justify-content: center;
   align-items: center;
+  padding-top: 10px;
 }
 
 .user-controls-a{
-background-color: darkseagreen;
 width: 50%;
 
 }
 
+.user-controls-a-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.user-controls-b-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
 .user-controls-b{
-  background-color: crimson;
   width: 50%;
-  
+
 }
 
 .user-controls-text-a{
-    background-color: whitesmoke;
     width: 100%;
+    background-color: deepskyblue;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+
 }
     
 .user-controls-text-b{
-      background-color: wheat;
       width: 100%;
+      background-color: coral;
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+
 }
+
+
+/* .all-button {
+  background-color: deepskyblue;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+} */

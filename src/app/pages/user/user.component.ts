@@ -58,6 +58,15 @@ export class UserComponent {
     })
 
   }
+
+  a() {
+    console.log(`A`);
+
+  }
+
+  b(){
+     console.log(`B`);
+  }
   
   async onSubmit() {
     
