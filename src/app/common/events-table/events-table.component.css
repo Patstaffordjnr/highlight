@@ -41,6 +41,18 @@
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: larger;
+    opacity: 100%;
+    background-color: cornsilk;
+  }
+
+
+  .table-controls-container-web{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+    background-color: aquamarine;
   }
   
   .table-controls{
@@ -111,8 +123,6 @@
     border-radius: 50%;
   }
   
-  
-  
   .busker-button-selected {
     background-color: none;
     border: 3px solid red;
@@ -167,16 +177,64 @@
 
   @media (max-width: 767px) {
     .table-controls-container {
-      width: 365px;
+      /* width: 75%; */
       display: flex;
-      text-align: center;
-      background-color: darkcyan;
-      
+
     }
 
     .table-control-busker-types{
-        width: 365px;
+        width: 325px;
     }
+
+    .table-control-busker-types{
+
+    }
+
+    .table-controls-selected{
+        background-color: black;
+      }
+    
+      .band-container{
+        
+      }
+      .band-button {
+        background-color: hotpink;
+      }
+      
+      .busker-container{
+    
+      }
+      .busker-button {
+        background-color: red;
+
+      }
+      
+      .dj-container{
+      }
+    
+      .dj-button {
+        background-color: yellow;
+      }
+      
+      .performance-container{
+    
+      }
+      
+      .performance-button {
+        background-color: olive;
+      }
+      .all-container{
+  
+      }
+      .all-button {
+  
+      }
+      .search-container{
+        background-color: ivory;
+
+      }
+
+    
   }
   
   @media (min-width: 768px) {
@@ -185,33 +243,11 @@
       margin: 0 auto;
       display: flex;
       /* background-color: aqua; */
-
-     
     }
 
     .table-control-busker-types{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        text-align: center;
-        width: 1200px;
+        width: 90%;
     }
   }
 
 
-
-  /* @media (min-width: 768px) {
-        .table-controls-container {
-       
-          width: 90%;
-          margin: 0 auto;
-          background-color: blanchedalmond;
-        }
-    
-        .table-control-busker-types{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
-            align-items: center;
-            width: 1200px;
-        } */

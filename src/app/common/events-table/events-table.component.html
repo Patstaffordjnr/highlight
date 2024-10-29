@@ -19,7 +19,7 @@
       </div>
         </div>
 
-
+<br>
         <div class = "dj-container">
       <div class = "dj">
         <a>Dj</a>
@@ -44,17 +44,23 @@
         </div>
     </div>
 
-
+    <div class = "search-container">
       <div class = "search" >
           <input [(ngModel)] = "searchText"  placeholder="Search..."   type = "string" >
       </div>
+      <div>
+
+    <div class = "checkbox-container">
       <label *ngFor="let sort of sorts; let i = index">
         <input type="checkbox">
           {{sort}}
       </label>
       </div>
+    </div>
+    
 
     </div>
+
   </div>
 
   
