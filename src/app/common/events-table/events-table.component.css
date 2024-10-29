@@ -1,0 +1,217 @@
+  .flex-grid {
+    display: flex;
+    width: 100%; /* Ensure the flex-grid takes full width */
+    background-color: none;
+    margin-bottom: 10px; /* Add space between rows if needed */
+  }
+  
+  .col {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Center content within each column */
+    align-items: center; /* Center content within each column */
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-basis: 50;
+    width: 25%;
+    flex-basis: 75%;
+  }
+  
+  .column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 25%;
+    flex: 1;
+  }
+  
+  .columnTop {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 25%;
+    flex: 1;
+  }
+  
+  .table-controls-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+  }
+  
+  .table-controls{
+    background-color: none;
+  }
+  
+  .table-control-busker-types{
+      display: flex;
+      flex-wrap: wrap;
+
+      width: 1200px;
+  }
+  
+  .table-controls-selected{
+    background-color: black;
+  }
+
+  .all-container{
+
+    background-color: darkgreen;
+    width: 65px;
+  }
+  
+  .all-button {
+    background-color: deepskyblue;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+  }
+  
+  .all-button-selected {
+    background-color: none;
+    border: 3px solid deepskyblue;
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+  }
+  .band-container{
+    background-color: darkgreen;
+    width: 65px;
+
+  }
+  .band-button {
+    background-color: hotpink;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+  }
+  
+  
+  .band-button-selected {
+    background-color: none;
+    border: 3px solid hotpink;
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+  }
+  
+  .busker-container{
+    background-color: darkgreen;
+    width: 65px;
+
+  }
+  .busker-button {
+    background-color: red;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+  }
+  
+  
+  
+  .busker-button-selected {
+    background-color: none;
+    border: 3px solid red;
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+  }
+  
+  .dj-container{
+    background-color: darkgreen;
+    width: 65px;
+
+  }
+
+  .dj-button {
+    background-color: yellow;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+  }
+  
+  
+  .dj-button-selected {
+    background-color: none;
+    border: 3px solid yellow;
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+  }
+
+  .performance-container{
+    background-color: darkgreen;
+    width: 65px;
+
+  }
+  
+  .performance-button {
+    background-color: green;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+  }
+  
+  
+  .performance-button-selected {
+    background-color: none;
+    border: 3px solid green;
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+  }
+
+  @media (max-width: 767px) {
+    .table-controls-container {
+      width: 365px;
+      display: flex;
+      text-align: center;
+      background-color: darkcyan;
+      
+    }
+
+    .table-control-busker-types{
+        width: 365px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .table-controls-container {
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      /* background-color: aqua; */
+
+     
+    }
+
+    .table-control-busker-types{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        text-align: center;
+        width: 1200px;
+    }
+  }
+
+
+
+  /* @media (min-width: 768px) {
+        .table-controls-container {
+       
+          width: 90%;
+          margin: 0 auto;
+          background-color: blanchedalmond;
+        }
+    
+        .table-control-busker-types{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 1200px;
+        } */

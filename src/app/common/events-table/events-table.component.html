@@ -1,14 +1,63 @@
+<br>
+<div class = "table-controls-container">
+    <div class = "table-controls">
 
-<button (click) = "currentIndexMinus()">Page backwards of Get Events</button>
+      <div class="table-control-busker-types">
+        <div class = "band-container">
+        <div class = "band">
+            <a>Band</a>
+            </div>
+        <div class = "band-button" (click) = "bandFunction()" [class.band-button]="bandEventsVisible" [class.band-button-selected]="!bandEventsVisible">
+        </div>
 
-<button (click) = "currentIndexPlus()">Page Forward of Get Events</button>
+        </div>
+        <div class = "busker-container">
+      <div class = "busker">
+        <a>Busker</a>
+        </div>
+      <div class = "busker-button" (click) = "buskerFunction()" [class.busker-button]="buskerEventsVisible" [class.busker-button-selected]="!buskerEventsVisible">
+      </div>
+        </div>
 
-<br>
-Current Index: {{currentIndex}}
-<br>
-Number Of Prducts: {{noOfProducts}}
-<br>
-<br>
-<br>
-<br>
-{{responseFromServer}}
+
+        <div class = "dj-container">
+      <div class = "dj">
+        <a>Dj</a>
+        </div>
+      <div class = "dj-button" (click) = "djFunction()" [class.dj-button]="djEventsVisible" [class.dj-button-selected]="!djEventsVisible">
+      </div>
+        </div>
+  
+        <div class = "performance-container">
+        <div class = "performance">
+            <a>Performance</a>
+            </div>
+      <div class = "performance-button" (click) = "performanceFunction()" [class.performance-button]="performanceEventsVisible" [class.performance-button-selected]="!performanceEventsVisible">
+      </div>
+        </div>
+
+        <div class = "all-container">
+      <div class = "all">
+        <a>All</a>
+        </div>
+        <div class = "all-button" (click) = "allFunction()" [class.all-button]="allEventsVisible" [class.all-button-selected]="!allEventsVisible">
+        </div>
+    </div>
+
+
+      <div class = "search" >
+          <input [(ngModel)] = "searchText"  placeholder="Search..."   type = "string" >
+      </div>
+      <label *ngFor="let sort of sorts; let i = index">
+        <input type="checkbox">
+          {{sort}}
+      </label>
+      </div>
+
+    </div>
+  </div>
+
+  
+
+
+
