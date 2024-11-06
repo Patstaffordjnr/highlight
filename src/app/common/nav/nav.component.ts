@@ -6,11 +6,11 @@ import { CurrentUserService } from 'src/app/util/can-activate.service';
 
 
 @Component({
-  selector: 'app-main-menu',
-  templateUrl: './main-menu.component.html',
-  styleUrls: ['./main-menu.component.css'],
+  selector: 'app-nav',
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.css'],
 })
-export class MainMenuComponent implements OnInit {
+export class NavComponent implements OnInit {
   menuVisible = true;
 
   isLoggedIn = false;

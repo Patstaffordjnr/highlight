@@ -1,0 +1,20 @@
+curl  -i -X 'POST'   'http://localhost:8085/api/auth/login'   -H 'accept: /'   -H 'Content-Type: application/json'   -d '{
+  "email": "dumb@dumb.com",
+  "password": "password"
+}'
+
+ran a curl command to log in.
+
+logged onto PgAdmin
+
+Checked Events table and Users table
+
+Put break point into busker controller; events service.
+
+opened swagger.
+
+Authorised using JWT token from step one.
+
+Executed BuskerGetEvents end point.
+
+Debugged on the server. Request hit breakpoint in server. 

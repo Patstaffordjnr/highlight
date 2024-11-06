@@ -3,7 +3,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
-import { MainMenuComponent } from './common/main-menu/main-menu.component';
+import { NavComponent } from './common/nav/nav.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogInComponent } from './pages/log-in/log-in.component';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -29,7 +29,7 @@ import { UserComponent } from './pages/user/user.component';
         //Components,
         AppComponent,
         SignUpComponent,
-        MainMenuComponent,
+        NavComponent,
         LogInComponent,
         HeaderComponent,
         FooterComponent,

@@ -1,6 +1,5 @@
-
 <div class = "home-container">
-    <app-calendar class = "calendar" [selectedDate]="globalDate"  (selectDateEvent)="onDateSelected($event)"></app-calendar>
+<app-calendar class = "calendar" [selectedDate]="globalDate"  (selectDateEvent)="onDateSelected($event)"></app-calendar>
     <br>
     <app-progress-bar class = "progress-bar" [selectedTime]="globalDate" (selectTimeEvent)="onTimeSelected($event)"></app-progress-bar>
     <br>
@@ -8,7 +7,7 @@
     <br>
     <app-map class = "map"></app-map>
     <br>
-    <app-events-table></app-events-table>
+ <!-- <app-events-table></app-events-table> -->
 </div>
 
 
