@@ -1,4 +1,6 @@
-<div  class="main-menu-container flex-grid"  *ngIf="!isLoggedIn">
+
+<div class="scroll-wrapper">
+<div  class="main-menu-container"  *ngIf="!isLoggedIn">
   <div class="burger-menu" (click)="toggleMenu()">
     <div class="bar1"></div>
     <div class="bar2"></div>
@@ -17,8 +19,11 @@
       <a routerLink = "users">Users</a>
     </div>
   </div>
-  
-  <div  class="log-in-main-menu-container flex-grid"  *ngIf="isLoggedIn">
+
+
+
+<div class="scroll-wrapper">
+  <div  class="log-in-main-menu-container"  *ngIf="isLoggedIn">
     <div class="burger-menu" (click)="toggleMenu()">
       <div class="bar1"></div>
       <div class="bar2"></div>
@@ -43,5 +48,5 @@
       <button (click)="logout()">Log Out</button>
       </div>
     </div>
-
+  </div>
   

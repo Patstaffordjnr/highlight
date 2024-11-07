@@ -26,3 +26,44 @@
 .header-progress-bar{ 
     z-index: 23;
 }
+/* 
+
+@media (min-width: 360px) {
+    .nav-container{
+        background-color: aquamarine;
+    }
+
+}
+
+
+  @media (min-width: 599px) {
+    .nav-container{
+        background-color: darkcyan  
+    }
+
+
+}
+
+  @media (min-width: 904px) {
+    .nav-container{
+        background-color: coral;
+    }
+
+
+}
+  @media (min-width: 1240px) {
+    .nav-container{
+        background-color: blanchedalmond;
+    }
+
+
+
+}
+
+  @media (min-width: 1339px) {
+    .nav-container{
+        background-color: yellow;
+    }
+
+
+} */
