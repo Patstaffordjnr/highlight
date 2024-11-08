@@ -1,4 +1,4 @@
-.burger-menu {
+/* .burger-menu {
     display: inline-block;
     cursor: pointer;   
   }
@@ -9,7 +9,7 @@
     background-color: #333;
     margin: 6px 0;
     transition: 0.4s;
-    border-radius: 5px; /* Make edges rounded */
+    border-radius: 5px; 
   }
   
   .change .bar1 {
@@ -37,67 +37,120 @@
 
 .main-menu-container, .log-in-main-menu-container {
     font-family: Arial, Helvetica, sans-serif; 
-    max-height: 60px;
-    display: flex;
-    justify-content: center;
-
+}
+.hidden{
+  opacity: 0%;
 }
 
-.main-menu-container::-webkit-scrollbar, 
-.log-in-main-menu-container::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
+.nav{
+ margin: 0%;
+ padding: 0;
+   
+  
 }
 
 .scroll-wrapper {
-  overflow-x: auto;
-  white-space: nowrap;
-  width: 90%
+
 
 }
 
 .burger-menu{
-  min-width: 57.5px;
-  height: 40px;
-  line-height: 60px;
-  text-align: center;
-  margin-right: 8px;
-  padding-left: 22.50px;
 
 }
 
-.sign-up, .home, .log-in, .users {
-    min-width: 80px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    /* background-color: coral; */
-    margin-right: 8px;
+.burger-menu, .sign-up, .home, .log-in, .users {
+
 }
   
-.nav-user{
-  padding: 15px;
+.burger-menu, .home, .nav-user, .nav-users, .nav-edit-events, .nav-edit-events, .nav-edit-users, .nav-log-out {
+
+} */
+
+
+
+
+
+
+
+
+
+
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: azure;
 }
 
-.nav-users{
-  padding: 15px;
-}
-.nav-edit-events{
-  padding: 15px;
-}
-.nav-edit-events{
-  padding: 15px;
-}
-.nav-edit-users{
-  padding: 15px;
-}
-.nav-log-out{
-  padding: 15px;
+i{
+  color: cadetblue;
+  font-size: 3em;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
-.hidden{
-  opacity: 0%;
+i:hover {
+  color: coral
 }
+
+.slider {
+position: absolute;
+left: 10%;
+top: 30%;
+width: 80%;
+height: 200px;
+overflow: hidden;
+
+
+}
+
+.slider-inner{
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 200;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  pointer-events: none;
+  transition: 0s ease-in;
+}
+
+.slider-img {
+height: 100%;
+background-color: black;
+text-align: center;
+padding: 3rem;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @media (min-width: 360px) {
@@ -139,3 +192,5 @@
 
 
 }
+
+
