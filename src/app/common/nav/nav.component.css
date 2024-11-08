@@ -1,75 +1,7 @@
-/* .burger-menu {
-    display: inline-block;
-    cursor: pointer;   
-  }
-  
-  .burger-menu div {
-    width: 35px;
-    height: 5px;
-    background-color: #333;
-    margin: 6px 0;
-    transition: 0.4s;
-    border-radius: 5px; 
-  }
-  
-  .change .bar1 {
-    transform: rotate(-45deg) translate(-8px, 8px);
-  }
-  
-  .change .bar2 {
-    opacity: 0;
-  }
-  
-  .change .bar3 {
-    transform: rotate(45deg) translate(-8px, -8px);
-  }
-  
-
-  .flex-grid {
-    display: flex;
-    background-color: none;
-}
-  
-  .col {
-    flex: 1;
-    display: flex; 
-}
-
-.main-menu-container, .log-in-main-menu-container {
-    font-family: Arial, Helvetica, sans-serif; 
-}
-.hidden{
-  opacity: 0%;
-}
-
-.nav{
- margin: 0%;
- padding: 0;
-   
-  
-}
-
-.scroll-wrapper {
-
-
-}
-
-.burger-menu{
-
-}
-
-.burger-menu, .sign-up, .home, .log-in, .users {
-
-}
-  
-.burger-menu, .home, .nav-user, .nav-users, .nav-edit-events, .nav-edit-events, .nav-edit-users, .nav-log-out {
-
-} */
-
-
 .burger-menu {
     display: inline-block;
     cursor: pointer;   
+    
   }
   
   .burger-menu div {
@@ -91,10 +23,12 @@
 }
 
 i{
-  /* color: cadetblue; */
   font-size: medium;
   pointer-events: auto;
   cursor: pointer;
+  /* background-color: chartreuse; */
+  text-align: left;
+  width: 80px;
 }
 
 i:hover {
@@ -103,14 +37,13 @@ i:hover {
 
 .slider {
 position: relative;
-left: 10%;
+margin-left: auto;
+/* margin-left: 50%; */
 top: 15%;
-width: 80%;
+width: 90%;
 height: 90px;
 overflow: hidden;
-justify-content: space-around;
 }
-
 
 .slider-inner{
   position: absolute;
@@ -121,44 +54,23 @@ justify-content: space-around;
   gap: 8px;
   pointer-events: none;
   transition: 0s ease-in;
-
 }
 
 .slider-img {
 width: 100%;
 text-align: end;
-/* background-color: gold; */
 padding: 3rem;
-/* max-height: 40px; */
 padding: 20px;
-
 
 }
 
 i.home{
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
 }
 
 i.events{
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media (min-width: 360px) {
   .main-menu-container, .log-in-main-menu-container{
@@ -166,7 +78,6 @@ i.events{
   }
 
 }
-
 
 @media (min-width: 599px) {
   .main-menu-container, .log-in-main-menu-container{
@@ -187,8 +98,6 @@ i.events{
   .main-menu-container, .log-in-main-menu-container{
       background-color: blanchedalmond;
   }
-
-
 
 }
 

@@ -23,13 +23,6 @@ export class NavComponent implements OnInit, AfterViewInit {
   startx: number = 0;
   x: number = 0;
 
-  userCurrentTranslate: number = 0;
-  userSlider: HTMLElement | null = null;
-  userInnerSlider: HTMLElement | null = null;
-  userPressed = false;
-  userStartX: number = 0;
-  userX: number = 0;
-
   constructor(
     private authService: AuthService,
     private currentUserService: CurrentUserService,
@@ -58,22 +51,14 @@ export class NavComponent implements OnInit, AfterViewInit {
     this.slider = document.querySelector('.slider');
     this.innerSlider = document.querySelector('.slider-inner');
   
-    this.userSlider = document.querySelector('.user-slider');
-    this.userInnerSlider = document.querySelector('.user-slider-inner');
+
     console.log(this.slider, this.innerSlider);
-    console.log(this.userSlider, this.userInnerSlider)
     if (this.slider && this.innerSlider) {
       this.addSliderEventListeners();
     } else {
       console.warn('Slider or inner slider elements not found');
     }
-  
-    if (this.userSlider && this.userInnerSlider) {
-       
-      this.addUserSliderEventListeners(); // Correctly call the user-specific method
-    } else {
-      console.warn('User slider or user inner slider elements not found');
-    }
+
   }
 
   private addSliderEventListeners() {
@@ -116,45 +101,7 @@ export class NavComponent implements OnInit, AfterViewInit {
 
   }
 
-  private addUserSliderEventListeners() {
-    this.userSlider!.addEventListener('mousedown', (e) => {
-      this.userPressed = true;
-      this.userStartX = e.clientX - this.userInnerSlider!.offsetLeft - this.userCurrentTranslate;
-      this.userSlider!.style.cursor = 'grabbing';
-    });
-  
-    this.userSlider!.addEventListener('mousemove', (e) => {
-      if (!this.userPressed) return;
-      e.preventDefault();
-      this.userX = e.clientX - this.userStartX;
-  
-      // Boundary checks
-      const maxTranslate = 0;
-      const minTranslate = -(this.userInnerSlider!.offsetWidth - this.userSlider!.offsetWidth);
-      this.userX = Math.min(maxTranslate, Math.max(this.userX, minTranslate));
-  
-      this.userInnerSlider!.style.transform = `translateX(${this.userX}px)`;
-      console.log('User dragging');
-    });
-  
-    ['mouseup', 'mouseleave'].forEach(eventType => {
-      this.userSlider!.addEventListener(eventType, () => {
-        if (!this.userPressed) return;
-        this.userPressed = false;
-        this.userSlider!.style.cursor = 'grab';
-        
-        // Save the current position when dragging ends
-        this.userCurrentTranslate = this.userX;
-        console.log(`${eventType} triggered, final user position: ${this.userCurrentTranslate}`);
-      });
-    });
-  
-    this.userSlider!.addEventListener('mouseenter', () => {
-      this.userSlider!.style.cursor = 'grab';
-    });
-
-  }
-
+ 
   
   toggleMenu() {
     this.menuVisible = !this.menuVisible;
