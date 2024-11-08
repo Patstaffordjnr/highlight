@@ -1,3 +1,11 @@
+.nav-div{ 
+  /* background-color: azure; */
+  display: flex;
+  justify-content: center;
+  left: 10px;
+
+}
+
 .burger-menu {
     display: inline-block;
     cursor: pointer;   
@@ -27,7 +35,7 @@ i{
   pointer-events: auto;
   cursor: pointer;
   /* background-color: chartreuse; */
-  text-align: left;
+  text-align: end;
   width: 80px;
 }
 
@@ -43,6 +51,7 @@ top: 15%;
 width: 90%;
 height: 90px;
 overflow: hidden;
+
 }
 
 .slider-inner{
@@ -64,13 +73,49 @@ padding: 20px;
 
 }
 
+i.home, i.user, i.events, i.users, i.buskers, i.sign-up, i.log-in, i.about, i.stafford, i.log-out {
+  display: flex;
+  justify-content: end;
+  text-align: right;
+
+}
+
 i.home{
   /* background-color: aquamarine; */
+  display: flex;
+  justify-content: end;
+  text-align: right;
 }
 
 i.events{
-  /* background-color: blueviolet; */
+
 }
+
+.users {
+
+}
+
+.buskers {
+  
+}
+
+.sign-up{
+
+}
+.log-in{
+
+}
+.about{
+
+}
+.stafford{
+
+}
+.log-out{
+
+}
+
+
 
 @media (min-width: 360px) {
   .main-menu-container, .log-in-main-menu-container{
