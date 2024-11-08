@@ -1,97 +1,56 @@
-<!-- <div class = "nav">
-<div class="scroll-wrapper">
-<div  class="main-menu-container"  *ngIf="!isLoggedIn">
-  <div class="burger-menu" (click)="toggleMenu()">
-    <div class="bar1"></div>
-    <div class="bar2"></div>
-    <div class="bar3"></div>
-  </div>
-  <div class = "home" *ngIf="menuVisible">
-    <a routerLink = "/home">Home</a>
-    </div>
-    <div class = "sign-up" *ngIf="menuVisible">
-      <a routerLink = "signup">Sign Up</a>
-    </div>
-    <div class = "log-in" *ngIf="menuVisible">
-      <a routerLink = "login">Log In</a>
-    </div>
-    <div class = "users" *ngIf="menuVisible">
-      <a routerLink = "users">Users</a>
-    </div>
-  </div>
-
-
-
- -->
-
-
-<div #sliderRef class = "slider">
-
-  <div #innerSliderRef class = "slider-inner">
-
-    <div class = "slider-img">
-      <i class ="a">a</i>
-    </div>
-    <div class = "slider-img">
-      <i class ="a">b</i>
-    </div>
-    <div class = "slider-img">
-      <i class ="a">c</i>
-    </div>
-    <div class = "slider-img">
-      <i class ="a">d</i>
-    </div>
-    <div class = "slider-img">
-      <i class ="a">e</i>
-    </div>
-    <div class = "slider-img">
-      <i class ="a">f</i>
-    </div>
-    <div class = "slider-img">
-      <i class ="a">g</i>
-    </div>
-  </div>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-
-
-<div class="scroll-wrapper">
-  <div  class="log-in-main-menu-container"  *ngIf="isLoggedIn">
-    <div class="burger-menu" (click)="toggleMenu()">
-      <div class="bar1"></div>
-      <div class="bar2"></div>
-      <div class="bar3"></div>
-    </div>
-    <div class = "home" *ngIf="menuVisible">
-      <a routerLink="/home">Home</a>
-    </div>
-      <div class = "nav-user" [ngClass]="{'hidden': !user}" *ngIf= "menuVisible" >
-        <a routerLink="/user">User</a>
-      </div>
-      <div class = "nav-users" *ngIf= "menuVisible">
-        <a routerLink="/users">Users</a>
-      </div>
-      <div class = "nav-edit-events" [ngClass]="{'hidden': !admin}" *ngIf= "menuVisible">
-        <a routerLink="/editevents">Edit Events</a>
-      </div>
-      <div class = "nav-edit-users" [ngClass]="{'hidden': !admin}" *ngIf= "menuVisible">
-        <a routerLink="/editusers">Edit Users</a>
-      </div>
-      <div class = "nav-log-out" *ngIf= "menuVisible">
-      <button (click)="logout()">Log Out</button>
-      </div>
-    </div>
-  </div>
+<!-- <div class = "nav-icon">
+<i class ="burger-menu-div">  <div class="burger-menu" (click)="toggleMenu()">
+  <div class="bar1"></div>
+  <div class="bar2"></div>
+  <div class="bar3"></div>
 </div> -->
+
+<div #sliderRef class = "slider" >
+  <div #innerSliderRef class = "slider-inner ">
+    <div class = "slider-img">
+      <i class ="burger-menu-div">  <div class="burger-menu" (click)="toggleMenu()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div></i>
+    </div>
+    <div *ngIf = "menuVisible">
+    <div  class = "slider-img">
+      <i  class = "home" routerLink = "/home">Home</i>
+    </div>
+    <div *ngIf="isLoggedIn" class = "slider-img">
+      <i class ="user" routerLink = "user">User</i>
+    </div>
+    <div *ngIf="busker" class = "slider-img">
+      <i class ="user" routerLink = "user">Busker</i>
+    </div>
+    <div *ngIf="admin" class = "slider-img">
+      <i class ="user" routerLink = "user">Admin</i>
+    </div>
+    <div class = "slider-img">
+      <i class ="events" routerLink = "events">Events</i>
+    </div>
+    <div  *ngIf="menuVisible"  class = "slider-img">
+    <i class ="users" routerLink = "users">Users</i>
+    </div>
+    <div class = "slider-img">
+    <i class ="buskers" routerLink = "buskers">Buskers</i>
+    </div>
+    <div *ngIf="!isLoggedIn" class = "slider-img">
+      <i class ="sign-up"  routerLink = "signup">Sign Up</i>
+    </div>
+    <div  *ngIf="!isLoggedIn" class = "slider-img">
+      <i class ="log-in" routerLink = "login">Log In</i>
+    </div>
+    <div   class = "slider-img">
+      <i class ="about">About</i>
+    </div>
+    <div    class = "slider-img">
+      <i class ="stafford">Stafford</i>
+    </div>
+    <div *ngIf="isLoggedIn" class = "slider-img">
+      <i (click)="logout()" class ="log-out">Log Out</i>
+    </div>
+  </div>
+</div>
+</div>
