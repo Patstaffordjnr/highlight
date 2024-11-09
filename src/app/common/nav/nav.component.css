@@ -1,8 +1,8 @@
 .nav-div{ 
   /* background-color: azure; */
-  display: flex;
-  justify-content: center;
-  left: 10px;
+   display: flex; 
+   justify-content: center; 
+  /* left: 10px; */
 
 }
 
@@ -47,10 +47,12 @@ i:hover {
 position: relative;
 margin-left: auto;
 /* margin-left: 50%; */
-top: 15%;
-width: 90%;
+top: 10%;
+
+width: 80%;
 height: 90px;
 overflow: hidden;
+/* background-color: black; */
 
 }
 
@@ -72,6 +74,11 @@ padding: 3rem;
 padding: 20px;
 
 }
+.burger-menu{
+  /* background-color: aqua; */
+
+}
+  
 
 i.home, i.user, i.events, i.users, i.buskers, i.sign-up, i.log-in, i.about, i.stafford, i.log-out {
   display: flex;
