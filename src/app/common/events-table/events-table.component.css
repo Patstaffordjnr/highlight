@@ -1,15 +1,57 @@
-  .flex-grid {
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* ---------------------------------BELOW */
+  
+  
+  
+  
+  
+  
+  /* .flex-grid {
     display: flex;
-    width: 100%; /* Ensure the flex-grid takes full width */
+    width: 100%;
     background-color: none;
-    margin-bottom: 10px; /* Add space between rows if needed */
+    margin-bottom: 10px; 
   }
   
   .col {
     flex: 1;
     display: flex;
-    justify-content: center; /* Center content within each column */
-    align-items: center; /* Center content within each column */
+    justify-content: center; 
+    align-items: center; 
   }
   
   .row {
@@ -173,11 +215,10 @@
     height: 27px;
     width: 27px;
     border-radius: 50%;
-  }
-
+  } */
+/* 
   @media (max-width: 767px) {
     .table-controls-container {
-      /* width: 75%; */
       display: flex;
 
     }
@@ -242,12 +283,11 @@
       width: 90%;
       margin: 0 auto;
       display: flex;
-      /* background-color: aqua; */
     }
 
     .table-control-busker-types{
         width: 90%;
     }
-  }
+  } */
 
 

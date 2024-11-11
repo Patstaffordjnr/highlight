@@ -44,7 +44,7 @@ async getEvents(currentPage: Number, noOfProducts: Number): Promise<{}>{
   const params = new HttpParams()
   .set('currentPage' , this.currentPage)
   .set('noOfProducts' ,this.noOfProducts)
-  .set('eventTyoes', "Busker")
+  .set('eventTyoes', String(this.eventTypes))
 
   let url =  `http://localhost:8085/busker/getEvents?pageNumber=${currentPage}&pageSize=${noOfProducts}` ;
   let headers = new HttpHeaders({
