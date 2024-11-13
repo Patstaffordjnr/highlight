@@ -1,25 +1,8 @@
 .nav-div{ 
   /* background-color: azure; */
-   display: flex; 
-   justify-content: center; 
-  /* left: 10px; */
 
 }
 
-.burger-menu {
-    display: inline-block;
-    cursor: pointer;   
-    
-  }
-  
-  .burger-menu div {
-    width: 35px;
-    height: 5px;
-    background-color: #333;
-    margin: 6px 0;
-    transition: 0.4s;
-    border-radius: 5px; 
-  }
 
 *{
   margin:0;
@@ -32,11 +15,9 @@
 
 i{
   font-size: medium;
+  font-weight: bold;
   pointer-events: auto;
   cursor: pointer;
-  /* background-color: chartreuse; */
-  text-align: end;
-  width: 80px;
 }
 
 i:hover {
@@ -44,15 +25,11 @@ i:hover {
 }
 
 .slider {
+/* background-color: olive; */
 position: relative;
-margin-left: auto;
-/* margin-left: 50%; */
-top: 10%;
-
-width: 80%;
+width: 75%;
 height: 90px;
 overflow: hidden;
-/* background-color: black; */
 
 }
 
@@ -74,24 +51,14 @@ padding: 3rem;
 padding: 20px;
 
 }
-.burger-menu{
-  /* background-color: aqua; */
-
-}
   
-
 i.home, i.user, i.events, i.users, i.buskers, i.sign-up, i.log-in, i.about, i.stafford, i.log-out {
-  display: flex;
-  justify-content: end;
-  text-align: right;
+  white-space: nowrap;
 
 }
 
 i.home{
-  /* background-color: aquamarine; */
-  display: flex;
-  justify-content: end;
-  text-align: right;
+
 }
 
 i.events{
@@ -124,41 +91,57 @@ i.events{
 
 
 
-@media (min-width: 360px) {
-  .main-menu-container, .log-in-main-menu-container{
-      background-color: aquamarine;
+
+  /* Responsive Layouts */
+  @media (min-width: 1200px) {
+    i{
+      font-size: medium;
+      font-weight: bold;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+
   }
+  
+  @media (min-width: 850px) and (max-width: 1199px) {
+    i{
+      font-size: xx-large;
+      font-weight: bolder;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+    i.home{
+      padding-left: 16px;
+    
+    }
+    .slider {
+      /* background-color: olive; */
+      position: relative;
+      width: 100%;
+      height: 90px;
+      overflow: hidden;
+      
+      }
 
-}
-
-@media (min-width: 599px) {
-  .main-menu-container, .log-in-main-menu-container{
-      background-color: darkcyan  
   }
-
-
-}
-
-@media (min-width: 904px) {
-  .main-menu-container, .log-in-main-menu-container{
-      background-color: coral;
+  
+  @media (max-width: 849px) {
+    i{
+      font-size: xx-large;
+      font-weight: bolder;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+    i.home{
+      padding-left: 16px;
+    
+    }
+    .slider {
+      /* background-color: olive; */
+      position: relative;
+      width: 100%;
+      height: 90px;
+      overflow: hidden;
+      
+      }
   }
-
-
-}
-@media (min-width: 1240px) {
-  .main-menu-container, .log-in-main-menu-container{
-      background-color: blanchedalmond;
-  }
-
-}
-
-@media (min-width: 1339px) {
-  .main-menu-container, .log-in-main-menu-container{
-      background-color: yellow;
-  }
-
-
-}
-
-

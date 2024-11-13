@@ -1,7 +1,6 @@
 .calender {
     display: flex;
     z-index: 10;
-    font-size: x-small;
     justify-content: center;
     align-items: center;
   }
@@ -12,12 +11,9 @@
   
   .calender-div {
     flex-wrap: wrap;
-    /* justify-content: space-evenly; */
     border-radius: 25px;
     border: 6px solid whitesmoke;
-    /* max-width: 340px; */
-    /* min-width: 340px; */
-    min-height: 265px;
+
   }
   
   .week-day-container {
@@ -32,8 +28,7 @@
   }
   
   .calender-container {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 16px;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-gap: 2.5px;
@@ -60,11 +55,18 @@
   
   .calender-div a.selected {
     background-color: hotpink;
+    color: white;
     display: flex;
-    /* margin-left: 27.5%; */
+    justify-content: center;
     height: 30px;
     width: 30px;
     border-radius: 50%;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; */
+    /* margin-left: ; */
+ 
   }
   
   .calenderControl{
@@ -89,3 +91,58 @@
     width: 30px;
     border-radius: 50%;
   }
+
+    /* Responsive Layouts */
+    @media (min-width: 1200px) {
+
+
+    }
+    
+    @media (min-width: 850px) and (max-width: 1199px) {
+      .calender-container {
+       
+      }
+      
+      .day-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+        width: 60px;
+          font-size: xx-large;
+        font-weight: bolder;
+      }
+
+      i{
+    
+        cursor: pointer;
+      }
+
+
+  
+  
+    }
+    
+    @media (max-width: 849px) {
+
+      .calender-container {
+       
+      }
+      
+      .day-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+        width: 60px;
+          font-size: xx-large;
+        font-weight: bolder;
+      }
+
+      i{
+    
+        cursor: pointer;
+      }
+
+
+    }
