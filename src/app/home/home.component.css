@@ -13,60 +13,24 @@
     margin: 0 auto;
   }
 
-
-  @media (min-width: 300px) {
+  /* Responsive Layouts */
+  @media (min-width: 1200px) {
     .home-container {
-      /* background-color: darkcyan; */
       width: 90%;
       margin: 0 auto;
-  
     }
-}
-
-
-  @media (min-width: 360px) {
+  }
+  
+  @media (min-width: 800px) and (max-width: 1199px) {
     .home-container {
-      /* background-color: darkcyan; */
       width: 90%;
       margin: 0 auto;
-  
     }
-}
-
-
-  @media (min-width: 599px) {
-  .home-container {
-    /* background-color: yellow; */
-    width: 90%;
-    margin: 0 auto;
   }
-
-}
-
-  @media (min-width: 904px) {
-  .home-container {
-    /* background-color: crimson; */
-    width: 90%;
-    margin: 0 auto;
+  
+  @media (max-width: 799px) {
+    .home-container {
+      width: 90%;
+      margin: 0 auto;
+    }
   }
-
-}
-  @media (min-width: 1240px) {
-  .home-container {
-    /* background-color: blue; */
-    width: 90%;
-    margin: 0 auto;
-  }
-
-
-}
-
-  @media (min-width: 1339px) {
-  .home-container {
-    /* background-color: darkgray; */
-    width: 90%;
-    margin: 0 auto;
-
-  }
-
-}

@@ -25,6 +25,10 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
+    /* background-color: coral; */
+    font-weight: bolder;
+    font-size: x-large;
+    
   }
   
   .calender-container {
@@ -61,6 +65,7 @@
     height: 30px;
     width: 30px;
     border-radius: 50%;
+    font-family: bold;
     /* display: flex;
     justify-content: center;
     align-items: center;
@@ -69,7 +74,7 @@
  
   }
   
-  .calenderControl{
+  .calender-month-selectors{
     padding-top: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -99,7 +104,15 @@
     }
     
     @media (min-width: 850px) and (max-width: 1199px) {
+
+      .calender-controls {
+
+        font-size: xx-large;
+        
+      }
       .calender-container {
+        font-size: xx-large;
+        font-weight: bolder;
        
       }
       
@@ -107,8 +120,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 60px;
-        width: 60px;
+        height: 90px;
+        width: 90px;
           font-size: xx-large;
         font-weight: bolder;
       }
@@ -118,9 +131,26 @@
         cursor: pointer;
       }
 
+      .previousMonth {
 
+        height: 64px;
+        width: 64px;
+      
+      }
+
+      .nextMonth{
+        height: 64px;
+        width: 64px;
+      }
   
+      .calender-div a.selected {
+ 
+        height: 64px;
+        width: 64px;
   
+     
+      }
+      
     }
     
     @media (max-width: 849px) {

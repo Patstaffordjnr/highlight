@@ -1,53 +1,71 @@
 
+<div class = "a">
 
-<div class = "table-controls-container">
-  <div class = "table-controls">
-    <div class="table-control-busker-types">
-    <div class = "all-button" (click) = "allFunction()" [class.all-button]="allEventsVisible" [class.all-button-selected]="!allEventsVisible">
-    </div>
-    <div class = "all">
-      <!-- <a>All</a> -->
-      </div>
-    <div class = "band-button" (click) = "bandFunction()" [class.band-button]="bandEventsVisible" [class.band-button-selected]="!bandEventsVisible">
-    </div>
-    <div class = "band">
-      <!-- <a>Band</a> -->
-      </div>
-    <div class = "busker-button" (click) = "buskerFunction()" [class.busker-button]="buskerEventsVisible" [class.busker-button-selected]="!buskerEventsVisible">
-    </div>
-    <div class = "busker">
-      <!-- <a>Busker</a> -->
-      </div>
-    <div class = "dj-button" (click) = "djFunction()" [class.dj-button]="djEventsVisible" [class.dj-button-selected]="!djEventsVisible">
-    </div>
-    <div class = "dj">
-      <!-- <a>Dj</a> -->
-      </div>
-    <div class = "performance-button" (click) = "performanceFunction()" [class.performance-button]="performanceEventsVisible" [class.performance-button-selected]="!performanceEventsVisible">
-    </div>
-    <div class = "Performance">
-      <!-- <a>Performance</a> -->
-      </div>
-    </div>
-    <br>
+  <div class = "b">
+        <div class = "all-button" (click) = "allFunction()" [class.all-button]="allEventsVisible" [class.all-button-selected]="!allEventsVisible">
+        </div>
+        <div class = "all">
+          <!-- <a>All</a> -->
+          </div>
+        <div class = "band-button" (click) = "bandFunction()" [class.band-button]="bandEventsVisible" [class.band-button-selected]="!bandEventsVisible">
+        </div>
+        <div class = "band">
+          <!-- <a>Band</a> -->
+          </div>
+        <div class = "busker-button" (click) = "buskerFunction()" [class.busker-button]="buskerEventsVisible" [class.busker-button-selected]="!buskerEventsVisible">
+        </div>
+        <div class = "busker">
+          <!-- <a>Busker</a> -->
+          </div>
+        <div class = "dj-button" (click) = "djFunction()" [class.dj-button]="djEventsVisible" [class.dj-button-selected]="!djEventsVisible">
+        </div>
+        <div class = "dj">
+          <!-- <a>Dj</a> -->
+          </div>
+        <div class = "performance-button" (click) = "performanceFunction()" [class.performance-button]="performanceEventsVisible" [class.performance-button-selected]="!performanceEventsVisible">
+        </div>
+        <div class = "Performance">
+          <!-- <a>Performance</a> -->
+        </div>
+  </div>
 
 
+
+      <div class = "c">
+        <div class = "d">
+        <input [(ngModel)] = "searchText"  placeholder="Search..."   type = "string" >
+        {{searchText}}  
+        </div>
+        </div>
+        <div class = "d">
+        <label *ngFor="let sort of sorts; let i = index">
+        <input type="checkbox">
+        {{sort}}
+        </label>
+      </div>
+</div>
 
 <br>
+
+<!-- 
 <div class = "table-control-search">
   <div class = "table-controls">
     <div class = "search" >
         <input [(ngModel)] = "searchText"  placeholder="Search..."   type = "string" >
         {{searchText}}  
     </div>
+
     <label *ngFor="let sort of sorts; let i = index">
       <input type="checkbox">
         {{sort}}
     </label>
-    </div>
+    </div> -->
+
+
 
 
 <div class = "event-list-container">
+  
 <div class="event-list">
   <div class="event-grid">
     <div *ngFor="let event of eventResponseList.results; let i = index" [class.selected]="event === selectedEvent" (click)="onSelect(event)" class="event-item">

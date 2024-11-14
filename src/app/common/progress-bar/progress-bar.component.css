@@ -62,3 +62,20 @@
     position: relative;
   
   }
+
+  @media (min-width: 1200px) {
+
+
+  }
+  
+  @media (min-width: 850px) and (max-width: 1199px) {
+
+
+    
+  }
+  
+  @media (max-width: 849px) {
+
+
+
+  }
