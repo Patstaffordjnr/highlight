@@ -11,7 +11,7 @@
   
   .calender-div {
     flex-wrap: wrap;
-    border-radius: 25px;
+    /* border-radius: 25px; */
     border: 6px solid whitesmoke;
 
   }
@@ -96,6 +96,57 @@
     width: 30px;
     border-radius: 50%;
   }
+
+
+
+
+
+
+
+
+.calender-container-i{
+  padding-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  /* background-color: coral; */
+  font-weight: bolder;
+  font-size: x-large;
+
+}
+.calender-controls-i{
+
+}
+.calender-div-i{
+
+}
+.calender-container{
+
+}
+.week-day-header-i{
+
+}
+.week-day-container-i{
+
+}
+.day-container-i{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /* Responsive Layouts */
     @media (min-width: 1200px) {

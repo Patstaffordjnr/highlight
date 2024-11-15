@@ -23,4 +23,52 @@
     <div class = "nextMonth col" (click)="nextMonth()" ></div>
   </div>
   <br>
-  <!-- <h3>{{currentDateTimeYear}}</h3> -->
+  <h1>{{currentDateTimeYear}}</h1>
+<br>
+
+
+
+
+<a> + 6 months from Current Time
+  {{   usercurrentDateTimeYearPlusSixMonths}}</a>
+   <br>
+
+<!-- 
+   <div class="calender-container-i" >
+    <div class="calender-controls-i">
+      <b>{{ year }}</b>
+      <b>{{ month }}</b>
+    </div>
+    <div class="calender-div-i">
+      <div class="calender-container">
+        <div class="week-day-header-i" *ngFor="let weekDay of userWeekDays">
+          <div class="week-day-container-i">{{ weekDay }}</div>
+        </div>
+  
+        <a class="day-container-i" *ngFor="let day of userMonthDays"
+           [class.selected]="day === selectedDay"
+           (click)="daySelect(day)">
+          {{ day }}
+        </a>
+      </div>
+    </div>
+    <br>
+
+ -->
+
+
+
+
+
+
+<!-- 
+
+
+
+   <br>
+   <a> Current Time:
+   {{userCurrentDateTimeYear}} </a> 
+   <br>
+   <a> - 6 months from Current Time
+  {{ usercurrentDateTimeYearMinusSixMonths}}
+   </a>  -->

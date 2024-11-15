@@ -9,6 +9,7 @@ import { UserComponent } from './pages/user/user.component';
 import { UsersComponent } from './pages/users/users.component';
 import { EditEventsComponent } from './pages/edit-events/edit-events.component';
 import { EditUsersComponent } from './pages/edit-users/edit-users.component';
+import { CalendarComponent } from './common/calendar/calendar.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent},
   { path: 'editevents', component: EditEventsComponent},
   { path: 'editusers', component: EditUsersComponent},
+  { path: 'calendar', component: CalendarComponent},
 ];
 
 @NgModule({

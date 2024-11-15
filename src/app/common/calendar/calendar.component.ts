@@ -9,6 +9,24 @@ export class CalendarComponent implements OnInit {
 
   calenderVisible: boolean = false;
 
+
+
+
+  userCurrentDateTimeYear: Date = new Date();
+  usercurrentDateTimeYearPlusSixMonths: Date =new Date(this.userCurrentDateTimeYear.getFullYear(), this.userCurrentDateTimeYear.getMonth() + 6, this.userCurrentDateTimeYear.getDate());
+  usercurrentDateTimeYearMinusSixMonths: Date =new Date(this.userCurrentDateTimeYear.getFullYear(), this.userCurrentDateTimeYear.getMonth() - 6, this.userCurrentDateTimeYear.getDate());
+
+  userDay: string = this.userCurrentDateTimeYear.toLocaleString('default', { weekday: 'long' });
+  userMonth: string = this.userCurrentDateTimeYear.toLocaleString('default', { month: 'long' });
+  userYear: number = this.userCurrentDateTimeYear.getFullYear();
+  userWeekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] 
+  userMonthDays = [];
+
+
+
+
+
+
   currentDateTimeYear: Date = new Date();
   day: string = this.currentDateTimeYear.toLocaleString('default', { weekday: 'long' });
   month: string = this.currentDateTimeYear.toLocaleString('default', { month: 'long' });
@@ -50,6 +68,9 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
+
     
     if(this.selectedDate) {
       // console.log("BOOM",this.selectedDate);
@@ -189,6 +210,10 @@ export class CalendarComponent implements OnInit {
   }
 
   daySelect(day: number) {
+if(day == 31) {
+  console.log(`31`);
+  
+}
 
   this.selectedDay = day;
   let date = new Date(this.year, this.monthNumber - 1, day, this.currentDateTimeYear.getHours(),

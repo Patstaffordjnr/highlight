@@ -327,115 +327,16 @@
     flex-basis: 25%;
     flex: 1;
   }
+
   
-  .table-controls-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .table-controls{
-    background-color: none;
-  }
-  
-  .table-control-busker-types{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      align-items: center;
-      width: 350px;
-  }
-  
-  .table-controls-selected{
-  
-    background-color: black;
-  }
-  
-  .all-button {
-    background-color: deepskyblue;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-  }
-  
-  .all-button-selected {
-    background-color: none;
-    border: 3px solid deepskyblue;
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
-  }
-  
-  .band-button {
-    background-color: hotpink;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-  }
-  
-  
-  .band-button-selected {
-    background-color: none;
-    border: 3px solid hotpink;
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
-  }
-  
-  
-  .busker-button {
-    background-color: red;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-  }
-  
-  
-  .busker-button-selected {
-    background-color: none;
-    border: 3px solid red;
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
-  }
-  
-  .dj-button {
-    background-color: yellow;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-  }
-  
-  
-  .dj-button-selected {
-    background-color: none;
-    border: 3px solid yellow;
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
-  }
-  
-  .performance-button {
-    background-color: green;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-  }
-  
-  
-  .performance-button-selected {
-    background-color: none;
-    border: 3px solid green;
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
-  }
+ 
   
   .event-list-container{
     /* background-color: aquamarine; */
       display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 32px;
   
   }
   .event-list {
@@ -635,43 +536,125 @@
   
 
   
+  .table-controls-selected{
+  
+    background-color: black;
+  }
+  
+  .all-button {
+    background-color: deepskyblue;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+  }
+  
+  .all-button-selected {
+    background-color: none;
+    border: 3px solid deepskyblue;
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+  }
+  
+  .band-button {
+    background-color: hotpink;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+  }
+  
+  
+  .band-button-selected {
+    background-color: none;
+    border: 3px solid hotpink;
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+  }
+  
+  
+  .busker-button {
+    background-color: red;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+  }
+  
+  
+  .busker-button-selected {
+    background-color: none;
+    border: 3px solid red;
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+  }
+  
+  .dj-button {
+    background-color: yellow;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+  }
+  
+  
+  .dj-button-selected {
+    background-color: none;
+    border: 3px solid yellow;
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+  }
+  
+  .performance-button {
+    background-color: green;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+  }
+  
+  
+  .performance-button-selected {
+    background-color: none;
+    border: 3px solid green;
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+  }
+  
 
   .a{
-    background-color: bisque;
     height: 64px;
-    /* justify-content: space-around; */
-    /* display: grid; */
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
     
-
   }
 
   .b{
-    background-color: aqua;
     justify-content: left;
     display: flex;
-    justify-content: space-around;
-    width: 100%;
+    justify-content: space-evenly;
+    width: 50%;
+    flex-wrap: wrap;
 
   }
 
   .c{
-    /* background-color: black; */
+    padding-top: 16px;
     justify-content: right;
     display: flex;
     justify-content: center;
-    width: 50%;
+    width: 25%;
     align-content: center;
+    padding-bottom: 16px;
+    flex-wrap: wrap;
 
 
   }
   .d{
-    /* background-color: black; */
     justify-content: right;
     display: flex;
     justify-content: center;
-    width: 50%;
+    width: 25%;
     white-space: nowrap;
 
   }
@@ -687,11 +670,6 @@
   
     }
 
-    /* .a{
-      grid-template-columns: repeat(1fr);
-      grid-auto-rows: minmax(64px, auto);
-
-    } */
   }
   
   @media (min-width: 800px) and (max-width: 1199px) {
@@ -699,6 +677,13 @@
       grid-template-columns: repeat(2, 1fr);
       grid-auto-rows: minmax(100px, auto);
     }
+
+    .all-button, .all-button-selected, .band-button, .band-button-selected, .busker-button, .busker-button-selected, .dj-button, .dj-button-selected, .performance-button, .performance-button-selected {
+      height: 64px;
+      width: 64px;
+    }
+
+    
   }
   
   @media (max-width: 799px) {
