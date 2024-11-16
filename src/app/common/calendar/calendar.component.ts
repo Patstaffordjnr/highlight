@@ -17,7 +17,7 @@ export class CalendarComponent implements OnInit {
   userYear: number = this.userCurrentDateTimeYear.getFullYear();
   weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] 
   
-  monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  monthDays = [];
 
   userDayNumber: number = this.userCurrentDateTimeYear.getDate()
   userMonthNumber: number = this.userCurrentDateTimeYear.getMonth() +1;
@@ -32,7 +32,7 @@ export class CalendarComponent implements OnInit {
   constructor() {
     
    this.calendarPages.map((month)=> {
-    let twelveMonthsAhead: Date = new Date(this.userYear, this.userMonthNumber + month.id, this.userDayNumber, this.userCurrentDateTimeYear.getHours(),
+    let twelveMonthsAhead: Date = new Date(this.userYear, this.userMonthNumber + month.id - 1, this.userDayNumber, this.userCurrentDateTimeYear.getHours(),
     this.userCurrentDateTimeYear.getMinutes(), this.userCurrentDateTimeYear.getSeconds());
     this.calendarMonths.push(twelveMonthsAhead);
 
@@ -45,30 +45,28 @@ export class CalendarComponent implements OnInit {
 
     let startingNumberOfDays = this.getNumberOfDays(calendarMonths, calendarYears);
     this.calendarMonthDaysArr.push(startingNumberOfDays);
-  
+
+
+
+    
   });
 
     console.log(this.calendarMonthDaysArr);
+
+
+
+    
 
 let startingNumberOfDays = this.getNumberOfDays(this.userMonthNumber, this.userYear);
 
     for (let i = 0; i < startingNumberOfDays; i++) {
       this.monthDays.push(i + 1);
     }
-    // console.log(this.monthDays);
+    console.log(this.monthDays);
   }
 
   ngOnInit(): void {
-    this.adjustLeapYearDays(this.userYearNumber);
 
-  }
-
-  adjustLeapYearDays(year: number): void {
-    if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
-      this.monthDays[1] = 29; // February has 29 days in a leap year
-    } else {
-      this.monthDays[1] = 28; // Reset to 28 for non-leap years
-    }
   }
 
   monthSelect(month: Date) {
@@ -107,6 +105,54 @@ let startingNumberOfDays = this.getNumberOfDays(this.userMonthNumber, this.userY
 
 
 
+// userCurrentDateTimeYear: Date = new Date();
+// userDay: string = this.userCurrentDateTimeYear.toLocaleString('default', { weekday: 'long' });
+// userMonth: string = this.userCurrentDateTimeYear.toLocaleString('default', { month: 'long' });
+// userYear: number = this.userCurrentDateTimeYear.getFullYear();
+// weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] 
+
+// monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+// userDayNumber: number = this.userCurrentDateTimeYear.getDate()
+// userMonthNumber: number = this.userCurrentDateTimeYear.getMonth() +1;
+// userYearNumber = Number(this.userYear);
+
+// calendarPages = CALENDARPAGES;
+// calendarMonths = [];
+
+// calendarMonthDaysArr = []
+
+
+// constructor() {
+  
+//  this.calendarPages.map((month)=> {
+//   let twelveMonthsAhead: Date = new Date(this.userYear, this.userMonthNumber + month.id, this.userDayNumber, this.userCurrentDateTimeYear.getHours(),
+//   this.userCurrentDateTimeYear.getMinutes(), this.userCurrentDateTimeYear.getSeconds());
+//   this.calendarMonths.push(twelveMonthsAhead);
+
+//   let currentDate: Date = new Date(this.userYear, this.userMonthNumber + month.id, this.userDayNumber, this.userCurrentDateTimeYear.getHours(),
+//   this.userCurrentDateTimeYear.getMinutes(), this.userCurrentDateTimeYear.getSeconds());
+
+
+//   let calendarYears = currentDate.getFullYear()
+//   let calendarMonths =currentDate.getMonth()
+
+//   let startingNumberOfDays = this.getNumberOfDays(calendarMonths, calendarYears);
+//   this.calendarMonthDaysArr.push(startingNumberOfDays);
+
+// });
+
+// let startingNumberOfDays = this.getNumberOfDays(this.userMonthNumber, this.userYear);
+
+//   for (let i = 0; i < startingNumberOfDays; i++) {
+//     this.monthDays.push(i + 1);
+//   }
+// }
+
+// ngOnInit(): void {
+//   this.adjustLeapYearDays(this.userYearNumber);
+
+// }
 
 
 

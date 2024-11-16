@@ -1,25 +1,42 @@
 
-<div *ngFor="let calendarPage of calendarMonths; let i = index" (click)="monthSelect(calendarPage)">
-  <div class="month-container">
-    <p>{{ calendarPage }} ({{ monthDays[i] }} days)</p> <!-- Display month name and days -->
+<!-- <div class = calendar-container>
+  <div class = calendar-div>
+    <div *ngFor="let calendarPage of calendarMonths; let i = index" (click)="monthSelect(calendarPage)">
+      <div class="month-container">
+        <p>{{ calendarPage.toLocaleString('default', { month: 'long', year: 'numeric' }) }}</p>
+        <div class="day-container">
 
-    <div class="day-container">
-      <!-- Create an array of days dynamically from 1 to monthDays[i] -->
-      <a *ngFor="let day of [].constructor(monthDays[i]); let j = index"
-         class="day-container-i"
-         [class.selected]="(j + 1) === selectedDay"
-         (click)="daySelect(j + 1)">
-        {{ j + 1 }}
-      </a>
+           <a *ngFor="let day of [].constructor(monthDays[i]); let i = index"
+
+            (click)="daySelect(i)">
+            {{ day }}
+          </a>
+ 
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+
+<div class="calendar-container">
+  <div class="calendar-div">
+    <div *ngFor="let calendarPage of calendarMonths; let monthIndex = index" (click)="monthSelect(calendarPage)">
+      <div class="month-container">
+        <p>{{ calendarPage.toLocaleString('default', { month: 'long', year: 'numeric' }) }}</p>
+        <div class="day-container">
+          <a *ngFor="let day of [].constructor(calendarMonthDaysArr[monthIndex]); let dayIndex = index"
+             (click)="daySelect(dayIndex + 1)">
+            {{ dayIndex + 1 }}
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-
-
-
-
-
 
 
 

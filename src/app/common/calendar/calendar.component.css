@@ -1,3 +1,31 @@
-.month-container{
+
+.calendar-container{
+  background-color: bisque;
+  padding: 32px;
+  display: flex;
+  justify-content:center;
+  font-weight: bolder;
+  font-size: xx-large;
+
+}
+
+.calendar-div{
+  
+
+}
+.day-container{
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 2.5px;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+  font-size: xx-large;
+
+
+
 
 }
