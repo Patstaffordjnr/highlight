@@ -1,58 +1,82 @@
-<br>
-<div class="calenderContainer" >
-  <div class="calender-div">
-    <div class="calender-controls">
-      <b>{{ year }}</b>
-      <b>{{ month }}</b>
-    </div>
-    <div class="calender-container">
-      <div class="week-day-header" *ngFor="let weekDay of weekDays">
-        <div class="week-day-container">{{ weekDay }}</div>
-      </div>
 
-      <a class="day-container" *ngFor="let day of monthDays"
-         [class.selected]="day === selectedDay"
-         (click)="daySelect(day)">
-        {{ day }}
+<div *ngFor="let calendarPage of calendarMonths; let i = index" (click)="monthSelect(calendarPage)">
+  <div class="month-container">
+    <p>{{ calendarPage }} ({{ monthDays[i] }} days)</p> <!-- Display month name and days -->
+
+    <div class="day-container">
+      <!-- Create an array of days dynamically from 1 to monthDays[i] -->
+      <a *ngFor="let day of [].constructor(monthDays[i]); let j = index"
+         class="day-container-i"
+         [class.selected]="(j + 1) === selectedDay"
+         (click)="daySelect(j + 1)">
+        {{ j + 1 }}
       </a>
     </div>
   </div>
-  <br>
-  <div class = "calender-month-selectors">
-    <div class = "previousMonth col" (click)="previousMonth()" ></div>
-    <div class = "nextMonth col" (click)="nextMonth()" ></div>
-  </div>
-  <br>
-  <h1>{{currentDateTimeYear}}</h1>
-<br>
+</div>
 
 
 
 
-<a> + 6 months from Current Time
-  {{   usercurrentDateTimeYearPlusSixMonths}}</a>
-   <br>
 
-<!-- 
-   <div class="calender-container-i" >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <!-- <div class="calender-container-i" >
     <div class="calender-controls-i">
-      <b>{{ year }}</b>
-      <b>{{ month }}</b>
+      <b>{{ userYear }}</b>
+      <b>{{ userMonth }}</b>   <div class="calender-container-i" >
+    <div class="calender-controls-i">
+      <b>{{ userYear }}</b>
+      <b>{{ userMonth }}</b>
     </div>
+
     <div class="calender-div-i">
       <div class="calender-container">
-        <div class="week-day-header-i" *ngFor="let weekDay of userWeekDays">
+        <div class="week-day-header-i" *ngFor="let weekDay of weekDays">
           <div class="week-day-container-i">{{ weekDay }}</div>
         </div>
+        
   
-        <a class="day-container-i" *ngFor="let day of userMonthDays"
+        <a class="day-container-i" *ngFor="let day of monthDays"
            [class.selected]="day === selectedDay"
            (click)="daySelect(day)">
           {{ day }}
         </a>
       </div>
+   </div>
+
+
+
     </div>
-    <br>
+
+    <div class="calender-div-i">
+      <div class="calender-container">
+        <div class="week-day-header-i" *ngFor="let weekDay of weekDays">
+          <div class="week-day-container-i">{{ weekDay }}</div>
+        </div>
+        
+  
+        <a class="day-container-i" *ngFor="let day of monthDays"
+           [class.selected]="day === selectedDay"
+           (click)="daySelect(day)">
+          {{ day }}
+        </a>
+      </div>
+   </div>
 
  -->
 
@@ -61,14 +85,64 @@
 
 
 
-<!-- 
+
+
+<!-- <ul class="calendar-pages">
+  <div *ngFor="let page of calendarPages">
+    <div >
+      <span>{{page.id}}</span>
+    </div>
+  </div>
+</ul> -->
 
 
 
-   <br>
-   <a> Current Time:
-   {{userCurrentDateTimeYear}} </a> 
-   <br>
-   <a> - 6 months from Current Time
-  {{ usercurrentDateTimeYearMinusSixMonths}}
-   </a>  -->
+
+
+<!-- <ul class="calendar-pages">
+  <div *ngFor="let page of calendarPages">
+    <div [class.selected]="hero === selectedHero" type="button" (click)="onSelect(hero)">
+      <span class="badge">{{page.id}}</span>
+    </div>
+  </div>
+</ul> -->
+
+
+
+<!-- <div *ngIf="selectedHero">
+  <h2>{{selectedHero.name | uppercase}} Details</h2>
+  <div>id: {{selectedHero.id}}</div>
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
+  </div>
+</div> -->
+
+
+
+
+
+
+
+   <!-- <div class="calender-container-i" >
+    <div class="calender-controls-i">
+      <b>{{ userYear }}</b>
+      <b>{{ userMonth }}</b>
+    </div>
+
+    <div class="calender-div-i">
+      <div class="calender-container">
+        <div class="week-day-header-i" *ngFor="let weekDay of weekDays">
+          <div class="week-day-container-i">{{ weekDay }}</div>
+        </div>
+  
+        <a class="day-container-i" *ngFor="let day of monthDays"
+           [class.selected]="day === selectedDay"
+           (click)="daySelect(day)">
+          {{ day }}
+        </a>
+      </div>
+   </div> -->
+
+
+  

@@ -1,4 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Calendar } from './calendar';
+import { CALENDARPAGES } from './calendar-pages';
 
 @Component({
   selector: 'app-calendar',
@@ -9,224 +11,202 @@ export class CalendarComponent implements OnInit {
 
   calenderVisible: boolean = false;
 
-
-
-
   userCurrentDateTimeYear: Date = new Date();
-  usercurrentDateTimeYearPlusSixMonths: Date =new Date(this.userCurrentDateTimeYear.getFullYear(), this.userCurrentDateTimeYear.getMonth() + 6, this.userCurrentDateTimeYear.getDate());
-  usercurrentDateTimeYearMinusSixMonths: Date =new Date(this.userCurrentDateTimeYear.getFullYear(), this.userCurrentDateTimeYear.getMonth() - 6, this.userCurrentDateTimeYear.getDate());
-
   userDay: string = this.userCurrentDateTimeYear.toLocaleString('default', { weekday: 'long' });
   userMonth: string = this.userCurrentDateTimeYear.toLocaleString('default', { month: 'long' });
   userYear: number = this.userCurrentDateTimeYear.getFullYear();
-  userWeekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] 
-  userMonthDays = [];
+  weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] 
+  
+  monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
+  userDayNumber: number = this.userCurrentDateTimeYear.getDate()
+  userMonthNumber: number = this.userCurrentDateTimeYear.getMonth() +1;
+  userYearNumber = Number(this.userYear);
 
+  calendarPages = CALENDARPAGES;
+  calendarMonths = [];
 
+  calendarMonthDaysArr = []
 
-
-
-  currentDateTimeYear: Date = new Date();
-  day: string = this.currentDateTimeYear.toLocaleString('default', { weekday: 'long' });
-  month: string = this.currentDateTimeYear.toLocaleString('default', { month: 'long' });
-  year: number = this.currentDateTimeYear.getFullYear();
-
-  weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]  
-
-  selectedDay: number;
-  selectedDayBlack: number
-  selectedDayMonthOnCalendar: string;
-  selectedDayOnCalendar: Date;
-
-  dayNumber: number = this.currentDateTimeYear.getDate()
-  monthNumber: number = this.currentDateTimeYear.getMonth() +1;
-  yearNumber = Number(this.year);
-  monthDays = [];
-  calenderFirstDayOfMonth = new Date( this.yearNumber, this.monthNumber -1, this.dayNumber);
-  calenderTime = this.currentDateTimeYear.toLocaleTimeString();
-
-  @Output() selectDateEvent = new EventEmitter<Date>();
-  @Input() selectedDate: Date;
 
   constructor() {
     
-    let firstDay = new Date(this.currentDateTimeYear.getFullYear(), this.currentDateTimeYear.getMonth(), 1).toLocaleString('en-US', { weekday: 'long' }).substring(0,3);;
+   this.calendarPages.map((month)=> {
+    let twelveMonthsAhead: Date = new Date(this.userYear, this.userMonthNumber + month.id, this.userDayNumber, this.userCurrentDateTimeYear.getHours(),
+    this.userCurrentDateTimeYear.getMinutes(), this.userCurrentDateTimeYear.getSeconds());
+    this.calendarMonths.push(twelveMonthsAhead);
 
-    this.weekDays.map((day, i) => {
-      if(day == firstDay) {
-        for(let x = 0; x < i; x++) {
-          this.monthDays.push(null);
-        }
-      } 
-    })
+    let currentDate: Date = new Date(this.userYear, this.userMonthNumber + month.id, this.userDayNumber, this.userCurrentDateTimeYear.getHours(),
+    this.userCurrentDateTimeYear.getMinutes(), this.userCurrentDateTimeYear.getSeconds());
 
-    let startingNumberOfDays = this.startGetNumberOfDays(this.monthNumber, this.year);
+
+    let calendarYears = currentDate.getFullYear()
+    let calendarMonths =currentDate.getMonth()
+
+    let startingNumberOfDays = this.getNumberOfDays(calendarMonths, calendarYears);
+    this.calendarMonthDaysArr.push(startingNumberOfDays);
+  
+  });
+
+    console.log(this.calendarMonthDaysArr);
+
+let startingNumberOfDays = this.getNumberOfDays(this.userMonthNumber, this.userYear);
+
     for (let i = 0; i < startingNumberOfDays; i++) {
       this.monthDays.push(i + 1);
     }
+    // console.log(this.monthDays);
   }
 
   ngOnInit(): void {
+    this.adjustLeapYearDays(this.userYearNumber);
 
+  }
 
-
-    
-    if(this.selectedDate) {
-      // console.log("BOOM",this.selectedDate);
-      this.componentInputDay(this.selectedDate);
+  adjustLeapYearDays(year: number): void {
+    if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+      this.monthDays[1] = 29; // February has 29 days in a leap year
+    } else {
+      this.monthDays[1] = 28; // Reset to 28 for non-leap years
     }
-      
   }
 
-  async componentInputDay(selectedDate: Date) {
+  monthSelect(month: Date) {
+    console.log(month);
 
-    this.currentDateTimeYear = selectedDate;
-    this.currentDateTimeYear = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), selectedDate.getHours(), selectedDate.getMinutes(), 0)
-   
-    this.day = selectedDate.toLocaleString('default', { weekday: 'long' });
-    this.month = selectedDate.toLocaleString('default', { month: 'long' });
-    this.year = selectedDate.getFullYear();
-
-    let firstDayOfMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth()).toLocaleString('en-US', { weekday: 'long' }).substring(0,3);
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October","November", "December"];
-    let inputDateMonth = monthNames[selectedDate?.getMonth()];
-    const month = selectedDate.getMonth();
-    let year = selectedDate.getFullYear();
-    const lastDay = new Date(year, month + 1, 0);
-    let monthDays = lastDay.getDate();
-
-    this.selectedDay = selectedDate.getDate();
-    this.selectedDayBlack = selectedDate.getDate();
-
-    this.selectedDayMonthOnCalendar = inputDateMonth;
-    this.selectedDayOnCalendar = selectedDate;
-
-    this.dayNumber = selectedDate.getDate();
-    this.monthNumber = selectedDate.getMonth() + 1;
-    this.yearNumber = selectedDate.getFullYear();
-
-
-    this.calenderFirstDayOfMonth
-    this.calenderTime
-
-    this.monthDays.length = 0;
-    this.weekDays.map((day, i) => {
-    if(day == firstDayOfMonth) {
-      for(let x = 0; x < i; x++) {
-        this.monthDays.push(null);
-      }
-    } 
-  })
-
-  for (let i = 1; i < monthDays + 1; i++) {
-    this.monthDays.push(i);
-   }
-
-  }
-
-  emitDay(selectedDate: Date) {
-    this.selectDateEvent.emit(selectedDate);
-    this.currentDateTimeYear = selectedDate;
-    // console.log(selectedDate);
-  }
-
-  startGetNumberOfDays(month: number, year: number): number {
-    const lastDayOfMonth = new Date(year, month, 0).getDate();
-    return lastDayOfMonth;
-  }
-
-  getDayOfWeek(date: Date): string {
-    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const dayOfWeekIndex = date.getDay();
-    const dayOfWeek = daysOfWeek[dayOfWeekIndex];
-    return dayOfWeek;
-  }
+  };
 
   getNumberOfDays(month: number, year: number): number {
     const lastDayOfMonth = new Date(year, month, 0).getDate();
     return lastDayOfMonth;
   }
 
-  nextMonth(): void {
-    
-    this.currentDateTimeYear.setMonth(this.currentDateTimeYear.getMonth() + 1);
-    this.updateCalendar();
-    this.monthNumber = this.monthNumber + 1;
-    this.monthDays.length = 0;
-    let nextMonthDays = this.getNumberOfDays(this.monthNumber, this.year)
-    let firstDayNextMonth = new Date(this.year, this.monthNumber - 1, 1).toLocaleString('en-US', { weekday: 'long' }).substring(0,3);
-
-    this.weekDays.map((day, i) => {
-      if(day == firstDayNextMonth) {
-        for(let x = 0; x < i; x++) {
-          this.monthDays.push(null);
-        }
-      } 
-    })
-
-    for (let i = 1; i < nextMonthDays + 1; i++) {
-      this.monthDays.push(i);
-     }
-
-  this.selectedDay = undefined;
-     if(this.selectedDayMonthOnCalendar === this.month) {
-      console.log(`a`);
-      this.selectedDay = this.selectedDayBlack;
-     }
-  }
-
-  previousMonth(): void {
-    this.currentDateTimeYear.setMonth(this.currentDateTimeYear.getMonth() - 1);
-    this.updateCalendar();
-    this.monthNumber = this.monthNumber - 1;
-    this.monthDays.length = 0;
-    let previousMonthDays = this.getNumberOfDays(this.monthNumber, this.year);
-    let firstDayPreviousMonth = new Date(this.year, this.monthNumber - 1, 1).toLocaleString('en-US', { weekday: 'long' }).substring(0,3);
-
-    this.weekDays.map((day, i) => {
-      if(day == firstDayPreviousMonth) {
-        for(let x = 0; x < i; x++) {
-          this.monthDays.push(null);
-        }
-      } 
-    })
-
-    for (let i = 1; i < previousMonthDays + 1; i++) {
-      this.monthDays.push(i);
-     }
-
-     this.selectedDay = undefined;
-     if(this.selectedDayMonthOnCalendar === this.month) {
-      console.log(`a`);
-     this.selectedDay = this.selectedDayBlack;
-     }
-  }
-
-  updateCalendar(): void {
-    this.day = this.currentDateTimeYear.toLocaleString('default', { weekday: 'long' });
-    this.month = this.currentDateTimeYear.toLocaleString('default', { month: 'long' });
-    this.year = this.currentDateTimeYear.getFullYear();
-  }
-
   daySelect(day: number) {
-if(day == 31) {
-  console.log(`31`);
+    if(day == 31) {
+      console.log(`31`);
+      
+    } console.log(day);
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //   this.selectedDay = day;
+    //   let date = new Date(this.year, this.monthNumber - 1, day, this.currentDateTimeYear.getHours(),
+    //   this.currentDateTimeYear.getMinutes(), 
+    //   this.currentDateTimeYear.getSeconds());
+    //   this.currentDateTimeYear = date;
+    //   this.emitDay(date); 
+    //   this.selectedDayBlack = day;
+    //   this.selectedDayOnCalendar
+    //   this.selectedDayOnCalendar = date
+    //   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October","November", "December"];
+    //   let selectedDayMonth = monthNames[date.getMonth()];
+    //   this.selectedDayMonthOnCalendar = selectedDayMonth;
+    //   }
+
   
-}
 
-  this.selectedDay = day;
-  let date = new Date(this.year, this.monthNumber - 1, day, this.currentDateTimeYear.getHours(),
-  this.currentDateTimeYear.getMinutes(), 
-  this.currentDateTimeYear.getSeconds());
-  this.currentDateTimeYear = date;
-  this.emitDay(date); 
-  this.selectedDayBlack = day;
-  this.selectedDayOnCalendar
-  this.selectedDayOnCalendar = date
-  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October","November", "December"];
-  let selectedDayMonth = monthNames[date.getMonth()];
-  this.selectedDayMonthOnCalendar = selectedDayMonth;
-  }
+//   nextMonth(): void {
+    
+//     this.currentDateTimeYear.setMonth(this.currentDateTimeYear.getMonth() + 1);
+//     this.updateCalendar();
+//     this.monthNumber = this.monthNumber + 1;
+//     this.monthDays.length = 0;
+//     let nextMonthDays = this.getNumberOfDays(this.monthNumber, this.year)
+//     let firstDayNextMonth = new Date(this.year, this.monthNumber - 1, 1).toLocaleString('en-US', { weekday: 'long' }).substring(0,3);
 
-}
+//     this.weekDays.map((day, i) => {
+//       if(day == firstDayNextMonth) {
+//         for(let x = 0; x < i; x++) {
+//           this.monthDays.push(null);
+//         }
+//       } 
+//     })
+
+//     for (let i = 1; i < nextMonthDays + 1; i++) {
+//       this.monthDays.push(i);
+//      }
+
+//   this.selectedDay = undefined;
+//      if(this.selectedDayMonthOnCalendar === this.month) {
+//       console.log(`a`);
+//       this.selectedDay = this.selectedDayBlack;
+//      }
+//   }
+
+//   previousMonth(): void {
+//     this.currentDateTimeYear.setMonth(this.currentDateTimeYear.getMonth() - 1);
+//     this.updateCalendar();
+//     this.monthNumber = this.monthNumber - 1;
+//     this.monthDays.length = 0;
+//     let previousMonthDays = this.getNumberOfDays(this.monthNumber, this.year);
+//     let firstDayPreviousMonth = new Date(this.year, this.monthNumber - 1, 1).toLocaleString('en-US', { weekday: 'long' }).substring(0,3);
+
+//     this.weekDays.map((day, i) => {
+//       if(day == firstDayPreviousMonth) {
+//         for(let x = 0; x < i; x++) {
+//           this.monthDays.push(null);
+//         }
+//       } 
+//     })
+
+//     for (let i = 1; i < previousMonthDays + 1; i++) {
+//       this.monthDays.push(i);
+//      }
+
+//      this.selectedDay = undefined;
+//      if(this.selectedDayMonthOnCalendar === this.month) {
+//       console.log(`a`);
+//      this.selectedDay = this.selectedDayBlack;
+//      }
+//   }
+
+//   updateCalendar(): void {
+//     this.day = this.currentDateTimeYear.toLocaleString('default', { weekday: 'long' });
+//     this.month = this.currentDateTimeYear.toLocaleString('default', { month: 'long' });
+//     this.year = this.currentDateTimeYear.getFullYear();
+//   }
+
+//   daySelect(day: number) {
+// if(day == 31) {
+//   console.log(`31`);
+  
+// }
+
+//   this.selectedDay = day;
+//   let date = new Date(this.year, this.monthNumber - 1, day, this.currentDateTimeYear.getHours(),
+//   this.currentDateTimeYear.getMinutes(), 
+//   this.currentDateTimeYear.getSeconds());
+//   this.currentDateTimeYear = date;
+//   this.emitDay(date); 
+//   this.selectedDayBlack = day;
+//   this.selectedDayOnCalendar
+//   this.selectedDayOnCalendar = date
+//   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October","November", "December"];
+//   let selectedDayMonth = monthNames[date.getMonth()];
+//   this.selectedDayMonthOnCalendar = selectedDayMonth;
+  
