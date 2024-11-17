@@ -2,9 +2,22 @@
   <div class="calendar-div">
     
     <div *ngFor="let calendarPage of calendarMonths; let monthIndex = index" (click)="monthSelect(calendarPage)">
+
       <div class="month-container">
-        <p class = "month-display">{{ calendarPage.toLocaleString('default', { month: 'long', year: 'numeric' }) }}</p>
-                <!-- {{weekDays}} -->
+        <p class = "month-display">
+          {{ calendarPage.toLocaleString('default', { month: 'long', year: 'numeric' }) }}
+        </p>
+      </div>
+
+      <div class = "weekday-display-container">
+  
+
+
+        
+        <p class = "weekdays-displays" *ngFor="let day of weekDays[monthIndex]; let monthIndex = index" >
+          {{day}}
+        </p>
+      </div>
         <div class="day-container">
           <a *ngFor="let day of [].constructor(calendarMonthDaysArr[monthIndex]); let dayIndex = index"
              (click)="daySelect(dayIndex + 1)">
@@ -12,7 +25,7 @@
           </a>
         </div>
       </div>
-    </div>
+
   </div>
 </div>
 

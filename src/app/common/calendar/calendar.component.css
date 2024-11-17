@@ -1,35 +1,46 @@
 
 .calendar-container{
-  /* background-color: bisque; */
   padding: 32px;
   display: flex;
   justify-content:center;
   font-weight: bolder;
   font-size: xx-large;
+  background-color: bisque;
+  border: 8px whitesmoke;
+  width: 90%;
 
 }
 
 .calendar-div{
-/* background-color: aquamarine;   */
 
 }
 .month-container{
-  /* background-color: darksalmon; */
-  /* align-content: center; */
   text-align: center;
+  /* background-color: darkcyan; */
+  margin-top: 0px; 
 
 }
 
-.p.month-display{
-  background-color: gold;
-
+.weekday-display-container{
+  /* background-color: aquamarine; */
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  align-items: flex-start;
+  margin-top: -16px; 
+  /* font-weight: bold;s */
+  font-size: large;
 
 
 }
+.weekdays-displays{
+  /* background-color: coral; */
+  margin-top: 0px; 
+  
+
+}
+
 .day-container{
-/* background-color: chartreuse; */
-  /* padding-top: 10px; */
-  /* padding-bottom: 10px; */
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 2.5px;
@@ -37,8 +48,4 @@
   align-items: center;
   font-weight: bolder;
   font-size: xx-large;
-
-
-
-
 }
