@@ -1,32 +1,10 @@
-
-<!-- <div class = calendar-container>
-  <div class = calendar-div>
-    <div *ngFor="let calendarPage of calendarMonths; let i = index" (click)="monthSelect(calendarPage)">
-      <div class="month-container">
-        <p>{{ calendarPage.toLocaleString('default', { month: 'long', year: 'numeric' }) }}</p>
-        <div class="day-container">
-
-           <a *ngFor="let day of [].constructor(monthDays[i]); let i = index"
-
-            (click)="daySelect(i)">
-            {{ day }}
-          </a>
- 
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
-
-
-
 <div class="calendar-container">
   <div class="calendar-div">
+    
     <div *ngFor="let calendarPage of calendarMonths; let monthIndex = index" (click)="monthSelect(calendarPage)">
       <div class="month-container">
-        <p>{{ calendarPage.toLocaleString('default', { month: 'long', year: 'numeric' }) }}</p>
+        <p class = "month-display">{{ calendarPage.toLocaleString('default', { month: 'long', year: 'numeric' }) }}</p>
+                <!-- {{weekDays}} -->
         <div class="day-container">
           <a *ngFor="let day of [].constructor(calendarMonthDaysArr[monthIndex]); let dayIndex = index"
              (click)="daySelect(dayIndex + 1)">
@@ -52,15 +30,46 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    <!-- <div class="calender-container-i" >
     <div class="calender-controls-i">
       <b>{{ userYear }}</b>
       <b>{{ userMonth }}</b>   <div class="calender-container-i" >
     <div class="calender-controls-i">
-      <b>{{ userYear }}</b>
-      <b>{{ userMonth }}</b>
-    </div>
+      <b>{{ u
 
+
+
+
+
+
+
+
+
+   <!-- <div class="calender-container-i" >
+    <div class="calender-controls-i">
+      <b>{{ userYea
     <div class="calender-div-i">
       <div class="calender-container">
         <div class="week-day-header-i" *ngFor="let weekDay of weekDays">

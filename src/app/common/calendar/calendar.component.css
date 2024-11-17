@@ -1,6 +1,6 @@
 
 .calendar-container{
-  background-color: bisque;
+  /* background-color: bisque; */
   padding: 32px;
   display: flex;
   justify-content:center;
@@ -10,13 +10,26 @@
 }
 
 .calendar-div{
-  
+/* background-color: aquamarine;   */
+
+}
+.month-container{
+  /* background-color: darksalmon; */
+  /* align-content: center; */
+  text-align: center;
+
+}
+
+.p.month-display{
+  background-color: gold;
+
+
 
 }
 .day-container{
-
-  padding-top: 10px;
-  padding-bottom: 10px;
+/* background-color: chartreuse; */
+  /* padding-top: 10px; */
+  /* padding-bottom: 10px; */
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 2.5px;
