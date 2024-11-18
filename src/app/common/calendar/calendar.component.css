@@ -12,9 +12,6 @@
   display: none;
 }
 
-.calendar-component-container {
- 
-}
 .calendar-container{
   padding-right: 16px;
   padding-left: 16px;
@@ -66,6 +63,14 @@
   justify-content: center;
   font-weight: bolder;
   font-size: large;
+}
 
+.day a.selected {
+  background-color: hotpink;
+  display: flex;
+  /* margin-left: 27.5%; */
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
 }
 

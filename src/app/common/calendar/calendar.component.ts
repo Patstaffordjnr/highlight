@@ -114,6 +114,7 @@ import { CALENDARPAGES } from './calendar-pages';
 
     daySelect(day: number) {
       console.log(day);
+      this.selectedDay = day;
     }
 
     // daySelect(day: number, month: number): void {

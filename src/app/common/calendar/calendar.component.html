@@ -15,7 +15,8 @@
       </div>
       <div class = "day-container">
         <a class="day" *ngFor="let day of [].constructor(calendarMonthDaysArr[monthIndex]); let dayIndex = index"
-        (click)="daySelect(day)">
+        [class.selected]="day === selectedDay"
+        (click)="daySelect(dayIndex + 1)">
         {{ dayIndex + 1 }}
         </a>
       </div>
