@@ -43,16 +43,13 @@ export class NavComponent implements OnInit, AfterViewInit {
         this.user = this.userRoles.includes('USER');
       }
     });
-
-
   }
 
   ngAfterViewInit() {
     this.slider = document.querySelector('.slider');
     this.innerSlider = document.querySelector('.slider-inner');
   
-
-    console.log(this.slider, this.innerSlider);
+    // console.log(this.slider, this.innerSlider);
     if (this.slider && this.innerSlider) {
       this.addSliderEventListeners();
     } else {

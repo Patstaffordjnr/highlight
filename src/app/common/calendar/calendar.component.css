@@ -1,20 +1,35 @@
-.a{
-  border: 6px solid whitesmoke;
+.calendar-component-container{
   border-radius: 50;
   border-radius: 16px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  height: 22vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  position: relative;
+}
+.calendar-component-container::-webkit-scrollbar {
+  display: none;
+}
 
+.calendar-component-container {
+ 
 }
 .calendar-container{
-  padding: 32px;
-  display: flex;
-  justify-content:center;
-  align-items: center;
-  font-weight: bolder;
-  font-size: x-large;
+  padding-right: 16px;
+  padding-left: 16px;
+  
 }
 
 .calendar-div{
+  border-radius: 25px;
+  border: 6px solid whitesmoke;
+  max-width: 340px;
+  min-width: 340px;
+  min-height: 320px;
+  
 }
+
 .month-container{
   text-align: center;
   margin-top: 0px; 
@@ -26,25 +41,31 @@
   height: 40px;
   align-items: flex-start;
   margin-top: -16px; 
-  /* font-weight: bold; */
+  margin-bottom: -16px;
   font-size: large;
 }
+
 .weekdays-display{
-  margin-top: 0px; 
+  margin-top: 4px; 
 }
 
 .day-container{
+  padding-top: 10px;
+  padding-bottom: 10px;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-gap: 4px;
+  grid-gap: 2.5px;
   justify-content: center;
   align-items: center;
-  font-weight: bolder;
-  font-size: large;
+
 }
+
 .day{
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  font-weight: bolder;
+  font-size: large;
+
 }
+

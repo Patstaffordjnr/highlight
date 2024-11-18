@@ -1,7 +1,7 @@
-<div class = "a">
+<div class = "calendar-component-container">
 
-<div class="calendar-container">
   <div class="calendar-div">
+    <div class="calendar-container">
     <div *ngFor="let calendarPage of calendarMonths; let monthIndex = index" (click)="monthSelect(calendarPage)">
       <div class="month-container">
         <p class = "month-display">
@@ -13,18 +13,16 @@
           {{day}}
         </p>
       </div>
-        <div class="day-container">
-          <div class = "day" *ngFor="let day of [].constructor(calendarMonthDaysArr[monthIndex]); let dayIndex = index"
-             (click)="daySelect(dayIndex + 1)">
-            {{ dayIndex + 1 }}
-        </div>
-        </div>
+      <div class = "day-container">
+        <a class="day" *ngFor="let day of [].constructor(calendarMonthDaysArr[monthIndex]); let dayIndex = index"
+        (click)="daySelect(day)">
+        {{ dayIndex + 1 }}
+        </a>
+      </div>
       </div>
   </div>
 </div>
-
 </div>
-
 
 
 

@@ -53,7 +53,7 @@ async getEvents(currentPage: Number, noOfProducts: Number): Promise<{}>{
 
   let x =   await this.http.get<{}>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
 
-  console.log(x);
+  // console.log(x);
   return   await this.http.get<{}>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
 
 
