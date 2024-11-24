@@ -1,5 +1,4 @@
 <div class = "calendar-component-container">
-
   <div class="calendar-div">
     <div class="calendar-container">
     <div *ngFor="let calendarPage of calendarMonths; let monthIndex = index" (click)="monthSelect(calendarPage)">
@@ -13,10 +12,15 @@
           {{day}}
         </p>
       </div>
-      <div class = "day-container">
-        <a class="day" *ngFor="let day of [].constructor(calendarMonthDaysArr[monthIndex]); let dayIndex = index"
-        [class.selected]="day === selectedDay"
-        (click)="daySelect(dayIndex + 1)">
+      <div class = "day-container" >
+        <a class="day" *ngFor="let day of [].constructor(calendarMonthDaysArr[monthIndex]) let dayIndex = index"
+        [ngClass]="{
+          'selected': isSelected(calendarPage.getFullYear(), calendarPage.getMonth(), dayIndex + 1),
+          'start-date': isStartDate(calendarPage.getFullYear(), calendarPage.getMonth(), dayIndex + 1),
+          'end-date': isEndDate(calendarPage.getFullYear(), calendarPage.getMonth(), dayIndex + 1),
+          'key-date': isKeyDate(calendarPage.getFullYear(), calendarPage.getMonth(), dayIndex + 1)
+        }"
+        (click)="daySelect(calendarPage.getFullYear(), calendarPage.getMonth(), dayIndex + 1)">
         {{ dayIndex + 1 }}
         </a>
       </div>
@@ -24,158 +28,3 @@
   </div>
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   <!-- <div class="calender-container-i" >
-    <div class="calender-controls-i">
-      <b>{{ userYear }}</b>
-      <b>{{ userMonth }}</b>   <div class="calender-container-i" >
-    <div class="calender-controls-i">
-      <b>{{ u
-
-
-
-
-
-
-
-
-
-   <!-- <div class="calender-container-i" >
-    <div class="calender-controls-i">
-      <b>{{ userYea
-    <div class="calender-div-i">
-      <div class="calender-container">
-        <div class="week-day-header-i" *ngFor="let weekDay of weekDays">
-          <div class="week-day-container-i">{{ weekDay }}</div>
-        </div>
-        
-  
-        <a class="day-container-i" *ngFor="let day of monthDays"
-           [class.selected]="day === selectedDay"
-           (click)="daySelect(day)">
-          {{ day }}
-        </a>
-      </div>
-   </div>
-
-
-
-    </div>
-
-    <div class="calender-div-i">
-      <div class="calender-container">
-        <div class="week-day-header-i" *ngFor="let weekDay of weekDays">
-          <div class="week-day-container-i">{{ weekDay }}</div>
-        </div>
-        
-  
-        <a class="day-container-i" *ngFor="let day of monthDays"
-           [class.selected]="day === selectedDay"
-           (click)="daySelect(day)">
-          {{ day }}
-        </a>
-      </div>
-   </div>
-
- -->
-
-
-
-
-
-
-
-
-<!-- <ul class="calendar-pages">
-  <div *ngFor="let page of calendarPages">
-    <div >
-      <span>{{page.id}}</span>
-    </div>
-  </div>
-</ul> -->
-
-
-
-
-
-<!-- <ul class="calendar-pages">
-  <div *ngFor="let page of calendarPages">
-    <div [class.selected]="hero === selectedHero" type="button" (click)="onSelect(hero)">
-      <span class="badge">{{page.id}}</span>
-    </div>
-  </div>
-</ul> -->
-
-
-
-<!-- <div *ngIf="selectedHero">
-  <h2>{{selectedHero.name | uppercase}} Details</h2>
-  <div>id: {{selectedHero.id}}</div>
-  <div>
-    <label for="hero-name">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
-  </div>
-</div> -->
-
-
-
-
-
-
-
-   <!-- <div class="calender-container-i" >
-    <div class="calender-controls-i">
-      <b>{{ userYear }}</b>
-      <b>{{ userMonth }}</b>
-    </div>
-
-    <div class="calender-div-i">
-      <div class="calender-container">
-        <div class="week-day-header-i" *ngFor="let weekDay of weekDays">
-          <div class="week-day-container-i">{{ weekDay }}</div>
-        </div>
-  
-        <a class="day-container-i" *ngFor="let day of monthDays"
-           [class.selected]="day === selectedDay"
-           (click)="daySelect(day)">
-          {{ day }}
-        </a>
-      </div>
-   </div> -->
-
-
-  

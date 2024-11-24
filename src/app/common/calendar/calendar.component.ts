@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Calendar } from './calendar';
 import { CALENDARPAGES } from './calendar-pages';
 
@@ -8,13 +8,18 @@ import { CALENDARPAGES } from './calendar-pages';
     styleUrls: ['./calendar.component.css']
   })
   export class CalendarComponent implements OnInit {
+    
     calendarMonths: Date[] = [];
     calendarMonthDaysArr: number[] = [];
     userDate: Date = new Date();
     weekDays: string[][] = []; 
+
+    allDates: Map<string, boolean> = new Map();
+
+    temp = false;
   
     selectedDayOnCalendar: Date = new Date;
-    selectedDay = this.selectedDayOnCalendar.getDate();
+    selectedDay = Number(this.selectedDayOnCalendar.getDate());
   
   
     selectedStartDate: Date | null = null;
@@ -22,25 +27,19 @@ import { CALENDARPAGES } from './calendar-pages';
   
     constructor() {
       this.initializeCalendar();
-      if (this.selectedStartDate) {
-        this.selectedEndDate = new Date(
-          this.selectedStartDate.getFullYear(),
-          this.selectedStartDate.getMonth(),
-          this.selectedStartDate.getDate() + 15
-        );
-      } else {
-        // Optionally, set a default selectedStartDate if it's null
-        this.selectedStartDate = new Date(); // For example, set it to today's date
-        this.selectedEndDate = new Date(
-          this.selectedStartDate.getFullYear(),
-          this.selectedStartDate.getMonth(),
-          this.selectedStartDate.getDate() + 15
-        );
-      }
+      this.selectedStartDate = new Date(); 
+      this.selectedEndDate = new Date(
+        this.selectedStartDate.getFullYear(),
+        this.selectedStartDate.getMonth(),
+        (this.selectedStartDate.getDate() + 7) - 1);
+
+
+      this.daySelect(this.userDate.getFullYear(), this.userDate.getMonth(), this.userDate.getDate());
+
     }
+    
   
     ngOnInit(): void {
-  
     }
   
     initializeCalendar(): void {
@@ -56,7 +55,14 @@ import { CALENDARPAGES } from './calendar-pages';
         
         this.calendarMonths.push(futureDate);
         this.calendarMonthDaysArr.push(this.getNumberOfDays(futureDate.getMonth() + 1, futureDate.getFullYear()));
-  
+        let noOfDaysAMonth = this.getNumberOfDays(futureDate.getMonth() + 1, futureDate.getFullYear())
+        
+          for (let i = 0; i < noOfDaysAMonth; i++) {
+            // console.log (futureDate.getFullYear() + "_" + futureDate.getMonth() + "_" +(i + 1)); 
+            this.allDates.set( this.generateKey(futureDate.getFullYear(),futureDate.getMonth(),(i + 1)), false);
+            // console.log(this.generateKey(futureDate.getFullYear(),futureDate.getMonth(),(i + 1)));
+          }
+
         let weekdayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   
         let fDX = new Date(
@@ -106,74 +112,134 @@ import { CALENDARPAGES } from './calendar-pages';
       // Ensure the month is within 1-12
       return new Date(year, month, 0).getDate();
     }
-  
     monthSelect(month: Date): void {
       // console.log(`Selected month: ${month}`);
+
+    }
+  
+    daySelect(year: number, month: number, day: number): void {
+
+    // Create a Date object for the selected date
+    let selectedFromCalendar = new Date(year, month, day);
+    this.selectedDayOnCalendar = selectedFromCalendar;
+
+    // Normalize both dates to ignore time
+    let normalizedSelected = new Date(
+      selectedFromCalendar.getFullYear(),
+      selectedFromCalendar.getMonth(),
+      selectedFromCalendar.getDate()
+    );
+    let normalizedUserDate = new Date(
+      this.userDate.getFullYear(),
+      this.userDate.getMonth(),
+      this.userDate.getDate()
+    );
+
+
+    let normalizedselectedStartDate = new Date(
+      this.selectedStartDate.getFullYear(),
+      this.selectedStartDate.getMonth(),
+      this.selectedStartDate.getDate()
+    );
+
+    let normalizedselectedEndDate = new Date(
+      this.selectedEndDate.getFullYear(),
+      this.selectedEndDate.getMonth(),
+      this.selectedEndDate.getDate()
+    );
+
+
+
+    // console.log(`Selected Date: ${normalizedSelected}`);
+    // console.log(`User Date: ${normalizedUserDate}`);
+    // console.log(`Selected Start Date: ${normalizedselectedStartDate}`);
+    // console.log(`Selected End Date: ${normalizedselectedEndDate}`);
+
+
+  
+      const startDateYear = this.selectedStartDate?.getFullYear() ?? year;
+      const startDateMonth = this.selectedStartDate?.getMonth() ?? month;
+      const startDateDay = this.selectedStartDate?.getDate() ?? day; 
+      const finishDateYear = this.selectedEndDate?.getFullYear() ?? year;
+      const finishDateMonth = this.selectedEndDate?.getMonth() ?? month;
+      const finishDateDay = this.selectedEndDate?.getDate() ?? day;
+    
+      const startKey = this.generateKey(startDateYear, startDateMonth, startDateDay);
+      const finishKey = this.generateKey(finishDateYear, finishDateMonth, finishDateDay);
+      const key = this.generateKey(year, month, day);
+      let arr = [startKey, key, finishKey];
+
+
+
+    // Compare the normalized dates
+    if (normalizedSelected.getTime() === normalizedUserDate.getTime()) {
+      console.log(`Dates are the same.`);
+    } else if (normalizedSelected.getTime() > normalizedUserDate.getTime()) {
+      
+      console.log(`Selected date is after the user date.`);
+    } else {
+      console.log(`Selected date is before the user date.`);
+      return
     }
   
 
-    daySelect(day: number) {
-      console.log(day);
-      this.selectedDay = day;
+      
+      this.allDates.forEach((e, i) => {
+        const [year, month, day] = i.split('_').map(Number);
+        let dayOfDays = new Date(year, month - 1, day);
+        this.allDates.set(key, true);
+        this.allDates.set(startKey, true);
+        this.allDates.set(finishKey, true);
+
+        if (dayOfDays.getTime() >= this.selectedStartDate.getTime() && dayOfDays.getTime() <= this.selectedEndDate.getTime()) {
+          let selectedDates = this.generateKey(dayOfDays.getFullYear(), dayOfDays.getMonth(), dayOfDays.getDate());
+          this.allDates.set(selectedDates, true);
+        }
+    
+        if (dayOfDays.getTime() < this.selectedStartDate.getTime()) {
+          // console.log(`A`);
+        }
+    
+        if (dayOfDays.getTime() > this.selectedEndDate.getTime()) {
+          // console.log(`B`);
+        }
+      });
+      
     }
 
-    // daySelect(day: number, month: number): void {
-    //   let selectedMonth = this.calendarMonths[month].getMonth();
-    //   let selectedYear = this.calendarMonths[month].getFullYear();
-    
-    //   this.selectedDayOnCalendar = new Date(selectedYear, selectedMonth, day);
-    //   this.selectedDayOnCalendar.setHours(0, 0, 0, 0);
-    
-    //   console.log("Selected day set to:", this.selectedDayOnCalendar);
-    // }
-    
+
+    isSelected(year: number, month: number, day: number): boolean {
+      return this.allDates.has(this.generateKey(year, month, day)) && this.allDates.get(this.generateKey(year, month, day)) === true;
+    }
+
+  generateKey(year: number, month: number, day: number): string {
+    return `${year}_${month}_${day}`
+  }
+
+  isKeyDate(year: number, month: number, day: number): boolean {
+    if (!this.selectedDayOnCalendar) return false;
+    return (
+      this.selectedDayOnCalendar.getFullYear() === year &&
+      this.selectedDayOnCalendar.getMonth() === month &&
+      this.selectedDayOnCalendar.getDate() === day
+    );
+  }
+
+  isStartDate(year: number, month: number, day: number): boolean {
+    if (!this.selectedStartDate) return false;
+    return (
+      this.selectedStartDate.getFullYear() === year &&
+      this.selectedStartDate.getMonth() === month &&
+      this.selectedStartDate.getDate() === day
+    );
+  }
   
-    // isSelectedDay(day: number, monthIndex: number): boolean {
-    //   const selectedMonth = this.selectedDayOnCalendar.getMonth();
-    //   const selectedYear = this.selectedDayOnCalendar.getFullYear();
-    //   const selectedDate = this.selectedDayOnCalendar.getDate();
-    
-    //   const currentMonth = this.calendarMonths[monthIndex].getMonth();
-    //   const currentYear = this.calendarMonths[monthIndex].getFullYear();
-    
-    //   return currentYear === selectedYear && currentMonth === selectedMonth && day === selectedDate;
-    // }
-    
-    
-    // daySelectx(day: number, month: number): void {
-    //   let selectededMonth = this.calendarMonths[month].getMonth();
-    //   let selectedYear = this.calendarMonths[month].getFullYear();
-    
-    //   let selectedDate = new Date(selectedYear, selectededMonth, day);
-    //   selectedDate.setHours(0, 0, 0, 0); 
-    
-      
-    //   let userDateAtMidnight = new Date(this.userDate);
-    //   userDateAtMidnight.setHours(0, 0, 0, 0);
-    
-    //   if (selectedDate < userDateAtMidnight) {
-    //     console.log("Selected date is in the past.");
-    //     return; 
-    //   }
-  
-    //   console.log("Selected date is:", selectedDate);
-    //   console.log("selectedStartDate::", this.selectedStartDate);
-    //   console.log(`selectedEndDate:`, this.selectedEndDate);
-      
-      
-      
-    //   let x = new Date(selectedYear, selectededMonth, selectedDate.getDate(), 0, 0, 0);
-    //   this.selectedDayOnCalendar = x;
-    //   console.log(x);
-    //   this.selectedDay = x.getDate();
-    //   console.log(this.selectedDay);
-  
-    // }
-    // dayselectForward(){
-  
-    // }
-  
-    // daySelectBackwards(){
-  
-    // }
+  isEndDate(year: number, month: number, day: number): boolean {
+    if (!this.selectedEndDate) return false;
+    return (
+      this.selectedEndDate.getFullYear() === year &&
+      this.selectedEndDate.getMonth() === month &&
+      this.selectedEndDate.getDate() === day
+    );
+  }
   }

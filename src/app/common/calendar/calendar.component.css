@@ -3,7 +3,7 @@
   border-radius: 16px;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-  height: 22vh;
+  height: 23vh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   position: relative;
@@ -21,7 +21,7 @@
 .calendar-div{
   border-radius: 25px;
   border: 6px solid whitesmoke;
-  max-width: 340px;
+  /* max-width: 340px; */
   min-width: 340px;
   min-height: 320px;
   
@@ -30,6 +30,12 @@
 .month-container{
   text-align: center;
   margin-top: 0px; 
+
+}
+
+.month-display{
+  font-size: 40px;
+
 }
 
 .weekday-display-container{
@@ -61,16 +67,65 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bolder;
-  font-size: large;
+  font-weight: bolderer;
+  font-size: xx-large;
+  height: 60px;
+  width: 60px;
 }
 
-.day a.selected {
+
+.selected {
   background-color: hotpink;
+  color: white;
   display: flex;
-  /* margin-left: 27.5%; */
-  height: 30px;
-  width: 30px;
   border-radius: 50%;
+  align-items: center;
+  justify-content: center;
 }
 
+.start-date {
+  background-color: orange; /* Example for start date */
+  color: white;
+  display: flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.end-date {
+  background-color: blue; /* Example for end date */
+  color: white;
+  display: flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.key-date{
+  background-color: green; /* Example for end date */
+  color: white;
+  display: flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+
+
+}
+.draggable {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: blue;
+  cursor: grab;
+  z-index: 10;
+}
+.draggable:active {
+  cursor: grabbing;
+}
+.start-circle {
+  background-color: green;
+}
+.end-circle {
+  background-color: red;
+}
