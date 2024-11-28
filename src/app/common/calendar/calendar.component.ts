@@ -41,7 +41,8 @@ import { CALENDARPAGES } from './calendar-pages';
   
     ngOnInit(): void {
     }
-  
+
+
     initializeCalendar(): void {
       CALENDARPAGES.forEach(month => {
         let futureDate = new Date(
@@ -119,72 +120,52 @@ import { CALENDARPAGES } from './calendar-pages';
   
     daySelect(year: number, month: number, day: number): void {
 
-    // Create a Date object for the selected date
+
+   
     let selectedFromCalendar = new Date(year, month, day);
     this.selectedDayOnCalendar = selectedFromCalendar;
 
-    // Normalize both dates to ignore time
-    let normalizedSelected = new Date(
-      selectedFromCalendar.getFullYear(),
-      selectedFromCalendar.getMonth(),
-      selectedFromCalendar.getDate()
-    );
-    let normalizedUserDate = new Date(
-      this.userDate.getFullYear(),
-      this.userDate.getMonth(),
-      this.userDate.getDate()
-    );
+      const diffToStart = Math.abs(selectedFromCalendar.getTime() - this.selectedStartDate.getTime());
+      const diffToEnd = Math.abs(selectedFromCalendar.getTime() - this.selectedEndDate.getTime());
+    
+      if (diffToStart < diffToEnd) {
+        this.allDates.forEach((_, key) => {
+          this.allDates.set(key, false);
+        });
+        console.log("Closer to Start Date");
+        this.selectedStartDate = selectedFromCalendar;
+      } else if (diffToEnd < diffToStart) {
+        this.allDates.forEach((_, key) => {
+          this.allDates.set(key, false);
+        });
+        this.selectedEndDate = selectedFromCalendar;
+        console.log("Closer to End Date");
+      } else {
+        this.allDates.forEach((_, key) => {
+          this.allDates.set(key, false);
+        });
+        console.log("Equidistant from both dates");
+      }
+    
+    
 
 
-    let normalizedselectedStartDate = new Date(
-      this.selectedStartDate.getFullYear(),
-      this.selectedStartDate.getMonth(),
-      this.selectedStartDate.getDate()
-    );
 
-    let normalizedselectedEndDate = new Date(
-      this.selectedEndDate.getFullYear(),
-      this.selectedEndDate.getMonth(),
-      this.selectedEndDate.getDate()
-    );
-
-
-
-    // console.log(`Selected Date: ${normalizedSelected}`);
-    // console.log(`User Date: ${normalizedUserDate}`);
-    // console.log(`Selected Start Date: ${normalizedselectedStartDate}`);
-    // console.log(`Selected End Date: ${normalizedselectedEndDate}`);
-
-
-  
       const startDateYear = this.selectedStartDate?.getFullYear() ?? year;
       const startDateMonth = this.selectedStartDate?.getMonth() ?? month;
       const startDateDay = this.selectedStartDate?.getDate() ?? day; 
       const finishDateYear = this.selectedEndDate?.getFullYear() ?? year;
       const finishDateMonth = this.selectedEndDate?.getMonth() ?? month;
       const finishDateDay = this.selectedEndDate?.getDate() ?? day;
+
+   
     
       const startKey = this.generateKey(startDateYear, startDateMonth, startDateDay);
       const finishKey = this.generateKey(finishDateYear, finishDateMonth, finishDateDay);
       const key = this.generateKey(year, month, day);
       let arr = [startKey, key, finishKey];
 
-
-
-    // Compare the normalized dates
-    if (normalizedSelected.getTime() === normalizedUserDate.getTime()) {
-      console.log(`Dates are the same.`);
-    } else if (normalizedSelected.getTime() > normalizedUserDate.getTime()) {
-      
-      console.log(`Selected date is after the user date.`);
-    } else {
-      console.log(`Selected date is before the user date.`);
-      return
-    }
-  
-
-      
-      this.allDates.forEach((e, i) => {
+    this.allDates.forEach((dayElement, i) => {
         const [year, month, day] = i.split('_').map(Number);
         let dayOfDays = new Date(year, month - 1, day);
         this.allDates.set(key, true);
@@ -196,19 +177,33 @@ import { CALENDARPAGES } from './calendar-pages';
           this.allDates.set(selectedDates, true);
         }
     
-        if (dayOfDays.getTime() < this.selectedStartDate.getTime()) {
-          // console.log(`A`);
-        }
-    
-        if (dayOfDays.getTime() > this.selectedEndDate.getTime()) {
-          // console.log(`B`);
-        }
       });
-      
+    
     }
 
 
-    isSelected(year: number, month: number, day: number): boolean {
+
+
+
+
+
+
+
+
+
+
+
+
+
+  updateSelected(yearStart, monthStart, dayStart, yearEnd, monthEnd, monthYear) {
+
+    let start = [yearStart, monthStart, dayStart];
+    let finish = [yearEnd, monthEnd, monthYear];
+    console.log(`Start: ${start}, Finish : ${finish}`);
+    }
+
+
+  isSelected(year: number, month: number, day: number): boolean {
       return this.allDates.has(this.generateKey(year, month, day)) && this.allDates.get(this.generateKey(year, month, day)) === true;
     }
 
@@ -242,4 +237,5 @@ import { CALENDARPAGES } from './calendar-pages';
       this.selectedEndDate.getDate() === day
     );
   }
-  }
+
+}
