@@ -26,11 +26,9 @@ async ngOnInit() {
 }
 
 onDateSelected(selectedDate: Date) {
-
   const currentHours =  this.globalDate.getHours();
   const currentMinutes =  this.globalDate.getMinutes();
   const currentSeconds =  this.globalDate.getSeconds();
-
        const updatedGlobalDate = new Date(
          selectedDate.getFullYear(),
          selectedDate.getMonth(),
@@ -39,9 +37,10 @@ onDateSelected(selectedDate: Date) {
          currentMinutes,
          currentSeconds
        );
-
    this.globalDate = updatedGlobalDate;
      this.globalDateService.updateEventDate(updatedGlobalDate);
+
+console.log(`Home Calendar Select Date: ${updatedGlobalDate}`);
 
 }
 
@@ -64,5 +63,7 @@ onTimeSelected(updatedTime: Date) {
     this.globalDate = updatedGlobalDate;
       this.globalDateService.updateEventDate(updatedGlobalDate);
 }
+
+
 
 }

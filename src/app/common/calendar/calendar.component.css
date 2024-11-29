@@ -7,6 +7,7 @@
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   position: relative;
+  border: 6px solid whitesmoke;
 }
 .calendar-component-container::-webkit-scrollbar {
   display: none;
@@ -15,27 +16,21 @@
 .calendar-container{
   padding-right: 16px;
   padding-left: 16px;
-  
 }
 
 .calendar-div{
   border-radius: 25px;
-  border: 6px solid whitesmoke;
-  /* max-width: 340px; */
   min-width: 340px;
   min-height: 320px;
-  
 }
 
 .month-container{
   text-align: center;
   margin-top: 0px; 
-
 }
 
 .month-display{
   font-size: 40px;
-
 }
 
 .weekday-display-container{
@@ -60,7 +55,6 @@
   grid-gap: 2.5px;
   justify-content: center;
   align-items: center;
-
 }
 
 .day{
@@ -84,7 +78,7 @@
 }
 
 .start-date {
-  background-color: orange; /* Example for start date */
+  background-color: orange;
   color: white;
   display: flex;
   border-radius: 50%;
@@ -93,7 +87,7 @@
 }
 
 .end-date {
-  background-color: blue; /* Example for end date */
+  background-color: blue;
   color: white;
   display: flex;
   border-radius: 50%;
@@ -102,14 +96,12 @@
 }
 
 .key-date{
-  background-color: green; /* Example for end date */
+  background-color: green;
   color: white;
   display: flex;
   border-radius: 50%;
   align-items: center;
   justify-content: center;
-
-
 }
 .draggable {
   position: absolute;
