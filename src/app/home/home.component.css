@@ -6,11 +6,9 @@
     width: 100%;
     font-family: Arial, Helvetica, sans-serif;
   }
-  
   .map {
-    width: 100%;
-    /* max-width: 800px; */
-    margin: 0 auto;
+    width: 100vw;
+    /* margin: 32px auto; */
   }
 
   /* Responsive Layouts */
@@ -18,17 +16,15 @@
     .home-container {
       width: 90%;
       margin: 0 auto;
-
+      /* background-color:orange; */
     }
 
-
-
-
     .global-date{
-      font-size: x-large;
+      font-size: medium;
       font-weight: bolder;
       pointer-events: auto;
       cursor: pointer;
+      white-space: nowrap;
     }
   }
   
@@ -36,6 +32,7 @@
     .home-container {
       width: 90%;
       margin: 0 auto;
+      /* background-color: darkcyan; */
     }
     .global-date{
       font-size: xx-large;
@@ -49,6 +46,8 @@
     .home-container {
       width: 90%;
       margin: 0 auto;
+      /* background-color: darkolivegreen; */
+
     }
     .global-date{
       font-size: xx-large;

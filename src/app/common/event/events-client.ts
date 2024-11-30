@@ -1,7 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Event } from 'src/app/model/event';
 import { MapService } from '../map/map-service';
 
 @Injectable({
@@ -18,7 +17,6 @@ export class EventsClient implements OnInit{
   maxLat
   minLong
   maxLong 
-
 
   constructor(private http: HttpClient, private mapService: MapService) {
   }
@@ -38,9 +36,6 @@ export class EventsClient implements OnInit{
 async getEvents(currentPage: Number, noOfProducts: Number): Promise<{}>{ 
   this.ngOnInit();
 
-
-  let time = new Date()
-
   const params = new HttpParams()
   .set('currentPage' , this.currentPage)
   .set('noOfProducts' ,this.noOfProducts)
@@ -51,40 +46,7 @@ async getEvents(currentPage: Number, noOfProducts: Number): Promise<{}>{
     'Content-Type': 'application/json'
   });      
 
-  let x =   await this.http.get<{}>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
-
-  // console.log(x);
-  return   await this.http.get<{}>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
-
-
-
-
-
-
-
-
-
-
-
-
-  // const params = new HttpParams()
-  // .set('time', time.toISOString())
-  // .set('minLat', this.minLat.toString())
-  // .set('maxLat', this.maxLat.toString())
-  // .set('minLong', this.minLong.toString())
-  // .set('maxLong', this.maxLong.toString())
-  // .set('eventTypes', 'BAND, BUSKER, DJ, PERFORMANCE');
-
-// let url =  `http://localhost:8085/busker/getEvents?pageNumber=${currentPage}&pageSize=${noOfProducts}` ;
-//     let headers = new HttpHeaders({
-//       'Content-Type': 'application/json'
-//     });      
-
-    // let response = await this.http.get<{}>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
-    // console.log(response);
-
-    return await this.http.get<{}>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
-
+  return await this.http.get<{}>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
   }
 
   

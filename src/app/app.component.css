@@ -1,16 +1,8 @@
-.flex-grid {
-    display: flex;
-    background-color: none;
-}
-  
-  .col {
-    flex: 1;
-    display: flex; 
-}
 
 .page-container {
     display: flex;
     flex-direction: column;
+    /* background-color: darkorange; */
     min-height: 100vh; /* Ensure the page takes up the full height of the viewport */
   }
   
@@ -20,7 +12,12 @@
   
   .content-container {
     flex-grow: 1; /* Allows the content to take up remaining space */
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    
   }
+  
   
   .footer-container {
     flex-shrink: 0; /* Prevent the footer from shrinking */
