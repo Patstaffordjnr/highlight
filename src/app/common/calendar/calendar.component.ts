@@ -74,7 +74,6 @@ daySelect(year: number, month: number, day: number): void {
 emitDay(selectedDate: Date) {
   this.selectDateEvent.emit(selectedDate);
   this.userDate = selectedDate;
-  
 }
 
 isSelected(year: number, month: number, day: number): boolean {

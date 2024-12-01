@@ -11,7 +11,6 @@
 }
 .calendar-component-container::-webkit-scrollbar {
   display: none;
-  
 }
 
 .calendar-container{
@@ -115,12 +114,11 @@
   /* Responsive Layouts */
   @media (min-width: 1200px) {
    
-    
   }
   
   @media (min-width: 800px) and (max-width: 1199px) {
     .calendar-component-container{
-      height: 440px;
+      height: 520px;
       border: 8px solid whitesmoke;
     }
 
@@ -146,7 +144,8 @@
     }
     
     .weekday-display-container{
-      font-size: large;
+      margin-top: -32px; 
+      font-size: x-large;
     }
     
     .weekdays-display{
@@ -154,21 +153,19 @@
     }
     
     .day-container{
- 
     }
     
     .day{
       font-weight: bold;
       font-size: 40px;
-      height: 60px;
-      width: 60px;
+      height: 80px;
+      width: 80px;
     }
   }
   
   @media (max-width: 799px) {
     .calendar-component-container{
-     
-      height: 440px;
+      height: 520px;
       border: 8px solid whitesmoke;
     }
 
@@ -194,7 +191,8 @@
     }
     
     .weekday-display-container{
-      font-size: large;
+      margin-top: -32px; 
+      font-size: x-large;
     }
     
     .weekdays-display{
@@ -208,11 +206,7 @@
     .day{
       font-weight: bold;
       font-size: 40px;
-      height: 60px;
-      width: 60px;
+      height: 80px;
+      width: 80px;
     }
-    
-    
-
-    
   }

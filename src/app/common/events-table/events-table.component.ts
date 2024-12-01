@@ -5,18 +5,15 @@ import { MapService } from '../map/map-service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { Event } from '../../model/event'
-import { CommonModule, NgFor } from '@angular/common';
 import { EventService } from '../event/event-service';
 import { HttpClient } from '@angular/common/http';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
-
-
 
 @Component({
   selector: 'app-events-table',
   templateUrl: './events-table.component.html',
   styleUrl: './events-table.component.css'
 })
+
 export class EventsTableComponent implements OnInit {
 // currentIndex = 0;
 // noOfProducts = 10;
@@ -32,7 +29,7 @@ export class EventsTableComponent implements OnInit {
 // djEventsVisible = true;
 // performanceEventsVisible = true;
 
-searchText: string = '';
+  searchText: string = '';
   sorts = ["Nearest", "Starting Time"];
   
   allEventsVisible = true;
@@ -121,9 +118,6 @@ ngAfterViewInit() {
   this.cdRef.detectChanges();
 }
 
-
-
-
 async addressList(latitude: number, longitude: number) {
   const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyA5mnnydr-3HjuPTwkoNmVUHAYy77CVSmQ`; // Replace with your API endpoint and key
   await this.http.get(geocodingUrl)
@@ -144,9 +138,6 @@ async addressList(latitude: number, longitude: number) {
     //  console.error("Error during geocoding:", error);
    });
 }
-
-
-
 
 pageNumberOrchestration(injectedNoOfEventsPerPage, injectedNoOfPages, injectedCurrentIndex){
  
@@ -177,7 +168,6 @@ pageNumberOrchestration(injectedNoOfEventsPerPage, injectedNoOfPages, injectedCu
 }
 
 }
-
 
 async pageSelect(selectedPage: number){
   if(selectedPage > this.totalNumberOfPages) {
@@ -228,27 +218,22 @@ async previousPageOfEvents() {
   this.pageNumberOrchestration(this.reveivedObject.results.length, this.reveivedObject.total, this.currentIndex)
 }
 
-
-
 allFunction(){
   console.log(`All Function`);
   this.allEventsVisible = !this.allEventsVisible;
   console.log(this.allEventsVisible);
-
 }
 
 bandFunction(){
   console.log(`Band Function`);
   this.bandEventsVisible =  !this.bandEventsVisible;
   console.log(this.bandEventsVisible);
-
 }
 
 buskerFunction(){
   console.log(`Busker Function`);
   this.buskerEventsVisible = !this.buskerEventsVisible;
   console.log(this.buskerEventsVisible);
-
 }
 
 djFunction(){

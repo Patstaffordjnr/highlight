@@ -1,6 +1,5 @@
 
 <div class = "a">
-
   <div class = "b">
         <div class = "all-button" (click) = "allFunction()" [class.all-button]="allEventsVisible" [class.all-button-selected]="!allEventsVisible">
         </div>
@@ -29,8 +28,6 @@
         </div>
   </div>
 
-
-
       <div class = "c">
         <div class = "d">
         <input [(ngModel)] = "searchText"  placeholder="Search..."   type = "string" >
@@ -44,7 +41,6 @@
         </label>
       </div>
 </div>
-
 <!-- 
 <div class = "table-control-search">
   <div class = "table-controls">
@@ -63,7 +59,6 @@
 
 
 <div class = "event-list-container">
-  
 <div class="event-list">
   <div class="event-grid">
     <div *ngFor="let event of eventResponseList.results; let i = index" [class.selected]="event === selectedEvent" (click)="onSelect(event)" class="event-item">
@@ -79,7 +74,6 @@
           </div>
         </div>
       </div>
-
       <div class="flex-grid">
         <div class="event-title-container col">
           <div class="event-title">
@@ -87,7 +81,6 @@
           </div>
         </div>
       </div>
-
       <div class="flex-grid">
         <div class="event-address-container col">
           <div class="event-address">
@@ -96,7 +89,6 @@
           </div>
         </div>
       </div>
-
       <div class="flex-grid">
         <div class="event-start-date-text-container col">
           <div class="event-start-date-text">
@@ -110,7 +102,6 @@
             {{event.startAt * 1000 | date: 'MMM d, y'}}
           </div>
         </div>
-
         <div class="event-start-time-text-container col">
           <div class="event-start-time-text">
             Start
@@ -124,7 +115,6 @@
           </div>
         </div>
       </div>
-
       <div class="flex-grid">
         <div class="event-finish-date-text-container col">
           <div class="event-finish-date-text">
@@ -138,7 +128,6 @@
             {{event.endAt * 1000 | date: 'MMM d, y'}}
           </div>
         </div>
-
         <div class="event-finish-time-text-container col">
           <div class="event-finish-time-text">
             Finish
@@ -164,118 +153,3 @@
   </button>
   <button (click)="nextPageOfEvents()">Next Page</button>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- /* ---------------------------------BELOW */ -->
-
-
-
-
-<!-- <br>
-<div class = "table-controls-container">
-    <div class = "table-controls">
-
-      <div class="table-control-busker-types">
-        <div class = "band-container">
-        <div class = "band">
-            <a>Band</a>
-            </div>
-        <div class = "band-button" (click) = "bandFunction()" [class.band-button]="bandEventsVisible" [class.band-button-selected]="!bandEventsVisible">
-        </div>
-
-        </div>
-        <div class = "busker-container">
-      <div class = "busker">
-        <a>Busker</a>
-        </div>
-      <div class = "busker-button" (click) = "buskerFunction()" [class.busker-button]="buskerEventsVisible" [class.busker-button-selected]="!buskerEventsVisible">
-      </div>
-        </div>
-        <div class = "dj-container">
-      <div class = "dj">
-        <a>Dj</a>
-        </div>
-      <div class = "dj-button" (click) = "djFunction()" [class.dj-button]="djEventsVisible" [class.dj-button-selected]="!djEventsVisible">
-      </div>
-        </div>
-  
-        <div class = "performance-container">
-        <div class = "performance">
-            <a>Performance</a>
-            </div>
-      <div class = "performance-button" (click) = "performanceFunction()" [class.performance-button]="performanceEventsVisible" [class.performance-button-selected]="!performanceEventsVisible">
-      </div>
-        </div>
-
-        <div class = "all-container">
-      <div class = "all">
-        <a>All</a>
-        </div>
-        <div class = "all-button" (click) = "allFunction()" [class.all-button]="allEventsVisible" [class.all-button-selected]="!allEventsVisible">
-        </div>
-    </div>
-
-    <div class = "search-container">
-      <div class = "search" >
-          <input [(ngModel)] = "searchText"  placeholder="Search..."   type = "string" >
-      </div>
-      <div>
-
-    <div class = "checkbox-container">
-      <label *ngFor="let sort of sorts; let i = index">
-        <input type="checkbox">
-          {{sort}}
-      </label>
-      </div>
-    </div>
-    
-
-    </div>
-
-  </div>
-
-  
-
-
- -->

@@ -1,25 +1,17 @@
-
 .page-container {
     display: flex;
     flex-direction: column;
-    /* background-color: darkorange; */
-    min-height: 100vh; /* Ensure the page takes up the full height of the viewport */
+    min-height: 100vh;
   }
-  
   .header-container {
-    flex-shrink: 0; /* Prevent the header from shrinking */
+    flex-shrink: 0;
   }
-  
   .content-container {
-    flex-grow: 1; /* Allows the content to take up remaining space */
-    /* background-color: aqua; */
+    flex-grow: 1;
     display: flex;
     justify-content: center;
-    
   }
-  
-  
   .footer-container {
-    flex-shrink: 0; /* Prevent the footer from shrinking */
+    flex-shrink: 0;
   }
   

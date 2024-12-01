@@ -1,694 +1,370 @@
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  /* ---------------------------------BELOW */
-  
-  
-  
-  
-  
-  
-  /* .flex-grid {
-    display: flex;
-    width: 100%;
-    background-color: none;
-    margin-bottom: 10px; 
+.flex-grid {
+  display: flex;
+  width: 100%;
+  background-color: none;
+  margin-bottom: 10px;
   }
   
   .col {
-    flex: 1;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   }
   
   .row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    flex-basis: 50;
-    width: 25%;
-    flex-basis: 75%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-basis: 50;
+  width: 25%;
+  flex-basis: 75%;
   }
   
   .column {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 25%;
-    flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 25%;
+  flex: 1;
   }
   
   .columnTop {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 25%;
-    flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 25%;
+  flex: 1;
   }
   
-  .table-controls-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: larger;
-    opacity: 100%;
-    background-color: cornsilk;
-  }
-
-
-  .table-controls-container-web{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: larger;
-    background-color: aquamarine;
+  .event-list-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 32px;
   }
   
-  .table-controls{
-    background-color: none;
-  }
-  
-  .table-control-busker-types{
-      display: flex;
-      flex-wrap: wrap;
-
-      width: 1200px;
-  }
-  
-  .table-controls-selected{
-    background-color: black;
-  }
-
-  .all-container{
-
-    background-color: darkgreen;
-    width: 65px;
-  }
-  
-  .all-button {
-    background-color: deepskyblue;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-  }
-  
-  .all-button-selected {
-    background-color: none;
-    border: 3px solid deepskyblue;
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
-  }
-  .band-container{
-    background-color: darkgreen;
-    width: 65px;
-
-  }
-  .band-button {
-    background-color: hotpink;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-  }
-  
-  
-  .band-button-selected {
-    background-color: none;
-    border: 3px solid hotpink;
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
-  }
-  
-  .busker-container{
-    background-color: darkgreen;
-    width: 65px;
-
-  }
-  .busker-button {
-    background-color: red;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-  }
-  
-  .busker-button-selected {
-    background-color: none;
-    border: 3px solid red;
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
-  }
-  
-  .dj-container{
-    background-color: darkgreen;
-    width: 65px;
-
-  }
-
-  .dj-button {
-    background-color: yellow;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-  }
-  
-  
-  .dj-button-selected {
-    background-color: none;
-    border: 3px solid yellow;
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
-  }
-
-  .performance-container{
-    background-color: darkgreen;
-    width: 65px;
-
-  }
-  
-  .performance-button {
-    background-color: green;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-  }
-  
-  
-  .performance-button-selected {
-    background-color: none;
-    border: 3px solid green;
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
-  } */
-/* 
-  @media (max-width: 767px) {
-    .table-controls-container {
-      display: flex;
-
-    }
-
-    .table-control-busker-types{
-        width: 325px;
-    }
-
-    .table-control-busker-types{
-
-    }
-
-    .table-controls-selected{
-        background-color: black;
-      }
-    
-      .band-container{
-        
-      }
-      .band-button {
-        background-color: hotpink;
-      }
-      
-      .busker-container{
-    
-      }
-      .busker-button {
-        background-color: red;
-
-      }
-      
-      .dj-container{
-      }
-    
-      .dj-button {
-        background-color: yellow;
-      }
-      
-      .performance-container{
-    
-      }
-      
-      .performance-button {
-        background-color: olive;
-      }
-      .all-container{
-  
-      }
-      .all-button {
-  
-      }
-      .search-container{
-        background-color: ivory;
-
-      }
-
-    
-  }
-  
-  @media (min-width: 768px) {
-    .table-controls-container {
-      width: 90%;
-      margin: 0 auto;
-      display: flex;
-    }
-
-    .table-control-busker-types{
-        width: 90%;
-    }
-  } */
-
-
-  .flex-grid {
-    display: flex;
-    width: 100%; /* Ensure the flex-grid takes full width */
-    background-color: none;
-    margin-bottom: 10px; /* Add space between rows if needed */
-  }
-  
-  .col {
-    flex: 1;
-    display: flex;
-    justify-content: center; /* Center content within each column */
-    align-items: center; /* Center content within each column */
-  }
-  
-  .row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    flex-basis: 50;
-    width: 25%;
-    flex-basis: 75%;
-  }
-  
-  .column {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 25%;
-    flex: 1;
-  }
-  
-  .columnTop {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 25%;
-    flex: 1;
-  }
-
-  
- 
-  
-  .event-list-container{
-    /* background-color: aquamarine; */
-      display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 32px;
-  
-  }
   .event-list {
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    height: 100%;
-    font-weight: normal;
-    /* width: 50%; */
+  height: 100%;
+  font-weight: normal;
   }
   
   .event-grid {
-    display: grid;
-      justify-content: center;
-    align-items: center;
-    gap: 32px;
-    /* max-width: 240px;32
-    min-height: 200px; */
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
   }
   
   .event-item {
-    border: 6px solid whitesmoke;
-    border-radius: 16px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-height: 320px;
-    max-width: 320px;
-    /* min-height: 160px; */
+  border: 6px solid whitesmoke;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 320px;
+  max-width: 320px;
   }
   
   .event-profile-image-container {
-    width: 50%;
-    border-radius: 50%;
+  width: 50%;
+  border-radius: 50%;
   }
   
   .event-profile-image {
-    background-color: aquamarine;
-    border: 6px solid whitesmoke;
-    height: 75px;
-    width: 75px;
-    border-radius: 50%;
-    text-align: center;
-    align-items: center;
+  background-color: aquamarine;
+  border: 6px solid whitesmoke;
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  text-align: center;
+  align-items: center;
   }
   
   .event-user-name-container {
-    background-color: none;
+  background-color: none;
   }
   
   .event-user-name {
-    background-color: none;
-    font-weight: bold;
+  background-color: none;
+  font-weight: bold;
   }
   
   .event-type-container {
-    background-color: none;
+  background-color: none;
   }
   
   .event-type {
-    background-color: none;
+  background-color: none;
   }
   
   .event-title-container {
-    background-color: none;
+  background-color: none;
   }
   
   .event-title {
-    background-color: none;
-    padding-left: 10px;
+  background-color: none;
+  padding-left: 10px;
   }
   
   .event-address-container {
-    background-color: none;
-    justify-content: left;
+  background-color: none;
+  justify-content: left;
   }
   
   .event-address {
-    background-color: none;
-    padding-left: 10px;
+  background-color: none;
+  padding-left: 10px;
   }
   
   .event-start-date-text-container {
-    background-color: none;
-    justify-content: left;
-    padding-left: 10px;
+  background-color: none;
+  justify-content: left;
+  padding-left: 10px;
   }
   
   .event-start-date-text {
-    background-color: none;
+  background-color: none;
   }
   
   .event-start-date-container {
-    background-color: none;
+  background-color: none;
   }
   
   .event-start-date {
-    font-weight: bold;
-    background-color: none;
+  font-weight: bold;
+  background-color: none;
   }
   
   .event-start-time-text {
-    background-color: none;
+  background-color: none;
   }
   
   .event-start-time-text-container {
-    background-color: none;
-    justify-content: left;
+  background-color: none;
+  justify-content: left;
   }
   
   .event-start-time-container {
-    background-color: none;
-    justify-content: left;
+  background-color: none;
+  justify-content: left;
   }
   
   .event-start-time {
-    background-color: none;
-    font-weight: bold;
+  background-color: none;
+  font-weight: bold;
   }
   
   .event-finish-date-text-container {
-    background-color: none;
-    justify-content: left;
-    padding-left: 10px;
+  background-color: none;
+  justify-content: left;
+  padding-left: 10px;
   }
   
   .event-finish-date-text {
-    background-color: none;
+  background-color: none;
   }
   
   .event-finish-date-container {
-    background-color: none;
-    justify-content: left;
+  background-color: none;
+  justify-content: left;
   }
   
   .event-finish-date {
-    background-color: none;
-    font-weight: bold;
+  background-color: none;
+  font-weight: bold;
   }
   
   .event-finish-date-container {
-    background-color: none;
+  background-color: none;
   }
   
   .event-finish-time-text-container {
-    background-color: none;
-    justify-content: left;
+  background-color: none;
+  justify-content: left;
   }
   
   .event-finish-time-text {
-    background-color: none;
+  background-color: none;
   }
   
   .event-finish-time-container {
-    background-color: none;
-    justify-content: left;
+  background-color: none;
+  justify-content: left;
   }
   
   .event-finish-time {
-    background-color: none;
-    font-weight: bold;
+  background-color: none;
+  font-weight: bold;
   }
   
   .right {
-    height: 100px;
+  height: 100px;
   }
   
   .left {
-    background-color: whitesmoke;
-    height: 100px;
-    border: 1px solid black;
+  background-color: whitesmoke;
+  height: 100px;
+  border: 1px solid black;
   }
   
   .eventPagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   }
   
   .eventPagination button.selected {
-    font-weight: bold;
+  font-weight: bold;
   }
   
   .uiPopUp {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   }
   
   .eventUIPopUp {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
   }
   
-
-  
-  .table-controls-selected{
-  
-    background-color: black;
+  .table-controls-selected {
+  background-color: black;
   }
   
   .all-button {
-    background-color: deepskyblue;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
+  background-color: deepskyblue;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
   }
   
   .all-button-selected {
-    background-color: none;
-    border: 3px solid deepskyblue;
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
+  background-color: none;
+  border: 3px solid deepskyblue;
+  height: 27px;
+  width: 27px;
+  border-radius: 50%;
   }
   
   .band-button {
-    background-color: hotpink;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
+  background-color: hotpink;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
   }
-  
   
   .band-button-selected {
-    background-color: none;
-    border: 3px solid hotpink;
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
+  background-color: none;
+  border: 3px solid hotpink;
+  height: 27px;
+  width: 27px;
+  border-radius: 50%;
   }
-  
   
   .busker-button {
-    background-color: red;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
+  background-color: red;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
   }
   
-  
   .busker-button-selected {
-    background-color: none;
-    border: 3px solid red;
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
+  background-color: none;
+  border: 3px solid red;
+  height: 27px;
+  width: 27px;
+  border-radius: 50%;
   }
   
   .dj-button {
-    background-color: yellow;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
+  background-color: yellow;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
   }
   
-  
   .dj-button-selected {
-    background-color: none;
-    border: 3px solid yellow;
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
+  background-color: none;
+  border: 3px solid yellow;
+  height: 27px;
+  width: 27px;
+  border-radius: 50%;
   }
   
   .performance-button {
-    background-color: green;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
+  background-color: green;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
   }
-  
   
   .performance-button-selected {
-    background-color: none;
-    border: 3px solid green;
-    height: 27px;
-    width: 27px;
-    border-radius: 50%;
+  background-color: none;
+  border: 3px solid green;
+  height: 27px;
+  width: 27px;
+  border-radius: 50%;
   }
   
-
-  .a{
-    height: 64px;
-    display: flex;
-    flex-wrap: wrap;
-    
+  .a {
+  height: 64px;
+  display: flex;
+  flex-wrap: wrap;
   }
-
-  .b{
-    justify-content: left;
-    display: flex;
-    justify-content: space-evenly;
-    width: 50%;
-    flex-wrap: wrap;
-
+  
+  .b {
+  justify-content: left;
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+  flex-wrap: wrap;
   }
-
-  .c{
-    padding-top: 16px;
-    justify-content: right;
-    display: flex;
-    justify-content: center;
-    width: 25%;
-    align-content: center;
-    padding-bottom: 16px;
-    flex-wrap: wrap;
-
-
+  
+  .c {
+  padding-top: 16px;
+  justify-content: right;
+  display: flex;
+  justify-content: center;
+  width: 25%;
+  align-content: center;
+  padding-bottom: 16px;
+  flex-wrap: wrap;
   }
-  .d{
-    justify-content: right;
-    display: flex;
-    justify-content: center;
-    width: 25%;
-    white-space: nowrap;
-
+  
+  .d {
+  justify-content: right;
+  display: flex;
+  justify-content: center;
+  width: 25%;
+  white-space: nowrap;
   }
-
-
-
-  /* Responsive Layouts */
+  
   @media (min-width: 1200px) {
-    .event-grid {
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: minmax(100px, auto);
-      
-  
-    }
-
+  .event-grid {
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  }
   }
   
   @media (min-width: 800px) and (max-width: 1199px) {
-    .event-grid {
-      grid-template-columns: repeat(2, 1fr);
-      grid-auto-rows: minmax(100px, auto);
-    }
-
-    .all-button, .all-button-selected, .band-button, .band-button-selected, .busker-button, .busker-button-selected, .dj-button, .dj-button-selected, .performance-button, .performance-button-selected {
-      height: 64px;
-      width: 64px;
-    }
-
-    
+  .event-grid {
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  }
+  
+  .all-button, .all-button-selected, .band-button, .band-button-selected, .busker-button, .busker-button-selected, .dj-button, .dj-button-selected, .performance-button, .performance-button-selected {
+  height: 64px;
+  width: 64px;
+  }
   }
   
   @media (max-width: 799px) {
-    .event-grid {
-      grid-template-columns: 1fr;
-      grid-auto-rows: minmax(100px, auto);
-    }
+  .event-grid {
+  grid-template-columns: 1fr;
+  grid-auto-rows: minmax(100px, auto);
   }
+  }
+  
