@@ -1,81 +1,92 @@
 .border{
-    border-radius: 25px;
-    border: 6px solid whitesmoke;
-    width: 340px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    
-  
-  }
-  
-  .progress-bar {
-      height: 20px;
-      width: 330px;
-      display: grid;
-      grid-template-columns: repeat(24, 1fr);
-      z-index: 10;
-      justify-content: center;
-      align-items: center; 
-      font-size: 65%;
-      color: black;
-   
-      
-    }
-    
-    .hourAM-container {
-      border-radius: 2px;
-    }
-  
-    .pm{
-      display: flex;
-      justify-content: center;
-      align-content: center;
-      position: relative;
-  
-    }
-  
-  .progress-bar-select {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-      z-index: 12;
-      position: absolute;
-  
-  }
-  
-  .dot-boundary {
-    /* background-color: crimson; */
-    display: flex;
-    align-content: center;
-    width: 360px;
-    position: relative;
-    left: -15px
-    
-  }
-  .dot {
-    background-color: green;
-    height: 30px;
-    width: 30px;
-    opacity: 90%;
-    border-radius: 50%;
-    position: relative;
-  
-  }
+border-radius: 25px;
+border: 6px solid whitesmoke;
+width: 340px;
+display: flex;
+justify-content: center;
+align-content: center;
+}
 
-  @media (min-width: 1200px) {
+.progress-bar {
+height: 20px;
+width: 340px;
+display: grid;
+grid-template-columns: repeat(24, 1fr);
+z-index: 10;
+justify-content: center;
+align-items: center; 
+}
 
+.hourAM-container {
+border-radius: 2px;
+}
 
-  }
-  
-  @media (min-width: 850px) and (max-width: 1199px) {
+.pm{
+display: flex;
+justify-content: center;
+align-content: center;
+position: relative;
+}
 
+.progress-bar-select {
+display: flex;
+justify-content: center;
+align-content: center;
+z-index: 12;
+position: absolute;
+}
 
-    
-  }
-  
-  @media (max-width: 849px) {
+.dot-boundary {
+display: flex;
+align-content: center;
+width: 360px;
+position: relative;
+left: -15px 
+}
 
+.dot {
+background-color: green;
+height: 30px;
+width: 30px;
+opacity: 90%;
+border-radius: 50%;
+position: relative;
+}
 
+@media (min-width: 1200px) {
 
-  }
+}
+
+@media (min-width: 850px) and (max-width: 1199px) {
+.border{
+border-radius: 25px;
+border: 6px solid whitesmoke;
+width: 550px;
+display: flex;
+justify-content: center;
+align-content: center;
+}
+
+.progress-bar {
+height: 30px;
+width: 550px;
+}
+.hourAM-container {
+border-radius: 2px;
+font-size: x-large;
+/* background-color: aqua; */
+}
+
+.dot-boundary {
+width: 618px;
+}
+.dot {
+height: 60px;
+width: 60px;
+}
+
+}
+
+@media (max-width: 849px) {
+
+}

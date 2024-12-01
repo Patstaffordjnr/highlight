@@ -1,9 +1,3 @@
-.nav-div{ 
-  /* background-color: azure; */
-
-}
-
-
 *{
   margin:0;
   padding: 0;
@@ -25,12 +19,10 @@ i:hover {
 }
 
 .slider {
-/* background-color: olive; */
 position: relative;
 width: 75%;
-height: 90px;
+height: 70px;
 overflow: hidden;
-
 }
 
 .slider-inner{
@@ -54,46 +46,9 @@ padding: 20px;
   
 i.home, i.user, i.events, i.users, i.buskers, i.sign-up, i.log-in, i.about, i.stafford, i.log-out {
   white-space: nowrap;
-
 }
 
-i.home{
-
-}
-
-i.events{
-
-}
-
-.users {
-
-}
-
-.buskers {
-  
-}
-
-.sign-up{
-
-}
-.log-in{
-
-}
-.about{
-
-}
-.stafford{
-
-}
-.log-out{
-
-}
-
-
-
-
-  /* Responsive Layouts */
-  @media (min-width: 1200px) {
+@media (min-width: 1200px) {
     i{
       font-size: medium;
       font-weight: bold;
@@ -115,18 +70,14 @@ i.events{
     
     }
     .slider {
-      /* background-color: olive; */
       position: relative;
       width: 100%;
-      height: 90px;
+      height: 70px;
       overflow: hidden;
-      
-      
       }
-
   }
   
-  @media (max-width: 849px) {
+@media (max-width: 849px) {
     i{
       font-size: xx-large;
       font-weight: bolder;
@@ -135,14 +86,11 @@ i.events{
     }
     i.home{
       padding-left: 16px;
-    
     }
     .slider {
-      /* background-color: olive; */
       position: relative;
       width: 100%;
-      height: 90px;
+      height: 70px;
       overflow: hidden;
-      
       }
-  }
+    }

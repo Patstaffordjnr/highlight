@@ -3,7 +3,7 @@
   border-radius: 16px;
   -ms-overflow-style: none;
   scrollbar-width: none; 
-  height: 250px;
+  height: 230px;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   position: relative;
@@ -121,40 +121,32 @@
       height: 520px;
       border: 8px solid whitesmoke;
     }
-
     .calendar-container{
       margin-top: -32px; 
       padding-right: 16px;
       padding-left: 16px;
     }
-    
     .calendar-div{
       border-radius: 25px;
       min-width: 340px;
       min-height: 320px;
     }
-    
     .month-container{
       text-align: center;
       margin-top: 0px; 
     }
-    
     .month-display{
       font-size: 40px;
     }
-    
     .weekday-display-container{
       margin-top: -32px; 
       font-size: x-large;
     }
-    
     .weekdays-display{
       margin-top: 4px; 
     }
-    
     .day-container{
     }
-    
     .day{
       font-weight: bold;
       font-size: 40px;
@@ -168,41 +160,33 @@
       height: 520px;
       border: 8px solid whitesmoke;
     }
-
     .calendar-container{
       margin-top: -32px; 
       padding-right: 16px;
       padding-left: 16px;
     }
-    
     .calendar-div{
       border-radius: 25px;
       min-width: 340px;
       min-height: 320px;
     }
-    
     .month-container{
       text-align: center;
       margin-top: 0px; 
     }
-    
     .month-display{
       font-size: 40px;
     }
-    
     .weekday-display-container{
       margin-top: -32px; 
       font-size: x-large;
     }
-    
     .weekdays-display{
       margin-top: 4px; 
     }
-    
     .day-container{
  
     }
-    
     .day{
       font-weight: bold;
       font-size: 40px;

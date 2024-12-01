@@ -6,18 +6,13 @@ import { GlobalDateService } from './global-date.service'
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-
-
 export class HomeComponent {
 
  globalDate = new Date();
-
   constructor(private globalDateService: GlobalDateService) {
-
 }
 
 async ngOnInit() { 
-
   this.globalDateService.globalDate$.subscribe((globalDate) => {
       if(globalDate) {
           this.globalDate = globalDate;
@@ -39,13 +34,10 @@ onDateSelected(selectedDate: Date) {
        );
    this.globalDate = updatedGlobalDate;
      this.globalDateService.updateEventDate(updatedGlobalDate);
-
 console.log(`Home Calendar Select Date: ${updatedGlobalDate}`);
-
 }
 
 onTimeSelected(updatedTime: Date) {
-
    const [hoursString, minutesString] =  String(updatedTime).split(':');
    const currentHours =  hoursString
    const currentMinutes =  minutesString
@@ -63,7 +55,4 @@ onTimeSelected(updatedTime: Date) {
     this.globalDate = updatedGlobalDate;
       this.globalDateService.updateEventDate(updatedGlobalDate);
 }
-
-
-
 }
