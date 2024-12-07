@@ -1,92 +1,49 @@
 .border{
-border-radius: 25px;
-border: 6px solid whitesmoke;
-width: 340px;
+background-color: blue;
+padding-left: 20px;
+padding-right: 20px;
 display: flex;
 justify-content: center;
 align-content: center;
+flex: 1;
+height: 20px;
 }
 
 .progress-bar {
-height: 20px;
-width: 340px;
-display: grid;
-grid-template-columns: repeat(24, 1fr);
-z-index: 10;
-justify-content: center;
-align-items: center; 
-}
-
-.hourAM-container {
-border-radius: 2px;
-}
-
-.pm{
+background-color: red;
 display: flex;
+flex-direction: column;
+}
+.hours-container {
+background-color:orange;
+display: flex;
+justify-content: flex-start;
+justify-content: flex-end;
 justify-content: center;
-align-content: center;
-position: relative;
+}
+
+.testHours {
+background-color:aquamarine;
 }
 
 .progress-bar-select {
+position: relative;
 display: flex;
-justify-content: center;
-align-content: center;
-z-index: 12;
+flex: 1;
+background-color: blueviolet;
+border-radius: 10px;
+}
+
+.dot-boundary {
 position: absolute;
-}
-
-.dot-boundary {
 display: flex;
-align-content: center;
-width: 360px;
-position: relative;
-left: -15px 
-}
-
-.dot {
-background-color: green;
-height: 30px;
-width: 30px;
-opacity: 90%;
+width: 20px;
+height: 20px;
+background-color: #007bff;
 border-radius: 50%;
-position: relative;
+cursor: grab;
 }
 
-@media (min-width: 1200px) {
-
-}
-
-@media (min-width: 850px) and (max-width: 1199px) {
-.border{
-border-radius: 25px;
-border: 6px solid whitesmoke;
-width: 550px;
-display: flex;
-justify-content: center;
-align-content: center;
-}
-
-.progress-bar {
-height: 30px;
-width: 550px;
-}
-.hourAM-container {
-border-radius: 2px;
-font-size: x-large;
-/* background-color: aqua; */
-}
-
-.dot-boundary {
-width: 618px;
-}
-.dot {
-height: 60px;
-width: 60px;
-}
-
-}
-
-@media (max-width: 849px) {
-
+.dot-boundary:active {
+cursor: grabbing;
 }

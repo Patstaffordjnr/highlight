@@ -1,15 +1,22 @@
 <br>
 <div class = "border">
-<div class="progress-bar" #clockhourSelect>
-  <div *ngFor="let hour of hours" (click)="hourSelect($event)">
-    <div class="hourAM-container" id="progress-bar" #hourDiv>
-      {{ hour }}
+    <div class="progress-bar" #clockhourSelect>
+        <div class="hours-container">
+            <div *ngFor="let hour of hours" class="testHours">
+                <div class="hourAM-container" id="progress-bar" #hourDiv>
+                {{ hour }}
+                </div>
+            </div>
+        </div>
+        <div class="progress-bar-select" #progressBarDiv>
+            <div
+              class="dot-boundary"
+              (mousedown)="mouseDown($event)"
+              (mouseup)="mouseUp($event)"
+              (mousemove)="mousemove($event)"
+              (mouseleave)="mouseUp($event)"
+              #dot>
+            </div>
+          </div>
     </div>
-  </div>
-  <div class="progress-bar-select" id="progress-bar-select" #progressBarDiv>
-    <div class = "dot-boundary">
-  <span class="dot" #dot cdkDragBoundary=".dot-boundary" cdkDragLockAxis="x" (cdkDragMoved)="onDragMoved($event)" cdkDrag ></span>
-</div>
-  </div>
-</div>
 </div>
