@@ -9,7 +9,9 @@ import { GlobalDateService } from './global-date.service'
 export class HomeComponent {
 
  globalDate = new Date();
-  constructor(private globalDateService: GlobalDateService) {
+ 
+ constructor(private globalDateService: GlobalDateService) {
+  this.globalDateService.upDate(this.globalDate); // Sync initial state
 }
 
 async ngOnInit() { 
@@ -20,39 +22,42 @@ async ngOnInit() {
   })
 }
 
-onDateSelected(selectedDate: Date) {
-  const currentHours =  this.globalDate.getHours();
-  const currentMinutes =  this.globalDate.getMinutes();
-  const currentSeconds =  this.globalDate.getSeconds();
-       const updatedGlobalDate = new Date(
-         selectedDate.getFullYear(),
-         selectedDate.getMonth(),
-         selectedDate.getDate(),
-         currentHours,
-         currentMinutes,
-         currentSeconds
-       );
-   this.globalDate = updatedGlobalDate;
-     this.globalDateService.updateEventDate(updatedGlobalDate);
-console.log(`Home Calendar Select Date: ${updatedGlobalDate}`);
-}
 
 onTimeSelected(updatedTime: Date) {
-   const [hoursString, minutesString] =  String(updatedTime).split(':');
-   const currentHours =  hoursString
-   const currentMinutes =  minutesString
-   const currentSeconds =  this.globalDate.getSeconds();
-
-        const updatedGlobalDate = new Date(
-          this.globalDate.getFullYear(),
-          this.globalDate.getMonth(),
-          this.globalDate.getDate(),
-          Number(currentHours),
-          Number(currentMinutes),
-          currentSeconds
-        );
-
-    this.globalDate = updatedGlobalDate;
-      this.globalDateService.updateEventDate(updatedGlobalDate);
+  const updatedGlobalDate = new Date(
+      updatedTime.getFullYear(),
+      updatedTime.getMonth(),
+      updatedTime.getDate(),
+      updatedTime.getHours(),
+      updatedTime.getMinutes(),
+      0
+    );
+  const formattedDate = `${updatedGlobalDate.getFullYear()}-${String(updatedGlobalDate.getMonth() + 1).padStart(2, '0')}-${String(updatedGlobalDate.getDate()).padStart(2, '0')} ${String(updatedGlobalDate.getHours()).padStart(2, '0')}:${String(updatedGlobalDate.getMinutes()).padStart(2, '0')}`;
+    this.globalDateService.upDate(updatedGlobalDate);
+    // this.globalDate = updatedGlobalDate;
+    // this.globalDateService.updateEventDate(updatedGlobalDate);
 }
+
+onDateSelected(selectedDate: Date) {
+  if (!selectedDate) return;
+
+  const currentHours = this.globalDate.getHours();
+  const currentMinutes = this.globalDate.getMinutes();
+  const currentSeconds = this.globalDate.getSeconds();
+
+  const updatedGlobalDate = new Date(
+    selectedDate.getFullYear(),
+    selectedDate.getMonth(),
+    selectedDate.getDate(),
+    currentHours,
+    currentMinutes,
+    currentSeconds
+  );
+
+  if (this.globalDate.getTime() !== updatedGlobalDate.getTime()) {
+    this.globalDateService.upDate(updatedGlobalDate);
+    console.log(`Home Calendar Select Date: ${updatedGlobalDate}`);
+  }
+}
+
 }
