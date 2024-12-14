@@ -23,11 +23,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
           updatedTime.getMinutes(),
           updatedTime.getSeconds()
         );
-      console.log(`Selected Time: ${updatedTime}`);
-      console.log(`Global Date: ${this.globalDate.value}`);
-      // this.globalDate.next(updatedDateTime);
        this.isUpdating = false;
-
+       this.globalDate.next(updatedDateTime);
       }
       
     clearSelectedEvent(){

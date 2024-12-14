@@ -51,15 +51,6 @@ mousemove(event: MouseEvent) {
 
   this.emitTime(newTime);
 
-// let newLeft = event.clientX - parentRect.left - this.startX;
-//   if (newLeft < 0) {
-//     return
-//   } else if (newLeft + dotWidth > parentRect.width) {
-//     newLeft = parentRect.width - dotWidth;
-//   }
-//   this.dot.nativeElement.style.left = `${newLeft}px`;
-// }
-// CHATGPT RECOMENDATION
 let newLeft = event.clientX - parentRect.left - this.startX;
 if (newLeft < 0) {
   newLeft = 0;

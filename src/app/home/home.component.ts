@@ -7,44 +7,39 @@ import { GlobalDateService } from './global-date.service'
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-
- globalDate = new Date();
+ x: Date;
+  globalDate = new Date();
  
  constructor(private globalDateService: GlobalDateService) {
-  this.globalDateService.upDate(this.globalDate); // Sync initial state
+  // this.globalDateService.globalDate$.subscribe((globalDate) => {
+  //   console.log(`constructor:${globalDate}`);     
+  //             this.globalDate = globalDate;
+  // })
 }
 
 async ngOnInit() { 
   this.globalDateService.globalDate$.subscribe((globalDate) => {
       if(globalDate) {
-          this.globalDate = globalDate;
+        console.log(`ngOnInit:${globalDate}`);     
+          //  this.globalDate = globalDate;
+          this.x = globalDate;
       }
   })
 }
 
-
 onTimeSelected(updatedTime: Date) {
   const updatedGlobalDate = new Date(
-      updatedTime.getFullYear(),
-      updatedTime.getMonth(),
-      updatedTime.getDate(),
-      updatedTime.getHours(),
-      updatedTime.getMinutes(),
-      0
-    );
-  const formattedDate = `${updatedGlobalDate.getFullYear()}-${String(updatedGlobalDate.getMonth() + 1).padStart(2, '0')}-${String(updatedGlobalDate.getDate()).padStart(2, '0')} ${String(updatedGlobalDate.getHours()).padStart(2, '0')}:${String(updatedGlobalDate.getMinutes()).padStart(2, '0')}`;
-    this.globalDateService.upDate(updatedGlobalDate);
-    // this.globalDate = updatedGlobalDate;
-    // this.globalDateService.updateEventDate(updatedGlobalDate);
+  updatedTime.getFullYear(), updatedTime.getMonth(),
+  updatedTime.getDate(), updatedTime.getHours(),
+  updatedTime.getMinutes(), 0);
+  this.globalDateService.upDate(updatedGlobalDate);
 }
 
-onDateSelected(selectedDate: Date) {
+onDateSelected(selectedDate: Date): void {
   if (!selectedDate) return;
-
   const currentHours = this.globalDate.getHours();
   const currentMinutes = this.globalDate.getMinutes();
   const currentSeconds = this.globalDate.getSeconds();
-
   const updatedGlobalDate = new Date(
     selectedDate.getFullYear(),
     selectedDate.getMonth(),
@@ -53,7 +48,6 @@ onDateSelected(selectedDate: Date) {
     currentMinutes,
     currentSeconds
   );
-
   if (this.globalDate.getTime() !== updatedGlobalDate.getTime()) {
     this.globalDateService.upDate(updatedGlobalDate);
     console.log(`Home Calendar Select Date: ${updatedGlobalDate}`);
