@@ -7,14 +7,10 @@ import { GlobalDateService } from './global-date.service'
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
- x: Date;
+ x:Date;
   globalDate = new Date();
  
- constructor(private globalDateService: GlobalDateService) {
-  // this.globalDateService.globalDate$.subscribe((globalDate) => {
-  //   console.log(`constructor:${globalDate}`);     
-  //             this.globalDate = globalDate;
-  // })
+ constructor(private globalDateService: GlobalDateService,) {
 }
 
 async ngOnInit() { 
@@ -33,13 +29,14 @@ onTimeSelected(updatedTime: Date) {
   updatedTime.getDate(), updatedTime.getHours(),
   updatedTime.getMinutes(), 0);
   this.globalDateService.upDate(updatedGlobalDate);
+  
 }
 
 onDateSelected(selectedDate: Date): void {
   if (!selectedDate) return;
-  const currentHours = this.globalDate.getHours();
-  const currentMinutes = this.globalDate.getMinutes();
-  const currentSeconds = this.globalDate.getSeconds();
+  const currentHours = this.x.getHours();
+  const currentMinutes = this.x.getMinutes();
+  const currentSeconds = this.x.getSeconds();
   const updatedGlobalDate = new Date(
     selectedDate.getFullYear(),
     selectedDate.getMonth(),

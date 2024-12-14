@@ -46,8 +46,14 @@ mousemove(event: MouseEvent) {
   let hour = Math.floor((x / hourLength));
   let minute = Math.floor(x / minuteLength - (Math.floor(hour) * 60));
 
-  let newTime = new Date(this.selectedTime.getFullYear(),this.selectedTime.getMonth(), this.selectedTime.getDate(),
-  this.selectedTime.getHours() + hour, this.selectedTime.getHours() + minute, 0 )
+  let newTime = new Date(
+    this.selectedTime.getFullYear(),
+    this.selectedTime.getMonth(),
+    this.selectedTime.getDate(),
+    this.selectedTime.getHours() + hour,
+    this.selectedTime.getMinutes() + minute, // Fix this line to calculate minutes correctly
+    0
+  )
 
   this.emitTime(newTime);
 

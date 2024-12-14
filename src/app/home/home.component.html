@@ -1,8 +1,8 @@
 <div class = "home-container">
 <app-calendar class = "calendar" [selectedDate]="globalDate" (selectDateEvent)="onDateSelected($event)"></app-calendar>
     <app-progress-bar class = "progress-bar" [selectedTime]="globalDate" (selectTimeEvent)="onTimeSelected($event)"></app-progress-bar>
-    <h3>{{x}}</h3>
-    <div class= "global-date"><h3 class = "global-date-text">{{globalDate}}</h3></div>
+    <h3>{{x | date:'HH:mm:ss EEE MMM d y'}}</h3>
+    <div class= "global-date"><h3 class = "global-date-text">{{globalDate | date:'HH:mm:ss EEE MMM d y'}}</h3></div>
     <app-map class = "map"></app-map>
     <br>
  <app-events-table></app-events-table>
