@@ -1,13 +1,10 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { CdkDragMove } from '@angular/cdk/drag-drop';
-
 @Component({
   selector: 'app-progress-bar',
   templateUrl: './progress-bar.component.html',
   styleUrls: ['./progress-bar.component.css']
 })
 export class ProgressBarComponent implements OnInit {
-
   @Output() selectTimeEvent = new EventEmitter<Date>();
   @Input() selectedTime: Date;
 
@@ -16,7 +13,7 @@ export class ProgressBarComponent implements OnInit {
   mm = this.date.getMinutes();
   ss = this.date.getSeconds();
   session = "AM";
-  hours = [];
+  hours: number[] = [];
   mapTimeHour: String;
   mapTimeMinute: String;
 
@@ -26,6 +23,12 @@ export class ProgressBarComponent implements OnInit {
 
   @ViewChild('progressBarDiv') progressBarDiv: ElementRef;
   @ViewChild('dot') dot: ElementRef;
+
+  constructor() {}
+
+  ngOnInit(): void {
+    this.initialiseClock();
+  }
 
   mouseDown(event: MouseEvent) {
     this.isDragging = true;
@@ -38,15 +41,39 @@ export class ProgressBarComponent implements OnInit {
     if (!this.isDragging) return;
     const parentRect = this.progressBarDiv.nativeElement.getBoundingClientRect();
     const dotWidth = this.dot.nativeElement.offsetWidth;
-
-    let x = event.x - parentRect.left;
-    let hourLength = parentRect.width / 24;
-    let minuteLength = hourLength / 60;
-
-    let totalMinutes = Math.floor(x / minuteLength); // Calculate total minutes based on x position
+    let x = event.clientX - parentRect.left;
+    const hourLength = parentRect.width / 24;
+    const minuteLength = hourLength / 60;
+    let totalMinutes = Math.floor(x / minuteLength);
     let hour = Math.floor(totalMinutes / 60);
     let minute = totalMinutes % 60;
 
+    if (minute < 5) {
+      minute = 0;
+    } else if (minute >= 5 && minute < 10) {
+      minute = 5;
+    } else if (minute >= 10 && minute < 15) {
+      minute = 10;
+    } else if (minute >= 15 && minute < 20) {
+      minute = 15;
+    } else if (minute >= 20 && minute < 25) {
+      minute = 20;
+    } else if (minute >= 25 && minute < 30) {
+      minute = 25;
+    } else if (minute >= 30 && minute < 35) {
+      minute = 30;
+    } else if (minute >= 35 && minute < 40) {
+      minute = 35;
+    } else if (minute >= 40 && minute < 45) {
+      minute = 40;
+    } else if (minute >= 45 && minute < 50) {
+      minute = 45;
+    } else if (minute >= 50 && minute < 55) {
+      minute = 50;
+    } else if (minute >= 55) {
+      minute = 0;
+      hour++;
+    }
     let newTime = new Date(
       this.selectedTime.getFullYear(),
       this.selectedTime.getMonth(),
@@ -55,9 +82,7 @@ export class ProgressBarComponent implements OnInit {
       minute,
       0
     );
-
     this.emitTime(newTime);
-
     let newLeft = event.clientX - parentRect.left - this.startX;
     if (newLeft < 0) {
       newLeft = 0;
@@ -69,13 +94,6 @@ export class ProgressBarComponent implements OnInit {
 
   mouseUp(event: MouseEvent) {
     this.isDragging = false;
-  }
-
-  constructor() {}
-
-  ngOnInit(): void {
-    this.initialiseClock();
-    this.moveDotToSelectedTime();
   }
 
   initialiseClock() {
@@ -95,29 +113,5 @@ export class ProgressBarComponent implements OnInit {
   emitTime(date: Date) {
     console.log(date);
     return this.selectTimeEvent.emit(date);
-  }
-
-  moveDotToSelectedTime() {
-    if (!this.progressBarDiv || !this.dot || !this.selectedTime) {
-      return;
-    }
-
-    const parentRect = this.progressBarDiv.nativeElement.getBoundingClientRect();
-    const hourLength = parentRect.width / 24;
-    const minuteLength = hourLength / 60;
-
-    const hour = this.selectedTime.getHours();
-    const minute = this.selectedTime.getMinutes();
-
-    const dotPosition = hour * hourLength + minute * minuteLength;
-
-    const dotWidth = this.dot.nativeElement.offsetWidth;
-    let adjustedPosition = dotPosition;
-
-    if (adjustedPosition + dotWidth > parentRect.width) {
-      adjustedPosition = parentRect.width - dotWidth;
-    }
-
-    this.dot.nativeElement.style.left = `${adjustedPosition}px`;
   }
 }

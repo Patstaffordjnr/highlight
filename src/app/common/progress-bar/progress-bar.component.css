@@ -1,47 +1,48 @@
 .border{
-background-color: blue;
+border-radius: 50;
+border-radius: 16px;
+border: 8px solid whitesmoke;
 padding-left: 20px;
 padding-right: 20px;
 display: flex;
 justify-content: center;
 align-content: center;
 flex: 1;
-height: 20px;
 }
 
 .progress-bar {
-background-color: red;
 display: flex;
 flex-direction: column;
 }
 .hours-container {
-background-color:orange;
 display: flex;
 justify-content: flex-start;
 justify-content: flex-end;
 justify-content: center;
+user-select: none;
+
 }
 
 .testHours {
-background-color:aquamarine;
 }
 
 .dot-boundary {
 position: relative;
 display: flex;
 flex: 1;
-background-color: blueviolet;
 border-radius: 10px;
+overflow: visible;
+
 }
 
 .dot{
 position: absolute;
 display: flex;
+top: -5px;
 width: 30px;
 height: 30px;
 background-color: green;
 border-radius: 50%;
-cursor: grab;
 }
 
 .dot-:active {
