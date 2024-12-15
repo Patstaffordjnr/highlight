@@ -43,15 +43,19 @@ mousemove(event: MouseEvent) {
   let hourLength = parentRect.width / 24;
   let minuteLength = hourLength / 60;
 
-  let hour = Math.floor((x / hourLength));
-  let minute = Math.floor(x / minuteLength - (Math.floor(hour) * 60));
+
+
+  let totalMinutes = Math.floor(x / minuteLength); // Calculate total minutes based on x position
+  let hour = Math.floor(totalMinutes / 60);
+  let minute = totalMinutes % 60;
+
 
   let newTime = new Date(
     this.selectedTime.getFullYear(),
     this.selectedTime.getMonth(),
     this.selectedTime.getDate(),
-    this.selectedTime.getHours() + hour,
-    this.selectedTime.getMinutes() + minute, // Fix this line to calculate minutes correctly
+    hour,
+    minute, // Fix this line to calculate minutes correctly
     0
   )
 
@@ -82,7 +86,7 @@ initialiseClock(){
             this.selectedTime.getFullYear(),
             this.selectedTime.getMonth() ,
             this.selectedTime.getDate(),
-            this.selectedTime.getHours() + i,
+            i,
             this.selectedTime.getMinutes(),
             this.selectedTime.getSeconds()
           )
@@ -91,6 +95,7 @@ initialiseClock(){
 }
 
 emitTime(date: Date) {
+  console.log(date);
 return this.selectTimeEvent.emit(date);
 }
 

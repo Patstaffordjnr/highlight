@@ -7,44 +7,45 @@ import { GlobalDateService } from './global-date.service'
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
- x:Date;
   globalDate = new Date();
- 
  constructor(private globalDateService: GlobalDateService,) {
 }
-
 async ngOnInit() { 
   this.globalDateService.globalDate$.subscribe((globalDate) => {
       if(globalDate) {
-        console.log(`ngOnInit:${globalDate}`);     
-          //  this.globalDate = globalDate;
-          this.x = globalDate;
+          this.globalDate = globalDate;
       }
   })
 }
 
-onTimeSelected(updatedTime: Date) {
+onTimeSelected(selectedDate: Date) {
   const updatedGlobalDate = new Date(
-  updatedTime.getFullYear(), updatedTime.getMonth(),
-  updatedTime.getDate(), updatedTime.getHours(),
-  updatedTime.getMinutes(), 0);
-  this.globalDateService.upDate(updatedGlobalDate);
+    this.globalDate.getFullYear(), 
+    this.globalDate.getMonth(),
+    this.globalDate.getDate(),
+    selectedDate.getHours(),
+    selectedDate.getMinutes(),
+  0
+);
+this.globalDate = updatedGlobalDate;
+  this.globalDateService.upDateTime(updatedGlobalDate);
   
 }
 
 onDateSelected(selectedDate: Date): void {
   if (!selectedDate) return;
-  const currentHours = this.x.getHours();
-  const currentMinutes = this.x.getMinutes();
-  const currentSeconds = this.x.getSeconds();
   const updatedGlobalDate = new Date(
     selectedDate.getFullYear(),
     selectedDate.getMonth(),
     selectedDate.getDate(),
-    currentHours,
-    currentMinutes,
-    currentSeconds
+    this.globalDate.getHours(),
+    this.globalDate.getMinutes(),
+    0
   );
+  this.globalDate = updatedGlobalDate;
+  this.globalDateService.upDate(updatedGlobalDate);
+
+
   if (this.globalDate.getTime() !== updatedGlobalDate.getTime()) {
     this.globalDateService.upDate(updatedGlobalDate);
     console.log(`Home Calendar Select Date: ${updatedGlobalDate}`);

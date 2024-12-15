@@ -11,6 +11,23 @@ import { BehaviorSubject, Observable } from 'rxjs';
       globalDate$ = this.globalDate.asObservable();
       private isUpdating = false;
 
+      upDateTime(updatedTime: Date) {
+        if (this.isUpdating) return; // Prevent redundant updates
+        this.isUpdating = true;
+ 
+        const updatedDateTime = new Date(
+          this.globalDate.value.getFullYear(),
+          this.globalDate.value.getMonth(),
+          this.globalDate.value.getDate(),
+          updatedTime.getHours(),
+          updatedTime.getMinutes(),
+          0
+        );
+       this.isUpdating = false;
+       this.globalDate.next(updatedDateTime);
+      }
+      
+
       upDate(updatedTime: Date) {
         if (this.isUpdating) return; // Prevent redundant updates
         this.isUpdating = true;
@@ -19,14 +36,13 @@ import { BehaviorSubject, Observable } from 'rxjs';
           updatedTime.getFullYear(),
           updatedTime.getMonth(),
           updatedTime.getDate(),
-          updatedTime.getHours(),
-          updatedTime.getMinutes(),
-          updatedTime.getSeconds()
+          this.globalDate.value.getHours(),
+          this.globalDate.value.getMinutes(),
+          0
         );
        this.isUpdating = false;
        this.globalDate.next(updatedDateTime);
       }
-      
     clearSelectedEvent(){
       this.upDate(null);
     }
