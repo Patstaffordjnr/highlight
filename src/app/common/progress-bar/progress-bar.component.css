@@ -44,3 +44,44 @@ border-radius: 50%;
 .dot-:active {
 cursor: grabbing;
 }
+
+@media (min-width: 1200px) {
+   
+}
+
+@media (min-width: 800px) and (max-width: 1199px) {
+    .border{
+        border: 6px solid whitesmoke;
+        font-size: x-large;
+        }
+        
+        .progress-bar {
+
+        }
+        
+        .hours-container {
+
+        }
+        
+        .testHours {
+        }
+        
+        .dot-boundary {
+
+        }
+        
+        .dot{
+        top: -10px;
+        width: 45px;
+        height: 45px;
+        }
+        
+        .dot-:active {
+        }
+        
+
+}
+
+@media (max-width: 799px) {
+
+}

@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 @Component({
   selector: 'app-progress-bar',
   templateUrl: './progress-bar.component.html',
@@ -25,11 +25,16 @@ export class ProgressBarComponent implements OnInit {
   @ViewChild('dot') dot: ElementRef;
 
   constructor() {
-    this.setClock(this.selectedTime);
   }
 
   ngOnInit(): void {
     this.initialiseClock();
+  }
+
+  ngAfterViewInit() {
+    if(this.selectedTime) {
+      this. setClock(this.selectedTime);
+    }
   }
 
   mouseDown(event: MouseEvent) {
@@ -75,6 +80,9 @@ export class ProgressBarComponent implements OnInit {
     } else if (minute >= 55) {
       minute = 0;
       hour++;
+    } else if (hour == 0 && minute == 0 ) {
+      minute = 0;
+      hour = 0;
     }
     let newTime = new Date(
       this.selectedTime.getFullYear(),
@@ -117,7 +125,19 @@ export class ProgressBarComponent implements OnInit {
   }
 
   setClock(date: Date) {
-console.log(`${date}`);
+const dotElement: HTMLElement = this.dot.nativeElement;
+const progressBarElement: HTMLElement = this.progressBarDiv.nativeElement;
+let divLeft = progressBarElement.offsetLeft;
+let divRight = (divLeft + progressBarElement.offsetWidth);
+let divLength = (divRight - divLeft);
+
+let hour = date.getHours();
+let minutes = date.getMinutes();
+let hourPercentOfProgressBar = (divLength / 24) * hour
+let minutePercentOfProgressBar = ((divLength / (24 * 60)* minutes))
+let timeToBeDisplayed = hourPercentOfProgressBar -10;
+
+dotElement.style.left = `${timeToBeDisplayed}px`;
   }
 
   emitTime(date: Date) {
