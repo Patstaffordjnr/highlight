@@ -7,7 +7,7 @@
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   position: relative;
-  border: 6px solid whitesmoke;
+  border: 4px solid whitesmoke;
 }
 .calendar-component-container::-webkit-scrollbar {
   display: none;
@@ -32,9 +32,12 @@
 
 .month-display{
   font-size: 20px;
+  font-weight: bold;
+
 }
 
 .weekday-display-container{
+
   display: flex;
   justify-content: space-around;
   height: 40px;
@@ -102,6 +105,7 @@
   border-radius: 50%;
   align-items: center;
   justify-content: center;
+  font-weight: bold;
 }
 
 .start-circle {

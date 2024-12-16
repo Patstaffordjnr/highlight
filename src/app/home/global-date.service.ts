@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject} from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -12,12 +12,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
       private isUpdating = false;
 
       upDateTime(updatedTime: Date) {
-        if (this.isUpdating) return; // Prevent redundant updates
+        if (this.isUpdating) return;
         this.isUpdating = true;
-
-
-        
- 
         const updatedDateTime = new Date(
           this.globalDate.value.getFullYear(),
           this.globalDate.value.getMonth(),
@@ -29,10 +25,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
        this.isUpdating = false;
        this.globalDate.next(updatedDateTime);
       }
-      
 
       upDate(updatedTime: Date) {
-        if (this.isUpdating) return; // Prevent redundant updates
+        if (this.isUpdating) return;
         this.isUpdating = true;
  
         const updatedDateTime = new Date(
@@ -46,6 +41,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
        this.isUpdating = false;
        this.globalDate.next(updatedDateTime);
       }
+      
     clearSelectedEvent(){
       this.upDate(null);
     }

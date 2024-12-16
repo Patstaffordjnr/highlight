@@ -13,7 +13,7 @@ export class ProgressBarComponent implements OnInit {
   mm = this.date.getMinutes();
   ss = this.date.getSeconds();
   session = "AM";
-  hours: number[] = [];
+  hours: string[] = [];
   mapTimeHour: String;
   mapTimeMinute: String;
 
@@ -24,7 +24,9 @@ export class ProgressBarComponent implements OnInit {
   @ViewChild('progressBarDiv') progressBarDiv: ElementRef;
   @ViewChild('dot') dot: ElementRef;
 
-  constructor() {}
+  constructor() {
+    this.setClock(this.selectedTime);
+  }
 
   ngOnInit(): void {
     this.initialiseClock();
@@ -40,7 +42,7 @@ export class ProgressBarComponent implements OnInit {
   mousemove(event: MouseEvent) {
     if (!this.isDragging) return;
     const parentRect = this.progressBarDiv.nativeElement.getBoundingClientRect();
-    const dotWidth = this.dot.nativeElement.offsetWidth;
+    const dotWidth = this.dot.nativeElement.offsetWidth - 4;
     let x = event.clientX - parentRect.left;
     const hourLength = parentRect.width / 24;
     const minuteLength = hourLength / 60;
@@ -106,12 +108,19 @@ export class ProgressBarComponent implements OnInit {
         this.selectedTime.getMinutes(),
         this.selectedTime.getSeconds()
       );
-      this.hours.push(selectedTimeDay.getHours());
+      if (i === 0) {
+        this.hours.push("00");
+      } else {
+        this.hours.push(i.toString());
+      }
     }
   }
 
+  setClock(date: Date) {
+console.log(`${date}`);
+  }
+
   emitTime(date: Date) {
-    console.log(date);
     return this.selectTimeEvent.emit(date);
   }
 }
