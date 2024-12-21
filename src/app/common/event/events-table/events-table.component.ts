@@ -1,11 +1,11 @@
 import { Component, OnInit ,ChangeDetectorRef } from '@angular/core';
-import { PageListResponse } from '../event/page-list-response';
-import { EventsClient } from '../event/events-client';
-import { MapService } from '../map/map-service';
+import { PageListResponse } from '../page-list-response';
+import { EventsClient } from '../events-client';
+import { MapService } from '../../map/map-service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { Event } from '../../model/event'
-import { EventService } from '../event/event-service';
+import { Event } from '../../../model/event'
+import { EventService } from '../../event/event-service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -15,34 +15,10 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class EventsTableComponent implements OnInit {
-// currentIndex = 0;
-// noOfProducts = 10;
-
-// responseFromServer;
-
-// searchText: string = '';
-// sorts = ["Nearest", "Starting Time"];
-
-// allEventsVisible = true;
-// bandEventsVisible = true;
-// buskerEventsVisible = true;
-// djEventsVisible = true;
-// performanceEventsVisible = true;
-
-  searchText: string = '';
-  sorts = ["Nearest", "Starting Time"];
-  
-  allEventsVisible = true;
-  bandEventsVisible = true;
-  buskerEventsVisible = true;
-  djEventsVisible = true;
-  performanceEventsVisible = true;
 
   eventsAddressIndexed = []
-
   eventLatArray = [];
   eventLngArray = [];
-
   currentIndex = 0;
   reveivedObject
 
@@ -53,7 +29,7 @@ export class EventsTableComponent implements OnInit {
   lastElementOfCurrentArr = this.pageNumberArray.slice(-1);
 
   eventAddress = [];
-
+  
   form: FormGroup;
 
 eventResponseList: PageListResponse = {
@@ -61,26 +37,13 @@ eventResponseList: PageListResponse = {
  results: []
 };
 
-
 constructor (private formBuilder: FormBuilder, private eventsClient: EventsClient, private eventService: EventService,  private http: HttpClient, private cdRef: ChangeDetectorRef, private mapService: MapService) {
-
   this.form = this.formBuilder.group({
     searchText: [''],
   });
-
-  // <input id="searchText"  type="searchText" formControlName="searchText">
-  // <div [(ngModel)]="searchText">
-  //   {{searchText}}  
-  // </div>
-
 }
 
-async ngOnInit() { 
-  // let response = await this.eventsClient.getEvents(this.currentIndex, this.noOfProducts);
-  // this.responseFromServer = response
-  // console.log(this.currentIndex);
-  // console.log(this.responseFromServer);
-
+async ngOnInit() {
   this.currentIndex = this.currentIndex;
   let initialEventList =   await this.eventsClient.getEvents(this.currentIndex, 10)
   this.reveivedObject =  initialEventList;
@@ -102,15 +65,12 @@ async getAddressFromCoordinates(latitude: number, longitude: number) {
      if (response.results && response.results.length > 0) {
        const address = response.results[0].formatted_address;
        this.eventAddress.push(address);
-       console.log(address);
-      //  this.eventsAddressIndexed.push(address);
-      //  console.log(address);
      } else {
-      //  console.error("Failed to retrieve address from coordinates.");
+       console.error("Failed to retrieve address from coordinates.");
      }
    },
    (error) => {
-    //  console.error("Error during geocoding:", error);
+     console.error("Error during geocoding:", error);
    });
 }
 
@@ -125,17 +85,13 @@ async addressList(latitude: number, longitude: number) {
      if (response.results && response.results.length > 0) {
        const address = response.results[0].formatted_address;
        this.eventsAddressIndexed.push(address);
-      //  console.log(address);
-      //  console.log(this.eventsAddressIndexed);
-
-
        this.ngAfterViewInit();
      } else {
-      //  console.error("Failed to retrieve address from coordinates.");
+       console.error("Failed to retrieve address from coordinates.");
      }
    },
    (error) => {
-    //  console.error("Error during geocoding:", error);
+     console.error("Error during geocoding:", error);
    });
 }
 
@@ -154,19 +110,17 @@ pageNumberOrchestration(injectedNoOfEventsPerPage, injectedNoOfPages, injectedCu
     for (let rep = 1; rep <= totalPages; rep++) {
       x.push(rep)
     }
-  
-  this.pageNumberArray = [];
 
+  this.pageNumberArray = [];
+  
   y.forEach(element => {
     if(element > this.totalNumberOfPages) {
       return
     } else {
       this.pageNumberArray.push((element + injectedCurrentIndex) - 3);
     }
-
   });
 }
-
 }
 
 async pageSelect(selectedPage: number){
@@ -217,95 +171,5 @@ async previousPageOfEvents() {
   this.eventResponseList.results = this.reveivedObject.results;
   this.pageNumberOrchestration(this.reveivedObject.results.length, this.reveivedObject.total, this.currentIndex)
 }
-
-allFunction(){
-  console.log(`All Function`);
-  this.allEventsVisible = !this.allEventsVisible;
-  console.log(this.allEventsVisible);
-}
-
-bandFunction(){
-  console.log(`Band Function`);
-  this.bandEventsVisible =  !this.bandEventsVisible;
-  console.log(this.bandEventsVisible);
-}
-
-buskerFunction(){
-  console.log(`Busker Function`);
-  this.buskerEventsVisible = !this.buskerEventsVisible;
-  console.log(this.buskerEventsVisible);
-}
-
-djFunction(){
-  console.log(`DJ Function`);
-  this.djEventsVisible = !this.djEventsVisible;
-  console.log(this.djEventsVisible);
-}
-
-performanceFunction(){
-  console.log(`Performance Function`);
-  this.performanceEventsVisible = !this.performanceEventsVisible;
-  console.log(this.performanceEventsVisible);
-}
-
-search(searchText){
-  console.log(searchText);
-  this.searchText = searchText;
-}
-// async currentIndexPlus() {
-//   this.currentIndex = this.currentIndex + 1;
-//   let response = await this.eventsClient.getEvents(this.currentIndex, this.noOfProducts);
-//   this.responseFromServer = response
-//   // console.log(this.currentIndex);
-//   // console.log(this.responseFromServer);
-// }
-
-
-// async currentIndexMinus() {
-//   this.currentIndex = this.currentIndex - 1;
-//   let response = await this.eventsClient.getEvents(this.currentIndex, this.noOfProducts);
-//   this.responseFromServer = response
-//   // console.log(this.currentIndex);
-//   // console.log(this.responseFromServer);
-// }
-
-
-// allFunction(){
-//   console.log(`All Function`);
-//   this.allEventsVisible = !this.allEventsVisible;
-//   console.log(this.allEventsVisible);
-
-// }
-
-// bandFunction(){
-//   console.log(`Band Function`);
-//   this.bandEventsVisible =  !this.bandEventsVisible;
-//   console.log(this.bandEventsVisible);
-
-// }
-
-// buskerFunction(){
-//   console.log(`Busker Function`);
-//   this.buskerEventsVisible = !this.buskerEventsVisible;
-//   console.log(this.buskerEventsVisible);
-
-// }
-
-// djFunction(){
-//   console.log(`DJ Function`);
-//   this.djEventsVisible = !this.djEventsVisible;
-//   console.log(this.djEventsVisible);
-// }
-
-// performanceFunction(){
-//   console.log(`Performance Function`);
-//   this.performanceEventsVisible = !this.performanceEventsVisible;
-//   console.log(this.performanceEventsVisible);
-// }
-
-// search(searchText){
-//   console.log(searchText);
-//   this.searchText = searchText;
-// }
 
 }

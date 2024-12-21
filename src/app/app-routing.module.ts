@@ -10,9 +10,11 @@ import { UsersComponent } from './pages/users/users.component';
 import { EditEventsComponent } from './pages/edit-events/edit-events.component';
 import { EditUsersComponent } from './pages/edit-users/edit-users.component';
 import { CalendarComponent } from './common/calendar/calendar.component';
+import { EventsComponent } from './common/event/events/events.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'events', component: EventsComponent },
   { path: 'home', component: HomeComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'login', component: LogInComponent },

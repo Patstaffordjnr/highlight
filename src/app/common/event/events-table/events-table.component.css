@@ -234,114 +234,6 @@
   background-color: black;
   }
   
-  .all-button {
-  background-color: deepskyblue;
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  }
-  
-  .all-button-selected {
-  background-color: none;
-  border: 3px solid deepskyblue;
-  height: 27px;
-  width: 27px;
-  border-radius: 50%;
-  }
-  
-  .band-button {
-  background-color: hotpink;
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  }
-  
-  .band-button-selected {
-  background-color: none;
-  border: 3px solid hotpink;
-  height: 27px;
-  width: 27px;
-  border-radius: 50%;
-  }
-  
-  .busker-button {
-  background-color: red;
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  }
-  
-  .busker-button-selected {
-  background-color: none;
-  border: 3px solid red;
-  height: 27px;
-  width: 27px;
-  border-radius: 50%;
-  }
-  
-  .dj-button {
-  background-color: yellow;
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  }
-  
-  .dj-button-selected {
-  background-color: none;
-  border: 3px solid yellow;
-  height: 27px;
-  width: 27px;
-  border-radius: 50%;
-  }
-  
-  .performance-button {
-  background-color: green;
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  }
-  
-  .performance-button-selected {
-  background-color: none;
-  border: 3px solid green;
-  height: 27px;
-  width: 27px;
-  border-radius: 50%;
-  }
-  
-  .a {
-  height: 64px;
-  display: flex;
-  flex-wrap: wrap;
-  }
-  
-  .b {
-  justify-content: left;
-  display: flex;
-  justify-content: space-evenly;
-  width: 50%;
-  flex-wrap: wrap;
-  }
-  
-  .c {
-  padding-top: 16px;
-  justify-content: right;
-  display: flex;
-  justify-content: center;
-  width: 25%;
-  align-content: center;
-  padding-bottom: 16px;
-  flex-wrap: wrap;
-  }
-  
-  .d {
-  justify-content: right;
-  display: flex;
-  justify-content: center;
-  width: 25%;
-  white-space: nowrap;
-  }
-  
   @media (min-width: 1200px) {
   .event-grid {
   grid-template-columns: repeat(4, 1fr);
@@ -355,10 +247,6 @@
   grid-auto-rows: minmax(100px, auto);
   }
   
-  .all-button, .all-button-selected, .band-button, .band-button-selected, .busker-button, .busker-button-selected, .dj-button, .dj-button-selected, .performance-button, .performance-button-selected {
-  height: 64px;
-  width: 64px;
-  }
   }
   
   @media (max-width: 799px) {

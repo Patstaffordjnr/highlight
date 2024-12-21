@@ -1,0 +1,193 @@
+.event-table-control-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    /* padding: 16px; */
+    /* margin-left: 50px;
+    margin-right: 50px; */
+    width: 100%;
+
+
+}
+
+.genre {
+    display: flex;
+    flex-wrap: wrap;
+    /* gap: 10px; */
+    width: 50%;  
+    justify-content: space-evenly;
+    flex: 1;
+    margin: 16px;
+    gap: 16px;
+
+    
+}
+
+.search-and-snort {
+}
+
+.search-div {
+
+}
+.search {
+
+}
+.snort-div {
+
+}
+
+.snort {
+
+}
+
+.all-button {
+    background-color: deepskyblue;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.all-button-selected {
+    background-color: none;
+    border: 3px solid deepskyblue;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+}
+
+.band-button {
+    background-color: hotpink;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.band-button-selected {
+    background-color: none;
+    border: 3px solid hotpink;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+}
+
+.busker-button {
+    background-color: red;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.busker-button-selected {
+    background-color: none;
+    border: 3px solid red;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+}
+
+.dj-button {
+    background-color: yellow;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.dj-button-selected {
+    background-color: none;
+    border: 3px solid yellow;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+}
+
+.performance-button {
+    background-color: green;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.performance-button-selected {
+    background-color: none;
+    border: 3px solid green;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+}
+
+
+@media (min-width: 1200px) {
+
+}
+
+@media (min-width: 800px) and (max-width: 1199px) {
+
+    .event-table-control-panel {
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    .genre {
+        margin: 16px;
+        gap: 16px;
+        width: 100%;  
+    }   
+
+    .search-and-snort {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 50%;
+    }
+    
+    .search-div {
+    
+    }
+    .all-button,
+    .all-button-selected,
+    .band-button,
+    .band-button-selected,
+    .busker-button,
+    .busker-button-selected,
+    .dj-button,
+    .dj-button-selected,
+    .performance-button,
+    .performance-button-selected {
+        height: 64px;
+        width: 64px;
+    }
+}
+
+@media (max-width: 799px) {
+    .event-table-control-panel {
+        flex-direction: column;
+    }
+
+    .genre {
+        width: 100%;  
+        margin: 16px;
+        gap: 16px;
+    }   
+    .search-and-snort {
+        width: 50%;
+    }
+    
+    .search-div {
+    
+    }
+    .all-button,
+    .all-button-selected,
+    .band-button,
+    .band-button-selected,
+    .busker-button,
+    .busker-button-selected,
+    .dj-button,
+    .dj-button-selected,
+    .performance-button,
+    .performance-button-selected {
+        height: 64px;
+        width: 64px;
+    }
+
+}

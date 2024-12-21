@@ -17,10 +17,11 @@ import { HomeComponent } from './home/home.component';
 import { GlobalDateService } from './home/global-date.service';
 import { MapComponent } from './common/map/map.component';
 import { EventService } from './common/event/event-service';
-import { EventsTableComponent } from './common/events-table/events-table.component';
+import { EventsTableComponent } from './common/event/events-table/events-table.component';
 import { ProgressBarComponent } from './common/progress-bar/progress-bar.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { UserComponent } from './pages/user/user.component';
+import { EventsTableControlComponent } from './common/event/events-table-control/events-table-control.component';
 
 
 @NgModule({ declarations: [
@@ -38,7 +39,8 @@ import { UserComponent } from './pages/user/user.component';
         MapComponent,
         EventsTableComponent,
         ProgressBarComponent,
-        UserComponent
+        UserComponent,
+        EventsTableControlComponent
     ],
     bootstrap: [
         AppComponent],
