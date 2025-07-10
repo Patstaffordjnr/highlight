@@ -1,62 +1,200 @@
 .header-container {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    justify-content: center;
-    align-items: center;
-    z-index: 13;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  background-color: linen;  
 }
 
-.header-image img{
-    justify-content: center;
-    align-items: center;
-    max-width: 15%;
-    max-height: 15%;
-    
-    /* min-width: 10%;
-    min-height: 10%;  */
+.header-container {
+   justify-content: center;
 }
 
 .header-image {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 0;
+
+  max-width: 175px;
+  height: auto;
 }
 
-.header-progress-bar{ 
-    z-index: 23;
+.nav-container {
+  width: 80%; 
+  justify-content: center;
+  /* background-color: cadetblue; */
+  /* padding-right: 16px; */
 }
 
+.silver-divider {
+  position: relative;
+  border: none;
+  height: 2px;
+  background-color: silver;
+  width: 90%;
+
+  margin: -12px auto 8px auto; 
+  display: block;
+}
+
+.nav {
+  flex: 1;
+}
+/* Responsive Breakpoints */
+
+/* SM - Small tablets */
+@media (min-width: 576px) {
+  .header-container {
+    flex-direction: row;
+    align-items: center; 
+    width: 95%;
+  }
+
+  .image-container {
+    /* margin-right: 1rem; */
+    margin-left: 5%;
+  }
+
+  .nav-container {
+    width: auto;
+    flex-grow: 1;
+    width: 95%;
+  }
+
+}
+
+/* MD - Tablets */
+@media (min-width: 768px) {
+  .header-container {
+    flex-direction: row;
+    align-items: center; 
+    width: 95%;
+  }
+
+  .image-container {
+    /* margin-right: 1rem; */
+    margin-left: 5%;
+  }
+
+  .nav-container {
+    width: auto;
+    flex-grow: 1;
+    width: 95%;
+  }
+
+} 
+
+/* LG - Small laptops */
+@media (min-width: 992px) {
+  .header-container {
+    flex-direction: row;
+    align-items: center; 
+    width: 95%;
+  }
+
+  .image-container {
+    /* margin-right: 1rem; */
+    margin-left: 5%;
+  }
+
+  .nav-container {
+    width: auto;
+    flex-grow: 1;
+    width: 95%;
+  }
+
+}
+
+/* XL - Desktops */
+@media (min-width: 1200px) {
+  .header-container {
+    flex-direction: row;
+    align-items: center; 
+    width: 95%;
+  }
+
+  .image-container {
+    /* margin-right: 1rem; */
+    margin-left: 5%;
+  }
+
+  .nav-container {
+    width: auto;
+    flex-grow: 1;
+    width: 95%;
+    
+  }
+
+} 
+
+/* XXL - Large screens / 4K */
+@media (min-width: 1400px) {
+  .header-container {
+    flex-direction: row;
+    align-items: center; 
+    width: 95%;
+  }
+
+  .image-container {
+    margin-right: 2rem;
+    /* margin-left: 5%; */
+  }
+
+  .nav-container {
+    width: auto;
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  .nav{
+    background-color: black;
+  }
+} 
 
 
-  /* Responsive Layouts */
-  @media (min-width: 1200px) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* Respnsive Layouts */
+  /* @media (min-width: 1200px) {
    
   }
   
   @media (min-width: 850px) and (max-width: 1199px) {
-    .header-image img{
-        justify-content: center;
-        align-items: center;
-        max-width: 30%;
-        max-height: 30%;
-        /* min-width: 10%;
-        min-height: 10%;  */
-        /* padding-bottom: 32px; */
-    }
+    .header-image{
+      max-width: 160px;
+      height: auto;
+    } */
 
-  }
+    /* .nav-container {
+      width: 80%;
+    } */
+  /* } */
   
-  @media (max-width: 849px) {
-    .header-image img{
-        justify-content: center;
-        align-items: center;
-        max-width: 30%;
-        max-height: 30%;
-        /* min-width: 10%;
-        min-height: 10%;  */
-    }
-  }
+  /* @media (max-width: 849px) {
+    .header-image{
+      min-width: 100px;
+      max-width: 160px;
+      height: auto;
+      height: auto;
+    } */
+
+    /* .nav-container {
+      width: 80%;
+    } */
+  

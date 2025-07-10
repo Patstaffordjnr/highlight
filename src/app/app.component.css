@@ -1,11 +1,23 @@
 .page-container {
+    /* background-color: cornflowerblue; */
     display: flex;
     flex-direction: column;
+    justify-content: center;
     min-height: 100vh;
+    min-width: 100vw;
+    padding: 0px;
+    padding-left: 0px;
+    
   }
   .header-container {
+    /* background-color: azure; */
     flex-shrink: 0;
+    /* min-height: 100vh; */
+    min-width: 100vw;
+    padding: 0px;
+    padding-left: 0px;
   }
+  
   .content-container {
     flex-grow: 1;
     display: flex;

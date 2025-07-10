@@ -1,17 +1,24 @@
+.nav-div{
+  /* margin-left: 0px; */
+}
+
 *{
+  /* background-color: aquamarine; */
   margin:0;
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif; 
   font-weight: bold;
   display: flex;
+  white-space: nowrap;
 }
 
 i{
-  font-size: medium;
-  font-weight: bold;
   pointer-events: auto;
   cursor: pointer;
+  white-space: nowrap;
+  width: 100%;
+  font-style: normal; 
 }
 
 i:hover {
@@ -20,7 +27,7 @@ i:hover {
 
 .slider {
 position: relative;
-width: 75%;
+width: 100%;
 height: 70px;
 overflow: hidden;
 }
@@ -34,33 +41,202 @@ overflow: hidden;
   gap: 8px;
   pointer-events: none;
   transition: 0s ease-in;
+
 }
 
 .slider-img {
 width: 100%;
-text-align: end;
-padding: 3rem;
-padding: 20px;
+padding: 1em;
+align-items: center;
+font-weight: bolder;
+font-size: large;
 
 }
   
-i.home, i.user, i.events, i.users, i.buskers, i.sign-up, i.log-in, i.about, i.stafford, i.log-out {
-  white-space: nowrap;
+i.home, i.user, i.events, i.users, i.buskers, i.sign-up, i.log-in, i.about, i.stafford, i.log-out,i.profile {
+ /* background-color: darkblue; */
 }
 
+i.profile{
+
+}
+
+.profile {
+  height: 55px;
+  width: 55px;
+  border-radius: 50%;
+  margin-top: -11px;
+  border: 3px solid silver;
+
+}
+
+/* Responsive Breakpoints */
+
+/* SM - Small tablets */
+@media (min-width: 576px) {
+  *{
+    width: 100%;
+    display: flex;
+  }
+  .slider-inner{
+    background-color: lightyellow;
+    width: 103%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+}
+
+/* MD - Tablets */
+@media (min-width: 768px) {
+  *{
+    width: 100%;
+    display: flex;
+  }
+  .slider-inner{
+    background-color: yellow;
+    width: 103%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+} 
+
+/* LG - Small laptops */
+@media (min-width: 992px) {
+  *{
+    width: 100%;
+    display: flex;
+  }
+  .slider-inner{
+    background-color: yellowgreen;
+    width: 103%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+/* XL - Desktops */
 @media (min-width: 1200px) {
+  *{
+    width: 100%;
+    display: flex;
+  }
+  .slider-inner{
+    background-color: forestgreen;
+    width: 103%;
+    display: flex;
+    justify-content: space-between;
+  }
+} 
+
+/* XXL - Large screens / 4K */
+@media (min-width: 1400px) {
+  *{
+    width: 100%;
+    display: flex;
+    /* margin-right: 8px; */
+  }
+  
+  .slider-inner{
+    background-color: forestgreen;
+    width: 105%;
+    display: flex;
+    justify-content: space-between;
+  }
+} 
+
+
+
+
+/* body {
+  background-color: aquamarine;
+}
+
+.slider {
+  display: flex;
+  justify-content: center;
+}
+
+.slider-inner {
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  /* justify-content: space-evenly; */
+  /* align-items: center; */
+/* }
+
+.slider-img {
+  flex: 1;
+  text-align: center;
+} */
+
+
+
+
+
+
+
+/* SM - Small tablets */
+/* @media (min-width: 576px) {
+  .slider-img {
+    padding: 1em;
+    padding-top: 25px;
+    }
+
+} */
+
+/* MD - Tablets */
+/* @media (min-width: 768px) {
+  .slider-img {
+    padding: 1em;
+    padding-top: 25px;
+    }
+
+} */
+
+/* LG - Small laptops */
+/* @media (min-width: 992px) {
+  .slider-img {
+    padding: 1em;
+    padding-top: 25px;
+    }
+
+} */
+
+/* XL - Desktops */
+/* @media (min-width: 1200px) {
+  .slider-img {
+    padding: 1em;
+    padding-top: 25px;
+    }
+} */
+
+
+
+/* XXL - Large screens / 4K */
+/* @media (min-width: 1400px) {
+  .slider-img {
+    padding: 2.7em;
+    padding-top: 25px;
+    }
+
+}
+
+
+
+/* @media (min-width: 1200px) {
     i{
       font-size: medium;
       font-weight: bold;
       pointer-events: auto;
       cursor: pointer;
     }
-
   }
   
   @media (min-width: 850px) and (max-width: 1199px) {
     i{
-      font-size: xx-large;
+      font-size: x-large;
       font-weight: bolder;
       pointer-events: auto;
       cursor: pointer;
@@ -79,7 +255,7 @@ i.home, i.user, i.events, i.users, i.buskers, i.sign-up, i.log-in, i.about, i.st
   
 @media (max-width: 849px) {
     i{
-      font-size: xx-large;
+      font-size: x-large;
       font-weight: bolder;
       pointer-events: auto;
       cursor: pointer;
@@ -94,3 +270,5 @@ i.home, i.user, i.events, i.users, i.buskers, i.sign-up, i.log-in, i.about, i.st
       overflow: hidden;
       }
     }
+ */
+

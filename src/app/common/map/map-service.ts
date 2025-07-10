@@ -1,17 +1,28 @@
-import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MapService { 
 private mapCurrentLocationDetails = new BehaviorSubject<String[]>([]);
-
 mapCurrentLocationDetails$ = this.mapCurrentLocationDetails.asObservable();
 
-// updateEvent(bounds, minLat, maxLat, minLong, maxLong){
-//     let updatedMapDetailsSubject = [bounds, minLat, maxLat, minLong, maxLong]
-//     this.mapCurrentLocationDetails.next(updatedMapDetailsSubject);
-//   }
+constructor(private http: HttpClient) {} 
 
+updateEvent(bounds, minLat, maxLat, minLong, maxLong, addressString){
+    let updatedMapDetailsSubject = [bounds, minLat, maxLat, minLong, maxLong, addressString]
+    this.mapCurrentLocationDetails.next(updatedMapDetailsSubject);
+    // console.log(updatedMapDetailsSubject);
+    // console.log(addressString);
+
+  }
+  
+  getAddressFromCoords(lat: number, lon: number): Observable<any> {
+    const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`;
+    return this.http.get(url);
+  }
+  
 }
+

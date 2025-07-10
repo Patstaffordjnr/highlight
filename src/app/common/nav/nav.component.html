@@ -1,4 +1,5 @@
 <div class="nav-div">
+  
 <div #sliderRef class = "slider" [ngStyle]="{'margin-left': menuVisible ? 'auto' : '47%'}" >
   <!-- <div class="burger-menu" (click)="toggleMenu()">
     <div class="bar1"></div>
@@ -10,9 +11,6 @@
     <div  class = "slider-img">
       <i  class = "home" routerLink = "/home">Home</i>
     </div>
-    <!-- <div class = "slider-img">
-      <i class ="calendar" routerLink = "calendar">Calendar</i>
-    </div> -->
     <div *ngIf="isLoggedIn" class = "slider-img">
       <i class ="user" routerLink = "user">User</i>
     </div>
@@ -25,11 +23,11 @@
     <div class = "slider-img">
       <i class ="events" routerLink = "events">Events</i>
     </div>
+    <div class = "slider-img">
+      <i class ="buskers" routerLink = "buskers">Buskers</i>
+      </div>
     <div  *ngIf="menuVisible"  class = "slider-img">
     <i class ="users" routerLink = "users">Users</i>
-    </div>
-    <div class = "slider-img">
-    <i class ="buskers" routerLink = "buskers">Buskers</i>
     </div>
     <div *ngIf="!isLoggedIn" class = "slider-img">
       <i class ="sign-up"  routerLink = "signup">Sign Up</i>
@@ -37,14 +35,17 @@
     <div  *ngIf="!isLoggedIn" class = "slider-img">
       <i class ="log-in" routerLink = "login">Log In</i>
     </div>
-    <div   class = "slider-img">
+    <div class = "slider-img">
       <i class ="about">About</i>
     </div>
-    <div    class = "slider-img">
+    <div class = "slider-img">
       <i class ="stafford">Stafford</i>
     </div>
     <div *ngIf="isLoggedIn" class = "slider-img">
       <i (click)="logout()" class ="log-out">Log Out</i>
+    </div>
+    <div class = "slider-img">
+      <i class = "profile"></i>
     </div>
   </div>
 </div>

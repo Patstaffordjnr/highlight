@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { RouterService } from 'src/app/util/router.service';
+import { MapService } from '../map/map-service';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +17,5 @@ export class HeaderComponent {
   async toHomePage(): Promise<void> {
     await this.routerService.toHomePage();
   }
-
 
 }
