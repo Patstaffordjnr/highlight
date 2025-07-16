@@ -21,12 +21,14 @@ import { EventsTableComponent } from './common/event/events-table/events-table.c
 import { ProgressBarComponent } from './common/progress-bar/progress-bar.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { UserComponent } from './pages/user/user.component';
+
 import { EventsTableControlComponent } from './common/event/events-table-control/events-table-control.component';
+import { EventsComponent} from './pages/events/events.component';
 
 
 @NgModule({ declarations: [
-        //Pages
-
+        //Pages,
+        EventsComponent,
         //Components,
         AppComponent,
         SignUpComponent,
@@ -37,7 +39,6 @@ import { EventsTableControlComponent } from './common/event/events-table-control
         HomeComponent,
         CalendarComponent,
         MapComponent,
-        EventsTableComponent,
         ProgressBarComponent,
         UserComponent,
         EventsTableControlComponent
@@ -51,6 +52,8 @@ import { EventsTableControlComponent } from './common/event/events-table-control
         FormsModule,
         ReactiveFormsModule,
         DragDropModule,
+        EventsTableComponent,
+
     ],
         
         providers: [

@@ -74,22 +74,22 @@ i.profile{
 
 /* SM - Small tablets */
 @media (min-width: 576px) {
-  *{
+  /* *{
     width: 100%;
     display: flex;
   }
   .slider-inner{
     background-color: lightyellow;
-    width: 103%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
-  }
+  } */
 
 }
 
 /* MD - Tablets */
 @media (min-width: 768px) {
-  *{
+  /* *{
     width: 100%;
     display: flex;
   }
@@ -97,23 +97,20 @@ i.profile{
     background-color: yellow;
     width: 103%;
     display: flex;
-    justify-content: space-between;
-  }
-
+  } */
 } 
 
 /* LG - Small laptops */
 @media (min-width: 992px) {
-  *{
+  /* *{
     width: 100%;
     display: flex;
   }
   .slider-inner{
     background-color: yellowgreen;
-    width: 103%;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
-  }
+  } */
 }
 
 /* XL - Desktops */
@@ -123,10 +120,9 @@ i.profile{
     display: flex;
   }
   .slider-inner{
-    background-color: forestgreen;
+    /* background-color: forestgreen; */
     width: 103%;
     display: flex;
-    justify-content: space-between;
   }
 } 
 
@@ -135,140 +131,12 @@ i.profile{
   *{
     width: 100%;
     display: flex;
-    /* margin-right: 8px; */
   }
   
   .slider-inner{
-    background-color: forestgreen;
-    width: 105%;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    width: 105%;
+    /* background-color: blue; */
   }
 } 
-
-
-
-
-/* body {
-  background-color: aquamarine;
-}
-
-.slider {
-  display: flex;
-  justify-content: center;
-}
-
-.slider-inner {
-  max-width: 1400px;
-  width: 100%;
-  display: flex;
-  /* justify-content: space-evenly; */
-  /* align-items: center; */
-/* }
-
-.slider-img {
-  flex: 1;
-  text-align: center;
-} */
-
-
-
-
-
-
-
-/* SM - Small tablets */
-/* @media (min-width: 576px) {
-  .slider-img {
-    padding: 1em;
-    padding-top: 25px;
-    }
-
-} */
-
-/* MD - Tablets */
-/* @media (min-width: 768px) {
-  .slider-img {
-    padding: 1em;
-    padding-top: 25px;
-    }
-
-} */
-
-/* LG - Small laptops */
-/* @media (min-width: 992px) {
-  .slider-img {
-    padding: 1em;
-    padding-top: 25px;
-    }
-
-} */
-
-/* XL - Desktops */
-/* @media (min-width: 1200px) {
-  .slider-img {
-    padding: 1em;
-    padding-top: 25px;
-    }
-} */
-
-
-
-/* XXL - Large screens / 4K */
-/* @media (min-width: 1400px) {
-  .slider-img {
-    padding: 2.7em;
-    padding-top: 25px;
-    }
-
-}
-
-
-
-/* @media (min-width: 1200px) {
-    i{
-      font-size: medium;
-      font-weight: bold;
-      pointer-events: auto;
-      cursor: pointer;
-    }
-  }
-  
-  @media (min-width: 850px) and (max-width: 1199px) {
-    i{
-      font-size: x-large;
-      font-weight: bolder;
-      pointer-events: auto;
-      cursor: pointer;
-    }
-    i.home{
-      padding-left: 16px;
-    
-    }
-    .slider {
-      position: relative;
-      width: 100%;
-      height: 70px;
-      overflow: hidden;
-      }
-  }
-  
-@media (max-width: 849px) {
-    i{
-      font-size: x-large;
-      font-weight: bolder;
-      pointer-events: auto;
-      cursor: pointer;
-    }
-    i.home{
-      padding-left: 16px;
-    }
-    .slider {
-      position: relative;
-      width: 100%;
-      height: 70px;
-      overflow: hidden;
-      }
-    }
- */
-

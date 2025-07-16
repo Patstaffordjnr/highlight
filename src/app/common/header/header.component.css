@@ -4,33 +4,28 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
-  background-color: linen;  
-}
 
+}
 .header-container {
    justify-content: center;
+
 }
-
 .header-image {
-
   max-width: 175px;
   height: auto;
-}
 
+}
 .nav-container {
   width: 80%; 
   justify-content: center;
-  /* background-color: cadetblue; */
-  /* padding-right: 16px; */
-}
 
+}
 .silver-divider {
   position: relative;
   border: none;
   height: 2px;
   background-color: silver;
-  width: 90%;
-
+  width: 87.6%;
   margin: -12px auto 8px auto; 
   display: block;
 }
@@ -38,6 +33,7 @@
 .nav {
   flex: 1;
 }
+
 /* Responsive Breakpoints */
 
 /* SM - Small tablets */
@@ -47,12 +43,9 @@
     align-items: center; 
     width: 95%;
   }
-
   .image-container {
-    /* margin-right: 1rem; */
     margin-left: 5%;
   }
-
   .nav-container {
     width: auto;
     flex-grow: 1;
@@ -110,17 +103,14 @@
     align-items: center; 
     width: 95%;
   }
-
   .image-container {
     /* margin-right: 1rem; */
     margin-left: 5%;
   }
-
   .nav-container {
     width: auto;
     flex-grow: 1;
     width: 95%;
-    
   }
 
 } 
@@ -132,69 +122,16 @@
     align-items: center; 
     width: 95%;
   }
-
   .image-container {
     margin-right: 2rem;
-    /* margin-left: 5%; */
   }
-
   .nav-container {
     width: auto;
     flex-grow: 1;
     width: 100%;
   }
-
   .nav{
     background-color: black;
   }
 } 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /* Respnsive Layouts */
-  /* @media (min-width: 1200px) {
-   
-  }
-  
-  @media (min-width: 850px) and (max-width: 1199px) {
-    .header-image{
-      max-width: 160px;
-      height: auto;
-    } */
-
-    /* .nav-container {
-      width: 80%;
-    } */
-  /* } */
-  
-  /* @media (max-width: 849px) {
-    .header-image{
-      min-width: 100px;
-      max-width: 160px;
-      height: auto;
-      height: auto;
-    } */
-
-    /* .nav-container {
-      width: 80%;
-    } */
-  

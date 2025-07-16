@@ -7,9 +7,12 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Event } from '../../../model/event'
 import { EventService } from '../../event/event-service';
 import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-events-table',
+  standalone: true, // <- Add this
+  imports: [CommonModule], // <- Add any modules needed by the template
   templateUrl: './events-table.component.html',
   styleUrl: './events-table.component.css'
 })

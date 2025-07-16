@@ -50,12 +50,15 @@
 
 .home-control-genre {
   /* background-color: red; */
+  width: 25%;
+  margin-left: auto;
+
 }
 
 .genre {
   display: flex;
-  justify-content: space-around;
-  width: 50%;
+  justify-content: space-between;
+  /* width: 33%; */
   max-width: 800px;
   margin-top: -6px;
 
@@ -95,21 +98,23 @@
   /* background-color: yellowgreen; */
     display: flex;
   justify-content: right;
-  width: 25%;
+  /* width: 25%; */
+  margin-left: auto;
 }
 
 .home-control-timeLength{
   /* background-color: green; */
   display: flex;
   justify-content: right;
-  width: 25%;
+  
+  /* width: 25%; */
 }
 
 .home-control-sort{
   /* background-color: plum; */
   display: flex;
   justify-content: right;
-  width: 25%;
+  /* width: 25%; */
 }
 
   @media (min-width: 1200px) {

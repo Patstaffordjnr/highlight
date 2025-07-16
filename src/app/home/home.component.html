@@ -11,6 +11,7 @@
         <div class= "global-date">
             <a class = "global-date-text" (click)="toggleDateControls()">{{globalDate | date:'HH:mm EEE MMM d y'}}</a></div>
         </div>
+        <div class = "home-control-genre">
         <div class="genre">
           <div class="genre-item" (click)="allFunction()">
             <div class="all-button" [class.all-button]="allEventsVisible" [class.all-button-selected]="!allEventsVisible"></div>
@@ -33,6 +34,7 @@
             <div class="performance"></div>
           </div>
         </div>
+        </div>
         
     </div>
         <div class = "control-row-two"> 
@@ -45,7 +47,7 @@
             <label for="distance">Distance :&nbsp;</label>
             <select id="distance" [(ngModel)]="selectedDistance" name="distance">
             <option *ngFor="let d of distances" [value]="d">{{d}} km</option>
-            </select>
+            </select>&nbsp;
         </div>
         <div class = "home-control-timeLength">
             <label for="within-select">Within : &nbsp;</label>
@@ -53,7 +55,7 @@
               <option *ngFor="let option of withinOptions" [value]="option.value">
                 {{ option.label }}
               </option>
-            </select>
+            </select>&nbsp;
         </div>
         <div class = "home-control-sort">
             <label for="sort-select">Sort by : &nbsp;</label>
@@ -70,6 +72,6 @@
 <app-progress-bar class = "progress-bar" *ngIf="showDateControls" [selectedTime]="globalDate" (selectTimeEvent)="onTimeSelected($event)"></app-progress-bar>
 <br>
 <app-map class = "map"></app-map>
- <!-- <app-events-table></app-events-table> -->
 </div>
+
 

@@ -38,8 +38,8 @@ async getEvents(currentPage: Number, noOfProducts: Number): Promise<{}>{
 
   const params = new HttpParams()
   .set('currentPage' , this.currentPage)
-  .set('noOfProducts' ,this.noOfProducts)
-  .set('eventTyoes', String(this.eventTypes))
+  // .set('noOfProducts' ,this.noOfProducts)
+  // .set('eventTypes', String(this.eventTypes))
 
   let url =  `http://localhost:8085/busker/getEvents?pageNumber=${currentPage}&pageSize=${noOfProducts}` ;
   let headers = new HttpHeaders({
@@ -48,6 +48,23 @@ async getEvents(currentPage: Number, noOfProducts: Number): Promise<{}>{
 
   return await this.http.get<{}>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
   }
+
+
+
+// async getEvents(currentPage: Number, noOfProducts: Number): Promise<{}>{ 
+//   this.ngOnInit();
+
+//   const params = new HttpParams()
+//   .set('currentPage' , this.currentPage)
+  
+
+//   let url =  `http://localhost:8085/busker/getEvents?pageNumber=${currentPage}&pageSize=${noOfProducts}` ;
+//   let headers = new HttpHeaders({
+//     'Content-Type': 'application/json'
+//   });      
+
+//   return await this.http.get<{}>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
+//   }
 
   
 }
