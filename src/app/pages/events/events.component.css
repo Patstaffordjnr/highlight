@@ -1,4 +1,47 @@
-.flex-grid {
+.control-container{
+  width: 85vw;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .flex-grid {
     display: flex;
     background-color: none;
   }
@@ -6,7 +49,7 @@
   .col {
     flex: 1;
     display: flex; 
-  }
+  } */
 /*   
   .title-text-container{
     display: flex;

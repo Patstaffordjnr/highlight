@@ -48,7 +48,8 @@ constructor (private formBuilder: FormBuilder, private eventsClient: EventsClien
 
 async ngOnInit() {
   this.currentIndex = this.currentIndex;
-  let initialEventList =   await this.eventsClient.getEvents(this.currentIndex, 10)
+  let initialEventList =   await this.eventsClient.buskerGetEvents(this.currentIndex, 8);
+
   this.reveivedObject =  initialEventList;
   this.eventResponseList.total = this.reveivedObject.total;
   this.eventResponseList.results = this.reveivedObject.results;
@@ -131,7 +132,7 @@ async pageSelect(selectedPage: number){
     return 
   }
   this.currentIndex = selectedPage;
-  let selectedEventList =   await this.eventsClient.getEvents(this.currentIndex, 10)
+  let selectedEventList =   await this.eventsClient.buskerGetEvents(this.currentIndex, 8)
     this.reveivedObject =  selectedEventList;
     this.eventResponseList.total = this.reveivedObject.total;
     this.eventResponseList.results = this.reveivedObject.results;
@@ -153,7 +154,7 @@ onSelect(event: Event[]): Event[] {
 async nextPageOfEvents() {
   if(this.currentIndex < this.eventResponseList.total) {
     this.currentIndex = this.currentIndex + 1;
-    let initialEventList =   await this.eventsClient.getEvents(this.currentIndex, 10)
+    let initialEventList =   await this.eventsClient.buskerGetEvents(this.currentIndex, 10)
     this.reveivedObject =  initialEventList;
     this.eventResponseList.total = this.reveivedObject.total;
     this.eventResponseList.results = this.reveivedObject.results;
@@ -168,7 +169,7 @@ async previousPageOfEvents() {
     return this.currentIndex == 0 ;
     }
   this.currentIndex = this.currentIndex - 1;
-  let initialEventList =   await this.eventsClient.getEvents(this.currentIndex, 10)
+  let initialEventList =   await this.eventsClient.buskerGetEvents(this.currentIndex, 10)
   this.reveivedObject =  initialEventList;
   this.eventResponseList.total = this.reveivedObject.total;
   this.eventResponseList.results = this.reveivedObject.results;

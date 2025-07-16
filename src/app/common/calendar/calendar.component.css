@@ -1,4 +1,6 @@
 .calendar-component-container{
+  
+  max-width: 365px;
   border-radius: 50;
   border-radius: 16px;
   -ms-overflow-style: none;
@@ -8,6 +10,7 @@
   scroll-snap-type: y mandatory;
   position: relative;
   border: 4px solid whitesmoke;
+  
 }
 .calendar-component-container::-webkit-scrollbar {
   display: none;

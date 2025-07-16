@@ -1,36 +1,72 @@
-<div class = "event-table-control-panel">
-  <div class = "genre">
-        <div class = "all-button" (click) = "allFunction()" [class.all-button]="allEventsVisible" [class.all-button-selected]="!allEventsVisible">
-        </div>
-        <div class = "all">
-          </div>
-        <div class = "band-button" (click) = "bandFunction()" [class.band-button]="bandEventsVisible" [class.band-button-selected]="!bandEventsVisible">
-        </div>
-        <div class = "band">
-          </div>
-        <div class = "busker-button" (click) = "buskerFunction()" [class.busker-button]="buskerEventsVisible" [class.busker-button-selected]="!buskerEventsVisible">
-        </div>
-        <div class = "busker">
-          </div>
-        <div class = "dj-button" (click) = "djFunction()" [class.dj-button]="djEventsVisible" [class.dj-button-selected]="!djEventsVisible">
-        </div>
-        <div class = "dj">
-          </div>
-        <div class = "performance-button" (click) = "performanceFunction()" [class.performance-button]="performanceEventsVisible" [class.performance-button-selected]="!performanceEventsVisible">
-        </div>
-        <div class = "Performance">
-        </div>
-  </div>
-      <!-- <div class = "search-and-snort">
-        <div class = "search-div">
-          <input class = "search" [(ngModel)] = "searchText"  placeholder="Search..."   type = "string" >
-          {{searchText}}  
-          </div>
-        <div class = "snort-div">
-        <label *ngFor="let sort of sorts; let i = index">
-          <input class = "snort" type="checkbox">
-          {{sort}}
-          </label>
+<div class = "home-control">
+  <div class = "control-row-one"> 
+  <div class = "home-control-address">
+      <div class= "address">
+      <a>{{homeAddress}}</a>
       </div>
-    </div> -->
+  </div>
+  <div class = "home-control-global-date">
+  <div class= "global-date">
+      <a class = "global-date-text" (click)="toggleDateControls()">{{globalDate | date:'HH:mm EEE MMM d y'}}</a></div>
+  </div>
+  <div class = "home-control-genre">
+  <div class="genre">
+    <div class="genre-item" (click)="allFunction()">
+      <div class="all-button" [class.all-button]="allEventsVisible" [class.all-button-selected]="!allEventsVisible"></div>
+      <div class="all"></div>
+    </div>
+    <div class="genre-item" (click)="bandFunction()">
+      <div class="band-button" [class.band-button]="bandEventsVisible" [class.band-button-selected]="!bandEventsVisible"></div>
+      <div class="band"></div>
+    </div>
+    <div class="genre-item" (click)="buskerFunction()">
+      <div class="busker-button" [class.busker-button]="buskerEventsVisible" [class.busker-button-selected]="!buskerEventsVisible"></div>
+      <div class="busker"></div>
+    </div>
+    <div class="genre-item" (click)="djFunction()">
+      <div class="dj-button" [class.dj-button]="djEventsVisible" [class.dj-button-selected]="!djEventsVisible"></div>
+      <div class="dj"></div>
+    </div>
+    <div class="genre-item" (click)="performanceFunction()">
+      <div class="performance-button" [class.performance-button]="performanceEventsVisible" [class.performance-button-selected]="!performanceEventsVisible"></div>
+      <div class="performance"></div>
+    </div>
+  </div>
+  </div>
+  
+</div>
+  <div class = "control-row-two"> 
+  <div class = "home-control-search">
+      <div class = "search">
+      <input type="text" placeholder="Search…">
+      </div>
+      </div>
+  <div class = "home-control-distance">
+      <label for="distance">Distance :&nbsp;</label>
+      <select id="distance" [(ngModel)]="selectedDistance" name="distance">
+      <option *ngFor="let d of distances" [value]="d">{{d}} km</option>
+      </select>&nbsp;
+  </div>
+  <div class = "home-control-timeLength">
+      <label for="within-select">Within : &nbsp;</label>
+      <select id="within-select" [(ngModel)]="selectedWithin" name="within">
+        <option *ngFor="let option of withinOptions" [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>&nbsp;
+  </div>
+  <div class = "home-control-sort">
+      <label for="sort-select">Sort by : &nbsp;</label>
+      <select id="sort-select" [(ngModel)]="selectedSort" name="sort">
+      <option *ngFor="let option of sortOptions" [value]="option.value">
+      {{ option.label }}
+      </option>
+      </select>
+  </div>
+</div>
+</div>
+<div class = "calendar-container"> 
+<app-calendar class = "calendar"  *ngIf="showDateControls" [selectedDate]="globalDate" (selectDateEvent)="onDateSelected($event)"></app-calendar>
+<br>
+<br>
 </div>

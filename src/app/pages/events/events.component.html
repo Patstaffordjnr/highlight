@@ -1,31 +1,5 @@
-
-
-<app-events-table></app-events-table>
-
-<!-- {{event.title}}
-{{eventsAddressIndexed[i]}}
-{{event.startAt * 1000 | date: 'MMM d, y'}}
-{{event.startAt * 1000 | date: 'shortTime'}}
-{{event.endAt * 1000 | date: 'MMM d, y'}}
-{{event.endAt * 1000 | date: 'shortTime'}}
-{{pageNumber}} -->
-
-
-<!-- <section class="event-card product-card--featured">
-  <header class="product-card__header">
-    <h2 class="product-card__title">List of Events</h2>
-  </header>
-  <div class="product-card__image-wrapper">
-  </div>
-  <div class="product-card__description">
-    <div *ngFor="let event of eventResponseList.results; let i = index" [class.selected]="event === selectedEvent" (click)="onSelect(event)" class="event-item">
-      <a>{{event.title}} - {{event.startAt * 1000 | date: 'MMM d, y'}} {{event.startAt * 1000 | date: 'shortTime'}} - {{event.endAt * 1000 | date: 'MMM d, y'}} {{event.endAt * 1000 | date: 'shortTime'}} </a>
-      </div> 
-    
-  
-  </div>
-  <footer class="product-card__footer">
-    <button class="product-card_button product-card_button--buy"><a>Footer</a></button>
-  </footer>Buy Now
-</section> -->
- 
+<div class = "events-container">
+<div class = "control-container">
+  <app-events-table-control (selectGenre)="onGenreChange($event)"></app-events-table-control>
+</div>
+</div>
