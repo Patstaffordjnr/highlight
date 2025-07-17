@@ -9,6 +9,7 @@
     padding-left: 0px;
     
   }
+
   .header-container {
     /* background-color: azure; */
     flex-shrink: 0;
@@ -22,6 +23,7 @@
     flex-grow: 1;
     display: flex;
     justify-content: center;
+    align-items: stretch;
   }
   .footer-container {
     flex-shrink: 0;

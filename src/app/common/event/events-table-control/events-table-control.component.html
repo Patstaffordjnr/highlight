@@ -65,8 +65,8 @@
   </div>
 </div>
 </div>
-<div class = "calendar-container"> 
-<app-calendar class = "calendar"  *ngIf="showDateControls" [selectedDate]="globalDate" (selectDateEvent)="onDateSelected($event)"></app-calendar>
+<div class = "calendar-container" *ngIf="showDateControls"> 
+<app-calendar class = "calendar"   [selectedDate]="globalDate" (selectDateEvent)="onDateSelected($event)"></app-calendar>
 <br>
 <br>
 </div>

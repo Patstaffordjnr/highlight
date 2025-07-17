@@ -60,14 +60,8 @@ async buskerGetEvents(currentPage: Number, noOfProducts: Number): Promise<{}>{
 
 
 
-  async getOpenEvents(
-    time: Date,
-    minLat: number,
-    minLong: number,
-    maxLat: number,
-    maxLong: number,
-    eventTypes: string[] = []
-  ): Promise<any> {
+  async getOpenEvents(time: Date, minLat: number, minLong: number,
+    maxLat: number, maxLong: number, eventTypes: string[] = []): Promise<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
@@ -79,18 +73,19 @@ async buskerGetEvents(currentPage: Number, noOfProducts: Number): Promise<{}>{
       .set('maxLat', maxLat.toString())
       .set('maxLong', maxLong.toString());
   
+
     eventTypes.forEach(type => {
-      params = params.append('eventTypes', type);
+      params = params.append('eventTypes', type.toUpperCase());
     });
-  
-    console.log('GET /open/getEvents params:', params.toString());
-  
+  console.log(params);
+      console.log('GET /open/getEvents params:', params.toString());
+
     return await this.http.get<{}>(
       'http://localhost:8085/open/getEvents',
       {
         headers,
         params,
-        // withCredentials: true
+        withCredentials: true
       }
     ).toPromise();
   }

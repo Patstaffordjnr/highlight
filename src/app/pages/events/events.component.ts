@@ -70,10 +70,14 @@ async ngOnInit() {
 this.mapService.mapCurrentLocationDetails$.subscribe((mapDetails) => {
   const [ bounds, minLat, maxLat, minLong, maxLong ] = mapDetails;
   this.bounds = bounds;
-  this.minLat = minLat;
-  this.maxLat = maxLat;
-  this.minLong = minLong;
-  this.maxLong = maxLong;
+  this.minLat = -88;
+  this.maxLat = 88;
+  this.minLong = -88;
+  this.maxLong = 88;
+  // this.minLat = minLat;
+  // this.maxLat = maxLat;
+  // this.minLong = minLong;
+  // this.maxLong = maxLong;
 });
 
 let initialEventList = await this.eventsClient.getOpenEvents(

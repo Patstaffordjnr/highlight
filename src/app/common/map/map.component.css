@@ -1,16 +1,10 @@
-#map {
-    height: 720px;
-    width:  85vw;
+  .map-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
   }
-  @media (min-width: 1200px) {
-  }
-  @media (min-width: 800px) and (max-width: 1199px) {
-    #map {
-      width:  80vw;
-    }
-  }
-  @media (max-width: 799px) {
-    #map {
-      width:  80vw;
-    }
+  
+  #map {
+    height: 100%;
+    width: 100%;
   }

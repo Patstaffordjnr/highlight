@@ -1,33 +1,32 @@
-.sign-up-container{
-    background-color: darkgreen;
-}
-
-.log-in-div{ 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color:none;
-}
-
 .flex-grid {
     display: flex;
     background-color: none;
 }
-  
-  .col {
+
+.col {
     flex: 1;
     display: flex; 
 }
-
-.log-in{
+.sign-up-container{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color:none;
     width: 365px;
+}
+
+.sign-up{
+    background-color:none;
     padding-top: 14px;
     padding-bottom: 10px;
     border-radius: 25px;
     border: 6px solid whitesmoke;
-    max-width: 340px;
-    min-width: 340px;
+    /* height: 100px; */
+    width: 365px;
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 

@@ -1,9 +1,12 @@
-<div class = "home-container">
-<app-events-table-control class = "controls"></app-events-table-control>
-<app-calendar class = "calendar"  *ngIf="showDateControls" [selectedDate]="globalDate" (selectDateEvent)="onDateSelected($event)"></app-calendar>
-<app-progress-bar class = "progress-bar" *ngIf="showDateControls" [selectedTime]="globalDate" (selectTimeEvent)="onTimeSelected($event)"></app-progress-bar>
-<app-map class = "map"></app-map>
+<div class = "home-div-container">
+<div class = "home-div">
+    <div class = "home-event-table-controls">
+        <app-events-table-control class = "controls"></app-events-table-control>
+        <!-- <app-calendar class = "calendar"  *ngIf="showDateControls" [selectedDate]="globalDate" (selectDateEvent)="onDateSelected($event)"></app-calendar>
+        <app-progress-bar class = "progress-bar" *ngIf="showDateControls" [selectedTime]="globalDate" (selectTimeEvent)="onTimeSelected($event)"></app-progress-bar> -->
+    </div>
+    <div class = "home-map">
+        <app-map class = "map"></app-map>
+    </div>
 </div>
-<!-- <br>
-<app-events></app-events> -->
 

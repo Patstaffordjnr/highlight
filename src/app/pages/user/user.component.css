@@ -1,4 +1,3 @@
-
 .flex-grid {
   display: flex;
   background-color: none;
@@ -9,12 +8,6 @@
   display: flex; 
 }
 
-.title-text-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
 .user-div-container{ 
   display: flex;
   justify-content: center;
@@ -23,11 +16,12 @@
 }
 
 .user-div{
-  /* width: 365px; */
+  width: 365px;
   padding-top: 14px;
   padding-bottom: 10px;
   border-radius: 25px;
   border: 6px solid whitesmoke;
+  background-color: blue;
 
 }
 
@@ -145,13 +139,66 @@ width: 50%;
       width: 30px;
       border-radius: 50%;
 }
+/* User DIV Above MAP, BUSKERS AND TABLE BELOW */
 
 
+.map-div-container{
+  
+
+}
+.map-div{
+  width: 365px;
+  padding-top: 14px;
+  padding-bottom: 10px;
+  border-radius: 25px;
+  border: 6px solid whitesmoke;
+  background-color: blue;
+}
+.map{
+  width: 365px;
+
+}
+
+.buskers-div-container{
+  
+
+}
+.buskers-div{
+  width: 365px;
+  padding-top: 14px;
+  padding-bottom: 10px;
+  border-radius: 25px;
+  border: 6px solid whitesmoke;
+  background-color: aqua;
+}
+.buskers{
+
+}
+
+.event-table-div-container{
+  
+
+}
+.event-table-div{
+  width: 365px;
+  padding-top: 14px;
+  padding-bottom: 10px;
+  border-radius: 25px;
+  border: 6px solid whitesmoke;
+  background-color: azure;
+}
+.event-table{
+
+}
+
+
+/* SCREEN BREAKPOINTS BELLOW */
+
+/* 
 
   @media (max-width: 767px) {
     .user-div {
       width: 365px;
-      /* background-color: darkblue; */
     }
   }
   
@@ -160,6 +207,5 @@ width: 50%;
    
       width: 90%;
       margin: 0 auto;
-      /* background-color: blanchedalmond; */
     }
-  }
+  } */
