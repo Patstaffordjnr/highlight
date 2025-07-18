@@ -74,43 +74,14 @@ i.profile{
 
 /* SM - Small tablets */
 @media (min-width: 576px) {
-  /* *{
-    width: 100%;
-    display: flex;
-  }
-  .slider-inner{
-    background-color: lightyellow;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  } */
-
 }
 
 /* MD - Tablets */
 @media (min-width: 768px) {
-  /* *{
-    width: 100%;
-    display: flex;
-  }
-  .slider-inner{
-    background-color: yellow;
-    width: 103%;
-    display: flex;
-  } */
 } 
 
 /* LG - Small laptops */
 @media (min-width: 992px) {
-  /* *{
-    width: 100%;
-    display: flex;
-  }
-  .slider-inner{
-    background-color: yellowgreen;
-    width: 100%;
-    display: flex;
-  } */
 }
 
 /* XL - Desktops */
@@ -137,6 +108,5 @@ i.profile{
     width: 100%;
     display: flex;
     width: 105%;
-    /* background-color: blue; */
   }
 } 

@@ -1,3 +1,4 @@
+/* General styles for flex grid and columns */
 .flex-grid {
   display: flex;
   background-color: none;
@@ -8,23 +9,34 @@
   display: flex; 
 }
 
-.user-div-container{ 
+/* Base styles for all div containers and inner divs */
+.user-div-container,
+.map-div-container,
+.buskers-div-container,
+.event-table-div-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color:none;
+  background-color: none; /* No background for containers */
 }
 
-.user-div{
+.user-div,
+.map-div,
+.buskers-div,
+.event-table-div {
+  height: 365px;
   width: 365px;
-  padding-top: 14px;
-  padding-bottom: 10px;
   border-radius: 25px;
   border: 6px solid whitesmoke;
-  background-color: blue;
-
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
+.user-div { background-color: darkblue; }
+.map-div { background-color: blue; }
+.buskers-div { background-color: aqua; }
+.event-table-div { background-color: azure; }
+
+/* User Profile Image and Details */
 .user-profile-image-container {
   display: flex;
   flex-direction: column;
@@ -61,23 +73,21 @@
 .user-email-container{
   width: 100%;
   display: flex;
-  align-items: end;
+  align-items: flex-end; /* Align items to the end of the cross axis */
+  /* Removed margin-left: -60px; */
 }
 .user-email{
   display: flex;
-  align-items: end;
-   margin-left: -60px;
-
+  align-items: flex-end;
+  /* Removed margin-left: -60px; */
 }
 .user-email-text{
   text-align: left;
 }
 .user-email-textb{
-  
   background-color: azure;
   text-align: right;
-  position: fixed;
-
+  /* Removed position: fixed; */
 }
 
 .user-roles-container{
@@ -139,73 +149,126 @@ width: 50%;
       width: 30px;
       border-radius: 50%;
 }
-/* User DIV Above MAP, BUSKERS AND TABLE BELOW */
 
+/* Responsive Breakpoints */
 
-.map-div-container{
-  
-
-}
-.map-div{
-  width: 365px;
-  padding-top: 14px;
-  padding-bottom: 10px;
-  border-radius: 25px;
-  border: 6px solid whitesmoke;
-  background-color: blue;
-}
-.map{
-  width: 365px;
-
+/* SM - Small tablets */
+@media (min-width: 576px) {
 }
 
-.buskers-div-container{
-  
+/* MD - Tablets */
+@media (min-width: 768px) {
+} 
 
-}
-.buskers-div{
-  width: 365px;
-  padding-top: 14px;
-  padding-bottom: 10px;
-  border-radius: 25px;
-  border: 6px solid whitesmoke;
-  background-color: aqua;
-}
-.buskers{
-
+/* LG - Small laptops */
+@media (min-width: 992px) {
 }
 
-.event-table-div-container{
-  
-
-}
-.event-table-div{
-  width: 365px;
-  padding-top: 14px;
-  padding-bottom: 10px;
-  border-radius: 25px;
-  border: 6px solid whitesmoke;
-  background-color: azure;
-}
-.event-table{
-
-}
-
-
-/* SCREEN BREAKPOINTS BELLOW */
-
-/* 
-
-  @media (max-width: 767px) {
-    .user-div {
-      width: 365px;
-    }
+/* XL - Desktops */
+@media (min-width: 1200px) {
+  .user-page-container{
+    background-color: orange;
+    display: grid; /* Changed to grid for better control */
+    gap: 20px;
+    grid-template-columns: 1fr 1fr; /* Two columns for smaller screens */
+    justify-content: center;
+    align-items: center;
+    width: 90vw; /* Adjust width for XL screens */
+    margin: 0 auto;
   }
-  
-  @media (min-width: 768px) {
-    .user-div {
-   
-      width: 90%;
-      margin: 0 auto;
-    }
+  /* Adjust individual div sizes for XL if needed, or let grid handle it */
+  .map-div, .event-table-div {
+    width: 100%; /* Fill container */
+    height: 365px; /* Maintain height */
+  }
+} 
+
+/* XXL - Large screens / 4K (1400px breakpoint) */
+@media (min-width: 1400px) {
+  .user-page-container {
+    background-color: crimson;
+    display: grid;
+    /* Define 3 columns: first two for 365px width equivalent, third for 730px width equivalent */
+    grid-template-columns: 1fr 1fr 2fr; /* Proportional columns */
+    /* Define 2 rows: each 365px high */
+    grid-template-rows: 365px 365px;
+    /* Define grid areas for layout - UNCOMMENTED AND CORRECTLY USED */
+    grid-template-areas:
+      "user-area buskers-area event-table-area"
+      "map-area map-area event-table-area";
+    gap: 20px; /* Reverted gap back to 20px */
+    width: 85vw; /* Container width */
+    padding: 20px; /* Add some internal padding */
+    box-sizing: border-box; /* Include padding in the width */
+    /* Removed justify-content: center; as grid areas handle placement */
+  }
+
+  /* Assign grid areas to the direct children of .user-page-container */
+  .user-div-container {
+    grid-area: user-area; /* Assigned to user-area */
+    /* Removed order: 1; */
+    /* Removed margin-top: -365px; */
+  }
+  .buskers-div-container {
+    grid-area: buskers-area; /* Assigned to buskers-area */
+    /* Removed order: 2; */
+    /* Removed margin-top: -365px; */
+  }
+  .event-table-div-container {
+    grid-area: event-table-area; /* Assigned to event-table-area */
+    /* Removed order: 3; */
+  }
+  .map-div-container {
+    grid-area: map-area; /* Assigned to map-area */
+    /* Removed order: 4; */
+    /* Removed margin-top: -365px; */
+  }
+/* 
+  .map-div-container{
+    height: 365px;
+    width: 365px;
+
   } */
+  /* .map-div-container{
+    height: 365px;
+    width: 365px; */
+
+  /* } */
+
+  /* Make the inner divs fill their respective containers (which are now sized by the grid) */
+  .user-div,
+  .buskers-div,
+  .map-div,
+  .event-table-div {
+    width: 100%;
+    height: 100%; 
+  }
+
+  .user-div{
+    min-height: 365px;
+    min-width: 365px;
+
+  }
+  .buskers-div{
+    min-height: 365px;
+    min-width: 365px;
+
+  }
+  .map-div{
+    min-height: 365px;
+    min-width: 730px;
+    height: 365px;
+    width: 365px;
+
+  }
+  .event-table-div {
+    min-height: 730px;
+    min-width: 730px; 
+  }
+  /* Specific width for map-div and event-table-div are no longer needed here,
+     as their containers' grid areas will dictate their size.
+     If you need specific pixel widths, they should be on the grid-template-columns directly,
+     e.g., grid-template-columns: 365px 365px 730px;
+     But 1fr 1fr 2fr is more flexible for responsive design.
+  */
+}
