@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GlobalDateService } from './global-date.service'
 import { MapService } from '../../common/map/map-service';
 import { Subscription } from 'rxjs';
+import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,11 +10,11 @@ import { Subscription } from 'rxjs';
 })
 export class HomeComponent {
 
-  allEventsVisible = true;
-  bandEventsVisible = true;
-  buskerEventsVisible = true;
-  djEventsVisible = true;
-  performanceEventsVisible = true;
+  // allEventsVisible = true;
+  // bandEventsVisible = true;
+  // buskerEventsVisible = true;
+  // djEventsVisible = true;
+  // performanceEventsVisible = true;
 
 
   showDateControls = false;
@@ -43,9 +44,16 @@ export class HomeComponent {
   selectedSort: string = 'distance'; // default: Nearest
   selectedWithin: number = 1; // default: 1 hour
 
+
+
+  events: Event[] = [];
+  
+
   private subscription!: Subscription;
 
- constructor(private globalDateService: GlobalDateService, private mapService: MapService) {
+ constructor(private globalDateService: GlobalDateService,
+  private mapService: MapService,
+  private openHttpClientService: OpenHttpClientService) {
   this.globalDateService.globalDate$.subscribe((globalDate) => {
     if(globalDate) {
         this.globalDate = globalDate;
@@ -119,35 +127,35 @@ onDateSelected(selectedDate: Date): void {
 
 
 
-allFunction(){
-  console.log(`All Function`);
-  this.allEventsVisible = !this.allEventsVisible;
-  console.log(this.allEventsVisible);
-}
+// allFunction(){
+//   console.log(`All Function`);
+//   this.allEventsVisible = !this.allEventsVisible;
+//   console.log(this.allEventsVisible);
+// }
 
-bandFunction(){
-  console.log(`Band Function`);
-  this.bandEventsVisible =  !this.bandEventsVisible;
-  console.log(this.bandEventsVisible);
-}
+// bandFunction(){
+//   console.log(`Band Function`);
+//   this.bandEventsVisible =  !this.bandEventsVisible;
+//   console.log(this.bandEventsVisible);
+// }
 
-buskerFunction(){
-  console.log(`Busker Function`);
-  this.buskerEventsVisible = !this.buskerEventsVisible;
-  console.log(this.buskerEventsVisible);
-}
+// buskerFunction(){
+//   console.log(`Busker Function`);
+//   this.buskerEventsVisible = !this.buskerEventsVisible;
+//   console.log(this.buskerEventsVisible);
+// }
 
-djFunction(){
-  console.log(`DJ Function`);
-  this.djEventsVisible = !this.djEventsVisible;
-  console.log(this.djEventsVisible);
-}
+// djFunction(){
+//   console.log(`DJ Function`);
+//   this.djEventsVisible = !this.djEventsVisible;
+//   console.log(this.djEventsVisible);
+// }
 
-performanceFunction(){
-  console.log(`Performance Function`);
-  this.performanceEventsVisible = !this.performanceEventsVisible;
-  console.log(this.performanceEventsVisible);
-}
+// performanceFunction(){
+//   console.log(`Performance Function`);
+//   this.performanceEventsVisible = !this.performanceEventsVisible;
+//   console.log(this.performanceEventsVisible);
+// }
 
 
 }
