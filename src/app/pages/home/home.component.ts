@@ -86,7 +86,7 @@ export class HomeComponent implements OnInit {
   console.log(`PAUL IS DUMB`);
 
  this.openHttpClientService.getEvents(
-    new Date(2025, 6, 7, 23, 0, 0),
+    new Date(2025, 6, 6, 23, 0, 0),
     -88,
     -88
     ,80
@@ -95,13 +95,11 @@ export class HomeComponent implements OnInit {
   ).subscribe({
     next: (events: Event[]) => {
 
-      debugger;
       // 'events' here IS your complete list of Event[]
       console.log('Successfully extracted events:', events);
       this.events = events; // Assign the full list to your component property
     },
     error: (error) => {
-      debugger;
       console.error('Error fetching events:', error);
     },
    

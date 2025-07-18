@@ -78,7 +78,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
     // Add a marker at the user's current location
     const marker = L.marker([lat, lng]).addTo(this.map);
-    // marker.bindPopup('<b>You are here!</b>').openPopup();
+    // marker.bindPopup('<b>Paul is DUMB!</b>').openPopup();
 
       // Initial map update
   this.updateMapService();
