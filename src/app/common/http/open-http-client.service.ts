@@ -1,7 +1,7 @@
 import { HttpClient,HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EventType } from '@angular/router';
 import { Observable } from 'rxjs';
+import { EventType } from 'src/app/model/event-types';
 
 const URL = 'http://localhost:8085/open';
 
@@ -23,7 +23,7 @@ export class OpenHttpClientService {
     maxLat: number,
     maxLong: number,
     eventTypes: EventType[]
-  ): Observable<any> { // Replace 'any' with a specific interface for your event data
+  ): Observable<Event[]> { // Replace 'any' with a specific interface for your event data
     // Create HttpParams to build the query string safely
     let params = new HttpParams()
       .set('time', time.toISOString())
@@ -41,6 +41,6 @@ export class OpenHttpClientService {
     const url = `${URL}/getEvents`;
 
     // Make the GET request and return the Observable
-    return this.http.get<any>(url, { params: params });
+    return this.http.get<Event[]>(url, { params: params });
   }
 }

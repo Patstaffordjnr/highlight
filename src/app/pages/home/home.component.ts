@@ -1,21 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GlobalDateService } from './global-date.service'
 import { MapService } from '../../common/map/map-service';
 import { Subscription } from 'rxjs';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
+import { EventType } from 'src/app/model/event-types';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
-
-  // allEventsVisible = true;
-  // bandEventsVisible = true;
-  // buskerEventsVisible = true;
-  // djEventsVisible = true;
-  // performanceEventsVisible = true;
-
+export class HomeComponent implements OnInit {
 
   showDateControls = false;
   globalDate = new Date();
@@ -80,12 +75,39 @@ export class HomeComponent {
   });
 }
 
-async ngOnInit() { 
+ ngOnInit() { 
   this.globalDateService.globalDate$.subscribe((globalDate) => {
       if(globalDate) {
           this.globalDate = globalDate;
       }
   })
+
+
+  console.log(`PAUL IS DUMB`);
+
+ this.openHttpClientService.getEvents(
+    new Date(2025, 6, 7, 23, 0, 0),
+    -88,
+    -88
+    ,80
+    ,80,
+    [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
+  ).subscribe({
+    next: (events: Event[]) => {
+
+      debugger;
+      // 'events' here IS your complete list of Event[]
+      console.log('Successfully extracted events:', events);
+      this.events = events; // Assign the full list to your component property
+    },
+    error: (error) => {
+      debugger;
+      console.error('Error fetching events:', error);
+    },
+   
+  });;
+
+
 }
   
 toggleDateControls() {
@@ -124,38 +146,5 @@ onDateSelected(selectedDate: Date): void {
     console.log(`Home Calendar Select Date: ${updatedGlobalDate}`);
   }
 }
-
-
-
-// allFunction(){
-//   console.log(`All Function`);
-//   this.allEventsVisible = !this.allEventsVisible;
-//   console.log(this.allEventsVisible);
-// }
-
-// bandFunction(){
-//   console.log(`Band Function`);
-//   this.bandEventsVisible =  !this.bandEventsVisible;
-//   console.log(this.bandEventsVisible);
-// }
-
-// buskerFunction(){
-//   console.log(`Busker Function`);
-//   this.buskerEventsVisible = !this.buskerEventsVisible;
-//   console.log(this.buskerEventsVisible);
-// }
-
-// djFunction(){
-//   console.log(`DJ Function`);
-//   this.djEventsVisible = !this.djEventsVisible;
-//   console.log(this.djEventsVisible);
-// }
-
-// performanceFunction(){
-//   console.log(`Performance Function`);
-//   this.performanceEventsVisible = !this.performanceEventsVisible;
-//   console.log(this.performanceEventsVisible);
-// }
-
 
 }
