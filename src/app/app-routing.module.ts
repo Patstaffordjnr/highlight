@@ -4,7 +4,7 @@ import { Routes,RouterModule } from '@angular/router';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { NavComponent } from './common/nav/nav.component';
 import { LogInComponent } from './pages/log-in/log-in.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 import { UserComponent } from './pages/user/user.component';
 import { UsersComponent } from './pages/users/users.component';
 import { EditEventsComponent } from './pages/edit-events/edit-events.component';

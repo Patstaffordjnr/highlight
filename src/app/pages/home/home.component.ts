@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { GlobalDateService } from './global-date.service'
-import { MapService } from '../common/map/map-service';
+import { MapService } from '../../common/map/map-service';
 import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-home',

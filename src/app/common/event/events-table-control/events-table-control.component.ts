@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { GlobalDateService } from 'src/app/home/global-date.service';
+import { GlobalDateService } from 'src/app/pages/home/global-date.service';
 import { MapService } from '../../map/map-service';
 
 @Component({

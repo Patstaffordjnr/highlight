@@ -10,7 +10,7 @@ import { PageListResponse } from '../../common/event/page-list-response';
 import { Event } from '../../model/event';
 import { CommonModule } from '@angular/common';
 import { EventsTableComponent } from '../../common/event/events-table/events-table.component';
-import { GlobalDateService } from 'src/app/home/global-date.service';
+import { GlobalDateService } from 'src/app/pages/home/global-date.service';
 import { UserRole } from 'src/app/model/user-roles'; // adjust path if needed
 
 

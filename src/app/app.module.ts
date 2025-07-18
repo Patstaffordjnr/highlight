@@ -13,8 +13,7 @@ import { RouterService } from './util/router.service';
 import { ErrorInterceptor } from './util/interceptors/noop-interceptor.service';
 import { CurrentUserService, PermissionsService } from './util/can-activate.service';
 import { CalendarComponent } from './common/calendar/calendar.component';
-import { HomeComponent } from './home/home.component';
-import { GlobalDateService } from './home/global-date.service';
+import { HomeComponent } from './pages/home/home.component';
 import { MapComponent } from './common/map/map.component';
 import { EventService } from './common/event/event-service';
 import { EventsTableComponent } from './common/event/events-table/events-table.component';
@@ -23,7 +22,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { UserComponent } from './pages/user/user.component';
 
 import { EventsTableControlComponent } from './common/event/events-table-control/events-table-control.component';
-import { EventsComponent} from './pages/events/events.component';
+import { EventsComponent } from './pages/events/events.component';
+import { GlobalDateService } from './pages/home/global-date.service';
 
 
 @NgModule({ declarations: [
