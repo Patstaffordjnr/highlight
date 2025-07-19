@@ -24,7 +24,7 @@ export class EventsComponent {
 
   globalDate = new Date();
 
-    userRoles = [];
+  userRoles = [];
   currentUser: User = {
   id: "string",
   email: "string",
@@ -70,14 +70,10 @@ async ngOnInit() {
 this.mapService.mapCurrentLocationDetails$.subscribe((mapDetails) => {
   const [ bounds, minLat, maxLat, minLong, maxLong ] = mapDetails;
   this.bounds = bounds;
-  this.minLat = -88;
-  this.maxLat = 88;
-  this.minLong = -88;
-  this.maxLong = 88;
-  // this.minLat = minLat;
-  // this.maxLat = maxLat;
-  // this.minLong = minLong;
-  // this.maxLong = maxLong;
+  this.minLat = minLat;
+  this.maxLat = maxLat;
+  this.minLong = minLong;
+  this.maxLong = maxLong;
 });
 
 let initialEventList = await this.eventsClient.getOpenEvents(
@@ -97,6 +93,7 @@ onGenreChange(updatedGenres: Set<string>) {
   this.eventTypes = new Set(['Band', 'Busker', 'Dj', 'Performance']);
   console.log(this.eventTypes);
 }
+
 
 }
  

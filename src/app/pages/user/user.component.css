@@ -1,4 +1,242 @@
-/* General styles for flex grid and columns */
+.container {
+  display: flex;
+  flex-direction: column;
+  /* gap: 15px; */
+  width: 90vw;
+  max-width: 1200px;
+  max-width: 1200px;
+
+  background-color: gold;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* height: 365px;
+  width: 365px; */
+  border-radius: 25px;
+  border: 6px solid whitesmoke;
+  box-sizing: border-box;
+
+}
+
+.item-1 {
+  background-color: #FF5733; /* Red-orange */
+}
+
+.item-2 {
+  background-color: #33FF57; /* Green */
+}
+
+.item-3 {
+  background-color: #3357FF; /* Blue */
+}
+
+.item-4 {
+  background-color: #FF33E9; /* Pink/Magenta */
+}
+
+
+/* Media query for larger screens (e.g., tablets and desktops) */
+@media (min-width: 768px) {
+  .container {
+      flex-direction: row; /* Change to horizontal for larger screens */
+      flex-wrap: wrap; /* Allow items to wrap to the next line */
+      justify-content: center; /* Center items when wrapping */
+  }
+
+  .item {
+      flex: 1 1 calc(50% - 30px); /* Two items per row with gap consideration */
+      /*
+         flex-grow: 1 (allows item to grow)
+         flex-shrink: 1 (allows item to shrink)
+         flex-basis: calc(50% - 30px) (initial size, 50% width minus half of the gap on each side)
+      */
+      max-width: calc(50% - 30px); /* Ensure max width for 2x2 grid */
+  }
+}
+
+/* Media query for even larger screens if you want more specific control */
+@media (min-width: 1024px) {
+  .item {
+      /* You can adjust flex-basis or max-width here if you want different behavior
+         for very large screens, e.g., to keep them a bit smaller or
+         to ensure specific spacing for a perfect 2x2.
+         For this example, the 768px breakpoint often suffices.
+      */
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 2fr;
+      grid-template-rows: 365px 365px;
+      grid-template-areas:
+        "user-area buskers-area event-table-area"
+        "map-area map-area event-table-area";
+      gap: 20px;
+      width: 85vw;
+      padding: 20px;
+      box-sizing: border-box;
+  }
+
+  .item {
+  
+  }
+  /* <div class="item item-1">User Profile
+  <br>AAAAAAAAAAAAAAAAAAAAAAAA
+</div>
+<div class="item item-2">Map
+  <br>BBBBBBBBBBBBBBBBBBBBBBBB
+</div>
+<div class="item item-3">Buskers
+  <br>CCCCCCCCCCCCCCCCCCCCCCCC
+</div>
+<div class="item item-4">Events */
+
+
+  .item-1 {    grid-area: user-area;
+    background-color: #FF5733; }
+  .item-2 {  grid-area: map-area; 
+    background-color: #33FF57; }
+  .item-3 { grid-area: buskers-area; 
+    background-color: #3357FF; }
+  .item-4 { grid-area: event-table-area; background-color: #FF33E9; }
+}
+
+
+
+
+
+
+
+/* XXL - Large screens / 4K (1400px breakpoint) */
+/* @media (min-width: 1400px) {
+  .user-page-container {
+    background-color: crimson;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-rows: 365px 365px;
+    grid-template-areas:
+      "user-area buskers-area event-table-area"
+      "map-area map-area event-table-area";
+    gap: 20px;
+    width: 85vw;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .user-div-container {
+    grid-area: user-area;
+  }
+  .buskers-div-container {
+    grid-area: buskers-area;
+  }
+  .event-table-div-container {
+  }
+  .map-div-container {
+    grid-area: map-area;
+  }
+  .user-div,
+  .buskers-div,
+  .map-div,
+  .event-table-div {
+    width: 100%;
+    height: 100%; 
+  }
+
+  .user-div{
+    min-height: 365px;
+    min-width: 365px;
+
+  }
+  .buskers-div{
+    min-height: 365px;
+    min-width: 365px;
+
+  }
+  .map-div{
+    min-height: 365px;
+    min-width: 730px;
+    height: 365px;
+    width: 365px;
+
+  }
+  .event-table-div {
+    min-height: 730px;
+    min-width: 730px; 
+  }
+} */
+
+
+
+
+
+
+
+
+
+/* 
+@media (min-width: 1400px) {
+  .container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "user        events"
+      "map  events";
+    gap: 10px;
+    width: 90vw;
+    max-width: 1400px;
+    height: 600px;
+    margin: auto;
+    background-color: crimson;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 25px;
+    border: 6px solid whitesmoke;
+    box-sizing: border-box;
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .item-1 { grid-area: user; background-color: #FF5733; }
+  .item-2 { grid-area: map; background-color: #33FF57; }
+  .item-3 { grid-area: buskers; background-color: #3357FF; }
+  .item-4 { grid-area: events; background-color: #FF33E9; }
+}
+ */
+
+
+
+
+/* MOBILE FRIENDLY ABOVE */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
 .flex-grid {
   display: flex;
   background-color: none;
@@ -9,7 +247,7 @@
   display: flex; 
 }
 
-/* Base styles for all div containers and inner divs */
+
 .user-div-container,
 .map-div-container,
 .buskers-div-container,
@@ -17,7 +255,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: none; /* No background for containers */
+  background-color: none;
 }
 
 .user-div,
@@ -28,7 +266,7 @@
   width: 365px;
   border-radius: 25px;
   border: 6px solid whitesmoke;
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  box-sizing: border-box;
 }
 
 .user-div { background-color: darkblue; }
@@ -36,7 +274,6 @@
 .buskers-div { background-color: aqua; }
 .event-table-div { background-color: azure; }
 
-/* User Profile Image and Details */
 .user-profile-image-container {
   display: flex;
   flex-direction: column;
@@ -73,13 +310,11 @@
 .user-email-container{
   width: 100%;
   display: flex;
-  align-items: flex-end; /* Align items to the end of the cross axis */
-  /* Removed margin-left: -60px; */
+  align-items: flex-end;
 }
 .user-email{
   display: flex;
   align-items: flex-end;
-  /* Removed margin-left: -60px; */
 }
 .user-email-text{
   text-align: left;
@@ -87,7 +322,6 @@
 .user-email-textb{
   background-color: azure;
   text-align: right;
-  /* Removed position: fixed; */
 }
 
 .user-roles-container{
@@ -148,94 +382,68 @@ width: 50%;
       height: 30px;
       width: 30px;
       border-radius: 50%;
-}
+} */
 
 /* Responsive Breakpoints */
 
 /* SM - Small tablets */
-@media (min-width: 576px) {
-}
+/* @media (min-width: 576px) {
+} */
 
 /* MD - Tablets */
-@media (min-width: 768px) {
-} 
+/* @media (min-width: 768px) {
+}  */
 
 /* LG - Small laptops */
-@media (min-width: 992px) {
-}
+/* @media (min-width: 992px) {
+} */
 
 /* XL - Desktops */
-@media (min-width: 1200px) {
+/* @media (min-width: 1200px) {
   .user-page-container{
     background-color: orange;
-    display: grid; /* Changed to grid for better control */
+    display: grid;
     gap: 20px;
-    grid-template-columns: 1fr 1fr; /* Two columns for smaller screens */
+    grid-template-columns: 1fr 1fr; 
     justify-content: center;
     align-items: center;
-    width: 90vw; /* Adjust width for XL screens */
+    width: 90vw; 
     margin: 0 auto;
   }
-  /* Adjust individual div sizes for XL if needed, or let grid handle it */
+
   .map-div, .event-table-div {
-    width: 100%; /* Fill container */
-    height: 365px; /* Maintain height */
+    width: 100%; 
+    height: 365px; 
   }
-} 
+}  */
 
 /* XXL - Large screens / 4K (1400px breakpoint) */
-@media (min-width: 1400px) {
+/* @media (min-width: 1400px) {
   .user-page-container {
     background-color: crimson;
     display: grid;
-    /* Define 3 columns: first two for 365px width equivalent, third for 730px width equivalent */
-    grid-template-columns: 1fr 1fr 2fr; /* Proportional columns */
-    /* Define 2 rows: each 365px high */
+    grid-template-columns: 1fr 1fr 2fr;
     grid-template-rows: 365px 365px;
-    /* Define grid areas for layout - UNCOMMENTED AND CORRECTLY USED */
     grid-template-areas:
       "user-area buskers-area event-table-area"
       "map-area map-area event-table-area";
-    gap: 20px; /* Reverted gap back to 20px */
-    width: 85vw; /* Container width */
-    padding: 20px; /* Add some internal padding */
-    box-sizing: border-box; /* Include padding in the width */
-    /* Removed justify-content: center; as grid areas handle placement */
+    gap: 20px;
+    width: 85vw;
+    padding: 20px;
+    box-sizing: border-box;
   }
 
-  /* Assign grid areas to the direct children of .user-page-container */
   .user-div-container {
-    grid-area: user-area; /* Assigned to user-area */
-    /* Removed order: 1; */
-    /* Removed margin-top: -365px; */
+    grid-area: user-area;
   }
   .buskers-div-container {
-    grid-area: buskers-area; /* Assigned to buskers-area */
-    /* Removed order: 2; */
-    /* Removed margin-top: -365px; */
+    grid-area: buskers-area;
   }
   .event-table-div-container {
-    grid-area: event-table-area; /* Assigned to event-table-area */
-    /* Removed order: 3; */
   }
   .map-div-container {
-    grid-area: map-area; /* Assigned to map-area */
-    /* Removed order: 4; */
-    /* Removed margin-top: -365px; */
+    grid-area: map-area;
   }
-/* 
-  .map-div-container{
-    height: 365px;
-    width: 365px;
-
-  } */
-  /* .map-div-container{
-    height: 365px;
-    width: 365px; */
-
-  /* } */
-
-  /* Make the inner divs fill their respective containers (which are now sized by the grid) */
   .user-div,
   .buskers-div,
   .map-div,
@@ -265,10 +473,4 @@ width: 50%;
     min-height: 730px;
     min-width: 730px; 
   }
-  /* Specific width for map-div and event-table-div are no longer needed here,
-     as their containers' grid areas will dictate their size.
-     If you need specific pixel widths, they should be on the grid-template-columns directly,
-     e.g., grid-template-columns: 365px 365px 730px;
-     But 1fr 1fr 2fr is more flexible for responsive design.
-  */
-}
+} */
