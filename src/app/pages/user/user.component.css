@@ -1,25 +1,23 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  /* gap: 15px; */
-  width: 90vw;
-  max-width: 1200px;
-  max-width: 1200px;
-
-  background-color: gold;
-}
-
-.item {
+.user{
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  /* height: 365px;
-  width: 365px; */
-  border-radius: 25px;
-  border: 6px solid whitesmoke;
-  box-sizing: border-box;
+  width: 100%;
+}
 
+.container {
+  display: flex;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 75vw;
+  height: 75vh;
+}
+
+.item {
+  height: 100%;
+  width: 100%;
 }
 
 .item-1 {
@@ -39,438 +37,153 @@
 }
 
 
-/* Media query for larger screens (e.g., tablets and desktops) */
-@media (min-width: 768px) {
-  .container {
-      flex-direction: row; /* Change to horizontal for larger screens */
-      flex-wrap: wrap; /* Allow items to wrap to the next line */
-      justify-content: center; /* Center items when wrapping */
-  }
-
-  .item {
-      flex: 1 1 calc(50% - 30px); /* Two items per row with gap consideration */
-      /*
-         flex-grow: 1 (allows item to grow)
-         flex-shrink: 1 (allows item to shrink)
-         flex-basis: calc(50% - 30px) (initial size, 50% width minus half of the gap on each side)
-      */
-      max-width: calc(50% - 30px); /* Ensure max width for 2x2 grid */
-  }
-}
-
-/* Media query for even larger screens if you want more specific control */
-@media (min-width: 1024px) {
-  .item {
-      /* You can adjust flex-basis or max-width here if you want different behavior
-         for very large screens, e.g., to keep them a bit smaller or
-         to ensure specific spacing for a perfect 2x2.
-         For this example, the 768px breakpoint often suffices.
-      */
-  }
-}
-
-@media (min-width: 1400px) {
-  .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr 2fr;
-      grid-template-rows: 365px 365px;
-      grid-template-areas:
-        "user-area buskers-area event-table-area"
-        "map-area map-area event-table-area";
-      gap: 20px;
-      width: 85vw;
-      padding: 20px;
-      box-sizing: border-box;
-  }
-
-  .item {
-  
-  }
-  /* <div class="item item-1">User Profile
-  <br>AAAAAAAAAAAAAAAAAAAAAAAA
-</div>
-<div class="item item-2">Map
-  <br>BBBBBBBBBBBBBBBBBBBBBBBB
-</div>
-<div class="item item-3">Buskers
-  <br>CCCCCCCCCCCCCCCCCCCCCCCC
-</div>
-<div class="item item-4">Events */
-
-
-  .item-1 {    grid-area: user-area;
-    background-color: #FF5733; }
-  .item-2 {  grid-area: map-area; 
-    background-color: #33FF57; }
-  .item-3 { grid-area: buskers-area; 
-    background-color: #3357FF; }
-  .item-4 { grid-area: event-table-area; background-color: #FF33E9; }
-}
-
-
-
-
-
-
-
-/* XXL - Large screens / 4K (1400px breakpoint) */
-/* @media (min-width: 1400px) {
-  .user-page-container {
-    background-color: crimson;
-    display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
-    grid-template-rows: 365px 365px;
-    grid-template-areas:
-      "user-area buskers-area event-table-area"
-      "map-area map-area event-table-area";
-    gap: 20px;
-    width: 85vw;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-
-  .user-div-container {
-    grid-area: user-area;
-  }
-  .buskers-div-container {
-    grid-area: buskers-area;
-  }
-  .event-table-div-container {
-  }
-  .map-div-container {
-    grid-area: map-area;
-  }
-  .user-div,
-  .buskers-div,
-  .map-div,
-  .event-table-div {
-    width: 100%;
-    height: 100%; 
-  }
-
-  .user-div{
-    min-height: 365px;
-    min-width: 365px;
-
-  }
-  .buskers-div{
-    min-height: 365px;
-    min-width: 365px;
-
-  }
-  .map-div{
-    min-height: 365px;
-    min-width: 730px;
-    height: 365px;
-    width: 365px;
-
-  }
-  .event-table-div {
-    min-height: 730px;
-    min-width: 730px; 
-  }
-} */
-
-
-
-
-
-
-
-
-
-/* 
-@media (min-width: 1400px) {
-  .container {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas:
-      "user        events"
-      "map  events";
-    gap: 10px;
-    width: 90vw;
-    max-width: 1400px;
-    height: 600px;
-    margin: auto;
-    background-color: crimson;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-
-  .item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border-radius: 25px;
-    border: 6px solid whitesmoke;
-    box-sizing: border-box;
-    min-width: 0;
-    min-height: 0;
-  }
-
-  .item-1 { grid-area: user; background-color: #FF5733; }
-  .item-2 { grid-area: map; background-color: #33FF57; }
-  .item-3 { grid-area: buskers; background-color: #3357FF; }
-  .item-4 { grid-area: events; background-color: #FF33E9; }
-}
- */
-
-
-
-
-/* MOBILE FRIENDLY ABOVE */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-.flex-grid {
-  display: flex;
-  background-color: none;
-}
-
-.col {
-  flex: 1;
-  display: flex; 
-}
-
-
-.user-div-container,
-.map-div-container,
-.buskers-div-container,
-.event-table-div-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: none;
-}
-
-.user-div,
-.map-div,
-.buskers-div,
-.event-table-div {
-  height: 365px;
-  width: 365px;
-  border-radius: 25px;
-  border: 6px solid whitesmoke;
-  box-sizing: border-box;
-}
-
-.user-div { background-color: darkblue; }
-.map-div { background-color: blue; }
-.buskers-div { background-color: aqua; }
-.event-table-div { background-color: azure; }
-
-.user-profile-image-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.user-profile-image {
-  border: 6px solid whitesmoke;
-  height: 75px;
-  width: 75px;
-  border-radius: 50%;
-  text-align: center;
-  align-items: center;
-}
-
-.user-details-container{
-    width: 100%;
-}
-
-.user-id-container{
-  display: flex;
-  height: 100%;
-  width: 100%;
-  display: inline-block;
-  align-self: flex-end;
-  
-}
-.user-id{
-  
-}
-.user-id-text{
-}
-
-.user-email-container{
-  width: 100%;
-  display: flex;
-  align-items: flex-end;
-}
-.user-email{
-  display: flex;
-  align-items: flex-end;
-}
-.user-email-text{
-  text-align: left;
-}
-.user-email-textb{
-  background-color: azure;
-  text-align: right;
-}
-
-.user-roles-container{
-  width: 25%;
-}
-.user-roles{
-}
-.user-address{
-}
-
-.border{ 
-  background-color: whitesmoke;
-  height: 6px;
-}
-
-.user-controls{
-  justify-content: center;
-  align-items: center;
-  padding-top: 10px;
-}
-
-.user-controls-a{
-width: 50%;
-
-}
-
-.user-controls-a-button{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-
-.user-controls-text-a{
-  width: 100%;
-  background-color: deepskyblue;
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-
-}
-
-.user-controls-b{
-  width: 50%;
-
-}
-
-.user-controls-b-button{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-
-.user-controls-text-b{
-      width: 100%;
-      background-color: coral;
-      height: 30px;
-      width: 30px;
-      border-radius: 50%;
-} */
-
-/* Responsive Breakpoints */
-
 /* SM - Small tablets */
-/* @media (min-width: 576px) {
-} */
+@media (min-width: 576px) {
+  .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  } 
+  .item-1{
+    width: 50%;
+    height: 50%;
+  }
+
+  .item-2 {
+  height: 50%;
+  width: 50%;
+  }
+
+  .item-3 {
+    order: 2;
+    width: 50%;
+    height: 50%;
+  }
+  .item-4 {
+    order: 3;
+    width: 50%;
+    height: 50%;
+  }
+}
 
 /* MD - Tablets */
-/* @media (min-width: 768px) {
-}  */
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  } 
+  .item-1{
+    width: 50%;
+    height: 50%;
+  }
+
+  .item-2 {
+  height: 50%;
+  width: 50%;
+  }
+
+  .item-3 {
+    order: 2;
+    width: 50%;
+    height: 50%;
+  }
+  .item-4 {
+    order: 3;
+    width: 50%;
+    height: 50%;
+  }
+} 
 
 /* LG - Small laptops */
-/* @media (min-width: 992px) {
-} */
+@media (min-width: 992px) {
+  .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  } 
+  .item-1{
+    width: 50%;
+    height: 50%;
+  }
+
+  .item-2 {
+  height: 50%;
+  width: 50%;
+  }
+
+  .item-3 {
+    order: 2;
+    width: 50%;
+    height: 50%;
+  }
+  .item-4 {
+    order: 3;
+    width: 50%;
+    height: 50%;
+  }
+}
 
 /* XL - Desktops */
-/* @media (min-width: 1200px) {
-  .user-page-container{
-    background-color: orange;
-    display: grid;
-    gap: 20px;
-    grid-template-columns: 1fr 1fr; 
-    justify-content: center;
-    align-items: center;
-    width: 90vw; 
-    margin: 0 auto;
+@media (min-width: 1200px) {
+  .container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  } 
+  .item-1{
+    width: 50%;
+    height: 50%;
   }
 
-  .map-div, .event-table-div {
-    width: 100%; 
-    height: 365px; 
-  }
-}  */
-
-/* XXL - Large screens / 4K (1400px breakpoint) */
-/* @media (min-width: 1400px) {
-  .user-page-container {
-    background-color: crimson;
-    display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
-    grid-template-rows: 365px 365px;
-    grid-template-areas:
-      "user-area buskers-area event-table-area"
-      "map-area map-area event-table-area";
-    gap: 20px;
-    width: 85vw;
-    padding: 20px;
-    box-sizing: border-box;
+  .item-2 {
+  height: 50%;
+  width: 50%;
   }
 
-  .user-div-container {
-    grid-area: user-area;
+  .item-3 {
+    order: 2;
+    width: 50%;
+    height: 50%;
   }
-  .buskers-div-container {
-    grid-area: buskers-area;
+  .item-4 {
+    order: 3;
+    width: 50%;
+    height: 50%;
   }
-  .event-table-div-container {
+} 
+
+@media (min-width: 1400px) {
+
+  .container {
+    flex-wrap: wrap;
   }
-  .map-div-container {
-    grid-area: map-area;
-  }
-  .user-div,
-  .buskers-div,
-  .map-div,
-  .event-table-div {
-    width: 100%;
-    height: 100%; 
+  
+
+  .item-1{
+    /* USER PROFILE */
+    width: 25%;
+    /* transform: translateY(-100%); */
+    height: 50%;
+    transform: translateY(-50%);
   }
 
-  .user-div{
-    min-height: 365px;
-    min-width: 365px;
+  .item-2 {
+    height: 50%;
+    order: 4; 
+    justify-content: start;
+    background-color: cyan;
+    position: relative;
+    left: -25%;
+    transform: translateY(-100%);
+  }
 
-  }
-  .buskers-div{
-    min-height: 365px;
-    min-width: 365px;
 
+  .item-3 {
+    order: 2;
+    width: 25%;
+    height: 50%;
+    transform: translateY(-50%);
   }
-  .map-div{
-    min-height: 365px;
-    min-width: 730px;
-    height: 365px;
-    width: 365px;
-
+  .item-4 {
+    order: 3;
+    width: 50%;
+    height: 100%;
   }
-  .event-table-div {
-    min-height: 730px;
-    min-width: 730px; 
-  }
-} */
+}
