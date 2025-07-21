@@ -7,34 +7,39 @@
 
 .container {
   display: flex;
-  /* flex-wrap: wrap; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 75vw;
   height: 75vh;
+  
 }
 
 .item {
   height: 100%;
   width: 100%;
+  box-sizing: border-box; 
+  border-radius: 25px;
+  border: 6px solid whitesmoke;
+  box-sizing: border-box; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+/* 
 .item-1 {
-  background-color: #FF5733; /* Red-orange */
+  background-color: lightcoral; 
 }
 
 .item-2 {
-  background-color: #33FF57; /* Green */
+  background-color: lawngreen;
 }
-
 .item-3 {
-  background-color: #3357FF; /* Blue */
+  background-color: cadetblue
 }
-
 .item-4 {
-  background-color: #FF33E9; /* Pink/Magenta */
-}
+  background-color: khaki 
+} */
 
 
 /* SM - Small tablets */
@@ -98,6 +103,7 @@
   .container {
     flex-direction: row;
     flex-wrap: wrap;
+    
   } 
   .item-1{
     width: 50%;
@@ -127,6 +133,7 @@
     flex-direction: row;
     flex-wrap: wrap;
   } 
+  
   .item-1{
     width: 50%;
     height: 50%;
@@ -138,52 +145,60 @@
   }
 
   .item-3 {
-    order: 2;
+    /* order: 2; */
     width: 50%;
     height: 50%;
   }
   .item-4 {
-    order: 3;
+    /* order: 3; */
     width: 50%;
     height: 50%;
   }
 } 
 
 @media (min-width: 1400px) {
-
   .container {
     flex-wrap: wrap;
+    gap: 16px; /* Add actual spacing between items */
+    display: flex;
   }
-  
 
-  .item-1{
-    /* USER PROFILE */
-    width: 25%;
-    /* transform: translateY(-100%); */
-    height: 50%;
+  .item {
+    box-sizing: border-box;
+    background-color: azure;
+    border-radius: 25px;
+    border: 6px solid whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .item-1 {
+    width: calc(25% - 12px); /* Account for 16px gap horizontally */
+    height: calc(50% - 8px);  /* Account for 16px gap vertically */
     transform: translateY(-50%);
   }
 
   .item-2 {
-    height: 50%;
-    order: 4; 
-    justify-content: start;
-    background-color: cyan;
+    width: calc(50% - 12px);
+    height: calc(50% - 8px);
+    order: 4;
     position: relative;
     left: -25%;
     transform: translateY(-100%);
+    background-color: cyan;
   }
-
 
   .item-3 {
+    width: calc(25% - 12px);
+    height: calc(50% - 8px);
     order: 2;
-    width: 25%;
-    height: 50%;
     transform: translateY(-50%);
   }
+
   .item-4 {
+    width: calc(50% - 12px);
+    height: calc(100% - 8px);
     order: 3;
-    width: 50%;
-    height: 100%;
   }
 }
