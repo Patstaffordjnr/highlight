@@ -159,29 +159,93 @@
 @media (min-width: 1400px) {
   .container {
     flex-wrap: wrap;
-    gap: 16px; /* Add actual spacing between items */
+    /* gap: 1rem; */
     display: flex;
   }
 
   .item {
     box-sizing: border-box;
-    /* background-color: azure; */
     border-radius: 25px;
-    /* border: 6px solid whitesmoke; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /* width: calc(25% - 12px); */
+
+  .item-1 {
+    width: 25%;
+    height: 50%;
+    transform: translateY(-50%);
+    background-color: mediumseagreen;
+    color: white;
+  }
+
+  .item-2 {
+    width: 50%;
+    height: 50%;
+    order: 4;
+    position: relative;
+    left: -25%;
+    transform: translateY(-100%);
+    background-color: forestgreen;
+    color: white;
+  }
+
+  .item-3 {
+    width: 25%;
+    height: 50%;
+    order: 2;
+    transform: translateY(-50%);
+    background-color: darkcyan;
+    color: white;
+  }
+
+  .item-4 {
+    width: 50%;
+    height: 100%;
+    order: 3;
+    background-color: gold;
+    color: white;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+@media (min-width: 1400px) {
+  .container {
+    flex-wrap: wrap;
+    gap: 1rem;
+    display: flex;
+  }
+
+  .item {
+    box-sizing: border-box;
+    border-radius: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
   .item-1 {
-    width: calc(25% - 12px); /* Account for 16px gap horizontally */
-    height: calc(50% - 8px);  /* Account for 16px gap vertically */
+    width: calc(25% - 12px);
+    height: calc(50% - 8px);
     transform: translateY(-51%);
-    /* background-color: deepskyblue; */
-    background-color: black;
+    background-color: mediumseagreen;
     color: white;
-
-
   }
 
   .item-2 {
@@ -190,9 +254,8 @@
     order: 4;
     position: relative;
     left: -25%;
-    transform: translateY(-105%);
-    /* background-color: forestgreen; */
-    background-color: black;
+    transform: translateY(-104%);
+    background-color: forestgreen;
     color: white;
   }
 
@@ -201,19 +264,15 @@
     height: calc(50% - 8px);
     order: 2;
     transform: translateY(-51%);
-    /* background-color: coral; */
-    background-color: black;
+    background-color: darkcyan;
     color: white;
-
   }
 
   .item-4 {
     width: calc(50% - 12px);
-    height: calc(100% - 8px);
+    height: calc(100% - 4px);
     order: 3;
-    /* background-color: gold; */
-    background-color: black;
+    background-color: gold;
     color: white;
-
   }
-}
+} */
