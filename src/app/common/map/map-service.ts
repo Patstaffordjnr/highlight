@@ -14,9 +14,6 @@ constructor(private http: HttpClient) {}
 updateEvent(bounds, minLat, maxLat, minLong, maxLong, addressString){
     let updatedMapDetailsSubject = [bounds, minLat, maxLat, minLong, maxLong, addressString]
     this.mapCurrentLocationDetails.next(updatedMapDetailsSubject);
-    // console.log(updatedMapDetailsSubject);
-    // console.log(addressString);
-
   }
   
   getAddressFromCoords(lat: number, lon: number): Observable<any> {

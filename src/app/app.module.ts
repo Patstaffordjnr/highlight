@@ -24,6 +24,7 @@ import { UserComponent } from './pages/user/user.component';
 import { EventsTableControlComponent } from './common/event/events-table-control/events-table-control.component';
 import { EventsComponent } from './pages/events/events.component';
 import { GlobalDateService } from './pages/home/global-date.service';
+import { CommonEventsComponent } from './common/events/common-events.component';
 
 
 @NgModule({ declarations: [
@@ -53,6 +54,7 @@ import { GlobalDateService } from './pages/home/global-date.service';
         ReactiveFormsModule,
         DragDropModule,
         EventsTableComponent,
+        CommonEventsComponent
 
     ],
         

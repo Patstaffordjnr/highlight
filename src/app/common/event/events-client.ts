@@ -40,7 +40,6 @@ export class EventsClient implements OnInit{
     // );
   }
 
-
 async buskerGetEvents(currentPage: Number, noOfProducts: Number): Promise<{}>{ 
   this.ngOnInit();
 
@@ -57,9 +56,6 @@ async buskerGetEvents(currentPage: Number, noOfProducts: Number): Promise<{}>{
   return await this.http.get<{}>(url, {withCredentials: true, headers: headers, params: params}).toPromise();
   }
 
-
-
-
   async getOpenEvents(time: Date, minLat: number, minLong: number,
     maxLat: number, maxLong: number, eventTypes: string[] = []): Promise<any> {
     const headers = new HttpHeaders({
@@ -73,7 +69,6 @@ async buskerGetEvents(currentPage: Number, noOfProducts: Number): Promise<{}>{
       .set('maxLat', maxLat.toString())
       .set('maxLong', maxLong.toString());
   
-
     eventTypes.forEach(type => {
       params = params.append('eventTypes', type.toUpperCase());
     });
@@ -89,7 +84,6 @@ async buskerGetEvents(currentPage: Number, noOfProducts: Number): Promise<{}>{
       }
     ).toPromise();
   }
-  
   
 }
 

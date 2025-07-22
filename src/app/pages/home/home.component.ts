@@ -32,18 +32,15 @@ export class HomeComponent implements OnInit {
   sortOptions: { label: string, value: string }[] = [
     { label: 'Starting', value: 'starting' },   
     { label: 'Ending', value: 'ending' },   
-    { label: 'Nearest', value: 'distance' },        // By proximity
-    { label: 'Most Followers', value: 'followers' }, // By artist popularity
-    { label: 'Most Attended', value: 'attendance' }  // By crowd size
+    { label: 'Nearest', value: 'distance' },        
+    { label: 'Most Followers', value: 'followers' }, 
+    { label: 'Most Attended', value: 'attendance' } 
   ];
-  selectedSort: string = 'distance'; // default: Nearest
-  selectedWithin: number = 1; // default: 1 hour
-
-
+  selectedSort: string = 'distance'; 
+  selectedWithin: number = 1; 
 
   events: Event[] = [];
   
-
   private subscription!: Subscription;
 
  constructor(private globalDateService: GlobalDateService,
@@ -53,20 +50,17 @@ export class HomeComponent implements OnInit {
     if(globalDate) {
         this.globalDate = globalDate;
     }
-
       this.subscription = this.mapService?.mapCurrentLocationDetails$.subscribe((details) => {
         this.mapDetails = details;
-      
-        const addressString = details?.[5]; // safely access index 5
+        
+        const addressString = details?.[5];
       
         if (addressString) {
           const parts = addressString.split(',').map(part => part.trim());
-
           const street = parts[0] || '';
-          const cityOrCounty = parts[2] || parts[3] || ''; // Adjust index as needed
+          const cityOrCounty = parts[2] || parts[3] || '';
           const country = parts[parts.length - 1] || '';
           const formattedAddress = `${street}, ${cityOrCounty}, ${country}`;
-          // console.log('Formatted address:', formattedAddress);
           this.homeAddress = formattedAddress;
        } else {
         console.warn('Address string is undefined or empty.');
@@ -81,9 +75,6 @@ export class HomeComponent implements OnInit {
           this.globalDate = globalDate;
       }
   })
-
-
-  console.log(`PAUL IS DUMB`);
 
  this.openHttpClientService.getEvents(
     new Date(2025, 6, 6, 23, 0, 0),
@@ -102,10 +93,7 @@ export class HomeComponent implements OnInit {
     error: (error) => {
       console.error('Error fetching events:', error);
     },
-   
-  });;
-
-
+  });
 }
   
 toggleDateControls() {
@@ -144,5 +132,4 @@ onDateSelected(selectedDate: Date): void {
     console.log(`Home Calendar Select Date: ${updatedGlobalDate}`);
   }
 }
-
 }

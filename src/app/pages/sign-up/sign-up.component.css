@@ -21,13 +21,10 @@
     padding-bottom: 10px;
     border-radius: 25px;
     border: 6px solid whitesmoke;
-    /* height: 100px; */
     width: 365px;
- 
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .email-label{

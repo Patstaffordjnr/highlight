@@ -7,13 +7,13 @@ import { HttpClient } from '@angular/common/http';
 import { EventsClient } from '../../common/event/events-client';
 import { EventService } from '../../common/event/event-service';
 import { PageListResponse } from '../../common/event/page-list-response';
-import { Event } from '../../model/event';
+import { Event as AppEvent } from '../../model/event';
 import { CommonModule } from '@angular/common';
 import { EventsTableComponent } from '../../common/event/events-table/events-table.component';
 import { GlobalDateService } from 'src/app/pages/home/global-date.service';
-import { UserRole } from 'src/app/model/user-roles'; // adjust path if needed
-
-
+import { UserRole } from 'src/app/model/user-roles';
+import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
+import { EventType } from 'src/app/model/event-types';
 
 @Component({
   selector: 'app-events',
@@ -40,8 +40,9 @@ export class EventsComponent {
   minLong
   maxLong 
 
+  events: Event[] = [];
 
-constructor(private globalDateService: GlobalDateService, private currentUserService: CurrentUserService, private eventsClient: EventsClient, private mapService: MapService) {
+constructor(private globalDateService: GlobalDateService, private currentUserService: CurrentUserService, private openHttpClientService: OpenHttpClientService, private mapService: MapService) {
   this.globalDateService.globalDate$.subscribe((globalDate) => {
     if(globalDate) {
         this.globalDate = globalDate;
@@ -62,7 +63,24 @@ constructor(private globalDateService: GlobalDateService, private currentUserSer
     }
   });
 
-
+  this.openHttpClientService.getEvents(
+    new Date(2025, 6, 6, 23, 0, 0),
+    -88,
+    -88
+    ,80
+    ,80,
+    [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
+  ).subscribe({
+    next: (events: Event[]) => {
+  
+      // 'events' here IS your complete list of Event[]
+      console.log('Successfully extracted events:', events);
+      this.events = events; // Assign the full list to your component property
+    },
+    error: (error) => {
+      console.error('Error fetching events:', error);
+    },
+  });
   
 }
 
@@ -75,25 +93,12 @@ this.mapService.mapCurrentLocationDetails$.subscribe((mapDetails) => {
   this.minLong = minLong;
   this.maxLong = maxLong;
 });
-
-let initialEventList = await this.eventsClient.getOpenEvents(
-  this.globalDate,
-  this.minLat,
-  this.minLong,
-  this.maxLat,
-  this.maxLong,
-  Array.from(this.eventTypes)  // Convert Set<string> to string[]
-);
-
-
-console.log(initialEventList);
 }
 
 onGenreChange(updatedGenres: Set<string>) {
   this.eventTypes = new Set(['Band', 'Busker', 'Dj', 'Performance']);
   console.log(this.eventTypes);
 }
-
 
 }
  

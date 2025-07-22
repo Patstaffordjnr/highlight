@@ -13,7 +13,6 @@ const URL = 'http://localhost:8085/open';
 export class OpenHttpClientService {
   constructor(private http: HttpClient) { 
 
-
   }
 
   getEvents(

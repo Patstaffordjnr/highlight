@@ -9,7 +9,6 @@ import { SignUpRequest } from './sign-up-request';
 import { minSelectedCheckboxes } from '../../util/validators/checkbox-validator';
 import { RouterService } from 'src/app/util/router.service';
 
-
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -38,7 +37,6 @@ export class SignUpComponent implements OnInit {
       selectedRoled, 
       this.form.get('password').value)
   }
-
 
   private addCheckboxes() {
     this.allUserRoles.forEach(userRole => this.userRolesFormArray.push(new FormControl(

@@ -1,5 +1,4 @@
 .calendar-component-container{
-  
   max-width: 365px;
   border-radius: 50;
   border-radius: 16px;
@@ -10,9 +9,9 @@
   scroll-snap-type: y mandatory;
   position: relative;
   border: 4px solid whitesmoke;
-  font-size: medium;
-  
+  font-size: medium; 
 }
+
 .calendar-component-container::-webkit-scrollbar {
   display: none;
 }
@@ -37,11 +36,9 @@
 .month-display{
   font-size: 20px;
   font-weight: bold;
-
 }
 
 .weekday-display-container{
-
   display: flex;
   justify-content: space-around;
   height: 40px;

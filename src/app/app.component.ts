@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-
-// declare const google: any;
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

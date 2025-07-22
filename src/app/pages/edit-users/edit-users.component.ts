@@ -4,7 +4,6 @@ import { AuthService } from 'src/app/util/auth.service';
 import { CurrentUserService } from '../../util/can-activate.service'
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-
 @Component({
   selector: 'app-edit-users',
   standalone: true,
@@ -13,7 +12,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrl: './edit-users.component.css'
 })
 export class EditUsersComponent {
-
 
   userRoles = [];
     currentUser: User = {

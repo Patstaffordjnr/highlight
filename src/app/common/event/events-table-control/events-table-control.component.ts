@@ -13,7 +13,6 @@ export class EventsTableControlComponent {
   genreSet: Set<string> = new Set(['Band', 'Busker', 'Dj', 'Performance']);
   @Output() selectGenre = new EventEmitter<Set<string>>();
 
-
   allEventsVisible = true;
   bandEventsVisible = true;
   buskerEventsVisible = true;
@@ -74,7 +73,7 @@ export class EventsTableControlComponent {
     console.warn('Address string is undefined or empty.');
   }
 });
- }
+}
  
  async ngOnInit() { 
    this.globalDateService.globalDate$.subscribe((globalDate) => {

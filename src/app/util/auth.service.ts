@@ -8,14 +8,13 @@ import { User } from '../model/user';
   providedIn: 'root',
 })
 export class AuthService {
-  private loggedIn = new BehaviorSubject<boolean>(false); // Initialize as not logged in
+  private loggedIn = new BehaviorSubject<boolean>(false);
  
   constructor(private currentUserService: CurrentUserService) {}
 
   get isLoggedIn$(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }
-
   
   isAuthenticated(): boolean {
     return this.loggedIn.value;
@@ -26,7 +25,6 @@ export class AuthService {
     this.loggedIn.next(true);
     console.log('Logged In');
     console.log(this.loggedIn.value);
-
   }
 
   // Logout method
