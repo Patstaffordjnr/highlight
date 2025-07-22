@@ -1,10 +1,11 @@
 .control-container{
-  width: 85vw;
-  font-family: Arial, Helvetica, sans-serif;
+  /* width: 85vw; */
+  /* font-family: Arial, Helvetica, sans-serif; */
 }
 
-
-
+.events-container{
+  width: 85vw;
+}
 
 
 

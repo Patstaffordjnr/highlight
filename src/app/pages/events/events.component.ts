@@ -15,6 +15,7 @@ import { UserRole } from 'src/app/model/user-roles';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
 import { EventType } from 'src/app/model/event-types';
 
+
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
@@ -51,15 +52,15 @@ constructor(private globalDateService: GlobalDateService, private currentUserSer
 
   this.currentUserService.userRole$?.subscribe((roles: UserRole[] | null | undefined) => {
     if (!roles || roles.length === 0) {
-      console.log("NOT LOGGED IN");
+      // console.log("NOT LOGGED IN");
     } else if (roles.includes(UserRole.ADMIN)) {
-      console.log("ADMIN");
+      // console.log("ADMIN");
     } else if (roles.includes(UserRole.BUSKER)) {
-      console.log("BUSKER");
+      // console.log("BUSKER");
     } else if (roles.includes(UserRole.USER)) {
-      console.log("USER");
+      // console.log("USER");
     } else {
-      console.log("Unknown role");
+      // console.log("Unknown role");
     }
   });
 
@@ -72,16 +73,13 @@ constructor(private globalDateService: GlobalDateService, private currentUserSer
     [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
   ).subscribe({
     next: (events: Event[]) => {
-  
-      // 'events' here IS your complete list of Event[]
-      console.log('Successfully extracted events:', events);
-      this.events = events; // Assign the full list to your component property
+      // console.log('Successfully extracted events:', events);
+      this.events = events; 
     },
     error: (error) => {
       console.error('Error fetching events:', error);
     },
   });
-  
 }
 
 async ngOnInit() {

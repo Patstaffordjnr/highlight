@@ -1,6 +1,9 @@
 <div class = "events-container">
-<div class = "control-container">
+<div class = "item-1">
   <app-events-table-control (selectGenre)="onGenreChange($event)"></app-events-table-control>
 </div>
+<div class = "item-2">
+  <app-common-events [events]="events"></app-common-events>
 </div>
-<app-common-events></app-common-events>
+</div>
+

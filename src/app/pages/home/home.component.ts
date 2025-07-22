@@ -50,33 +50,24 @@ export class HomeComponent implements OnInit {
     if(globalDate) {
         this.globalDate = globalDate;
     }
-      this.subscription = this.mapService?.mapCurrentLocationDetails$.subscribe((details) => {
-        this.mapDetails = details;
+    //   this.subscription = this.mapService?.mapCurrentLocationDetails$.subscribe((details) => {
+    //     this.mapDetails = details;
         
-        const addressString = details?.[5];
+    //     const addressString = details?.[5];
       
-        if (addressString) {
-          const parts = addressString.split(',').map(part => part.trim());
-          const street = parts[0] || '';
-          const cityOrCounty = parts[2] || parts[3] || '';
-          const country = parts[parts.length - 1] || '';
-          const formattedAddress = `${street}, ${cityOrCounty}, ${country}`;
-          this.homeAddress = formattedAddress;
-       } else {
-        console.warn('Address string is undefined or empty.');
-      }
-    });
+    //     if (addressString) {
+    //       const parts = addressString.split(',').map(part => part.trim());
+    //       const street = parts[0] || '';
+    //       const cityOrCounty = parts[2] || parts[3] || '';
+    //       const country = parts[parts.length - 1] || '';
+    //       const formattedAddress = `${street}, ${cityOrCounty}, ${country}`;
+    //       this.homeAddress = formattedAddress;
+    //    } else {
+    //     console.warn('Address string is undefined or empty.');
+    //   }
+    // });
   });
-}
-
- ngOnInit() { 
-  this.globalDateService.globalDate$.subscribe((globalDate) => {
-      if(globalDate) {
-          this.globalDate = globalDate;
-      }
-  })
-
- this.openHttpClientService.getEvents(
+  this.openHttpClientService.getEvents(
     new Date(2025, 6, 6, 23, 0, 0),
     -88,
     -88
@@ -87,13 +78,21 @@ export class HomeComponent implements OnInit {
     next: (events: Event[]) => {
 
       // 'events' here IS your complete list of Event[]
-      console.log('Successfully extracted events:', events);
+      // console.log('Successfully extracted events:', events);
       this.events = events; // Assign the full list to your component property
     },
     error: (error) => {
-      console.error('Error fetching events:', error);
+      // console.error('Error fetching events:', error);
     },
   });
+}
+
+ ngOnInit() { 
+  this.globalDateService.globalDate$.subscribe((globalDate) => {
+      if(globalDate) {
+          this.globalDate = globalDate;
+      }
+  })
 }
   
 toggleDateControls() {

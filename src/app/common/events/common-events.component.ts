@@ -1,4 +1,4 @@
-import { Component, OnInit ,ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit ,ChangeDetectorRef, Input, SimpleChanges } from '@angular/core';
 import { PageListResponse } from '../event/page-list-response'; 
 import { EventsClient } from '../event/events-client'; 
 import { MapService } from '../map/map-service'; 
@@ -53,6 +53,8 @@ eventResponseList: PageListResponse = {
  results: []
 };
 
+@Input() events: Event[] = [];
+
 constructor (private globalDateService: GlobalDateService, private openHttpClientService: OpenHttpClientService, private mapService: MapService, private formBuilder: FormBuilder, private eventsClient: EventsClient, private eventService: EventService,  private http: HttpClient, private cdRef: ChangeDetectorRef) {
   this.form = this.formBuilder.group({
     searchText: [''],
@@ -60,40 +62,21 @@ constructor (private globalDateService: GlobalDateService, private openHttpClien
 }
 
 async ngOnInit() {
-
-  this.currentIndex = this.currentIndex;
-  this.mapService.mapCurrentLocationDetails$.subscribe((mapDetails) => {
-    const [ bounds, minLat, maxLat, minLong, maxLong ] = mapDetails;
-    this.bounds = bounds;
-    this.minLat = minLat;
-    this.maxLat = maxLat;
-    this.minLong = minLong;
-    this.maxLong = maxLong;
-  });
-  
-  this.globalDateService.globalDate$.subscribe((globalDate) => {
-    if(globalDate) {
-        this.globalDate = globalDate;
-    }
+  if (this.events?.length) {
+    this.reveivedObject = this.events;
+    this.eventResponseList.total = this.reveivedObject.total;
+    this.eventResponseList.results = this.reveivedObject.results;
+  } else {
+    console.warn('No events received from parent.');
   }
-)
-console.log( this.globalDate,
-  this.minLat,
-  this.minLong,
-  this.maxLat,
-  this.maxLong,);
 
-  let initialEventList = await this.openHttpClientService.getEvents(
-    this.globalDate,
-    -88,
-    -88,
-    88,
-    88,
-    this.eventTypes as any
-  );
+}
 
-  console.log(initialEventList);
-  
+
+ngOnChanges(changes: SimpleChanges) {
+  if (changes['events'] && changes['events'].currentValue) {
+    console.log('Received events via @Input():', this.events);
+  }
 }
 
 }
