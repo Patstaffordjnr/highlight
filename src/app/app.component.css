@@ -23,5 +23,7 @@
   }
   .footer-container {
     flex-shrink: 0;
+    /* transform: translateY(-32px); */
+    z-index: -1;
   }
   

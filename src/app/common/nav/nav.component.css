@@ -1,5 +1,6 @@
 .nav-div{
   /* margin-left: 0px; */
+ 
 }
 
 *{
@@ -11,6 +12,7 @@
   font-weight: bold;
   display: flex;
   white-space: nowrap;
+  
 }
 
 i{
@@ -30,6 +32,7 @@ position: relative;
 width: 100%;
 height: 70px;
 overflow: hidden;
+margin-top: -32px;
 }
 
 .slider-inner{
@@ -74,14 +77,23 @@ i.profile{
 
 /* SM - Small tablets */
 @media (min-width: 576px) {
+  .slider {
+    margin-top: 0
+    }
 }
 
 /* MD - Tablets */
 @media (min-width: 768px) {
+  .slider {
+    margin-top: 0
+    }
 } 
 
 /* LG - Small laptops */
 @media (min-width: 992px) {
+  .slider {
+    margin-top: 0
+    }
 }
 
 /* XL - Desktops */
@@ -90,6 +102,9 @@ i.profile{
     width: 100%;
     display: flex;
   }
+  .slider {
+    margin-top: 0
+    }
   .slider-inner{
     /* background-color: forestgreen; */
     width: 103%;
@@ -103,6 +118,9 @@ i.profile{
     width: 100%;
     display: flex;
   }
+  .slider {
+    margin-top: 0
+    }
   
   .slider-inner{
     width: 100%;

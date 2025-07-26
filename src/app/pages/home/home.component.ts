@@ -12,6 +12,9 @@ import { EventType } from 'src/app/model/event-types';
 })
 export class HomeComponent implements OnInit {
 
+  currentIndex = 0;
+  noOfPages = 8;
+
   showDateControls = false;
   globalDate = new Date();
   mapDetails: String[] = [];

@@ -8,6 +8,8 @@
     display: flex;
     flex-direction: column;
     padding-bottom: 8px;
+    /* background-color: purple; */
+
   }
   
   /* First Row */
@@ -20,7 +22,7 @@
     display: flex;
     justify-content: flex-start;
     text-align: left;
-    width: 25%;
+    width: 50%;
   }
   
   .address {
@@ -31,19 +33,22 @@
     display: flex;
     justify-content: flex-end;
     font-weight: bolder;
-    width: 25%;
+    width: 50%;
+    /* background-color: aquamarine; */
   }
   
   .home-control-genre {
-    width: 25%;
+    padding-top: 16px;
+    width: 100%;
     margin-left: auto;
+    /* background-color: blue; */
   }
   
   .genre {
     display: flex;
-    justify-content: space-between;
-    max-width: 800px;
-    margin-top: -6px;
+    justify-content: space-around;
+    /* max-width: 800px; */
+    /* margin-top: -6px; */
   }
   
   .genre-item {
@@ -61,50 +66,78 @@
   }
   
   .home-control-search {
-    background-color: yellow;
-    width: 25%;
+    /* background-color: yellow; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .search {
     white-space: nowrap;
     font-weight: bolder;
-    width: 100%;
   }
   
   .search input[type="text"] {
-    width: 100%;
     box-sizing: border-box;
     font-size: 1rem;
+  
   }
   
   .home-control-distance {
+
     display: flex;
-    justify-content: flex-end;
-    margin-left: auto;
+    width: 33%;
+    /* background-color: hotpink; */
+    justify-content: center;
+    align-items: center;
+    /* flex-direction: column; */
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+  }
+  .distance{
+    /* background-color: chocolate; */
+    width: auto;
+
   }
   
-  .home-control-timeLength {
+  .home-control-within {
     display: flex;
-    justify-content: flex-end;
+    width: 33%;
+    /* background-color: lawngreen; */
+    justify-content: center;
+    align-items: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    
+  }
+
+  .within{
+
   }
   
   .home-control-sort {
     display: flex;
-    justify-content: flex-end;
+    width: 33%;
+    /* background-color: darkblue; */
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
   
-  /* Calendar */
+  .sort{
+
+  }
+
   .calendar-container {
     display: flex;
     justify-content: center;
   }
   
   .calendar {
-    /* Add styles if needed */
     font-size: x-small;
   }
-  
-  /* Genre Buttons */
+
   .all-button,
   .band-button,
   .busker-button,
@@ -166,4 +199,164 @@
   .performance-button-selected {
     border-color: green;
   }
+  
+
+   /* SM - Small tablets */
+   @media (min-width: 576px) {
+    .home-control {
+      /* background-color: orangered; */
+    }
+  }
+  
+  
+  /* MD - Tablets */
+  @media (min-width: 768px) {
+    .home-control {
+      /* background-color: mediumblue; */
+    }
+    .home-control-genre {
+      width: 25%;
+      margin-left: auto;
+      /* background-color: blue; */
+    }
+    .genre {
+      display: flex;
+      justify-content: space-between;
+    }
+
+  } 
+  
+  /* LG - Small laptops */
+  @media (min-width: 992px) {
+    .home-control {
+      /* background-color: cyan; */
+    }
+    .home-control-genre {
+      width: 25%;
+      margin-left: auto;
+      /* background-color: blue; */
+    }
+    .genre {
+      display: flex;
+      justify-content: space-between;
+    }
+
+  }
+  
+  /* XL - Desktops */
+  @media (min-width: 1200px) {
+    .home-control {
+      /* background-color: lightblue; */
+    }
+    .home-control-genre {
+      width: 25%;
+      margin-left: auto;
+      /* background-color: blue; */
+    }
+    .genre {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    }
+  
+  /* XXL - Large screens / 4K */
+  @media (min-width: 1400px) {
+    .home-control {
+      /* background-color: darksalmon; */
+    }
+
+    .home-control-address {
+      display: flex;
+      justify-content: flex-start;
+      text-align: left;
+      width: 50%;
+    }
+    
+    .address {
+      font-weight: bolder;
+    }
+    
+    .home-control-global-date {
+      display: flex;
+      justify-content: center;
+      font-weight: bolder;
+      width: 25%;
+      /* background-color: aquamarine; */
+    }
+
+    .global-date{
+
+    }
+    
+    .home-control-genre {
+      /* padding-top: 16px; */
+      width: 25%;
+      margin-left: auto;
+      /* background-color: blue; */
+      
+    }
+    
+    .genre {
+      display: flex;
+      justify-content: space-between;
+      /* max-width: 800px; */
+      margin-top: -16px;
+    }
+
+  .home-control-search {
+    /* background-color: yellow; */
+    width: 50%;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    
+  }
+  
+  .search {
+ 
+    white-space: nowrap;
+    font-weight: bolder;
+  }
+  
+  .search input[type="text"] {
+    box-sizing: border-box;
+    font-size: 1rem;
+    width: 200%;
+  }
+  
+  .home-control-distance {
+    display: flex;
+    /* background-color: coral; */
+    width: 12.5%;
+    /* background-color: hotpink; */
+    justify-content: right;
+    align-items: center;
+
+  }
+  .distance{
+    /* background-color: aquamarine; */
+  }
+  
+  .home-control-within {
+    width: 12.5%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    /* background-color: bisque; */
+  }
+
+  .within{
+  }
+  
+  .home-control-sort {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 25%;
+  }
+  .sort{
+  }
+
+  } 
   

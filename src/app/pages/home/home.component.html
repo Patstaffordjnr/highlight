@@ -1,13 +1,18 @@
-<div class = "home-div-container">
-<div class = "home-div">
-    <div class = "home-event-table-controls">
-        <app-events-table-control class = "controls"></app-events-table-control>
+        <div class = "item-1-container">
+        <div class = "item-1">
+            <app-map class = "map"></app-map>  
+        </div>
+        </div>
+        <div class = "item-2-container">
+        <div class = "item-2">
+          <app-events-table-control class = "controls"></app-events-table-control>
+        </div>
+        </div>
+        <br>
+        <div class = "item-3-container">
+        <div class = "item-3">
+            <!-- <app-common-events [events]="events"></app-common-events> -->
+          <!-- <app-events-table-control (selectGenre)="onGenreChange($event)"></app-events-table-control> -->
+                 <app-common-events [events]="events"></app-common-events>
+        </div>
     </div>
-    <div class = "home-map">
-        <app-map class = "map"></app-map>
-    </div>
-</div>
-
-
-
-

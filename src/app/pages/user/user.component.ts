@@ -3,6 +3,8 @@ import { User } from 'src/app/model/user';
 import { AuthService } from 'src/app/util/auth.service';
 import { CurrentUserService } from '../../util/can-activate.service'
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
+import { EventType } from 'src/app/model/event-types';
 
 @Component({
   selector: 'app-user',
@@ -16,18 +18,39 @@ export class UserComponent {
     email: "string",
     roles: [],
   };
-
+  events: Event[] = [];
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private currentUserService: CurrentUserService) {
+  constructor(private formBuilder: FormBuilder, private currentUserService: CurrentUserService, private openHttpClientService: OpenHttpClientService) {
 
     // this.form = this.formBuilder.group({
     //   email: ['busker@dumb.com'],
     //   password: ['dumb'],
     // });
+
+    this.openHttpClientService.getEvents(
+      new Date(2025, 6, 6, 23, 0, 0),
+      -88,
+      -88
+      ,80
+      ,80,
+      [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
+    ).subscribe({
+      next: (events: Event[]) => {
+  
+        // 'events' here IS your complete list of Event[]
+        // console.log('Successfully extracted events:', events);
+        this.events = events; // Assign the full list to your component property
+      },
+      error: (error) => {
+        // console.error('Error fetching events:', error);
+      },
+    });
   }
 
   async ngOnInit() {
+
+    
 
     let user = await this.currentUserService.getUser()
 
@@ -51,4 +74,6 @@ export class UserComponent {
     }
     })
   }
+
+  
 }

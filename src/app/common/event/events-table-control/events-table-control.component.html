@@ -33,7 +33,6 @@
     </div>
   </div>
   </div>
-  
 </div>
   <div class = "control-row-two"> 
   <div class = "home-control-search">
@@ -42,26 +41,32 @@
       </div>
       </div>
   <div class = "home-control-distance">
+    <div class = "distance">
       <label for="distance">Distance :&nbsp;</label>
       <select id="distance" [(ngModel)]="selectedDistance" name="distance">
       <option *ngFor="let d of distances" [value]="d">{{d}} km</option>
       </select>&nbsp;
+    </div>
   </div>
-  <div class = "home-control-timeLength">
+  <div class = "home-control-within">
+    <div class = "within">
       <label for="within-select">Within : &nbsp;</label>
       <select id="within-select" [(ngModel)]="selectedWithin" name="within">
         <option *ngFor="let option of withinOptions" [value]="option.value">
           {{ option.label }}
         </option>
       </select>&nbsp;
+    </div>
   </div>
   <div class = "home-control-sort">
+    <div class = "sort">
       <label for="sort-select">Sort by : &nbsp;</label>
       <select id="sort-select" [(ngModel)]="selectedSort" name="sort">
       <option *ngFor="let option of sortOptions" [value]="option.value">
       {{ option.label }}
       </option>
       </select>
+    </div>
   </div>
 </div>
 </div>
