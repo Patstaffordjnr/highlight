@@ -51,7 +51,6 @@
     }
 
     .event-grid {
-      /* background-color: coral; */
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -83,8 +82,7 @@
       height: 100px;
       border-radius: 30% 10% 30% 10%;
       overflow: hidden;
-      /* background-color: aqua; */
-    border: 8px solid whitesmoke;
+    border: 6px solid whitesmoke;
     }
     
     .event-profile-image {
@@ -96,24 +94,6 @@
       height: 100%;
       object-fit: cover;
     }
-
-    /* .event-profile-image-container {
-      width: 100px;
-      height: 100px;
-      border-radius: 60% 10% 10% 10%;
-      overflow: hidden;
-    }
-    
-    .event-profile-image {
-    background-color: aquamarine;
-    border: 8px solid whitesmoke;
-    height: 75px;
-    width: 75px;
-    border-radius: 50%;
-    text-align: center;
-    align-items: center;
-
-    } */
     
     .event-user-name-container {
     background-color: none;
@@ -121,7 +101,7 @@
     
     .event-user-name {
     background-color: none;
-    font-weight: bold;
+    /* font-weight: bold; */
     }
     
     .event-type-container {
@@ -166,7 +146,7 @@
     }
     
     .event-start-date {
-    font-weight: bold;
+    /* font-weight: bold; */
     background-color: none;
     }
     
@@ -186,7 +166,7 @@
     
     .event-start-time {
     background-color: none;
-    font-weight: bold;
+    /* font-weight: bold; */
     }
     
     .event-finish-date-text-container {
@@ -206,7 +186,8 @@
     
     .event-finish-date {
     background-color: none;
-    font-weight: bold;
+    /* font-weight: bold; */
+    
     }
     
     .event-finish-date-container {
@@ -229,7 +210,8 @@
     
     .event-finish-time {
     background-color: none;
-    font-weight: bold;
+    /* font-weight: bold; */
+
     }
     
     .right {
@@ -321,11 +303,9 @@
         display: none;
       }
       .event-item {
-        
         flex: 1 1 calc(25% - 32px);
         min-height: calc(50% - 8px);
         border: 6px solid whitesmoke;
-        /* background-color: azure;         */
       }
   
   } 

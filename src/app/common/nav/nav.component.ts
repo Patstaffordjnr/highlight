@@ -97,15 +97,6 @@ export class NavComponent implements OnInit, AfterViewInit {
 
   }
 
- 
-  
-  toggleMenu() {
-    this.menuVisible = !this.menuVisible;
-    if(this.menuVisible == true) {
-      console.log(this.menuVisible);
-      
-    }
-  }
 
   logout() {
     this.authService.logout();

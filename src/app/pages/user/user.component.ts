@@ -5,6 +5,7 @@ import { CurrentUserService } from '../../util/can-activate.service'
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
 import { EventType } from 'src/app/model/event-types';
+import { UserProfileComponent } from 'src/app/common/user-profile/user-profile.component';
 
 @Component({
   selector: 'app-user',

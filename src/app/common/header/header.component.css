@@ -4,22 +4,21 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
-
 }
 .header-container {
    justify-content: center;
-
 }
+
 .header-image {
   max-width: 175px;
   height: auto;
-
 }
+
 .nav-container {
   width: 80%; 
   justify-content: center;
-
 }
+
 .silver-divider {
   position: relative;
   border: none;

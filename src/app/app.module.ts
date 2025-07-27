@@ -25,6 +25,7 @@ import { EventsTableControlComponent } from './common/event/events-table-control
 import { EventsComponent } from './pages/events/events.component';
 import { GlobalDateService } from './pages/home/global-date.service';
 import { CommonEventsComponent } from './common/events/common-events.component';
+import { UserProfileComponent } from './common/user-profile/user-profile.component';
 
 
 @NgModule({ declarations: [
@@ -42,7 +43,9 @@ import { CommonEventsComponent } from './common/events/common-events.component';
         MapComponent,
         ProgressBarComponent,
         UserComponent,
-        EventsTableControlComponent
+        EventsTableControlComponent,
+        
+        
     ],
     bootstrap: [
         AppComponent],
@@ -54,7 +57,8 @@ import { CommonEventsComponent } from './common/events/common-events.component';
         ReactiveFormsModule,
         DragDropModule,
         EventsTableComponent,
-        CommonEventsComponent
+        CommonEventsComponent,
+        UserProfileComponent
 
     ],
         

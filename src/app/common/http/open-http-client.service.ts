@@ -22,8 +22,7 @@ export class OpenHttpClientService {
     maxLat: number,
     maxLong: number,
     eventTypes: EventType[]
-  ): Observable<Event[]> { // Replace 'any' with a specific interface for your event data
-    // Create HttpParams to build the query string safely
+  ): Observable<Event[]> {
     let params = new HttpParams()
       .set('time', time.toISOString())
       .set('minLat', minLat.toString())
@@ -31,15 +30,12 @@ export class OpenHttpClientService {
       .set('maxLat', maxLat.toString())
       .set('maxLong', maxLong.toString());
 
-    // Add multiple 'eventTypes' parameters
     eventTypes.forEach(type => {
       params = params.append('eventTypes', type);
     });
 
-    // Construct the full URL
     const url = `${URL}/getEvents`;
 
-    // Make the GET request and return the Observable
     return this.http.get<Event[]>(url, { params: params });
   }
 }
