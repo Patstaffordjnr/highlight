@@ -1,4 +1,4 @@
-import { Component, OnInit ,ChangeDetectorRef, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit ,ChangeDetectorRef, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { PageListResponse } from '../event/page-list-response'; 
 import { EventsClient } from '../event/events-client'; 
 import { MapService } from '../map/map-service'; 
@@ -54,6 +54,7 @@ eventResponseList: PageListResponse = {
 };
 
 @Input() events: Event[] = [];
+@Output() selectedEvent = new EventEmitter<Event>();
 
 constructor (private globalDateService: GlobalDateService, private openHttpClientService: OpenHttpClientService, private mapService: MapService, private formBuilder: FormBuilder, private eventsClient: EventsClient, private eventService: EventService,  private http: HttpClient, private cdRef: ChangeDetectorRef) {
   this.form = this.formBuilder.group({
@@ -61,13 +62,15 @@ constructor (private globalDateService: GlobalDateService, private openHttpClien
   });
 }
 
+
+
 async ngOnInit() {
   if (this.events?.length) {
     this.reveivedObject = this.events;
     this.eventResponseList.total = this.reveivedObject.total;
     this.eventResponseList.results = this.reveivedObject.results;
   } else {
-    console.warn('No events received from parent.');
+    // console.warn('No events received from parent.');
   }
 
 }
@@ -75,8 +78,22 @@ async ngOnInit() {
 
 ngOnChanges(changes: SimpleChanges) {
   if (changes['events'] && changes['events'].currentValue) {
-    console.log('Received events via @Input():', this.events);
+    // console.log('Received events via @Input():', this.events);
   }
 }
 
+
+onSelect(event: Event) {
+  // console.log(event);
+  this.selectedEvent.emit(event);
+  return this.selectedEvent;
 }
+
+  // this.event = event;
+
+  // this.eventDisplay(this.selectedEvent);
+  // return this.selectedEvent;
+}
+
+
+

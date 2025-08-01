@@ -1,0 +1,9 @@
+
+<div class = "event-modal" *ngIf="isOpen" [event]="event">
+    <div class="item-1">
+    <button class="close-btn" (click)="onClose()">×</button>
+    <ng-content></ng-content>
+    </div>
+</div>
+
+

@@ -26,7 +26,7 @@ import { EventsComponent } from './pages/events/events.component';
 import { GlobalDateService } from './pages/home/global-date.service';
 import { CommonEventsComponent } from './common/events/common-events.component';
 import { UserProfileComponent } from './common/user-profile/user-profile.component';
-
+import { EventModalComponent } from './common/event/event-modal/event-modal.component';
 
 @NgModule({ declarations: [
         //Pages,
@@ -58,8 +58,8 @@ import { UserProfileComponent } from './common/user-profile/user-profile.compone
         DragDropModule,
         EventsTableComponent,
         CommonEventsComponent,
-        UserProfileComponent
-
+        UserProfileComponent,
+        EventModalComponent
     ],
         
         providers: [

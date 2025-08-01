@@ -1,41 +1,4 @@
-/* .home-div-container {
-  width: 100vw;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.home-div {
-  width: 85vw;
-  height: 90%;
-}
-.home-event-table-controls{
-
-}
-.controls{
-
-}
-
-.home-map{
-  width: 100%;
-  height: 100%;
-  padding-bottom: 16px;
-}
-
-.map{
-} */
-
-/* .home{
-  width: 100vw;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  font-family: Arial, Helvetica, sans-serif;
-
-} */
 .item-1-container {
-  /* background-color: coral; */
   height: 75vh;
   width: 100vw;
   display: flex;
@@ -45,7 +8,7 @@
 .item-1 {
   width: 85%;
   height: 95%;
-  /* padding-bottom: 16px; */
+  z-index: 0;
 }
 
 .item-2-container{
@@ -53,57 +16,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* padding-top: 32px; */
-
 
 }
 .item-2{
   width: 85vw;
-  /* background-color: blue; */
-  
-
 }
 
 .item-3-container{
-  /* padding-top: 32px; */
-  /* width: 100vw; */
   width: 100vw;
-  /* height: 25%; */
   display: flex;
   justify-content: center;
-  /* padding-top: 16px; */
-  /* background-color: chartreuse; */
     height: 70vh;
-
 }
 .item-3{
   width: 85vw;
-  /* height: 100%; */
-  /* background-color: aqua; */
-
 }  
 
-
-
-/* .item-1-container {
-  width: 100vw;
-  display: flex;
-  justify-content: center;
+.modal{
+  z-index: 1;
 }
-
-.item-1 {
-  width: 85vw;
-}
-
-.item-2-container{
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-}
-.item-2{
-  width: 85vw;
-} */
-  
   
   /* SM - Small tablets */
   @media (min-width: 576px) {

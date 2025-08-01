@@ -76,5 +76,8 @@ export class UserComponent {
     })
   }
 
+  onSelect(event: Event) {
+    console.log('Received Event: User;', event);
+  }
   
 }

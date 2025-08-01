@@ -22,13 +22,13 @@
 }
   
 .address {
-  /* font-weight: bolder; */
+  font-weight: bolder;
 }
   
 .home-control-global-date {
   display: flex;
   justify-content: flex-end;
-  /* font-weight: bolder; */
+  font-weight: bolder;
   width: 50%;
 }
   

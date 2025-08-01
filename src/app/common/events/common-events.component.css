@@ -101,7 +101,7 @@
     
     .event-user-name {
     background-color: none;
-    /* font-weight: bold; */
+    font-weight: bold;
     }
     
     .event-type-container {
@@ -143,11 +143,12 @@
     
     .event-start-date-container {
     background-color: none;
+    padding-right: 16px;
     }
     
     .event-start-date {
-    /* font-weight: bold; */
     background-color: none;
+    font-weight: bold;
     }
     
     .event-start-time-text {
@@ -162,14 +163,15 @@
     .event-start-time-container {
     background-color: none;
     justify-content: left;
+    font-weight: bold;
     }
     
     .event-start-time {
     background-color: none;
-    /* font-weight: bold; */
     }
     
     .event-finish-date-text-container {
+      /* background-color: aquamarine; */
     background-color: none;
     justify-content: left;
     padding-left: 10px;
@@ -181,13 +183,12 @@
     
     .event-finish-date-container {
     background-color: none;
-    justify-content: left;
+    padding-right: 16px;
     }
     
     .event-finish-date {
     background-color: none;
-    /* font-weight: bold; */
-    
+    font-weight: bold;
     }
     
     .event-finish-date-container {
@@ -210,8 +211,7 @@
     
     .event-finish-time {
     background-color: none;
-    /* font-weight: bold; */
-
+    font-weight: bold;
     }
     
     .right {

@@ -6,6 +6,10 @@
     min-width: 100vw;
     padding: 0px;
     padding-left: 0px;
+    /* background-color: black; */
+
+      
+    
   }
 
   .header-container {
@@ -13,6 +17,9 @@
     min-width: 100vw;
     padding: 0px;
     padding-left: 0px;
+    font-weight: bolder;
+    font-size: large;
+    /* background-color: aquamarine; */
   }
   
   .content-container {
@@ -20,6 +27,8 @@
     display: flex;
     justify-content: center;
     align-items: stretch;
+    /* background-color: chocolate; */
+
   }
   .footer-container {
     flex-shrink: 0;

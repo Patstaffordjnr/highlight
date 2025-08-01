@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 })
 
 export class EventsTableComponent implements OnInit {
+  
 
   eventsAddressIndexed = []
   eventLatArray = [];

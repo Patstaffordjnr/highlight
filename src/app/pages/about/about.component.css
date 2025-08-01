@@ -1,0 +1,16 @@
+.about{
+    /* background-color: darkorchid; */
+    height: 75vh;
+    width: 85vw;
+
+}
+
+.item-1{
+    /* background-color: aquamarine; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+    width: 85vw;
+
+}

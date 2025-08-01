@@ -5,12 +5,18 @@ import { Subscription } from 'rxjs';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
 import { EventType } from 'src/app/model/event-types';
 
+import { EventModalComponent } from 'src/app/common/event/event-modal/event-modal.component';
+
+
 @Component({
   selector: 'app-home',
+  // standalone: true,
+  // imports: [],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
+  showModal = false;
 
   currentIndex = 0;
   noOfPages = 8;
@@ -43,6 +49,7 @@ export class HomeComponent implements OnInit {
   selectedWithin: number = 1; 
 
   events: Event[] = [];
+  event: Event;
   
   private subscription!: Subscription;
 
@@ -134,4 +141,11 @@ onDateSelected(selectedDate: Date): void {
     console.log(`Home Calendar Select Date: ${updatedGlobalDate}`);
   }
 }
+
+onSelect(event: Event) {
+  console.log('Received Event: Home;', event);
+  this.event = event;
+  this.showModal = true;
+}
+
 }

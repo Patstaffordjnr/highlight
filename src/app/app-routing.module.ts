@@ -11,6 +11,10 @@ import { EditEventsComponent } from './pages/edit-events/edit-events.component';
 import { EditUsersComponent } from './pages/edit-users/edit-users.component';
 import { CalendarComponent } from './common/calendar/calendar.component';
 import { EventsComponent } from './pages/events/events.component';
+import { BuskerComponent } from './pages/busker/busker.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { BuskersComponent } from './pages/buskers/buskers.component';
+import { AboutComponent } from './pages/about/about.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,6 +28,10 @@ const routes: Routes = [
   { path: 'editevents', component: EditEventsComponent},
   { path: 'editusers', component: EditUsersComponent},
   { path: 'calendar', component: CalendarComponent},
+  { path: 'busker', component: BuskerComponent},
+  { path: 'admin', component: AdminComponent},
+  { path: 'buskers', component: BuskersComponent},
+  { path: 'about', component: AboutComponent},
 ];
 
 @NgModule({
