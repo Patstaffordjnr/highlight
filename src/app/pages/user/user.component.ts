@@ -13,6 +13,8 @@ import { UserProfileComponent } from 'src/app/common/user-profile/user-profile.c
   styleUrl: './user.component.css'
 })
 export class UserComponent {
+  showModal = false;
+  
   userRoles = [];
     currentUser: User = {
     id: "string",
@@ -21,6 +23,9 @@ export class UserComponent {
   };
   events: Event[] = [];
   form: FormGroup;
+
+  event: Event;
+  
 
   constructor(private formBuilder: FormBuilder, private currentUserService: CurrentUserService, private openHttpClientService: OpenHttpClientService) {
 
@@ -76,8 +81,13 @@ export class UserComponent {
     })
   }
 
+
+
   onSelect(event: Event) {
-    console.log('Received Event: User;', event);
+    console.log('Received Event: Home;', event);
+    this.event = event;
+    this.showModal = true;
   }
+  
   
 }

@@ -40,11 +40,16 @@
 .map {
   height: 100%;
   width: 100%;
+  z-index: 0;
 }
 
 .events {
   height: 100%;
   width: 100%;
+}
+
+.modal{
+  z-index: 1;
 }
 
 /* Responsive Breakpoints */
