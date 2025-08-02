@@ -1,5 +1,5 @@
 .item-1-container {
-  height: 75vh;
+  height: 50vh;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -36,8 +36,6 @@
   z-index: 1;
 }
 
-
-
 .modal-item-1{
   border-radius: 25px;
   border: 6px solid whitesmoke;
@@ -62,8 +60,8 @@
   background-color: white;
   border-radius: 25px;
   border: 6px solid whitesmoke;
-      min-height: 300px;
-    min-width: 300px;
+  min-height: 300px;
+  min-width: 300px;
 }
 
 
@@ -87,6 +85,19 @@
   
   /* XXL - Large screens / 4K */
   @media (min-width: 1400px) {
+    .item-1-container {
+  height: 75vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.item-1 {
+  width: 85%;
+  height: 95%;
+  z-index: 0;
+}
+
 
   } 
   

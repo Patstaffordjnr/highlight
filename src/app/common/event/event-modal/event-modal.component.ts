@@ -1,24 +1,30 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-event-modal',
-  // standalone: true,
-  // imports: [CommonModule],
   templateUrl: './event-modal.component.html',
   styleUrl: './event-modal.component.css'
 })
-export class EventModalComponent{
-
+export class EventModalComponent {
   @Input() isOpen = false;
   @Output() close = new EventEmitter<void>();
-
   @Input() event: Event;
+
+  @ViewChild('modalContent', { static: false }) modalContentRef!: ElementRef;
 
   onClose() {
     this.close.emit();
-        // this.event = null;
-    console.log(`Close Modal`);
   }
 
+  onBackdropClick(event: MouseEvent) {
+    const modalEl = this.modalContentRef?.nativeElement;
+
+    // Click is outside the modal content
+    if (modalEl && !modalEl.contains(event.target)) {
+      this.onClose(); // or any custom logic
+      console.log('Clicked outside modal content');
+    } else {
+      console.log('Clicked inside modal content');
+    }
+  }
 }

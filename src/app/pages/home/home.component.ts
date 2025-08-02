@@ -102,7 +102,17 @@ export class HomeComponent implements OnInit {
       if(globalDate) {
           this.globalDate = globalDate;
       }
+
+      
   })
+}
+
+ngOnChanges() {
+  if (this.showModal) {
+    document.body.classList.add('no-scroll');
+  } else {
+    document.body.classList.remove('no-scroll');
+  }
 }
   
 toggleDateControls() {
@@ -148,4 +158,7 @@ onSelect(event: Event) {
   this.showModal = true;
 }
 
+onClick(a){
+  console.log(a);
+}
 }
