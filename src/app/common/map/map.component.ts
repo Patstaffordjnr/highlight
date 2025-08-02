@@ -1,4 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+
 import * as L from 'leaflet';
 import { MapService } from './map-service';
 
@@ -7,31 +9,38 @@ import { MapService } from './map-service';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit, OnDestroy {
+export class MapComponent implements AfterViewInit, OnDestroy {
   private map: L.Map | undefined;
+
+@ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
 
   constructor(private mapService: MapService) {}
 
-  ngOnInit(): void {
-    this.initMap(); 
+ngAfterViewInit(): void {
+  this.initMap();
+}
+
+private initMap(): void {
+  if (this.map) {
+    this.map.remove();
+    this.map = null;
   }
 
-  private initMap(): void {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const userLatitude = position.coords.latitude;
-          const userLongitude = position.coords.longitude;
-          this.loadMap(userLatitude, userLongitude);
-        },
-        () => {
-          this.loadMap(52.2593, -7.1101);
-        }
-      );
-    } else {
-      this.loadMap(52.2593, -7.1101);
-    }
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const userLatitude = position.coords.latitude;
+        const userLongitude = position.coords.longitude;
+        this.loadMap(userLatitude, userLongitude);
+      },
+      () => {
+        this.loadMap(52.2593, -7.1101); // fallback
+      }
+    );
+  } else {
+    this.loadMap(52.2593, -7.1101);
   }
+}
 
   private updateMapService(): void {
   if (!this.map) return;
@@ -50,23 +59,27 @@ export class MapComponent implements OnInit, OnDestroy {
 }
 
   private loadMap(lat: number, lng: number): void {
-    this.map = L.map('map', {
-      center: [lat, lng],
-      zoom: 13
-    });
+  this.map = L.map(this.mapContainer.nativeElement, {
+    center: [lat, lng],
+    zoom: 13
+  });
 
-    let bounds = this.map.getBounds();
-    let minLat = bounds.getSouth();
-    let maxLat = bounds.getNorth();
-    let minLong = bounds.getWest();
-    let maxLong = bounds.getEast();
+  setTimeout(() => {
+    this.map!.invalidateSize();
+  }, 0);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(this.map);
+  let bounds = this.map.getBounds();
+  let minLat = bounds.getSouth();
+  let maxLat = bounds.getNorth();
+  let minLong = bounds.getWest();
+  let maxLong = bounds.getEast();
 
-    const marker = L.marker([lat, lng]).addTo(this.map);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(this.map);
+
+  const marker = L.marker([lat, lng]).addTo(this.map);
 
   this.updateMapService();
 
@@ -79,22 +92,21 @@ export class MapComponent implements OnInit, OnDestroy {
     console.log('Address:', res.display_name);
   });
 
-    this.map.on('click', (event: L.LeafletMouseEvent) => {
-      console.log('Map clicked at:', event.latlng);
-    });
-    let addressString: string; 
+  this.map.on('click', (event: L.LeafletMouseEvent) => {
+    console.log('Map clicked at:', event.latlng);
+  });
 
-    this.mapService.getAddressFromCoords(lat, lng).subscribe(res => {
-      addressString = res.display_name;
-    });
-
+  let addressString: string;
+  this.mapService.getAddressFromCoords(lat, lng).subscribe(res => {
+    addressString = res.display_name;
     this.mapService.updateEvent(bounds, minLat, maxLat, minLong, maxLong, addressString);
+  });
+}
 
+ngOnDestroy(): void {
+  if (this.map) {
+    this.map.remove();
+    this.map = null;
   }
-
-  ngOnDestroy(): void {
-    if (this.map) {
-      this.map.remove();
-    }
-  }
+}
 }

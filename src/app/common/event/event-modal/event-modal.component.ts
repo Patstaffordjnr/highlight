@@ -17,7 +17,7 @@ export class EventModalComponent{
 
   onClose() {
     this.close.emit();
-        this.event = null;
+        // this.event = null;
     console.log(`Close Modal`);
   }
 
