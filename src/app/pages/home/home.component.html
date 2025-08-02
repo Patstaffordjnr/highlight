@@ -1,4 +1,4 @@
-<div class = home>
+<div  class = "home" [ngClass]="{'disable-interaction': showModal}">
 <div class = "item-1-container">
 <div class = "item-1">
 <app-map  class = "map"></app-map>  
@@ -10,12 +10,12 @@
 </div>
 </div>
 <br>
-<div class = "item-3-container">
+<div  class = "item-3-container">
 <div class = "item-3">
 <!-- <app-events-table-control (selectGenre)="onGenreChange($event)"></app-events-table-control> -->
 <app-common-events [events]="events" (selectedEvent)="onSelect($event)"></app-common-events>
 </div>
 </div>
 </div>
-<app-event-modal  class = "modal" [isOpen]="showModal" (close)="showModal = false" [event]="event">
+<app-event-modal  *ngIf = "showModal" class = "modal" [isOpen]="showModal" (close)="showModal = false" [event]="event">
 </app-event-modal>

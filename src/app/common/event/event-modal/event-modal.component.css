@@ -1,14 +1,8 @@
 
 .close-btn {
-/* position: absolute;
-top: 10px;
-right: 10px; */
 }
 
 .event-modal{
-/* padding-top: 72px;
-padding-bottom: 72px; */
-background-color: black;
 position: fixed;
 top: 0;
 left: 0;
@@ -19,6 +13,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+padding-top: 32px;
 }
 
 .item-1 {
@@ -33,8 +28,8 @@ height: 100%;
 width: 100%;
 z-index: 9;
 }
-.a{
-    height: 100vw;
+.mapContainer{
+height: 100vw;
 width: 100%;
 background-color: beige;
 min-height: 300px;
@@ -51,4 +46,95 @@ min-height: 300px;
 min-width: 300px;
 max-height: 300px;
 max-width: 300px;
+}
+
+.item-2-profile {
+  background-color: red;
+  margin: 0px;
+}
+
+.profile {
+  margin: 0px;
+}
+
+
+.item-2-title {
+  background-color: beige;
+  margin: 0px;
+}
+
+.title {
+  margin: 0px;
+}
+
+.item-2-type {
+  background-color: aqua;
+  margin: 0px;
+}
+
+.type {
+  margin: 0px;
+}
+
+.item-2-lat {
+  background-color: crimson;
+  margin: 0px;
+}
+
+.lat {
+  margin: 0px;
+}
+
+.item-2-lng {
+  background-color: blue;
+  margin: 0px;
+}
+
+.lng {
+  margin: 0px;
+}
+
+.item-2-start {
+  background-color: darkorange;
+  margin: 0px;
+}
+
+.start {
+  margin: 0px;
+}
+
+.item-2-end {
+  background-color: dodgerblue;
+  margin: 0px;
+}
+
+.end {
+  margin: 0px;
+}
+
+.item-2-created {
+  background-color: gold;
+  margin: 0px;
+}
+
+.created {
+  margin: 0px;
+}
+
+.item-2-updated {
+  background-color: gainsboro;
+  margin: 0px;
+}
+
+.updated {
+  margin: 0px;
+}
+
+.item-2-id {
+  background-color: cyan;
+  margin: 0px;
+}
+
+.id {
+  margin: 0px;
 }

@@ -21,10 +21,10 @@ export class EventModalComponent {
 
     // Click is outside the modal content
     if (modalEl && !modalEl.contains(event.target)) {
-      this.onClose(); // or any custom logic
-      console.log('Clicked outside modal content');
+      this.onClose(); 
+      // console.log('Clicked outside modal content');
     } else {
-      console.log('Clicked inside modal content');
+      // console.log('Clicked inside modal content');
     }
   }
 }

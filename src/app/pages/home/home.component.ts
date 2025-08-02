@@ -16,6 +16,7 @@ import { EventModalComponent } from 'src/app/common/event/event-modal/event-moda
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
+  
   showModal = false;
 
   currentIndex = 0;
@@ -86,7 +87,6 @@ export class HomeComponent implements OnInit {
     [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
   ).subscribe({
     next: (events: Event[]) => {
-
       // 'events' here IS your complete list of Event[]
       // console.log('Successfully extracted events:', events);
       this.events = events; // Assign the full list to your component property
@@ -102,18 +102,10 @@ export class HomeComponent implements OnInit {
       if(globalDate) {
           this.globalDate = globalDate;
       }
-
       
   })
 }
 
-ngOnChanges() {
-  if (this.showModal) {
-    document.body.classList.add('no-scroll');
-  } else {
-    document.body.classList.remove('no-scroll');
-  }
-}
   
 toggleDateControls() {
   console.log(`Ola`);
@@ -161,4 +153,6 @@ onSelect(event: Event) {
 onClick(a){
   console.log(a);
 }
+
+
 }
