@@ -26,7 +26,6 @@ export class UserComponent {
 
   event: Event;
   
-
   constructor(private formBuilder: FormBuilder, private currentUserService: CurrentUserService, private openHttpClientService: OpenHttpClientService) {
 
     // this.form = this.formBuilder.group({
@@ -56,8 +55,6 @@ export class UserComponent {
 
   async ngOnInit() {
 
-    
-
     let user = await this.currentUserService.getUser()
 
     this.currentUser.id = user.id;
@@ -80,8 +77,6 @@ export class UserComponent {
     }
     })
   }
-
-
 
   onSelect(event: Event) {
     console.log('Received Event: Home;', event);

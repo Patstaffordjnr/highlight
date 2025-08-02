@@ -47,24 +47,6 @@
   font-weight: normal;
   }
   
-  /* .event-grid {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  gap: 32px;
-  }
-  
-  .event-item {
-  border: 6px solid whitesmoke;
-  border-radius: 16px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-height: 320px;
-  max-width: 320px;
-  } */
-  
   .event-grid {
     display: flex;
     flex-wrap: wrap;

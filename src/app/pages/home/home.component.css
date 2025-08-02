@@ -35,6 +35,38 @@
 .modal{
   z-index: 1;
 }
+
+
+
+.modal-item-1{
+  border-radius: 25px;
+  border: 6px solid whitesmoke;
+  min-height: 300px;
+  min-width: 300px;
+    z-index: 2;
+}
+
+.map-modal{
+  z-index: 1000;
+  height: 300px;
+  width: 100%;
+}
+
+
+.a{
+  background-color: blue;
+  width: 150px;
+  height: 150px;
+}
+.modal-item-2{
+  background-color: white;
+  border-radius: 25px;
+  border: 6px solid whitesmoke;
+      min-height: 300px;
+    min-width: 300px;
+}
+
+
   
   /* SM - Small tablets */
   @media (min-width: 576px) {

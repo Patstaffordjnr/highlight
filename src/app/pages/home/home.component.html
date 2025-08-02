@@ -1,7 +1,7 @@
        <div class = home>
        <div class = "item-1-container">
         <div class = "item-1">
-            <app-map class = "map"></app-map>  
+            <app-map  class = "map"></app-map>  
         </div>
         </div>
         <div class = "item-2-container">
@@ -12,20 +12,10 @@
         <br>
         <div class = "item-3-container">
         <div class = "item-3">
-            <!-- <app-common-events [events]="events"></app-common-events> -->
           <!-- <app-events-table-control (selectGenre)="onGenreChange($event)"></app-events-table-control> -->
-                 <app-common-events [events]="events" (selectedEvent)="onSelect($event)"></app-common-events>
+          <app-common-events [events]="events" (selectedEvent)="onSelect($event)"></app-common-events>
         </div>
     </div>
   </div>
   <app-event-modal class = "modal" [isOpen]="showModal" (close)="showModal = false " [event]="event">
-    <p *ngIf="event">Title: {{ event.title }}</p>
-    <p  *ngIf="event">Type: {{event.eventType}}</p>
-    <p  *ngIf="event">Lat: {{event.lat}}</p>
-    <p  *ngIf="event">Lng: {{event.long}}</p>
-    <p  *ngIf="event">Start at: {{event.startAt}}</p>
-    <p  *ngIf="event">Finish at: {{event.endAt}}</p>
-    <p  *ngIf="event">Created at: {{event.createdAt}}</p>
-    <p  *ngIf="event">Updated at: {{event.updatedAt}}</p>
-    <p  *ngIf="event">ID: {{event.id}}</p>
-  </app-event-modal>
+</app-event-modal>

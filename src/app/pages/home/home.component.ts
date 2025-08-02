@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalDateService } from './global-date.service'
-import { MapService } from '../../common/map/map-service';
+// import { MapService } from '../../common/map/map-service';
 import { Subscription } from 'rxjs';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
 import { EventType } from 'src/app/model/event-types';
@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
   private subscription!: Subscription;
 
  constructor(private globalDateService: GlobalDateService,
-  private mapService: MapService,
+  // private mapService: MapService,
   private openHttpClientService: OpenHttpClientService) {
   this.globalDateService.globalDate$.subscribe((globalDate) => {
     if(globalDate) {

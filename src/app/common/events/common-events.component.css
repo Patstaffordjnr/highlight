@@ -250,6 +250,12 @@
     .table-controls-selected {
     background-color: black;
     }
+
+    .event-item.selected {
+      border: 2px solid #4caf50; /* Green or any other color */
+      background-color: #f9fff9;
+    }
+    
     
   /* SM - Small tablets */
   @media (min-width: 576px) {

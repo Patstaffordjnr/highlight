@@ -62,8 +62,6 @@ constructor (private globalDateService: GlobalDateService, private openHttpClien
   });
 }
 
-
-
 async ngOnInit() {
   if (this.events?.length) {
     this.reveivedObject = this.events;
@@ -72,9 +70,7 @@ async ngOnInit() {
   } else {
     // console.warn('No events received from parent.');
   }
-
 }
-
 
 ngOnChanges(changes: SimpleChanges) {
   if (changes['events'] && changes['events'].currentValue) {
@@ -82,17 +78,12 @@ ngOnChanges(changes: SimpleChanges) {
   }
 }
 
-
 onSelect(event: Event) {
   // console.log(event);
   this.selectedEvent.emit(event);
   return this.selectedEvent;
 }
 
-  // this.event = event;
-
-  // this.eventDisplay(this.selectedEvent);
-  // return this.selectedEvent;
 }
 
 
