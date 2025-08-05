@@ -1,5 +1,5 @@
 
-    <div class="event-modal" *ngIf="isOpen" (click)="onBackdropClick($event)">
+<div class="event-modal" *ngIf="isOpen" (click)="onBackdropClick($event)">
   <div #modalContent>
     <div class="item-1">
       <div class="mapContainer">
@@ -8,45 +8,69 @@
     </div>
     <br>
       <div class="item-2">
+        <div class = "item-2-container">
           <div class="item-2-profile">
-          <p class="profile">Title: {{ event.title }}</p>
+          <p class="profile">
+           <!-- <img src="/assets/userprofile.jpg" class = "user-profile-img" alt="image" > -->
+          <a>img</a>
+           </p>
          </div>
-
-        <div class="item-2-title">
-          <p class="title">Title: {{ event.title }}</p>
+        <div class="item-2-name">
+          <p class="type"><b>UserName:</b>
+          </p>
         </div>
-
         <div class="item-2-type">
-          <p class="type">Type: {{ event.eventType }}</p>
+          <p class="type">{{ event.eventType }}</p>
+        </div>
+        <div class="item-2-title">
+          <p class="title">{{ event.title }}</p>
+        </div>
+        <div class="item-2-start-time-text">
+        <p class="start-time-text">Start Date:</p>
+        </div>
+        <div class="item-2-start-time">
+        <p class="start-time"><b>{{event.startAt * 1000 | date: 'MMM d, y'}}</b></p>
+        </div>
+        <div class="item-2-start-date-text">
+        <p class="start-date-text">Start Time:</p>
+        </div>
+        <div class="item-2-start-date">
+        <p class="start-date"><b>{{event.startAt * 1000 | date: 'shortTime'}}</b></p>
+        </div>
+        <div class="item-2-finish-time-text">
+          <p class="finish-time-text">Finish Date:</p>
+        </div>
+       <div class="item-2-finish-time">
+          <p class="finish-time"><b>{{event.endAt * 1000 | date: 'shortTime'}}</b> </p>
         </div>
 
-        <div class="item-2-lat">
+        <div class="item-2-finish-date-text">
+        <p class="finish-date-text">Finish Time:</p>
+        </div>
+        <div class="item-2-finish-date">
+        <p class="finish-date"><b>{{event.endAt * 1000 | date: 'MMM d, y'}}</b></p>
+        </div>
+<br>
+</div>
+</div>
+</div>
+
+    <!-- <button class="close-btn" (click)="onClose()">×</button> -->
+             <!-- <div class="item-2-lat">
           <p class="lat">Lat: {{ event.lat }}</p>
         </div>
 
         <div class="item-2-lng">
           <p class="lng">Lng: {{ event.long }}</p>
-        </div>
-
-        <div class="item-2-start">
-          <p class="start">Start at: {{ event.startAt }}</p>
-        </div>
-
-        <div class="item-2-end">
-          <p class="end">Finish at: {{ event.endAt }}</p> 
-        </div>
-
-        <div class="item-2-created">
+        </div> -->
+        <!-- <div class="item-2-created">
           <p class="created">Created at: {{ event.createdAt }}</p>
         </div>
 
         <div class="item-2-updated">
           <p class="updated">Updated at: {{ event.updatedAt }}</p> 
-        </div>
+        </div> -->
 
-        <div class="item-2-id">
+        <!-- <div class="item-2-id">
           <p class="id">ID: {{ event.id }}</p>
-        </div>
-      </div>
-    </div>
-    <!-- <button class="close-btn" (click)="onClose()">×</button> -->
+        </div> -->
