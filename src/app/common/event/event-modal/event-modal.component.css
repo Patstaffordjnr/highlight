@@ -75,7 +75,6 @@ background-color: white;
 }
 
 .type {
-
 }
 
 .item-2-title {
@@ -179,76 +178,58 @@ background-color: white;
 
   /* MD - Tablets */
   @media (min-width: 768px) {
-        .item-1 {
-min-width: 300px;
-min-height: 300px;
-}
 
-.mapContainer {
-max-width: 350px;
-max-height: 350px;
-}
-
-.item-2 {
-max-width: 350px;
-max-height: 350px;
-}
   } 
   
   /* LG - Small laptops */
   @media (min-width: 992px) {
-        .item-1 {
-min-width: 300px;
-min-height: 300px;
+.item-1 {
+min-width: 350px;
+min-height: 350px;
 }
-
 .mapContainer {
 max-width: 350px;
 max-height: 350px;
-}
 
+}
 .item-2 {
 max-width: 350px;
-max-height: 350px;
+min-height: 350px;
 }
-
-  }
+}
   
   /* XL - Desktops */
   @media (min-width: 1200px) {
-    .item-1 {
-min-width: 300px;
-min-height: 300px;
+.item-1 {
+min-width: 350px;
+min-height: 350px;
 }
-
 .mapContainer {
 max-width: 350px;
 max-height: 350px;
-}
 
+}
 .item-2 {
 max-width: 350px;
-max-height: 350px;
+min-height: 350px;
 }
 
   } 
   
   /* XXL - Large screens / 4K */
   @media (min-width: 1400px) {
-
 .item-1 {
-min-width: 300px;
-min-height: 300px;
+min-width: 350px;
+min-height: 350px;
 }
-
 .mapContainer {
 max-width: 350px;
 max-height: 350px;
-}
 
+}
 .item-2 {
 max-width: 350px;
-max-height: 350px;
+min-height: 350px;
 }
 
 } 
