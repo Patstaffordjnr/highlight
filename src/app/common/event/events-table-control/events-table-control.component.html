@@ -54,15 +54,18 @@
   </div>
 </div>
   <div class = "control-row-two"> 
-  <div class = "home-control-search">
-      <div class = "search">
-      <input type="text" placeholder="Search…">
-      </div>
-      </div>
+<div class="home-control-search">
+  <div class="search">
+    <input type="text"
+           placeholder="Search…"
+           [(ngModel)]="searchText"
+           (input)="onSearchChange($event)">
+  </div>
+</div>
   <div class = "home-control-distance">
     <div class = "distance">
       <label for="distance">Distance :&nbsp;</label>
-      <select id="distance" [(ngModel)]="selectedDistance" name="distance">
+      <select id="distance" [(ngModel)]="selectedDistance" name="distance" (change)="onDistanceChange($event)">
       <option *ngFor="let d of distances" [value]="d">{{d}} km</option>
       </select>&nbsp;
     </div>
@@ -70,7 +73,7 @@
   <div class = "home-control-within">
     <div class = "within">
       <label for="within-select">Within : &nbsp;</label>
-      <select id="within-select" [(ngModel)]="selectedWithin" name="within">
+      <select id="within-select" [(ngModel)]="selectedWithin" name="within" (change)="onWithinChange($event)">
         <option *ngFor="let option of withinOptions" [value]="option.value">
           {{ option.label }}
         </option>
@@ -80,7 +83,7 @@
   <div class = "home-control-sort">
     <div class = "sort">
       <label for="sort-select">Sort by : &nbsp;</label>
-      <select id="sort-select" [(ngModel)]="selectedSort" name="sort">
+      <select id="sort-select" [(ngModel)]="selectedSort" name="sort"  (change)="onSortChange($event)">
       <option *ngFor="let option of sortOptions" [value]="option.value">
       {{ option.label }}
       </option>

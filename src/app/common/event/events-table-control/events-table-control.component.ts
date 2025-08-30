@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { GlobalDateService } from 'src/app/pages/home/global-date.service';
 import { MapService } from '../../map/map-service';
 import { EventFilter } from 'src/app/model/event-list-filter';
+import { EventType } from 'src/app/model/event-types';
 
 @Component({
   selector: 'app-events-table-control',
@@ -14,8 +15,7 @@ export class EventsTableControlComponent {
   genreSet: Set<string> = new Set(['Band', 'Busker', 'Dj', 'Performance']);
   selectGenre: Set<string> = new Set();
   @Output() filterChange = new EventEmitter<EventFilter>();
-
-
+  
   allEventsVisible = true;
   bandEventsVisible = true;
   buskerEventsVisible = true;
@@ -23,7 +23,8 @@ export class EventsTableControlComponent {
   performanceEventsVisible = true;
 
   showDateControls = false;
-  globalDate = new Date();
+  globalDate: Date;
+  
   mapDetails: String[] = [];
   homeAddress: string = '';
   distances: number[] = [1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 50];
@@ -48,13 +49,15 @@ export class EventsTableControlComponent {
   ];
   selectedSort: string = 'distance'; // default: Nearest
   selectedWithin: number = 1; // default: 1 hour
-
+  searchText: string = '';
+  
   private subscription!: Subscription;
 
   constructor(private globalDateService: GlobalDateService, private mapService: MapService) {
    this.globalDateService.globalDate$.subscribe((globalDate) => {
      if(globalDate) {
          this.globalDate = globalDate;
+            console.log(globalDate);
      }
    });
 
@@ -79,49 +82,52 @@ export class EventsTableControlComponent {
 }
  
  async ngOnInit() { 
-   this.globalDateService.globalDate$.subscribe((globalDate) => {
-       if(globalDate) {
-           this.globalDate = globalDate;
-       }
-   })
+  this.globalDateService.globalDate$.subscribe((date) => {
+    if (date) {
+      this.globalDate = date;
+    }
+  });
  }
-   
+
  toggleDateControls() {
-   console.log(`Ola`);
    this.showDateControls = !this.showDateControls;
  }
+
+ private emitFilter(): void {
+  const filter: EventFilter = {
+    genres: new Set(Array.from(this.genreSet).map(g => this.mapStringToEventType(g))),
+    search: '', // wire up later
+    distance: this.selectedDistance,
+    within: this.selectedWithin,
+    sort: this.selectedSort,
+    date: this.globalDate,
+    location: this.homeAddress
+  };
+
+  console.log(filter); 
+  this.filterChange.emit(filter);
+}
  
- onTimeSelected(selectedDate: Date) {
-   const updatedGlobalDate = new Date(
-     this.globalDate.getFullYear(), 
-     this.globalDate.getMonth(),
-     this.globalDate.getDate(),
-     selectedDate.getHours(),
-     selectedDate.getMinutes(),
-   0
- );
- this.globalDate = updatedGlobalDate;
-   this.globalDateService.upDateTime(updatedGlobalDate);
- }
+onTimeSelected(selectedTime: Date) {
+  const updatedGlobalDate = new Date(this.globalDate);
+  updatedGlobalDate.setHours(selectedTime.getHours());
+  updatedGlobalDate.setMinutes(selectedTime.getMinutes());
+  updatedGlobalDate.setSeconds(0);
+  updatedGlobalDate.setMilliseconds(0);
+  this.globalDateService.upDateTime(updatedGlobalDate);
+  this.emitFilter();
+}
  
  onDateSelected(selectedDate: Date): void {
-   if (!selectedDate) return;
-   const updatedGlobalDate = new Date(
-     selectedDate.getFullYear(),
-     selectedDate.getMonth(),
-     selectedDate.getDate(),
-     this.globalDate.getHours(),
-     this.globalDate.getMinutes(),
-     0
-   );
-   this.globalDate = updatedGlobalDate;
-   this.globalDateService.upDate(updatedGlobalDate);
- 
-   if (this.globalDate.getTime() !== updatedGlobalDate.getTime()) {
-     this.globalDateService.upDate(updatedGlobalDate);
-     console.log(`Home Calendar Select Date: ${updatedGlobalDate}`);
-   }
- }
+  if (!selectedDate) return;
+  const updatedGlobalDate = new Date(selectedDate);
+  updatedGlobalDate.setHours(this.globalDate.getHours());
+  updatedGlobalDate.setMinutes(this.globalDate.getMinutes());
+  updatedGlobalDate.setSeconds(0);
+  updatedGlobalDate.setMilliseconds(0);
+  this.globalDateService.upDate(updatedGlobalDate); // store globally
+  this.emitFilter(); // emit updated filter
+}
 
  private toggleGenreInSet(genre: string, visible: boolean): void {
   if (visible) {
@@ -130,12 +136,21 @@ export class EventsTableControlComponent {
     this.genreSet.delete(genre);
   }
   this.selectGenre = this.genreSet;
-  console.log(this.genreSet);
 }
+
+private mapStringToEventType(genre: string): EventType {
+  switch (genre.toLowerCase()) {
+    case 'band': return EventType.BAND;
+    case 'busker': return EventType.BUSKER;
+    case 'dj': return EventType.DJ;
+    case 'performance': return EventType.PERFORMANCE;
+    default: throw new Error(`Unknown genre: ${genre}`);
+  }
+}
+
 
 allFunction() {
   this.allEventsVisible = !this.allEventsVisible;
-
   this.bandEventsVisible = this.allEventsVisible;
   this.buskerEventsVisible = this.allEventsVisible;
   this.djEventsVisible = this.allEventsVisible;
@@ -150,31 +165,50 @@ allFunction() {
   console.log(`All Function: ${this.allEventsVisible}`);
     this.selectGenre = this.genreSet;
     console.log(this.genreSet);
-  // this.selectGenre.emit(new Set(this.genreSet));
+    this.emitFilter();
 }
 
 bandFunction() {
   this.bandEventsVisible = !this.bandEventsVisible;
-  console.log(`Band Function: ${this.bandEventsVisible}`);
+  // console.log(`Band Function: ${this.bandEventsVisible}`);
   this.toggleGenreInSet('Band', this.bandEventsVisible);
+      this.emitFilter();
 }
 
 buskerFunction() {
   this.buskerEventsVisible = !this.buskerEventsVisible;
-  console.log(`Busker Function: ${this.buskerEventsVisible}`);
+  // console.log(`Busker Function: ${this.buskerEventsVisible}`);
   this.toggleGenreInSet('Busker', this.buskerEventsVisible);
+      this.emitFilter();
 }
 
 djFunction() {
   this.djEventsVisible = !this.djEventsVisible;
-  console.log(`DJ Function: ${this.djEventsVisible}`);
+  // console.log(`DJ Function: ${this.djEventsVisible}`);
   this.toggleGenreInSet('Dj', this.djEventsVisible);
+      this.emitFilter();
 }
 
 performanceFunction() {
   this.performanceEventsVisible = !this.performanceEventsVisible;
-  console.log(`Performance Function: ${this.performanceEventsVisible}`);
+  // console.log(`Performance Function: ${this.performanceEventsVisible}`);
   this.toggleGenreInSet('Performance', this.performanceEventsVisible);
+      this.emitFilter();
 }
 
+  onDistanceChange(event: Event) {
+    this.emitFilter();
+  }
+
+  onWithinChange(event: Event) {
+    this.emitFilter();
+  }
+
+  onSortChange(event: Event) {
+    this.emitFilter();
+  }
+
+  onSearchChange(event: Event) {
+    this.emitFilter();
+  }
 }

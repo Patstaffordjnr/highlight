@@ -6,7 +6,7 @@ import { BehaviorSubject} from 'rxjs';
   })
   export class GlobalDateService { 
    
-  private globalDate = new BehaviorSubject<Date>(new Date);
+ private globalDate = new BehaviorSubject<Date>(new Date());
   
       globalDate$ = this.globalDate.asObservable();
       private isUpdating = false;
@@ -42,9 +42,9 @@ import { BehaviorSubject} from 'rxjs';
        this.globalDate.next(updatedDateTime);
       }
       
-    clearSelectedEvent(){
-      this.upDate(null);
-    }
+clearSelectedEvent() {
+  this.globalDate.next(new Date());
+}
   }
 
  

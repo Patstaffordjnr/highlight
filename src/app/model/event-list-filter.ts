@@ -1,5 +1,6 @@
 import { EventType } from 'src/app/model/event-types';
 
+
 export interface EventFilter {
   genres: Set<EventType>;
   search: string;

@@ -7,7 +7,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   })
 
   export class CalendarComponent implements OnInit {
-    
+
+    @Input() selectedDate: Date;
+    @Output() selectDateEvent = new EventEmitter<Date>();
+
     calendarMonths: Date[] = [];
     calendarMonthDaysArr: number[] = [];
     userDate: Date = new Date();
@@ -20,17 +23,17 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
     selectedDayOnCalendar: Date = new Date;
     selectedDay = Number(this.selectedDayOnCalendar.getDate());
   
-    @Output() selectDateEvent = new EventEmitter<Date>();
-    @Input() selectedDate: Date;
-
     constructor() {
       this.initializeCalendar();
         if (!this.selectedDate) {
-    this.selectedDate = new Date(); // fallback only if undefined
+    this.selectedDate = new Date();
+  } else {
+    this.selectedDayOnCalendar = this.selectedDate
   }
     }
     
     ngOnInit(): void {
+      this.selectedDayOnCalendar = this.selectedDate
     }
 
     initializeCalendar(): void {
