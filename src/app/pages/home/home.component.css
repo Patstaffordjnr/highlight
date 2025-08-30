@@ -20,6 +20,7 @@
 }
 .item-2{
   width: 85vw;
+        /* background-color: bisque */
 }
 
 .item-3-container{
@@ -30,6 +31,8 @@
 }
 .item-3{
   width: 85vw;
+          /* background-color:  cyan; */
+          height: 105%;
 }  
 
 .modal{
@@ -55,6 +58,7 @@
   border: 6px solid whitesmoke;
   min-height: 300px;
   min-width: 300px;
+
 }
 
 .no-scroll {
@@ -88,12 +92,14 @@
   width: 100vw;
   display: flex;
   justify-content: center;
+    /* background-color: black */
 }
 
 .item-1 {
   width: 85%;
   height: 95%;
   z-index: 0;
+
 }
 
 

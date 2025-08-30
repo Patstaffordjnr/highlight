@@ -29,6 +29,16 @@ export class ProgressBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.initialiseClock();
+      if (!this.selectedTime) {
+    this.selectedTime = new Date(); // fallback only if undefined
+  }
+      // Mouse events (desktop)
+  window.addEventListener('mousemove', (e) => this.mousemove(e));
+  window.addEventListener('mouseup', (e) => this.mouseUp(e));
+
+  // Touch events (mobile)
+  window.addEventListener('touchmove', (e) => this.touchMove(e));
+  window.addEventListener('touchend', (e) => this.touchEnd(e));
   }
 
   ngAfterViewInit() {
@@ -55,35 +65,11 @@ export class ProgressBarComponent implements OnInit {
     let hour = Math.floor(totalMinutes / 60);
     let minute = totalMinutes % 60;
 
-    if (minute < 5) {
-      minute = 0;
-    } else if (minute >= 5 && minute < 10) {
-      minute = 5;
-    } else if (minute >= 10 && minute < 15) {
-      minute = 10;
-    } else if (minute >= 15 && minute < 20) {
-      minute = 15;
-    } else if (minute >= 20 && minute < 25) {
-      minute = 20;
-    } else if (minute >= 25 && minute < 30) {
-      minute = 25;
-    } else if (minute >= 30 && minute < 35) {
-      minute = 30;
-    } else if (minute >= 35 && minute < 40) {
-      minute = 35;
-    } else if (minute >= 40 && minute < 45) {
-      minute = 40;
-    } else if (minute >= 45 && minute < 50) {
-      minute = 45;
-    } else if (minute >= 50 && minute < 55) {
-      minute = 50;
-    } else if (minute >= 55) {
-      minute = 0;
-      hour++;
-    } else if (hour == 0 && minute == 0 ) {
-      minute = 0;
-      hour = 0;
-    }
+minute = Math.round(minute / 5) * 5;
+if (minute === 60) {
+  minute = 0;
+  hour++;
+}
     let newTime = new Date(
       this.selectedTime.getFullYear(),
       this.selectedTime.getMonth(),
@@ -93,18 +79,36 @@ export class ProgressBarComponent implements OnInit {
       0
     );
     this.emitTime(newTime);
-    let newLeft = event.clientX - parentRect.left - this.startX;
-    if (newLeft < 0) {
-      newLeft = 0;
-    } else if (newLeft + dotWidth > parentRect.width) {
-      newLeft = parentRect.width - dotWidth;
-    }
-    this.dot.nativeElement.style.left = `${newLeft}px`;
+   let newLeft = event.clientX - parentRect.left - this.startX;
+if (newLeft < 0) {
+  newLeft = 0;
+} else if (newLeft + dotWidth > parentRect.width) {
+  newLeft = parentRect.width - dotWidth;
+}
+this.dot.nativeElement.style.left = `${newLeft}px`;
   }
 
   mouseUp(event: MouseEvent) {
     this.isDragging = false;
   }
+
+
+  touchStart(event: TouchEvent) {
+  this.isDragging = true;
+  const touch = event.touches[0];
+  const dotRect = this.dot.nativeElement.getBoundingClientRect();
+  this.startX = touch.clientX - dotRect.left;
+}
+
+touchMove(event: TouchEvent) {
+  if (!this.isDragging) return;
+  const touch = event.touches[0];
+  this.mousemove({ clientX: touch.clientX } as MouseEvent);
+}
+
+touchEnd(event: TouchEvent) {
+  this.isDragging = false;
+}
 
   initialiseClock() {
     for (let i = 0; i < 24; i++) {
@@ -133,11 +137,8 @@ let divLength = (divRight - divLeft);
 
 let hour = date.getHours();
 let minutes = date.getMinutes();
-let hourPercentOfProgressBar = (divLength / 24) * hour
-let minutePercentOfProgressBar = ((divLength / (24 * 60)* minutes))
-let timeToBeDisplayed = hourPercentOfProgressBar -10;
-
-dotElement.style.left = `${timeToBeDisplayed}px`;
+let totalPosition = (divLength / 24) * hour + (divLength / (24 * 60)) * minutes;
+dotElement.style.left = `${totalPosition}px`;
   }
 
   emitTime(date: Date) {

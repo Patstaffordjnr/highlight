@@ -1,5 +1,5 @@
 .calendar-component-container{
-  max-width: 365px;
+  max-width: 300px;
   border-radius: 50;
   border-radius: 16px;
   -ms-overflow-style: none;
@@ -8,7 +8,7 @@
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   position: relative;
-  border: 4px solid whitesmoke;
+  border: 6px solid whitesmoke;
   /* font-size: medium;  */
 }
 
@@ -18,8 +18,8 @@
 
 .calendar-container{
   margin-top: -16px; 
-  padding-right: 16px;
-  padding-left: 16px;
+  padding-right: 32px;
+  padding-left: 8px;
 }
 
 .calendar-div{

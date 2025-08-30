@@ -1,6 +1,6 @@
 
 <div class="event-modal" *ngIf="isOpen" (click)="onBackdropClick($event)">
-  <div #modalContent>
+  <div #modalContent class="modal">
     <div class="item-1">
       <div class="mapContainer">
         <app-map class="map"></app-map>  
@@ -9,9 +9,79 @@
     <br>
       <div class="item-2">
         <div class = "item-2-container">
-          <div class="item-2-profile">
+        <div class="grid-item" id="item-1">
+        <img src="/assets/userprofile.jpg" class = "user-img" alt="image" >
+        </div>
+        <div class="grid-item" id="item-2">
+          <b>USER Name</b>
+        </div>
+        <div class="grid-item" id="item-3">
+        {{event.title}}
+        </div>
+        <div class="grid-item" id="item-4">
+          <br>
+ <div class="flex-grid">
+        <div class="event-start-date-text-container col">
+          <div class="event-start-date-text">
+            Start
+            <br>
+            Date :
+          </div>
+        </div>
+        <div class="event-start-date-container col">
+          <div class="event-start-date">
+            {{event.startAt * 1000 | date: 'MMM d, y'}}
+          </div>
+        </div>
+        <div class="event-start-time-text-container col">
+          <div class="event-start-time-text">
+            Start
+            <br>
+            Time :
+          </div>
+        </div>
+        <div class="event-start-time-container col">
+          <div class="event-start-time">
+            {{event.startAt * 1000 | date: 'shortTime'}}
+          </div>
+        </div>
+      </div>
+      <div class="flex-grid">
+        <div class="event-finish-date-text-container col">
+          <div class="event-finish-date-text">
+            Finish
+            <br>
+            Date :
+          </div>
+        </div>
+        <div class="event-finish-date-container col">
+          <div class="event-finish-date">
+            {{event.endAt * 1000 | date: 'MMM d, y'}}
+          </div>
+        </div>
+        <div class="event-finish-time-text-container col">
+          <div class="event-finish-time-text">
+            Finish
+            <br>
+            Time :
+          </div>
+        </div>
+        <div class="event-finish-time-container col">
+          <div class="event-finish-time">
+            {{event.endAt * 1000 | date: 'shortTime'}}
+          </div>
+        </div>
+      </div>
+
+        </div>
+</div>
+</div>
+</div>
+
+
+          <!-- <div class="item-2-profile">
           <p class="profile">
-           <!-- <img src="/assets/userprofile.jpg" class = "user-profile-img" alt="image" > -->
+           <img src="/assets/userprofile.jpg" class = "user-profile-img" alt="image" >
           <a>img</a>
            </p>
          </div>
@@ -49,11 +119,8 @@
         </div>
         <div class="item-2-finish-date">
         <p class="finish-date"><b>{{event.endAt * 1000 | date: 'MMM d, y'}}</b></p>
-        </div>
-<br>
-</div>
-</div>
-</div>
+        </div> -->
+
 
     <!-- <button class="close-btn" (click)="onClose()">×</button> -->
              <!-- <div class="item-2-lat">

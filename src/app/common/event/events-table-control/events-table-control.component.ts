@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GlobalDateService } from 'src/app/pages/home/global-date.service';
 import { MapService } from '../../map/map-service';
+import { EventFilter } from 'src/app/model/event-list-filter';
 
 @Component({
   selector: 'app-events-table-control',
@@ -11,7 +12,9 @@ import { MapService } from '../../map/map-service';
 export class EventsTableControlComponent {
 
   genreSet: Set<string> = new Set(['Band', 'Busker', 'Dj', 'Performance']);
-  @Output() selectGenre = new EventEmitter<Set<string>>();
+  selectGenre: Set<string> = new Set();
+  @Output() filterChange = new EventEmitter<EventFilter>();
+
 
   allEventsVisible = true;
   bandEventsVisible = true;
@@ -126,7 +129,8 @@ export class EventsTableControlComponent {
   } else {
     this.genreSet.delete(genre);
   }
-  this.selectGenre.emit(new Set(this.genreSet)); // emit a copy for immutability
+  this.selectGenre = this.genreSet;
+  console.log(this.genreSet);
 }
 
 allFunction() {
@@ -144,7 +148,9 @@ allFunction() {
   }
 
   console.log(`All Function: ${this.allEventsVisible}`);
-  this.selectGenre.emit(new Set(this.genreSet));
+    this.selectGenre = this.genreSet;
+    console.log(this.genreSet);
+  // this.selectGenre.emit(new Set(this.genreSet));
 }
 
 bandFunction() {

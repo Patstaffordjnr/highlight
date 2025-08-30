@@ -1,7 +1,9 @@
 .border{
+max-width: 300px;
+
 border-radius: 50;
 border-radius: 16px;
-border: 4px solid whitesmoke;
+border: 6px solid whitesmoke;
 padding-left: 8px;
 padding-right: 8px;
 display: flex;
@@ -21,6 +23,7 @@ user-select: none;
 }
 
 .testHours {
+    font-size: small;
 }
 
 .dot-boundary {
@@ -29,7 +32,7 @@ display: flex;
 flex: 1;
 border-radius: 10px;
 overflow: visible;
-max-width: 365px;
+max-width: 350px;
 }
 
 .dot{
@@ -42,7 +45,7 @@ background-color: green;
 border-radius: 50%;
 }
 
-.dot-:active {
+.dot:active {
 cursor: grabbing;
 }
 /* 

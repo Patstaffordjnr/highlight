@@ -11,7 +11,7 @@ export class EventModalComponent {
   @Input() event: Event;
 
   @ViewChild('modalContent', { static: false }) modalContentRef!: ElementRef;
-
+  
   onClose() {
     this.close.emit();
   }

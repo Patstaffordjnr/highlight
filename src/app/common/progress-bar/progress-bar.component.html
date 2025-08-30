@@ -2,14 +2,15 @@
 <div class = "border">
     <div class="progress-bar" #clockhourSelect>
         <div class="hours-container dot-boundary" #progressBarDiv>
-            <div
-            class="dot"
-            (mousedown)="mouseDown($event)"
-            (mouseup)="mouseUp($event)"
-            (mousemove)="mousemove($event)"
-            (mouseleave)="mouseUp($event)"
-            #dot>
-          </div>
+<div
+  class="dot"
+  (mousedown)="mouseDown($event)"
+  (mouseup)="mouseUp($event)"
+  (mousemove)="mousemove($event)"
+  (mouseleave)="mouseUp($event)"
+  (touchstart)="touchStart($event)"
+  #dot>
+</div>
             <div *ngFor="let hour of hours" class="testHours">
                 <div class="hourAM-container" id="progress-bar" #hourDiv>
                     {{ hour }} 

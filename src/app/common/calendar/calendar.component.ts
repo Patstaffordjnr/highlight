@@ -25,6 +25,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
     constructor() {
       this.initializeCalendar();
+        if (!this.selectedDate) {
+    this.selectedDate = new Date(); // fallback only if undefined
+  }
     }
     
     ngOnInit(): void {

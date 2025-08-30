@@ -1,14 +1,33 @@
-<div class = "home-control">
-  <div class = "control-row-one"> 
-  <div class = "home-control-address">
-      <div class= "address">
-      <a>{{homeAddress}}</a>
-      </div>
-  </div>
-  <div class = "home-control-global-date">
-  <div class= "global-date">
-      <a class = "global-date-text" (click)="toggleDateControls()">{{globalDate | date:'HH:mm EEE MMM d y'}}</a></div>
-  </div>
+  <div class = "home-control">
+
+<div class = "control-row-one"> 
+<div class = "home-control-address">
+<div class= "address">
+<a>{{homeAddress}}</a>
+</div>
+</div>
+&nbsp;
+
+<div class = "home-control-global-date">
+<div class= "global-date">
+<a class = "global-date-text" (click)="toggleDateControls()">{{globalDate | date:'HH:mm EEE MMM d y'}}</a></div>
+</div>
+<br>
+
+
+<div class = "progress-bar-container" *ngIf="showDateControls"> 
+<app-progress-bar class = "progress-bar"
+[selectedTime]="globalDate"
+(selectTimeEvent)="onTimeSelected($event)">
+</app-progress-bar>
+</div>
+
+<div class = "calendar-container" *ngIf="showDateControls"> 
+<app-calendar class = "calendar"   [selectedDate]="globalDate" (selectDateEvent)="onDateSelected($event)"></app-calendar>
+<br>
+<br>
+</div>
+
   <div class = "home-control-genre">
   <div class="genre">
     <div class="genre-item" (click)="allFunction()">
@@ -70,8 +89,5 @@
   </div>
 </div>
 </div>
-<div class = "calendar-container" *ngIf="showDateControls"> 
-<app-calendar class = "calendar"   [selectedDate]="globalDate" (selectDateEvent)="onDateSelected($event)"></app-calendar>
-<br>
-<br>
-</div>
+
+

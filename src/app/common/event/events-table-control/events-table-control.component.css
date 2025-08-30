@@ -1,121 +1,114 @@
 .hidden {
-    display: none;
-  }
-  
+  display: none;
+}
+
 .home-control {
   width: 100%;
   display: flex;
   flex-direction: column;
   padding-bottom: 8px;
 }
-  
+
 .control-row-one {
   display: flex;
   flex-wrap: wrap;
 }
-  
+
 .home-control-address {
   display: flex;
-  justify-content: flex-start;
-  text-align: left;
-  width: 50%;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
 }
-  
+
 .address {
   font-weight: bolder;
 }
-  
+
 .home-control-global-date {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  text-align: center;
   font-weight: bolder;
-  width: 50%;
+  width: 100%;
 }
-  
+
 .home-control-genre {
   padding-top: 16px;
   width: 100%;
   margin-left: auto;
 }
-  
+
+.progress-bar-container {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 16px;
+}
+
+.calendar-container {
+  display: flex;
+  justify-content: center;
+}
+
 .genre {
   display: flex;
   justify-content: space-around;
 }
-  
+
 .genre-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5em;
 }
-  
+
 .control-row-two {
   display: flex;
   flex-wrap: wrap;
   padding-top: 8px;
 }
-  
+
 .home-control-search {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-  
+
 .search {
   white-space: nowrap;
-  /* font-weight: bolder; */
 }
-  
+
 .search input[type="text"] {
   box-sizing: border-box;
-  font-size: 1rem; 
+  font-size: 1rem;
+  min-width: 330px
 }
-  
+
 .home-control-distance {
   display: flex;
   width: 33%;
   justify-content: center;
   align-items: center;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding: 8px 0;
 }
-.distance{
+
+.distance {
   width: auto;
 }
-  
+
 .home-control-within {
   display: flex;
   width: 33%;
   justify-content: center;
   align-items: center;
-  padding-top: 8px;
-  padding-bottom: 8px;  
+  padding: 8px 0;
 }
 
-.within{
-}
-  
 .home-control-sort {
   display: flex;
   width: 33%;
-  /* background-color: darkblue; */
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
-
-.sort{
-
-  }
-
-.calendar-container {
-  display: flex;
-  justify-content: center;
-}
-  
-.calendar {
-  /* font-size: x-small; */
+  padding: 8px 0;
 }
 
 .all-button,
@@ -127,15 +120,15 @@
   width: 30px;
   border-radius: 50%;
 }
-  
+
 .all-button {
   background-color: deepskyblue;
 }
-  
+
 .band-button {
   background-color: hotpink;
 }
-  
+
 .busker-button {
   background-color: red;
 }
@@ -143,178 +136,123 @@
 .dj-button {
   background-color: yellow;
 }
-  
+
 .performance-button {
   background-color: green;
 }
-  
+
 .all-button-selected,
 .band-button-selected,
 .busker-button-selected,
 .dj-button-selected,
 .performance-button-selected {
-  background-color: none;
   border: 3px solid;
   height: 24px;
   width: 24px;
   border-radius: 50%;
 }
-  
+
 .all-button-selected {
   border-color: deepskyblue;
 }
-  
+
 .band-button-selected {
   border-color: hotpink;
 }
-  
+
 .busker-button-selected {
   border-color: red;
 }
-  
+
 .dj-button-selected {
   border-color: yellow;
 }
-  
+
 .performance-button-selected {
   border-color: green;
 }
-  
 
-   /* SM - Small tablets */
-   @media (min-width: 576px) {
-    .home-control {
-    }
+/* SM - Small tablets */
+@media (min-width: 576px) {
+}
+
+/* MD - Tablets */
+@media (min-width: 768px) {
+  .home-control-genre {
+    width: 25%;
+    margin-left: auto;
   }
-  
-  
-  /* MD - Tablets */
-  @media (min-width: 768px) {
-    .home-control {
-    }
-    .home-control-genre {
-      width: 25%;
-      margin-left: auto;
-    }
-    .genre {
-      display: flex;
-      justify-content: space-between;
-    }
-
-  } 
-  
-  /* LG - Small laptops */
-  @media (min-width: 992px) {
-    .home-control {
-    }
-    .home-control-genre {
-      width: 25%;
-      margin-left: auto;
-    }
-    .genre {
-      display: flex;
-      justify-content: space-between;
-    }
-
+  .genre {
+    justify-content: space-between;
   }
-  
-  /* XL - Desktops */
-  @media (min-width: 1200px) {
-    .home-control {
-    }
-    .home-control-genre {
-      width: 25%;
-      margin-left: auto;
-    }
-    .genre {
-      display: flex;
-      justify-content: space-between;
-    }
+}
 
-    }
-  
-  /* XXL - Large screens / 4K */
-  @media (min-width: 1400px) {
-    .home-control {
-    }
+/* LG - Small laptops */
+@media (min-width: 992px) {
+  .home-control-genre {
+    width: 25%;
+    margin-left: auto;
+  }
+  .genre {
+    justify-content: space-between;
+  }
+}
 
-    .home-control-address {
-      display: flex;
-      justify-content: flex-start;
-      text-align: left;
-      width: 50%;
-    }
-    
-    .address {
-      /* font-weight: bolder; */
-    }
-    
-    .home-control-global-date {
-      display: flex;
-      justify-content: center;
-      /* font-weight: bolder; */
-      width: 25%;
-    }
+/* XL - Desktops */
+@media (min-width: 1200px) {
+  .home-control-genre {
+    width: 25%;
+    margin-left: auto;
+  }
+  .genre {
+    justify-content: space-between;
+  }
+}
 
-    .global-date{
-    }
-    
-    .home-control-genre {
-      width: 25%;
-      margin-left: auto;
-    }
-    
-    .genre {
-      display: flex;
-      justify-content: space-between;
-      margin-top: -16px;
-    }
-
+/* XXL - Large screens / 4K */
+@media (min-width: 1400px) {
+  .home-control-address {
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+    width: 50%;
+  }
+  .home-control-global-date {
+    display: flex;
+    justify-content: center;
+    width: 25%;
+  }
+  .home-control-genre {
+    width: 25%;
+    margin-left: auto;
+  }
+  .genre {
+    justify-content: space-between;
+    margin-top: -16px;
+  }
   .home-control-search {
     width: 50%;
-    display: flex;
     justify-content: left;
     align-items: left;
   }
-  
-  .search {
-    white-space: nowrap;
-  }
-  
   .search input[type="text"] {
     box-sizing: border-box;
     font-size: 1rem;
     width: 200%;
   }
-  
   .home-control-distance {
-    display: flex;
     width: 12.5%;
     justify-content: right;
     align-items: center;
   }
-
-  .distance{
-  }
-  
   .home-control-within {
     width: 12.5%;
-    display: flex;
     justify-content: right;
     align-items: center;
   }
-
-  .within{
-  }
-  
   .home-control-sort {
-    display: flex;
     justify-content: right;
     align-items: center;
     width: 25%;
   }
-  .sort{
-  }
-
-  } 
-  
+}

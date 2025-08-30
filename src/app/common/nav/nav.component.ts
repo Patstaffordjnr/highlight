@@ -11,17 +11,17 @@ import { CurrentUserService } from 'src/app/util/can-activate.service';
 export class NavComponent implements OnInit, AfterViewInit {
   menuVisible = true;
   isLoggedIn = false;
-  userRoles = [];
+  userRoles: string[] = [];
   user = false;
   busker = false;
   admin = false;
 
-  currentTranslate: number = 0;
+  currentTranslate = 0;
   slider: HTMLElement | null = null;
   innerSlider: HTMLElement | null = null;
   pressed = false;
-  startx: number = 0;
-  x: number = 0;
+  startx = 0;
+  x = 0;
 
   constructor(
     private authService: AuthService,
@@ -29,74 +29,89 @@ export class NavComponent implements OnInit, AfterViewInit {
     private routerService: RouterService
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     this.authService.isLoggedIn$.subscribe((loggedIn: boolean) => {
       this.isLoggedIn = loggedIn;
     });
 
-    await this.currentUserService.userRole$.subscribe(userRoles => {
-      this.userRoles = userRoles;
-
-      if (userRoles) {
-        this.admin = this.userRoles.includes('ADMIN');
-        this.busker = this.userRoles.includes('BUSKER');
-        this.user = this.userRoles.includes('USER');
-      }
+    this.currentUserService.userRole$.subscribe(userRoles => {
+      this.userRoles = userRoles || [];
+      this.admin = this.userRoles.includes('ADMIN');
+      this.busker = this.userRoles.includes('BUSKER');
+      this.user = this.userRoles.includes('USER');
     });
   }
 
   ngAfterViewInit() {
     this.slider = document.querySelector('.slider');
     this.innerSlider = document.querySelector('.slider-inner');
-  
     if (this.slider && this.innerSlider) {
       this.addSliderEventListeners();
-    } else {
-      console.warn('Slider or inner slider elements not found');
     }
-
   }
 
   private addSliderEventListeners() {
-    this.slider!.addEventListener('mousedown', (e) => {
-      this.pressed = true;
-      this.startx = e.clientX - this.innerSlider!.offsetLeft - this.currentTranslate; // Adjust for current position
-      this.slider!.style.cursor = 'grabbing';
+    if (!this.slider || !this.innerSlider) return;
 
+    // Mouse drag
+    this.slider.addEventListener('mousedown', e => {
+      this.pressed = true;
+      this.startx = e.clientX - this.currentTranslate;
+      this.slider!.style.cursor = 'grabbing';
     });
 
-    this.slider!.addEventListener('mousemove', (e) => {
+    this.slider.addEventListener('mousemove', e => {
       if (!this.pressed) return;
       e.preventDefault();
       this.x = e.clientX - this.startx;
-
-      // Boundary checks
-      const maxTranslate = 0;
-      const minTranslate = -(this.innerSlider!.offsetWidth - this.slider!.offsetWidth);
-      this.x = Math.min(maxTranslate, Math.max(this.x, minTranslate));
-
-      this.innerSlider!.style.transform = `translateX(${this.x}px)`;
-      console.log('Dragging');
+      this.updateTranslate();
     });
 
     ['mouseup', 'mouseleave'].forEach(eventType => {
       this.slider!.addEventListener(eventType, () => {
-        if (!this.pressed) return;
         this.pressed = false;
         this.slider!.style.cursor = 'grab';
-        
-        // Save the current position when dragging ends
         this.currentTranslate = this.x;
-        console.log(`${eventType} event triggered, final position: ${this.currentTranslate}`);
       });
     });
 
-    this.slider!.addEventListener('mouseenter', () => {
-      this.slider!.style.cursor = 'grab';
+    // Touch drag
+    this.slider.addEventListener('touchstart', e => {
+      this.pressed = true;
+      this.startx = e.touches[0].clientX - this.currentTranslate;
     });
 
+    this.slider.addEventListener('touchmove', e => {
+      if (!this.pressed) return;
+      this.x = e.touches[0].clientX - this.startx;
+      this.updateTranslate();
+    });
+
+    this.slider.addEventListener('touchend', () => {
+      this.pressed = false;
+      this.currentTranslate = this.x;
+    });
+
+    // Wheel scroll
+    this.slider.addEventListener(
+      'wheel',
+      (e: WheelEvent) => {
+        e.preventDefault();
+        this.currentTranslate -= e.deltaY;
+        this.updateTranslate(true);
+      },
+      { passive: false }
+    );
   }
 
+  private updateTranslate(save = false) {
+    if (!this.slider || !this.innerSlider) return;
+    const maxTranslate = 0;
+    const minTranslate = -(this.innerSlider.offsetWidth - this.slider.offsetWidth);
+    this.x = Math.min(maxTranslate, Math.max(this.x, minTranslate));
+    this.innerSlider.style.transform = `translateX(${this.x}px)`;
+    if (save) this.currentTranslate = this.x;
+  }
 
   logout() {
     this.authService.logout();
