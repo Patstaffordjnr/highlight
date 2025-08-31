@@ -47,6 +47,7 @@
   padding-top: 16px;
   width: 100%;
   margin-left: auto;
+  
 }
 
 .progress-bar-container {
@@ -189,33 +190,33 @@
 /* MD - Tablets */
 @media (min-width: 768px) {
   .home-control-genre {
-    width: 25%;
+    width: 100%;
     margin-left: auto;
   }
   .genre {
-    justify-content: space-between;
+    justify-content: space-around;
   }
 }
 
 /* LG - Small laptops */
 @media (min-width: 992px) {
   .home-control-genre {
-    width: 25%;
+    width: 100%;
     margin-left: auto;
   }
   .genre {
-    justify-content: space-between;
+    justify-content: space-around;
   }
 }
 
 /* XL - Desktops */
 @media (min-width: 1200px) {
   .home-control-genre {
-    width: 25%;
+    width: 100%;
     margin-left: auto;
   }
   .genre {
-    justify-content: space-between;
+    justify-content: space-around;
   }
 }
 
@@ -233,11 +234,11 @@
     width: 25%;
   }
   .home-control-genre {
-    width: 25%;
+    width: 100%;
     margin-left: auto;
   }
   .genre {
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: -16px;
   }
   .home-control-search {

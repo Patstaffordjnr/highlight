@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GlobalDateService } from 'src/app/pages/home/global-date.service';
 import { MapService } from '../../map/map-service';
@@ -10,7 +10,7 @@ import { EventType } from 'src/app/model/event-types';
   templateUrl: './events-table-control.component.html',
   styleUrl: './events-table-control.component.css'
 })
-export class EventsTableControlComponent {
+export class EventsTableControlComponent implements OnInit, OnDestroy {
 
   genreSet: Set<string> = new Set(['Band', 'Busker', 'Dj', 'Performance']);
   selectGenre: Set<string> = new Set();
@@ -90,6 +90,11 @@ export class EventsTableControlComponent {
       this.globalDate = date;
     }
   });
+
+      this.subscription = this.globalDateService.showDateControls$
+      .subscribe((visible) => {
+        this.showDateControls = visible;
+      });
  }
 
  toggleDateControls() {
@@ -213,5 +218,9 @@ performanceFunction() {
 
   onSearchChange(event: Event) {
     this.emitFilter();
+  }
+
+    ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

@@ -3,77 +3,122 @@
   width: 100vw;
   display: flex;
   justify-content: center;
-          background-color: brown
+  /* background-color: brown; */
 }
 
 .item-1 {
-  width: 85%;
-  height: 95%;
-  z-index: 0;
-}
-
-.item-2-container {
-  /* height: 10vh; */
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-          background-color: coral
-}
-
-.item-2 {
   width: 85%;
   height: 100%;
   z-index: 0;
 }
 
-.item-3-container{
+.item-2-container {
+  display: flex;
+  justify-content: center;
+  /* background-color: darkorange; */
+}
+
+.item-2 {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+ display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
+/* Address + Date container */
+.home-address-and-date {
+  display: flex;
+
+  flex-direction: row;
+  justify-content: center;
+  width: 80%;
+  /* background-color: darkmagenta; */
+}
+
+.home-address {
+  /* background-color: cornflowerblue; */
+  font-weight: normal;
+  flex: 1;
+  padding: 10px;
+  text-align: left; /* left aligned on large screens */
+}
+
+.home-date {
+  /* background-color: whitesmoke; */
+    font-weight: bolder;
+  flex: 1;
+  padding: 10px;
+  text-align: right; /* right aligned on large screens */
+}
+
+/* Small screens (mobile) - stack vertically, center text */
+@media (max-width: 767px) {
+  .home-address-and-date {
+    flex-direction: column;
+    align-items: center; /* center items horizontally */
+    text-align: center;
+  }
+
+  .home-address,
+  .home-date {
+    width: 100%;
+    text-align: center; /* override left/right */
+  }
+
+  .home-address {
+  font-weight: normal;
+}
+
+}
+
+.item-3-container {
   width: 100vw;
   display: flex;
   justify-content: center;
-  align-items: center;
-
-}
-.item-3{
-  width: 85vw;
-        background-color: bisque
+  /* background-color: coral; */
 }
 
-.item-4-container{
+.item-3 {
+  width: 85%;
+  height: 100%;
+  z-index: 0;
+  /* background-color: bisque; */
+}
+
+.item-4-container {
   width: 100vw;
   display: flex;
   justify-content: center;
-    height: 70vh;
+  height: 70vh;
 }
-.item-4{
+
+.item-4 {
   width: 85vw;
-          background-color:  cyan;
-          height: 105%;
+  /* background-color: cyan; */
+  height: 105%;
 }  
 
-.modal{
+.modal {
   z-index: 1;
 }
 
-.modal-item-1{
+.modal-item-1 {
   border-radius: 25px;
   border: 6px solid whitesmoke;
   min-height: 300px;
   min-width: 300px;
-    z-index: 2;
+  z-index: 2;
 }
 
-.a{
-  background-color: blue;
-  width: 150px;
-  height: 150px;
-}
-.modal-item-2{
+.modal-item-2 {
   background-color: white;
   border-radius: 25px;
   border: 6px solid whitesmoke;
   min-height: 300px;
   min-width: 300px;
-
 }
 
 .no-scroll {
@@ -83,40 +128,77 @@
   width: 100%;
 }
   
-  /* SM - Small tablets */
-  @media (min-width: 576px) {
-  }
-  
-  /* MD - Tablets */
-  @media (min-width: 768px) {
-  } 
-  
-  /* LG - Small laptops */
-  @media (min-width: 992px) {
-  }
-  
-  /* XL - Desktops */
-  @media (min-width: 1200px) {
-
-  } 
-  
-  /* XXL - Large screens / 4K */
-  @media (min-width: 1400px) {
-    .item-1-container {
-  height: 75vh;
-  width: 100vw;
+/* SM - Small tablets */
+@media (min-width: 576px) { 
+  .home-address-and-date {
   display: flex;
+
+  flex-direction: row;
   justify-content: center;
-
-}
-
-.item-1 {
   width: 85%;
-  height: 95%;
-  z-index: 0;
-
+  /* background-color: darkmagenta; */
 }
 
+  .home-address {
+  font-weight: bolder;
+}
+}
 
-  } 
-  
+/* MD - Tablets */
+@media (min-width: 768px) { 
+  .home-address-and-date {
+  display: flex;
+
+  flex-direction: row;
+  justify-content: center;
+  width: 85%;
+  /* background-color: darkmagenta; */
+}
+} 
+
+/* LG - Small laptops */
+@media (min-width: 992px) { 
+  .home-address-and-date {
+  display: flex;
+
+  flex-direction: row;
+  justify-content: center;
+  width: 85%;
+  /* background-color: darkmagenta; */
+}
+
+  .home-address {
+  font-weight: bolder;
+}
+}
+
+/* XL - Desktops */
+@media (min-width: 1200px) { }
+
+/* XXL - Large screens / 4K */
+@media (min-width: 1400px) {
+  .item-1-container {
+    height: 75vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+  }
+
+  .item-1 {
+    width: 85%;
+    height: 100%;
+    z-index: 0;
+  }
+  .home-address-and-date {
+  display: flex;
+
+  flex-direction: row;
+  justify-content: center;
+  width: 85%;
+  /* background-color: darkmagenta; */
+}
+
+  .home-address {
+  font-weight: bolder;
+}
+}

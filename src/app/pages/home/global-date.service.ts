@@ -5,6 +5,9 @@ import { BehaviorSubject} from 'rxjs';
     providedIn: 'root',
   })
   export class GlobalDateService { 
+
+      private _showDateControls = new BehaviorSubject<boolean>(false);
+  showDateControls$ = this._showDateControls.asObservable();
    
  private globalDate = new BehaviorSubject<Date>(new Date());
   
@@ -45,6 +48,16 @@ import { BehaviorSubject} from 'rxjs';
 clearSelectedEvent() {
   this.globalDate.next(new Date());
 }
+
+
+
+  toggle() {
+    this._showDateControls.next(!this._showDateControls.value);
+  }
+
+  setVisibility(state: boolean) {
+    this._showDateControls.next(state);
+  }
   }
 
  

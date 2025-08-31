@@ -9,18 +9,24 @@
 </div>
 </div>
 
-<div class="home-address">{{homeAddress}}</div>
-<div class="home-address">{{globalDate | date:'HH:mm EEE MMM d y'}}</div>
+<div class="item-2-container">
+  <div class="item-2">
+    <div class="home-address-and-date">
+      <div class="home-address">{{homeAddress}}</div>
+      <div class="home-date" (click) = "toggleDateControls()">{{globalDate | date:'HH:mm EEE MMM d y'}}</div>
+    </div>
+  </div>
+</div>
 
 
-<div class = "item-2-container">
-<div class = "item-2">
+<div class = "item-3-container">
+<div class = "item-3">
 <app-events-table-control class = "controls"></app-events-table-control>
 </div>
 </div>
 <br>
-<div  class = "item-3-container">
-<div class = "item-3">
+<div  class = "item-4-container">
+<div class = "item-4">
 <!-- <app-events-table-control (selectGenre)="onGenreChange($event)"></app-events-table-control> -->
 <app-common-events [events]="events" (selectedEvent)="onSelect($event)"></app-common-events>
 </div>

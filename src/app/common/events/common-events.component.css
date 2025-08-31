@@ -43,8 +43,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
-    }
     
+     scrollbar-width: none;     
+  -ms-overflow-style: none;  
+}
+
+.event-list-container::-webkit-scrollbar {
+  display: none;              
+}
     .event-list {
       height: 100%;
       width: 100%;
@@ -111,7 +117,6 @@
     
     .event-title-container {
     background-color: none;
-    /* background-color: aqua; */
     width: 80%;
     }
     
@@ -170,7 +175,6 @@
     }
     
     .event-finish-date-text-container {
-      /* background-color: aquamarine; */
     background-color: none;
     justify-content: left;
     padding-left: 10px;
@@ -251,7 +255,7 @@
     }
 
     .event-item.selected {
-      border: 2px solid #4caf50; /* Green or any other color */
+      border: 2px solid #4caf50;
       background-color: #f9fff9;
     }
     
@@ -268,7 +272,14 @@
   /* LG - Small laptops */
   @media (min-width: 992px) {
     .event-list-container{
-    }
+      scrollbar-width: none;   
+  -ms-overflow-style: none;  
+}
+
+.event-list-container::-webkit-scrollbar {
+  display: none;            
+}
+
     .event-grid {
       gap: 32px;
     }
@@ -281,7 +292,13 @@
   /* XL - Desktops */
   @media (min-width: 1200px) {
     .event-list-container{
-    }
+     scrollbar-width: none;      
+  -ms-overflow-style: none;  
+}
+
+.event-list-container::-webkit-scrollbar {
+  display: none;              
+}
     .event-item {
       min-width: 300px;
       min-height: 300px;
@@ -293,7 +310,7 @@
     .event-grid {
       gap: 16px;
     }
-/*  */
+
     .event-list-container {
       height: 100%;
       overflow-y: auto;

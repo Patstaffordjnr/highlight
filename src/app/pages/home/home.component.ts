@@ -97,8 +97,28 @@ onMapReady(map: L.Map) {
   fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${center.lat}&lon=${center.lng}`)
     .then(response => response.json())
     .then(data => {
-      console.log('Address:', data.display_name);
-      this.homeAddress = data.display_name; // store in your component
+      console.log('Full Address:', data.display_name);
+
+      // ✅ Option 1: Use structured address object if available
+      if (data.address) {
+        const addr = data.address;
+        // choose best available values
+        const road = addr.road || addr.suburb || '';
+        const city = addr.city || addr.town || addr.village || addr.county || '';
+        const country = addr.country || '';
+
+        this.homeAddress = `${road ? road + ', ' : ''}${city}, ${country}`;
+      } else {
+        // ✅ Option 2: Fallback to splitting display_name
+        const parts = data.display_name.split(',').map((p: string) => p.trim());
+        const street = parts[0] || '';
+        const city = parts[2] || parts[3] || '';
+        const country = parts[parts.length - 1] || '';
+
+        this.homeAddress = `${street}, ${city}, ${country}`;
+      }
+
+      console.log('Shortened Address:', this.homeAddress);
     })
     .catch(error => {
       console.error('Reverse geocoding error:', error);
@@ -116,8 +136,12 @@ onMapClicked(event: { lat: number; lng: number }) {
 
 toggleDateControls() {
   console.log(`Ola`);
-  this.showDateControls = !this.showDateControls;
+    this.globalDateService.toggle();
 }
+
+
+
+
 
 onTimeSelected(selectedDate: Date) {
   const updatedGlobalDate = new Date(
