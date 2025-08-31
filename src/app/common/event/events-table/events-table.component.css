@@ -41,7 +41,6 @@
   justify-content: center;
   align-items: center;
   /* padding-top: 32px; */
-
   }
   
   .event-list {
@@ -90,6 +89,7 @@
   
   .event-user-name-container {
   background-color: none;
+
   }
   
   .event-user-name {
@@ -112,6 +112,7 @@
   .event-title {
   background-color: none;
   padding-left: 10px;
+
   }
   
   .event-address-container {

@@ -13,7 +13,7 @@
     padding: 0px;
     padding-left: 0px;
     font-weight: bolder;
-    font-size: large;
+    font-size: x-large;
   }
   
   .content-container {
@@ -21,6 +21,7 @@
     display: flex;
     justify-content: center;
     align-items: stretch;
+        font-size: large;
   }
   .footer-container {
     flex-shrink: 0;

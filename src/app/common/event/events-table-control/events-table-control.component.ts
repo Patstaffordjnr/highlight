@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GlobalDateService } from 'src/app/pages/home/global-date.service';
 import { MapService } from '../../map/map-service';
@@ -14,6 +14,8 @@ export class EventsTableControlComponent {
 
   genreSet: Set<string> = new Set(['Band', 'Busker', 'Dj', 'Performance']);
   selectGenre: Set<string> = new Set();
+
+  @Input() homeAddress: string = '';
   @Output() filterChange = new EventEmitter<EventFilter>();
   
   allEventsVisible = true;
@@ -26,7 +28,7 @@ export class EventsTableControlComponent {
   globalDate: Date;
   
   mapDetails: String[] = [];
-  homeAddress: string = '';
+  
   distances: number[] = [1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 50];
   selectedDistance: number = 5; // default
   withinOptions: { label: string, value: number }[] = [
@@ -63,6 +65,7 @@ export class EventsTableControlComponent {
 
    this.subscription = this.mapService?.mapCurrentLocationDetails$.subscribe((details) => {
     this.mapDetails = details;
+    // console.log(details);
   
     const addressString = details?.[5]; // safely access index 5
   

@@ -14,6 +14,7 @@
   flex-wrap: wrap;
 }
 
+
 .home-control-address {
   display: flex;
   justify-content: center;
@@ -32,6 +33,15 @@
   font-weight: bolder;
   width: 100%;
 }
+
+.progress-bar-container,
+.calendar-container {
+  display: flex;
+  justify-content: center;
+  width: 100%; /* take full row width */
+  margin: 0 auto;
+}
+
 
 .home-control-genre {
   padding-top: 16px;
@@ -82,7 +92,7 @@
 .search input[type="text"] {
   box-sizing: border-box;
   font-size: 1rem;
-  min-width: 330px
+  min-width: 318px
 }
 
 .home-control-distance {

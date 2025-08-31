@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalDateService } from './global-date.service'
-// import { MapService } from '../../common/map/map-service';
 import { Subscription } from 'rxjs';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
 import { EventType } from 'src/app/model/event-types';
-
+import * as L from 'leaflet';
 import { EventModalComponent } from 'src/app/common/event/event-modal/event-modal.component';
-
 
 @Component({
   selector: 'app-home',
@@ -18,13 +16,13 @@ import { EventModalComponent } from 'src/app/common/event/event-modal/event-moda
 export class HomeComponent implements OnInit {
   
   showModal = false;
-
+  mapInstance!: L.Map;
   currentIndex = 0;
   noOfPages = 8;
 
   showDateControls = false;
   globalDate = new Date();
-  mapDetails: String[] = [];
+ mapDetails: any; // could be {lat, lng, bounds, etc.}
   homeAddress: string = '';
   distances: number[] = [1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 50];
   selectedDistance: number = 5; // default
@@ -55,28 +53,12 @@ export class HomeComponent implements OnInit {
   private subscription!: Subscription;
 
  constructor(private globalDateService: GlobalDateService,
-  // private mapService: MapService,
+
   private openHttpClientService: OpenHttpClientService) {
   this.globalDateService.globalDate$.subscribe((globalDate) => {
     if(globalDate) {
         this.globalDate = globalDate;
     }
-    //   this.subscription = this.mapService?.mapCurrentLocationDetails$.subscribe((details) => {
-    //     this.mapDetails = details;
-        
-    //     const addressString = details?.[5];
-      
-    //     if (addressString) {
-    //       const parts = addressString.split(',').map(part => part.trim());
-    //       const street = parts[0] || '';
-    //       const cityOrCounty = parts[2] || parts[3] || '';
-    //       const country = parts[parts.length - 1] || '';
-    //       const formattedAddress = `${street}, ${cityOrCounty}, ${country}`;
-    //       this.homeAddress = formattedAddress;
-    //    } else {
-    //     console.warn('Address string is undefined or empty.');
-    //   }
-    // });
   });
   this.openHttpClientService.getEvents(
     new Date(2025, 6, 6, 23, 0, 0),
@@ -106,7 +88,32 @@ export class HomeComponent implements OnInit {
   })
 }
 
-  
+onMapReady(map: L.Map) {
+  this.mapInstance = map;
+  const center = this.mapInstance.getCenter();
+  console.log('Center:', center.lat, center.lng);
+
+  // Call reverse geocoding
+  fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${center.lat}&lon=${center.lng}`)
+    .then(response => response.json())
+    .then(data => {
+      console.log('Address:', data.display_name);
+      this.homeAddress = data.display_name; // store in your component
+    })
+    .catch(error => {
+      console.error('Reverse geocoding error:', error);
+    });
+}
+
+onMapMoved(event: { lat: number; lng: number }) {
+  console.log('Home Map moved to:', event);
+}
+
+onMapClicked(event: { lat: number; lng: number }) {
+  console.log('Home Clicked:', event);
+}
+
+
 toggleDateControls() {
   console.log(`Ola`);
   this.showDateControls = !this.showDateControls;

@@ -1,6 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-
+import { Component, AfterViewInit, OnDestroy, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import * as L from 'leaflet';
 import { MapService } from './map-service';
 
@@ -10,103 +8,91 @@ import { MapService } from './map-service';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements AfterViewInit, OnDestroy {
-  private map: L.Map | undefined;
+  private map!: L.Map;
 
-@ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
+  @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
+
+  // Emit full map object to parent
+  @Output() mapInput = new EventEmitter<L.Map>();
+
+  // Emit map center changes
+  @Output() mapCenterChanged = new EventEmitter<{ lat: number; lng: number }>();
+
+  // Emit click coordinates
+  @Output() mapClicked = new EventEmitter<{ lat: number; lng: number }>();
+
+  // Default fallback location (Dublin)
+  private defaultLat = 53.346304;
+  private defaultLng = -6.2881792;
+  private defaultZoom = 13;
 
   constructor(private mapService: MapService) {}
 
-ngAfterViewInit(): void {
-  this.initMap();
-}
-
-private initMap(): void {
-  if (this.map) {
-    this.map.remove();
-    this.map = null;
+  ngAfterViewInit(): void {
+    this.loadMap();
   }
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const userLatitude = position.coords.latitude;
-        const userLongitude = position.coords.longitude;
-        this.loadMap(userLatitude, userLongitude);
-      },
-      () => {
-        this.loadMap(52.2593, -7.1101); // fallback
-      }
-    );
-  } else {
-    this.loadMap(52.2593, -7.1101);
+  private loadMap(): void {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => this.initMap(pos.coords.latitude, pos.coords.longitude),
+        () => this.initMap(this.defaultLat, this.defaultLng)
+      );
+    } else {
+      this.initMap(this.defaultLat, this.defaultLng);
+    }
   }
-}
 
-  private updateMapService(): void {
-  if (!this.map) return;
+  private initMap(lat: number, lng: number): void {
+    if (this.map) this.map.remove();
 
-  const bounds = this.map.getBounds();
-  const minLat = bounds.getSouth();
-  const maxLat = bounds.getNorth();
-  const minLong = bounds.getWest();
-  const maxLong = bounds.getEast();
+    this.map = L.map(this.mapContainer.nativeElement, {
+      center: [lat, lng],
+      zoom: this.defaultZoom
+    });
 
-  const center = this.map.getCenter();
-  this.mapService.getAddressFromCoords(center.lat, center.lng).subscribe(res => {
-    const addressString = res.display_name;
-    this.mapService.updateEvent(bounds, minLat, maxLat, minLong, maxLong, addressString);
-  });
-}
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(this.map);
 
-  private loadMap(lat: number, lng: number): void {
-  this.map = L.map(this.mapContainer.nativeElement, {
-    center: [lat, lng],
-    zoom: 13
-  });
+    L.marker([lat, lng]).addTo(this.map);
 
-  setTimeout(() => {
-    this.map!.invalidateSize();
-  }, 0);
+    // Emit full map object once after initialization
+    this.mapInput.emit(this.map);
 
-  let bounds = this.map.getBounds();
-  let minLat = bounds.getSouth();
-  let maxLat = bounds.getNorth();
-  let minLong = bounds.getWest();
-  let maxLong = bounds.getEast();
+    // Initial mapDetails update
+    this.updateMapDetails();
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(this.map);
+    // Update mapDetails on move or zoom
+    this.map.on('moveend', () => this.updateMapDetails());
 
-  const marker = L.marker([lat, lng]).addTo(this.map);
-
-  this.updateMapService();
-
-  this.map.on('moveend', () => {
-    this.updateMapService();
-    this.mapService.updateEvent(bounds, minLat, maxLat, minLong, maxLong, addressString);
-  });
-
-  this.mapService.getAddressFromCoords(lat, lng).subscribe(res => {
-    console.log('Address:', res.display_name);
-  });
-
-  this.map.on('click', (event: L.LeafletMouseEvent) => {
-    console.log('Map clicked at:', event.latlng);
-  });
-
-  let addressString: string;
-  this.mapService.getAddressFromCoords(lat, lng).subscribe(res => {
-    addressString = res.display_name;
-    this.mapService.updateEvent(bounds, minLat, maxLat, minLong, maxLong, addressString);
-  });
-}
-
-ngOnDestroy(): void {
-  if (this.map) {
-    this.map.remove();
-    this.map = null;
+    // Listen for clicks on the map
+    this.map.on('click', (event: L.LeafletMouseEvent) => {
+      this.mapClicked.emit({ lat: event.latlng.lat, lng: event.latlng.lng });
+      console.log('Map clicked at:', event.latlng);
+    });
   }
-}
+
+  private updateMapDetails(): void {
+    if (!this.map) return;
+
+    const center = this.map.getCenter();
+    const bounds = this.map.getBounds();
+
+    // Update your service if needed
+    this.mapService.updateEvent(bounds, bounds.getSouth(), bounds.getNorth(), bounds.getWest(), bounds.getEast(), '');
+
+    // Emit map center to parent
+    this.mapCenterChanged.emit({ lat: center.lat, lng: center.lng });
+
+    // Emit full map if you want parent to have it updated
+    this.mapInput.emit(this.map);
+
+    console.log('Map updated:', { center, bounds });
+  }
+
+  ngOnDestroy(): void {
+    if (this.map) this.map.remove();
+  }
 }

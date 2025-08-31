@@ -111,6 +111,8 @@
     
     .event-title-container {
     background-color: none;
+    /* background-color: aqua; */
+    width: 80%;
     }
     
     .event-title {

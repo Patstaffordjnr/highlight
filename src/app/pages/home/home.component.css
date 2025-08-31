@@ -3,6 +3,7 @@
   width: 100vw;
   display: flex;
   justify-content: center;
+          background-color: brown
 }
 
 .item-1 {
@@ -11,27 +12,41 @@
   z-index: 0;
 }
 
-.item-2-container{
+.item-2-container {
+  /* height: 10vh; */
   width: 100vw;
   display: flex;
   justify-content: center;
-  align-items: center;
-
+          background-color: coral
 }
-.item-2{
-  width: 85vw;
-        /* background-color: bisque */
+
+.item-2 {
+  width: 85%;
+  height: 100%;
+  z-index: 0;
 }
 
 .item-3-container{
   width: 100vw;
   display: flex;
   justify-content: center;
-    height: 70vh;
+  align-items: center;
+
 }
 .item-3{
   width: 85vw;
-          /* background-color:  cyan; */
+        background-color: bisque
+}
+
+.item-4-container{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+    height: 70vh;
+}
+.item-4{
+  width: 85vw;
+          background-color:  cyan;
           height: 105%;
 }  
 
@@ -92,7 +107,7 @@
   width: 100vw;
   display: flex;
   justify-content: center;
-    /* background-color: black */
+
 }
 
 .item-1 {

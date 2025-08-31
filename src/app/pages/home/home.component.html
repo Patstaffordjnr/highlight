@@ -1,9 +1,18 @@
 <div  class = "home" [ngClass]="{'disable-interaction': showModal}">
 <div class = "item-1-container">
 <div class = "item-1">
-<app-map  class = "map"></app-map>  
+<app-map  class = "map"
+  (mapInput)="onMapReady($event)"
+  (mapCenterChanged)="onMapMoved($event)"
+  (mapClicked)="onMapClicked($event)">
+</app-map>  
 </div>
 </div>
+
+<div class="home-address">{{homeAddress}}</div>
+<div class="home-address">{{globalDate | date:'HH:mm EEE MMM d y'}}</div>
+
+
 <div class = "item-2-container">
 <div class = "item-2">
 <app-events-table-control class = "controls"></app-events-table-control>
