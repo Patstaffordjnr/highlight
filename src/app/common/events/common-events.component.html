@@ -30,60 +30,67 @@
            </div>
          </div>
          <div class="flex-grid">
-           <div class="event-start-date-text-container col">
-             <div class="event-start-date-text">
-               Start
-               <br>
-               Date :
-             </div>
-           </div>
-           <div class="event-start-date-container col">
-             <div class="event-start-date">
-               {{event.startAt * 1000 | date: 'MMM d, y'}}
-             </div>
-           </div>
-           <div class="event-start-time-text-container col">
-             <div class="event-start-time-text">
-               Start
-               <br>
-               Time :
-             </div>
-           </div>
-           <div class="event-start-time-container col">
-             <div class="event-start-time">
-               {{event.startAt * 1000 | date: 'shortTime'}}
-             </div>
-           </div>
-         </div>
-         <div class="flex-grid">
-           <div class="event-finish-date-text-container col">
-             <div class="event-finish-date-text">
-               Finish
-               <br>
-               Date :
-             </div>
-           </div>
-           <div class="event-finish-date-container col">
-             <div class="event-finish-date">
-               {{event.endAt * 1000 | date: 'MMM d, y'}}
-             </div>
-           </div>
-           <div class="event-finish-time-text-container col">
-             <div class="event-finish-time-text">
-               Finish
-               <br>
-               Time :
-             </div>
-           </div>
-           <div class="event-finish-time-container col">
-             <div class="event-finish-time">
-               {{event.endAt * 1000 | date: 'shortTime'}}
-             </div>
-           </div>
+ <div class="event-start-date-text-container col">
+    <div class="event-start-date-text">
+      Start
+      <br>
+      Date :
+    </div>
+  </div>
+  <div class="event-start-date-container col">
+    <div class="event-start-date">
+      <span class="date-top">{{ event.startAt * 1000 | date: 'MMM d,' }}</span><br>
+      <span class="date-bottom">{{ event.startAt * 1000 | date: 'y' }}</span>
+    </div>
+  </div>
+  <div class="event-start-time-text-container col">
+    <div class="event-start-time-text">
+      Start
+      <br>
+      Time :
+    </div>
+  </div>
+<div class="event-start-time-container col">
+  <div class="event-start-time">
+    <span class="time-top">{{ event.startAt * 1000 | date: 'h:mm' }}</span><br>
+    <span class="time-bottom">{{ event.startAt * 1000 | date: 'a' }}</span>
+  </div>
+</div>
+</div>
+
+<div class="flex-grid">
+  <div class="event-finish-date-text-container col">
+    <div class="event-finish-date-text">
+      Finish
+      <br>
+      Date :
+    </div>
+  </div>
+  <div class="event-finish-date-container col">
+    <div class="event-finish-date">
+      <span class="date-top">{{ event.endAt * 1000 | date: 'MMM d,' }}</span><br>
+      <span class="date-bottom">{{ event.endAt * 1000 | date: 'y' }}</span>
+    </div>
+  </div>
+  <div class="event-finish-time-text-container col">
+    <div class="event-finish-time-text">
+      Finish
+      <br>
+      Time :
+    </div>
+  </div>
+
+<div class="event-finish-time-container col">
+  <div class="event-finish-time">
+    <span class="time-top">{{ event.endAt * 1000 | date: 'h:mm' }}</span><br>
+    <span class="time-bottom">{{ event.endAt * 1000 | date: 'a' }}</span>
+  </div>
+</div>
          </div>
        </div>
      </div>
    </div>
+
    </div>
    <br>
    <div class="eventPagination">

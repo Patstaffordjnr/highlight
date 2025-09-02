@@ -1,1 +1,18 @@
-<p>busker works!</p>
+<div class="user">
+<div class="container">
+    <div class="item item-1">
+      <app-user-profile  class = "user-profile"></app-user-profile>
+    </div>
+    <div class="item item-2">
+      <app-map class = "map"></app-map>
+    </div>
+    <div class="item item-3">
+      Item 3 = Buskers
+    </div>
+    <div class="item item-4">
+      <app-common-events class = "events" [events]="events" (selectedEvent)="onSelect($event)"></app-common-events>
+    </div>
+</div>
+</div>
+<!-- <app-event-modal class = "modal" [isOpen]="showModal" (close)="showModal = false " [event]="event">
+</app-event-modal> -->

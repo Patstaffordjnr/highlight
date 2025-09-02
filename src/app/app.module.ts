@@ -28,49 +28,56 @@ import { CommonEventsComponent } from './common/events/common-events.component';
 import { UserProfileComponent } from './common/user-profile/user-profile.component';
 import { EventModalComponent } from './common/event/event-modal/event-modal.component';
 import { BuskersComponent } from './pages/buskers/buskers.component';
+import { BuskerComponent } from './pages/busker/busker.component';
 
-@NgModule({ declarations: [
-        //Pages,
-        EventsComponent,
-        BuskersComponent,
-        
-        //Components,
-        AppComponent,
-        SignUpComponent,
-        NavComponent,
-        LogInComponent,
-        HeaderComponent,
-        FooterComponent,
-        HomeComponent,
-        CalendarComponent,
-        MapComponent,
-        ProgressBarComponent,
-        UserComponent,
-        EventsTableControlComponent,
-        EventModalComponent
-    ],
-    bootstrap: [
-        AppComponent],
-    
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        DragDropModule,
-        EventsTableComponent,
-        CommonEventsComponent,
-        UserProfileComponent,
-    
-    ],
-        
-        providers: [
-        RouterService,
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-        CurrentUserService,
-        PermissionsService,
-        GlobalDateService,
-        EventService,
-        provideHttpClient(withInterceptorsFromDi())
-    ] })
-export class AppModule { }
+@NgModule({
+  declarations: [
+    // Pages
+    EventsComponent,
+    BuskersComponent,
+    BuskerComponent,
+
+    // Components
+    AppComponent,
+    SignUpComponent,
+    NavComponent,
+    LogInComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
+    CalendarComponent,
+    MapComponent,
+    ProgressBarComponent,
+    UserComponent,
+    EventsTableControlComponent,
+    EventModalComponent
+  ],
+  bootstrap: [AppComponent],
+
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    DragDropModule,
+    EventsTableComponent,
+    CommonEventsComponent,
+    UserProfileComponent
+  ],
+
+  exports: [
+    MapComponent,           // ✅ now export
+    EventModalComponent     // ✅ now export
+  ],
+
+  providers: [
+    RouterService,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    CurrentUserService,
+    PermissionsService,
+    GlobalDateService,
+    EventService,
+    provideHttpClient(withInterceptorsFromDi())
+  ]
+})
+export class AppModule {}

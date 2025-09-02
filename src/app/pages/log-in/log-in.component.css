@@ -1,5 +1,11 @@
 
-
+.a{
+        display: flex;
+    justify-content: center;
+    align-items: center;
+        height: 78vh;
+    width: 85vw;
+}
 .log-in-div{ 
     display: flex;
     justify-content: center;
@@ -8,6 +14,7 @@
     /* background-color: aqua; */
     /* height: 100px; */
     width: 365px;
+
 }
 
 .flex-grid {

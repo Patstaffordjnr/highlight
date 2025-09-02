@@ -7,12 +7,20 @@
     flex: 1;
     display: flex; 
 }
+.a{
+                height: 80vh;
+                    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:none;
+}
 .sign-up-container{ 
     display: flex;
     justify-content: center;
     align-items: center;
     background-color:none;
     width: 365px;
+
 }
 
 .sign-up{
