@@ -272,7 +272,7 @@
 /* XXL - Large screens / 4K */
 @media (min-width: 1400px) {
   .event-grid {
-    gap: 32px;
+    gap: 16px;
   }
 
   .event-list-container {

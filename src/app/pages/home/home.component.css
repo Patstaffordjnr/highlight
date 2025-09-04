@@ -6,7 +6,7 @@
 }
 
 .item-1 {
-  width: 85%;
+  width: 90%;
   height: 100%;
   z-index: 0;
 }
@@ -34,7 +34,7 @@
 }
 
 .item-3 {
-  width: 85%;
+  width: 90%;
   height: 100%;
   z-index: 0;
   font-weight: bolder;
@@ -50,7 +50,7 @@
 }
 
 .item-4 {
-  width: 85vw;
+  width: 90vw;
   height: 107%;
   font-size: medium;
 }
