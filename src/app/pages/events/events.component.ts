@@ -16,6 +16,7 @@ import { OpenHttpClientService } from 'src/app/common/http/open-http-client.serv
 import { EventType } from 'src/app/model/event-types';
 
 
+
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
@@ -41,7 +42,7 @@ export class EventsComponent {
   minLong
   maxLong 
 
-  events: Event[] = [];
+  events: AppEvent[] = [];
 
 constructor(private globalDateService: GlobalDateService, private currentUserService: CurrentUserService, private openHttpClientService: OpenHttpClientService, private mapService: MapService) {
   this.globalDateService.globalDate$.subscribe((globalDate) => {
@@ -72,7 +73,7 @@ constructor(private globalDateService: GlobalDateService, private currentUserSer
     ,80,
     [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
   ).subscribe({
-    next: (events: Event[]) => {
+    next: (events: AppEvent[]) => {
       // console.log('Successfully extracted events:', events);
       this.events = events; 
     },

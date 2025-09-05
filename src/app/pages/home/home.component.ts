@@ -5,6 +5,8 @@ import { OpenHttpClientService } from 'src/app/common/http/open-http-client.serv
 import { EventType } from 'src/app/model/event-types';
 import * as L from 'leaflet';
 import { EventModalComponent } from 'src/app/common/event/event-modal/event-modal.component';
+import { Event as AppEvent } from 'src/app/model/event';
+import { markerIcons } from './../../common/map/map-icons';
 
 @Component({
   selector: 'app-home',
@@ -22,8 +24,12 @@ export class HomeComponent implements OnInit {
 
   showDateControls = false;
   globalDate = new Date();
- mapDetails: any; // could be {lat, lng, bounds, etc.}
+
+
+  mapDetails: any; // could be {lat, lng, bounds, etc.}
+  markersLayer = L.layerGroup(); // This layer will hold all markers
   homeAddress: string = '';
+
   distances: number[] = [1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 50];
   selectedDistance: number = 5; // default
   withinOptions: { label: string, value: number }[] = [
@@ -47,8 +53,9 @@ export class HomeComponent implements OnInit {
   selectedSort: string = 'distance'; 
   selectedWithin: number = 1; 
 
-  events: Event[] = [];
-  event: Event;
+  events: AppEvent[] = [];
+  event!: AppEvent;
+  filteredEvents: AppEvent[] = []; // filtered list
   
   private subscription!: Subscription;
 
@@ -68,7 +75,7 @@ export class HomeComponent implements OnInit {
     ,80,
     [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
   ).subscribe({
-    next: (events: Event[]) => {
+    next: (events: AppEvent[]) => {
       // 'events' here IS your complete list of Event[]
       // console.log('Successfully extracted events:', events);
       this.events = events; // Assign the full list to your component property
@@ -88,41 +95,52 @@ export class HomeComponent implements OnInit {
   })
 }
 
+
+
 onMapReady(map: L.Map) {
   this.mapInstance = map;
   const center = this.mapInstance.getCenter();
   console.log('Center:', center.lat, center.lng);
+  this.markersLayer.clearLayers();
 
-  // Call reverse geocoding
+  this.events.forEach(event => {
+    // Use the icon for the event type
+    const icon = markerIcons[event.eventType as keyof typeof markerIcons];
+
+    const marker = L.marker([event.lat, event.long], { icon }) // <- pass icon here
+      .addTo(this.markersLayer)
+      .bindPopup(`<b>${event.title}</b><br>${event.eventType}`)
+      .on('click', () => this.onSelect(event)); // Reuse your onSelect method
+  });
+
+  // Add the layer to the map
+  this.markersLayer.addTo(this.mapInstance);
+
+  // Optional: center map to all markers
+  // if (this.events.length > 0) {
+  //   const group = L.featureGroup(this.events.map(e => L.marker([e.lat, e.long])));
+  //   this.mapInstance.fitBounds(group.getBounds().pad(0.5));
+  // }
+
+  // Reverse geocoding (keep your existing code)
   fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${center.lat}&lon=${center.lng}`)
     .then(response => response.json())
     .then(data => {
-      console.log('Full Address:', data.display_name);
-
-      // ✅ Option 1: Use structured address object if available
       if (data.address) {
         const addr = data.address;
-        // choose best available values
         const road = addr.road || addr.suburb || '';
         const city = addr.city || addr.town || addr.village || addr.county || '';
         const country = addr.country || '';
-
         this.homeAddress = `${road ? road + ', ' : ''}${city}, ${country}`;
       } else {
-        // ✅ Option 2: Fallback to splitting display_name
         const parts = data.display_name.split(',').map((p: string) => p.trim());
         const street = parts[0] || '';
         const city = parts[2] || parts[3] || '';
         const country = parts[parts.length - 1] || '';
-
         this.homeAddress = `${street}, ${city}, ${country}`;
       }
-
-      console.log('Shortened Address:', this.homeAddress);
     })
-    .catch(error => {
-      console.error('Reverse geocoding error:', error);
-    });
+    .catch(error => console.error('Reverse geocoding error:', error));
 }
 
 onMapMoved(event: { lat: number; lng: number }) {
@@ -175,7 +193,7 @@ onDateSelected(selectedDate: Date): void {
   }
 }
 
-onSelect(event: Event) {
+onSelect(event: AppEvent) {
   console.log('Received Event: Home;', event);
   this.event = event;
   this.showModal = true;

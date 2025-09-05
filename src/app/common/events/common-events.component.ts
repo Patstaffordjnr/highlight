@@ -4,7 +4,7 @@ import { EventsClient } from '../event/events-client';
 import { MapService } from '../map/map-service'; 
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { Event } from 'src/app/model/event'; 
+import { Event  as AppEvent } from 'src/app/model/event'; 
 import { EventService } from '../event/event-service';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -53,13 +53,15 @@ eventResponseList: PageListResponse = {
  results: []
 };
 
-@Input() events: Event[] = [];
-@Output() selectedEvent = new EventEmitter<Event>();
+@Input() events: AppEvent[] = [];
+@Output() selectedEvent = new EventEmitter<AppEvent>();
 
 constructor (private globalDateService: GlobalDateService, private openHttpClientService: OpenHttpClientService, private mapService: MapService, private formBuilder: FormBuilder, private eventsClient: EventsClient, private eventService: EventService,  private http: HttpClient, private cdRef: ChangeDetectorRef) {
   this.form = this.formBuilder.group({
     searchText: [''],
   });
+
+
 }
 
 async ngOnInit() {
@@ -67,6 +69,7 @@ async ngOnInit() {
     this.reveivedObject = this.events;
     this.eventResponseList.total = this.reveivedObject.total;
     this.eventResponseList.results = this.reveivedObject.results;
+
   } else {
     // console.warn('No events received from parent.');
   }
@@ -78,8 +81,9 @@ ngOnChanges(changes: SimpleChanges) {
   }
 }
 
-onSelect(event: Event) {
-  // console.log(event);
+onSelect(event: AppEvent) {
+  console.log(event);
+          console.log(this.events);
   this.selectedEvent.emit(event);
   return this.selectedEvent;
 }

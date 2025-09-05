@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
 import { EventType } from 'src/app/model/event-types';
 import { UserProfileComponent } from 'src/app/common/user-profile/user-profile.component';
+import { Event as AppEvent } from 'src/app/model/event';
+
 
 @Component({
   selector: 'app-user',
@@ -21,10 +23,10 @@ export class UserComponent {
     email: "string",
     roles: [],
   };
-  events: Event[] = [];
+  events: AppEvent[] = [];
   form: FormGroup;
 
-  event: Event;
+  event: AppEvent;
   
   constructor(private formBuilder: FormBuilder, private currentUserService: CurrentUserService, private openHttpClientService: OpenHttpClientService) {
 
@@ -41,7 +43,7 @@ export class UserComponent {
       ,80,
       [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
     ).subscribe({
-      next: (events: Event[]) => {
+      next: (events: AppEvent[]) => {
   
         // 'events' here IS your complete list of Event[]
         // console.log('Successfully extracted events:', events);
@@ -78,7 +80,7 @@ export class UserComponent {
     })
   }
 
-  onSelect(event: Event) {
+  onSelect(event: AppEvent) {
     console.log('Received Event: Home;', event);
     this.event = event;
     this.showModal = true;

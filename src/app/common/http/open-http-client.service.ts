@@ -2,6 +2,7 @@ import { HttpClient,HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EventType } from 'src/app/model/event-types';
+import { Event as AppEvent } from 'src/app/model/event';
 
 const URL = 'http://localhost:8085/open';
 
@@ -22,7 +23,7 @@ export class OpenHttpClientService {
     maxLat: number,
     maxLong: number,
     eventTypes: EventType[]
-  ): Observable<Event[]> {
+  ): Observable<AppEvent[]> {
     let params = new HttpParams()
       .set('time', time.toISOString())
       .set('minLat', minLat.toString())
@@ -36,6 +37,6 @@ export class OpenHttpClientService {
 
     const url = `${URL}/getEvents`;
 
-    return this.http.get<Event[]>(url, { params: params });
+    return this.http.get<AppEvent[]>(url, { params: params });
   }
 }

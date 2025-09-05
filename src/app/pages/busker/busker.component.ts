@@ -5,6 +5,7 @@ import { UserProfileComponent } from 'src/app/common/user-profile/user-profile.c
 import { User } from 'src/app/model/user';
 import { CurrentUserService } from 'src/app/util/can-activate.service';
 import { EventType } from 'src/app/model/event-types';
+import { Event as AppEvent } from 'src/app/model/event';
 
 @Component({
   selector: 'app-busker',
@@ -22,10 +23,10 @@ export class BuskerComponent {
     email: "string",
     roles: [],
   };
-  events: Event[] = [];
+  events: AppEvent[] = [];
   form: FormGroup;
 
-  event: Event;
+  event: AppEvent;
   
   constructor(private formBuilder: FormBuilder, private currentUserService: CurrentUserService, private openHttpClientService: OpenHttpClientService) {
 
@@ -42,7 +43,7 @@ export class BuskerComponent {
       ,80,
       [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
     ).subscribe({
-      next: (events: Event[]) => {
+      next: (events: AppEvent[]) => {
   
         // 'events' here IS your complete list of Event[]
         // console.log('Successfully extracted events:', events);
@@ -79,7 +80,7 @@ export class BuskerComponent {
     })
   }
 
-  onSelect(event: Event) {
+  onSelect(event: AppEvent) {
     console.log('Received Event: Home;', event);
     this.event = event;
     this.showModal = true;
