@@ -33,12 +33,9 @@ generateRequest(): LoginRequest {
 }
 
 async onSubmit() {
-  var loggedInUser = await this.loginClient.logIn(this.generateRequest());
-  if(loggedInUser) {
-    this.authService.login()
-    this.routerService.setUser(loggedInUser);
-    
-
+  const loggedInUser = await this.loginClient.logIn(this.generateRequest());
+  if (loggedInUser) {
+    this.authService.login(loggedInUser); // stores user + marks logged in
     this.routerService.toHomePage();
   }  
 }

@@ -2,53 +2,57 @@ import { Injectable, inject } from "@angular/core";
 import { User } from "../model/user";
 import { ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot } from "@angular/router";
 import { UserRole } from "../model/user-roles";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 
-@Injectable()
+
+@Injectable({ providedIn: 'root' })
 export class CurrentUserService {
-    private currentUser: User;
-    private userRoles = new BehaviorSubject<UserRole[]>(null)
+  private currentUserSubject = new BehaviorSubject<User | null>(null);
+  private userRolesSubject = new BehaviorSubject<UserRole[] | null>(null);
 
-    userRole$ = this.userRoles.asObservable();
-    
-    async setUser(user: User): Promise<void> {
-        this.currentUser = user;
-        this.userRoles.next(user.roles);
-    }
+  user$: Observable<User | null> = this.currentUserSubject.asObservable();
+  userRole$: Observable<UserRole[] | null> = this.userRolesSubject.asObservable();
 
-    async getUser(): Promise<User> {
-        return this.currentUser;
-    }
+  setUser(user: User): void {
+    this.currentUserSubject.next(user);
+    this.userRolesSubject.next(user.roles);
+  }
 
+  clearUser(): void {
+    this.currentUserSubject.next(null);
+    this.userRolesSubject.next(null);
+  }
+
+  getUser(): User | null {
+    return this.currentUserSubject.value;
+  }
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class PermissionsService {
-  async canActivate(currentUser: CurrentUserService, url: string): Promise<boolean> {
-    var user = await currentUser.getUser();
+  canActivate(currentUser: CurrentUserService, url: string): boolean {
+    const user = currentUser.getUser();
 
-    if(!user) {
-        return false;
-    }
+    if (!user) return false;
 
-    if(url === "/home" && [UserRole.ADMIN, UserRole.BUSKER, UserRole.USER].some(obj => user.roles.includes(obj))) {
-
+    if (url === "/home" && [UserRole.ADMIN, UserRole.BUSKER, UserRole.USER].some(r => user.roles.includes(r))) {
       console.log(user);
-        return true;  
-    }
-
-    if(url === "/admin/home" && [UserRole.ADMIN].some(obj => user.roles.includes(obj))) {
-      console.log(user);
-        return true;
-    }
-
-    if(url === "/createevent" && [UserRole.ADMIN, UserRole.BUSKER].some(obj => user.roles.includes(obj))) {
       return true;
-  }
+    }
+
+    if (url === "/admin/home" && user.roles.includes(UserRole.ADMIN)) {
+      console.log(user);
+      return true;
+    }
+
+    if (url === "/createevent" && [UserRole.ADMIN, UserRole.BUSKER].some(r => user.roles.includes(r))) {
+      return true;
+    }
 
     return false;
   }
-  canMatch(currentUser: CurrentUserService): boolean {
+
+  canMatch(): boolean {
     return true;
   }
 }

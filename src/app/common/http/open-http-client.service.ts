@@ -44,13 +44,13 @@ export class OpenHttpClientService {
 
 
 
-  getBuskers(pageNumber: number, pageSize: number): Observable<any> {
-  const url = `${URL}/user/getBuskers`;
+getBuskers(pageNumber: number, pageSize: number): Observable<any> {
+  const url = `http://localhost:8085/user/getBuskers`; // removed `/open`
 
   const params = new HttpParams()
     .set('pageNumber', pageNumber.toString())
     .set('pageSize', pageSize.toString());
 
-  return this.http.get<any>(url, { params });
+  return this.http.get<any>(url, { params, withCredentials: true }); // important for cookies
 }
 }
