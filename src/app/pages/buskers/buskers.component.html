@@ -1,2 +1,18 @@
-<p>buskers works!</p>
 
+
+<div class = "buskers">
+    <div class = "item-1">
+  <h2>Buskers</h2>
+
+<p *ngIf="buskers.length === 0">No buskers found.</p>
+
+<ul>
+  <li *ngFor="let busker of buskers">
+    {{ busker.email }} (Role: {{ busker.role }})
+  </li>
+</ul>
+
+<p>Total Buskers: {{ total }}</p>
+
+    </div>
+</div>

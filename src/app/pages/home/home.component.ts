@@ -67,23 +67,24 @@ export class HomeComponent implements OnInit {
         this.globalDate = globalDate;
     }
   });
-  this.openHttpClientService.getEvents(
-    new Date(2025, 6, 6, 23, 0, 0),
-    -88,
-    -88
-    ,80
-    ,80,
-    [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
-  ).subscribe({
-    next: (events: AppEvent[]) => {
-      // 'events' here IS your complete list of Event[]
-      // console.log('Successfully extracted events:', events);
-      this.events = events; // Assign the full list to your component property
-    },
-    error: (error) => {
-      // console.error('Error fetching events:', error);
-    },
-  });
+this.openHttpClientService.getEvents(
+  new Date(2025, 6, 6, 23, 0, 0),
+  -88,
+  -88,
+  80,
+  80,
+  [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
+).subscribe({
+  next: (events: AppEvent[]) => {
+    this.events = events;
+    if (this.mapInstance) {
+      this.addMarkersToMap();
+    }
+  },
+  error: (error) => {
+    console.error('Error fetching events:', error);
+  },
+});
 }
 
  ngOnInit() { 
@@ -101,28 +102,13 @@ onMapReady(map: L.Map) {
   this.mapInstance = map;
   const center = this.mapInstance.getCenter();
   console.log('Center:', center.lat, center.lng);
-  this.markersLayer.clearLayers();
 
-  this.events.forEach(event => {
-    // Use the icon for the event type
-    const icon = markerIcons[event.eventType as keyof typeof markerIcons];
+  // Only add markers once events exist
+  if (this.events.length > 0) {
+    this.addMarkersToMap();
+  }
 
-    const marker = L.marker([event.lat, event.long], { icon }) // <- pass icon here
-      .addTo(this.markersLayer)
-      .bindPopup(`<b>${event.title}</b><br>${event.eventType}`)
-      .on('click', () => this.onSelect(event)); // Reuse your onSelect method
-  });
-
-  // Add the layer to the map
-  this.markersLayer.addTo(this.mapInstance);
-
-  // Optional: center map to all markers
-  // if (this.events.length > 0) {
-  //   const group = L.featureGroup(this.events.map(e => L.marker([e.lat, e.long])));
-  //   this.mapInstance.fitBounds(group.getBounds().pad(0.5));
-  // }
-
-  // Reverse geocoding (keep your existing code)
+  // Reverse geocoding (unchanged)
   fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${center.lat}&lon=${center.lng}`)
     .then(response => response.json())
     .then(data => {
@@ -143,6 +129,7 @@ onMapReady(map: L.Map) {
     .catch(error => console.error('Reverse geocoding error:', error));
 }
 
+
 onMapMoved(event: { lat: number; lng: number }) {
   console.log('Home Map moved to:', event);
 }
@@ -158,7 +145,17 @@ toggleDateControls() {
 }
 
 
-
+private addMarkersToMap() {
+  this.markersLayer.clearLayers();
+  this.events.forEach(event => {
+    const icon = markerIcons[event.eventType as keyof typeof markerIcons];
+    L.marker([event.lat, event.long], { icon })
+      .addTo(this.markersLayer)
+      .bindPopup(`<b>${event.title}</b><br>${event.eventType}`)
+      .on('click', () => this.onSelect(event));
+  });
+  this.markersLayer.addTo(this.mapInstance);
+}
 
 
 onTimeSelected(selectedDate: Date) {

@@ -39,4 +39,18 @@ export class OpenHttpClientService {
 
     return this.http.get<AppEvent[]>(url, { params: params });
   }
+
+
+
+
+
+  getBuskers(pageNumber: number, pageSize: number): Observable<any> {
+  const url = `${URL}/user/getBuskers`;
+
+  const params = new HttpParams()
+    .set('pageNumber', pageNumber.toString())
+    .set('pageSize', pageSize.toString());
+
+  return this.http.get<any>(url, { params });
+}
 }
