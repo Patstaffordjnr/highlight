@@ -1,102 +1,93 @@
-<div class = "event-list-container">
-   <div class="event-list">
-     <div class="event-grid">
-       <div *ngFor="let event of events; let i = index" [class.selected]="event === selectedEvent" (click)="onSelect(event)"  class="event-item">
-         <div class="flex-grid">
-           <div class="event-profile-image-container col">
-             <div class="event-profile-image">
-               <!-- <a>USERss Image</a> -->
-             </div>
-           </div>
-           <div class="event-user-name-container col">
-             <div class="event-user-name">
-               <a>USER Name</a>
-             </div>
-           </div>
-         </div>
-         <div class="flex-grid">
-           <div class="event-title-container col">
-             <div class="event-title">
-               <a>{{event.title}}</a>
-             </div>
-           </div>
-         </div>
-         <div class="flex-grid">
-           <div class="event-address-container col">
-             <div class="event-address">
-                <br>
-               <a>{{eventsAddressIndexed[i]}}</a>
-             </div>
-           </div>
-         </div>
-         <div class="flex-grid">
- <div class="event-start-date-text-container col">
-    <div class="event-start-date-text">
-      Start
-      <br>
-      Date :
+<div class="event-list-container">
+  <div class="event-list">
+    <div class="event-grid">
+      <div
+        *ngFor="let event of events; let i = index"
+        [class.selected]="event === selectedEvent"
+        (click)="onSelect(event)"
+        class="event-item">
+
+        <div class="flex-grid top-section">
+          <div class="event-profile-image-container col">
+            <div class="event-profile-image"></div>
+          </div>
+          <div class="event-user-details col">
+            <div class="event-user-name">
+              <a>The USER Namezzzzzzzzzz</a>
+            </div>
+            <div class="event-user-role">
+              <a>User Role Brev</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-grid">
+          <div class="event-title-container col">
+            <div class="event-title">
+              <a>{{ event.title }}</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-grid">
+          <div class="event-address-container col">
+            <div class="event-address">
+              <a>{{ eventsAddressIndexed[i] }}</a>
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="flex-grid">
+          <div class="event-start-date-text-container col">
+            <div class="event-start-date-text">Start<br />Date :</div>
+          </div>
+          <div class="event-start-date-container col">
+            <div class="event-start-date">
+              <span class="date-top">{{ event.startAt * 1000 | date: 'MMM d,' }}</span><br />
+              <span class="date-bottom">{{ event.startAt * 1000 | date: 'y' }}</span>
+            </div>
+          </div>
+          <div class="event-start-time-text-container col">
+            <div class="event-start-time-text">Start<br />Time :</div>
+          </div>
+          <div class="event-start-time-container col">
+            <div class="event-start-time">
+              <span class="time-top">{{ event.startAt * 1000 | date: 'h:mm' }}</span><br />
+              <span class="time-bottom">{{ event.startAt * 1000 | date: 'a' }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-grid">
+          <div class="event-finish-date-text-container col">
+            <div class="event-finish-date-text">Finish<br />Date :</div>
+          </div>
+          <div class="event-finish-date-container col">
+            <div class="event-finish-date">
+              <span class="date-top">{{ event.endAt * 1000 | date: 'MMM d,' }}</span><br />
+              <span class="date-bottom">{{ event.endAt * 1000 | date: 'y' }}</span>
+            </div>
+          </div>
+          <div class="event-finish-time-text-container col">
+            <div class="event-finish-time-text">Finish<br />Time :</div>
+          </div>
+          <div class="event-finish-time-container col">
+            <div class="event-finish-time">
+              <span class="time-top">{{ event.endAt * 1000 | date: 'h:mm' }}</span><br />
+              <span class="time-bottom">{{ event.endAt * 1000 | date: 'a' }}</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
-  <div class="event-start-date-container col">
-    <div class="event-start-date">
-      <span class="date-top">{{ event.startAt * 1000 | date: 'MMM d,' }}</span><br>
-      <span class="date-bottom">{{ event.startAt * 1000 | date: 'y' }}</span>
-    </div>
-  </div>
-  <div class="event-start-time-text-container col">
-    <div class="event-start-time-text">
-      Start
-      <br>
-      Time :
-    </div>
-  </div>
-<div class="event-start-time-container col">
-  <div class="event-start-time">
-    <span class="time-top">{{ event.startAt * 1000 | date: 'h:mm' }}</span><br>
-    <span class="time-bottom">{{ event.startAt * 1000 | date: 'a' }}</span>
   </div>
 </div>
-</div>
-
-<div class="flex-grid">
-  <div class="event-finish-date-text-container col">
-    <div class="event-finish-date-text">
-      Finish
-      <br>
-      Date :
-    </div>
-  </div>
-  <div class="event-finish-date-container col">
-    <div class="event-finish-date">
-      <span class="date-top">{{ event.endAt * 1000 | date: 'MMM d,' }}</span><br>
-      <span class="date-bottom">{{ event.endAt * 1000 | date: 'y' }}</span>
-    </div>
-  </div>
-  <div class="event-finish-time-text-container col">
-    <div class="event-finish-time-text">
-      Finish
-      <br>
-      Time :
-    </div>
-  </div>
-
-<div class="event-finish-time-container col">
-  <div class="event-finish-time">
-    <span class="time-top">{{ event.endAt * 1000 | date: 'h:mm' }}</span><br>
-    <span class="time-bottom">{{ event.endAt * 1000 | date: 'a' }}</span>
-  </div>
-</div>
-         </div>
-       </div>
-     </div>
-   </div>
-
-   </div>
-   <br>
-   <div class="eventPagination">
-     <!-- <button (click)="previousPageOfEvents()">Previous Page</button>
+<div class="eventPagination">
+       <!-- <button (click)="previousPageOfEvents()">Previous Page</button>
      <button *ngFor="let pageNumber of pageNumberArray" [class.selected]="pageNumber === currentIndex" (click)="pageSelect(pageNumber)">
        {{pageNumber}}
      </button>
      <button (click)="nextPageOfEvents()">Next Page</button> -->
-   </div>
+</div>

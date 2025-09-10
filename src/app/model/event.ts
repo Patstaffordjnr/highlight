@@ -1,35 +1,35 @@
-import { EventType } from '../model/event-types'
+import { EventType } from '../model/event-types';
 
 export class Event {
-    public title: String;
-    public eventType: EventType
-    public lat: Number
-    public long: Number
-    public startAt: Date;
-    public endAt: Date;
-    public createdAt: Date;
-    public updatedAt: Date;
-    public id: String;
+  public title: string;
+  public eventType: EventType;
+  public lat: number;
+  public long: number;
+  public startAt: Date;
+  public endAt: Date;
+  public createdAt: Date;
+  public updatedAt: Date;
+  public id: string;
 
-    constructor(
-        title: String,
-        eventType: EventType,
-        lat: Number,
-        long: Number,
-        startAt: Date,
-        endAt: Date,
-        createdAt: Date,
-        updatedAt: Date,
-        id: String
-        ) {
-            this.title = title;
-            this.eventType = eventType;
-            this.lat = lat;
-            this.long = long;
-            this.startAt = startAt;
-            this.endAt = endAt;
-            this.createdAt = createdAt;
-            this.updatedAt = updatedAt;
-            this.id = id;
-    }
+  constructor(
+    title: string,
+    eventType: EventType,
+    lat: number,
+    long: number,
+    startAt: Date,
+    endAt: Date,
+    createdAt: Date,
+    updatedAt: Date,
+    id: string
+  ) {
+    this.title = title;
+    this.eventType = eventType;
+    this.lat = lat;
+    this.long = long;
+    this.startAt = startAt;
+    this.endAt = endAt;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
+    this.id = id;
+  }
 }

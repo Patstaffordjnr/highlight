@@ -1,7 +1,6 @@
 .flex-grid {
   display: flex;
   width: 100%;
-  /* margin-bottom: 10px; */
 }
 
 .col {
@@ -57,7 +56,6 @@
   gap: 8px;
 }
 
-
 .event-item {
   flex: 1 1 calc(25% - 32px);
   min-width: 300px;
@@ -73,15 +71,16 @@
   justify-content: center;
   align-items: center;
   aspect-ratio: 1 / 1;
+  background-color: #4caf50;
 }
 
 .event-profile-image-container {
-  width: 100px;
+  min-width: 50%;
   height: 100px;
   border-radius: 30% 10% 30% 10%;
   overflow: hidden;
   border: 6px solid whitesmoke;
-  /* background-color: cornflowerblue; */
+  background-color: cornflowerblue;
 }
 
 .event-profile-image img {
@@ -90,16 +89,36 @@
   object-fit: cover;
 }
 
-.event-user-name-container {
-  /* background-color: darkcyan; */
+.top-section {
+  align-items: stretch;
+}
+
+.event-user-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: yellow;
+  width: 50%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
 }
 
 .event-user-name {
   font-weight: bold;
+  /* font-size: 1rem; */
+  word-wrap: break-word;
+}
+
+.event-user-role {
+  /* font-weight: bold; */
+  /* font-size: 1rem; */
+  color: #222;
 }
 
 .event-title-container {
-  /* background-color: blue; */
+  background-color: yellowgreen;
 }
 
 .event-title {
@@ -112,26 +131,31 @@
 
 .event-address-container {
   justify-content: left;
-  /* background-color: coral; */
 }
 
 .event-address {
   padding-left: 10px;
-  /* background-color: green; */
 }
 
 .event-start-date-text-container {
   justify-content: left;
   padding-left: 10px;
-  /* background-color: darkblue; */
 }
 
 .event-start-date {
   font-weight: bold;
 }
 
+.event-start-time-text-container {
+  justify-content: left;
+  /* font-weight: bold; */
+}
+
 .event-start-time-container {
   justify-content: left;
+}
+
+.event-start-time {
   font-weight: bold;
 }
 
@@ -150,21 +174,10 @@
 
 .event-finish-time-container {
   justify-content: left;
-  /* background-color: cyan; */
 }
 
 .event-finish-time {
   font-weight: bold;
-}
-
-.right {
-  height: 100px;
-}
-
-.left {
-  background-color: whitesmoke;
-  height: 100px;
-  border: 1px solid black;
 }
 
 .eventPagination {
@@ -196,7 +209,6 @@
 
 .event-item.selected {
   border: 2px solid #4caf50;
-  /* background-color: #f9fff9; */
 }
 
 /* SM - Small tablets */
