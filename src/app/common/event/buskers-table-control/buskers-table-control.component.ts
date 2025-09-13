@@ -1,16 +1,21 @@
+
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GlobalDateService } from 'src/app/pages/home/global-date.service';
 import { MapService } from '../../map/map-service';
 import { EventFilter } from 'src/app/model/event-list-filter';
 import { EventType } from 'src/app/model/event-types';
+import { FormsModule } from '@angular/forms'; 
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-events-table-control',
-  templateUrl: './events-table-control.component.html',
-  styleUrl: './events-table-control.component.css'
+  selector: 'app-buskers-table-control',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './buskers-table-control.component.html',
+  styleUrl: './buskers-table-control.component.css'
 })
-export class EventsTableControlComponent implements OnInit, OnDestroy {
+export class BuskersTableControlComponent implements OnInit, OnDestroy{
 
   genreSet: Set<string> = new Set(['All', 'Band', 'Busker', 'Dj', 'Performance']);
   selectGenre: Set<string> = new Set();
@@ -65,16 +70,18 @@ export class EventsTableControlComponent implements OnInit, OnDestroy {
 
    this.subscription = this.mapService?.mapCurrentLocationDetails$.subscribe((details) => {
     this.mapDetails = details;
+    // console.log(details);
   
-    const addressString = details?.[5];
+    const addressString = details?.[5]; // safely access index 5
   
     if (addressString) {
       const parts = addressString.split(',').map(part => part.trim());
 
       const street = parts[0] || '';
-      const cityOrCounty = parts[2] || parts[3] || '';
+      const cityOrCounty = parts[2] || parts[3] || ''; // Adjust index as needed
       const country = parts[parts.length - 1] || '';
       const formattedAddress = `${street}, ${cityOrCounty}, ${country}`;
+      // console.log('Formatted address:', formattedAddress);
       this.homeAddress = formattedAddress;
    } else {
     console.warn('Address string is undefined or empty.');
@@ -146,7 +153,6 @@ onTimeSelected(selectedTime: Date) {
 
 private mapStringToEventType(genre: string): EventType {
   switch (genre.toLowerCase()) {
-        case 'all': return EventType.ALL;
     case 'band': return EventType.BAND;
     case 'busker': return EventType.BUSKER;
     case 'dj': return EventType.DJ;
@@ -155,33 +161,53 @@ private mapStringToEventType(genre: string): EventType {
   }
 }
 
-allFunction() {
 
-  this.allEventsVisible = !this.allEventsVisible;
+allFunction() {
+  // this.allEventsVisible = !this.allEventsVisible;
+  // this.bandEventsVisible = this.allEventsVisible;
+  // this.buskerEventsVisible = this.allEventsVisible;
+  // this.djEventsVisible = this.allEventsVisible;
+  // this.performanceEventsVisible = this.allEventsVisible;
+
+  // if (this.allEventsVisible) {
+  //   this.genreSet = new Set(['Band', 'Busker', 'Dj', 'Performance']);
+  // } else {
+  //   this.genreSet.clear();
+  // }
+
+  // console.log(`All Function: ${this.allEventsVisible}`);
+  //   this.selectGenre = this.genreSet;
+  //   console.log(this.genreSet);
+    this.allEventsVisible = !this.allEventsVisible;
+  // console.log(`Band Function: ${this.bandEventsVisible}`);
   this.toggleGenreInSet('All', this.allEventsVisible);
-  this.emitFilter();
+    this.emitFilter();
 }
 
 bandFunction() {
   this.bandEventsVisible = !this.bandEventsVisible;
+  // console.log(`Band Function: ${this.bandEventsVisible}`);
   this.toggleGenreInSet('Band', this.bandEventsVisible);
       this.emitFilter();
 }
 
 buskerFunction() {
   this.buskerEventsVisible = !this.buskerEventsVisible;
+  // console.log(`Busker Function: ${this.buskerEventsVisible}`);
   this.toggleGenreInSet('Busker', this.buskerEventsVisible);
       this.emitFilter();
 }
 
 djFunction() {
   this.djEventsVisible = !this.djEventsVisible;
+  // console.log(`DJ Function: ${this.djEventsVisible}`);
   this.toggleGenreInSet('Dj', this.djEventsVisible);
       this.emitFilter();
 }
 
 performanceFunction() {
   this.performanceEventsVisible = !this.performanceEventsVisible;
+  // console.log(`Performance Function: ${this.performanceEventsVisible}`);
   this.toggleGenreInSet('Performance', this.performanceEventsVisible);
       this.emitFilter();
 }
