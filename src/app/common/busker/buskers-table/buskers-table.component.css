@@ -1,62 +1,67 @@
-.busker-list-container {
-  height: 100%;
-  width: 100%;
-  overflow-y: auto;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.busker-list-container::-webkit-scrollbar {
-  display: none;
-}
-
-.busker-list {
-  height: 100%;
-  width: 100%;
-}
-
-.busker-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  height: 100%;
-  width: 100%;
-  gap: 8px;
-}
-
-.busker-item {
-  flex: 1 1 calc(25% - 32px);
-  min-width: 300px;
-  min-height: 300px;
-  max-width: 300px;
-  max-height: 300px;
-  box-sizing: border-box;
-  border: 6px solid whitesmoke;
-  border-radius: 16px;
-  padding: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  aspect-ratio: 1 / 1;
-}
-
-/* Styles for flex rows/cols */
 .flex-grid {
   display: flex;
   width: 100%;
-}
-
-.col {
+  margin-bottom: 10px;
+  }
+  
+  .col {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+  }
+  
+  .row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-basis: 50;
+  width: 25%;
+  flex-basis: 75%;
+  }
+  
+  .column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 25%;
+  flex: 1;
+  }
+  
+  .columnTop {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 25%;
+  flex: 1;
+  }
+  
+  .busker-list-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+  
+  .busker-list {
+  height: 100%;
+  font-weight: normal;
+  }
+  
+  .busker-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 32px;
+  }
+  
+  /* Each item behaves like a column */
+  .busker-item {
+    box-sizing: border-box;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+      border: 6px solid whitesmoke;
+  }
 
 /* Busker item inner elements (renamed) */
 
@@ -135,19 +140,19 @@
 
 /* XL - Desktops */
 @media (min-width: 1200px) {
-  .container {
+  /* .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     gap: 16px;
      height: 75vh;
- }
+ } */
 
 } 
 
     /* Responsive adjustments */
 @media (min-width: 1400px) {
-  .container {
+  /* .container {
      display: grid;
      grid-template-columns: 1fr 1fr 2fr;
      grid-template-rows: 1fr 1fr;
@@ -176,6 +181,6 @@
   .item-4 {
     grid-column: 3 / 4;
     grid-row: 1 / 3;
-    border: 0px solid #d72631; /* Original component had 0px border here */
-  }
+    border: 0px solid #d72631;
+  } */
 }
