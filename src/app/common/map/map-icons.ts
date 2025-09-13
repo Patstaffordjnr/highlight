@@ -13,6 +13,14 @@ const defaultIcon = L.icon({
 
 // Custom marker icons by event type
 export const markerIcons: Record<EventType, L.Icon> = {
+    [EventType.ALL]: L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+    shadowUrl: defaultIcon.options.shadowUrl!,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  }),
   [EventType.BUSKER]: L.icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
     shadowUrl: defaultIcon.options.shadowUrl!,

@@ -1,22 +1,24 @@
 <div class="event-list-container">
   <div class="event-list">
     <div class="event-grid">
-      <div
-        *ngFor="let event of events; let i = index"
-        [class.selected]="event === selectedEvent"
-        (click)="onSelect(event)"
-        class="event-item">
-
+      <div *ngFor="let event of events; let i = index"
+           [class.selected]="event === selectedEvent"
+           (click)="onSelect(event)"
+           class="event-item">
         <div class="flex-grid top-section">
           <div class="event-profile-image-container col">
             <div class="event-profile-image"></div>
           </div>
           <div class="event-user-details col">
-            <div class="event-user-name">
-              <a>The USER Namezzzzzzzzzz</a>
+            <div class="event-user-name-container">
+              <div class="event-user-name">
+                <a>The USER Name</a>
+              </div>
             </div>
-            <div class="event-user-role">
-              <a>User Role Brev</a>
+            <div class="event-user-type-container">
+              <div class="event-user-type">
+                <a>User Type</a>
+              </div>
             </div>
           </div>
         </div>
@@ -32,9 +34,9 @@
         <div class="flex-grid">
           <div class="event-address-container col">
             <div class="event-address">
-              <a>{{ eventsAddressIndexed[i] }}</a>
+              <!-- <a>{{ eventsAddressIndexed[i] }}</a> -->
+              <a>L4045, New Ross Municipal District, Ireland</a>
             </div>
-            
           </div>
         </div>
 
@@ -84,10 +86,12 @@
     </div>
   </div>
 </div>
+
 <div class="eventPagination">
-       <!-- <button (click)="previousPageOfEvents()">Previous Page</button>
+    <!-- <button (click)="previousPageOfEvents()">Previous Page</button>
      <button *ngFor="let pageNumber of pageNumberArray" [class.selected]="pageNumber === currentIndex" (click)="pageSelect(pageNumber)">
-       {{pageNumber}}
+      {{pageNumber}}
      </button>
      <button (click)="nextPageOfEvents()">Next Page</button> -->
 </div>
+

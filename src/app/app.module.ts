@@ -17,6 +17,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { MapComponent } from './common/map/map.component';
 import { EventService } from './common/event/event-service';
 import { EventsTableComponent } from './common/event/events-table/events-table.component';
+import { BuskersTableControlComponent } from 'src/app/common/event/buskers-table-control/buskers-table-control.component';
+
 import { ProgressBarComponent } from './common/progress-bar/progress-bar.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { UserComponent } from './pages/user/user.component';
@@ -36,6 +38,7 @@ import { BuskerComponent } from './pages/busker/busker.component';
     EventsComponent,
     BuskersComponent,
     BuskerComponent,
+
 
     // Components
     AppComponent,
@@ -62,7 +65,8 @@ import { BuskerComponent } from './pages/busker/busker.component';
     DragDropModule,
     EventsTableComponent,
     CommonEventsComponent,
-    UserProfileComponent
+    UserProfileComponent,
+        BuskersTableControlComponent,
   ],
 
   exports: [

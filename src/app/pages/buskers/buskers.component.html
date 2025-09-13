@@ -18,9 +18,7 @@
                 <div class="busker-list">
                     <div class="busker-grid">
                         <div
-                            *ngFor="let busker of buskers; let i = index"
-                            class="busker-item"
-                        >
+                            *ngFor="let busker of buskers; let i = index" class="busker-item">
                             <div class="flex-grid">
                                 <div class="busker-profile-image-container col">
                                     <div class="busker-profile-image">
@@ -83,7 +81,10 @@
                             </div>
                         </div> </div> </div> </div> </div>
     </div>
+    <br>
+    <app-buskers-table-control></app-buskers-table-control>
+      <!-- <app-events-table-control (selectGenre)="onGenreChange($event)"></app-events-table-control> -->
 </div>
-
+  <!-- <app-events-table-control (selectGenre)="onGenreChange($event)"></app-events-table-control> -->
 <!-- <app-busker-modal class="modal" [isOpen]="false" (close)="false">
 </app-busker-modal> -->

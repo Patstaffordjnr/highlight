@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
+import { EventType } from 'src/app/model/event-types';
+import { BuskersTableControlComponent } from 'src/app/common/event/buskers-table-control/buskers-table-control.component';
+
 
 interface Busker {
   id: string;
@@ -15,6 +18,7 @@ interface Busker {
   styleUrls: ['./buskers.component.css']
 })
 export class BuskersComponent implements OnInit {
+  eventTypes: Set<string> = new Set(["Band", "Busker", "Dj", "Performance"]);
   buskers: Busker[] = [];
   total: number = 0;
   // Modal state is included for structure consistency, though not fully implemented
@@ -45,4 +49,10 @@ export class BuskersComponent implements OnInit {
       this.selectedBusker = busker;
       this.showModal = true;
   }
+
+
+onGenreChange(updatedGenres: Set<string>) {
+  this.eventTypes = new Set(['Band', 'Busker', 'Dj', 'Performance']);
+  console.log(this.eventTypes);
+}
 }
