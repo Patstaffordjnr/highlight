@@ -1,67 +1,87 @@
 <div class="busker-list-container">
-                <div class="busker-list">
-                    <div class="busker-grid">
-                        <div class="busker-item" *ngFor="let busker of buskers; let i = index" >
-                            <div class="flex-grid">
-                                <div class="busker-profile-image-container col">
-                                    <div class="busker-profile-image">
-                                        </div>
-                                </div>
-                                <div class="busker-user-name-container col">
-                                    <div class="busker-user-name">
-                                        <a>{{ busker.email }}</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex-grid">
-                                <div class="busker-email-container col">
-                                    <div class="busker-email">
-                                        {{ busker.email }}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex-grid">
-                                <div class="busker-roles-container col">
-                                    <div class="busker-roles">
-                                        <div *ngFor="let role of busker.roles">
-                                            {{ role }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex-grid">
-                                <div class="busker-created-text-container col">
-                                    <div class="busker-created-text">Joined: </div>
-                                </div>
-                                <div class="busker-created-date-container col">
-                                    <div class="busker-created-date">{{ busker.createdAt | date:'MM yyyy' }}</div>
-                                </div>
-                                <div class="busker-updated-text-container col">
-                                    <div class="busker-updated-text">Address:</div>
-                                </div>
-                                <div class="busker-updated-time-container col">
-                                    <!-- <div class="busker-updated-time">{{ busker.updatedAt | date:'short' }}</div> -->
-                                     <a>[address]</a>
-                                </div>
-                            </div>
-                            <div class="flex-grid">
-                                <div class="busker-spacer-text-container col">
-                                    <div class="busker-spacer-text">Followers</div>
-                                </div>
-                                <div class="busker-spacer-date-container col">
-                                    <div class="busker-spacer-date">[1000]</div>
-                                </div>
-                                <div class="busker-spacer-time-text-container col">
-                                    <div class="busker-spacer-time-text">Events</div>
-                                </div>
-                                <div class="busker-spacer-time-container col">
-                                    <div class="busker-spacer-time">[1000]</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div class="busker-list">
+    <div class="busker-grid">
+      <div
+        class="busker-item"
+        *ngFor="let busker of buskers; let i = index"
+        [class.selected]="busker === selectedBusker"
+        (click)="onSelect(busker)"
+      >
+        <!-- top section -->
+        <div class="flex-grid top-section">
+          <div class="busker-profile-image-container col">
+            <div class="busker-profile-image">
+              <img src="assets/default-avatar.png" alt="Busker" />
             </div>
+          </div>
+          <div class="busker-user-details col">
+            <div class="busker-user-name-container">
+              <div class="busker-user-name">
+                <a>{{ busker.name || busker.email }}</a>
+              </div>
+            </div>
+            <div class="busker-user-role-container">
+              <div class="busker-user-role">
+                <a *ngFor="let role of busker.roles">{{ role }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- email -->
+        <div class="flex-grid">
+          <div class="busker-email-container col">
+            <div class="busker-email">
+              {{ busker.email }}
+            </div>
+          </div>
+        </div>
+
+        <!-- joined + address -->
+        <div class="flex-grid">
+          <div class="busker-created-text-container col">
+            <div class="busker-created-text">Joined:</div>
+          </div>
+          <div class="busker-created-date-container col">
+            <div class="busker-created-date">
+              {{ busker.createdAt | date: 'MMM yyyy' }}
+            </div>
+          </div>
+          <div class="busker-address-text-container col">
+            <div class="busker-address-text">Address:</div>
+          </div>
+          <div class="busker-address-container col">
+            <div class="busker-address">[address]</div>
+          </div>
+        </div>
+
+        <!-- followers + events -->
+        <div class="flex-grid">
+          <div class="busker-followers-text-container col">
+            <div class="busker-followers-text">Followers</div>
+          </div>
+          <div class="busker-followers-count col">
+            <div>{{ busker.followers || 0 }}</div>
+          </div>
+          <div class="busker-events-text-container col">
+            <div class="busker-events-text">Events</div>
+          </div>
+          <div class="busker-events-count col">
+            <div>{{ busker.eventsCount || 0 }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="buskerPagination">
+  <!-- example pager like events -->
+  <!--
+  <button (click)="previousPage()">Previous</button>
+  <button *ngFor="let page of pageNumberArray" [class.selected]="page === currentIndex" (click)="pageSelect(page)">
+    {{ page }}
+  </button>
+  <button (click)="nextPage()">Next</button>
+  -->
+</div>

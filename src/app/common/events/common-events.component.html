@@ -1,10 +1,7 @@
 <div class="event-list-container">
   <div class="event-list">
     <div class="event-grid">
-      <div *ngFor="let event of events; let i = index"
-           [class.selected]="event === selectedEvent"
-           (click)="onSelect(event)"
-           class="event-item">
+      <div class="event-item" *ngFor="let event of events; let i = index"[class.selected]="event === selectedEvent" (click)="onSelect(event)" >
         <div class="flex-grid top-section">
           <div class="event-profile-image-container col">
             <div class="event-profile-image"></div>

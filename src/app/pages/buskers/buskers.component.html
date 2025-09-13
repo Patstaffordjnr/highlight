@@ -1,90 +1,29 @@
-<div class="busker-container">
-    <div class="container">
-        <div class="item item-1">
-            <!-- <app-USER-profile class="busker-profile"></app-busker-profile> -->
-                  <app-user-profile  class = "busker-profile"></app-user-profile>
-        </div>
-
-        <div class="item item-2">
-            <app-map class="map"></app-map>
-        </div>
-
-        <div class="item item-3">
-            Item 3 = Buskers
-        </div>
-
-        <div class="item item-4">
-            <div class="busker-list-container">
-                <div class="busker-list">
-                    <div class="busker-grid">
-                        <div
-                            *ngFor="let busker of buskers; let i = index" class="busker-item">
-                            <div class="flex-grid">
-                                <div class="busker-profile-image-container col">
-                                    <div class="busker-profile-image">
-                                        </div>
-                                </div>
-                                <div class="busker-user-name-container col">
-                                    <div class="busker-user-name">
-                                        <a>{{ busker.email }}</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex-grid">
-                                <div class="busker-email-container col">
-                                    <div class="busker-email">
-                                        {{ busker.email }}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex-grid">
-                                <div class="busker-roles-container col">
-                                    <div class="busker-roles">
-                                        <div *ngFor="let role of busker.roles">
-                                            {{ role }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex-grid">
-                                <div class="busker-created-text-container col">
-                                    <div class="busker-created-text">Joined: </div>
-                                </div>
-                                <div class="busker-created-date-container col">
-                                    <div class="busker-created-date">{{ busker.createdAt | date:'MM yyyy' }}</div>
-                                </div>
-                                <div class="busker-updated-text-container col">
-                                    <div class="busker-updated-text">Address:</div>
-                                </div>
-                                <div class="busker-updated-time-container col">
-                                    <!-- <div class="busker-updated-time">{{ busker.updatedAt | date:'short' }}</div> -->
-                                     <a>[address]</a>
-                                </div>
-                            </div>
-
-                            <div class="flex-grid">
-                                <div class="busker-spacer-text-container col">
-                                    <div class="busker-spacer-text">Followers</div>
-                                </div>
-                                <div class="busker-spacer-date-container col">
-                                    <div class="busker-spacer-date">[1000]</div>
-                                </div>
-                                <div class="busker-spacer-time-text-container col">
-                                    <div class="busker-spacer-time-text">Events</div>
-                                </div>
-                                <div class="busker-spacer-time-container col">
-                                    <div class="busker-spacer-time">[1000]</div>
-                                </div>
-                            </div>
-                        </div> </div> </div> </div> </div>
+<div class="busker">
+<div class="container">
+    <div class="item item-1">
+      <app-user-profile  class = "user-profile"></app-user-profile>
     </div>
-    <br>
-    <app-buskers-table-control></app-buskers-table-control>
-      <!-- <app-events-table-control (selectGenre)="onGenreChange($event)"></app-events-table-control> -->
+    <div class="item item-2">
+      <app-map class = "map"></app-map>
+    </div>
+    <div class="item item-3">
+      Item 3 = Buskers
+    </div>
+    <div class="item item-4">
+        <app-buskers-table class = "buskers" [buskers]="buskers"></app-buskers-table>
+      <!-- <app-common-events class = "events" [events]="events" (selectedEvent)="onSelect($event)"></app-common-events> -->
+    </div>
 </div>
+</div>
+<!-- <app-event-modal class = "modal" [isOpen]="showModal" (close)="showModal = false " [event]="event"> -->
+<!-- </app-event-modal> -->
+
+
+
+
+    <!-- <app-buskers-table-control></app-buskers-table-control> -->
+      <!-- <app-events-table-control (selectGenre)="onGenreChange($event)"></app-events-table-control> -->
+
   <!-- <app-events-table-control (selectGenre)="onGenreChange($event)"></app-events-table-control> -->
 <!-- <app-busker-modal class="modal" [isOpen]="false" (close)="false">
 </app-busker-modal> -->

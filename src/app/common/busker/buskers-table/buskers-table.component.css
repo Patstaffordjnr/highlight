@@ -1,76 +1,78 @@
 .flex-grid {
   display: flex;
   width: 100%;
-  margin-bottom: 10px;
-  }
-  
-  .col {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  }
-  
-  .row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  flex-basis: 50;
-  width: 25%;
-  flex-basis: 75%;
-  }
-  
-  .column {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 25%;
-  flex: 1;
-  }
-  
-  .columnTop {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 25%;
-  flex: 1;
-  }
-  
-  .busker-list-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  }
-  
-  .busker-list {
-  height: 100%;
-  font-weight: normal;
-  }
-  
-  .busker-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 32px;
-  }
-  
-  /* Each item behaves like a column */
-  .busker-item {
-    box-sizing: border-box;
-    border-radius: 16px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-      border: 6px solid whitesmoke;
-  }
+}
 
-/* Busker item inner elements (renamed) */
+.col {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.busker-list-container {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.busker-list-container::-webkit-scrollbar {
+  display: none;
+}
+
+.busker-list {
+  height: 100%;
+  width: 100%;
+}
+
+.busker-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+  gap: 8px;
+}
+
+.busker-item {
+  flex: 1 1 calc(25% - 32px);
+  min-width: 300px;
+  min-height: 300px;
+  max-width: 300px;
+  max-height: 300px;
+  box-sizing: border-box;
+  border: 6px solid whitesmoke;
+  border-radius: 16px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+}
+
+.busker-item.selected {
+  border: 2px solid #4caf50;
+}
+
+/* top section (image + details) */
+.top-section {
+  align-items: stretch;
+}
 
 .busker-profile-image-container {
-  width: 100px;
+  min-width: calc(50% - 10px);
   height: 100px;
   border-radius: 30% 10% 30% 10%;
   overflow: hidden;
   border: 6px solid whitesmoke;
+  margin-right: 10px;
 }
 
 .busker-profile-image img {
@@ -79,14 +81,40 @@
   object-fit: cover;
 }
 
+.busker-user-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+}
+
+.busker-user-name-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .busker-user-name {
   font-weight: bold;
 }
 
-.busker-email-container {
-  /* background-color: blue; */
+.busker-user-role-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
+.busker-user-role {
+  color: #222;
+}
+
+/* email */
 .busker-email {
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -95,92 +123,105 @@
   padding: 0 10px;
 }
 
-.busker-roles-container {
-  justify-content: left;
-}
-
-.busker-roles {
-  padding-left: 10px;
-}
-
+/* joined + address */
 .busker-created-text-container,
-.busker-created-date-container,
-.busker-updated-text-container,
-.busker-updated-time-container {
-    /* Styles for the timestamp elements */
-}
-
-.busker-created-text-container {
+.busker-address-text-container {
   justify-content: left;
   padding-left: 10px;
 }
 
-.busker-created-date {
+.busker-created-date,
+.busker-address {
   font-weight: bold;
 }
 
-.busker-updated-time-container {
+/* followers + events */
+.busker-followers-text-container,
+.busker-events-text-container {
   justify-content: left;
+  padding-left: 10px;
+}
+
+.buskerPagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buskerPagination button.selected {
   font-weight: bold;
 }
 
-/* Responsive Breakpoints (Kept exactly the same as requested) */
+/* Breakpoints same as events */
 
-/* SM - Small tablets */
+/* SM */
 @media (min-width: 576px) {
+  .busker-item {
+    min-width: 350px;
+    min-height: 350px;
+    max-width: 350px;
+    max-height: 350px;
+  }
 }
 
-/* MD - Tablets */
+/* MD */
 @media (min-width: 768px) {
-} 
-
-/* LG - Small laptops */
-@media (min-width: 992px) {
+  .busker-item {
+    min-width: 350px;
+    min-height: 350px;
+    max-width: 350px;
+    max-height: 350px;
+  }
 }
 
-/* XL - Desktops */
-@media (min-width: 1200px) {
-  /* .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
+/* LG */
+@media (min-width: 992px) {
+  .busker-grid {
     gap: 16px;
-     height: 75vh;
- } */
+  }
+  .busker-item {
+    min-width: 350px;
+    min-height: 350px;
+    max-width: 350px;
+    max-height: 350px;
+  }
+}
 
-} 
+/* XL */
+@media (min-width: 1200px) {
+  .busker-item {
+    min-width: 350px;
+    min-height: 350px;
+    max-width: 350px;
+    max-height: 350px;
+  }
+}
 
-    /* Responsive adjustments */
+/* XXL */
 @media (min-width: 1400px) {
-  /* .container {
-     display: grid;
-     grid-template-columns: 1fr 1fr 2fr;
-     grid-template-rows: 1fr 1fr;
-     gap: 16px;
-      height: 75vh;
+  .busker-grid {
+    gap: 16px;
   }
-  .item{
-    max-height: 100%;
-    max-width: 100%;
+  .busker-list-container {
+    height: 100%;
+    overflow-y: auto;
   }
-  .item-1 {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-    display: flex;
-    max-width: 100%
+  .busker-list {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    white-space: nowrap;
   }
-  .item-2 {
-    grid-column: 1 / 3;
-    grid-row: 2 / 3;
+  .busker-list::-webkit-scrollbar {
+    display: none;
   }
-  .item-3 {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-
+  .busker-item {
+    flex: 1 1 calc(25% - 32px);
+    min-height: calc(50% - 8px);
+    aspect-ratio: 1 / 1;
+    min-width: 300px;
+    min-height: 300px;
+    max-width: 350px;
+    max-height: 350px;
   }
-  .item-4 {
-    grid-column: 3 / 4;
-    grid-row: 1 / 3;
-    border: 0px solid #d72631;
-  } */
 }
