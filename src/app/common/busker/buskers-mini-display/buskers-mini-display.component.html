@@ -1,0 +1,22 @@
+
+<div class="busker-list-container">
+  <div class="busker-list">
+    <div class="busker-grid">
+      <div class="busker-item"
+        *ngFor="let busker of buskers; let i = index"
+        [class.selected]="busker === selectedBusker"
+        (click)="onSelect(busker)">
+
+
+          <div class="busker-profile-image-container col">
+            <div class="busker-profile-image">
+              <img src="assets/default-avatar.png" alt="Busker" />
+            </div>
+          </div>
+          <div class="busker-user-details col">
+            <div class="busker-user-name-container">
+              <div class="busker-user-name">
+                <a>{{ busker.name || busker.email }}</a>
+              </div>
+            </div>
+           
