@@ -1,4 +1,3 @@
-
 .flex-grid {
   display: flex;
   width: 100%;
@@ -27,8 +26,6 @@
 }
 
 .busker-list-container {
-  /* height: 100%;
-  width: 100%; */
   overflow-y: auto;
   box-sizing: border-box;
   display: flex;
@@ -36,7 +33,6 @@
   align-items: center;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  /* background-color: aqua; */
 }
 
 .busker-list-container::-webkit-scrollbar {
@@ -44,121 +40,26 @@
 }
 
 .busker-list {
-  /* height: 100%;
-  width: 100%; */
 }
 
 .busker-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  /* height: 100%;
-  width: 100%; */
-  gap: 8px;
-}
-
-.busker-item {
-  flex: 1 1 calc(25% - 32px);
-  /* min-width: 300px;
-  min-height: 300px; */
-  max-width: 160px;
-  max-height: 160px;
-  box-sizing: border-box;
-  border: 6px solid whitesmoke;
-  border-radius: 16px;
-  padding: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  aspect-ratio: 1 / 1;
-  /* background-color: #4caf50; */
-  
-}
-
-
-
-
-
-
-
-
-
-
-/* .busker-list-container{
-
-}
-.busker-list{
-
-}
-.busker-grid{
-
-}
-.busker-item{
-
-} */
-
-/* .flex-grid {
-  display: flex;
-  width: 100%;
-}
-
-.col {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.busker-list-container {
-  height: 100%;
-  width: 100%;
-  overflow-y: auto;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-
-
-}
-
-.busker-list-container::-webkit-scrollbar {
-  display: none;
-}
-
-.busker-list {
-  height: 100%;
-  width: 100%;
-}
-
-.busker-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  height: 100%;
-  width: 100%;
-  gap: 8px;
-}
-
-.busker-item {
-  flex: 1 1 calc(25% - 32px);
-  min-width: 300px;
-  min-height: 300px;
-  max-width: 300px;
-  max-height: 300px;
-  box-sizing: border-box;
-  border: 6px solid whitesmoke;
-  border-radius: 16px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
+  gap: 8px;
+}
+
+.busker-item {
+  flex: 1 1 calc(25% - 32px);
+  max-width: 200px;
+  max-height: 200px;
+  box-sizing: border-box;
+  border: 6px solid whitesmoke;
+  border-radius: 16px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   aspect-ratio: 1 / 1;
 }
-
-.busker-item.selected {
-  border: 2px solid #4caf50;
-} */
