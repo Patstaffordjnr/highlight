@@ -6,8 +6,6 @@
         *ngFor="let busker of buskers; let i = index"
         [class.selected]="busker === selectedBusker"
         (click)="onSelect(busker)">
-
-
           <div class="busker-profile-image-container col">
             <div class="busker-profile-image">
               <img src="assets/default-avatar.png" alt="Busker" />
@@ -19,4 +17,6 @@
                 <a>{{ busker.name || busker.email }}</a>
               </div>
             </div>
-           
+          </div>
+      </div>
+    </div></div>
