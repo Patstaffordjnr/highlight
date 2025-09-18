@@ -31,7 +31,8 @@ import { EventModalComponent } from './common/event/event-modal/event-modal.comp
 import { BuskersComponent } from './pages/buskers/buskers.component';
 import { BuskerComponent } from './pages/busker/busker.component';
 import { BuskersTableComponent } from './common/busker/buskers-table/buskers-table.component';
-
+import { BuskersMiniDisplayComponent } from './common/busker/buskers-mini-display/buskers-mini-display.component';
+import { BuskersTableControlComponent } from './common/busker/buskers-table-control/buskers-table-control.component';
 @NgModule({
   declarations: [
     // Pages
@@ -67,6 +68,8 @@ import { BuskersTableComponent } from './common/busker/buskers-table/buskers-tab
     CommonEventsComponent,
     UserProfileComponent,
         BuskersTableComponent,
+        BuskersMiniDisplayComponent,
+        BuskersTableControlComponent,
   ],
 
   exports: [

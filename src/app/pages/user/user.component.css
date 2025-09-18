@@ -24,6 +24,8 @@
   box-sizing: border-box;
   height: 100%;
   width: 100%;
+  /* background-color: #e75b1e; */
+  
     }
     .item1 { background-color: #e75b1e; }
     .item2 { background-color: #ff7f50; }
@@ -35,6 +37,14 @@
   height: 100%;
   width: 100%;
   
+}
+
+.buskers {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+
+
 }
     
 .map {
@@ -94,7 +104,7 @@
   .item-1 {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
-    /* background-color: #e75b1e; */
+    background-color: #e75b1e;
     display: flex;
     max-width: 100%
     

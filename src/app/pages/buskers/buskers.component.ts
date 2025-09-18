@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
 import { EventType } from 'src/app/model/event-types';
+import { BuskersTableControlComponent } from 'src/app/common/busker/buskers-table-control/buskers-table-control.component';
 
 interface Busker {
   id: string;

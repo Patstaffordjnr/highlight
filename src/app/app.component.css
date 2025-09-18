@@ -5,6 +5,12 @@
     min-width: 100vw;
     padding: 0px;
     padding-left: 0px;
+      /* Fit below the navbar */
+  /* height: calc(100vh); */
+
+  /* Prevent grid from pushing taller than viewport */
+  box-sizing: border-box;
+  overflow: hidden;
   }
 
   .header-container {
@@ -22,6 +28,8 @@
     justify-content: center;
     align-items: stretch;
         font-size: large;
+        /* height: 75%; */
+        /* background-color: aqua; */
   }
   .footer-container {
     flex-shrink: 0;

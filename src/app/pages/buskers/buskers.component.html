@@ -1,3 +1,5 @@
+<div class = " a">
+<div class = "content"> 
 <div class="busker">
 <div class="container">
     <div class="item item-1">
@@ -7,23 +9,18 @@
       <app-map class = "map"></app-map>
     </div>
     <div class="item item-3">
-      Item 3 = Buskers
+         <app-buskers-mini-display class = "buskers-mini" [buskers]="buskers"></app-buskers-mini-display>
     </div>
     <div class="item item-4">
         <app-buskers-table class = "buskers" [buskers]="buskers"></app-buskers-table>
-      <!-- <app-common-events class = "events" [events]="events" (selectedEvent)="onSelect($event)"></app-common-events> -->
     </div>
 </div>
 </div>
-<!-- <app-event-modal class = "modal" [isOpen]="showModal" (close)="showModal = false " [event]="event"> -->
-<!-- </app-event-modal> -->
-
-
-
-
-    <!-- <app-buskers-table-control></app-buskers-table-control> -->
-      <!-- <app-events-table-control (selectGenre)="onGenreChange($event)"></app-events-table-control> -->
-
-  <!-- <app-events-table-control (selectGenre)="onGenreChange($event)"></app-events-table-control> -->
-<!-- <app-busker-modal class="modal" [isOpen]="false" (close)="false">
-</app-busker-modal> -->
+<app-buskers-table-control></app-buskers-table-control>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+</div>

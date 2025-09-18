@@ -7,6 +7,7 @@ import { OpenHttpClientService } from 'src/app/common/http/open-http-client.serv
 import { EventType } from 'src/app/model/event-types';
 import { UserProfileComponent } from 'src/app/common/user-profile/user-profile.component';
 import { Event as AppEvent } from 'src/app/model/event';
+import { Busker } from 'src/app/model/busker';
 
 
 @Component({
@@ -16,6 +17,9 @@ import { Event as AppEvent } from 'src/app/model/event';
 })
 export class UserComponent {
   showModal = false;
+    eventTypes: Set<string> = new Set(["Band", "Busker", "Dj", "Performance"]);
+  buskers: Busker[] = [];
+  total: number = 0;
   
   userRoles = [];
     currentUser: User = {
@@ -53,9 +57,12 @@ export class UserComponent {
         // console.error('Error fetching events:', error);
       },
     });
+
+
   }
 
   async ngOnInit() {
+     this.loadBuskers(0, 10);
 
     let user = await this.currentUserService.getUser()
 
@@ -80,11 +87,25 @@ export class UserComponent {
     })
   }
 
+
+ 
+
   onSelect(event: AppEvent) {
     console.log('Received Event: Home;', event);
     this.event = event;
     this.showModal = true;
   }
-  
+   loadBuskers(page: number, size: number): void {
+    this.openHttpClientService.getBuskers(page, size).subscribe({
+      next: (response: { total: number, results: Busker[] }) => {
+        console.log('Buskers response:', response);
+        this.total = response.total;
+        this.buskers = response.results;
+      },
+      error: (err) => {
+        console.error('Error loading buskers:', err);
+      }
+    });
+  }
   
 }

@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   /* background-color: #1b998b; */
-  width: 85vw;
+  width: 90vw;
 }
 
 .item {
@@ -25,6 +25,7 @@
   height: 100%;
   width: 100%;
     }
+    
     .item1 { background-color: #e75b1e; }
     .item2 { background-color: #ff7f50; }
     .item3 { background-color: #d72631; }
