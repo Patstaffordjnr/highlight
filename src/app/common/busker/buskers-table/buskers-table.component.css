@@ -175,7 +175,7 @@
     overflow-y: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    white-space: nowrap;
+    /* white-space: nowrap; */
   }
 
   .busker-list::-webkit-scrollbar {

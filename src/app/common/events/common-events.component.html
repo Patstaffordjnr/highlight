@@ -31,7 +31,7 @@
         <div class="flex-grid">
           <div class="event-address-container col">
             <div class="event-address">
-              <!-- <a>{{ eventsAddressIndexed[i] }}</a> -->
+              <a>{{ eventsAddressIndexed[i] }}</a>
               <a>L4045, New Ross Municipal District, Ireland</a>
             </div>
           </div>
@@ -76,19 +76,19 @@
               <span class="time-top">{{ event.endAt * 1000 | date: 'h:mm' }}</span><br />
               <span class="time-bottom">{{ event.endAt * 1000 | date: 'a' }}</span>
             </div>
-          </div>
+          </div>        
         </div>
-
+        
       </div>
-    </div>
+    </div>-
   </div>
 </div>
 
-<div class="eventPagination">
-    <!-- <button (click)="previousPageOfEvents()">Previous Page</button>
+<!-- <div class="eventPagination">
+    <button (click)="previousPageOfEvents()">Previous Page</button>
      <button *ngFor="let pageNumber of pageNumberArray" [class.selected]="pageNumber === currentIndex" (click)="pageSelect(pageNumber)">
       {{pageNumber}}
      </button>
-     <button (click)="nextPageOfEvents()">Next Page</button> -->
-</div>
+     <button (click)="nextPageOfEvents()">Next Page</button>
+</div> -->
 

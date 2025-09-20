@@ -37,39 +37,49 @@
   }
   
   .event-list-container {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* padding-top: 32px; */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   }
+
   
   .event-list {
   height: 100%;
+  width: 100%;
   font-weight: normal;
   
   }
   
   .event-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 32px;
-
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  gap: 8px;
 
   }
   
   /* Each item behaves like a column */
   .event-item {
-    /* min-width: 300px; */
-    box-sizing: border-box;
-    /* border: 6px solid whitesmoke; */
-    border-radius: 16px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  box-sizing: border-box;
+  border: 6px solid whitesmoke;
+  border-radius: 16px;
+  /* padding: 10px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  
+}
 
-  }
+  
 
 
   .event-profile-image-container {
@@ -243,26 +253,48 @@
   background-color: black;
   }
   
-/* SM - Small tablets */
+
+/* SM */
 @media (min-width: 576px) {
-
 }
 
-/* MD - Tablets */
+/* MD */
 @media (min-width: 768px) {
-} 
-
-/* LG - Small laptops */
-@media (min-width: 992px) {
-
 }
 
-/* XL - Desktops */
+/* LG */
+@media (min-width: 992px) {
+}
+
+/* XL */
 @media (min-width: 1200px) {
+}
 
-} 
-
-/* XXL - Large screens / 4K */
+/* XXL */
 @media (min-width: 1400px) {
+  .event-grid {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
 
-} 
+  .event-list-container {
+  }
+
+  .event-list {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    white-space: nowrap;
+  }
+
+  .event-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .event-item {
+  }
+}
+

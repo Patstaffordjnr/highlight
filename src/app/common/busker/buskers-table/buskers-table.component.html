@@ -1,13 +1,7 @@
 <div class="busker-list-container">
   <div class="busker-list">
     <div class="busker-grid">
-      <div
-        class="busker-item"
-        *ngFor="let busker of buskers; let i = index"
-        [class.selected]="busker === selectedBusker"
-        (click)="onSelect(busker)"
-      >
-        <!-- top section -->
+      <div class="busker-item" *ngFor="let busker of buskers; let i = index" [class.selected]="busker === selectedBusker" (click)="onSelect(busker)">
         <div class="flex-grid top-section">
           <div class="busker-profile-image-container col">
             <div class="busker-profile-image">
@@ -28,7 +22,6 @@
           </div>
         </div>
 
-        <!-- email -->
         <div class="flex-grid">
           <div class="busker-email-container col">
             <div class="busker-email">
@@ -37,7 +30,6 @@
           </div>
         </div>
 
-        <!-- joined + address -->
         <div class="flex-grid">
           <div class="busker-created-text-container col">
             <div class="busker-created-text">Joined:</div>
@@ -55,7 +47,6 @@
           </div>
         </div>
 
-        <!-- followers + events -->
         <div class="flex-grid">
           <div class="busker-followers-text-container col">
             <div class="busker-followers-text">Followers</div>

@@ -10,22 +10,6 @@
   align-items: center;
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 25%;
-  flex-basis: 75%;
-}
-
-.column,
-.columnTop {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 25%;
-  flex: 1;
-}
-
 .event-list-container {
   height: 100%;
   width: 100%;
@@ -50,28 +34,29 @@
 .event-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 100%;
   width: 100%;
   gap: 8px;
 }
 
 .event-item {
-  flex: 1 1 calc(25% - 32px);
-  min-width: 300px;
-  min-height: 300px;
-  max-width: 300px;
-  max-height: 300px;
+  /* background-color: blue; */
   box-sizing: border-box;
   border: 6px solid whitesmoke;
   border-radius: 16px;
   padding: 10px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  aspect-ratio: 1 / 1;
-  /* background-color: #4caf50; */
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;              /* stretch within grid cell */
+}
+
+.busker-item.selected {
+}
+
+.top-section {
+  align-items: stretch;
 }
 
 .event-profile-image-container {
@@ -80,8 +65,8 @@
   border-radius: 30% 10% 30% 10%;
   overflow: hidden;
   border: 6px solid whitesmoke;
-  /* background-color: cornflowerblue; */
-  margin-right: 10px; /* spacing between profile image and details */
+
+  margin-right: 10px; 
 }
 
 .event-profile-image img {
@@ -98,7 +83,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* background-color: yellow; */
   width: 50%;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -107,7 +91,6 @@
 }
 
 .event-user-name-container {
-  /* background-color: indianred; */
   width: 100%;
   display: flex;
   justify-content: center;
@@ -118,11 +101,9 @@
 .event-user-name {
   font-weight: bold;
   word-wrap: break-word;
-  /* background-color: darkorange; */
 }
 
 .event-user-role-container {
-  /* background-color: darkorange; */
   width: 100%;
   display: flex;
   justify-content: center;
@@ -130,11 +111,9 @@
 
 .event-user-role {
   color: #222;
-  /* background-color: lightpink; */
 }
 
 .event-title-container {
-  /* background-color: yellowgreen; */
 }
 
 .event-title {
@@ -233,95 +212,54 @@
 
 /* SM - Small tablets */
 @media (min-width: 576px) {
-  .event-item {
-    border: 6px solid whitesmoke;
-    aspect-ratio: 1 / 1;
-    min-width: 350px;
-    min-height: 350px;
-    max-width: 350px;
-    max-height: 350px;
-  }
+
 }
 
 /* MD - Tablets */
 @media (min-width: 768px) {
-  .event-item {
-    border: 6px solid whitesmoke;
-    aspect-ratio: 1 / 1;
-    min-width: 350px;
-    min-height: 350px;
-    max-width: 350px;
-    max-height: 350px;
-  }
+
 }
 
-/* LG - Small laptops */
+/* SM */
+@media (min-width: 576px) {
+}
+
+/* MD */
+@media (min-width: 768px) {
+}
+
+/* LG */
 @media (min-width: 992px) {
-  .event-list-container {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  .event-list-container::-webkit-scrollbar {
-    display: none;
-  }
-  .event-grid {
-    gap: 16px;
-  }
-  .event-item {
-    border: 6px solid whitesmoke;
-    aspect-ratio: 1 / 1;
-    min-width: 350px;
-    min-height: 350px;
-    max-width: 350px;
-    max-height: 350px;
-  }
 }
 
-/* XL - Desktops */
+/* XL */
 @media (min-width: 1200px) {
-  .event-list-container {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  .event-list-container::-webkit-scrollbar {
-    display: none;
-  }
-  .event-item {
-    border: 6px solid whitesmoke;
-    aspect-ratio: 1 / 1;
-    min-width: 350px;
-    min-height: 350px;
-    max-width: 350px;
-    max-height: 350px;
-  }
 }
 
-/* XXL - Large screens / 4K */
+/* XXL */
 @media (min-width: 1400px) {
   .event-grid {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
     gap: 16px;
   }
+
   .event-list-container {
-    height: 100%;
-    overflow-y: auto;
   }
+
   .event-list {
     overflow-y: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    white-space: nowrap;
+    /* white-space: nowrap; */
   }
+
   .event-list::-webkit-scrollbar {
     display: none;
   }
+
   .event-item {
-    flex: 1 1 calc(25% - 32px);
-    min-height: calc(50% - 8px);
-    border: 6px solid whitesmoke;
-    aspect-ratio: 1 / 1;
-    min-width: 300px;
-    min-height: 300px;
-    max-width: 350px;
-    max-height: 350px;
   }
 }
