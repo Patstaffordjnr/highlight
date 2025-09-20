@@ -4,7 +4,14 @@
   display: flex;
   justify-content: center;
 }
-
+.item-1-container,
+.item-2-container,
+.item-3-container,
+.item-4-container {
+  flex: 1; /* grow/shrink proportionally */
+  display: flex;
+  justify-content: center;
+}
 .item-1 {
   width: 90%;
   height: 100%;
