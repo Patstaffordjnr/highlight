@@ -92,10 +92,10 @@
   flex-direction: column;
   justify-content: space-between;
   width: 50%;
-  word-wrap: break-word;
+  /* word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-all;
-  white-space: normal;
+  white-space: normal; */
 }
 
 .event-user-name-container {
@@ -108,7 +108,7 @@
 
 .event-user-name {
   font-weight: bold;
-  word-wrap: break-word;
+  /* word-wrap: break-word; */
 }
 
 .event-user-role-container {
@@ -126,10 +126,10 @@
 }
 
 .event-title {
-  word-wrap: break-word;
+  /* word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-all;
-  white-space: normal;
+  white-space: normal; */
   padding: 0 10px;
 }
 
@@ -140,10 +140,10 @@
 
 .event-address {
   padding-left: 10px;
-    word-wrap: break-word;
+    /* word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-all;
-  white-space: normal;
+  white-space: normal; */
   padding: 0 10px;
 
 }

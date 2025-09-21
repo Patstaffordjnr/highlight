@@ -35,6 +35,11 @@ export class BuskerComponent {
     //   password: ['dumb'],
     // });
 
+   
+    
+  
+
+
     this.openHttpClientService.getEvents(
       new Date(2025, 6, 6, 23, 0, 0),
       -88,
@@ -78,6 +83,10 @@ export class BuskerComponent {
       return "ADMIN";
     }
     })
+
+
+
+    
   }
 
   onSelect(event: AppEvent) {
