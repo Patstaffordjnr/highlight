@@ -33,6 +33,7 @@ import { BuskerComponent } from './pages/busker/busker.component';
 import { BuskersTableComponent } from './common/busker/buskers-table/buskers-table.component';
 import { BuskersMiniDisplayComponent } from './common/busker/buskers-mini-display/buskers-mini-display.component';
 import { BuskersTableControlComponent } from './common/busker/buskers-table-control/buskers-table-control.component';
+import { BuskerModalComponent } from './common/busker/busker-modal/busker-modal.component';
 @NgModule({
   declarations: [
     // Pages
@@ -54,7 +55,8 @@ import { BuskersTableControlComponent } from './common/busker/buskers-table-cont
     ProgressBarComponent,
     UserComponent,
     EventsTableControlComponent,
-    EventModalComponent
+    EventModalComponent,
+       BuskerModalComponent,
   ],
   bootstrap: [AppComponent],
 
@@ -70,11 +72,13 @@ import { BuskersTableControlComponent } from './common/busker/buskers-table-cont
         BuskersTableComponent,
         BuskersMiniDisplayComponent,
         BuskersTableControlComponent,
+     
   ],
 
   exports: [
     MapComponent,           // ✅ now export
-    EventModalComponent     // ✅ now export
+    EventModalComponent,    // ✅ now export
+    // BuskerModalComponent,
   ],
 
   providers: [

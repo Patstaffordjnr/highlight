@@ -11,7 +11,7 @@
 }
 
 .event-list-container {
-    height: 90%;
+    height: 100%;
   width: 100%;
   overflow-y: auto;
   box-sizing: border-box;
@@ -47,8 +47,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;   
-    background-color: #4caf50       
+  align-items: center;         
 }
 
 
@@ -246,14 +245,14 @@
 @media (min-width: 1400px) {
   .event-grid {
     display: grid;
-    height: 100vh; /* ensures snapping */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
+    height: 100vh;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(350px, 1fr));
     gap: 16px;
   }
 
   .event-list-container {
-    /* background-color: #4caf50; */
+
   }
 
   .event-list {

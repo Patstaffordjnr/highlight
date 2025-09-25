@@ -8,7 +8,6 @@
 .content {
   width: 90%;
   height: 75vh;
-  background-color: red;
 }
 
 .user {
@@ -34,6 +33,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+   aspect-ratio: 1 / 1;
 }
 
 .item-1 {
@@ -86,7 +86,6 @@
 }
 
 .item-4 {
-  background-color: aquamarine;
 }
 
 .events {

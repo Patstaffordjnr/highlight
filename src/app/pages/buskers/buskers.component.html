@@ -12,10 +12,12 @@
          <app-buskers-mini-display class = "buskers-mini" [buskers]="buskers"></app-buskers-mini-display>
     </div>
     <div class="item item-4">
-        <app-buskers-table class = "buskers" [buskers]="buskers"></app-buskers-table>
+        <app-buskers-table class = "buskers" [buskers]="buskers"   (selectedBusker)="onSelect($event)"></app-buskers-table>
     </div>
 </div>
 </div>
 <app-buskers-table-control></app-buskers-table-control>
 </div>
 </div>
+<app-busker-modal class = "modal" [isOpen]="showModal" (close)="showModal = false " [busker]="busker">
+</app-busker-modal>

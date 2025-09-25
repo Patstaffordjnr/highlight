@@ -3,7 +3,7 @@
         display: flex;
     justify-content: center;
     align-items: center;
-        height: 78vh;
+        height: 75vh;
     width: 85vw;
 }
 .log-in-div{ 
@@ -12,8 +12,7 @@
     align-items: center;
     background-color:none;
     /* background-color: aqua; */
-    /* height: 100px; */
-    width: 365px;
+
 
 }
 
@@ -30,7 +29,7 @@
 .log-in{
     /* background-color: brown; */
     background-color:none;
-    height: 100px;
+    min-height: 165px;
     width: 365px;
     padding-top: 14px;
     padding-bottom: 10px;
@@ -41,6 +40,8 @@
     align-items: center;
     /* max-width: 340px;
     min-width: 340px; */
+    /* min-height: 365px;
+    width: 365px; */
 
 }
 
@@ -79,3 +80,45 @@
     display: flex;
     justify-content: center;
 }
+
+  /* SM - Small tablets */
+ @media (min-width: 576px) {
+
+ }
+  
+
+  /* MD - Tablets */
+  @media (min-width: 768px) {
+
+
+  } 
+  
+  /* LG - Small laptops */
+  @media (min-width: 992px) {
+
+}
+  
+  /* XL - Desktops */
+  @media (min-width: 1200px) {
+
+
+  } 
+  
+  /* XXL - Large screens / 4K */
+  @media (min-width: 1400px) {
+.item-1 {
+min-width: 400px;
+min-height: 400px;
+}
+.mapContainer {
+max-width:400px;
+max-height: 400px;
+
+}
+.item-2 {
+max-width: 400px;
+min-height: 400px;
+}
+
+} 
+  

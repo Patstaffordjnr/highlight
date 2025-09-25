@@ -81,6 +81,7 @@ export class CommonEventsComponent implements OnInit {
 
   onSelect(event: AppEvent) {
     this.selectedEvent.emit(event);
+    
   }
 
   private async reverseGeocode(lat: number, lng: number): Promise<string> {

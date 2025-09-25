@@ -27,9 +27,11 @@ export class UserComponent {
     email: "string",
     roles: [],
   };
-  events: AppEvent[] = [];
+
   form: FormGroup;
 
+  
+  events: AppEvent[] = [];
   event: AppEvent;
   
   constructor(private formBuilder: FormBuilder, private currentUserService: CurrentUserService, private openHttpClientService: OpenHttpClientService) {
