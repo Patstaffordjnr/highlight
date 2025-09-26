@@ -13,6 +13,7 @@ export class CurrentUserService {
   user$: Observable<User | null> = this.currentUserSubject.asObservable();
   userRole$: Observable<UserRole[] | null> = this.userRolesSubject.asObservable();
 
+
   setUser(user: User): void {
     this.currentUserSubject.next(user);
     this.userRolesSubject.next(user.roles);
@@ -24,7 +25,11 @@ export class CurrentUserService {
   }
 
   getUser(): User | null {
-    return this.currentUserSubject.value;
+
+    if(this.currentUserSubject.value) {
+        return this.currentUserSubject.value;
+    }
+    else return ;
   }
 }
 

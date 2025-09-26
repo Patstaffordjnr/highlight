@@ -35,7 +35,7 @@ export class BuskersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadBuskers(0, 10);
+    this.loadBuskers(0, 20);
   }
 
   loadBuskers(page: number, size: number): void {
