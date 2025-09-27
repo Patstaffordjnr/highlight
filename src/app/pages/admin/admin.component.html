@@ -2,19 +2,31 @@
   <div class="content">
     <div class="admin">
       <div class="container">
+
+        <!-- List One -->
         <div class="item item-1">
           <a class="one">List One</a>
         </div>
+
+        <!-- List Two -->
         <div class="item item-2">
           <a class="two">List Two</a>
         </div>
+
+        <!-- List Three -->
         <div class="item item-3">
           <a class="three">List Three</a>
         </div>
+
+        <!-- Buskers & Events -->
         <div class="item item-4">
+
           <!-- Buskers Table -->
           <div class="buskers">
-            <h3>Buskers</h3>
+            <div class="buskers-header">
+              <h3>Buskers</h3>
+            </div>
+
             <div class="table-container">
               <table class="admin-table">
                 <thead>
@@ -26,7 +38,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let busker of paginatedBuskers; let i = index" (click)="buskerSelect(busker)">
+                  <tr
+                    *ngFor="let busker of paginatedBuskers; let i = index"
+                    (click)="buskerSelect(busker)"
+                  >
                     <td>{{ currentBuskerPage * pageSize + i + 1 }}</td>
                     <td>{{ busker.email }}</td>
                     <td>{{ busker.roles?.join(', ') }}</td>
@@ -35,17 +50,63 @@
                 </tbody>
               </table>
             </div>
+
+            <!-- Pagination -->
             <div class="pagination">
-              <button (click)="prevBuskerPage()" [disabled]="currentBuskerPage === 0">Previous</button>
+              <button
+                (click)="prevBuskerPage()"
+                [disabled]="currentBuskerPage === 0"
+              >
+                Previous
+              </button>
               <span>Page {{ currentBuskerPage + 1 }} of {{ totalBuskerPages }}</span>
-              <button (click)="nextBuskerPage()" [disabled]="(currentBuskerPage + 1) * pageSize >= buskers.length">Next</button>
+              <button
+                (click)="nextBuskerPage()"
+                [disabled]="(currentBuskerPage + 1) * pageSize >= buskers.length"
+              >
+                Next
+              </button>
             </div>
-            
-          </div>
+
+            <!-- Controls -->
+         <div class="buskers-control-container control-container">
+  <div class="control-search">
+    <input
+      type="text"
+      placeholder="Search buskers…"
+      [(ngModel)]="buskerSearchText"
+      (input)="onBuskerSearchChange()"
+    />
+  </div>
+
+  <div class="control-distance">
+    <label for="busker-distance-select">Distance:</label>
+    <select id="busker-distance-select" [(ngModel)]="buskerSelectedDistance" (change)="onBuskerDistanceChange($event)">
+      <option *ngFor="let d of distances" [value]="d">{{ d }} km</option>
+    </select>
+  </div>
+
+  <div class="control-within">
+    <label for="busker-within-select">Within:</label>
+    <select id="busker-within-select" [(ngModel)]="buskerSelectedWithin" (change)="onBuskerWithinChange($event)">
+      <option *ngFor="let option of withinOptions" [value]="option.value">{{ option.label }}</option>
+    </select>
+  </div>
+
+  <div class="control-sort">
+    <label for="busker-sort-select">Sort by:</label>
+    <select id="busker-sort-select" [(ngModel)]="buskerSelectedSort" (change)="onBuskerSortChange($event)">
+      <option *ngFor="let option of sortOptions" [value]="option.value">{{ option.label }}</option>
+    </select>
+  </div>
+</div>
 
           <!-- Events Table -->
           <div class="events">
-            <h3>Events</h3>
+            <div class="events-header">
+              <h3>Events</h3>
+            </div>
+
             <div class="table-container">
               <table class="admin-table">
                 <thead>
@@ -59,7 +120,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let event of paginatedEvents; let i = index" (click)="eventSelect(event)">
+                  <tr
+                    *ngFor="let event of paginatedEvents; let i = index"
+                    (click)="eventSelect(event)"
+                  >
                     <td>{{ currentEventPage * pageSize + i + 1 }}</td>
                     <td>{{ event.title }}</td>
                     <td>{{ event.eventType }}</td>
@@ -70,12 +134,58 @@
                 </tbody>
               </table>
             </div>
+
+            <!-- Pagination -->
             <div class="pagination">
-              <button (click)="prevEventPage()" [disabled]="currentEventPage === 0">Previous</button>
+              <button
+                (click)="prevEventPage()"
+                [disabled]="currentEventPage === 0"
+              >
+                Previous
+              </button>
               <span>Page {{ currentEventPage + 1 }} of {{ totalEventPages }}</span>
-              <button (click)="nextEventPage()" [disabled]="(currentEventPage + 1) * pageSize >= events.length">Next</button>
+              <button
+                (click)="nextEventPage()"
+                [disabled]="(currentEventPage + 1) * pageSize >= events.length"
+              >
+                Next
+              </button>
             </div>
           </div>
+
+<!-- Events Controls -->
+<div class="events-control-container control-container">
+  <div class="control-search">
+    <input
+      type="text"
+      placeholder="Search events…"
+      [(ngModel)]="eventSearchText"
+      (input)="onEventSearchChange()"
+    />
+  </div>
+
+  <div class="control-distance">
+    <label for="event-distance-select">Distance:</label>
+    <select id="event-distance-select" [(ngModel)]="eventSelectedDistance" (change)="onEventDistanceChange($event)">
+      <option *ngFor="let d of distances" [value]="d">{{ d }} km</option>
+    </select>
+  </div>
+
+  <div class="control-within">
+    <label for="event-within-select">Within:</label>
+    <select id="event-within-select" [(ngModel)]="eventSelectedWithin" (change)="onEventWithinChange($event)">
+      <option *ngFor="let option of withinOptions" [value]="option.value">{{ option.label }}</option>
+    </select>
+  </div>
+
+  <div class="control-sort">
+    <label for="event-sort-select">Sort by:</label>
+    <select id="event-sort-select" [(ngModel)]="eventSelectedSort" (change)="onEventSortChange($event)">
+      <option *ngFor="let option of sortOptions" [value]="option.value">{{ option.label }}</option>
+    </select>
+  </div>
+</div>
+
         </div>
       </div>
     </div>

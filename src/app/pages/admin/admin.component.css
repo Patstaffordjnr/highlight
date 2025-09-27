@@ -93,13 +93,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-    flex-direction: column;
-  
-}
-
-.four {
-  width: 100%;
-  height: 100%;
+  flex-direction: column;
 }
 
 .buskers{
@@ -112,6 +106,20 @@
 
 .modal {
   z-index: 1;
+}
+
+.buskers-header{
+  display: flex;
+    justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.events-header{
+  display: flex;
+    justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 
@@ -174,7 +182,7 @@
 
 
 /* --------------------------- */
-.busker-control-panel {
+/* .busker-control-panel {
   display: flex;
   justify-content: start;
   margin-top: 16px;
@@ -194,12 +202,122 @@
   font-size: 0.9rem;
   border-radius: 4px;
   border: 1px solid #ccc;
+} */
+
+.buskers-control-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    background-color: mediumseagreen;
+}
+
+.buskers-control-search {
+}
+
+.buskers-control-search {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buskers-search {
+  white-space: nowrap;
+}
+
+.search input[type="text"] {
+  box-sizing: border-box;
+  font-size: 1rem;
+  min-width: 318px
+}
+
+.buskers-control-distance {
+  display: flex;
+  width: 33%;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.buskers-distance {
+  width: auto;
+}
+
+.buskers-control-within {
+  display: flex;
+  width: 33%;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.buskers-control-sort {
+  display: flex;
+  width: 33%;
+  padding: 8px 0;
+}
+
+.buskers-sort{
+
 }
 
 
+.events-control-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    background-color: mediumseagreen;
+}
 
+.events-control-search {
+}
 
+.events-control-search {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.events-search {
+  white-space: nowrap;
+}
+
+.events input[type="text"] {
+  box-sizing: border-box;
+  font-size: 1rem;
+  min-width: 318px
+}
+
+.events-control-distance {
+  display: flex;
+  width: 33%;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.events-distance {
+  width: auto;
+}
+
+.events-control-within {
+  display: flex;
+  width: 33%;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.events-control-sort {
+  display: flex;
+  width: 33%;
+  padding: 8px 0;
+}
+
+.events-sort{
+  
+}
 
 
 
