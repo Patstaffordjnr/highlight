@@ -10,12 +10,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EventFilter } from 'src/app/model/event-list-filter';
 import { BuskerModalComponent } from 'src/app/common/busker/busker-modal/busker-modal.component';
+import { EventListComponent } from 'src/app/common/event/event-list/event-list.component';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   styleUrl: './admin.component.css'
 })
 export class AdminComponent {

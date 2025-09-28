@@ -1,1 +1,84 @@
-<p>event-list works!</p>
+          <div class="events">
+            <div class="events-header">
+              <h3>Events</h3>
+            </div>
+
+            <div class="table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Location</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="let event of paginatedEvents; let i = index"
+                    (click)="eventSelect(event)"
+                  >
+                    <td>{{ currentEventPage * pageSize + i + 1 }}</td>
+                    <td>{{ event.title }}</td>
+                    <td>{{ event.eventType }}</td>
+                    <td>{{ event.startAt * 1000 | date:'short' }}</td>
+                    <td>{{ event.endAt * 1000 | date:'short' }}</td>
+                    <td>{{ event.lat | number:'1.4-4' }}, {{ event.lon | number:'1.4-4' }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            &nbsp;
+            <!-- Pagination -->
+            <div class="pagination">
+              <button
+                (click)="prevEventPage()"
+                [disabled]="currentEventPage === 0"
+              >
+                Previous
+              </button>
+              <span>Page {{ currentEventPage + 1 }} of {{ totalEventPages }}</span>
+              <button
+                (click)="nextEventPage()"
+                [disabled]="(currentEventPage + 1) * pageSize >= events.length"
+              >
+                Next
+              </button>
+            </div>
+
+            &nbsp;
+<!-- Events Controls -->
+<div class="events-control-container control-container">
+  <div class="control-search">
+    <input
+      type="text"
+      placeholder="Search events…"
+      [(ngModel)]="eventSearchText"
+      (input)="onEventSearchChange()"
+    />
+  </div>
+
+  <div class="control-distance">
+    <label for="event-distance-select">Distance:</label>
+    <select id="event-distance-select" [(ngModel)]="eventSelectedDistance" (change)="onEventDistanceChange($event)">
+      <option *ngFor="let d of distances" [value]="d">{{ d }} km</option>
+    </select>
+  </div>
+
+  <div class="control-within">
+    <label for="event-within-select">Within:</label>
+    <select id="event-within-select" [(ngModel)]="eventSelectedWithin" (change)="onEventWithinChange($event)">
+      <option *ngFor="let option of withinOptions" [value]="option.value">{{ option.label }}</option>
+    </select>
+  </div>
+
+  <div class="control-sort">
+    <label for="event-sort-select">Sort by:</label>
+    <select id="event-sort-select" [(ngModel)]="eventSelectedSort" (change)="onEventSortChange($event)">
+      <option *ngFor="let option of sortOptions" [value]="option.value">{{ option.label }}</option>
+    </select>
+  </div>
+</div>
+          </div>
