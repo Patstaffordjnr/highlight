@@ -9,6 +9,7 @@ import { Busker } from 'src/app/model/busker';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EventFilter } from 'src/app/model/event-list-filter';
+import { BuskerModalComponent } from 'src/app/common/busker/busker-modal/busker-modal.component';
 
 @Component({
   selector: 'app-admin',
@@ -25,6 +26,9 @@ export class AdminComponent {
   buskers: Busker[] = [];
   allBuskers: Busker[] = []; // full list for search
   totalBuskers: number = 0;
+
+    // Modal state is included for structure consistency, though not fully implemented
+  busker: Busker | null = null; 
 
   // Events
   events: AppEvent[] = [];

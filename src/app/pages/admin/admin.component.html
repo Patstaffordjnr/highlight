@@ -50,7 +50,7 @@
                 </tbody>
               </table>
             </div>
-
+            &nbsp;
             <!-- Pagination -->
             <div class="pagination">
               <button
@@ -67,10 +67,10 @@
                 Next
               </button>
             </div>
-
+            &nbsp;
             <!-- Controls -->
          <div class="buskers-control-container control-container">
-  <div class="control-search">
+  <div class="buskers-control-search">
     <input
       type="text"
       placeholder="Search buskers…"
@@ -80,27 +80,27 @@
   </div>
 
   <div class="control-distance">
-    <label for="busker-distance-select">Distance:</label>
-    <select id="busker-distance-select" [(ngModel)]="buskerSelectedDistance" (change)="onBuskerDistanceChange($event)">
+    <label for="buskers-distance-select">Distance:</label>
+    <select id="buskers-distance-select" [(ngModel)]="buskerSelectedDistance" (change)="onBuskerDistanceChange($event)">
       <option *ngFor="let d of distances" [value]="d">{{ d }} km</option>
     </select>
   </div>
 
   <div class="control-within">
-    <label for="busker-within-select">Within:</label>
-    <select id="busker-within-select" [(ngModel)]="buskerSelectedWithin" (change)="onBuskerWithinChange($event)">
+    <label for="buskers-within-select">Within:</label>
+    <select id="buskers-within-select" [(ngModel)]="buskerSelectedWithin" (change)="onBuskerWithinChange($event)">
       <option *ngFor="let option of withinOptions" [value]="option.value">{{ option.label }}</option>
     </select>
   </div>
 
   <div class="control-sort">
-    <label for="busker-sort-select">Sort by:</label>
-    <select id="busker-sort-select" [(ngModel)]="buskerSelectedSort" (change)="onBuskerSortChange($event)">
+    <label for="buskers-sort-select">Sort by:</label>
+    <select id="buskers-sort-select" [(ngModel)]="buskerSelectedSort" (change)="onBuskerSortChange($event)">
       <option *ngFor="let option of sortOptions" [value]="option.value">{{ option.label }}</option>
     </select>
   </div>
 </div>
-
+</div>
           <!-- Events Table -->
           <div class="events">
             <div class="events-header">
@@ -134,7 +134,7 @@
                 </tbody>
               </table>
             </div>
-
+            &nbsp;
             <!-- Pagination -->
             <div class="pagination">
               <button
@@ -151,8 +151,8 @@
                 Next
               </button>
             </div>
-          </div>
 
+            &nbsp;
 <!-- Events Controls -->
 <div class="events-control-container control-container">
   <div class="control-search">
@@ -185,9 +185,10 @@
     </select>
   </div>
 </div>
-
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+<!-- <app-busker-modal class = "modal" [isOpen]="showModal" (close)="showModal = false " [busker]="busker">
+</app-busker-modal> -->

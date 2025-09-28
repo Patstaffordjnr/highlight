@@ -40,6 +40,8 @@ import { BuskerModalComponent } from './common/busker/busker-modal/busker-modal.
     EventsComponent,
     BuskersComponent,
     BuskerComponent,
+    
+    
 
 
     // Components
@@ -72,6 +74,7 @@ import { BuskerModalComponent } from './common/busker/busker-modal/busker-modal.
         BuskersTableComponent,
         BuskersMiniDisplayComponent,
         BuskersTableControlComponent,
+        
      
   ],
 
