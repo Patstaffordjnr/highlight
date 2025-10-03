@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EventType } from 'src/app/model/event-types';
 import { Event as AppEvent } from 'src/app/model/event';
+import { User } from 'src/app/model/user';
 
 const URL = 'http://localhost:8085/open';
 
@@ -40,7 +41,19 @@ export class OpenHttpClientService {
     return this.http.get<AppEvent[]>(url, { params: params });
   }
 
+getUsers(pageNumber: number, pageSize: number) {
+  const url = `http://localhost:8085/admin/users/getUsers`;
 
+  const params = new HttpParams()
+    .set('pageNumber', pageNumber.toString())
+    .set('pageSize', pageSize.toString());
+
+  return this.http.get<any>(url, { params, withCredentials: true }); // important for cookies
+
+  // return this.http.get<{ total: number, results: User[] }>(
+  //   `/admin/users/getUsers?pageNumber=${page}&pageSize=${size}`
+  // );
+}
 
 
 

@@ -1,0 +1,77 @@
+<div class="table-container">
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Email</th>
+        <th>Roles</th>
+        <th>Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let user of paginatedUsers; let i = index"
+        (click)="userSelect(user)"
+      >
+        <td>{{ currentUserPage * pageSize + i + 1 }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.roles?.join(', ') }}</td>
+        <td>{{ user.createdAt * 1000 | date:'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+&nbsp;
+
+<!-- Pagination -->
+<div class="pagination">
+  <button
+    (click)="prevUserPage()"
+    [disabled]="currentUserPage === 0"
+  >
+    Previous
+  </button>
+  <span>Page {{ currentUserPage + 1 }} of {{ totalUserPages }}</span>
+  <button
+    (click)="nextUserPage()"
+    [disabled]="(currentUserPage + 1) * pageSize >= users.length"
+  >
+    Next
+  </button>
+</div>
+
+&nbsp;
+
+<!-- Controls -->
+<div class="buskers-control-container control-container">
+  <div class="buskers-control-search">
+    <input
+      type="text"
+      placeholder="Search users…"
+      [(ngModel)]="userSearchText"
+      (input)="onUserSearchChange()"
+    />
+  </div>
+
+  <div class="control-distance">
+    <label for="users-distance-select">Distance:</label>
+    <select id="users-distance-select" [(ngModel)]="userSelectedDistance" (change)="onUserDistanceChange($event)">
+      <option *ngFor="let d of distances" [value]="d">{{ d }} km</option>
+    </select>
+  </div>
+
+  <div class="control-within">
+    <label for="users-within-select">Within:</label>
+    <select id="users-within-select" [(ngModel)]="userSelectedWithin" (change)="onUserWithinChange($event)">
+      <option *ngFor="let option of withinOptions" [value]="option.value">{{ option.label }}</option>
+    </select>
+  </div>
+
+  <div class="control-sort">
+    <label for="users-sort-select">Sort by:</label>
+    <select id="users-sort-select" [(ngModel)]="userSelectedSort" (change)="onUserSortChange($event)">
+      <option *ngFor="let option of sortOptions" [value]="option.value">{{ option.label }}</option>
+    </select>
+  </div>
+</div>

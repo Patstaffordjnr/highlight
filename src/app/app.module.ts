@@ -37,6 +37,7 @@ import { BuskerModalComponent } from './common/busker/busker-modal/busker-modal.
 import { EventListComponent } from './common/event/event-list/event-list.component';
 import { BuskerListComponent } from './common/busker/busker-list/busker-list.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { UsersListComponent } from './common/users/users-list/users-list.component';
 @NgModule({
   declarations: [
     // Pages
@@ -83,6 +84,7 @@ import { AdminComponent } from './pages/admin/admin.component';
         BuskersTableControlComponent,
                BuskerListComponent,
          EventListComponent,
+                  UsersListComponent,
 
         
      

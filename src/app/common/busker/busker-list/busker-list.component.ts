@@ -1,16 +1,11 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from 'src/app/model/user';
-import { CurrentUserService } from 'src/app/util/can-activate.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
-import { EventType } from 'src/app/model/event-types';
+import { FormGroup } from '@angular/forms';
 import { Event as AppEvent } from 'src/app/model/event';
 import { Busker } from 'src/app/model/busker';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventFilter } from 'src/app/model/event-list-filter';
-import { BuskerModalComponent } from 'src/app/common/busker/busker-modal/busker-modal.component';
-
 
 @Component({
   selector: 'app-busker-list',
@@ -23,33 +18,24 @@ export class BuskerListComponent {
 
   showModal = false;
   eventTypes: Set<string> = new Set(["Band", "Busker", "Dj", "Performance"]);
-
-  // Buskers
-  buskers: Busker[] = [];
-  allBuskers: Busker[] = []; // full list for search
+  allBuskers: Busker[] = []; 
   totalBuskers: number = 0;
-
-    // Modal state is included for structure consistency, though not fully implemented
   busker: Busker | null = null; 
-
-  // Events
   events: AppEvent[] = [];
   allEvents: AppEvent[] = []; // full list for search
-
   userRoles = [];
   currentUser: User = {
     id: "string",
     email: "string",
     roles: [],
   };
-
   form: FormGroup;
   event: AppEvent;
 
-  // Pagination settings
-  pageSize = 5;
-
   @Output() filterChange = new EventEmitter<EventFilter>();
+  @Input() buskers: Busker[] = [];
+  @Output() selectedBusker = new EventEmitter<Busker>();
+  
   distances: number[] = [1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 50];
   selectedDistance: number = 5; // default
   withinOptions: { label: string, value: number }[] = [
@@ -71,14 +57,13 @@ export class BuskerListComponent {
     { label: 'Most Attended', value: 'attendance' }
   ];
 
-  // Controls
 buskerSearchText: string = '';
 buskerSelectedSort: string = 'distance';
 buskerSelectedDistance: number = 5;
 buskerSelectedWithin: number = 1;
 
-  // Busker pagination
   currentBuskerPage = 0;
+  pageSize = 5;
   get paginatedBuskers(): Busker[] {
     const start = this.currentBuskerPage * this.pageSize;
     return this.buskers.slice(start, start + this.pageSize);
@@ -119,55 +104,9 @@ onBuskerWithinChange(event: Event): void {
   this.emitBuskerFilter();
 }
 
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private currentUserService: CurrentUserService,
-    private openHttpClientService: OpenHttpClientService,
-  ) {
-    this.openHttpClientService.getEvents(
-      new Date(2025, 6, 6, 23, 0, 0),
-      -88, -88, 80, 80,
-      [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
-    ).subscribe({
-      next: (events: AppEvent[]) => {
-        this.allEvents = events;
-        this.events = [...this.allEvents];
-      },
-      error: (error) => console.error(error),
-    });
-  }
-
-  async ngOnInit() {
-    this.loadBuskers(0, 20);
-
-    const user = await this.currentUserService.getUser();
-    if (!user) {
-      console.warn('No current user found!');
-      return;
-    }
-
-    this.currentUser.id = user.id;
-    this.currentUser.email = user.email;
-    this.currentUser.roles = user.roles;
-
-    const role = this.currentUser.roles.find(r => ['USER','BUSKER','ADMIN'].includes(String(r)));
-    this.userRoles = role ? [String(role)] : [];
-  }
-
-  buskerSelect(busker: Busker) {
-    console.log(busker);
-  }
-
-  loadBuskers(page: number, size: number): void {
-    this.openHttpClientService.getBuskers(page, size).subscribe({
-      next: (response: { total: number, results: Busker[] }) => {
-        this.totalBuskers = response.total;
-        this.allBuskers = response.results;
-        this.buskers = [...this.allBuskers];
-      },
-      error: (err) => console.error(err)
-    });
+ buskerSelect(busker: Busker) {
+  this.selectedBusker.emit(busker);
+  console.log(busker);
   }
 
 private emitBuskerFilter(): void {
@@ -178,6 +117,5 @@ private emitBuskerFilter(): void {
     sort: this.buskerSelectedSort
   });
 }
-
 
 }

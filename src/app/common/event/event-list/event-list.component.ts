@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from 'src/app/model/user';
 import { CurrentUserService } from '../../../util/can-activate.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -34,7 +34,7 @@ export class EventListComponent {
   busker: Busker | null = null; 
 
   // Events
-  events: AppEvent[] = [];
+  // events: AppEvent[] = [];
   allEvents: AppEvent[] = []; // full list for search
 
   userRoles = [];
@@ -51,6 +51,12 @@ export class EventListComponent {
   pageSize = 5;
 
   @Output() filterChange = new EventEmitter<EventFilter>();
+
+
+  @Input() events: AppEvent[] = [];
+  @Output() selectedEvent = new EventEmitter<AppEvent>();
+
+
   distances: number[] = [1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 50];
   selectedDistance: number = 5; // default
   withinOptions: { label: string, value: number }[] = [
@@ -128,17 +134,17 @@ onEventWithinChange(event: Event): void {
     private currentUserService: CurrentUserService,
     private openHttpClientService: OpenHttpClientService,
   ) {
-    this.openHttpClientService.getEvents(
-      new Date(2025, 6, 6, 23, 0, 0),
-      -88, -88, 80, 80,
-      [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
-    ).subscribe({
-      next: (events: AppEvent[]) => {
-        this.allEvents = events;
-        this.events = [...this.allEvents];
-      },
-      error: (error) => console.error(error),
-    });
+    // this.openHttpClientService.getEvents(
+    //   new Date(2025, 6, 6, 23, 0, 0),
+    //   -88, -88, 80, 80,
+    //   [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
+    // ).subscribe({
+    //   next: (events: AppEvent[]) => {
+    //     this.allEvents = events;
+    //     this.events = [...this.allEvents];
+    //   },
+    //   error: (error) => console.error(error),
+    // });
   }
 
   async ngOnInit() {
@@ -156,24 +162,22 @@ onEventWithinChange(event: Event): void {
     this.userRoles = role ? [String(role)] : [];
   }
 
-  buskerSelect(busker: Busker) {
-    console.log(busker);
-  }
-
   eventSelect(event: AppEvent) {
     console.log(event);
+    this.selectedEvent.emit(event);
+
   }
 
-  loadBuskers(page: number, size: number): void {
-    this.openHttpClientService.getBuskers(page, size).subscribe({
-      next: (response: { total: number, results: Busker[] }) => {
-        this.totalBuskers = response.total;
-        this.allBuskers = response.results;
-        this.buskers = [...this.allBuskers];
-      },
-      error: (err) => console.error(err)
-    });
-  }
+  // loadBuskers(page: number, size: number): void {
+  //   this.openHttpClientService.getBuskers(page, size).subscribe({
+  //     next: (response: { total: number, results: Busker[] }) => {
+  //       this.totalBuskers = response.total;
+  //       this.allBuskers = response.results;
+  //       this.buskers = [...this.allBuskers];
+  //     },
+  //     error: (err) => console.error(err)
+  //   });
+  // }
 
 private emitEventFilter(): void {
   console.log({

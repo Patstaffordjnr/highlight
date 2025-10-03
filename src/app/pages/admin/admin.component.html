@@ -20,12 +20,15 @@
 
         <!-- Buskers & Events -->
         <div class="item item-4">
-          <app-event-list></app-event-list>
-          <app-busker-list></app-busker-list>
+          <app-event-list class = "events" [events]="events" (selectedEvent)="eventSelect($event)"></app-event-list>
+          <!-- <app-busker-list class = "buskers" [buskers]="buskers" (selectedBusker)="buskerSelect($event)"></app-busker-list> -->
+                 <app-users-list class="users" [users]="users" (selectedUser)="userSelect($event)"></app-users-list>
           </div>
         </div>
       </div>
     </div>
   </div>
-<!-- <app-busker-modal class = "modal" [isOpen]="showModal" (close)="showModal = false " [busker]="busker">
-</app-busker-modal> -->
+  <app-event-modal class = "modal" [isOpen]="showEventModal" (close)="showEventModal = false " [event]="event">
+</app-event-modal>
+<app-busker-modal class = "modal" [isOpen]="showBuskerModal" (close)="showBuskerModal = false " [busker]="user">
+</app-busker-modal>
