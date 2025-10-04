@@ -6,7 +6,11 @@
       <app-user-profile  class = "user-profile"></app-user-profile>
     </div>
     <div class="item item-2">
-      <app-map class = "map"></app-map>
+<app-map  class = "map"
+  (mapInput)="onMapReady($event)"
+  (mapCenterChanged)="onMapMoved($event)"
+  (mapClicked)="onMapClicked($event)">
+</app-map>  
     </div>
     <div class="item item-3">
          <app-buskers-mini-display class = "buskers-mini" [buskers]="buskers"></app-buskers-mini-display>

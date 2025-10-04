@@ -3,7 +3,11 @@
   <div #modalContent class="modal">
     <div class="item-1">
       <div class="mapContainer">
-        <app-map class="map"></app-map>  
+        <app-map class="map"
+          (mapInput)="onMapReady($event)"
+  (mapCenterChanged)="onMapMoved($event)"
+  (mapClicked)="onMapClicked($event)">
+        </app-map>  
       </div>
     </div>
     <br>

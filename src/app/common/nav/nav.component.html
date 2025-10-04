@@ -20,9 +20,9 @@
     <div class = "slider-img">
       <i class ="buskers" routerLink = "buskers">Buskers</i>
       </div>
-    <div  *ngIf="menuVisible"  class = "slider-img">
+    <!-- <div  *ngIf="menuVisible"  class = "slider-img">
     <i class ="users" routerLink = "users">Users</i>
-    </div>
+    </div> -->
     <div *ngIf="!isLoggedIn" class = "slider-img">
       <i class ="sign-up"  routerLink = "signup">Sign Up</i>
     </div>
@@ -32,9 +32,9 @@
     <div class = "slider-img">
       <i class ="about" routerLink = "about">About</i>
     </div>
-    <div class = "slider-img">
+    <!-- <div class = "slider-img">
       <i class ="stafford">Stafford</i>
-    </div>
+    </div> -->
     <div *ngIf="isLoggedIn" class = "slider-img">
       <i (click)="logout()" class ="log-out">Log Out</i>
     </div>

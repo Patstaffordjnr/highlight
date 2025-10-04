@@ -22,9 +22,10 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   @Output() mapClicked = new EventEmitter<{ lat: number; lng: number }>();
 
   // Default fallback location (Dublin)
-  private defaultLat = 53.346304;
-  private defaultLng = -6.2881792;
-  private defaultZoom = 13;
+// With coordinates for Waterford City
+private defaultLat = 52.2593; // Approx. Waterford City Centre Lat
+private defaultLng = -7.1105; // Approx. Waterford City Centre Lng
+  private defaultZoom = 12;
 
   constructor(private mapService: MapService) {}
 
@@ -70,7 +71,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
     // Listen for clicks on the map
     this.map.on('click', (event: L.LeafletMouseEvent) => {
       this.mapClicked.emit({ lat: event.latlng.lat, lng: event.latlng.lng });
-      console.log('Map clicked at:', event.latlng);
+      // console.log('Map clicked at:', event.latlng);
     });
   }
 
@@ -89,7 +90,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
     // Emit full map if you want parent to have it updated
     this.mapInput.emit(this.map);
 
-    console.log('Map updated:', { center, bounds });
+    // console.log('Map updated:', { center, bounds });
   }
 
   ngOnDestroy(): void {

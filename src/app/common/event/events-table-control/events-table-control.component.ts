@@ -59,7 +59,7 @@ export class EventsTableControlComponent implements OnInit, OnDestroy {
    this.globalDateService.globalDate$.subscribe((globalDate) => {
      if(globalDate) {
          this.globalDate = globalDate;
-            console.log(globalDate);
+            // console.log(globalDate);
      }
    });
 
@@ -77,7 +77,7 @@ export class EventsTableControlComponent implements OnInit, OnDestroy {
       const formattedAddress = `${street}, ${cityOrCounty}, ${country}`;
       this.homeAddress = formattedAddress;
    } else {
-    console.warn('Address string is undefined or empty.');
+    // console.warn('Address string is undefined or empty.');
   }
 });
 }

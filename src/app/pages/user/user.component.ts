@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+
 import { User } from 'src/app/model/user';
 import { AuthService } from 'src/app/util/auth.service';
 import { CurrentUserService } from '../../util/can-activate.service'
@@ -8,6 +8,19 @@ import { EventType } from 'src/app/model/event-types';
 import { UserProfileComponent } from 'src/app/common/user-profile/user-profile.component';
 import { Event as AppEvent } from 'src/app/model/event';
 import { Busker } from 'src/app/model/busker';
+
+
+import { Component, OnInit } from '@angular/core';
+
+import { Subscription } from 'rxjs';
+
+import * as L from 'leaflet';
+import { EventModalComponent } from 'src/app/common/event/event-modal/event-modal.component';
+import { Event as Event } from 'src/app/model/event';
+import { markerIcons } from './../../common/map/map-icons';
+
+
+
 
 
 @Component({
@@ -33,7 +46,16 @@ export class UserComponent {
   
   events: AppEvent[] = [];
   event: AppEvent;
+
+
+    mapInstance!: L.Map;
+    mapDetails: any; // could be {lat, lng, bounds, etc.}
+    markersLayer = L.layerGroup(); // This layer will hold all markers
+    homeAddress: string = '';
   
+
+  filteredEvents: AppEvent[] = []; // filtered list
+
   constructor(private formBuilder: FormBuilder, private currentUserService: CurrentUserService, private openHttpClientService: OpenHttpClientService) {
 
     // this.form = this.formBuilder.group({
@@ -54,6 +76,12 @@ export class UserComponent {
         // 'events' here IS your complete list of Event[]
         // console.log('Successfully extracted events:', events);
         this.events = events; // Assign the full list to your component property
+        console.log(events);
+            if (this.mapInstance) {
+
+      this.addMarkersToMap();
+    }
+        
       },
       error: (error) => {
         // console.error('Error fetching events:', error);
@@ -89,6 +117,59 @@ export class UserComponent {
     })
   }
 
+onMapReady(map: L.Map) {
+  this.mapInstance = map;
+  const center = this.mapInstance.getCenter();
+  console.log('Center:', center.lat, center.lng);
+
+  // Only add markers once events exist
+  if (this.events.length > 0) {
+    this.addMarkersToMap();
+  }
+
+  // Reverse geocoding (unchanged)
+  fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${center.lat}&lon=${center.lng}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.address) {
+        const addr = data.address;
+        const road = addr.road || addr.suburb || '';
+        const city = addr.city || addr.town || addr.village || addr.county || '';
+        const country = addr.country || '';
+        this.homeAddress = `${road ? road + ', ' : ''}${city}, ${country}`;
+      } else {
+        const parts = data.display_name.split(',').map((p: string) => p.trim());
+        const street = parts[0] || '';
+        const city = parts[2] || parts[3] || '';
+        const country = parts[parts.length - 1] || '';
+        this.homeAddress = `${street}, ${city}, ${country}`;
+      }
+    })
+    .catch(error => console.error('Reverse geocoding error:', error));
+}
+
+
+onMapMoved(event: { lat: number; lng: number }) {
+  console.log('Home Map moved to:', event);
+}
+
+onMapClicked(event: { lat: number; lng: number }) {
+  console.log('Home Clicked:', event);
+}
+
+
+
+private addMarkersToMap() {
+  this.markersLayer.clearLayers();
+  this.events.forEach(event => {
+    const icon = markerIcons[event.eventType as keyof typeof markerIcons];
+    L.marker([event.lat, event.long], { icon })
+      .addTo(this.markersLayer)
+      .bindPopup(`<b>${event.title}</b><br>${event.eventType}`)
+      .on('click', () => this.onSelect(event));
+  });
+  this.markersLayer.addTo(this.mapInstance);
+}
 
  
 

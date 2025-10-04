@@ -101,7 +101,7 @@ this.openHttpClientService.getEvents(
 onMapReady(map: L.Map) {
   this.mapInstance = map;
   const center = this.mapInstance.getCenter();
-  console.log('Center:', center.lat, center.lng);
+  // console.log('Center:', center.lat, center.lng);
 
   // Only add markers once events exist
   if (this.events.length > 0) {
@@ -131,11 +131,11 @@ onMapReady(map: L.Map) {
 
 
 onMapMoved(event: { lat: number; lng: number }) {
-  console.log('Home Map moved to:', event);
+  // console.log('Home Map moved to:', event);
 }
 
 onMapClicked(event: { lat: number; lng: number }) {
-  console.log('Home Clicked:', event);
+  // console.log('Home Clicked:', event);
 }
 
 
