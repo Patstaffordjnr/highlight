@@ -11,8 +11,8 @@
 }
 
 .header-image {
-  max-width: 160px;
-  /* max-width: 175px; */
+  /* max-width: 120px; */
+  max-width: 175px;
   height: auto;
 }
 

@@ -1,9 +1,9 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
-import { EventType } from 'src/app/model/event-types';
-import { BuskersTableControlComponent } from 'src/app/common/busker/buskers-table-control/buskers-table-control.component';
+import { OpenHttpClientService } from '../../common/http/open-http-client.service'
+import { EventType } from '../../model/event-types';
+import { BuskersTableControlComponent } from '../../common/busker/buskers-table-control/buskers-table-control.component';
 import { EventEmitter } from 'events';
-import { Busker } from 'src/app/model/busker';
+import { Busker } from '../../model/busker';
 
 // interface Busker {
 //   id: string;

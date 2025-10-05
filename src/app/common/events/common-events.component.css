@@ -102,31 +102,32 @@
   /* word-wrap: break-word; */
 }
 
-.event-user-role-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.event-user-role {
-  color: #222;
-}
-
 .event-title-container {
-  
+  width: 100%;
+  /* display: flex;
+  justify-content: center; */
+   /* padding: 0 10px; */
+   /* background-color: #4caf50; */
+     padding-right: 10px;
 }
 
 .event-title {
-  /* word-wrap: break-word;
-  overflow-wrap: break-word;
-  word-break: break-all;
-  white-space: normal; */
-  padding: 0 10px;
+  /* background-color: aquamarine; */
+  overflow: hidden;
+  /* padding-right: 10px; */
+        /* display: -webkit-box;     
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;       */
+  /* overflow: hidden;
+  text-overflow: ellipsis; */
+  /* padding: 0 10px; */
 }
 
 .event-address-container {
-  justify-content: left;
+  /* justify-content: left; */
     /* padding-top: 10px; */
+    text-align: center;
+    
 }
 
 .event-address {
@@ -135,50 +136,27 @@
   overflow-wrap: break-word;
   word-break: break-all;
   white-space: normal; */
-  padding: 0 10px;
+  padding: 10px 10px;
 
 }
 
-.event-start-date-text-container {
+.item-start-date {
+  justify-content: left;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+.item-start-time {
+  font-weight: bold;
+}
+
+.item-finish-date {
+  font-weight: bold;
   justify-content: left;
   padding-left: 10px;
 }
 
-.event-start-date {
-  font-weight: bold;
-}
-
-.event-start-time-text-container {
-  justify-content: left;
-}
-
-.event-start-time-container {
-  justify-content: left;
-}
-
-.event-start-time {
-  font-weight: bold;
-}
-
-.event-finish-date-text-container {
-  justify-content: left;
-  padding-left: 10px;
-}
-
-.event-finish-date {
-  font-weight: bold;
-}
-
-.event-finish-time-text-container {
-  justify-content: left;
-}
-
-.event-finish-time-container {
-  justify-content: left;
-}
-
-.event-finish-time {
-    justify-content: right;
+.item-finish-time {
   font-weight: bold;
 }
 
@@ -246,8 +224,8 @@
   .event-grid {
     display: grid;
     height: 100vh;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    grid-template-rows: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(260px, 1fr));
     gap: 16px;
   }
 

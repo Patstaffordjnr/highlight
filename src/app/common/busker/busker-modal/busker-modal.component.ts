@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { Busker } from 'src/app/model/busker';
+import { Busker } from '../../../model/busker';
 
 @Component({
   selector: 'app-busker-modal',

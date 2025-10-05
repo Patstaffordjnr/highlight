@@ -1,23 +1,20 @@
 
-import { User } from 'src/app/model/user';
-import { AuthService } from 'src/app/util/auth.service';
+import { User } from '../../model/user';
+import { AuthService } from '../../util/auth.service';
 import { CurrentUserService } from '../../util/can-activate.service'
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
-import { EventType } from 'src/app/model/event-types';
-import { UserProfileComponent } from 'src/app/common/user-profile/user-profile.component';
-import { Event as AppEvent } from 'src/app/model/event';
-import { Busker } from 'src/app/model/busker';
-
-
+import { OpenHttpClientService } from '../../common/http/open-http-client.service';
+import { EventType } from '../../model/event-types';
+import { UserProfileComponent } from '../../common/user-profile/user-profile.component';
+import { Event as AppEvent } from '../../model/event';
+import { Busker } from '../../model/busker';
 import { Component, OnInit } from '@angular/core';
-
 import { Subscription } from 'rxjs';
-
 import * as L from 'leaflet';
-import { EventModalComponent } from 'src/app/common/event/event-modal/event-modal.component';
-import { Event as Event } from 'src/app/model/event';
+import { EventModalComponent } from '../../common/event/event-modal/event-modal.component';
+import { Event as Event } from '../../model/event';
 import { markerIcons } from './../../common/map/map-icons';
+import { UserRole } from '../../model/user-roles';
 
 
 
@@ -34,7 +31,7 @@ export class UserComponent {
   buskers: Busker[] = [];
   total: number = 0;
   
-  userRoles = [];
+  userRoles: string[] = [];
     currentUser: User = {
     id: "string",
     email: "string",
@@ -93,8 +90,10 @@ export class UserComponent {
 
   async ngOnInit() {
      this.loadBuskers(0, 10);
+      let user = await this.currentUserService.getUser();
 
-    let user = await this.currentUserService.getUser()
+     if(user) {
+      console.log(user);
 
     this.currentUser.id = user.id;
     this.currentUser.email =  user.email;
@@ -108,13 +107,17 @@ export class UserComponent {
     } else if (String(userRole) === "BUSKER") {
       this.userRoles = ['BUSKER'];
       return "BUSKER";
-
       
     } else if (String(userRole) === "ADMIN") {
       this.userRoles = ['ADMIN'];
       return "ADMIN";
     }
     })
+
+     }
+
+   
+    
   }
 
 onMapReady(map: L.Map) {

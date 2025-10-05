@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { User } from 'src/app/model/user';
+import { User } from '../../model/user';
 import { CurrentUserService } from '../../util/can-activate.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
-import { EventType } from 'src/app/model/event-types';
-import { Event as AppEvent } from 'src/app/model/event';
+import { OpenHttpClientService } from '../../common/http/open-http-client.service';
+import { EventType } from '../../model/event-types';
+import { Event as AppEvent } from '../../model/event';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { EventFilter } from 'src/app/model/event-list-filter';
+import { EventFilter } from '../../model/event-list-filter';
 
 @Component({
   selector: 'app-admin',

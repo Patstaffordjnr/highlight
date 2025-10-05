@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface Busker {
@@ -17,5 +17,12 @@ interface Busker {
 })
 export class BuskersMiniDisplayComponent {
   @Input() buskers: Busker[] = [];
+
+      @Output() selectedBusker = new EventEmitter<Busker>();
+
+      onSelect(busker: Busker) {
+        this.selectedBusker.emit(busker);
+        console.log(busker);
+      }
 
 }

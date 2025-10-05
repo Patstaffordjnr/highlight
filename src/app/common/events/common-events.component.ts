@@ -3,12 +3,13 @@ import { PageListResponse } from '../event/page-list-response';
 import { EventsClient } from '../event/events-client';
 import { MapService } from '../map/map-service';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Event as AppEvent } from 'src/app/model/event';
+import { Event as AppEvent } from '../../model/event';
 import { EventService } from '../event/event-service';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { OpenHttpClientService } from '../http/open-http-client.service';
-import { GlobalDateService } from 'src/app/pages/home/global-date.service';
+import { GlobalDateService } from '../../pages/home/global-date.service'
+
 
 @Component({
   selector: 'app-common-events',

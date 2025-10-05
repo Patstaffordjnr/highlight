@@ -28,11 +28,11 @@
   width: 100%;
   height: 100%;
   border-radius: 25px;
-  /* border: 6px solid whitesmoke; */
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
+  aspect-ratio: 1 / 1; /* Only in UserComponent */
 }
 
 .item-1 {
@@ -44,7 +44,6 @@
 .user-profile {
   width: 100%;
   height: 100%;
-  /* background-color: aqua; */
 
 }
 
@@ -71,7 +70,6 @@
 .buskers-mini {
   width: 100%;
   height: 100%;
-  /* background-color: lime; */
   flex: 1;
   overflow-y: auto;
   scrollbar-width: none;
@@ -79,6 +77,7 @@
     display: flex;           
 
 }
+
 
 .buskers-mini::-webkit-scrollbar {
   display: none;
@@ -96,36 +95,9 @@
   z-index: 1;
 }
 
-/* --- Responsive Breakpoints --- */
 
-/* SM - Small tablets */
-@media (min-width: 576px) {
-  /* styles here */
-}
-
-/* MD - Tablets */
-@media (min-width: 768px) {
-  /* styles here */
-}
-
-/* LG - Small laptops */
-@media (min-width: 992px) {
-  /* styles here */
-}
-
-/* XL - Desktops */
-@media (min-width: 1200px) {
-  /* .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 16px;
-  } */
-}
-
-/* XXL - Large desktops */
 @media (min-width: 1400px) {
-  .busker {
+  .buskers {
     width: 100%;
   }
 
