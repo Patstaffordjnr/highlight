@@ -13,18 +13,24 @@
 </app-map>  
     </div>
     <div class="item item-3">
-         <app-buskers-mini-display class = "buskers-mini" (selectedBusker)="onSelect($event)" [buskers]="buskers"></app-buskers-mini-display>
+         <app-buskers-mini-display class = "buskers-mini" (selectedBusker)="onBuskerSelect($event)" [buskers]="buskers"></app-buskers-mini-display>
     </div>
     <div class="item item-4">
-      <app-common-events class = "events" [events]="events" (selectedEvent)="onSelect($event)"></app-common-events>
+      <app-common-events class = "events" [events]="events" (selectedEvent)="onEventSelect($event)"></app-common-events>
     </div>
 </div>
 </div>
 </div>
 </div>
-<app-event-modal class = "modal" [isOpen]="showModal" (close)="showModal = false " [event]="event">
+<app-event-modal class = "modal" [isOpen]="showEventModal" (close)="showEventModal = false " [event]="event">
 </app-event-modal>
-<div class = "a"></div>
+<app-busker-modal class = "modal" [isOpen]="showBuskerModal" (close)="showBuskerModal = false " [busker]="busker">
+</app-busker-modal>
+<div class = "control-container">
+  <div class = "control">
+
+  </div>
+</div>
 
 
 

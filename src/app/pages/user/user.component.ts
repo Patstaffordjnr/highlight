@@ -16,17 +16,22 @@ import { Event as Event } from '../../model/event';
 import { markerIcons } from './../../common/map/map-icons';
 import { UserRole } from '../../model/user-roles';
 
-
-
-
-
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  showModal = false;
+    showEventModal = false;
+  showBuskerModal = false;
+
+  // Users
+  users: User[] = [];
+  allUsers: User[] = [];
+  totalUsers: number = 0;
+  busker: User | null = null;
+
+
     eventTypes: Set<string> = new Set(["Band", "Busker", "Dj", "Performance"]);
   buskers: Busker[] = [];
   total: number = 0;
@@ -40,16 +45,12 @@ export class UserComponent {
 
   form: FormGroup;
 
-  
   events: AppEvent[] = [];
   event: AppEvent;
-
-
     mapInstance!: L.Map;
     mapDetails: any; // could be {lat, lng, bounds, etc.}
     markersLayer = L.layerGroup(); // This layer will hold all markers
     homeAddress: string = '';
-  
 
   filteredEvents: AppEvent[] = []; // filtered list
 
@@ -169,17 +170,21 @@ private addMarkersToMap() {
     L.marker([event.lat, event.long], { icon })
       .addTo(this.markersLayer)
       .bindPopup(`<b>${event.title}</b><br>${event.eventType}`)
-      .on('click', () => this.onSelect(event));
+      .on('click', () => this.onEventSelect(event));
   });
   this.markersLayer.addTo(this.mapInstance);
 }
 
- 
+   onBuskerSelect(busker: User) {
+    console.log('Received Busker: Home;', event);
+    this.busker = busker;
+    this.showBuskerModal = true;
+  }
 
-  onSelect(event: AppEvent) {
+  onEventSelect(event: AppEvent) {
     console.log('Received Event: Home;', event);
     this.event = event;
-    this.showModal = true;
+    this.showEventModal = true;
   }
    loadBuskers(page: number, size: number): void {
     this.openHttpClientService.getBuskers(page, size).subscribe({
