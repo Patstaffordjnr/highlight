@@ -10,8 +10,8 @@ interface Busker {
 }
 @Component({
   selector: 'app-buskers-mini-display',
-  standalone: true,
-  imports: [CommonModule],
+  // standalone: true,
+  // imports: [CommonModule],
   templateUrl: './buskers-mini-display.component.html',
   styleUrl: './buskers-mini-display.component.css'
 })

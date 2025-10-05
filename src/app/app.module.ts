@@ -40,6 +40,8 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { UsersListComponent } from './common/users/users-list/users-list.component';
 @NgModule({
   declarations: [
+            BuskersMiniDisplayComponent,
+
     // Pages
     EventsComponent,
     BuskersComponent,
@@ -64,6 +66,7 @@ import { UsersListComponent } from './common/users/users-list/users-list.compone
     EventsTableControlComponent,
     EventModalComponent,
        BuskerModalComponent,
+       
         //         BuskerListComponent,
         //  EventListComponent,
          
@@ -80,11 +83,11 @@ import { UsersListComponent } from './common/users/users-list/users-list.compone
     CommonEventsComponent,
     UserProfileComponent,
         BuskersTableComponent,
-        BuskersMiniDisplayComponent,
         BuskersTableControlComponent,
                BuskerListComponent,
          EventListComponent,
                   UsersListComponent,
+                  
 
         
      
