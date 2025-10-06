@@ -33,7 +33,11 @@
 </app-map>  
     </div>
     <div class="item item-3">
-         <app-buskers-mini-display class = "buskers-mini" [buskers]="buskers"></app-buskers-mini-display>
+      <div class = "control-container" >
+  <div class = "control" (click)="createEvent()" >
+  </div>
+</div>
+         <!-- <app-buskers-mini-display class = "buskers-mini" [buskers]="buskers"></app-buskers-mini-display> -->
     </div>
     <div class="item item-4">
       <app-common-events class = "events" [events]="events" (selectedEvent)="onSelect($event)"></app-common-events>

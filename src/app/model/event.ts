@@ -9,7 +9,7 @@ export class Event {
   public endAt: Date;
   public createdAt: Date;
   public updatedAt: Date;
-  public id: string;
+  public userId: string;
 
   constructor(
     title: string,
@@ -20,7 +20,7 @@ export class Event {
     endAt: Date,
     createdAt: Date,
     updatedAt: Date,
-    id: string
+    userId: string
   ) {
     this.title = title;
     this.eventType = eventType;
@@ -30,6 +30,6 @@ export class Event {
     this.endAt = endAt;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
-    this.id = id;
+    this.userId = userId;
   }
 }

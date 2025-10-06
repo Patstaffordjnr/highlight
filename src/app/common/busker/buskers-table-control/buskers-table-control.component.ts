@@ -84,7 +84,7 @@ export class BuskersTableControlComponent implements OnInit, OnDestroy{
       // console.log('Formatted address:', formattedAddress);
       this.homeAddress = formattedAddress;
    } else {
-    console.warn('Address string is undefined or empty.');
+    // console.warn('Address string is undefined or empty.');
   }
 });
 }

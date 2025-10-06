@@ -148,6 +148,11 @@ export class BuskerComponent implements OnInit { // Implement OnInit
     });
     this.markersLayer.addTo(this.mapInstance);
   }
+
+    createEvent(){
+      this.event = null;
+    this.showModal = true;
+  }
   
   onSelect(event: AppEvent) {
     console.log('Received Event: Home;', event);
