@@ -76,13 +76,12 @@
           </div>
         </div>
       </div>
-                  <div class = "control-container" >
-                    <div class = "comtrol" (click) = "onEditClick()">
-                      EDIT
-                     <a>{{canEdit}}</a>
-                     
-                    </div>
-                  </div>
+         <div class = "control-container" *ngIf="canEdit" >
+         <div class = "control" (click) = "onEditClick()">
+         EDIT
+         <!-- <a>{{canEdit}}</a> -->
+        </div>
+        </div>
         </div>
 </div>
 </div>

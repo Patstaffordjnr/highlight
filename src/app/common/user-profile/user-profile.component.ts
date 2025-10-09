@@ -24,10 +24,8 @@ constructor(private currentUserService: CurrentUserService) {
 }
 
 async ngOnInit() {
-
-  
-
   let user = await this.currentUserService.getUser()
+  if(user) {
 
   this.currentUser.id = user.id;
   this.currentUser.email =  user.email;
@@ -48,6 +46,10 @@ async ngOnInit() {
     return "ADMIN";
   }
   })
+  }
+  
+
+
 }
 
 }

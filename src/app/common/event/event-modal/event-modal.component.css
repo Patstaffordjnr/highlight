@@ -188,6 +188,18 @@ height: 100vh;
   background-color: none;
   padding-left: 10px;
   }
+  .title-input {
+  width: 80%;
+  padding: 6px;
+  font-size: 1rem;
+  text-align: center;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+}
+.title-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
   
   .event-address-container {
   background-color: none;

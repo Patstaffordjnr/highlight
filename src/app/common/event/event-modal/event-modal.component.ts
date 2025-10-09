@@ -23,8 +23,11 @@ export class EventModalComponent {
   @Input() event: AppEvent;
 
   canEdit = false;
+  isEditing = false;
+
 
   showModal = false;
+
   mapInstance!: L.Map;
   currentIndex = 0;
   noOfPages = 8;
@@ -52,39 +55,29 @@ export class EventModalComponent {
 
     
   }
-  async ngOnInit() {
-    // 1. Load Buskers (THIS WAS MISSING/DIFFERENT IN YOUR ORIGINAL BuskerComponent)
-  //   if(this.currentUser.roles.includes(UserRole.BUSKER) && this.event.userId === this.currentUser.id || this.currentUser.roles.includes(UserRole.ADMIN)){
-  //   this.canEdit = true;
-  // } else  console.log("User not logged in");
-    
-    // 2. Load User Profile
-    let user = await this.currentUserService.getUser()
+async ngOnInit() {
+  const user = await this.currentUserService.getUser();
 
+  if (user) {
+    this.currentUser = {
+      id: user.id,
+      email: user.email,
+      roles: user.roles
+    };
 
-
-    if(user){
-          this.currentUser.id = user.id;
-    this.currentUser.email =  user.email;
-    this.currentUser.roles = user.roles;
-    
-    this.currentUser.roles.forEach((userRole) => {
-      const roleString = String(userRole);
-      if (roleString === "USER") {
-        this.userRoles = ['USER'];
-      } else if (roleString === "BUSKER") {
-        this.userRoles = ['BUSKER'];
-      } else if (roleString === "ADMIN") {
-        this.userRoles = ['ADMIN'];
-      }
-    });
-
-
-    }
-    // 3. Process Roles (Filter is used incorrectly, but the logic is kept for 1:1 copy)
-
+    this.userRoles = user.roles.map((r: any) => String(r));
+    this.updateCanEdit();
   }
+}
+updateCanEdit() {
+  if (!this.currentUser || !this.event) return;
 
+  const isBuskerOwner =
+    this.currentUser.roles.includes(UserRole.BUSKER) &&
+    this.event.userId === this.currentUser.id;
+  const isAdmin = this.currentUser.roles.includes(UserRole.ADMIN);
+  this.canEdit = isBuskerOwner || isAdmin;
+}
 
   onClose() {
     this.close.emit();
@@ -92,41 +85,15 @@ export class EventModalComponent {
 
 onEditClick() {
   console.log("EDIT");
-  this.edit.emit(this.event);
-  console.log(this.event);
-  console.log(this.currentUser.roles);
-  console.log(this.event.userId);
-  console.log(this.currentUser.id);
+  // this.edit.emit(this.event);
+  // console.log(this.event);
+  // console.log(this.currentUser.roles);
+  // console.log(this.event.userId);
+  // console.log(this.currentUser.id);
 
-    if(this.currentUser.roles.includes(UserRole.BUSKER) && this.event.userId === this.currentUser.id || this.currentUser.roles.includes(UserRole.ADMIN)){
-    this.canEdit = true;
-  } else  console.log("User not logged in");
     
-
-//   if(this.currentUser.roles.includes(UserRole.BUSKER)){
-//       console.log("a");
-//   }
-//   if(this.event.userId === this.currentUser.id){
-//       console.log("B");
-//   }
-// if(this.currentUser.roles.includes(UserRole.BUSKER) && this.event.userId === this.currentUser.id || this.currentUser.roles.includes(UserRole.ADMIN)){
-//     this.canEdit = true;
-//   }
-//     if(this.currentUser.roles.includes(UserRole.ADMIN)){
-//     this.canEdit = true;
-//   }
 }
 
-
-// canEditEvent(): boolean {
-//   // Check if user has 'BUSKER' role
-//   const isBusker = this.currentUser.roles.includes('BUSKER');
-
-//   // Check if this busker created the event
-//   const isCreator = this.event && this.event.userId === this.currentUser.id;
-
-//   return isBusker && isCreator;
-// }
 onMapReady(map: L.Map) {
   this.mapInstance = map;
 
