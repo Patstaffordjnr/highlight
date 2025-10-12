@@ -25,26 +25,26 @@ export class RouterService {
     this.router.navigate(['/home']);
   }
 
-  toGoogleMapsPage() {
-    this.router.navigate(['/googlemap']);
-  }
+  // toGoogleMapsPage() {
+  //   this.router.navigate(['/googlemap']);
+  // }
 
 
   toSignUpPage() {
     this.router.navigate(['/signup']);
   }
 
-  toCreateEventPage() {
-    this.router.navigate(['/createevent']);
-  }
+  // toCreateEventPage() {
+  //   this.router.navigate(['/createevent']);
+  // }
 
-  toEventsPage() {
-    this.router.navigate(['/events']);
-  }
+  // toEventsPage() {
+  //   this.router.navigate(['/events']);
+  // }
 
-  toEventTablePage() {
-    this.router.navigate(['/eventtable']);
-  }
+  // toEventTablePage() {
+  //   this.router.navigate(['/eventtable']);
+  // }
 
   async clearCookie(): Promise<void> {
     let response = await this.http.get<any>("http://localhost:8085/api/auth/logout", { withCredentials: true }).toPromise();
@@ -53,7 +53,8 @@ export class RouterService {
   async toLogoutPage(): Promise<void> {    
     this.clearCookie();
     this.currentUserService.setUser(null);
-    this.toLoginPage();
+    // this.toLoginPage();
+    this.toHomePage();
   }
 
 

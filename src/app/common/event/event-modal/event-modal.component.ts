@@ -17,15 +17,16 @@ import { UserRole } from 'src/app/model/user-roles';
   styleUrl: './event-modal.component.css'
 })
 export class EventModalComponent {
-  @Input() isOpen = false;
+ @Input() isOpen = false;
+  @Input() event!: AppEvent;
+
   @Output() close = new EventEmitter<void>();
   @Output() edit = new EventEmitter<AppEvent>();
-  @Input() event: AppEvent;
+
+  @ViewChild('modalContent', { static: false }) modalContentRef!: ElementRef;
 
   canEdit = false;
   isEditing = false;
-
-
   showModal = false;
 
   mapInstance!: L.Map;
@@ -35,103 +36,103 @@ export class EventModalComponent {
   showDateControls = false;
   globalDate = new Date();
 
-  userRoles: string[] = []; // Changed to string[] for better type safety
+  userRoles: string[] = [];
   currentUser: User = {
-    id: "string",
-    email: "string",
+    id: 'string',
+    email: 'string',
     roles: [],
   };
 
-  mapDetails: any; 
-  markersLayer = L.layerGroup(); 
-    events: AppEvent[] = [];
-    // event!: AppEvent;
-    filteredEvents: AppEvent[] = [];
-  @ViewChild('modalContent', { static: false }) modalContentRef!: ElementRef;
-  
-  constructor(
-    private currentUserService: CurrentUserService, 
-  ){
+  mapDetails: any;
+  markersLayer = L.layerGroup();
+  events: AppEvent[] = [];
+  filteredEvents: AppEvent[] = [];
 
-    
+  constructor(private currentUserService: CurrentUserService) {}
+
+  async ngOnInit() {
+    const user = await this.currentUserService.getUser();
+
+    if (user) {
+      this.currentUser = {
+        id: user.id,
+        email: user.email,
+        roles: user.roles,
+      };
+
+      console.log('X');
+
+      this.userRoles = user.roles.map((r: any) => String(r));
+      this.updateCanEdit();
+    }
   }
-async ngOnInit() {
-  const user = await this.currentUserService.getUser();
 
-  if (user) {
-    this.currentUser = {
-      id: user.id,
-      email: user.email,
-      roles: user.roles
-    };
+  updateCanEdit() {
+    if (!this.currentUser || !this.event) return;
 
-    this.userRoles = user.roles.map((r: any) => String(r));
-    this.updateCanEdit();
+    const isBuskerOwner =
+      this.currentUser.roles.includes(UserRole.BUSKER) &&
+      this.event.userId === this.currentUser.id;
+
+    const isAdmin = this.currentUser.roles.includes(UserRole.ADMIN);
+
+    this.canEdit = isBuskerOwner || isAdmin;
   }
-}
-updateCanEdit() {
-  if (!this.currentUser || !this.event) return;
-
-  const isBuskerOwner =
-    this.currentUser.roles.includes(UserRole.BUSKER) &&
-    this.event.userId === this.currentUser.id;
-  const isAdmin = this.currentUser.roles.includes(UserRole.ADMIN);
-  this.canEdit = isBuskerOwner || isAdmin;
-}
 
   onClose() {
     this.close.emit();
   }
 
-onEditClick() {
-  console.log("EDIT");
-  // this.edit.emit(this.event);
-  // console.log(this.event);
-  // console.log(this.currentUser.roles);
-  // console.log(this.event.userId);
-  // console.log(this.currentUser.id);
-
-    
-}
-
-onMapReady(map: L.Map) {
-  this.mapInstance = map;
-
-  if (this.event) {
-    const lat = this.event.lat;
-    const lng = this.event.long;
-
-    // Center the map on the event
-    this.mapInstance.setView([lat, lng], 15);
-
-    // Add marker for the event
-    const icon = markerIcons[this.event.eventType as keyof typeof markerIcons];
-    L.marker([lat, lng], { icon })
-      .addTo(this.mapInstance)
-      .bindPopup(`<b>${this.event.title}</b><br>${this.event.eventType}`)
-      .openPopup();
+  onEditClick() {
+    console.log('EDIT');
+    this.isEditing = true;
   }
-}
 
-onMapMoved(event: { lat: number; lng: number }) {
-  // console.log('Modal map moved to:', event);
-}
+ toggleStartDateControls(){
+  console.log(`StartControlDateSelect`);
 
-onMapClicked(event: { lat: number; lng: number }) {
-  // console.log('Modal map clicked at:', event);
-}
+ }
 
+ toggleFinishDateControls(){
+    console.log(`FinishControlDateSelect`);
+
+  
+ }
+  onMapReady(map: L.Map) {
+    this.mapInstance = map;
+
+    if (this.event) {
+      const { lat, long: lng, title, eventType } = this.event;
+
+      // Center the map on the event
+      this.mapInstance.setView([lat, lng], 15);
+
+      // Add marker for the event
+      const icon = markerIcons[eventType as keyof typeof markerIcons];
+      L.marker([lat, lng], { icon })
+        .addTo(this.mapInstance)
+        .bindPopup(`<b>${title}</b><br>${eventType}`)
+        .openPopup();
+    }
+  }
+
+  onMapMoved(event: { lat: number; lng: number }) {
+    // console.log('Modal map moved to:', event);
+  }
+
+  onMapClicked(event: { lat: number; lng: number }) {
+    // console.log('Modal map clicked at:', event);
+  }
 
   onBackdropClick(event: MouseEvent) {
     const modalEl = this.modalContentRef?.nativeElement;
 
-    // Click is outside the modal content
+    // Close modal if clicked outside
     if (modalEl && !modalEl.contains(event.target)) {
-      this.onClose(); 
+      this.onClose();
       // console.log('Clicked outside modal content');
     } else {
       // console.log('Clicked inside modal content');
     }
   }
-
 }
