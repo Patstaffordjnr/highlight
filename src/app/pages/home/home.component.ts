@@ -191,14 +191,8 @@ onDateSelected(selectedDate: Date): void {
 }
 
 onSelect(event: AppEvent) {
-  console.log('Received Event: Home;', event);
   this.event = event;
   this.showModal = true;
 }
-
-onClick(a){
-  console.log(a);
-}
-
 
 }

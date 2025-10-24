@@ -223,11 +223,8 @@ height: 100vh;
   background-color: none;
   font-weight: bold;
   }
-  
-  .event-finish-date-container {
-  background-color: none;
-  }
-    .event-finish-time-container {
+
+  .event-finish-time-container {
   background-color: none;
 
   }
@@ -235,6 +232,26 @@ height: 100vh;
   background-color: none;
   font-weight: bold;
   }
+
+.progress-bar-container-start,
+.calendar-container {
+  display: flex;
+  justify-content: center;
+  width: 100%; 
+  margin: 0 auto;
+  /* background-color: aquamarine; */
+}
+
+.progress-bar-container {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 16px;
+}
+
+.calendar-container {
+  display: flex;
+  justify-content: center;
+}
 
 /* SM - Small tablets */
  @media (min-width: 576px) {

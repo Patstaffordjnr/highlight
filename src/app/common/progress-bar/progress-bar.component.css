@@ -4,8 +4,8 @@ max-width: 300px;
 border-radius: 50;
 border-radius: 16px;
 border: 6px solid whitesmoke;
-padding-left: 8px;
-padding-right: 8px;
+/* padding-left: 8px;
+padding-right: 8px; */
 display: flex;
 justify-content: center;
 align-content: center;
@@ -28,14 +28,19 @@ user-select: none;
 
 .dot-boundary {
 position: relative;
+
 display: flex;
 flex: 1;
 border-radius: 10px;
 overflow: visible;
 max-width: 350px;
+  background-color: rgba(255, 0, 0, 0.1); /* light red */
+  outline: 1px solid red;
+  
 }
 
 .dot{
+  overflow: hidden;
 position: absolute;
 display: flex;
 top: -5px;
@@ -43,49 +48,10 @@ width: 30px;
 height: 30px;
 background-color: green;
 border-radius: 50%;
+  outline: 1px solid blue;
+  background-color: rgba(0, 128, 0, 0.6); /* translucent green */
 }
 
 .dot:active {
 cursor: grabbing;
 }
-/* 
-@media (min-width: 1200px) {
-   
-}
-
-@media (min-width: 800px) and (max-width: 1199px) {
-    .border{
-        border: 6px solid whitesmoke;
-        font-size: x-large;
-        }
-        
-        .progress-bar {
-
-        }
-        
-        .hours-container {
-
-        }
-        
-        .testHours {
-        }
-        
-        .dot-boundary {
-
-        }
-        
-        .dot{
-        top: -10px;
-        width: 45px;
-        height: 45px;
-        }
-        
-        .dot-:active {
-        }
-        
-
-}
-
-@media (max-width: 799px) {
-
-} */

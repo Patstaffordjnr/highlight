@@ -2,13 +2,13 @@
   <div #modalContent class="modal">
     <div class="item-1">
       <div class="mapContainer">
-        <app-map
+        <!-- <app-map
           class="map"
           (mapInput)="onMapReady($event)"
           (mapCenterChanged)="onMapMoved($event)"
           (mapClicked)="onMapClicked($event)"
         >
-        </app-map>
+        </app-map> -->
       </div>
     </div>
     <br />
@@ -38,15 +38,22 @@
  
             <div class="event-start-date-container col">
               <div (click) = "toggleStartDateControls()" class="event-start-date">
-                {{ event.startAt * 1000 | date: 'MMM d, y' }}
+                {{ currentEvent.startAt | date: 'MMM d, y' }}
               </div>
             </div>
             <div class="event-start-time-container col">
               <div (click) = "toggleStartDateControls()" class="event-start-time">
-                {{ event.startAt * 1000 | date: 'shortTime' }}
+                {{ currentEvent.startAt | date: 'shortTime' }}
               </div>
             </div>
           </div>
+<!-- *ngIf="isEditing" -->
+
+<div class = "progress-bar-container-start"> 
+          <app-progress-bar  class = "progress-bar-start" [selectedTime]="currentEvent.startAt"
+          (selectTimeEvent)="onTimeSelected($event)">>
+</app-progress-bar>
+</div> 
 
 <!-- <div class = "progress-bar-container-start"> 
 <app-progress-bar *ngIf="isEditing" class = "progress-bar-start"

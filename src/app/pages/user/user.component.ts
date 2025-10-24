@@ -182,11 +182,11 @@ private addMarkersToMap() {
   }
 
   onEventSelect(event: AppEvent) {
-    console.log('Received Event: Home;', event);
     this.event = event;
     this.showEventModal = true;
     this.showModal = true;
   }
+  
    loadBuskers(page: number, size: number): void {
     this.openHttpClientService.getBuskers(page, size).subscribe({
       next: (response: { total: number, results: Busker[] }) => {

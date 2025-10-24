@@ -1,147 +1,175 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  AfterViewInit,
+  OnChanges,
+  SimpleChanges,
+  OnDestroy
+} from '@angular/core';
+
 @Component({
   selector: 'app-progress-bar',
   templateUrl: './progress-bar.component.html',
   styleUrls: ['./progress-bar.component.css']
 })
-export class ProgressBarComponent implements OnInit {
+export class ProgressBarComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
+@Input() selectedTime: Date = new Date();
   @Output() selectTimeEvent = new EventEmitter<Date>();
-  @Input() selectedTime: Date;
 
-  date = new Date();
-  currentHour = this.date.getHours();
-  mm = this.date.getMinutes();
-  ss = this.date.getSeconds();
-  session = "AM";
+  @ViewChild('progressBarDiv') progressBarDiv!: ElementRef;
+  @ViewChild('dot') dot!: ElementRef;
+
   hours: string[] = [];
-  mapTimeHour: String;
-  mapTimeMinute: String;
-
   isDragging = false;
-  startX = 0;
-  offsetLeft = 0;
+  viewInitialized = false;
 
-  @ViewChild('progressBarDiv') progressBarDiv: ElementRef;
-  @ViewChild('dot') dot: ElementRef;
-
-  constructor() {
-  }
+  private mousemoveBound!: (e: MouseEvent) => void;
+  private mouseupBound!: (e: MouseEvent) => void;
+  private touchmoveBound!: (e: TouchEvent) => void;
+  private touchendBound!: (e: TouchEvent) => void;
 
   ngOnInit(): void {
     this.initialiseClock();
-      if (!this.selectedTime) {
-    this.selectedTime = new Date(); // fallback only if undefined
-  }
-      // Mouse events (desktop)
-  window.addEventListener('mousemove', (e) => this.mousemove(e));
-  window.addEventListener('mouseup', (e) => this.mouseUp(e));
-
-  // Touch events (mobile)
-  window.addEventListener('touchmove', (e) => this.touchMove(e));
-  window.addEventListener('touchend', (e) => this.touchEnd(e));
   }
 
-  ngAfterViewInit() {
-    if(this.selectedTime) {
-      this. setClock(this.selectedTime);
+  ngAfterViewInit(): void {
+    this.viewInitialized = true;
+
+    this.mousemoveBound = this.mousemove.bind(this);
+    this.mouseupBound = this.mouseup.bind(this);
+    this.touchmoveBound = this.touchmove.bind(this);
+    this.touchendBound = this.touchend.bind(this);
+
+    const timeToUse = this.selectedTime || new Date();
+    timeToUse.setHours(12, 0, 0); // default 12:00
+    this.setClock(timeToUse);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (
+      changes['selectedTime'] &&
+      this.selectedTime &&
+      this.viewInitialized &&
+      !this.isDragging
+    ) {
+      this.setClock(this.selectedTime);
     }
   }
 
-  mouseDown(event: MouseEvent) {
+  ngOnDestroy(): void {
+    document.removeEventListener('mousemove', this.mousemoveBound);
+    document.removeEventListener('mouseup', this.mouseupBound);
+    document.removeEventListener('touchmove', this.touchmoveBound);
+    document.removeEventListener('touchend', this.touchendBound);
+  }
+
+  // === Mouse Events ===
+  mouseDown(event: MouseEvent): void {
+    event.preventDefault();
     this.isDragging = true;
-    const dotRect = this.dot.nativeElement.getBoundingClientRect();
-    this.startX = event.clientX - dotRect.left;
-    this.offsetLeft = this.dot.nativeElement.offsetLeft;
+    document.addEventListener('mousemove', this.mousemoveBound);
+    document.addEventListener('mouseup', this.mouseupBound);
   }
 
-  mousemove(event: MouseEvent) {
+  mousemove(event: MouseEvent): void {
+    if (!this.isDragging || !this.progressBarDiv) return;
+    this.updateFromClientX(event.clientX);
+  }
+
+  mouseup(event: MouseEvent): void {
     if (!this.isDragging) return;
-    const parentRect = this.progressBarDiv.nativeElement.getBoundingClientRect();
-    const dotWidth = this.dot.nativeElement.offsetWidth - 4;
-    let x = event.clientX - parentRect.left;
-    const hourLength = parentRect.width / 24;
-    const minuteLength = hourLength / 60;
-    let totalMinutes = Math.floor(x / minuteLength);
-    let hour = Math.floor(totalMinutes / 60);
-    let minute = totalMinutes % 60;
-
-minute = Math.round(minute / 5) * 5;
-if (minute === 60) {
-  minute = 0;
-  hour++;
-}
-    let newTime = new Date(
-      this.selectedTime.getFullYear(),
-      this.selectedTime.getMonth(),
-      this.selectedTime.getDate(),
-      hour,
-      minute,
-      0
-    );
-    this.emitTime(newTime);
-   let newLeft = event.clientX - parentRect.left - this.startX;
-if (newLeft < 0) {
-  newLeft = 0;
-} else if (newLeft + dotWidth > parentRect.width) {
-  newLeft = parentRect.width - dotWidth;
-}
-this.dot.nativeElement.style.left = `${newLeft}px`;
-  }
-
-  mouseUp(event: MouseEvent) {
     this.isDragging = false;
+    document.removeEventListener('mousemove', this.mousemoveBound);
+    document.removeEventListener('mouseup', this.mouseupBound);
   }
 
-
-  touchStart(event: TouchEvent) {
-  this.isDragging = true;
-  const touch = event.touches[0];
-  const dotRect = this.dot.nativeElement.getBoundingClientRect();
-  this.startX = touch.clientX - dotRect.left;
-}
-
-touchMove(event: TouchEvent) {
-  if (!this.isDragging) return;
-  const touch = event.touches[0];
-  this.mousemove({ clientX: touch.clientX } as MouseEvent);
-}
-
-touchEnd(event: TouchEvent) {
-  this.isDragging = false;
-}
-
-  initialiseClock() {
-    for (let i = 0; i < 24; i++) {
-      let selectedTimeDay = new Date(
-        this.selectedTime.getFullYear(),
-        this.selectedTime.getMonth(),
-        this.selectedTime.getDate(),
-        i,
-        this.selectedTime.getMinutes(),
-        this.selectedTime.getSeconds()
-      );
-      if (i === 0) {
-        this.hours.push("00");
-      } else {
-        this.hours.push(i.toString());
-      }
-    }
+  // === Touch Events ===
+  touchStart(event: TouchEvent): void {
+    event.preventDefault();
+    this.isDragging = true;
+    document.addEventListener('touchmove', this.touchmoveBound, { passive: false });
+    document.addEventListener('touchend', this.touchendBound);
   }
 
-  setClock(date: Date) {
-const dotElement: HTMLElement = this.dot.nativeElement;
-const progressBarElement: HTMLElement = this.progressBarDiv.nativeElement;
-let divLeft = progressBarElement.offsetLeft;
-let divRight = (divLeft + progressBarElement.offsetWidth);
-let divLength = (divRight - divLeft);
-
-let hour = date.getHours();
-let minutes = date.getMinutes();
-let totalPosition = (divLength / 24) * hour + (divLength / (24 * 60)) * minutes;
-dotElement.style.left = `${totalPosition}px`;
+  touchmove(event: TouchEvent): void {
+    if (!this.isDragging) return;
+    event.preventDefault();
+    const touch = event.touches[0];
+    this.updateFromClientX(touch.clientX);
   }
 
-  emitTime(date: Date) {
-    return this.selectTimeEvent.emit(date);
+  touchend(event: TouchEvent): void {
+    if (!this.isDragging) return;
+    this.isDragging = false;
+    document.removeEventListener('touchmove', this.touchmoveBound);
+    document.removeEventListener('touchend', this.touchendBound);
+  }
+
+  // === Core Update Logic ===
+  private updateFromClientX(clientX: number): void {
+  if (!this.progressBarDiv || !this.dot) return;
+
+  const barRect = this.progressBarDiv.nativeElement.getBoundingClientRect();
+  const barWidth = barRect.width;
+  const dotWidth = this.dot.nativeElement.offsetWidth;
+
+  if (barWidth === 0) return;
+
+  let centerX = clientX - barRect.left;
+  centerX = Math.max(0, Math.min(centerX, barWidth));
+
+  const totalMinutes = (centerX / barWidth) * 24 * 60;
+  let hour = Math.floor(totalMinutes / 60);
+  let minute = Math.round(totalMinutes % 60 / 5) * 5;
+
+  if (minute >= 60) {
+    minute = 0;
+    hour++;
+  }
+  hour = hour % 24; // FIXED: wrap 24 → 0
+
+  const newTime = new Date(
+    this.selectedTime.getFullYear(),
+    this.selectedTime.getMonth(),
+    this.selectedTime.getDate(),
+    hour,
+    minute,
+    0
+  );
+
+  this.emitTime(newTime);
+  this.dot.nativeElement.style.left = `${centerX - dotWidth / 2}px`;
+}
+
+  // === Clock Setup ===
+  initialiseClock(): void {
+    this.hours = Array.from({ length: 24 }, (_, i) =>
+      i.toString().padStart(2, '0')
+    );
+  }
+
+  setClock(date: Date): void {
+    if (!this.viewInitialized || !this.progressBarDiv || !this.dot) return;
+
+    const barRect = this.progressBarDiv.nativeElement.getBoundingClientRect();
+    const barWidth = barRect.width;
+    if (barWidth === 0) return;
+
+    const totalMinutes = date.getHours() * 60 + date.getMinutes();
+    const centerX = (totalMinutes / (24 * 60)) * barWidth;
+
+    const dotWidth = this.dot.nativeElement.offsetWidth;
+    const left = centerX - dotWidth / 2;
+
+    this.dot.nativeElement.style.left = `${left}px`;
+  }
+
+  emitTime(date: Date): void {
+    this.selectTimeEvent.emit(date);
   }
 }
