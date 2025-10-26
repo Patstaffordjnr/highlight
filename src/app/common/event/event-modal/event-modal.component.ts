@@ -132,7 +132,7 @@ export class EventModalComponent {
 
  }
 
- onTimeSelected(selectedDate: Date) {
+ onShtartTimeSelected(selectedDate: Date) {
 
   const updatedStartTime = new Date(
     this.currentEvent.startAt.getFullYear(), 
@@ -144,14 +144,20 @@ export class EventModalComponent {
 );
 
 this.currentEvent.startAt = updatedStartTime;
+}
 
-// console.log(updatedStartTime);
-// console.log(`New Start Time Will be ${updatedStartDate}`);
-// this.event.startAt = updatedStartDate;
-// this.globalDate = updatedGlobalDate;
-//   this.globalDateService.upDateTime(updatedGlobalDate);
+ onEndTimeSelected(selectedDate: Date) {
 
+  const updatedEndTime = new Date(
+    this.currentEvent.endAt.getFullYear(), 
+    this.currentEvent.endAt.getMonth(),
+    this.currentEvent.endAt.getDate(),
+    selectedDate.getHours(),
+    selectedDate.getMinutes(),
+  0
+);
 
+this.currentEvent.endAt = updatedEndTime;
 }
 
 // onDateSelected(selectedDate: Date): void {

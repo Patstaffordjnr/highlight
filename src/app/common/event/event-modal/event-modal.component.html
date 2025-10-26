@@ -51,7 +51,7 @@
 
 <div class = "progress-bar-container-start"> 
           <app-progress-bar  class = "progress-bar-start" [selectedTime]="currentEvent.startAt"
-          (selectTimeEvent)="onTimeSelected($event)">>
+          (selectTimeEvent)="onShtartTimeSelected($event)">>
 </app-progress-bar>
 </div> 
 
@@ -72,15 +72,22 @@
           <div class="flex-grid">
           <div class="event-finish-date-container col">
               <div (click) = "toggleFinishDateControls()" class="event-finish-date">
-                {{ event.endAt * 1000 | date: 'MMM d, y' }}
+                {{ currentEvent.endAt | date: 'MMM d, y' }}
               </div>
             </div>
             <div class="event-finish-time-container col">
               <div (click) = "toggleFinishDateControls()" class="event-finish-time">
-                {{ event.endAt * 1000 | date: 'shortTime' }}
+                {{ currentEvent.endAt | date: 'shortTime' }}
               </div>
             </div>
           </div>
+
+          <div class = "progress-bar-container-end"> 
+          <app-progress-bar  class = "progress-bar-end" [selectedTime]="currentEvent.endAt"
+          (selectTimeEvent)="onEndTimeSelected($event)">>
+</app-progress-bar>
+</div>
+
           <div class="control-container" *ngIf="canEdit">
             <div class="control" (click)="onEditClick()">
               EDIT

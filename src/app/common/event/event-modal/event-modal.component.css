@@ -233,8 +233,7 @@ height: 100vh;
   font-weight: bold;
   }
 
-.progress-bar-container-start,
-.calendar-container {
+.progress-bar-container-start{
   display: flex;
   justify-content: center;
   width: 100%; 
@@ -242,11 +241,19 @@ height: 100vh;
   /* background-color: aquamarine; */
 }
 
-.progress-bar-container {
+.progress-bar-container-end{
+  display: flex;
+  justify-content: center;
+  width: 100%; 
+  margin: 0 auto;
+  /* background-color: aquamarine; */
+}
+
+/* .progress-bar-container {
   display: flex;
   justify-content: center;
   padding-bottom: 16px;
-}
+} */
 
 .calendar-container {
   display: flex;
