@@ -297,6 +297,10 @@ display: flex;
   padding-top: 16px;
 }
 
+.hidden {
+  display: none;
+}
+
 /* SM - Small tablets */
  @media (min-width: 576px) {
 

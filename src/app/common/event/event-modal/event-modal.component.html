@@ -7,101 +7,91 @@
           (mapInput)="onMapReady($event)"
           (mapCenterChanged)="onMapMoved($event)"
           (mapClicked)="onMapClicked($event)"
-        ></app-map> -->
+        >
+        </app-map> -->
       </div>
     </div>
-
+    <br />
     <div class="item-2">
       <div class="item-2-container">
-      <div class="grid-item" id="item-1" [ngStyle]="{'padding-top': isEditing ? '16px' : '0'}">
-        <div class="event-image-container">
-          <div class="event-image">
-            <img src="/assets/userprofile.jpg" class="user-img" alt="image" />
-          </div>
+        <div class="grid-item" id="item-1">
+          <div class="event-image-container">
+              <div class="event-image">
+            <img src="/assets/userprofile.jpg" class="user-img" alt="image"/></div>
         </div>
-      </div>
-
-        <div class="grid-item" id="item-2">
+        </div>
+     <div class="grid-item" id="item-2">
           <div class="event-user-name-container">
             <div *ngIf="!isEditing" class="event-user-name"><b>USER Name</b></div>
-            <input  *ngIf="isEditing" class="event-user-name-input" type="text" [placeholder]="event.userName"/>
+             <input *ngIf="isEditing" class="event-user-name-input" type="text"   [placeholder]="event.userName"><br><br>
           </div>
         </div>
-
         <div class="grid-item" id="item-3">
           <div class="event-title-container">
             <div *ngIf="!isEditing" class="event-title">{{ event.title }}</div>
-            <input
-              *ngIf="isEditing"
-              class="event-title-input"
-              type="text"
-              [placeholder]="event.title"
-            />
-          </div>
+              <input *ngIf="isEditing" class="event-title-input" type="text" [placeholder]="event.title">
         </div>
-
+        </div>
         <div class="grid-item" id="item-4">
+          <br />
           <div class="flex-grid">
+ 
             <div class="event-start-date-container col">
-              <div (click)="toggleStartDateControls()" class="event-start-date">
+              <div (click) = "toggleStartDateControls()" class="event-start-date">
                 {{ currentEvent.startAt | date: 'MMM d, y' }}
               </div>
             </div>
             <div class="event-start-time-container col">
-              <div (click)="toggleStartDateControls()" class="event-start-time">
+              <div (click) = "toggleStartDateControls()" class="event-start-time">
                 {{ currentEvent.startAt | date: 'shortTime' }}
               </div>
             </div>
           </div>
+<!-- *ngIf="isEditing" -->
 
-          <div *ngIf="isEditing" class="progress-bar-container-start">
-            <app-progress-bar
-              class="progress-bar-start"
-              [selectedTime]="currentEvent.startAt"
-              (selectTimeEvent)="onShtartTimeSelected($event)"
-            ></app-progress-bar>
-          </div>
+<div class = "progress-bar-container-start"> 
+          <app-progress-bar  class = "progress-bar-start" [selectedTime]="currentEvent.startAt"
+          (selectTimeEvent)="onShtartTimeSelected($event)">>
+</app-progress-bar>
+</div> 
 
-          <div *ngIf="isEditing" class="calendar-container-start">
-            <app-calendar
-              class="calendar-start"
-              [selectedDate]="currentEvent.startAt"
-              (selectDateEvent)="onDateSelected($event)"
-            ></app-calendar>
-          </div>
+<!-- <div class = "progress-bar-container-start"> 
+<app-progress-bar *ngIf="isEditing" class = "progress-bar-start"
+[selectedTime]="globalDate"
+(selectTimeEvent)="onTimeSelected($event)">
+</app-progress-bar>
+</div>
+
+<div class = "calendar-container"> 
+<app-calendar *ngIf="isEditing"  class = "calendar"   [selectedDate]="globalDate" (selectDateEvent)="onDateSelected($event)"></app-calendar>
+<br>
+<br>
+</div> -->
+
 
           <div class="flex-grid">
-            <div class="event-finish-date-container col">
-              <div (click)="toggleFinishDateControls()" class="event-finish-date">
+          <div class="event-finish-date-container col">
+              <div (click) = "toggleFinishDateControls()" class="event-finish-date">
                 {{ currentEvent.endAt | date: 'MMM d, y' }}
               </div>
             </div>
             <div class="event-finish-time-container col">
-              <div (click)="toggleFinishDateControls()" class="event-finish-time">
+              <div (click) = "toggleFinishDateControls()" class="event-finish-time">
                 {{ currentEvent.endAt | date: 'shortTime' }}
               </div>
             </div>
           </div>
 
-          <div *ngIf="isEditing" class="progress-bar-container-end">
-            <app-progress-bar
-              class="progress-bar-end"
-              [selectedTime]="currentEvent.endAt"
-              (selectTimeEvent)="onEndTimeSelected($event)"
-            ></app-progress-bar>
-          </div>
+          <div class = "progress-bar-container-end"> 
+          <app-progress-bar  class = "progress-bar-end" [selectedTime]="currentEvent.endAt"
+          (selectTimeEvent)="onEndTimeSelected($event)">>
+</app-progress-bar>
+</div>
 
-          <div *ngIf="isEditing" class="calendar-container-end">
-            <app-calendar
-              class="calendar-end"
-              [selectedDate]="currentEvent.endAt"
-              (selectDateEvent)="onDateSelected($event)"
-            ></app-calendar>
-          </div>
-<!-- *ngIf="canEdit" -->
-          <div class="control-container" >
+          <div class="control-container" *ngIf="canEdit">
             <div class="control" (click)="onEditClick()">
               EDIT
+              <!-- <a>{{canEdit}}</a> -->
               <a *ngIf="isEditing">Is Editing</a>
             </div>
           </div>

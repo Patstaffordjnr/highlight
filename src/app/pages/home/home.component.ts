@@ -7,6 +7,9 @@ import * as L from 'leaflet';
 import { EventModalComponent } from 'src/app/common/event/event-modal/event-modal.component';
 import { Event as AppEvent } from 'src/app/model/event';
 import { markerIcons } from './../../common/map/map-icons';
+import { MapService } from 'src/app/common/map/map-service';
+import { combineLatest } from 'rxjs';
+
 
 @Component({
   selector: 'app-home',
@@ -17,6 +20,11 @@ import { markerIcons } from './../../common/map/map-icons';
 })
 export class HomeComponent implements OnInit {
   
+  minLat
+  maxLat
+  minLong
+  maxLong
+
   showModal = false;
   mapInstance!: L.Map;
   currentIndex = 0;
@@ -60,42 +68,94 @@ export class HomeComponent implements OnInit {
   private subscription!: Subscription;
 
  constructor(private globalDateService: GlobalDateService,
+  private openHttpClientService: OpenHttpClientService,
+  private mapService: MapService) {
+}
 
-  private openHttpClientService: OpenHttpClientService) {
+ngOnInit() {
   this.globalDateService.globalDate$.subscribe((globalDate) => {
-    if(globalDate) {
-        this.globalDate = globalDate;
+    if (globalDate) {
+      this.globalDate = globalDate;
     }
   });
-this.openHttpClientService.getEvents(
-  new Date(2025, 6, 6, 23, 0, 0),
-  -88,
-  -88,
-  80,
-  80,
-  [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
-).subscribe({
-  next: (events: AppEvent[]) => {
-    this.events = events;
-    if (this.mapInstance) {
-      this.addMarkersToMap();
+
+  // Use combineLatest to fetch events on changes to date or map details
+  combineLatest([
+    this.globalDateService.globalDate$,
+    this.mapService.mapCurrentLocationDetails$
+  ]).subscribe(([globalDate, details]) => {
+    if (globalDate && details && details.length >= 5) {
+      const [bounds, minLat, maxLat, minLong, maxLong] = details;
+      // console.log('Fetching with bounds:', { minLat, maxLat, minLong, maxLong });
+      this.fetchEvents(minLat, minLong, maxLat, maxLong);
     }
-  },
-  error: (error) => {
-    console.error('Error fetching events:', error);
-  },
-});
+  });
 }
 
- ngOnInit() { 
-  this.globalDateService.globalDate$.subscribe((globalDate) => {
-      if(globalDate) {
-          this.globalDate = globalDate;
+private fetchEvents(minLat: number, minLong: number, maxLat: number, maxLong: number) {
+  this.openHttpClientService.getEvents(
+    this.globalDate,
+    minLat,
+    minLong,
+    maxLat,
+    maxLong,
+    [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
+  ).subscribe({
+    next: (events: AppEvent[]) => {
+            console.log(new Date(2026, 2, 28, 23, 0, 0));
+      console.log(this.globalDate);
+      console.log('Events received:', events);
+      console.log(`MinLat: ${minLat},MaxLat: ${maxLat}, MinLng: ${minLong}, MaxLng: ${maxLong}`);
+
+      this.events = events;
+      if (this.mapInstance) {
+        this.addMarkersToMap();
       }
-      
-  })
+    },
+    error: (error) => {
+      console.error('Error fetching events:', error);
+    },
+  });
 }
 
+
+// ngOnInit() {
+//   this.globalDateService.globalDate$.subscribe((globalDate) => {
+//     if (globalDate) {
+//       this.globalDate = globalDate;
+//     }
+//   });
+
+//   this.mapService.mapCurrentLocationDetails$.subscribe((details) => {
+//     if (!details || details.length < 5) return;
+
+//     const [bounds, minLat, maxLat, minLong, maxLong] = details;
+
+//     console.log('Fetching with bounds:', { minLat, maxLat, minLong, maxLong });
+
+
+//     this.openHttpClientService.getEvents(
+//       new Date(2026, 2, 28, 23, 0, 0),
+  
+//       minLat,
+//       minLong,
+//       maxLat,
+//       maxLong,
+//       [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
+//     ).subscribe({
+//       next: (events: AppEvent[]) => {
+//         console.log('Events received:', events);  // ← THIS WILL SHOW DATA
+//         this.events = events;
+//         if (this.mapInstance) {
+//           this.addMarkersToMap();
+//         }
+//       },
+//       error: (error) => {
+//         console.error('Error fetching events:', error);
+//       },
+//     });
+//   });
+// }
 
 
 onMapReady(map: L.Map) {

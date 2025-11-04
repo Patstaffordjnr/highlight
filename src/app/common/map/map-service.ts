@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class MapService { 
-private mapCurrentLocationDetails = new BehaviorSubject<String[]>([]);
+// private mapCurrentLocationDetails = new BehaviorSubject<String[]>([]);
+private mapCurrentLocationDetails = new BehaviorSubject<any[]>([]);
 mapCurrentLocationDetails$ = this.mapCurrentLocationDetails.asObservable();
 
 constructor(private http: HttpClient) {} 

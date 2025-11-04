@@ -101,6 +101,11 @@ export class EventModalComponent {
       this.userRoles = user.roles.map((r: any) => String(r));
       this.updateCanEdit();
     }
+
+    if(this.isOpen == true) {
+      this.onStartTimeSelected(this.currentEvent.startAt);
+      this.onEndTimeSelected(this.currentEvent.endAt);
+    }
   }
 
 
@@ -132,7 +137,7 @@ export class EventModalComponent {
 
  }
 
- onShtartTimeSelected(selectedDate: Date) {
+ onStartTimeSelected(selectedDate: Date) {
 
   const updatedStartTime = new Date(
     this.currentEvent.startAt.getFullYear(), 
