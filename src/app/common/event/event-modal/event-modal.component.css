@@ -292,7 +292,23 @@ display: flex;
   width: 100%; 
   margin: 0 auto;
 }
+.calendar-start-scroll,
+.calendar-end-scroll {
+  max-width: 300px;
+  border-radius: 16px;
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
+  height: 230px;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  position: relative;
+  border: 6px solid whitesmoke;
+}
 
+.calendar-start-scroll::-webkit-scrollbar,
+.calendar-end-scroll::-webkit-scrollbar {
+  display: none;
+}
 .control-container{
   padding-top: 16px;
 }

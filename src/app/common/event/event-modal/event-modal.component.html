@@ -54,7 +54,14 @@
           (selectTimeEvent)="onStartTimeSelected($event)">>
 </app-progress-bar>
 </div> 
-
+<div class="calendar-start-container">
+  <app-calendar 
+    class="calendar"   
+    [selectedDate]="currentEvent.startAt" 
+    [containerClass]="'calendar-start-scroll'"
+    (selectDateEvent)="onStartDateSelected($event)">
+  </app-calendar>
+</div>
 <!-- <div class = "progress-bar-container-start"> 
 <app-progress-bar *ngIf="isEditing" class = "progress-bar-start"
 [selectedTime]="globalDate"
@@ -71,10 +78,6 @@
 <!-- *ngIf="isEditing" -->
 
 
-<div class = "calendar-container"> 
-<app-calendar  class = "calendar"   [selectedDate]="currentEvent.startAt" (selectDateEvent)="onDateSelected($event)"></app-calendar>
-<br>
-<br>
 
           <div class="flex-grid">
           <div class="event-finish-date-container col">
@@ -94,7 +97,14 @@
           (selectTimeEvent)="onEndTimeSelected($event)">>
 </app-progress-bar>
 </div>
-
+<div class="calendar-end-container">
+  <app-calendar 
+    class="calendar"   
+    [selectedDate]="currentEvent.endAt" 
+    [containerClass]="'calendar-end-scroll'"
+    (selectDateEvent)="onEndDateSelected($event)">
+  </app-calendar>
+</div>
           <div class="control-container" *ngIf="canEdit">
             <div class="control" (click)="onEditClick()">
               EDIT

@@ -1,4 +1,4 @@
-<div class = "calendar-component-container">
+<div class = "calendar-component-container" [class]="containerClass">
   <div class="calendar-div">
     <div class="calendar-container">
     <div *ngFor="let calendarPage of calendarMonths; let monthIndex = index" (click)="monthSelect(calendarPage)">

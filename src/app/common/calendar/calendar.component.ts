@@ -9,6 +9,7 @@ import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChange
   export class CalendarComponent implements OnInit, OnChanges {
 
     @Input() selectedDate: Date;
+    @Input() containerClass: string = 'calendar-component-container';
     @Output() selectDateEvent = new EventEmitter<Date>();
 
     calendarMonths: Date[] = [];
@@ -111,30 +112,28 @@ isKeyDate(year: number, month: number, day: number): boolean {
     );
   }
 
-  private scrollToSelectedMonth(): void {
-    if (!this.selectedDayOnCalendar) return;
+private scrollToSelectedMonth(): void {
+  if (!this.selectedDayOnCalendar) return;
 
-    const selectedYear = this.selectedDayOnCalendar.getFullYear();
-    const selectedMonth = this.selectedDayOnCalendar.getMonth();
+  const selectedYear = this.selectedDayOnCalendar.getFullYear();
+  const selectedMonth = this.selectedDayOnCalendar.getMonth();
 
-    // Find which of the 24 months matches
-    const targetIndex = this.calendarMonths.findIndex(month => {
-      return month.getFullYear() === selectedYear && month.getMonth() === selectedMonth;
-    });
+  const targetIndex = this.calendarMonths.findIndex(month => {
+    return month.getFullYear() === selectedYear && month.getMonth() === selectedMonth;
+  });
 
-    if (targetIndex === -1) return;
+  if (targetIndex === -1) return;
 
-    // Wait for DOM to render, then scroll
-    setTimeout(() => {
-      const container = document.querySelector('.calendar-component-container');
-      if (container) {
-        const monthElement = container.children[0]?.children[0]?.children[targetIndex];
-        if (monthElement) {
-          monthElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+  setTimeout(() => {
+    const container = document.querySelector(`.${this.containerClass}`);
+    if (container) {
+      const monthElement = container.children[0]?.children[0]?.children[targetIndex];
+      if (monthElement) {
+        monthElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
-    }, 100);
-  }
+    }
+  }, 100);
+}
 
   weekDaysDisplayList(i){
     let weekdayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
