@@ -51,7 +51,7 @@
 
 <div class = "progress-bar-container-start"> 
           <app-progress-bar  class = "progress-bar-start" [selectedTime]="currentEvent.startAt"
-          (selectTimeEvent)="onShtartTimeSelected($event)">>
+          (selectTimeEvent)="onStartTimeSelected($event)">>
 </app-progress-bar>
 </div> 
 
@@ -68,6 +68,13 @@
 <br>
 </div> -->
 
+<!-- *ngIf="isEditing" -->
+
+
+<div class = "calendar-container"> 
+<app-calendar  class = "calendar"   [selectedDate]="currentEvent.startAt" (selectDateEvent)="onDateSelected($event)"></app-calendar>
+<br>
+<br>
 
           <div class="flex-grid">
           <div class="event-finish-date-container col">

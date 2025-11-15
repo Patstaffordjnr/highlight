@@ -12,6 +12,8 @@ import { EventType } from 'src/app/model/event-types';
 })
 export class EventsTableControlComponent implements OnInit, OnDestroy {
 
+
+  
   genreSet: Set<string> = new Set(['All', 'Band', 'Busker', 'Dj', 'Performance']);
   selectGenre: Set<string> = new Set();
 
@@ -31,16 +33,17 @@ export class EventsTableControlComponent implements OnInit, OnDestroy {
   
   distances: number[] = [1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 50];
   selectedDistance: number = 5; // default
-  withinOptions: { label: string, value: number }[] = [
+withinOptions: { label: string, value: number }[] = [
     { label: '30 minutes', value: 0.5 },
-    { label: '1 hour', value: 1 },
-    { label: '2 hours', value: 2 },
-    { label: '3 hours', value: 3 },
-    { label: '12 hours', value: 12 },
-    { label: '24 hours', value: 24 },
-    { label: '2 days', value: 48 },
-    { label: '1 week', value: 168 },      // 7 * 24
-    { label: '1 month', value: 720 }      // Approx: 30 * 24
+    { label: '1 hour',       value: 1 },
+    { label: '2 hours',      value: 2 },
+    { label: '3 hours',      value: 3 },
+    { label: '12 hours',     value: 12 },
+    { label: '24 hours',     value: 24 },
+    { label: '2 days',       value: 48 },
+    { label: '1 week',       value: 168 },
+    { label: '1 month',      value: 720 },
+    { label: '1 year',       value: 8760 }   // ← NEW
   ];
   sortOptions: { label: string, value: string }[] = [
     { label: 'Starting', value: 'starting' },   
@@ -193,8 +196,9 @@ performanceFunction() {
   onWithinChange(event: Event) {
     this.emitFilter();
   }
-
-  onSortChange(event: Event) {
+onSortChange(event: Event): void {
+    const select = event.target as HTMLSelectElement;
+    this.selectedSort = select.value;
     this.emitFilter();
   }
 
@@ -205,4 +209,11 @@ performanceFunction() {
     ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+
+
+
+
+  // … the rest of the file stays exactly the same …
+
 }

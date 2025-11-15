@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
 
   @Component({
     selector: 'app-calendar',
@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
     styleUrls: ['./calendar.component.css']
   })
 
-  export class CalendarComponent implements OnInit {
+  export class CalendarComponent implements OnInit, OnChanges {
 
     @Input() selectedDate: Date;
     @Output() selectDateEvent = new EventEmitter<Date>();
@@ -34,7 +34,19 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
     
     ngOnInit(): void {
       this.selectedDayOnCalendar = this.selectedDate
+      this.scrollToSelectedMonth();
     }
+
+    ngOnChanges(changes: SimpleChanges): void {
+    if (changes['selectedDate'] && this.selectedDate) {
+      this.selectedDayOnCalendar = new Date(
+        this.selectedDate.getFullYear(),
+        this.selectedDate.getMonth(),
+        this.selectedDate.getDate()
+      );
+      this.scrollToSelectedMonth();
+    }
+  }
 
     initializeCalendar(): void {
       for (let i = 0; i < 24; i++) {
@@ -97,6 +109,31 @@ isKeyDate(year: number, month: number, day: number): boolean {
       this.selectedDayOnCalendar.getMonth() === month &&
       this.selectedDayOnCalendar.getDate() === day
     );
+  }
+
+  private scrollToSelectedMonth(): void {
+    if (!this.selectedDayOnCalendar) return;
+
+    const selectedYear = this.selectedDayOnCalendar.getFullYear();
+    const selectedMonth = this.selectedDayOnCalendar.getMonth();
+
+    // Find which of the 24 months matches
+    const targetIndex = this.calendarMonths.findIndex(month => {
+      return month.getFullYear() === selectedYear && month.getMonth() === selectedMonth;
+    });
+
+    if (targetIndex === -1) return;
+
+    // Wait for DOM to render, then scroll
+    setTimeout(() => {
+      const container = document.querySelector('.calendar-component-container');
+      if (container) {
+        const monthElement = container.children[0]?.children[0]?.children[targetIndex];
+        if (monthElement) {
+          monthElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    }, 100);
   }
 
   weekDaysDisplayList(i){
