@@ -1,117 +1,134 @@
 <div class="event-modal" *ngIf="isOpen" (click)="onBackdropClick($event)">
-  <div #modalContent class="modal">
+  <div #modalContent class="modal" (click)="$event.stopPropagation()">
+
+    <!-- ==================== MAP ==================== -->
     <div class="item-1">
       <div class="mapContainer">
-        <!-- <app-map
+        <app-map
           class="map"
           (mapInput)="onMapReady($event)"
           (mapCenterChanged)="onMapMoved($event)"
-          (mapClicked)="onMapClicked($event)"
-        >
-        </app-map> -->
+          (mapClicked)="onMapClicked($event)">
+        </app-map>
       </div>
     </div>
-    <br />
+
+    <!-- ==================== EVENT DETAILS ==================== -->
     <div class="item-2">
       <div class="item-2-container">
+
+        <!-- USER IMAGE -->
         <div class="grid-item" id="item-1">
           <div class="event-image-container">
-              <div class="event-image">
-            <img src="/assets/userprofile.jpg" class="user-img" alt="image"/></div>
-        </div>
-        </div>
-     <div class="grid-item" id="item-2">
-          <div class="event-user-name-container">
-            <div *ngIf="!isEditing" class="event-user-name"><b>USER Name</b></div>
-             <input *ngIf="isEditing" class="event-user-name-input" type="text"   [placeholder]="event.userName"><br><br>
+            <div class="event-image">
+              <img src="/assets/userprofile.jpg" class="user-img" alt="user profile" />
+            </div>
           </div>
         </div>
+
+        <!-- USER NAME -->
+        <div class="grid-item" id="item-2">
+          <div class="event-user-name-container">
+            <div *ngIf="!isEditing" class="event-user-name"><b>USER Name</b></div>
+            <input
+              *ngIf="isEditing"
+              class="event-user-name-input"
+              type="text"
+              [placeholder]="event.userName">
+          </div>
+        </div>
+
+        <!-- EVENT TITLE -->
         <div class="grid-item" id="item-3">
           <div class="event-title-container">
             <div *ngIf="!isEditing" class="event-title">{{ event.title }}</div>
-              <input *ngIf="isEditing" class="event-title-input" type="text" [placeholder]="event.title">
+            <input
+              *ngIf="isEditing"
+              class="event-title-input"
+              type="text"
+              [placeholder]="event.title">
+          </div>
         </div>
-        </div>
+
+        <!-- DATE & TIME + EDIT CONTROLS -->
         <div class="grid-item" id="item-4">
-          <br />
+          <!-- START DATE/TIME (Display) -->
           <div class="flex-grid">
- 
-            <div class="event-start-date-container col">
-              <div (click) = "toggleStartDateControls()" class="event-start-date">
+            <div class="event-start-date-container col" (click)="toggleStartDateControls()">
+              <div class="event-start-date">
                 {{ currentEvent.startAt | date: 'MMM d, y' }}
               </div>
             </div>
-            <div class="event-start-time-container col">
-              <div (click) = "toggleStartDateControls()" class="event-start-time">
+            <div class="event-start-time-container col" (click)="toggleStartDateControls()">
+              <div class="event-start-time">
                 {{ currentEvent.startAt | date: 'shortTime' }}
               </div>
             </div>
           </div>
-<!-- *ngIf="isEditing" -->
 
-<div class = "progress-bar-container-start"> 
-          <app-progress-bar  class = "progress-bar-start" [selectedTime]="currentEvent.startAt"
-          (selectTimeEvent)="onStartTimeSelected($event)">>
-</app-progress-bar>
-</div> 
-<div class="calendar-start-container">
-  <app-calendar 
-    class="calendar"   
-    [selectedDate]="currentEvent.startAt" 
-    [containerClass]="'calendar-start-scroll'"
-    (selectDateEvent)="onStartDateSelected($event)">
-  </app-calendar>
-</div>
-<!-- <div class = "progress-bar-container-start"> 
-<app-progress-bar *ngIf="isEditing" class = "progress-bar-start"
-[selectedTime]="globalDate"
-(selectTimeEvent)="onTimeSelected($event)">
-</app-progress-bar>
-</div>
+          <!-- START TIME PICKER (Edit Mode) -->
+           <!-- *ngIf="isEditing"  -->
+          <div *ngIf="isEditing" class="progress-bar-container-start">
+            <app-progress-bar
+              class="progress-bar-start"
+              [selectedTime]="currentEvent.startAt"
+              (selectTimeEvent)="onStartTimeSelected($event)">
+            </app-progress-bar>
+          </div>
 
-<div class = "calendar-container"> 
-<app-calendar *ngIf="isEditing"  class = "calendar"   [selectedDate]="globalDate" (selectDateEvent)="onDateSelected($event)"></app-calendar>
-<br>
-<br>
-</div> -->
+          <!-- START DATE CALENDAR (Edit Mode) -->
+           <!-- *ngIf="isEditing" -->
+          <div *ngIf="isEditing" class="calendar-container-start">
+            <app-calendar
+              class="calendar"
+              [selectedDate]="currentEvent.startAt"
+              [containerClass]="'calendar-start-scroll'"
+              (selectDateEvent)="onStartDateSelected($event)">
+            </app-calendar>
+          </div>
 
-<!-- *ngIf="isEditing" -->
-
-
-
+          <!-- END DATE/TIME (Display) -->
           <div class="flex-grid">
-          <div class="event-finish-date-container col">
-              <div (click) = "toggleFinishDateControls()" class="event-finish-date">
+            <div class="event-finish-date-container col" (click)="toggleFinishDateControls()">
+              <div class="event-finish-date">
                 {{ currentEvent.endAt | date: 'MMM d, y' }}
               </div>
             </div>
-            <div class="event-finish-time-container col">
-              <div (click) = "toggleFinishDateControls()" class="event-finish-time">
+            <div class="event-finish-time-container col" (click)="toggleFinishDateControls()">
+              <div class="event-finish-time">
                 {{ currentEvent.endAt | date: 'shortTime' }}
               </div>
             </div>
           </div>
 
-          <div class = "progress-bar-container-end"> 
-          <app-progress-bar  class = "progress-bar-end" [selectedTime]="currentEvent.endAt"
-          (selectTimeEvent)="onEndTimeSelected($event)">>
-</app-progress-bar>
-</div>
-<div class="calendar-end-container">
-  <app-calendar 
-    class="calendar"   
-    [selectedDate]="currentEvent.endAt" 
-    [containerClass]="'calendar-end-scroll'"
-    (selectDateEvent)="onEndDateSelected($event)">
-  </app-calendar>
-</div>
+          <!-- END TIME PICKER (Edit Mode) -->
+
+          <div *ngIf="isEditing" class="progress-bar-container-end">
+            <app-progress-bar
+              class="progress-bar-end"
+              [selectedTime]="currentEvent.endAt"
+              (selectTimeEvent)="onEndTimeSelected($event)">
+            </app-progress-bar>
+          </div>
+
+          <!-- END DATE CALENDAR (Edit Mode) -->
+          <div *ngIf="isEditing" class="calendar-container-end">
+            <app-calendar
+              class="calendar"
+              [selectedDate]="currentEvent.endAt"
+              [containerClass]="'calendar-end-scroll'"
+              (selectDateEvent)="onEndDateSelected($event)">
+            </app-calendar>
+          </div>
+
+          <!-- EDIT BUTTON -->
           <div class="control-container" *ngIf="canEdit">
             <div class="control" (click)="onEditClick()">
               EDIT
-              <!-- <a>{{canEdit}}</a> -->
-              <a *ngIf="isEditing">Is Editing</a>
+              <span *ngIf="isEditing" class="editing-flag"> (editing)</span>
             </div>
           </div>
+
         </div>
       </div>
     </div>

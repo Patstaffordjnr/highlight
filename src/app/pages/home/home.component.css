@@ -107,7 +107,7 @@
   z-index: 1;
 }
 
-.modal-item-1 {
+/* .modal-item-1 {
   border-radius: 25px;
   border: 6px solid whitesmoke;
   min-height: 300px;
@@ -121,8 +121,12 @@
   border: 6px solid whitesmoke;
   min-height: 300px;
   min-width: 300px;
-}
+} */
+.modal-container{
+  display: flex;
+  justify-content: center;
 
+}
 .no-scroll {
   overflow: hidden;
   height: 100%;

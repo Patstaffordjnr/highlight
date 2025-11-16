@@ -1,5 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, OnInit, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
 import { GlobalDateService } from 'src/app/pages/home/global-date.service';
 import { Subscription } from 'rxjs';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
@@ -16,7 +15,11 @@ import { UserRole } from 'src/app/model/user-roles';
   templateUrl: './event-modal.component.html',
   styleUrl: './event-modal.component.css'
 })
-export class EventModalComponent {
+
+// AfterViewInit, OnChanges
+
+
+export class EventModalComponent implements OnInit {
  @Input() isOpen = false;
   @Input() event!: AppEvent;
 
@@ -62,7 +65,7 @@ export class EventModalComponent {
   events: AppEvent[] = [];
   filteredEvents: AppEvent[] = [];
 
-  constructor(private currentUserService: CurrentUserService) {
+  constructor(private currentUserService: CurrentUserService, private elementRef: ElementRef) {
   }
 
   async ngOnInit() {
@@ -84,11 +87,6 @@ export class EventModalComponent {
       };
     }
 
-
-    // this.currentEvent = currentEventX;
-        console.log(this.currentEvent.startAt);
-
-
     const user = await this.currentUserService.getUser();
 
     if (user) {
@@ -109,6 +107,29 @@ export class EventModalComponent {
   }
 
 
+// ngAfterViewInit() {
+//   if (this.isOpen) {
+//     setTimeout(() => {
+//       const modal = this.elementRef.nativeElement.closest('.event-modal') as HTMLElement;
+//       if (modal) {
+//         modal.scrollTop = 0;
+//         console.log('Modal scroll forced to top');
+//       }
+//     }, 100);
+//   }
+// }
+
+// ngOnChanges(changes: SimpleChanges) {
+//   if (changes['isOpen'] && changes['isOpen'].currentValue === true) {
+//     setTimeout(() => {
+//       const modal = document.querySelector('.event-modal') as HTMLElement;
+//       if (modal) {
+//         modal.scrollTop = 0;
+//         console.log('Modal forced to top');
+//       }
+//     }, 200); // 200ms delay to beat calendar focus
+//   }
+// }
   updateCanEdit() {
     if (!this.currentUser || !this.event) return;
 
@@ -183,23 +204,30 @@ this.currentEvent.endAt = updatedEndTime;
     // console.log(`Home Calendar Select Date: ${updatedGlobalDate}`);
 //   }
 // }
-  onMapReady(map: L.Map) {
-    this.mapInstance = map;
+onMapReady(map: L.Map) {
+  this.mapInstance = map;
 
-    if (this.event) {
-      const { lat, long: lng, title, eventType } = this.event;
+  if (!this.event || !this.mapInstance) return;
 
-      // Center the map on the event
-      this.mapInstance.setView([lat, lng], 15);
+  const { lat, long: lng, title, eventType } = this.event;
+  const icon = markerIcons[eventType as keyof typeof markerIcons];
 
-      // Add marker for the event
-      const icon = markerIcons[eventType as keyof typeof markerIcons];
-      L.marker([lat, lng], { icon })
-        .addTo(this.mapInstance)
-        .bindPopup(`<b>${title}</b><br>${eventType}`)
-        .openPopup();
+  // Set center
+  this.mapInstance.setView([lat, lng], 15);
+
+  // Add marker
+  const marker = L.marker([lat, lng], { icon }).addTo(this.mapInstance);
+
+  // Bind popup
+  marker.bindPopup(`<b>${title}</b><br>${eventType}`);
+
+  // Wait for DOM + map to stabilize
+  setTimeout(() => {
+    if (marker.getPopup()) {
+      marker.openPopup();
     }
-  }
+  }, 150);
+}
 
   onMapMoved(event: { lat: number; lng: number }) {
     // console.log('Modal map moved to:', event);

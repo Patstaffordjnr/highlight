@@ -41,31 +41,28 @@
 
 .event-modal {
 position: fixed;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
+inset: 0; 
 display: flex;
-flex-direction: column;
-align-items: center;
 justify-content: center;
+  align-items: center;
+flex-direction: column;
 background: rgba(0,0,0,0.5);
 }
 
 .modal{
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 32px; 
   background: transparent;
-  max-width: 100%;
-  max-height: 90vh; 
+  max-width: 400px;
   overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  
-
+  overflow-y: auto;        /* This enables scroll on the whole modal */
+  padding: 20px 0;
+  scroll-behavior: auto !important;
 }
+
 .item-1 {
 min-width: 300px;
 min-height: 300px;
@@ -83,11 +80,12 @@ z-index: 9;
 width: 100%;
 min-width: 300px;
 min-height: 300px;
-height: 100vw;
+height: 100vh;
 max-width: 300px;
 max-height: 300px;
 background-color: beige;
 }
+
 
 .item-2 {
 min-width: 300px;
@@ -96,8 +94,6 @@ background-color: white;
 border: 6px solid whitesmoke;
 border-radius: 25px;
 display: flex;
-
-
 }
 
 .item-2-container {
@@ -275,6 +271,7 @@ display: flex;
   width: 100%; 
   margin: 0 auto;
   padding-top: 16px;
+
 }
 
 .calendar-container-end{
@@ -295,14 +292,16 @@ display: flex;
 .calendar-start-scroll,
 .calendar-end-scroll {
   max-width: 300px;
+  height: 230px;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  border: 6px solid whitesmoke;
   border-radius: 16px;
   -ms-overflow-style: none;
-  scrollbar-width: none; 
-  height: 230px;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  position: relative;
-  border: 6px solid whitesmoke;
+  scrollbar-width: none;
+
+  /* PREVENT SCROLL BUBBLE */
+  overscroll-behavior: contain;
 }
 
 .calendar-start-scroll::-webkit-scrollbar,
