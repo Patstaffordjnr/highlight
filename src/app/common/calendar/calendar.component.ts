@@ -115,26 +115,32 @@ isKeyDate(year: number, month: number, day: number): boolean {
 private scrollToSelectedMonth(): void {
   if (!this.selectedDayOnCalendar) return;
 
-  const selectedYear = this.selectedDayOnCalendar.getFullYear();
-  const selectedMonth = this.selectedDayOnCalendar.getMonth();
-
-  const targetIndex = this.calendarMonths.findIndex(month => {
-    return month.getFullYear() === selectedYear && month.getMonth() === selectedMonth;
-  });
+  const targetIndex = this.calendarMonths.findIndex(m =>
+    m.getFullYear() === this.selectedDayOnCalendar.getFullYear() &&
+    m.getMonth() === this.selectedDayOnCalendar.getMonth()
+  );
 
   if (targetIndex === -1) return;
 
+  // Wait for DOM to be fully rendered
   setTimeout(() => {
-    const container = document.querySelector(`.${this.containerClass}`);
-    if (container) {
-      const monthElement = container.children[0]?.children[0]?.children[targetIndex];
-      if (monthElement) {
-        monthElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }
+    const container = document.querySelector(`.${this.containerClass}`) as HTMLElement;
+    const monthEl = container?.querySelectorAll('.month-container')[targetIndex] as HTMLElement;
+
+    if (!container || !monthEl) return;
+
+    // This is the CORRECT way: use getBoundingClientRect + container.scrollTop
+    const containerRect = container.getBoundingClientRect();
+    const monthRect = monthEl.getBoundingClientRect();
+
+    const scrollTarget = container.scrollTop + (monthRect.top - containerRect.top) - 20;
+
+    container.scrollTo({
+      top: scrollTarget,
+      behavior: 'smooth'
+    });
   }, 100);
 }
-
   weekDaysDisplayList(i){
     let weekdayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   

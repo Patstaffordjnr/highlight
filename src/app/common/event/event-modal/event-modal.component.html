@@ -2,6 +2,7 @@
   <div #modalContent class="modal" (click)="$event.stopPropagation()">
 
     <!-- ==================== MAP ==================== -->
+    <div class = "item-1-container">
     <div class="item-1">
       <div class="mapContainer">
         <app-map
@@ -11,6 +12,7 @@
           (mapClicked)="onMapClicked($event)">
         </app-map>
       </div>
+    </div>
     </div>
 
     <!-- ==================== EVENT DETAILS ==================== -->

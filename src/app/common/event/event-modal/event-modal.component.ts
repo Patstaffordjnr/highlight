@@ -16,10 +16,12 @@ import { UserRole } from 'src/app/model/user-roles';
   styleUrl: './event-modal.component.css'
 })
 
-// AfterViewInit, OnChanges
-
 
 export class EventModalComponent implements OnInit {
+
+  private mapInitialized = false;  // Add this flag
+  private _skipValidation = false;   // prevents infinite recursion
+
  @Input() isOpen = false;
   @Input() event!: AppEvent;
 
@@ -107,29 +109,6 @@ export class EventModalComponent implements OnInit {
   }
 
 
-// ngAfterViewInit() {
-//   if (this.isOpen) {
-//     setTimeout(() => {
-//       const modal = this.elementRef.nativeElement.closest('.event-modal') as HTMLElement;
-//       if (modal) {
-//         modal.scrollTop = 0;
-//         console.log('Modal scroll forced to top');
-//       }
-//     }, 100);
-//   }
-// }
-
-// ngOnChanges(changes: SimpleChanges) {
-//   if (changes['isOpen'] && changes['isOpen'].currentValue === true) {
-//     setTimeout(() => {
-//       const modal = document.querySelector('.event-modal') as HTMLElement;
-//       if (modal) {
-//         modal.scrollTop = 0;
-//         console.log('Modal forced to top');
-//       }
-//     }, 200); // 200ms delay to beat calendar focus
-//   }
-// }
   updateCanEdit() {
     if (!this.currentUser || !this.event) return;
 
@@ -142,9 +121,7 @@ export class EventModalComponent implements OnInit {
     this.canEdit = isBuskerOwner || isAdmin;
   }
 
-  onClose() {
-    this.close.emit();
-  }
+
 
   onEditClick() {
     console.log('EDIT');
@@ -158,76 +135,134 @@ export class EventModalComponent implements OnInit {
 
  }
 
- onStartTimeSelected(selectedDate: Date) {
+onStartTimeSelected(selectedTime: Date): void {
+  if (this._skipValidation) return;
 
-  const updatedStartTime = new Date(
-    this.currentEvent.startAt.getFullYear(), 
-    this.currentEvent.startAt.getMonth(),
-    this.currentEvent.startAt.getDate(),
-    selectedDate.getHours(),
-    selectedDate.getMinutes(),
-  0
-);
+  const newStart = new Date(this.currentEvent.startAt);
+  newStart.setHours(selectedTime.getHours());
+  newStart.setMinutes(selectedTime.getMinutes());
 
-this.currentEvent.startAt = updatedStartTime;
+  this.currentEvent.startAt = newStart;
+  this._enforceValidRange();               // <-- shared logic
+}
+onStartDateSelected(selectedDate: Date): void {
+  if (!selectedDate || !this.currentEvent?.startAt) return;
+
+  // Build the new start date keeping the current time
+  const newStart = new Date(
+    selectedDate.getFullYear(),
+    selectedDate.getMonth(),
+    selectedDate.getDate(),
+    this.currentEvent.startAt.getHours(),
+    this.currentEvent.startAt.getMinutes(),
+    this.currentEvent.startAt.getSeconds(),
+    this.currentEvent.startAt.getMilliseconds()
+  );
+
+  this.currentEvent.startAt = newStart;
+
+  // ── Auto-fix: if start would be after end → push end forward ──
+  if (this.currentEvent.endAt && this.currentEvent.endAt <= newStart) {
+    this._skipValidation = true;               // block recursion
+    const newEnd = new Date(newStart);
+    newEnd.setMinutes(newEnd.getMinutes()); // minimum 30-minute event (feel free to change)
+    this.currentEvent.endAt = newEnd;
+    this._skipValidation = false;
+  }
 }
 
- onEndTimeSelected(selectedDate: Date) {
 
-  const updatedEndTime = new Date(
-    this.currentEvent.endAt.getFullYear(), 
-    this.currentEvent.endAt.getMonth(),
-    this.currentEvent.endAt.getDate(),
-    selectedDate.getHours(),
-    selectedDate.getMinutes(),
-  0
-);
+onEndTimeSelected(selectedTime: Date): void {
+  if (this._skipValidation) return;
 
-this.currentEvent.endAt = updatedEndTime;
+  const newEnd = new Date(this.currentEvent.endAt);
+  newEnd.setHours(selectedTime.getHours());
+  newEnd.setMinutes(selectedTime.getMinutes());
+
+  this.currentEvent.endAt = newEnd;
+  this._enforceValidRange();               // <-- shared logic
 }
 
-// onDateSelected(selectedDate: Date): void {
-//   if (!selectedDate) return;
-//   const updatedGlobalDate = new Date(
-//     selectedDate.getFullYear(),
-//     selectedDate.getMonth(),
-//     selectedDate.getDate(),
-//     this.event.startAt.getHours(),
-//     this.event.startAt.getMinutes(),
-//     0
-//   );
-//   this.globalDate = updatedGlobalDate;
-  // this.globalDateService.upDate(updatedGlobalDate);
+// ──────────────────────────────────────────────────────────────
+// 4. Private helper – the single source of truth for validation
+// ──────────────────────────────────────────────────────────────
 
-  // if (this.globalDate.getTime() !== updatedGlobalDate.getTime()) {
-    // this.globalDateService.upDate(updatedGlobalDate);
-    // console.log(`Home Calendar Select Date: ${updatedGlobalDate}`);
-//   }
-// }
+
+onEndDateSelected(selectedDate: Date): void {
+  if (!selectedDate || !this.currentEvent?.endAt) return;
+
+  const newEnd = new Date(
+    selectedDate.getFullYear(),
+    selectedDate.getMonth(),
+    selectedDate.getDate(),
+    this.currentEvent.endAt.getHours(),
+    this.currentEvent.endAt.getMinutes(),
+    this.currentEvent.endAt.getSeconds(),
+    this.currentEvent.endAt.getMilliseconds()
+  );
+
+  this.currentEvent.endAt = newEnd;
+
+  // ── Auto-fix: if end would be before start → pull start back ──
+  if (this.currentEvent.startAt && newEnd <= this.currentEvent.startAt) {
+    this._skipValidation = true;
+    const newStart = new Date(newEnd);
+    newStart.setMinutes(newStart.getMinutes()); // keep at least 30 min before end
+    this.currentEvent.startAt = newStart;
+    this._skipValidation = false;
+  }
+}
+
+private _enforceValidRange(): void {
+  if (this._skipValidation) return;
+
+  this._skipValidation = true;
+
+  const start = this.currentEvent.startAt.getTime();
+  const end   = this.currentEvent.endAt.getTime();
+
+  if (end <= start) {
+    // Decide your policy: extend end (most common) or shrink start
+    const newEnd = new Date(start);
+    newEnd.setMinutes(newEnd.getMinutes());   // minimum duration
+    this.currentEvent.endAt = newEnd;
+  }
+
+  this._skipValidation = false;
+}
+
 onMapReady(map: L.Map) {
-  this.mapInstance = map;
+    this.mapInstance = map;
 
-  if (!this.event || !this.mapInstance) return;
+    // ← ONLY RUN CENTERING + MARKER LOGIC ONCE
+    if (this.mapInitialized || !this.event) return;
 
-  const { lat, long: lng, title, eventType } = this.event;
-  const icon = markerIcons[eventType as keyof typeof markerIcons];
+    const { lat, long: lng, title, eventType } = this.event;
+    const icon = markerIcons[eventType as keyof typeof markerIcons];
 
-  // Set center
-  this.mapInstance.setView([lat, lng], 15);
+    // Center on the event (only once!)
+    this.mapInstance.setView([lat, lng], 15);
 
-  // Add marker
-  const marker = L.marker([lat, lng], { icon }).addTo(this.mapInstance);
+    // Add marker with popup
+    const marker = L.marker([lat, lng], { icon })
+      .addTo(this.mapInstance)
+      .bindPopup(`<b>${title}</b><br>${eventType}`)
+      .openPopup();
 
-  // Bind popup
-  marker.bindPopup(`<b>${title}</b><br>${eventType}`);
+    // Critical: tell Leaflet to recalculate size (modal was hidden)
+    setTimeout(() => {
+      this.mapInstance.invalidateSize();
+    }, 200);
 
-  // Wait for DOM + map to stabilize
-  setTimeout(() => {
-    if (marker.getPopup()) {
-      marker.openPopup();
-    }
-  }, 150);
-}
+    // Mark as done — never run again
+    this.mapInitialized = true;
+  }
+
+  // Optional: Reset flag when modal closes (so next open works correctly)
+  onClose() {
+    this.mapInitialized = false;  // ← reset for next time
+    this.close.emit();
+  }
 
   onMapMoved(event: { lat: number; lng: number }) {
     // console.log('Modal map moved to:', event);

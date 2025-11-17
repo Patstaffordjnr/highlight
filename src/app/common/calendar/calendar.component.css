@@ -116,85 +116,23 @@
   background-color: red;
 }
 
-/* 
-  @media (min-width: 1200px) {
-   
-  }
+
+
+.calendar-start-scroll,
+.calendar-end-scroll {
+  max-height: 230px;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  border: 6px solid whitesmoke;
+  border-radius: 16px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   
-  @media (min-width: 800px) and (max-width: 1199px) {
-    .calendar-component-container{
-      height: 520px;
-      border: 8px solid whitesmoke;
-    }
-    .calendar-container{
-      margin-top: -32px; 
-      padding-right: 16px;
-      padding-left: 16px;
-    }
-    .calendar-div{
-      border-radius: 25px;
-      min-width: 340px;
-      min-height: 320px;
-    }
-    .month-container{
-      text-align: center;
-      margin-top: 0px; 
-    }
-    .month-display{
-      font-size: 36px;
-    }
-    .weekday-display-container{
-      margin-top: -32px; 
-      font-size: x-large;
-    }
-    .weekdays-display{
-      margin-top: 4px; 
-    }
-    .day-container{
-    }
-    .day{
-      font-size: 40px;
-      height: 80px;
-      width: 80px;
-    }
-  }
-  
-  @media (max-width: 799px) {
-    .calendar-component-container{
-      height: 520px;
-      border: 8px solid whitesmoke;
-    }
-    .calendar-container{
-      margin-top: -32px; 
-      padding-right: 16px;
-      padding-left: 16px;
-    }
-    .calendar-div{
-      border-radius: 25px;
-      min-width: 340px;
-      min-height: 320px;
-    }
-    .month-container{
-      text-align: center;
-      margin-top: 0px; 
-    }
-    .month-display{
-      font-size: 40px;
-    }
-    .weekday-display-container{
-      margin-top: -32px; 
-      font-size: x-large;
-    }
-    .weekdays-display{
-      margin-top: 4px; 
-    }
-    .day-container{
- 
-    }
-    .day{
-      font-weight: bold;
-      font-size: 40px;
-      height: 80px;
-      width: 80px;
-    }
-  } */
+  /* Critical: prevent scroll chaining / bubbling */
+  overscroll-behavior: contain;
+}
+
+.calendar-start-scroll::-webkit-scrollbar,
+.calendar-end-scroll::-webkit-scrollbar {
+  display: none;
+}

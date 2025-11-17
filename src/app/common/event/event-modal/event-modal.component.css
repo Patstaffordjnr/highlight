@@ -41,33 +41,40 @@
 
 .event-modal {
 position: fixed;
+/* background-color: aqua; */
 inset: 0; 
 display: flex;
-justify-content: center;
+/* justify-content: center; */
   align-items: center;
 flex-direction: column;
 background: rgba(0,0,0,0.5);
 }
 
 .modal{
+  padding-top: 10vh;
   display: flex;
   flex-direction: column;
   gap: 32px; 
   background: transparent;
   max-width: 400px;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   scrollbar-width: none;
   -ms-overflow-style: none;
   overflow-y: auto;        /* This enables scroll on the whole modal */
-  padding: 20px 0;
+  /* padding: 20px 0; */
   scroll-behavior: auto !important;
 }
 
 .item-1 {
+
 min-width: 300px;
 min-height: 300px;
 border: 6px solid whitesmoke;
 border-radius: 25px;
+}
+
+.item-1-container{
+padding-top: 10vh;
 }
 
 .map {
@@ -290,7 +297,7 @@ display: flex;
   margin: 0 auto;
 }
 .calendar-start-scroll,
-.calendar-end-scroll {
+/* .calendar-end-scroll {
   max-width: 300px;
   height: 230px;
   overflow-y: auto;
@@ -300,14 +307,14 @@ display: flex;
   -ms-overflow-style: none;
   scrollbar-width: none;
 
-  /* PREVENT SCROLL BUBBLE */
+
   overscroll-behavior: contain;
 }
 
 .calendar-start-scroll::-webkit-scrollbar,
 .calendar-end-scroll::-webkit-scrollbar {
   display: none;
-}
+} */
 .control-container{
   padding-top: 16px;
 }
