@@ -1,21 +1,21 @@
 <div class="event-modal" *ngIf="isOpen" (click)="onBackdropClick($event)">
   <div #modalContent class="modal" (click)="$event.stopPropagation()">
 
-    <!-- ==================== MAP ==================== -->
-    <div class = "item-1-container">
-    <div class="item-1">
-      <div class="mapContainer">
-        <app-map
-          class="map"
-          (mapInput)="onMapReady($event)"
-          (mapCenterChanged)="onMapMoved($event)"
-          (mapClicked)="onMapClicked($event)">
-        </app-map>
+    <!-- MAP -->
+    <div class="item-1-container">
+      <div class="item-1">
+        <div class="mapContainer">
+          <app-map
+            class="map"
+            (mapInput)="onMapReady($event)"
+            (mapCenterChanged)="onMapMoved($event)"
+            (mapClicked)="onMapClicked($event)">
+          </app-map>
+        </div>
       </div>
     </div>
-    </div>
 
-    <!-- ==================== EVENT DETAILS ==================== -->
+    <!-- EVENT DETAILS -->
     <div class="item-2">
       <div class="item-2-container">
 
@@ -36,70 +36,58 @@
               *ngIf="isEditing"
               class="event-user-name-input"
               type="text"
-              [placeholder]="event.userName">
+              placeholder="Username">
           </div>
         </div>
 
         <!-- EVENT TITLE -->
         <div class="grid-item" id="item-3">
           <div class="event-title-container">
-            <div *ngIf="!isEditing" class="event-title">{{ event.title }}</div>
+            <div *ngIf="!isEditing" class="event-title">{{ currentEvent.title }}</div>
             <input
               *ngIf="isEditing"
               class="event-title-input"
               type="text"
-              [placeholder]="event.title">
+              [placeholder]="currentEvent.title || 'Event title'">
           </div>
         </div>
 
         <!-- ADDRESS -->
-<!-- ADDRESS -->
-<div class="grid-item" id="item-4">
-  <div class="event-address">
-    <div class="event-adress"><b>{{ address }}</b></div>
-
-    <!-- Change Address Button + Cancel Button -->
-    <div *ngIf="isEditing" class="change-address-button">
-      <button 
-        *ngIf="!isSelectingLocation" 
-        (click)="startLocationSelection()"
-        class="change-address-btn">
-        Change Address
-      </button>
-
-      <button 
-        *ngIf="isSelectingLocation" 
-        (click)="cancelLocationSelection()"
-        class="cancel-btn">
-        Cancel
-      </button>
-
-      <!-- Optional visual feedback when selecting -->
-      <span *ngIf="isSelectingLocation" class="selecting-hint">
-        Click on the map to place new location
-      </span>
-    </div>
-  </div>
-</div>
-
-        <!-- DATE & TIME + EDIT CONTROLS -->
-        <div class="grid-item" id="item-5">
-          <!-- START DATE/TIME (Display) -->
-          <div class="flex-grid">
-            <div class="event-start-date-container col" (click)="toggleStartDateControls()">
-              <div class="event-start-date">
-                {{ currentEvent.startAt | date: 'MMM d, y' }}
-              </div>
+        <div class="grid-item" id="item-4">
+          <div class="event-address">
+            <div class="event-adress"><b>{{ address }}</b></div>
+            <div *ngIf="isEditing" class="change-address-button">
+              <button
+                *ngIf="!isSelectingLocation"
+                (click)="startLocationSelection()"
+                class="change-address-btn">
+                {{ isCreateMode ? 'Set Location' : 'Change Address' }}
+              </button>
+              <button
+                *ngIf="isSelectingLocation"
+                (click)="cancelLocationSelection()"
+                class="cancel-btn">
+                Cancel
+              </button>
+              <span *ngIf="isSelectingLocation" class="selecting-hint">
+                Click on the map to place new location
+              </span>
             </div>
-            <div class="event-start-time-container col" (click)="toggleStartDateControls()">
-              <div class="event-start-time">
-                {{ currentEvent.startAt | date: 'shortTime' }}
-              </div>
+          </div>
+        </div>
+
+        <!-- DATE & TIME -->
+        <div class="grid-item" id="item-5">
+
+          <div class="flex-grid">
+            <div class="event-start-date-container col">
+              <div class="event-start-date">{{ currentEvent.startAt | date: 'MMM d, y' }}</div>
+            </div>
+            <div class="event-start-time-container col">
+              <div class="event-start-time">{{ currentEvent.startAt | date: 'shortTime' }}</div>
             </div>
           </div>
 
-          <!-- START TIME PICKER (Edit Mode) -->
-           <!-- *ngIf="isEditing"  -->
           <div *ngIf="isEditing" class="progress-bar-container-start">
             <app-progress-bar
               class="progress-bar-start"
@@ -108,8 +96,6 @@
             </app-progress-bar>
           </div>
 
-          <!-- START DATE CALENDAR (Edit Mode) -->
-           <!-- *ngIf="isEditing" -->
           <div *ngIf="isEditing" class="calendar-container-start">
             <app-calendar
               class="calendar"
@@ -119,21 +105,15 @@
             </app-calendar>
           </div>
 
-          <!-- END DATE/TIME (Display) -->
           <div class="flex-grid">
-            <div class="event-finish-date-container col" (click)="toggleFinishDateControls()">
-              <div class="event-finish-date">
-                {{ currentEvent.endAt | date: 'MMM d, y' }}
-              </div>
+            <div class="event-finish-date-container col">
+              <div class="event-finish-date">{{ currentEvent.endAt | date: 'MMM d, y' }}</div>
             </div>
-            <div class="event-finish-time-container col" (click)="toggleFinishDateControls()">
-              <div class="event-finish-time">
-                {{ currentEvent.endAt | date: 'shortTime' }}
-              </div>
+            <div class="event-finish-time-container col">
+              <div class="event-finish-time">{{ currentEvent.endAt | date: 'shortTime' }}</div>
             </div>
           </div>
 
-          <!-- END TIME PICKER (Edit Mode) -->
           <div *ngIf="isEditing" class="progress-bar-container-end">
             <app-progress-bar
               class="progress-bar-end"
@@ -142,7 +122,6 @@
             </app-progress-bar>
           </div>
 
-          <!-- END DATE CALENDAR (Edit Mode) -->
           <div *ngIf="isEditing" class="calendar-container-end">
             <app-calendar
               class="calendar"
@@ -153,11 +132,18 @@
           </div>
 
           <!-- EDIT BUTTON -->
-          <div class="control-container" *ngIf="canEdit">
+          <div class="control-container" *ngIf="canEdit && !isCreateMode">
             <div class="control" (click)="onEditClick()">
               EDIT
               <span *ngIf="isEditing" class="editing-flag"> (editing)</span>
             </div>
+          </div>
+
+          <!-- SAVE BUTTON -->
+          <div class="control-container" *ngIf="isEditing">
+            <button class="change-address-btn" (click)="onSave()">
+              {{ isCreateMode ? 'Create Event' : 'Save Changes' }}
+            </button>
           </div>
 
         </div>
