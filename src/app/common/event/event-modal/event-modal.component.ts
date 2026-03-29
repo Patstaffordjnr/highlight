@@ -22,7 +22,12 @@ export class EventModalComponent implements OnInit {
   private mapInitialized = false;  // Add this flag
   private _skipValidation = false;   // prevents infinite recursion
 
- @Input() isOpen = false;
+  private originalMarker?: L.Marker;
+  private tempMarker?: L.Marker;
+  private isSelectingLocation = false;
+  private originalLatLng: { lat: number; long: number } = { lat: 0, long: 0 };
+
+  @Input() isOpen = false;
   @Input() event!: AppEvent;
 
   @Output() close = new EventEmitter<void>();
@@ -48,8 +53,8 @@ export class EventModalComponent implements OnInit {
     roles: [],
   };
 
-
-   currentEvent: AppEvent = {
+  address: String = 'Loading address...';
+  currentEvent: AppEvent = {
   createdAt: new Date(),
   endAt: new Date(),
   eventType: EventType.ALL,
@@ -106,8 +111,41 @@ export class EventModalComponent implements OnInit {
       this.onStartTimeSelected(this.currentEvent.startAt);
       this.onEndTimeSelected(this.currentEvent.endAt);
     }
+
+    this.address = await this.reverseGeocode(this.event.lat, this.event.long);
   }
 
+
+  private async reverseGeocode(lat: number, lng: number): Promise<string> {
+  try {
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`
+    );
+
+    if (!response.ok) throw new Error('Failed to fetch address');
+
+    const data = await response.json();
+
+    // Build a nice readable address
+    const address = data.display_name || 'Address not found';
+
+    // Optional: shorter version
+    const shorterAddress = [
+      // data.address?.road,
+      // data.address?.suburb,
+      data.address?.city || data.address?.town || data.address?.village,
+      data.address?.postcode
+    ].filter(Boolean).join(', ');
+
+
+    
+
+    return shorterAddress;
+  } catch (error) {
+    console.error('Reverse geocoding failed:', error);
+    return 'Address unavailable';
+  }
+}
 
   updateCanEdit() {
     if (!this.currentUser || !this.event) return;

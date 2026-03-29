@@ -147,7 +147,6 @@ display: flex;
   justify-content: center;
 }
 
-
 #item-3{
   grid-row: 2;
   grid-column: 2;
@@ -157,8 +156,18 @@ display: flex;
   align-items: center;
   justify-content: center;
 }
+
 #item-4{
   grid-row: 3;
+    grid-column: 1 / span 2;
+    width: 100%;
+  padding: 0;
+  background-color: aquamarine;
+
+}
+
+#item-5{
+  grid-row: 4;
   grid-column: 1 / span 2; 
   width: 100%;
   padding: 0;
@@ -210,6 +219,32 @@ display: flex;
   background-color: none;
   padding-left: 10px;
   }
+
+  .change-address-btn {
+  background: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background: #6c757d;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.selecting-hint {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.9em;
+  color: #007bff;
+  font-style: italic;
+}
   
   .event-start-date-container {
   background-color: none;

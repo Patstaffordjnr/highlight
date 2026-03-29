@@ -1,44 +1,43 @@
 import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
 
-  @Component({
-    selector: 'app-calendar',
-    templateUrl: './calendar.component.html',
-    styleUrls: ['./calendar.component.css']
-  })
+@Component({
+  selector: 'app-calendar',
+  templateUrl: './calendar.component.html',
+  styleUrls: ['./calendar.component.css']
+})
+export class CalendarComponent implements OnInit, OnChanges {
 
-  export class CalendarComponent implements OnInit, OnChanges {
+  @Input() selectedDate: Date;
+  @Input() containerClass: string = 'calendar-component-container';
+  @Output() selectDateEvent = new EventEmitter<Date>();
 
-    @Input() selectedDate: Date;
-    @Input() containerClass: string = 'calendar-component-container';
-    @Output() selectDateEvent = new EventEmitter<Date>();
+  calendarMonths: Date[] = [];
+  calendarMonthDaysArr: number[] = [];
+  userDate: Date = new Date();
+  weekDays: string[][] = [];
+  currentDate: Date = new Date();
 
-    calendarMonths: Date[] = [];
-    calendarMonthDaysArr: number[] = [];
-    userDate: Date = new Date();
-    weekDays: string[][] = []; 
-    currentDate: Date = new Date();
+  allDates: Map<string, boolean> = new Map();
+  temp = false;
 
-    allDates: Map<string, boolean> = new Map();
-    temp = false;
-  
-    selectedDayOnCalendar: Date = new Date;
-    selectedDay = Number(this.selectedDayOnCalendar.getDate());
-  
-    constructor() {
-      this.initializeCalendar();
-        if (!this.selectedDate) {
-    this.selectedDate = new Date();
-  } else {
-    this.selectedDayOnCalendar = this.selectedDate
+  selectedDayOnCalendar: Date = new Date;
+  selectedDay = Number(this.selectedDayOnCalendar.getDate());
+
+  constructor() {
+    this.initializeCalendar();
+    if (!this.selectedDate) {
+      this.selectedDate = new Date();
+    } else {
+      this.selectedDayOnCalendar = this.selectedDate;
+    }
   }
-    }
-    
-    ngOnInit(): void {
-      this.selectedDayOnCalendar = this.selectedDate
-      this.scrollToSelectedMonth();
-    }
 
-    ngOnChanges(changes: SimpleChanges): void {
+  ngOnInit(): void {
+    this.selectedDayOnCalendar = this.selectedDate;
+    this.scrollToSelectedMonth();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedDate'] && this.selectedDate) {
       this.selectedDayOnCalendar = new Date(
         this.selectedDate.getFullYear(),
@@ -49,67 +48,72 @@ import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChange
     }
   }
 
-    initializeCalendar(): void {
-      for (let i = 0; i < 24; i++) {
-          let monthOfLoop = new Date(
-            this.userDate.getFullYear(),
-            this.userDate.getMonth() + i,
-            this.userDate.getDate(),
-            this.userDate.getHours(),
-            this.userDate.getMinutes(),
-            this.userDate.getSeconds()
-          )
-        this.calendarMonths.push(monthOfLoop);
-        this.calendarMonthDaysArr.push(this.getNumberOfDays(monthOfLoop.getMonth() + 1, monthOfLoop.getFullYear()));
-        let noOfDaysAMonth = this.getNumberOfDays(monthOfLoop.getMonth() + 1, monthOfLoop.getFullYear())
-        for (let i = 0; i < noOfDaysAMonth; i++) {
-          this.allDates.set( this.generateKey(monthOfLoop.getFullYear(),monthOfLoop.getMonth(),(i + 1)), false);
-        }
-        this.weekDaysDisplayList(i);
+  initializeCalendar(): void {
+    for (let i = 0; i < 24; i++) {
+      let monthOfLoop = new Date(
+        this.userDate.getFullYear(),
+        this.userDate.getMonth() + i,
+        this.userDate.getDate(),
+        this.userDate.getHours(),
+        this.userDate.getMinutes(),
+        this.userDate.getSeconds()
+      );
+      this.calendarMonths.push(monthOfLoop);
+      this.calendarMonthDaysArr.push(this.getNumberOfDays(monthOfLoop.getMonth() + 1, monthOfLoop.getFullYear()));
+      let noOfDaysAMonth = this.getNumberOfDays(monthOfLoop.getMonth() + 1, monthOfLoop.getFullYear());
+      for (let i = 0; i < noOfDaysAMonth; i++) {
+        this.allDates.set(this.generateKey(monthOfLoop.getFullYear(), monthOfLoop.getMonth(), (i + 1)), false);
+      }
+      this.weekDaysDisplayList(i);
+    }
   }
-}
-    
-getNumberOfDays(month: number, year: number): number {
+
+  getNumberOfDays(month: number, year: number): number {
     return new Date(year, month, 0).getDate();
-}
+  }
 
-monthSelect(month: Date): void {
-}
-  
-daySelect(year: number, month: number, day: number): void {
+  monthSelect(month: Date): void {
+  }
 
+  daySelect(year: number, month: number, day: number): void {
     let selectedFromCalendar = new Date(year, month, day);
     let sFCX = new Date(selectedFromCalendar.getFullYear(), selectedFromCalendar.getMonth(), selectedFromCalendar.getDate(), 0, 0, 0);
     let cDX = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate(), 0, 0, 0);
 
-    if(sFCX.getTime() < cDX.getTime()) {
+    if (sFCX.getTime() < cDX.getTime()) {
       console.log(`Before Today's date.`);
-      return
+      return;
     }
     this.selectedDayOnCalendar = selectedFromCalendar;
-    this.emitDay(selectedFromCalendar)
-}
-
-emitDay(selectedDate: Date) {
-  this.selectDateEvent.emit(selectedDate);
-  this.userDate = selectedDate;
-}
-
-isSelected(year: number, month: number, day: number): boolean {
-      return this.allDates.has(this.generateKey(year, month, day)) && this.allDates.get(this.generateKey(year, month, day)) === true;
-    }
-
-generateKey(year: number, month: number, day: number): string {
-    return `${year}_${month}_${day}`
+    this.emitDay(selectedFromCalendar);
   }
 
-isKeyDate(year: number, month: number, day: number): boolean {
+  emitDay(selectedDate: Date) {
+    this.selectDateEvent.emit(selectedDate);
+    this.userDate = selectedDate;
+  }
+
+  isSelected(year: number, month: number, day: number): boolean {
+    return this.allDates.has(this.generateKey(year, month, day)) && this.allDates.get(this.generateKey(year, month, day)) === true;
+  }
+
+  generateKey(year: number, month: number, day: number): string {
+    return `${year}_${month}_${day}`;
+  }
+
+  isKeyDate(year: number, month: number, day: number): boolean {
     if (!this.selectedDayOnCalendar) return false;
     return (
       this.selectedDayOnCalendar.getFullYear() === year &&
       this.selectedDayOnCalendar.getMonth() === month &&
       this.selectedDayOnCalendar.getDate() === day
     );
+  }
+
+  getMonthOffset(month: Date): number[] {
+    const firstDay = new Date(month.getFullYear(), month.getMonth(), 1).getDay();
+    const offset = (firstDay + 6) % 7;
+    return Array(offset).fill(0);
   }
 
 private scrollToSelectedMonth(): void {
@@ -122,18 +126,24 @@ private scrollToSelectedMonth(): void {
 
   if (targetIndex === -1) return;
 
-  // Wait for DOM to be fully rendered
   setTimeout(() => {
     const container = document.querySelector(`.${this.containerClass}`) as HTMLElement;
-    const monthEl = container?.querySelectorAll('.month-container')[targetIndex] as HTMLElement;
+    if (!container) return;
 
-    if (!container || !monthEl) return;
+    // Get the parent ngFor divs (direct children of calendar-container)
+    const monthBlocks = container.querySelectorAll('.calendar-container > div');
+    const monthBlock = monthBlocks[targetIndex] as HTMLElement;
+    if (!monthBlock) return;
 
-    // This is the CORRECT way: use getBoundingClientRect + container.scrollTop
+    const dayElements = monthBlock.querySelectorAll('.day');
+    const offsetLength = this.getMonthOffset(this.selectedDayOnCalendar).length;
+    const selectedDayEl = dayElements[offsetLength + this.selectedDayOnCalendar.getDate() - 1] as HTMLElement;
+
+    const targetEl = selectedDayEl || monthBlock;
     const containerRect = container.getBoundingClientRect();
-    const monthRect = monthEl.getBoundingClientRect();
+    const targetRect = targetEl.getBoundingClientRect();
 
-    const scrollTarget = container.scrollTop + (monthRect.top - containerRect.top) - 20;
+    const scrollTarget = container.scrollTop + (targetRect.top - containerRect.top) - (container.clientHeight / 2);
 
     container.scrollTo({
       top: scrollTarget,
@@ -141,9 +151,10 @@ private scrollToSelectedMonth(): void {
     });
   }, 100);
 }
-  weekDaysDisplayList(i){
+
+  weekDaysDisplayList(i) {
     let weekdayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  
+
     let fDX = new Date(
       this.userDate.getFullYear(),
       this.userDate.getMonth() + i,
@@ -152,37 +163,23 @@ private scrollToSelectedMonth(): void {
       this.userDate.getMinutes(),
       this.userDate.getSeconds()
     );
-  
-  fDX.setDate(1);
-  let firstDayName = weekdayNames[fDX.getDay()];
-  if (firstDayName == "Monday") {
-    let week = ["M", "T", "W", "T", "F", "S", "S"];
-    this.weekDays.push(week);
-  } 
-  else if (firstDayName == "Tuesday") {
-    let week = ["T", "W", "T", "F", "S", "S", "M"];
-    this.weekDays.push(week);
-  } 
-  else if (firstDayName == "Wednesday") {
-    let week = ["W", "T", "F", "S", "S", "M", "T"];
-    this.weekDays.push(week);
-  } 
-  else if (firstDayName == "Thursday") {
-    let week = ["T", "F", "S", "S", "M", "T", "W"];
-    this.weekDays.push(week);
-  } 
-  else if (firstDayName == "Friday") {
-    let week = ["F", "S", "S", "M", "T", "W", "T"];
-    this.weekDays.push(week);
-  } 
-  else if (firstDayName == "Saturday") {
-    let week = ["S", "S", "M", "T", "W", "T", "F"];
-    this.weekDays.push(week);
-  } 
-  else if (firstDayName == "Sunday") {
-    let week = ["S", "M", "T", "W", "T", "F", "S"];
-    this.weekDays.push(week);
-  }
-}
 
+    fDX.setDate(1);
+    let firstDayName = weekdayNames[fDX.getDay()];
+    if (firstDayName == "Monday") {
+      this.weekDays.push(["M", "T", "W", "T", "F", "S", "S"]);
+    } else if (firstDayName == "Tuesday") {
+      this.weekDays.push(["T", "W", "T", "F", "S", "S", "M"]);
+    } else if (firstDayName == "Wednesday") {
+      this.weekDays.push(["W", "T", "F", "S", "S", "M", "T"]);
+    } else if (firstDayName == "Thursday") {
+      this.weekDays.push(["T", "F", "S", "S", "M", "T", "W"]);
+    } else if (firstDayName == "Friday") {
+      this.weekDays.push(["F", "S", "S", "M", "T", "W", "T"]);
+    } else if (firstDayName == "Saturday") {
+      this.weekDays.push(["S", "S", "M", "T", "W", "T", "F"]);
+    } else if (firstDayName == "Sunday") {
+      this.weekDays.push(["S", "M", "T", "W", "T", "F", "S"]);
+    }
+  }
 }

@@ -94,8 +94,8 @@ ngOnInit() {
 
 private fetchEvents(minLat: number, minLong: number, maxLat: number, maxLong: number) {
   this.openHttpClientService.getEvents(
-    // this.globalDate,
-    this.globalDate = new Date(2026, 3, 2),
+    this.globalDate,
+    // this.globalDate = new Date(),
     minLat,
     minLong,
     maxLat,

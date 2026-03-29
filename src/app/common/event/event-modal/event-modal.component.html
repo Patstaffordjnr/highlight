@@ -52,8 +52,38 @@
           </div>
         </div>
 
+        <!-- ADDRESS -->
+<!-- ADDRESS -->
+<div class="grid-item" id="item-4">
+  <div class="event-address">
+    <div class="event-adress"><b>{{ address }}</b></div>
+
+    <!-- Change Address Button + Cancel Button -->
+    <div *ngIf="isEditing" class="change-address-button">
+      <button 
+        *ngIf="!isSelectingLocation" 
+        (click)="startLocationSelection()"
+        class="change-address-btn">
+        Change Address
+      </button>
+
+      <button 
+        *ngIf="isSelectingLocation" 
+        (click)="cancelLocationSelection()"
+        class="cancel-btn">
+        Cancel
+      </button>
+
+      <!-- Optional visual feedback when selecting -->
+      <span *ngIf="isSelectingLocation" class="selecting-hint">
+        Click on the map to place new location
+      </span>
+    </div>
+  </div>
+</div>
+
         <!-- DATE & TIME + EDIT CONTROLS -->
-        <div class="grid-item" id="item-4">
+        <div class="grid-item" id="item-5">
           <!-- START DATE/TIME (Display) -->
           <div class="flex-grid">
             <div class="event-start-date-container col" (click)="toggleStartDateControls()">
@@ -104,7 +134,6 @@
           </div>
 
           <!-- END TIME PICKER (Edit Mode) -->
-
           <div *ngIf="isEditing" class="progress-bar-container-end">
             <app-progress-bar
               class="progress-bar-end"

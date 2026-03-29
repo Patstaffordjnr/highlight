@@ -46,7 +46,7 @@ export class ProgressBarComponent implements OnInit, AfterViewInit, OnChanges, O
     this.touchendBound = this.touchend.bind(this);
 
     const timeToUse = this.selectedTime || new Date();
-    timeToUse.setHours(12, 0, 0); // default 12:00
+    // timeToUse.setHours(12, 0, 0); 
     this.setClock(timeToUse);
   }
 
