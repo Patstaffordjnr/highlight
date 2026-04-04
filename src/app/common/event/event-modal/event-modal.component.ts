@@ -6,6 +6,7 @@ import { markerIcons } from '../../map/map-icons';
 import { CurrentUserService } from 'src/app/util/can-activate.service';
 import { User } from 'src/app/model/user';
 import { UserRole } from 'src/app/model/user-roles';
+import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
 
 @Component({
   selector: 'app-event-modal',
@@ -18,7 +19,7 @@ export class EventModalComponent implements OnInit {
   private _skipValidation = false;
   private originalMarker?: L.Marker;
 
-  isSelectingLocation = false; // ← removed private
+  isSelectingLocation = false;
   isCreateMode = false;
 
   @Input() isOpen = false;
@@ -26,6 +27,7 @@ export class EventModalComponent implements OnInit {
 
   @Output() close = new EventEmitter<void>();
   @Output() edit = new EventEmitter<AppEvent>();
+  @Output() eventSaved = new EventEmitter<void>();
 
   @ViewChild('modalContent', { static: false }) modalContentRef!: ElementRef;
 
@@ -33,6 +35,8 @@ export class EventModalComponent implements OnInit {
   isEditing = false;
 
   mapInstance!: L.Map;
+
+  userName: string = 'Loading...';
 
   userRoles: string[] = [];
   currentUser: User = {
@@ -57,10 +61,16 @@ export class EventModalComponent implements OnInit {
 
   markersLayer = L.layerGroup();
 
-  constructor(private currentUserService: CurrentUserService, private elementRef: ElementRef) {}
+  constructor(
+    private currentUserService: CurrentUserService,
+    private elementRef: ElementRef,
+    private openHttpClientService: OpenHttpClientService
+  ) {}
 
   async ngOnInit() {
     this.isCreateMode = !this.event;
+    console.log('Modal opened, event:', this.event);
+    console.log('userId:', this.event?.userId);
 
     if (this.isCreateMode) {
       const now = new Date();
@@ -104,6 +114,33 @@ export class EventModalComponent implements OnInit {
       };
       this.userRoles = user.roles.map((r: any) => String(r));
       this.updateCanEdit();
+
+      if (this.isCreateMode) {
+        this.currentEvent.userId = String(user.id);
+        this.userName = String(user.email);
+      } else {
+        console.log('Edit mode, attempting to fetch username, userId:', this.event?.userId);
+        if (this.event?.userId) {
+          await this.fetchUserName(String(this.event.userId));
+        }
+      }
+    }
+  }
+
+  private async fetchUserName(userId: string): Promise<void> {
+    try {
+      console.log('Fetching username for userId:', userId);
+      const response = await fetch(
+        `http://localhost:8085/user/${userId}`,
+        { credentials: 'include' }
+      );
+      console.log('Response status:', response.status);
+      const user = await response.json();
+      console.log('User data:', user);
+      this.userName = String(user.email) || 'Unknown';
+    } catch (error) {
+      console.error('Failed to fetch username:', error);
+      this.userName = 'Unknown';
     }
   }
 
@@ -144,6 +181,29 @@ export class EventModalComponent implements OnInit {
 
   startLocationSelection() {
     this.isSelectingLocation = true;
+
+    this.mapInstance.on('click', (e: L.LeafletMouseEvent) => {
+      if (!this.isSelectingLocation) return;
+
+      const { lat, lng } = e.latlng;
+      this.currentEvent.lat = lat;
+      this.currentEvent.long = lng;
+
+      if (this.originalMarker) {
+        this.originalMarker.setLatLng([lat, lng]);
+      } else {
+        const icon = markerIcons[this.currentEvent.eventType as keyof typeof markerIcons];
+        this.originalMarker = L.marker([lat, lng], { icon })
+          .addTo(this.mapInstance)
+          .bindPopup('New event location');
+      }
+
+      this.reverseGeocode(lat, lng).then(addr => {
+        this.address = addr;
+      });
+
+      this.isSelectingLocation = false;
+    });
   }
 
   cancelLocationSelection() {
@@ -151,8 +211,29 @@ export class EventModalComponent implements OnInit {
   }
 
   onSave() {
-    console.log('Saving event:', this.currentEvent);
-    // TODO: wire up to HTTP service once endpoints are ready
+    if (this.isCreateMode) {
+      this.openHttpClientService.createEvent(this.currentEvent).subscribe({
+        next: (createdEvent) => {
+          console.log('Event created:', createdEvent);
+          this.eventSaved.emit();
+          this.onClose();
+        },
+        error: (err) => {
+          console.error('Error creating event:', err);
+        }
+      });
+    } else {
+      this.openHttpClientService.updateEvent(this.currentEvent).subscribe({
+        next: (updatedEvent) => {
+          console.log('Event updated:', updatedEvent);
+          this.eventSaved.emit();
+          this.onClose();
+        },
+        error: (err) => {
+          console.error('Error updating event:', err);
+        }
+      });
+    }
   }
 
   onStartTimeSelected(selectedTime: Date): void {

@@ -31,7 +31,7 @@
         <!-- USER NAME -->
         <div class="grid-item" id="item-2">
           <div class="event-user-name-container">
-            <div *ngIf="!isEditing" class="event-user-name"><b>USER Name</b></div>
+            <div *ngIf="!isEditing" class="event-user-name"><b>{{ userName }}</b></div>
             <input
               *ngIf="isEditing"
               class="event-user-name-input"
@@ -48,7 +48,8 @@
               *ngIf="isEditing"
               class="event-title-input"
               type="text"
-              [placeholder]="currentEvent.title || 'Event title'">
+              [(ngModel)]="currentEvent.title"
+              placeholder="Event title">
           </div>
         </div>
 

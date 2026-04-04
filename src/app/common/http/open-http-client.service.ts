@@ -55,7 +55,18 @@ getUsers(pageNumber: number, pageSize: number) {
   // );
 }
 
+getUserEvents(pageNumber: number, pageSize: number, eventTypes: EventType[]): Observable<any> {
+  const url = `http://localhost:8085/busker/getEvents`;
+  let params = new HttpParams()
+    .set('pageNumber', pageNumber.toString())
+    .set('pageSize', pageSize.toString());
 
+  eventTypes.forEach(type => {
+    params = params.append('eventTypes', type);
+  });
+
+  return this.http.get<any>(url, { params, withCredentials: true });
+}
 
 getBuskers(pageNumber: number, pageSize: number): Observable<any> {
   const url = `http://localhost:8085/user/getBuskers`; // removed `/open`
@@ -66,4 +77,15 @@ getBuskers(pageNumber: number, pageSize: number): Observable<any> {
 
   return this.http.get<any>(url, { params, withCredentials: true }); // important for cookies
 }
+
+createEvent(event: AppEvent): Observable<AppEvent> {
+  const url = `http://localhost:8085/busker/createEvent`;
+  return this.http.post<AppEvent>(url, event, { withCredentials: true });
+}
+
+updateEvent(event: AppEvent): Observable<AppEvent> {
+  const url = `http://localhost:8085/busker/updateEvent`;
+  return this.http.put<AppEvent>(url, event, { withCredentials: true });
+}
+
 }

@@ -103,7 +103,7 @@ private fetchEvents(minLat: number, minLong: number, maxLat: number, maxLong: nu
     [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
   ).subscribe({
     next: (events: AppEvent[]) => {
-            console.log(new Date(2026, 2, 28, 23, 0, 0));
+            // console.log(new Date(2026, 2, 28, 23, 0, 0));
       console.log(this.globalDate);
       console.log('Events received:', events);
       console.log(`MinLat: ${minLat},MaxLat: ${maxLat}, MinLng: ${minLong}, MaxLng: ${maxLong}`);

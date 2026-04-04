@@ -172,4 +172,27 @@ export class BuskerComponent implements OnInit { // Implement OnInit
       }
     });
   }
+
+  
+  onEventSaved() {
+  this.showModal = false;
+  this.openHttpClientService.getEvents(
+    new Date(),
+    -88,
+    -88,
+    80,
+    80,
+    [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
+  ).subscribe({
+    next: (events: AppEvent[]) => {
+      this.events = events;
+      if (this.mapInstance) {
+        this.addMarkersToMap();
+      }
+    },
+    error: (error) => {
+      console.error('Error fetching events:', error);
+    }
+  });
+}
 }

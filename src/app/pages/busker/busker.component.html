@@ -51,6 +51,7 @@
   class="modal" 
   [isOpen]="showModal" 
   (close)="showModal = false" 
+  (eventSaved)="onEventSaved()"
   [event]="event">
 </app-event-modal>
 <div class = "a"></div>
