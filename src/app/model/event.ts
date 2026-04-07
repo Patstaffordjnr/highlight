@@ -11,6 +11,7 @@ export class Event {
   public title: string;
   public updatedAt: Date;
   public userId: string;
+  public userName?: string;
 
   constructor(
     createdAt: Date,
@@ -22,7 +23,8 @@ export class Event {
     startAt: Date,
     title: string,
     updatedAt: Date,
-    userId: string
+    userId: string,
+    userName?: string
   ) {
     this.createdAt = createdAt;
     this.endAt = endAt;
@@ -34,5 +36,6 @@ export class Event {
     this.title = title;
     this.updatedAt = updatedAt;
     this.userId = userId;
+    this.userName = userName;
   }
 }

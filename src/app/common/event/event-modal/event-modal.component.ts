@@ -7,6 +7,7 @@ import { CurrentUserService } from 'src/app/util/can-activate.service';
 import { User } from 'src/app/model/user';
 import { UserRole } from 'src/app/model/user-roles';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-modal',
@@ -33,6 +34,8 @@ export class EventModalComponent implements OnInit {
 
   canEdit = false;
   isEditing = false;
+  isFollowing = false;
+  isLoggedIn = false;
 
   mapInstance!: L.Map;
 
@@ -64,7 +67,8 @@ export class EventModalComponent implements OnInit {
   constructor(
     private currentUserService: CurrentUserService,
     private elementRef: ElementRef,
-    private openHttpClientService: OpenHttpClientService
+    private openHttpClientService: OpenHttpClientService,
+    private router: Router
   ) {}
 
   async ngOnInit() {
@@ -106,6 +110,7 @@ export class EventModalComponent implements OnInit {
     }
 
     const user = await this.currentUserService.getUser();
+    this.isLoggedIn = !!user;
     if (user) {
       this.currentUser = {
         id: user.id,
@@ -119,11 +124,30 @@ export class EventModalComponent implements OnInit {
         this.currentEvent.userId = String(user.id);
         this.userName = String(user.email);
       } else {
-        console.log('Edit mode, attempting to fetch username, userId:', this.event?.userId);
-        if (this.event?.userId) {
-          await this.fetchUserName(String(this.event.userId));
-        }
+        this.userName = this.event.userName || 'Unknown';
+        this.openHttpClientService.isFollowingEvent(this.event.id).subscribe({
+          next: (following) => this.isFollowing = following,
+          error: () => this.isFollowing = false
+        });
       }
+    } else if (!this.isCreateMode) {
+      this.userName = this.event.userName || 'Unknown';
+    }
+  }
+
+  onFollowClick() {
+    if (!this.isLoggedIn) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    if (this.isFollowing) {
+      this.openHttpClientService.unfollowEvent(this.event.id).subscribe({
+        next: () => this.isFollowing = false
+      });
+    } else {
+      this.openHttpClientService.followEvent(this.event.id).subscribe({
+        next: () => this.isFollowing = true
+      });
     }
   }
 

@@ -29,16 +29,16 @@
         </div>
 
         <!-- USER NAME -->
-        <div class="grid-item" id="item-2">
-          <div class="event-user-name-container">
-            <div *ngIf="!isEditing" class="event-user-name"><b>{{ userName }}</b></div>
-            <input
-              *ngIf="isEditing"
-              class="event-user-name-input"
-              type="text"
-              placeholder="Username">
-          </div>
-        </div>
+<div class="grid-item" id="item-2">
+  <div class="event-user-name-container">
+    <div *ngIf="!isEditing || isCreateMode" class="event-user-name"><b>{{ userName }}</b></div>
+    <input
+      *ngIf="isEditing && !isCreateMode"
+      class="event-user-name-input"
+      type="text"
+      placeholder="Username">
+  </div>
+</div>
 
         <!-- EVENT TITLE -->
         <div class="grid-item" id="item-3">
@@ -144,6 +144,16 @@
           <div class="control-container" *ngIf="isEditing">
             <button class="change-address-btn" (click)="onSave()">
               {{ isCreateMode ? 'Create Event' : 'Save Changes' }}
+            </button>
+          </div>
+
+          <!-- FOLLOW BUTTON -->
+          <div class="control-container" *ngIf="!isCreateMode">
+            <button
+              class="follow-btn"
+              [class.following]="isFollowing"
+              (click)="onFollowClick()">
+              {{ isFollowing ? 'Unfollow' : 'Follow' }}
             </button>
           </div>
 

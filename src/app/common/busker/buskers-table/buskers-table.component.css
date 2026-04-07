@@ -50,6 +50,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  aspect-ratio: 1 / 1;
 }
 
 .busker-item.selected {

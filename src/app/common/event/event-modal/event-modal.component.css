@@ -354,6 +354,19 @@ display: flex;
   padding-top: 16px;
 }
 
+.follow-btn {
+  background: #6c757d;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.follow-btn.following {
+  background: #495057;
+}
+
 .hidden {
   display: none;
 }

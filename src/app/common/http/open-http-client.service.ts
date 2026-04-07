@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EventType } from 'src/app/model/event-types';
 import { Event as AppEvent } from 'src/app/model/event';
-import { User } from 'src/app/model/user';
 
 const URL = 'http://localhost:8085/open';
 
@@ -86,6 +85,30 @@ createEvent(event: AppEvent): Observable<AppEvent> {
 updateEvent(event: AppEvent): Observable<AppEvent> {
   const url = `http://localhost:8085/busker/updateEvent`;
   return this.http.put<AppEvent>(url, event, { withCredentials: true });
+}
+
+followEvent(eventId: string): Observable<void> {
+  return this.http.post<void>(`http://localhost:8085/user/follow/event/${eventId}`, {}, { withCredentials: true });
+}
+
+unfollowEvent(eventId: string): Observable<void> {
+  return this.http.delete<void>(`http://localhost:8085/user/follow/event/${eventId}`, { withCredentials: true });
+}
+
+isFollowingEvent(eventId: string): Observable<boolean> {
+  return this.http.get<boolean>(`http://localhost:8085/user/follow/event/${eventId}/status`, { withCredentials: true });
+}
+
+followBusker(buskerId: string): Observable<void> {
+  return this.http.post<void>(`http://localhost:8085/user/follow/busker/${buskerId}`, {}, { withCredentials: true });
+}
+
+unfollowBusker(buskerId: string): Observable<void> {
+  return this.http.delete<void>(`http://localhost:8085/user/follow/busker/${buskerId}`, { withCredentials: true });
+}
+
+isFollowingBusker(buskerId: string): Observable<boolean> {
+  return this.http.get<boolean>(`http://localhost:8085/user/follow/busker/${buskerId}/status`, { withCredentials: true });
 }
 
 }

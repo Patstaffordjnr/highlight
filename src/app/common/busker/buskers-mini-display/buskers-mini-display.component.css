@@ -50,8 +50,10 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  width: 200px;
+  height: 200px;
 }
 
 /* SM */
