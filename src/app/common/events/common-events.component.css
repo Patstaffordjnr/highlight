@@ -224,27 +224,25 @@
 @media (min-width: 1400px) {
   .event-grid {
     display: grid;
-    height: 100vh;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    grid-template-rows: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-auto-rows: 260px;
     gap: 16px;
   }
 
-  .event-list-container {
-
+  .event-item {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 
   .event-list {
-    overflow-y: scroll;
+    height: 100%;
+    overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    /* white-space: nowrap; */
   }
 
   .event-list::-webkit-scrollbar {
     display: none;
-  }
-
-  .event-item {
   }
 }

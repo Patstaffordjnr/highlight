@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { JsonPipe, NgFor } from '@angular/common';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
+import { NgFor } from '@angular/common';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { SignUpClient } from './sign-up.client';
@@ -16,48 +16,56 @@ import { RouterService } from 'src/app/util/router.service';
 })
 export class SignUpComponent implements OnInit {
   form: FormGroup;
-  allUserRoles = Object.keys(UserRole).filter((item) => {
-      return isNaN(Number(item));
-  });
- 
-  constructor(private formBuilder: FormBuilder, private signUpClient: SignUpClient, private routerService: RouterService) { 
+  errorMessage: string = '';
+  loading: boolean = false;
+
+  visibleRoles = [UserRole.USER, UserRole.BUSKER];
+
+  roleLabels: Record<string, string> = {
+    [UserRole.USER]: 'Music Fan',
+    [UserRole.BUSKER]: 'Busker / Performer',
+  };
+
+  constructor(private formBuilder: FormBuilder, private signUpClient: SignUpClient, private routerService: RouterService) {
     this.form = this.formBuilder.group({
-      email: ['busker@dumb.com', [Validators.required, Validators.email]],
-      password: ['dumb', [Validators.required, Validators.minLength(4)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       userRoles: new FormArray([], minSelectedCheckboxes(1))
     });
     this.addCheckboxes();
   }
 
-  generateRequest(): SignUpRequest {
-    const selectedRoled: UserRole[] = this.form.get('userRoles').value.filter((value) => value == true).map((value, index) => { 
-      return Object.keys(UserRole)[index];
-    })
-    return new SignUpRequest(this.form.get('email').value, 
-      selectedRoled, 
-      this.form.get('password').value)
-  }
-
   private addCheckboxes() {
-    this.allUserRoles.forEach(userRole => this.userRolesFormArray.push(new FormControl(
-      [UserRole.ADMIN, UserRole.BUSKER, UserRole.USER].includes(UserRole[userRole]))));
+    this.visibleRoles.forEach(() => this.userRolesFormArray.push(new FormControl(false)));
   }
 
   get userRolesFormArray() {
-    return this.form.controls.userRoles as FormArray;
+    return this.form.controls['userRoles'] as FormArray;
   }
 
-  ngOnInit(): void {
-
+  generateRequest(): SignUpRequest {
+    const selectedRoles: UserRole[] = this.userRolesFormArray.value
+      .map((checked: boolean, i: number) => checked ? this.visibleRoles[i] : null)
+      .filter((v: UserRole | null) => v !== null);
+    return new SignUpRequest(this.form.get('email').value, selectedRoles, this.form.get('password').value);
   }
+
+  ngOnInit(): void {}
 
   async onSubmit() {
-    var successful = await this.signUpClient.signIn(this.generateRequest());
-    if(successful) {
-      this.routerService.toLoginPage()
-    } else {
-      alert('something wrong')
+    this.errorMessage = '';
+    this.loading = true;
+    try {
+      const successful = await this.signUpClient.signIn(this.generateRequest());
+      if (successful) {
+        this.routerService.toLoginPage();
+      } else {
+        this.errorMessage = 'Sign up failed. Please try again.';
+      }
+    } catch {
+      this.errorMessage = 'Something went wrong. Please try again.';
+    } finally {
+      this.loading = false;
     }
-  }  
-  
+  }
 }

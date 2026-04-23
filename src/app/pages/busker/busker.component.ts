@@ -45,39 +45,20 @@ export class BuskerComponent implements OnInit { // Implement OnInit
   filteredEvents: AppEvent[] = []; 
   
   constructor(
-    private formBuilder: FormBuilder, 
-    private currentUserService: CurrentUserService, 
+    private formBuilder: FormBuilder,
+    private currentUserService: CurrentUserService,
     private openHttpClientService: OpenHttpClientService
-  ) {
-    
-    // --- Event Loading Logic (Same as UserComponent) ---
-    this.openHttpClientService.getEvents(
-      new Date(2025, 6, 6, 23, 0, 0),
-      -88,
-      -88,
-      80,
-      80,
-      [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
-    ).subscribe({
-      next: (events: AppEvent[]) => {
-        this.events = events; 
-        // Check if map is ready to add markers immediately after events load
-        if (this.mapInstance) {
-          this.addMarkersToMap();
-        }
-      },
-      error: (error) => {
-        console.error('Error fetching events:', error);
-      },
-    });
-  }
+  ) {}
 
   // --- ngOnInit Logic (Copied from UserComponent) ---
   async ngOnInit() {
-    // 1. Load Buskers (THIS WAS MISSING/DIFFERENT IN YOUR ORIGINAL BuskerComponent)
-    this.loadBuskers(0, 10); 
-    
-    // 2. Load User Profile
+    // 1. Load Buskers
+    this.loadBuskers(0, 10);
+
+    // 2. Load this busker's events
+    this.loadEvents();
+
+    // 3. Load User Profile
     let user = await this.currentUserService.getUser()
 
     this.currentUser.id = user.id;
@@ -174,25 +155,25 @@ export class BuskerComponent implements OnInit { // Implement OnInit
   }
 
   
-  onEventSaved() {
-  this.showModal = false;
-  this.openHttpClientService.getEvents(
-    new Date(),
-    -88,
-    -88,
-    80,
-    80,
-    [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
-  ).subscribe({
-    next: (events: AppEvent[]) => {
-      this.events = events;
-      if (this.mapInstance) {
-        this.addMarkersToMap();
+  loadEvents() {
+    this.openHttpClientService.getUserEvents(
+      0, 50,
+      [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
+    ).subscribe({
+      next: (response: any) => {
+        this.events = response.results || response;
+        if (this.mapInstance) {
+          this.addMarkersToMap();
+        }
+      },
+      error: (error) => {
+        console.error('Error fetching events:', error);
       }
-    },
-    error: (error) => {
-      console.error('Error fetching events:', error);
-    }
-  });
-}
+    });
+  }
+
+  onEventSaved() {
+    this.showModal = false;
+    this.loadEvents();
+  }
 }

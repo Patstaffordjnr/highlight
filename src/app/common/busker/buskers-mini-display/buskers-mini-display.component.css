@@ -1,3 +1,10 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
 .flex-grid {
   display: flex;
   width: 100%;
@@ -14,33 +21,29 @@
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.busker-list-container::-webkit-scrollbar {
-  display: none;
+  overflow: hidden;
 }
 
 .busker-list {
   height: 100%;
   width: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.busker-list::-webkit-scrollbar {
+  display: none;
 }
 
 .busker-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  height: 100%;
+  justify-content: center;
   width: 100%;
   gap: 8px;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  padding: 8px;
+  box-sizing: border-box;
 }
 
 .busker-item {
@@ -52,8 +55,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 200px;
+  width: 125px;
+  height: 125px;
 }
 
 /* SM */
@@ -75,37 +78,29 @@
 /* XXL */
 @media (min-width: 1400px) {
   .busker-list-container {
-    height: 100%; /* stays full screen */
-    justify-content: center;
-    align-items: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   .busker-list {
-    height: 100%;
-    overflow-y: scroll;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    white-space: nowrap;
-  }
-
-  .busker-list::-webkit-scrollbar {
-    display: none;
+    flex: 1;
+    overflow: hidden;
   }
 
   .busker-grid {
     display: grid;
-    height: 49.6vh; 
-    grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
-    grid-template-rows: repeat(auto-fit, minmax(125px, 1fr));
-    /* grid-auto-rows: minmax(165px, auto);  */
-    /* justify-content: space-between; */
-    justify-items: stretch; /* make items expand */
-    align-items: stretch;
-    gap: 16px;
-    
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 100%;
+    gap: 6px;
+    padding: 4px;
   }
 
   .busker-item {
-    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    overflow: hidden;
   }
 }

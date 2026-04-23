@@ -19,6 +19,12 @@ export class BuskerModalComponent implements OnInit {
   isFollowing = false;
   isLoggedIn = false;
 
+  get isOwnProfile(): boolean {
+    const user = this.currentUserService.getUser();
+    if (!user || !this.busker) return false;
+    return user.email.toString() === this.busker.email.toString();
+  }
+
   constructor(
     private currentUserService: CurrentUserService,
     private openHttpClientService: OpenHttpClientService,

@@ -7,6 +7,7 @@ interface Busker {
   roles: string[];
   createdAt: number;
   updatedAt: number;
+  bio?: string;
 }
 
 @Component({

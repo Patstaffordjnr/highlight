@@ -15,37 +15,39 @@ import { AuthService } from 'src/app/util/auth.service';
 export class LogInComponent {
 
   form: FormGroup;
+  errorMessage: string = '';
+  loading: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private loginClient: LoginClient, private routerService: RouterService, private authService: AuthService) {
 
     this.form = this.formBuilder.group({
-      email: ['dumb@dumb.com'],
-      password: ['password'],
+      email: [''],
+      password: [''],
     });
   }
 
-ngOnInit(): void {
-
-}
+ngOnInit(): void {}
 
 generateRequest(): LoginRequest {
   return new LoginRequest(this.form.get('email').value, this.form.get('password').value)
 }
 
 async onSubmit() {
-  const loggedInUser = await this.loginClient.logIn(this.generateRequest());
-  if (loggedInUser) {
-    this.authService.login(loggedInUser); // stores user + marks logged in
-    this.routerService.toHomePage();
-  }  
-}
-
-async getForbidden() {
-  await this.loginClient.getForbidden();
-}
-
-async clearCookie() {
-  await this.routerService.clearCookie();
+  this.errorMessage = '';
+  this.loading = true;
+  try {
+    const loggedInUser = await this.loginClient.logIn(this.generateRequest());
+    if (loggedInUser) {
+      this.authService.login(loggedInUser);
+      this.routerService.toHomePage();
+    } else {
+      this.errorMessage = 'Invalid email or password.';
+    }
+  } catch {
+    this.errorMessage = 'Invalid email or password.';
+  } finally {
+    this.loading = false;
+  }
 }
 
 

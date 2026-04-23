@@ -68,13 +68,13 @@ getUserEvents(pageNumber: number, pageSize: number, eventTypes: EventType[]): Ob
 }
 
 getBuskers(pageNumber: number, pageSize: number): Observable<any> {
-  const url = `http://localhost:8085/user/getBuskers`; // removed `/open`
+  const url = `http://localhost:8085/open/getBuskers`;
 
   const params = new HttpParams()
     .set('pageNumber', pageNumber.toString())
     .set('pageSize', pageSize.toString());
 
-  return this.http.get<any>(url, { params, withCredentials: true }); // important for cookies
+  return this.http.get<any>(url, { params });
 }
 
 createEvent(event: AppEvent): Observable<AppEvent> {

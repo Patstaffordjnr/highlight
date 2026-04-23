@@ -1,7 +1,7 @@
 <div class="event-list-container">
   <div class="event-list">
     <div class="event-grid">
-      <div class="event-item" *ngFor="let event of events; let i = index"[class.selected]="event === selectedEvent" (click)="onSelect(event)" >
+      <div class="event-item" *ngFor="let event of events; let i = index" [class.selected]="event === selectedEvent" (click)="onSelect(event)" >
         <div class="flex-grid top-section">
           <div class="event-profile-image-container col">
             <div class="event-profile-image"></div>
@@ -9,7 +9,7 @@
           <div class="event-user-details col">
             <div class="event-user-name-container">
               <div class="event-user-name">
-                <a>The USER Name</a>
+                <a>{{ event.userName }}</a>
               </div>
             </div>
             <div class="event-title-container">
@@ -18,7 +18,7 @@
               </div>
             </div>
           </div>
-          
+
         </div>
 
         <div class="flex-grid">
@@ -78,7 +78,7 @@
               <span class="time-top">{{ event.endAt * 1000 | date: 'h:mm' }}</span><br />
               <span class="time-bottom">{{ event.endAt * 1000 | date: 'a' }}</span>
             </div>
-          </div>        
+          </div>
         </div>     -->
       </div>
     </div>-
@@ -92,4 +92,3 @@
      </button>
      <button (click)="nextPageOfEvents()">Next Page</button>
 </div> -->
-

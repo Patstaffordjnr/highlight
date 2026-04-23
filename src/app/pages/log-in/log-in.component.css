@@ -1,124 +1,107 @@
-
-.a{
-        display: flex;
-    justify-content: center;
-    align-items: center;
-        height: 75vh;
-    width: 85vw;
-}
-.log-in-div{ 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color:none;
-    /* background-color: aqua; */
-
-
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
 }
 
-.flex-grid {
-    display: flex;
-    background-color: none;
-}
-  
-  .col {
-    flex: 1;
-    display: flex; 
-}
-
-.log-in{
-    /* background-color: brown; */
-    background-color:none;
-    min-height: 165px;
-    width: 365px;
-    padding-top: 14px;
-    padding-bottom: 10px;
-    border-radius: 25px;
-    border: 6px solid whitesmoke;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* max-width: 340px;
-    min-width: 340px; */
-    /* min-height: 365px;
-    width: 365px; */
-
+.card {
+  width: 360px;
+  padding: 40px 36px;
+  border: 3px solid #e8e8e8;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.email-label{
-    background-color:none;
-    display: flex;
-    justify-content: right;
-
-
-    
+.brand {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #111;
 }
 
-.email-input{
-    background-color:none;
-    padding-right: 14px;
- 
-
+.tagline {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0 0 16px;
 }
 
-.password-label{
-    
-    background-color:none;
-    display: flex;
-    justify-content: right;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.password-input{
-    background-color:none;
-    padding-right: 14px;
- 
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
-.submit-button{
-    background-color:none;
-    padding-top: 10px;
-    display: flex;
-    justify-content: center;
+label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #444;
 }
 
-  /* SM - Small tablets */
- @media (min-width: 576px) {
-
- }
-  
-
-  /* MD - Tablets */
-  @media (min-width: 768px) {
-
-
-  } 
-  
-  /* LG - Small laptops */
-  @media (min-width: 992px) {
-
-}
-  
-  /* XL - Desktops */
-  @media (min-width: 1200px) {
-
-
-  } 
-  
-  /* XXL - Large screens / 4K */
-  @media (min-width: 1400px) {
-.item-1 {
-min-width: 400px;
-min-height: 400px;
-}
-.mapContainer {
-max-width:400px;
-max-height: 400px;
-
-}
-.item-2 {
-max-width: 400px;
-min-height: 400px;
+input {
+  padding: 10px 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s;
 }
 
-} 
-  
+input:focus {
+  border-color: #4da6e8;
+}
+
+button {
+  margin-top: 6px;
+  padding: 11px;
+  background-color: #4da6e8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+button:hover:not(:disabled) {
+  background-color: #2e8fd4;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error-msg {
+  color: #d32f2f;
+  font-size: 0.85rem;
+  background: #fdecea;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+.switch-link {
+  margin-top: 16px;
+  font-size: 0.85rem;
+  color: #666;
+  text-align: center;
+}
+
+.switch-link a {
+  color: #4da6e8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.switch-link a:hover {
+  text-decoration: underline;
+}

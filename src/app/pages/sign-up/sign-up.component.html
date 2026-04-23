@@ -1,34 +1,36 @@
-<div class =  "a">
-<div class = "sign-up-div">
-  <div class = "sign-up">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="flex-grid">
-      <div class = "email-label col">
-      <label for="email">Email :&nbsp;</label>
+<div class="page">
+  <div class="card">
+    <div class="brand">Highlight</div>
+    <p class="tagline">Join the community</p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" placeholder="you@example.com" autocomplete="email">
       </div>
-      <div class = "email-input col">
-      <input id="email" type="text" formControlName="email">
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" placeholder="At least 8 characters" autocomplete="new-password">
       </div>
-    </div>
-    <br>
-    <div class="flex-grid">
-      <div class = "password-label col">
-      <label for="password">Password :&nbsp; </label>
+
+      <div class="field">
+        <label>I am a...</label>
+        <div class="role-options" formArrayName="userRoles">
+          <label *ngFor="let role of visibleRoles; let i = index" class="role-label">
+            <input type="checkbox" [formControlName]="i">
+            <span>{{ roleLabels[role] }}</span>
+          </label>
+        </div>
       </div>
-      <div class = "password-input col">
-      <input id="password" type="password" formControlName="password">
-      </div>
-    </div>
-    <div class="flex-grid">
-      <div class = "userRole-selection col">
-    <label formArrayName="userRoles" *ngFor="let userRole of userRolesFormArray.controls; let i = index">
-      <input type="checkbox" [formControlName]="i">
-      {{allUserRoles[i]}}
-    </label>
-      </div>
-  </div>
-      <div class = "submit-button">
-      <button type="submit" [disabled]="!form.valid">Submit</button>
-    </div>
+
+      <div class="error-msg" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+      <button type="submit" [disabled]="!form.valid || loading">
+        {{ loading ? 'Creating account...' : 'Create Account' }}
+      </button>
     </form>
+
+    <p class="switch-link">Already have an account? <a routerLink="/login">Log in</a></p>
   </div>
+</div>
