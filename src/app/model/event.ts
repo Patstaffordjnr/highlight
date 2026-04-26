@@ -12,6 +12,7 @@ export class Event {
   public updatedAt: Date;
   public userId: string;
   public userName?: string;
+  public address?: string;
 
   constructor(
     createdAt: Date,

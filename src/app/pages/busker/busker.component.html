@@ -19,7 +19,7 @@
 </app-event-modal> -->
 
 <div class = "ui">
-<div class = "content"> 
+<div class = "content">
 <div class="user">
 <div class="container">
     <div class="item item-1">
@@ -30,7 +30,7 @@
   (mapInput)="onMapReady($event)"
   (mapCenterChanged)="onMapMoved($event)"
   (mapClicked)="onMapClicked($event)">
-</app-map>  
+</app-map>
     </div>
     <div class="item item-3">
       <div class = "control-container" >
@@ -46,11 +46,11 @@
 </div>
 </div>
 </div>
-<app-event-modal 
+<app-event-modal
   *ngIf="showModal"
-  class="modal" 
-  [isOpen]="showModal" 
-  (close)="showModal = false" 
+  class="modal"
+  [isOpen]="showModal"
+  (close)="showModal = false"
   (eventSaved)="onEventSaved()"
   [event]="event">
 </app-event-modal>

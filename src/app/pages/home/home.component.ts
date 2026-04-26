@@ -9,6 +9,7 @@ import { Event as AppEvent } from 'src/app/model/event';
 import { markerIcons } from './../../common/map/map-icons';
 import { MapService } from 'src/app/common/map/map-service';
 import { combineLatest } from 'rxjs';
+import { EventFilter } from 'src/app/model/event-list-filter';
 
 
 @Component({
@@ -20,10 +21,10 @@ import { combineLatest } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   
-  minLat
-  maxLat
-  minLong
-  maxLong
+  // minLat
+  // maxLat
+  // minLong
+  // maxLong
 
   showModal = false;
   mapInstance!: L.Map;
@@ -62,9 +63,11 @@ export class HomeComponent implements OnInit {
   selectedWithin: number = 1; 
 
   events: AppEvent[] = [];
+  allEvents: AppEvent[] = [];
   event!: AppEvent;
-  filteredEvents: AppEvent[] = []; // filtered list
-  
+  activeFilter: EventFilter | null = null;
+  private lastMapDetails: any[] = [];
+
   private subscription!: Subscription;
 
  constructor(private globalDateService: GlobalDateService,
@@ -85,8 +88,8 @@ ngOnInit() {
     this.mapService.mapCurrentLocationDetails$
   ]).subscribe(([globalDate, details]) => {
     if (globalDate && details && details.length >= 5) {
+      this.lastMapDetails = details;
       const [bounds, minLat, maxLat, minLong, maxLong] = details;
-      // console.log('Fetching with bounds:', { minLat, maxLat, minLong, maxLong });
       this.fetchEvents(minLat, minLong, maxLat, maxLong);
     }
   });
@@ -103,15 +106,8 @@ private fetchEvents(minLat: number, minLong: number, maxLat: number, maxLong: nu
     [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
   ).subscribe({
     next: (events: AppEvent[]) => {
-            // console.log(new Date(2026, 2, 28, 23, 0, 0));
-      console.log(this.globalDate);
-      console.log('Events received:', events);
-      console.log(`MinLat: ${minLat},MaxLat: ${maxLat}, MinLng: ${minLong}, MaxLng: ${maxLong}`);
-
-      this.events = events;
-      if (this.mapInstance) {
-        this.addMarkersToMap();
-      }
+      this.allEvents = events;
+      this.applyFilter();
     },
     error: (error) => {
       console.error('Error fetching events:', error);
@@ -248,6 +244,64 @@ onDateSelected(selectedDate: Date): void {
   if (this.globalDate.getTime() !== updatedGlobalDate.getTime()) {
     this.globalDateService.upDate(updatedGlobalDate);
     console.log(`Home Calendar Select Date: ${updatedGlobalDate}`);
+  }
+}
+
+onFilterChange(filter: EventFilter) {
+  this.activeFilter = filter;
+  this.applyFilter();
+}
+
+private applyFilter(): void {
+  const now = Date.now() / 1000;
+  let result = [...this.allEvents];
+
+  if (this.activeFilter) {
+    const cutoff = now + this.activeFilter.within * 3600;
+    result = result.filter(e => (e.endAt as any) >= now && (e.startAt as any) <= cutoff);
+
+    const genres = this.activeFilter.genres;
+    if (!genres.has(EventType.ALL)) {
+      result = result.filter(e => genres.has(e.eventType as EventType));
+    }
+
+    if (this.activeFilter.search?.trim()) {
+      const term = this.activeFilter.search.trim().toLowerCase();
+      result = result.filter(e =>
+        e.title?.toLowerCase().includes(term) ||
+        e.address?.toLowerCase().includes(term)
+      );
+    }
+
+    switch (this.activeFilter.sort) {
+      case 'ending':
+        result.sort((a, b) => (a.endAt as any) - (b.endAt as any));
+        break;
+      case 'distance': {
+        const details = this.lastMapDetails;
+        if (details?.length >= 5) {
+          const [, minLat, maxLat, minLong, maxLong] = details;
+          const centerLat = (minLat + maxLat) / 2;
+          const centerLng = (minLong + maxLong) / 2;
+          result.sort((a, b) => {
+            const distA = Math.hypot(a.lat - centerLat, a.long - centerLng);
+            const distB = Math.hypot(b.lat - centerLat, b.long - centerLng);
+            return distA - distB;
+          });
+        } else {
+          result.sort((a, b) => (a.startAt as any) - (b.startAt as any));
+        }
+        break;
+      }
+      default:
+        result.sort((a, b) => (a.startAt as any) - (b.startAt as any));
+    }
+  }
+
+  const limit = window.innerWidth >= 1400 ? 24 : 16;
+  this.events = result.slice(0, limit);
+  if (this.mapInstance) {
+    this.addMarkersToMap();
   }
 }
 

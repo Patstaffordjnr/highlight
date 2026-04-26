@@ -106,7 +106,7 @@ export class EventModalComponent implements OnInit {
         updatedAt: new Date(Number(this.event.updatedAt) * 1000),
         userId: this.event.userId
       };
-      this.address = await this.reverseGeocode(this.event.lat, this.event.long);
+      this.address = this.event.address || await this.reverseGeocode(this.event.lat, this.event.long);
     }
 
     const user = await this.currentUserService.getUser();
@@ -224,6 +224,7 @@ export class EventModalComponent implements OnInit {
 
       this.reverseGeocode(lat, lng).then(addr => {
         this.address = addr;
+        this.currentEvent.address = addr;
       });
 
       this.isSelectingLocation = false;
@@ -359,6 +360,7 @@ export class EventModalComponent implements OnInit {
         }
         this.reverseGeocode(lat, lng).then(addr => {
           this.address = addr;
+          this.currentEvent.address = addr;
         });
       });
 

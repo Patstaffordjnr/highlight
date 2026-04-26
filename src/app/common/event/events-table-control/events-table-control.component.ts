@@ -93,7 +93,7 @@ export class EventsTableControlComponent implements OnInit, OnDestroy {
   private emitFilter(): void {
     const filter: EventFilter = {
       genres: new Set(Array.from(this.genreSet).map(g => this.mapStringToEventType(g))),
-      search: '',
+      search: this.searchText,
       distance: this.selectedDistance,
       within: this.selectedWithin,
       sort: this.selectedSort,
