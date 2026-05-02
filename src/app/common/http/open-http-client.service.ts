@@ -78,11 +78,7 @@ updateEvent(event: AppEvent): Observable<AppEvent> {
 }
 
 deleteEvent(id: string): Observable<void> {
-  return this.http.delete<void>(`${API}/busker/deleteEvent`, {
-    body: id,
-    withCredentials: true,
-    headers: { 'Content-Type': 'application/json' }
-  });
+  return this.http.delete<void>(`${API}/busker/deleteEvent/${id}`, { withCredentials: true });
 }
 
 searchEvents(query: string): Observable<AppEvent[]> {

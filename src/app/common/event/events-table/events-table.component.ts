@@ -64,18 +64,14 @@ async ngOnInit() {
 }
 
 async getAddressFromCoordinates(latitude: number, longitude: number) {
-  const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyA5mnnydr-3HjuPTwkoNmVUHAYy77CVSmQ`; // Replace with your API endpoint and key
+  const geocodingUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
   await this.http.get(geocodingUrl)
    .subscribe((response: any) => {
-     if (response.results && response.results.length > 0) {
-       const address = response.results[0].formatted_address;
-       this.eventAddress.push(address);
-     } else {
-       console.error("Failed to retrieve address from coordinates.");
-     }
+     const address = response.display_name || 'Unknown';
+     this.eventAddress.push(address);
    },
-   (error) => {
-     console.error("Error during geocoding:", error);
+   () => {
+     this.eventAddress.push('Unknown');
    });
 }
 
@@ -84,19 +80,15 @@ ngAfterViewInit() {
 }
 
 async addressList(latitude: number, longitude: number) {
-  const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyA5mnnydr-3HjuPTwkoNmVUHAYy77CVSmQ`; // Replace with your API endpoint and key
+  const geocodingUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
   await this.http.get(geocodingUrl)
    .subscribe((response: any) => {
-     if (response.results && response.results.length > 0) {
-       const address = response.results[0].formatted_address;
-       this.eventsAddressIndexed.push(address);
-       this.ngAfterViewInit();
-     } else {
-       console.error("Failed to retrieve address from coordinates.");
-     }
+     const address = response.display_name || 'Unknown';
+     this.eventsAddressIndexed.push(address);
+     this.ngAfterViewInit();
    },
-   (error) => {
-     console.error("Error during geocoding:", error);
+   () => {
+     this.eventsAddressIndexed.push('Unknown');
    });
 }
 
