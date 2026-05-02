@@ -12,19 +12,12 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
 
-  // Emit full map object to parent
   @Output() mapInput = new EventEmitter<L.Map>();
-
-  // Emit map center changes
   @Output() mapCenterChanged = new EventEmitter<{ lat: number; lng: number }>();
-
-  // Emit click coordinates
   @Output() mapClicked = new EventEmitter<{ lat: number; lng: number }>();
 
-  // Default fallback location (Dublin)
-// With coordinates for Waterford City
-private defaultLat = 52.2593; // Approx. Waterford City Centre Lat
-private defaultLng = -7.1105; // Approx. Waterford City Centre Lng
+  private defaultLat = 53.3498;
+  private defaultLng = -6.2603;
   private defaultZoom = 12;
 
   constructor(private mapService: MapService) {}
@@ -57,40 +50,23 @@ private defaultLng = -7.1105; // Approx. Waterford City Centre Lng
       attribution: '© OpenStreetMap contributors'
     }).addTo(this.map);
 
-    L.marker([lat, lng]).addTo(this.map);
-
-    // Emit full map object once after initialization
+    // Emit map object once on init
     this.mapInput.emit(this.map);
-
-    // Initial mapDetails update
     this.updateMapDetails();
 
-    // Update mapDetails on move or zoom
     this.map.on('moveend', () => this.updateMapDetails());
 
-    // Listen for clicks on the map
     this.map.on('click', (event: L.LeafletMouseEvent) => {
       this.mapClicked.emit({ lat: event.latlng.lat, lng: event.latlng.lng });
-      // console.log('Map clicked at:', event.latlng);
     });
   }
 
   private updateMapDetails(): void {
     if (!this.map) return;
-
     const center = this.map.getCenter();
     const bounds = this.map.getBounds();
-
-    // Update your service if needed
     this.mapService.updateEvent(bounds, bounds.getSouth(), bounds.getNorth(), bounds.getWest(), bounds.getEast(), '');
-
-    // Emit map center to parent
     this.mapCenterChanged.emit({ lat: center.lat, lng: center.lng });
-
-    // Emit full map if you want parent to have it updated
-    this.mapInput.emit(this.map);
-
-    // console.log('Map updated:', { center, bounds });
   }
 
   ngOnDestroy(): void {

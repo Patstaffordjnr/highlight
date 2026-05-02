@@ -5,18 +5,10 @@
         *ngFor="let busker of buskers; let i = index"
         [class.selected]="busker === selectedBusker"
         (click)="onSelect(busker)">
-          <div class="busker-profile-image-container col">
-            <div class="busker-profile-image">
-              <img src="/assets/userprofile.jpg" alt="Busker" />
-            </div>
-          </div>
-          <div class="busker-user-details col">
-            <div class="busker-user-name-container">
-              <div class="busker-user-name">
-                <a>{{ busker.displayName || busker.email }}</a>
-              </div>
-            </div>
-          </div>
+        <img src="/assets/userprofile.jpg" class="busker-img" alt="Busker" />
+        <div class="busker-name-overlay">
+          {{ busker.displayName || busker.email }}
+        </div>
       </div>
     </div>
   </div>
