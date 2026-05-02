@@ -252,6 +252,11 @@ export class EventModalComponent implements OnInit {
       return;
     }
 
+    if (this.currentEvent.startAt < new Date()) {
+      this.validationError = 'Start time cannot be in the past.';
+      return;
+    }
+
     if (this.isCreateMode) {
       this.openHttpClientService.createEvent(this.currentEvent).subscribe({
         next: () => { this.eventSaved.emit(); this.onClose(); },
@@ -278,6 +283,11 @@ export class EventModalComponent implements OnInit {
     const newStart = new Date(this.currentEvent.startAt);
     newStart.setHours(selectedTime.getHours());
     newStart.setMinutes(selectedTime.getMinutes());
+    newStart.setSeconds(0);
+    const now = new Date();
+    if (newStart < now) {
+      newStart.setHours(now.getHours(), now.getMinutes(), 0);
+    }
     this.currentEvent.startAt = newStart;
     this._enforceValidRange();
   }
@@ -333,7 +343,7 @@ export class EventModalComponent implements OnInit {
     const start = this.currentEvent.startAt.getTime();
     const end = this.currentEvent.endAt.getTime();
     if (end <= start) {
-      this.currentEvent.endAt = new Date(start);
+      this.currentEvent.endAt = new Date(start + 60 * 60 * 1000);
     }
     this._skipValidation = false;
   }

@@ -118,6 +118,11 @@
 
 
 
+.past-day {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
 .calendar-start-scroll,
 .calendar-end-scroll {
   max-height: 230px;

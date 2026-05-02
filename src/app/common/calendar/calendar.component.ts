@@ -101,6 +101,12 @@ export class CalendarComponent implements OnInit, OnChanges {
     return `${year}_${month}_${day}`;
   }
 
+  isPastDay(year: number, month: number, day: number): boolean {
+    const d = new Date(year, month, day, 0, 0, 0);
+    const today = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate(), 0, 0, 0);
+    return d.getTime() < today.getTime();
+  }
+
   isKeyDate(year: number, month: number, day: number): boolean {
     if (!this.selectedDayOnCalendar) return false;
     return (

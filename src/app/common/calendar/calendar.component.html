@@ -17,7 +17,8 @@
   <a class="day" *ngFor="let day of [].constructor(calendarMonthDaysArr[monthIndex]) let dayIndex = index"
   [ngClass]="{
     'selected': isSelected(calendarPage.getFullYear(), calendarPage.getMonth(), dayIndex + 1),
-    'key-date': isKeyDate(calendarPage.getFullYear(), calendarPage.getMonth(), dayIndex + 1)
+    'key-date': isKeyDate(calendarPage.getFullYear(), calendarPage.getMonth(), dayIndex + 1),
+    'past-day': isPastDay(calendarPage.getFullYear(), calendarPage.getMonth(), dayIndex + 1)
   }"
   (click)="daySelect(calendarPage.getFullYear(), calendarPage.getMonth(), dayIndex + 1)">
   {{ dayIndex + 1 }}
