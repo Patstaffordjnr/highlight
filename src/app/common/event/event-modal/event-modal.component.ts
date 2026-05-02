@@ -75,9 +75,6 @@ export class EventModalComponent implements OnInit {
 
   async ngOnInit() {
     this.isCreateMode = !this.event;
-    console.log('Modal opened, event:', this.event);
-    console.log('userId:', this.event?.userId);
-
     if (this.isCreateMode) {
       const now = new Date();
       const oneHourLater = new Date(now.getTime() + 60 * 60 * 1000);
@@ -159,14 +156,11 @@ export class EventModalComponent implements OnInit {
 
   private async fetchUserName(userId: string): Promise<void> {
     try {
-      console.log('Fetching username for userId:', userId);
       const response = await fetch(
         `${environment.apiUrl}/user/${userId}`,
         { credentials: 'include' }
       );
-      console.log('Response status:', response.status);
       const user = await response.json();
-      console.log('User data:', user);
       this.userName = String(user.email) || 'Unknown';
     } catch (error) {
       console.error('Failed to fetch username:', error);
@@ -203,7 +197,6 @@ export class EventModalComponent implements OnInit {
 
   onEditClick() {
     this.isEditing = true;
-    if (this.event) console.log(this.event.startAt);
   }
 
   toggleStartDateControls() {}
@@ -360,7 +353,6 @@ export class EventModalComponent implements OnInit {
             this.mapInstance.setView([latitude, longitude], 13);
           },
           (error) => {
-            console.warn('Geolocation failed, defaulting to Dublin:', error);
             this.mapInstance.setView([53.3498, -6.2603], 13);
           }
         );

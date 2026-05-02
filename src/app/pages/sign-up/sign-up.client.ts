@@ -16,9 +16,8 @@ export class SignUpClient {
   }
 
   
-  async whoAmI(){    
-    let response = await this.http.get<any>(`${environment.apiUrl}/user/whoAmI`, { withCredentials: true }).toPromise();
-    console.log(response)
+  async whoAmI(){
+    return await this.http.get<any>(`${environment.apiUrl}/user/whoAmI`, { withCredentials: true }).toPromise();
   }
 
   async signIn(signUpRequest: SignUpRequest): Promise<boolean> {

@@ -22,15 +22,11 @@ export class AuthService {
   login(user: User) {
     this.currentUserService.setUser(user);
     this.loggedIn.next(true);
-
-    console.log('✅ Logged In:', user);
   }
 
   logout() {
     this.currentUserService.clearUser();
     this.loggedIn.next(false);
-
-    console.log('🚪 Logged Out');
   }
 
   getUser(): User | null {

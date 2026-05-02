@@ -81,7 +81,6 @@ export class CalendarComponent implements OnInit, OnChanges {
     let cDX = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate(), 0, 0, 0);
 
     if (sFCX.getTime() < cDX.getTime()) {
-      console.log(`Before Today's date.`);
       return;
     }
     this.selectedDayOnCalendar = selectedFromCalendar;

@@ -123,15 +123,8 @@ onUserSearchChange(): void {
   // User select
   userSelect(user: User) {
     this.selectedUser.emit(user);
-    console.log('Selected User:', user);
   }
 
   private emitUserFilter(): void {
-    console.log({
-      search: this.userSearchText,
-      distance: this.userSelectedDistance,
-      within: this.userSelectedWithin,
-      sort: this.userSelectedSort
-    });
   }
 }

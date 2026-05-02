@@ -34,15 +34,6 @@ export class EventsClient {
       params = params.append('eventTypes', type);
     });
 
-    console.log('Bounds at request time:', {
-  minLat: this.minLat,
-  maxLat: this.maxLat,
-  minLong: this.minLong,
-  maxLong: this.maxLong
-});
-
-    console.log('Request URL:', `${environment.apiUrl}/open/getEvents?` + params.toString());
-
     return await this.http.get(`${environment.apiUrl}/open/getEvents`, {
       params,
       withCredentials: true,

@@ -100,7 +100,6 @@ export class EventsTableControlComponent implements OnInit, OnDestroy {
       date: this.globalDate,
       location: this.homeAddress
     };
-    console.log(filter);
     this.filterChange.emit(filter);
   }
 

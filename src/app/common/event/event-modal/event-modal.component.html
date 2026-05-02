@@ -51,6 +51,15 @@
               [(ngModel)]="currentEvent.title"
               placeholder="Event title">
           </div>
+          <div class="event-type-container">
+            <div *ngIf="!isEditing" class="event-type-label">{{ currentEvent.eventType | titlecase }}</div>
+            <select *ngIf="isEditing" class="event-type-select" [(ngModel)]="currentEvent.eventType">
+              <option value="BUSKER">Busker</option>
+              <option value="BAND">Band</option>
+              <option value="DJ">DJ</option>
+              <option value="PERFORMANCE">Performance</option>
+            </select>
+          </div>
         </div>
 
         <!-- ADDRESS -->

@@ -43,7 +43,6 @@ export class BuskersComponent implements OnInit {
   loadBuskers(page: number, size: number): void {
     this.openHttpClientService.getBuskers(page, size).subscribe({
       next: (response: { total: number, results: Busker[] }) => {
-        console.log('Buskers response:', response);
         this.total = response.total;
         this.allBuskers = response.results;
         this.buskers = [...this.allBuskers];
@@ -57,14 +56,12 @@ export class BuskersComponent implements OnInit {
   // Method for selecting a busker and showing the modal (if implemented)
   onSelect(busker: Busker): void {
       this.busker = busker;
-      console.log('Received Busker: Buskers;', busker);
       this.showModal = true;
   }
 
 
 onGenreChange(updatedGenres: Set<string>) {
   this.eventTypes = new Set(['Band', 'Busker', 'Dj', 'Performance']);
-  console.log(this.eventTypes);
 }
 
 onFilterChange(filter: EventFilter): void {

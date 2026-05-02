@@ -164,7 +164,6 @@ onEventWithinChange(event: Event): void {
   async ngOnInit() {
     const user = await this.currentUserService.getUser();
     if (!user) {
-      console.warn('No current user found!');
       return;
     }
 
@@ -177,7 +176,6 @@ onEventWithinChange(event: Event): void {
   }
 
   eventSelect(event: AppEvent) {
-    console.log(event);
     this.selectedEvent.emit(event);
 
   }
@@ -194,11 +192,5 @@ onEventWithinChange(event: Event): void {
   // }
 
 private emitEventFilter(): void {
-  console.log({
-    search: this.eventSearchText,
-    distance: this.eventSelectedDistance,
-    within: this.eventSelectedWithin,
-    sort: this.eventSelectedSort
-  });
 }
 }

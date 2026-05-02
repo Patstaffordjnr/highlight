@@ -41,12 +41,10 @@ export class PermissionsService {
     if (!user) return false;
 
     if (url === "/home" && [UserRole.ADMIN, UserRole.BUSKER, UserRole.USER].some(r => user.roles.includes(r))) {
-      console.log(user);
       return true;
     }
 
     if (url === "/admin/home" && user.roles.includes(UserRole.ADMIN)) {
-      console.log(user);
       return true;
     }
 

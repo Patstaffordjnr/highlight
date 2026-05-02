@@ -141,7 +141,6 @@ async pageSelect(selectedPage: number){
 }
 
 async eventDisplay(eventSubject: Event[]) {
-  console.log(eventSubject);
 return await this.eventService.updateEvent(eventSubject)
 }
 

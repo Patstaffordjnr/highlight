@@ -64,7 +64,6 @@ export class BuskersTableControlComponent implements OnInit, OnDestroy{
    this.globalDateService.globalDate$.subscribe((globalDate) => {
      if(globalDate) {
          this.globalDate = globalDate;
-            console.log(globalDate);
      }
    });
 
@@ -116,8 +115,6 @@ export class BuskersTableControlComponent implements OnInit, OnDestroy{
     date: this.globalDate,
     location: this.homeAddress
   };
-
-  console.log(filter);
   this.filterChange.emit(filter);
 }
  

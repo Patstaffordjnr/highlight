@@ -16,9 +16,8 @@ export class LoginClient {
   }
 
   
-  async whoAmI(){    
-    let response = await this.http.get<any>(`${environment.apiUrl}/user/whoAmI`, { withCredentials: true }).toPromise();
-    console.log(response)
+  async whoAmI(){
+    return await this.http.get<any>(`${environment.apiUrl}/user/whoAmI`, { withCredentials: true }).toPromise();
   }
 
   async logIn(loginRequest: LoginRequest): Promise<User>{    
@@ -30,10 +29,8 @@ export class LoginClient {
       return await this.http.post<User>(url, JSON.stringify(loginRequest), { withCredentials: true, headers: headers}).toPromise();
   }
 
-  async getForbidden(){    
-    let response = await this.http.get<any>(`${environment.apiUrl}/open/getForbidden`, { withCredentials: true }).toPromise();
-    console.log(response)
-    
+  async getForbidden(){
+    return await this.http.get<any>(`${environment.apiUrl}/open/getForbidden`, { withCredentials: true }).toPromise();
   }
 
 

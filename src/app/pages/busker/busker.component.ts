@@ -82,8 +82,6 @@ export class BuskerComponent implements OnInit { // Implement OnInit
   onMapReady(map: L.Map) {
     this.mapInstance = map;
     const center = this.mapInstance.getCenter();
-    console.log('Center:', center.lat, center.lng);
-  
     // Add markers if events are already loaded
     if (this.events.length > 0) {
       this.addMarkersToMap();
@@ -111,11 +109,9 @@ export class BuskerComponent implements OnInit { // Implement OnInit
   }
   
   onMapMoved(event: { lat: number; lng: number }) {
-    console.log('Home Map moved to:', event);
   }
   
   onMapClicked(event: { lat: number; lng: number }) {
-    console.log('Home Clicked:', event);
   }
   
   private addMarkersToMap() {
@@ -136,7 +132,6 @@ export class BuskerComponent implements OnInit { // Implement OnInit
   }
   
   onSelect(event: AppEvent) {
-    console.log('Received Event: Home;', event);
     this.event = event;
     this.showModal = true;
   }
@@ -144,7 +139,6 @@ export class BuskerComponent implements OnInit { // Implement OnInit
   loadBuskers(page: number, size: number): void {
     this.openHttpClientService.getBuskers(page, size).subscribe({
       next: (response: { total: number, results: Busker[] }) => {
-        console.log('Buskers response:', response);
         this.total = response.total;
         this.buskers = response.results;
       },

@@ -117,16 +117,9 @@ onBuskerWithinChange(event: Event): void {
 
  buskerSelect(busker: Busker) {
   this.selectedBusker.emit(busker);
-  console.log(busker);
   }
 
 private emitBuskerFilter(): void {
-  console.log({
-    search: this.buskerSearchText,
-    distance: this.buskerSelectedDistance,
-    within: this.buskerSelectedWithin,
-    sort: this.buskerSelectedSort
-  });
 }
 
 }

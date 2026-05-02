@@ -99,7 +99,6 @@ this.mapService.mapCurrentLocationDetails$.subscribe((mapDetails) => {
 
 onGenreChange(updatedGenres: Set<string>) {
   this.eventTypes = new Set(['Band', 'Busker', 'Dj', 'Performance']);
-  console.log(this.eventTypes);
 }
 
 onFilterChange(filter: EventFilter): void {

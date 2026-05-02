@@ -192,10 +192,30 @@ display: flex;
   
   .event-type-container {
   background-color: none;
+  margin-top: 6px;
   }
-  
+
   .event-type {
   background-color: none;
+  }
+
+  .event-type-label {
+    font-size: 0.85rem;
+    color: #888;
+    text-transform: capitalize;
+  }
+
+  .event-type-select {
+    padding: 4px 8px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .event-type-select:focus {
+    border-color: #4da6e8;
   }
   
   .event-title-container {

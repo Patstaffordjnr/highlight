@@ -197,7 +197,6 @@ onMapClicked(event: { lat: number; lng: number }) {
 
 
 toggleDateControls() {
-  console.log(`Ola`);
     this.globalDateService.toggle();
 }
 
@@ -243,7 +242,6 @@ onDateSelected(selectedDate: Date): void {
 
   if (this.globalDate.getTime() !== updatedGlobalDate.getTime()) {
     this.globalDateService.upDate(updatedGlobalDate);
-    console.log(`Home Calendar Select Date: ${updatedGlobalDate}`);
   }
 }
 

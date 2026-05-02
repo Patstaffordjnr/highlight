@@ -23,6 +23,5 @@ export class BuskersTableComponent {
 
       onSelect(busker: Busker) {
         this.selectedBusker.emit(busker);
-        console.log(busker);
       }
 }

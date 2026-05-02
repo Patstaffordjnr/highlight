@@ -41,7 +41,6 @@ export class UserProfileComponent implements OnInit {
     private openHttpClientService: OpenHttpClientService
   ) {
 
-    console.log(this.currentUser)
   }
 
   async ngOnInit() {
