@@ -7,16 +7,17 @@
         (click)="onSelect(busker)">
           <div class="busker-profile-image-container col">
             <div class="busker-profile-image">
-              <img src="" alt="Busker" />
+              <img src="/assets/userprofile.jpg" alt="Busker" />
             </div>
           </div>
           <div class="busker-user-details col">
             <div class="busker-user-name-container">
               <div class="busker-user-name">
-                <a>{{ busker.name || busker.email }}</a>
+                <a>{{ busker.displayName || busker.email }}</a>
               </div>
             </div>
           </div>
       </div>
     </div>
+  </div>
 </div>

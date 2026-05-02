@@ -50,7 +50,6 @@ import { AboutComponent } from './pages/about/about.component';
     BuskerComponent,
     AdminComponent,
     VerifyComponent,
-    AboutComponent,
 
 
     // Components
@@ -89,6 +88,7 @@ import { AboutComponent } from './pages/about/about.component';
                BuskerListComponent,
          EventListComponent,
                   UsersListComponent,
+                  AboutComponent,
                   
 
         
