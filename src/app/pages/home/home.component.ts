@@ -257,20 +257,37 @@ private applyFilter(): void {
   let result = [...this.allEvents];
 
   if (this.activeFilter) {
-    const cutoff = now + this.activeFilter.within * 3600;
-    result = result.filter(e => (e.endAt as any) >= now && (e.startAt as any) <= cutoff);
+    const searching = !!this.activeFilter.search?.trim();
+
+    if (!searching) {
+      const cutoff = now + this.activeFilter.within * 3600;
+      result = result.filter(e => (e.endAt as any) >= now && (e.startAt as any) <= cutoff);
+    }
 
     const genres = this.activeFilter.genres;
     if (!genres.has(EventType.ALL)) {
       result = result.filter(e => genres.has(e.eventType as EventType));
     }
 
-    if (this.activeFilter.search?.trim()) {
+    if (searching) {
       const term = this.activeFilter.search.trim().toLowerCase();
       result = result.filter(e =>
         e.title?.toLowerCase().includes(term) ||
-        e.address?.toLowerCase().includes(term)
+        e.address?.toLowerCase().includes(term) ||
+        e.userName?.toLowerCase().includes(term)
       );
+
+      if (result.length === 0) {
+        this.openHttpClientService.searchEvents(this.activeFilter.search.trim()).subscribe({
+          next: (events: AppEvent[]) => {
+            this.allEvents = [...this.allEvents, ...events.filter(e => !this.allEvents.some(a => a.id === e.id))];
+            this.events = events;
+            if (this.mapInstance) this.addMarkersToMap();
+          },
+          error: (error) => console.error('Global search error:', error)
+        });
+        return;
+      }
     }
 
     switch (this.activeFilter.sort) {

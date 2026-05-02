@@ -1,16 +1,11 @@
 import { User } from '../../model/user';
-import { AuthService } from '../../util/auth.service';
 import { CurrentUserService } from '../../util/can-activate.service'
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { OpenHttpClientService } from '../../common/http/open-http-client.service';
 import { EventType } from '../../model/event-types';
-import { UserProfileComponent } from '../../common/user-profile/user-profile.component';
 import { Event as AppEvent } from '../../model/event';
 import { Busker } from '../../model/busker';
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import * as L from 'leaflet';
-import { EventModalComponent } from '../../common/event/event-modal/event-modal.component';
 import { markerIcons } from './../../common/map/map-icons';
 import { UserRole } from '../../model/user-roles';
 
@@ -24,12 +19,7 @@ export class UserComponent implements OnInit {
   showBuskerModal = false;
   showModal = false;
 
-  users: User[] = [];
-  allUsers: User[] = [];
-  totalUsers: number = 0;
   busker: User | null = null;
-
-  eventTypes: Set<string> = new Set(["Band", "Busker", "Dj", "Performance"]);
   buskers: Busker[] = [];
   total: number = 0;
 
@@ -41,12 +31,13 @@ export class UserComponent implements OnInit {
   };
 
   events: AppEvent[] = [];
+  private ownedEvents: AppEvent[] = [];
+  private followedEvents: AppEvent[] = [];
+
   event: AppEvent;
   mapInstance!: L.Map;
-  mapDetails: any;
   markersLayer = L.layerGroup();
   homeAddress: string = '';
-  filteredEvents: AppEvent[] = [];
 
   constructor(
     private currentUserService: CurrentUserService,
@@ -55,11 +46,11 @@ export class UserComponent implements OnInit {
 
   async ngOnInit() {
     this.loadBuskers(0, 10);
-    this.loadUserEvents();
+    this.loadOwnedEvents();
+    this.loadFollowedEvents();
 
     const user = await this.currentUserService.getUser();
     if (user) {
-      console.log(user);
       this.currentUser.id = user.id;
       this.currentUser.email = user.email;
       this.currentUser.roles = user.roles;
@@ -77,37 +68,43 @@ export class UserComponent implements OnInit {
     }
   }
 
-  loadUserEvents() {
+  loadOwnedEvents() {
     this.openHttpClientService.getUserEvents(
-      0,
-      50,
+      0, 50,
       [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
     ).subscribe({
       next: (response: any) => {
-        this.events = response.results || response;
-        console.log('User events:', this.events);
-        if (this.mapInstance) {
-          this.addMarkersToMap();
-        }
+        this.ownedEvents = response.results || response;
+        this.mergeEvents();
       },
-      error: (error) => {
-        console.error('Error fetching user events:', error);
-      }
+      error: (error) => console.error('Error fetching user events:', error)
     });
+  }
+
+  loadFollowedEvents() {
+    this.openHttpClientService.getFollowedEvents().subscribe({
+      next: (events: AppEvent[]) => {
+        this.followedEvents = events;
+        this.mergeEvents();
+      },
+      error: (error) => console.error('Error fetching followed events:', error)
+    });
+  }
+
+  private mergeEvents() {
+    const followed = this.followedEvents.filter(f => !this.ownedEvents.some(o => o.id === f.id));
+    this.events = [...this.ownedEvents, ...followed];
+    if (this.mapInstance) this.addMarkersToMap();
   }
 
   onEventSaved() {
     this.showEventModal = false;
-    this.loadUserEvents();
-    if (this.mapInstance) {
-      this.addMarkersToMap();
-    }
+    this.loadOwnedEvents();
   }
 
   onMapReady(map: L.Map) {
     this.mapInstance = map;
     const center = this.mapInstance.getCenter();
-    console.log('Center:', center.lat, center.lng);
 
     if (this.events.length > 0) {
       this.addMarkersToMap();
@@ -133,13 +130,8 @@ export class UserComponent implements OnInit {
       .catch(error => console.error('Reverse geocoding error:', error));
   }
 
-  onMapMoved(event: { lat: number; lng: number }) {
-    console.log('Home Map moved to:', event);
-  }
-
-  onMapClicked(event: { lat: number; lng: number }) {
-    console.log('Home Clicked:', event);
-  }
+  onMapMoved(event: { lat: number; lng: number }) {}
+  onMapClicked(event: { lat: number; lng: number }) {}
 
   private addMarkersToMap() {
     this.markersLayer.clearLayers();
@@ -164,16 +156,18 @@ export class UserComponent implements OnInit {
     this.showModal = true;
   }
 
+  onEventModalClose() {
+    this.showEventModal = false;
+    this.loadFollowedEvents();
+  }
+
   loadBuskers(page: number, size: number): void {
     this.openHttpClientService.getBuskers(page, size).subscribe({
       next: (response: { total: number, results: Busker[] }) => {
-        console.log('Buskers response:', response);
         this.total = response.total;
         this.buskers = response.results;
       },
-      error: (err) => {
-        console.error('Error loading buskers:', err);
-      }
+      error: (err) => console.error('Error loading buskers:', err)
     });
   }
 }

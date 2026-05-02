@@ -140,15 +140,19 @@ export class EventModalComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
-    if (this.isFollowing) {
-      this.openHttpClientService.unfollowEvent(this.event.id).subscribe({
-        next: () => this.isFollowing = false
-      });
-    } else {
-      this.openHttpClientService.followEvent(this.event.id).subscribe({
-        next: () => this.isFollowing = true
-      });
-    }
+    const wasFollowing = this.isFollowing;
+    this.isFollowing = !wasFollowing;
+
+    const request$ = wasFollowing
+      ? this.openHttpClientService.unfollowEvent(this.event.id)
+      : this.openHttpClientService.followEvent(this.event.id);
+
+    request$.subscribe({
+      error: (err) => {
+        console.error('Follow/unfollow failed:', err);
+        this.isFollowing = wasFollowing;
+      }
+    });
   }
 
   private async fetchUserName(userId: string): Promise<void> {

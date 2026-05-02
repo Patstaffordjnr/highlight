@@ -87,6 +87,15 @@ updateEvent(event: AppEvent): Observable<AppEvent> {
   return this.http.put<AppEvent>(url, event, { withCredentials: true });
 }
 
+searchEvents(query: string): Observable<AppEvent[]> {
+  const params = new HttpParams().set('query', query);
+  return this.http.get<AppEvent[]>(`${URL}/searchEvents`, { params });
+}
+
+getFollowedEvents(): Observable<AppEvent[]> {
+  return this.http.get<AppEvent[]>('http://localhost:8085/user/follow/events', { withCredentials: true });
+}
+
 followEvent(eventId: string): Observable<void> {
   return this.http.post<void>(`http://localhost:8085/user/follow/event/${eventId}`, {}, { withCredentials: true });
 }

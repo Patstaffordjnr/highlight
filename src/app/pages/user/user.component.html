@@ -22,7 +22,7 @@
 </div>
 </div>
 </div>
-<app-event-modal  *ngIf="showEventModal" class = "modal" [isOpen]="showEventModal" (close)="showEventModal = false " [event]="event">
+<app-event-modal *ngIf="showEventModal" class="modal" [isOpen]="showEventModal" (close)="onEventModalClose()" (eventSaved)="onEventSaved()" [event]="event">
 </app-event-modal>
 <app-busker-modal *ngIf = "showModal" class = "modal" [isOpen]="showBuskerModal" (close)="showBuskerModal = false " [busker]="busker">
 </app-busker-modal>

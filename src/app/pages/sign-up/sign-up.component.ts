@@ -28,15 +28,15 @@ export class SignUpComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private signUpClient: SignUpClient, private routerService: RouterService) {
     this.form = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      email: ['123@123.ie', [Validators.required, Validators.email]],
+      password: ['qwertyu!}', [Validators.required, Validators.minLength(8)]],
       userRoles: new FormArray([], minSelectedCheckboxes(1))
     });
     this.addCheckboxes();
   }
 
   private addCheckboxes() {
-    this.visibleRoles.forEach(() => this.userRolesFormArray.push(new FormControl(false)));
+    this.visibleRoles.forEach((_, i) => this.userRolesFormArray.push(new FormControl(i === 0)));
   }
 
   get userRolesFormArray() {
