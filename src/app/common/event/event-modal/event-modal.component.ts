@@ -8,6 +8,7 @@ import { User } from 'src/app/model/user';
 import { UserRole } from 'src/app/model/user-roles';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-event-modal',
@@ -36,6 +37,7 @@ export class EventModalComponent implements OnInit {
   isEditing = false;
   isFollowing = false;
   isLoggedIn = false;
+  validationError = '';
 
   mapInstance!: L.Map;
 
@@ -159,7 +161,7 @@ export class EventModalComponent implements OnInit {
     try {
       console.log('Fetching username for userId:', userId);
       const response = await fetch(
-        `http://localhost:8085/user/${userId}`,
+        `${environment.apiUrl}/user/${userId}`,
         { credentials: 'include' }
       );
       console.log('Response status:', response.status);
@@ -240,29 +242,35 @@ export class EventModalComponent implements OnInit {
   }
 
   onSave() {
+    this.validationError = '';
+    if (!this.currentEvent.title?.trim()) {
+      this.validationError = 'Please enter a title.';
+      return;
+    }
+    if (this.currentEvent.lat === 0 && this.currentEvent.long === 0) {
+      this.validationError = 'Please set a location on the map.';
+      return;
+    }
+
     if (this.isCreateMode) {
       this.openHttpClientService.createEvent(this.currentEvent).subscribe({
-        next: (createdEvent) => {
-          console.log('Event created:', createdEvent);
-          this.eventSaved.emit();
-          this.onClose();
-        },
-        error: (err) => {
-          console.error('Error creating event:', err);
-        }
+        next: () => { this.eventSaved.emit(); this.onClose(); },
+        error: (err) => { this.validationError = err?.error || 'Failed to create event.'; }
       });
     } else {
       this.openHttpClientService.updateEvent(this.currentEvent).subscribe({
-        next: (updatedEvent) => {
-          console.log('Event updated:', updatedEvent);
-          this.eventSaved.emit();
-          this.onClose();
-        },
-        error: (err) => {
-          console.error('Error updating event:', err);
-        }
+        next: () => { this.eventSaved.emit(); this.onClose(); },
+        error: (err) => { this.validationError = err?.error || 'Failed to save changes.'; }
       });
     }
+  }
+
+  onDeleteClick() {
+    if (!this.event?.id) return;
+    this.openHttpClientService.deleteEvent(this.event.id).subscribe({
+      next: () => { this.eventSaved.emit(); this.onClose(); },
+      error: (err) => { this.validationError = err?.error || 'Failed to delete event.'; }
+    });
   }
 
   onStartTimeSelected(selectedTime: Date): void {

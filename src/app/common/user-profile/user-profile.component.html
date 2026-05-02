@@ -1,114 +1,71 @@
-<div class = "user">
-<div class = "item-1">
-  <div class = "profile-image-container">
-    <img src="/assets/userprofile.jpg" class = "user-profile-img" alt="image" >
-        <!-- <img src="" class = "user-profile-img" alt="image" > -->
-
-  </div>
-</div>
-<div class = "item item-2">
-<!-- <a>{{currentUser.id}}</a> -->
- <a>PatStaffordJnr</a>
-</div>
-<div class = "item item-3">
-  <a>{{userRoles}}</a>
-  </div>
-<div class = "item item-4">
-  <a>Address</a>
-  </div>
-<div class = "item item-5">
-  <a> Whats goin on in the kitchen?</a>
-</div>
-</div>
-
-
-
-<!-- <div class = "user-profile">
-  <div class = "item-1">
-
-      <img src="/assets/userprofile.jpg" class = "user-profile-img" alt="image" >
-  </div>
-  <div class = "item-2">
-    <a>2</a>
-  </div>
-  <div class = "item-3">
-    <a>3</a>
-  </div>
-  <div class = "item-4">
-    <a>4</a>
-  </div>
-  <div class = "item-5">
-    <a>5</a>
-  </div>
-</div> -->
-
-
-
-
-
-
-
-
-
-
-<!-- 
-
-<div class="user-page-container">
-<div class="user-div-container">
-  <div class="user-div">
-    <div class="flex-grid">
-      <div class="user-profile-image-container col">
-        <div class="user-profile-image"></div>
-      </div>
-      <div class="user-details-container col">
-        <div class="user-id-container">
-          <div class="user-id">
-            <a class="user-id-text">
-              {{currentUser.id}}
-            </a>
-            <br>
-            <br>
-            <a class="user-email-text">{{currentUser.email}}</a>
-          </div>
-        </div>
-      </div>
-      <div class="user-roles-container col">
-        <div class="user-role">
-          <a class="user-roles">{{userRoles}}</a>
-          <br>
-          <a class="user-address">address</a>
-        </div>
-      </div>
+<div class="user">
+  <div class="item-1">
+    <div class="profile-image-container">
+      <img src="/assets/userprofile.jpg" class="user-profile-img" alt="image">
     </div>
-    <div class="border flex-grid">
+  </div>
+
+  <!-- View mode -->
+  <ng-container *ngIf="!editMode">
+    <div class="item item-2">
+      <a>{{ displayLabel }}</a>
     </div>
-      <div class="user-controls flex-grid">
-        <div class="user-controls-a">
-          <div class="user-controls-a-button">
-        <div class="user-controls-text-a" (click) = "a()"></div>
-        </div>
-        </div>
-        <br>
-        <div class="user-controls-b">
-          <div class="user-controls-b-button">
-        <div class="user-controls-text-b" (click) = "b()"></div>
-          </div>
-      </div>
-      </div>
-      <br>
-      <div class="border flex-grid">
-      </div>
-        <div class="user-controls flex-grid">
-          <div class="user-controls-a">
-            <div class="user-controls-a-button">
-          <div class="user-controls-text-a" (click) = "a()">Followed Gigs</div>
-          </div>
-          </div>
-          <br>
-          <div class="user-controls-b">
-            <div class="user-controls-b-button">
-          <div class="user-controls-text-b" (click) = "b()">Personal Gigs</div>
-            </div>
-        </div>
-        </div>
-   -->
+    <div class="item item-3">
+      <a>{{ userRoles }}</a>
+    </div>
+    <div class="item item-4">
+      <a>{{ currentUser.email }}</a>
+    </div>
+    <div class="item item-5">
+      <a>{{ currentUser.bio || 'No bio yet.' }}</a>
+    </div>
+    <div class="item item-6">
+      <button (click)="enterEditMode()">Edit Profile</button>
+      <button (click)="togglePasswordMode()">{{ passwordMode ? 'Cancel' : 'Change Password' }}</button>
+    </div>
+    <div *ngIf="profileSaveSuccess" class="item item-5 success-msg">
+      Profile saved successfully.
+    </div>
+    <div *ngIf="passwordSaveSuccess" class="item item-5 success-msg">
+      Password updated successfully.
+    </div>
+  </ng-container>
+
+  <!-- Edit profile mode -->
+  <ng-container *ngIf="editMode">
+    <div class="item item-5 edit-section">
+      <label>Display Name</label>
+      <input type="text" [(ngModel)]="editDisplayName" placeholder="Display name" />
+    </div>
+    <div class="item item-5 edit-section">
+      <label>Bio</label>
+      <textarea [(ngModel)]="editBio" placeholder="Tell people about yourself" rows="3"></textarea>
+    </div>
+    <div *ngIf="profileSaveError" class="item item-5 error-msg">{{ profileSaveError }}</div>
+    <div class="item item-5">
+      <button (click)="saveProfile()">Save</button>
+      <button (click)="cancelEditMode()">Cancel</button>
+    </div>
+  </ng-container>
+
+  <!-- Change password section -->
+  <ng-container *ngIf="passwordMode && !editMode">
+    <div class="item item-5 edit-section">
+      <label>Current Password</label>
+      <input type="password" [(ngModel)]="currentPassword" placeholder="Current password" />
+    </div>
+    <div class="item item-5 edit-section">
+      <label>New Password</label>
+      <input type="password" [(ngModel)]="newPassword" placeholder="New password" />
+    </div>
+    <div class="item item-5 edit-section">
+      <label>Confirm New Password</label>
+      <input type="password" [(ngModel)]="confirmNewPassword" placeholder="Confirm new password" />
+    </div>
+    <div *ngIf="passwordSaveError" class="item item-5 error-msg">{{ passwordSaveError }}</div>
+    <div class="item item-5">
+      <button (click)="savePassword()">Save Password</button>
+      <button (click)="togglePasswordMode()">Cancel</button>
+    </div>
+  </ng-container>
+</div>

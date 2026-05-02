@@ -1,13 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { User } from '../../model/user';
+import { UserRole } from '../../model/user-roles';
 import { CurrentUserService } from '../../util/can-activate.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { OpenHttpClientService } from '../../common/http/open-http-client.service';
 import { EventType } from '../../model/event-types';
 import { Event as AppEvent } from '../../model/event';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { EventFilter } from '../../model/event-list-filter';
 
 @Component({
   selector: 'app-admin',
@@ -15,154 +12,189 @@ import { EventFilter } from '../../model/event-list-filter';
   styleUrl: './admin.component.css'
 })
 export class AdminComponent {
-  showEventModal = false;
-  showBuskerModal = false;
+
+  activeTab: 'users' | 'events' = 'users';
 
   // Users
   users: User[] = [];
-  allUsers: User[] = [];
+  filteredUsers: User[] = [];
   totalUsers: number = 0;
-  user: User | null = null;
+  userSearchText: string = '';
+  userPage: number = 0;
+  userPageSize: number = 20;
 
   // Events
   events: AppEvent[] = [];
-  allEvents: AppEvent[] = [];
-
-  userRoles = [];
-  currentUser: User = {
-    id: "string",
-    email: "string",
-    roles: [],
-  };
-
-  form: FormGroup;
-  event: AppEvent;
-
-  // Pagination settings
-  pageSize = 5;
-
-  @Output() filterChange = new EventEmitter<EventFilter>();
-
-  // Event controls
+  filteredEvents: AppEvent[] = [];
   eventSearchText: string = '';
-  eventSelectedSort: string = 'starting';
-  eventSelectedDistance: number = 5;
-  eventSelectedWithin: number = 1;
+  eventPage: number = 0;
+  eventPageSize: number = 20;
 
-  // Event pagination
-  currentEventPage = 0;
-  get paginatedEvents(): AppEvent[] {
-    const start = this.currentEventPage * this.pageSize;
-    return this.events.slice(start, start + this.pageSize);
-  }
-  get totalEventPages(): number {
-    return Math.ceil(this.events.length / this.pageSize);
-  }
-  nextEventPage(): void {
-    if ((this.currentEventPage + 1) * this.pageSize < this.events.length) {
-      this.currentEventPage++;
-    }
-  }
-  prevEventPage(): void {
-    if (this.currentEventPage > 0) {
-      this.currentEventPage--;
-    }
-  }
+  // Current user
+  currentUser: User | null = null;
 
-  // Event search
-  onEventSearchChange(): void {
-    const value = this.eventSearchText.toLowerCase();
-    this.events = this.allEvents.filter(ev =>
-      ev.title.toLowerCase().includes(value) || ev.eventType.toLowerCase().includes(value)
-    );
-    this.currentEventPage = 0;
-  }
-
-  // Event sort
-  onEventSortChange(event: Event): void {
-    const value = (event.target as HTMLSelectElement).value;
-    this.eventSelectedSort = value;
-    // Implement sorting if needed
-  }
-
-  // Event distance / within
-  onEventDistanceChange(event: Event): void {
-    this.eventSelectedDistance = Number((event.target as HTMLSelectElement).value);
-    this.emitEventFilter();
-  }
-  onEventWithinChange(event: Event): void {
-    this.eventSelectedWithin = Number((event.target as HTMLSelectElement).value);
-    this.emitEventFilter();
-  }
+  // Role update state
+  roleUpdateUserId: string | null = null;
 
   constructor(
-    private formBuilder: FormBuilder,
     private currentUserService: CurrentUserService,
     private openHttpClientService: OpenHttpClientService,
-  ) {
-    // Load events
+  ) {}
+
+  async ngOnInit() {
+    this.currentUser = await this.currentUserService.getUser();
+    this.loadUsers(0);
+    this.loadEvents();
+  }
+
+  // ---- Tab ----
+
+  setTab(tab: 'users' | 'events') {
+    this.activeTab = tab;
+  }
+
+  // ---- Users ----
+
+  loadUsers(page: number): void {
+    this.userPage = page;
+    this.openHttpClientService.getUsers(page, this.userPageSize).subscribe({
+      next: (response: { total: number, results: User[] }) => {
+        this.totalUsers = response.total;
+        this.users = response.results;
+        this.applyUserSearch();
+      },
+      error: (err) => console.error('Failed to load users', err)
+    });
+  }
+
+  onUserSearchChange(): void {
+    this.applyUserSearch();
+  }
+
+  private applyUserSearch(): void {
+    const q = this.userSearchText.toLowerCase().trim();
+    this.filteredUsers = q
+      ? this.users.filter(u => u.email.toLowerCase().includes(q))
+      : [...this.users];
+  }
+
+  get totalUserPages(): number {
+    return Math.max(1, Math.ceil(this.totalUsers / this.userPageSize));
+  }
+
+  prevUserPage(): void {
+    if (this.userPage > 0) this.loadUsers(this.userPage - 1);
+  }
+
+  nextUserPage(): void {
+    if ((this.userPage + 1) < this.totalUserPages) this.loadUsers(this.userPage + 1);
+  }
+
+  hasRole(user: User, role: UserRole): boolean {
+    return user.roles?.includes(role) ?? false;
+  }
+
+  makeBusker(user: User): void {
+    const newRoles = [...(user.roles || [])];
+    if (!newRoles.includes(UserRole.BUSKER)) newRoles.push(UserRole.BUSKER);
+    this.updateRoles(user, newRoles);
+  }
+
+  removeBusker(user: User): void {
+    const newRoles = (user.roles || []).filter(r => r !== UserRole.BUSKER);
+    this.updateRoles(user, newRoles);
+  }
+
+  makeAdmin(user: User): void {
+    const newRoles = [...(user.roles || [])];
+    if (!newRoles.includes(UserRole.ADMIN)) newRoles.push(UserRole.ADMIN);
+    this.updateRoles(user, newRoles);
+  }
+
+  removeAdmin(user: User): void {
+    const newRoles = (user.roles || []).filter(r => r !== UserRole.ADMIN);
+    this.updateRoles(user, newRoles);
+  }
+
+  private updateRoles(user: User, roles: UserRole[]): void {
+    this.roleUpdateUserId = String(user.id);
+    this.openHttpClientService.updateUserRoles(String(user.id), roles).subscribe({
+      next: (updated) => {
+        user.roles = updated.roles;
+        this.roleUpdateUserId = null;
+      },
+      error: (err) => {
+        console.error('Failed to update roles', err);
+        this.roleUpdateUserId = null;
+      }
+    });
+  }
+
+  deleteUser(user: User): void {
+    if (!confirm(`Delete user ${user.email}? This cannot be undone.`)) return;
+    this.openHttpClientService.adminDeleteUser(String(user.id)).subscribe({
+      next: () => this.loadUsers(this.userPage),
+      error: (err) => console.error('Failed to delete user', err)
+    });
+  }
+
+  // ---- Events ----
+
+  loadEvents(): void {
     this.openHttpClientService.getEvents(
-      new Date(2025, 6, 6, 23, 0, 0),
-      -88, -88, 80, 80,
+      new Date(2020, 0, 1),
+      -90, -180, 90, 180,
       [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
     ).subscribe({
       next: (events: AppEvent[]) => {
-        this.allEvents = events;
-        this.events = [...this.allEvents];
+        this.events = events;
+        this.applyEventSearch();
       },
-      error: (error) => console.error(error),
+      error: (err) => console.error('Failed to load events', err)
     });
   }
 
-  async ngOnInit() {
-    this.loadUsers(0, 20);
-
-    const user = await this.currentUserService.getUser();
-    if (!user) {
-      console.warn('No current user found!');
-      return;
-    }
-
-    this.currentUser.id = user.id;
-    this.currentUser.email = user.email;
-    this.currentUser.roles = user.roles;
-
-    const role = this.currentUser.roles.find(r => ['USER','BUSKER','ADMIN'].includes(String(r)));
-    this.userRoles = role ? [String(role)] : [];
+  onEventSearchChange(): void {
+    this.applyEventSearch();
+    this.eventPage = 0;
   }
 
-  // Load users from backend
-  loadUsers(page: number, size: number): void {
-    this.openHttpClientService.getUsers(page, size).subscribe({
-      next: (response: { total: number, results: User[] }) => {
-        this.totalUsers = response.total;
-        this.allUsers = response.results;
-        this.users = [...this.allUsers];
+  private applyEventSearch(): void {
+    const q = this.eventSearchText.toLowerCase().trim();
+    this.filteredEvents = q
+      ? this.events.filter(e =>
+          e.title?.toLowerCase().includes(q) ||
+          e.userName?.toLowerCase().includes(q) ||
+          e.address?.toLowerCase().includes(q)
+        )
+      : [...this.events];
+  }
+
+  get paginatedEvents(): AppEvent[] {
+    const start = this.eventPage * this.eventPageSize;
+    return this.filteredEvents.slice(start, start + this.eventPageSize);
+  }
+
+  get totalEventPages(): number {
+    return Math.max(1, Math.ceil(this.filteredEvents.length / this.eventPageSize));
+  }
+
+  prevEventPage(): void {
+    if (this.eventPage > 0) this.eventPage--;
+  }
+
+  nextEventPage(): void {
+    if ((this.eventPage + 1) < this.totalEventPages) this.eventPage++;
+  }
+
+  deleteEvent(event: AppEvent): void {
+    if (!confirm(`Delete event "${event.title}"? This cannot be undone.`)) return;
+    this.openHttpClientService.adminDeleteEvent(event.id).subscribe({
+      next: () => {
+        this.events = this.events.filter(e => e.id !== event.id);
+        this.applyEventSearch();
       },
-      error: (err) => console.error(err)
-    });
-  }
-
-  // Select user
-  userSelect(user: User) {
-    console.log('Selected User:', user);
-    this.user = user;
-    this.showBuskerModal = true;
-  }
-
-  // Select event
-  eventSelect(event: AppEvent) {
-    console.log('Selected Event:', event);
-    this.event = event;
-    this.showEventModal = true;
-  }
-
-  private emitEventFilter(): void {
-    console.log({
-      search: this.eventSearchText,
-      distance: this.eventSelectedDistance,
-      within: this.eventSelectedWithin,
-      sort: this.eventSelectedSort
+      error: (err) => console.error('Failed to delete event', err)
     });
   }
 }

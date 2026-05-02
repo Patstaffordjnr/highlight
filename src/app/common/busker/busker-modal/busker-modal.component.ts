@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class BuskerModalComponent implements OnInit {
   @Input() isOpen = false;
   @Output() close = new EventEmitter<void>();
+  @Output() unfollowed = new EventEmitter<string>();
   @Input() busker: Busker | null = null;
 
   @ViewChild('modalContent', { static: false }) modalContentRef!: ElementRef;
@@ -51,7 +52,10 @@ export class BuskerModalComponent implements OnInit {
     const id = String(this.busker.id);
     if (this.isFollowing) {
       this.openHttpClientService.unfollowBusker(id).subscribe({
-        next: () => this.isFollowing = false
+        next: () => {
+          this.isFollowing = false;
+          this.unfollowed.emit(id);
+        }
       });
     } else {
       this.openHttpClientService.followBusker(id).subscribe({

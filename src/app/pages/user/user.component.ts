@@ -45,7 +45,7 @@ export class UserComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.loadBuskers(0, 10);
+    this.loadFollowedBuskers();
     this.loadOwnedEvents();
     this.loadFollowedEvents();
 
@@ -150,6 +150,11 @@ export class UserComponent implements OnInit {
     this.showBuskerModal = true;
   }
 
+  onBuskerUnfollowed(buskerId: string) {
+    this.buskers = this.buskers.filter(b => String(b.id) !== buskerId);
+    this.showBuskerModal = false;
+  }
+
   onEventSelect(event: AppEvent) {
     this.event = event;
     this.showEventModal = true;
@@ -161,13 +166,12 @@ export class UserComponent implements OnInit {
     this.loadFollowedEvents();
   }
 
-  loadBuskers(page: number, size: number): void {
-    this.openHttpClientService.getBuskers(page, size).subscribe({
-      next: (response: { total: number, results: Busker[] }) => {
-        this.total = response.total;
-        this.buskers = response.results;
+  loadFollowedBuskers(): void {
+    this.openHttpClientService.getFollowedBuskers().subscribe({
+      next: (buskers: any[]) => {
+        this.buskers = buskers;
       },
-      error: (err) => console.error('Error loading buskers:', err)
+      error: (err) => console.error('Error loading followed buskers:', err)
     });
   }
 }

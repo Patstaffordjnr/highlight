@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { User } from 'src/app/model/user';
 import { Event as AppEvent } from 'src/app/model/event';
 import { CommonModule } from '@angular/common';
@@ -12,7 +12,7 @@ import { EventFilter } from 'src/app/model/event-list-filter';
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.css'
 })
-export class UsersListComponent {
+export class UsersListComponent implements OnChanges {
   showModal = false;
 
   // All Users
@@ -82,12 +82,23 @@ get totalUserPages(): number {
     }
   }
 
+ngOnChanges(changes: SimpleChanges): void {
+  if (changes['users']) {
+    this.allUsers = [...this.users];
+    this.currentUserPage = 0;
+  }
+}
+
   // User search
 onUserSearchChange(): void {
   const value = this.userSearchText.toLowerCase();
-  this.users = this.allUsers.filter(user =>
-    user.email.toLowerCase().includes(value)
-  );
+  if (!value) {
+    this.users = [...this.allUsers];
+  } else {
+    this.users = this.allUsers.filter(user =>
+      user.email.toLowerCase().includes(value)
+    );
+  }
   this.currentUserPage = 0;
 }
 

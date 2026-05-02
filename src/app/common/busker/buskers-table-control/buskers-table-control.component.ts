@@ -109,7 +109,7 @@ export class BuskersTableControlComponent implements OnInit, OnDestroy{
  private emitFilter(): void {
   const filter: EventFilter = {
     genres: new Set(Array.from(this.genreSet).map(g => this.mapStringToEventType(g))),
-    search: '', // wire up later
+    search: this.searchText,
     distance: this.selectedDistance,
     within: this.selectedWithin,
     sort: this.selectedSort,
@@ -117,7 +117,7 @@ export class BuskersTableControlComponent implements OnInit, OnDestroy{
     location: this.homeAddress
   };
 
-  console.log(filter); 
+  console.log(filter);
   this.filterChange.emit(filter);
 }
  
@@ -153,6 +153,7 @@ onTimeSelected(selectedTime: Date) {
 
 private mapStringToEventType(genre: string): EventType {
   switch (genre.toLowerCase()) {
+    case 'all': return EventType.ALL;
     case 'band': return EventType.BAND;
     case 'busker': return EventType.BUSKER;
     case 'dj': return EventType.DJ;
@@ -163,53 +164,49 @@ private mapStringToEventType(genre: string): EventType {
 
 
 allFunction() {
-  // this.allEventsVisible = !this.allEventsVisible;
-  // this.bandEventsVisible = this.allEventsVisible;
-  // this.buskerEventsVisible = this.allEventsVisible;
-  // this.djEventsVisible = this.allEventsVisible;
-  // this.performanceEventsVisible = this.allEventsVisible;
-
-  // if (this.allEventsVisible) {
-  //   this.genreSet = new Set(['Band', 'Busker', 'Dj', 'Performance']);
-  // } else {
-  //   this.genreSet.clear();
-  // }
-
-  // console.log(`All Function: ${this.allEventsVisible}`);
-  //   this.selectGenre = this.genreSet;
-  //   console.log(this.genreSet);
-    this.allEventsVisible = !this.allEventsVisible;
-  // console.log(`Band Function: ${this.bandEventsVisible}`);
-  this.toggleGenreInSet('All', this.allEventsVisible);
-    this.emitFilter();
+  this.allEventsVisible = !this.allEventsVisible;
+  if (this.allEventsVisible) {
+    this.genreSet = new Set(['All', 'Band', 'Busker', 'Dj', 'Performance']);
+    this.bandEventsVisible = true;
+    this.buskerEventsVisible = true;
+    this.djEventsVisible = true;
+    this.performanceEventsVisible = true;
+  } else {
+    this.genreSet.delete('All');
+  }
+  this.emitFilter();
 }
 
 bandFunction() {
   this.bandEventsVisible = !this.bandEventsVisible;
-  // console.log(`Band Function: ${this.bandEventsVisible}`);
   this.toggleGenreInSet('Band', this.bandEventsVisible);
-      this.emitFilter();
+  this.allEventsVisible = false;
+  this.genreSet.delete('All');
+  this.emitFilter();
 }
 
 buskerFunction() {
   this.buskerEventsVisible = !this.buskerEventsVisible;
-  // console.log(`Busker Function: ${this.buskerEventsVisible}`);
   this.toggleGenreInSet('Busker', this.buskerEventsVisible);
-      this.emitFilter();
+  this.allEventsVisible = false;
+  this.genreSet.delete('All');
+  this.emitFilter();
 }
 
 djFunction() {
   this.djEventsVisible = !this.djEventsVisible;
-  // console.log(`DJ Function: ${this.djEventsVisible}`);
   this.toggleGenreInSet('Dj', this.djEventsVisible);
-      this.emitFilter();
+  this.allEventsVisible = false;
+  this.genreSet.delete('All');
+  this.emitFilter();
 }
 
 performanceFunction() {
   this.performanceEventsVisible = !this.performanceEventsVisible;
-  // console.log(`Performance Function: ${this.performanceEventsVisible}`);
   this.toggleGenreInSet('Performance', this.performanceEventsVisible);
-      this.emitFilter();
+  this.allEventsVisible = false;
+  this.genreSet.delete('All');
+  this.emitFilter();
 }
 
   onDistanceChange(event: Event) {

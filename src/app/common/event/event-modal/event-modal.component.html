@@ -140,6 +140,9 @@
             </div>
           </div>
 
+          <!-- VALIDATION ERROR -->
+          <div class="validation-error" *ngIf="validationError">{{ validationError }}</div>
+
           <!-- SAVE BUTTON -->
           <div class="control-container" *ngIf="isEditing">
             <button class="change-address-btn" (click)="onSave()">
@@ -147,8 +150,13 @@
             </button>
           </div>
 
+          <!-- DELETE BUTTON -->
+          <div class="control-container" *ngIf="canEdit && !isCreateMode && !isEditing">
+            <button class="delete-btn" (click)="onDeleteClick()">Delete Event</button>
+          </div>
+
           <!-- FOLLOW BUTTON -->
-          <div class="control-container" *ngIf="!isCreateMode">
+          <div class="control-container" *ngIf="!isCreateMode && !canEdit">
             <button
               class="follow-btn"
               [class.following]="isFollowing"

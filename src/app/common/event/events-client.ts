@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { MapService } from '../map/map-service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class EventsClient {
@@ -40,9 +41,9 @@ export class EventsClient {
   maxLong: this.maxLong
 });
 
-    console.log('Request URL:', 'http://localhost:8085/open/getEvents?' + params.toString());
+    console.log('Request URL:', `${environment.apiUrl}/open/getEvents?` + params.toString());
 
-    return await this.http.get('http://localhost:8085/open/getEvents', {
+    return await this.http.get(`${environment.apiUrl}/open/getEvents`, {
       params,
       withCredentials: true,
       headers: { 'Content-Type': 'application/json' }
@@ -50,7 +51,7 @@ export class EventsClient {
   }
 
   async buskerGetEvents(currentPage: number, noOfProducts: number): Promise<any> {
-    const url = `http://localhost:8085/busker/getEvents?pageNumber=${currentPage}&pageSize=${noOfProducts}`;
+    const url = `${environment.apiUrl}/busker/getEvents?pageNumber=${currentPage}&pageSize=${noOfProducts}`;
     return await this.http.get(url, {
       withCredentials: true,
       headers: { 'Content-Type': 'application/json' }

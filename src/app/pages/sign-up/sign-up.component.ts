@@ -28,8 +28,8 @@ export class SignUpComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private signUpClient: SignUpClient, private routerService: RouterService) {
     this.form = this.formBuilder.group({
-      email: ['123@123.ie', [Validators.required, Validators.email]],
-      password: ['qwertyu!}', [Validators.required, Validators.minLength(8)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       userRoles: new FormArray([], minSelectedCheckboxes(1))
     });
     this.addCheckboxes();
@@ -56,14 +56,17 @@ export class SignUpComponent implements OnInit {
     this.errorMessage = '';
     this.loading = true;
     try {
-      const successful = await this.signUpClient.signIn(this.generateRequest());
-      if (successful) {
-        this.routerService.toLoginPage();
+      await this.signUpClient.signIn(this.generateRequest());
+      this.routerService.toLoginPage();
+    } catch (err: any) {
+      const msg = err?.error?.message || err?.error || null;
+      if (err?.status === 409) {
+        this.errorMessage = 'An account with this email already exists.';
+      } else if (msg) {
+        this.errorMessage = msg;
       } else {
-        this.errorMessage = 'Sign up failed. Please try again.';
+        this.errorMessage = 'Something went wrong. Please try again.';
       }
-    } catch {
-      this.errorMessage = 'Something went wrong. Please try again.';
     } finally {
       this.loading = false;
     }

@@ -147,31 +147,47 @@ export class EventsTableControlComponent implements OnInit, OnDestroy {
 
   allFunction() {
     this.allEventsVisible = !this.allEventsVisible;
-    this.toggleGenreInSet('All', this.allEventsVisible);
+    if (this.allEventsVisible) {
+      this.genreSet = new Set(['All', 'Band', 'Busker', 'Dj', 'Performance']);
+      this.bandEventsVisible = true;
+      this.buskerEventsVisible = true;
+      this.djEventsVisible = true;
+      this.performanceEventsVisible = true;
+    } else {
+      this.genreSet.delete('All');
+    }
     this.emitFilter();
   }
 
   bandFunction() {
     this.bandEventsVisible = !this.bandEventsVisible;
     this.toggleGenreInSet('Band', this.bandEventsVisible);
+    this.allEventsVisible = false;
+    this.genreSet.delete('All');
     this.emitFilter();
   }
 
   buskerFunction() {
     this.buskerEventsVisible = !this.buskerEventsVisible;
     this.toggleGenreInSet('Busker', this.buskerEventsVisible);
+    this.allEventsVisible = false;
+    this.genreSet.delete('All');
     this.emitFilter();
   }
 
   djFunction() {
     this.djEventsVisible = !this.djEventsVisible;
     this.toggleGenreInSet('Dj', this.djEventsVisible);
+    this.allEventsVisible = false;
+    this.genreSet.delete('All');
     this.emitFilter();
   }
 
   performanceFunction() {
     this.performanceEventsVisible = !this.performanceEventsVisible;
     this.toggleGenreInSet('Performance', this.performanceEventsVisible);
+    this.allEventsVisible = false;
+    this.genreSet.delete('All');
     this.emitFilter();
   }
 

@@ -16,7 +16,7 @@
     </div>
 </div>
 </div>
-<app-buskers-table-control></app-buskers-table-control>
+<app-buskers-table-control (filterChange)="onFilterChange($event)"></app-buskers-table-control>
 </div>
 </div>
 <app-busker-modal class = "modal" [isOpen]="showModal" (close)="showModal = false " [busker]="busker">

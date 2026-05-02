@@ -56,7 +56,7 @@
   justify-content: center;
   align-items: center;
   width: 125px;
-  height: 125px;
+  aspect-ratio: 1 / 1;
 }
 
 /* SM */
@@ -81,26 +81,32 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
 
   .busker-list {
     flex: 1;
-    overflow: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .busker-list::-webkit-scrollbar {
+    display: none;
   }
 
   .busker-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    height: 100%;
     gap: 6px;
     padding: 4px;
   }
 
   .busker-item {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 1 / 1;
     min-width: 0;
     overflow: hidden;
+    height: auto;
   }
 }

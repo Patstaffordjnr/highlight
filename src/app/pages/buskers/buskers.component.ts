@@ -4,6 +4,7 @@ import { EventType } from '../../model/event-types';
 import { BuskersTableControlComponent } from '../../common/busker/buskers-table-control/buskers-table-control.component';
 import { EventEmitter } from 'events';
 import { Busker } from '../../model/busker';
+import { EventFilter } from '../../model/event-list-filter';
 
 // interface Busker {
 //   id: string;
@@ -27,7 +28,8 @@ export class BuskersComponent implements OnInit {
   showModal: boolean = false;
 
   buskers: Busker[] = [];
-  busker: Busker | null = null; 
+  allBuskers: Busker[] = [];
+  busker: Busker | null = null;
 
 
 
@@ -43,7 +45,8 @@ export class BuskersComponent implements OnInit {
       next: (response: { total: number, results: Busker[] }) => {
         console.log('Buskers response:', response);
         this.total = response.total;
-        this.buskers = response.results;
+        this.allBuskers = response.results;
+        this.buskers = [...this.allBuskers];
       },
       error: (err) => {
         console.error('Error loading buskers:', err);
@@ -62,5 +65,24 @@ export class BuskersComponent implements OnInit {
 onGenreChange(updatedGenres: Set<string>) {
   this.eventTypes = new Set(['Band', 'Busker', 'Dj', 'Performance']);
   console.log(this.eventTypes);
+}
+
+onFilterChange(filter: EventFilter): void {
+  const searching = !!filter.search?.trim();
+  let result = [...this.allBuskers];
+
+  if (searching) {
+    const term = filter.search.trim().toLowerCase();
+    result = result.filter(b => b.email.toLowerCase().includes(term));
+  }
+
+  const genres = filter.genres;
+  if (!genres.has(EventType.ALL)) {
+    result = result.filter(b =>
+      b.roles.some(r => genres.has(String(r).toUpperCase() as any))
+    );
+  }
+
+  this.buskers = result;
 }
 }

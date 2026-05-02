@@ -1,34 +1,148 @@
-<div class="ui">
-  <div class="content">
-    <div class="admin">
-      <div class="container">
+<div class="admin-page">
 
-        <!-- List One -->
-        <div class="item item-1">
-          <a class="one">List One</a>
-        </div>
+  <!-- Tab bar -->
+  <div class="tab-bar">
+    <button class="tab-btn" [class.active]="activeTab === 'users'" (click)="setTab('users')">Users</button>
+    <button class="tab-btn" [class.active]="activeTab === 'events'" (click)="setTab('events')">Events</button>
+  </div>
 
-        <!-- List Two -->
-        <div class="item item-2">
-          <a class="two">List Two</a>
-        </div>
+  <!-- ===== USERS TAB ===== -->
+  <div class="tab-panel" *ngIf="activeTab === 'users'">
+    <div class="panel-header">
+      <h2>Users <span class="count">({{ totalUsers }})</span></h2>
+      <input
+        class="search-input"
+        type="text"
+        placeholder="Search by email..."
+        [(ngModel)]="userSearchText"
+        (input)="onUserSearchChange()"
+      />
+    </div>
 
-        <!-- List Three -->
-        <div class="item item-3">
-          <a class="three">List Three</a>
-        </div>
+    <div class="table-wrapper">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Joined</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of filteredUsers; let i = index">
+            <td>{{ userPage * userPageSize + i + 1 }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <span *ngFor="let role of user.roles" class="role-badge role-{{role | lowercase}}">{{ role }}</span>
+            </td>
+            <td>{{ (user.createdAt ? user.createdAt * 1000 : null) | date:'mediumDate' }}</td>
+            <td class="actions-cell">
+              <!-- Busker toggle -->
+              <button
+                *ngIf="!hasRole(user, 'BUSKER')"
+                class="action-btn btn-promote"
+                [disabled]="roleUpdateUserId === user.id"
+                (click)="makeBusker(user)"
+                title="Grant BUSKER role"
+              >Make Busker</button>
+              <button
+                *ngIf="hasRole(user, 'BUSKER')"
+                class="action-btn btn-demote"
+                [disabled]="roleUpdateUserId === user.id"
+                (click)="removeBusker(user)"
+                title="Remove BUSKER role"
+              >Remove Busker</button>
 
-        <!-- Buskers & Events -->
-        <div class="item item-4">
-          <app-event-list class = "events" [events]="events" (selectedEvent)="eventSelect($event)"></app-event-list>
-          <!-- <app-busker-list class = "buskers" [buskers]="buskers" (selectedBusker)="buskerSelect($event)"></app-busker-list> -->
-                 <app-users-list class="users" [users]="users" (selectedUser)="userSelect($event)"></app-users-list>
-          </div>
-        </div>
-      </div>
+              <!-- Admin toggle -->
+              <button
+                *ngIf="!hasRole(user, 'ADMIN')"
+                class="action-btn btn-admin"
+                [disabled]="roleUpdateUserId === user.id"
+                (click)="makeAdmin(user)"
+                title="Grant ADMIN role"
+              >Make Admin</button>
+              <button
+                *ngIf="hasRole(user, 'ADMIN')"
+                class="action-btn btn-demote"
+                [disabled]="roleUpdateUserId === user.id"
+                (click)="removeAdmin(user)"
+                title="Remove ADMIN role"
+              >Remove Admin</button>
+
+              <!-- Delete -->
+              <button
+                class="action-btn btn-delete"
+                (click)="deleteUser(user)"
+                title="Delete user permanently"
+              >Delete</button>
+            </td>
+          </tr>
+          <tr *ngIf="filteredUsers.length === 0">
+            <td colspan="5" class="empty-row">No users found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination">
+      <button (click)="prevUserPage()" [disabled]="userPage === 0">Previous</button>
+      <span>Page {{ userPage + 1 }} of {{ totalUserPages }}</span>
+      <button (click)="nextUserPage()" [disabled]="userPage + 1 >= totalUserPages">Next</button>
     </div>
   </div>
-  <app-event-modal class = "modal" [isOpen]="showEventModal" (close)="showEventModal = false " [event]="event">
-</app-event-modal>
-<app-busker-modal class = "modal" [isOpen]="showBuskerModal" (close)="showBuskerModal = false " [busker]="user">
-</app-busker-modal>
+
+  <!-- ===== EVENTS TAB ===== -->
+  <div class="tab-panel" *ngIf="activeTab === 'events'">
+    <div class="panel-header">
+      <h2>Events <span class="count">({{ filteredEvents.length }})</span></h2>
+      <input
+        class="search-input"
+        type="text"
+        placeholder="Search by title, busker or location..."
+        [(ngModel)]="eventSearchText"
+        (input)="onEventSearchChange()"
+      />
+    </div>
+
+    <div class="table-wrapper">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Busker</th>
+            <th>Location</th>
+            <th>Type</th>
+            <th>Start</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of paginatedEvents; let i = index">
+            <td>{{ eventPage * eventPageSize + i + 1 }}</td>
+            <td>{{ event.title }}</td>
+            <td>{{ event.userName || '-' }}</td>
+            <td class="location-cell">{{ event.address || (event.lat + ', ' + event.long) }}</td>
+            <td><span class="role-badge">{{ event.eventType }}</span></td>
+            <td>{{ event.startAt | date:'short' }}</td>
+            <td class="actions-cell">
+              <button class="action-btn btn-delete" (click)="deleteEvent(event)" title="Delete event">Delete</button>
+            </td>
+          </tr>
+          <tr *ngIf="paginatedEvents.length === 0">
+            <td colspan="7" class="empty-row">No events found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination">
+      <button (click)="prevEventPage()" [disabled]="eventPage === 0">Previous</button>
+      <span>Page {{ eventPage + 1 }} of {{ totalEventPages }}</span>
+      <button (click)="nextEventPage()" [disabled]="eventPage + 1 >= totalEventPages">Next</button>
+    </div>
+  </div>
+
+</div>

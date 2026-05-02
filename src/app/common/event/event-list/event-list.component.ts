@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { User } from 'src/app/model/user';
 import { CurrentUserService } from '../../../util/can-activate.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -20,7 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './event-list.component.html',
   styleUrl: './event-list.component.css'
 })
-export class EventListComponent {
+export class EventListComponent implements OnChanges {
 
   showModal = false;
   eventTypes: Set<string> = new Set(["Band", "Busker", "Dj", "Performance"]);
@@ -103,12 +103,26 @@ eventSelectedWithin: number = 1;
   }
 
 
+ngOnChanges(changes: SimpleChanges): void {
+  if (changes['events']) {
+    this.allEvents = [...this.events];
+    this.currentEventPage = 0;
+  }
+}
+
 // Event search
 onEventSearchChange(): void {
   const value = this.eventSearchText.toLowerCase();
-  this.events = this.allEvents.filter(ev =>
-    ev.title.toLowerCase().includes(value) || ev.eventType.toLowerCase().includes(value)
-  );
+  if (!value) {
+    this.events = [...this.allEvents];
+  } else {
+    this.events = this.allEvents.filter(ev =>
+      ev.title.toLowerCase().includes(value) ||
+      ev.eventType.toLowerCase().includes(value) ||
+      (ev.address?.toLowerCase().includes(value) ?? false) ||
+      (ev.userName?.toLowerCase().includes(value) ?? false)
+    );
+  }
   this.currentEventPage = 0;
 }
 

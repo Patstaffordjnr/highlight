@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { User } from 'src/app/model/user';
 import { FormGroup } from '@angular/forms';
 import { Event as AppEvent } from 'src/app/model/event';
@@ -14,7 +14,7 @@ import { EventFilter } from 'src/app/model/event-list-filter';
   templateUrl: './busker-list.component.html',
   styleUrl: './busker-list.component.css'
 })
-export class BuskerListComponent {
+export class BuskerListComponent implements OnChanges {
 
   showModal = false;
   eventTypes: Set<string> = new Set(["Band", "Busker", "Dj", "Performance"]);
@@ -78,12 +78,23 @@ buskerSelectedWithin: number = 1;
     if (this.currentBuskerPage > 0) this.currentBuskerPage--;
   }
 
-  // Busker search (fixed: uses allBuskers as source)
+ngOnChanges(changes: SimpleChanges): void {
+  if (changes['buskers']) {
+    this.allBuskers = [...this.buskers];
+    this.currentBuskerPage = 0;
+  }
+}
+
+  // Busker search
 onBuskerSearchChange(): void {
   const value = this.buskerSearchText.toLowerCase();
-  this.buskers = this.allBuskers.filter(busker =>
-    busker.email.toLowerCase().includes(value)
-  );
+  if (!value) {
+    this.buskers = [...this.allBuskers];
+  } else {
+    this.buskers = this.allBuskers.filter(busker =>
+      busker.email.toLowerCase().includes(value)
+    );
+  }
   this.currentBuskerPage = 0;
 }
 

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from '../model/user';
 import { CurrentUserService } from './can-activate.service';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable()
@@ -47,7 +48,7 @@ export class RouterService {
   // }
 
   async clearCookie(): Promise<void> {
-    let response = await this.http.get<any>("http://localhost:8085/api/auth/logout", { withCredentials: true }).toPromise();
+    let response = await this.http.get<any>(`${environment.apiUrl}/api/auth/logout`, { withCredentials: true }).toPromise();
   }
   
   async toLogoutPage(): Promise<void> {    

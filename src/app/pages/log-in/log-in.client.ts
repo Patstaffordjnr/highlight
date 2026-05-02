@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { LoginRequest } from './login-request';
 import { User } from 'src/app/model/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +17,12 @@ export class LoginClient {
 
   
   async whoAmI(){    
-    let response = await this.http.get<any>("http://localhost:8085/user/whoAmI", { withCredentials: true }).toPromise();
+    let response = await this.http.get<any>(`${environment.apiUrl}/user/whoAmI`, { withCredentials: true }).toPromise();
     console.log(response)
   }
 
   async logIn(loginRequest: LoginRequest): Promise<User>{    
-      let url =  'http://localhost:8085/api/auth/login' ;
+      let url = `${environment.apiUrl}/api/auth/login`;
       let headers = new HttpHeaders({
         'Content-Type': 'application/json'
       });      
@@ -30,7 +31,7 @@ export class LoginClient {
   }
 
   async getForbidden(){    
-    let response = await this.http.get<any>("http://localhost:8085/open/getForbidden", { withCredentials: true }).toPromise();
+    let response = await this.http.get<any>(`${environment.apiUrl}/open/getForbidden`, { withCredentials: true }).toPromise();
     console.log(response)
     
   }
