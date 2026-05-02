@@ -53,7 +53,7 @@
           </div>
           <div class="event-type-container">
             <div *ngIf="!isEditing" class="event-type-label">{{ currentEvent.eventType | titlecase }}</div>
-            <select *ngIf="isEditing" class="event-type-select" [(ngModel)]="currentEvent.eventType">
+            <select *ngIf="isEditing" class="event-type-select" [(ngModel)]="currentEvent.eventType" (ngModelChange)="onEventTypeChange()">
               <option value="BUSKER">Busker</option>
               <option value="BAND">Band</option>
               <option value="DJ">DJ</option>

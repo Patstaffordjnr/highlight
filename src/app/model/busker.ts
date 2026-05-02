@@ -7,13 +7,15 @@ export class Busker {
     public createdAt?: number;
     public updatedAt?: number;
     public bio?: string;
+    public displayName?: string;
     constructor(
         email: String,
         roles: UserRole[],
         id?: String,
         createdAt?: number,
         updatedAt?: number,
-        bio?: string
+        bio?: string,
+        displayName?: string
     ) {
             this.email = email;
             this.roles = roles;
@@ -21,5 +23,6 @@ export class Busker {
             this.createdAt = createdAt;
             this.updatedAt = updatedAt;
             this.bio = bio;
+            this.displayName = displayName;
     }
 }

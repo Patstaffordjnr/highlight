@@ -70,7 +70,10 @@ onFilterChange(filter: EventFilter): void {
 
   if (searching) {
     const term = filter.search.trim().toLowerCase();
-    result = result.filter(b => b.email.toLowerCase().includes(term));
+    result = result.filter(b =>
+      b.email.toLowerCase().includes(term) ||
+      (b.displayName && b.displayName.toLowerCase().includes(term))
+    );
   }
 
   const genres = filter.genres;

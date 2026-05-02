@@ -202,6 +202,13 @@ export class EventModalComponent implements OnInit {
   toggleStartDateControls() {}
   toggleFinishDateControls() {}
 
+  onEventTypeChange() {
+    if (this.originalMarker) {
+      const icon = markerIcons[this.currentEvent.eventType as keyof typeof markerIcons];
+      if (icon) this.originalMarker.setIcon(icon);
+    }
+  }
+
   startLocationSelection() {
     this.isSelectingLocation = true;
 
