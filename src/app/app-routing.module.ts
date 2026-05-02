@@ -12,6 +12,7 @@ import { BuskerComponent } from './pages/busker/busker.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { BuskersComponent } from './pages/buskers/buskers.component';
 import { AboutComponent } from './pages/about/about.component';
+import { VerifyComponent } from './pages/verify/verify.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent},
   { path: 'buskers', component: BuskersComponent},
   { path: 'about', component: AboutComponent},
+  { path: 'verify', component: VerifyComponent},
 ];
 
 @NgModule({

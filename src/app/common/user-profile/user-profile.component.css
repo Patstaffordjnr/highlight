@@ -6,6 +6,38 @@
   display: flex;
   flex-wrap: wrap
 }
+
+.verify-banner {
+  width: 100%;
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: #7a5700;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+
+.resend-btn {
+  padding: 5px 12px;
+  background: #4da6e8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.resend-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
 .profile-image-container {
   max-width: 100%; 
   max-height: 100%;

@@ -8,6 +8,7 @@ export class User {
     public updatedAt?: number;
     public displayName?: string;
     public bio?: string;
+    public verified?: boolean;
     constructor(
         email: String,
         roles: UserRole[],
@@ -15,7 +16,8 @@ export class User {
         createdAt?: number,
         updatedAt?: number,
         displayName?: string,
-        bio?: string) {
+        bio?: string,
+        verified?: boolean) {
             this.email = email;
             this.roles = roles;
             this.id = id;
@@ -23,5 +25,6 @@ export class User {
             this.updatedAt = updatedAt;
             this.displayName = displayName;
             this.bio = bio;
+            this.verified = verified;
     }
 }

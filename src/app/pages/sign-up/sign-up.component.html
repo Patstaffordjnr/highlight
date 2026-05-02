@@ -1,36 +1,49 @@
 <div class="page">
   <div class="card">
-    <div class="brand">Highlight</div>
-    <p class="tagline">Join the community</p>
 
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="field">
-        <label for="email">Email</label>
-        <input id="email" type="email" formControlName="email" placeholder="you@example.com" autocomplete="email">
-      </div>
+    <!-- Success state -->
+    <ng-container *ngIf="submitted">
+      <div class="brand">Check your email</div>
+      <p class="tagline">We've sent a verification link to your inbox.</p>
+      <p class="body-text">Click the link in the email to activate your account, then <a routerLink="/login">log in</a>.</p>
+      <p class="body-text small">Didn't get it? Check your spam folder.</p>
+    </ng-container>
 
-      <div class="field">
-        <label for="password">Password</label>
-        <input id="password" type="password" formControlName="password" placeholder="At least 8 characters" autocomplete="new-password">
-      </div>
+    <!-- Form state -->
+    <ng-container *ngIf="!submitted">
+      <div class="brand">Highlight</div>
+      <p class="tagline">Join the community</p>
 
-      <div class="field">
-        <label>I am a...</label>
-        <div class="role-options" formArrayName="userRoles">
-          <label *ngFor="let role of visibleRoles; let i = index" class="role-label">
-            <input type="checkbox" [formControlName]="i">
-            <span>{{ roleLabels[role] }}</span>
-          </label>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" formControlName="email" placeholder="you@example.com" autocomplete="email">
         </div>
-      </div>
 
-      <div class="error-msg" *ngIf="errorMessage">{{ errorMessage }}</div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" formControlName="password" placeholder="At least 8 characters" autocomplete="new-password">
+        </div>
 
-      <button type="submit" [disabled]="!form.valid || loading">
-        {{ loading ? 'Creating account...' : 'Create Account' }}
-      </button>
-    </form>
+        <div class="field">
+          <label>I am a...</label>
+          <div class="role-options" formArrayName="userRoles">
+            <label *ngFor="let role of visibleRoles; let i = index" class="role-label">
+              <input type="checkbox" [formControlName]="i">
+              <span>{{ roleLabels[role] }}</span>
+            </label>
+          </div>
+        </div>
 
-    <p class="switch-link">Already have an account? <a routerLink="/login">Log in</a></p>
+        <div class="error-msg" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+        <button type="submit" [disabled]="!form.valid || loading">
+          {{ loading ? 'Creating account...' : 'Create Account' }}
+        </button>
+      </form>
+
+      <p class="switch-link">Already have an account? <a routerLink="/login">Log in</a></p>
+    </ng-container>
+
   </div>
 </div>

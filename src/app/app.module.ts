@@ -38,6 +38,8 @@ import { EventListComponent } from './common/event/event-list/event-list.compone
 import { BuskerListComponent } from './common/busker/busker-list/busker-list.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { UsersListComponent } from './common/users/users-list/users-list.component';
+import { VerifyComponent } from './pages/verify/verify.component';
+import { AboutComponent } from './pages/about/about.component';
 @NgModule({
   declarations: [
             BuskersMiniDisplayComponent,
@@ -47,8 +49,8 @@ import { UsersListComponent } from './common/users/users-list/users-list.compone
     BuskersComponent,
     BuskerComponent,
     AdminComponent,
-    
-    
+    VerifyComponent,
+    AboutComponent,
 
 
     // Components

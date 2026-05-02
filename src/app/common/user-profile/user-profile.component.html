@@ -5,6 +5,14 @@
     </div>
   </div>
 
+  <!-- Unverified banner -->
+  <div class="verify-banner" *ngIf="currentUser.verified === false">
+    <span>Your email is not verified.</span>
+    <button class="resend-btn" (click)="resendVerification()" [disabled]="resendLoading || resendSent">
+      {{ resendSent ? 'Email sent!' : resendLoading ? 'Sending...' : 'Resend verification email' }}
+    </button>
+  </div>
+
   <!-- View mode -->
   <ng-container *ngIf="!editMode">
     <div class="item item-2">

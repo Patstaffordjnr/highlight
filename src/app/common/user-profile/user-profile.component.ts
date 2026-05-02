@@ -43,6 +43,9 @@ export class UserProfileComponent implements OnInit {
 
   }
 
+  resendLoading = false;
+  resendSent = false;
+
   async ngOnInit() {
     const user = await this.currentUserService.getUser();
     if (user) {
@@ -51,11 +54,20 @@ export class UserProfileComponent implements OnInit {
       this.currentUser.roles = user.roles;
       this.currentUser.displayName = (user as any).displayName ?? undefined;
       this.currentUser.bio = (user as any).bio ?? undefined;
+      this.currentUser.verified = (user as any).verified ?? true;
 
       this.userRoles = user.roles.map((r: any) => String(r)).filter((r: string) =>
         r === 'USER' || r === 'BUSKER' || r === 'ADMIN'
       );
     }
+  }
+
+  resendVerification() {
+    this.resendLoading = true;
+    this.openHttpClientService.resendVerification().subscribe({
+      next: () => { this.resendSent = true; this.resendLoading = false; },
+      error: () => { this.resendLoading = false; }
+    });
   }
 
   get displayLabel(): string {

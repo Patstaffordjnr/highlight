@@ -1,0 +1,22 @@
+<div class="page">
+  <div class="card">
+
+    <ng-container *ngIf="state === 'loading'">
+      <div class="brand">Verifying...</div>
+      <p class="tagline">Just a moment.</p>
+    </ng-container>
+
+    <ng-container *ngIf="state === 'success'">
+      <div class="brand">You're verified!</div>
+      <p class="tagline">Your email has been confirmed.</p>
+      <a routerLink="/login" class="btn">Log in to Highlight</a>
+    </ng-container>
+
+    <ng-container *ngIf="state === 'error'">
+      <div class="brand">Something went wrong</div>
+      <p class="tagline">{{ errorMessage }}</p>
+      <p class="switch-link"><a routerLink="/signup">Sign up again</a> or <a routerLink="/login">log in</a>.</p>
+    </ng-container>
+
+  </div>
+</div>

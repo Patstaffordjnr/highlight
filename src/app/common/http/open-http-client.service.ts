@@ -154,4 +154,8 @@ updatePassword(currentPassword: string, newPassword: string): Observable<void> {
   );
 }
 
+resendVerification(): Observable<void> {
+  return this.http.post<void>(`${API}/user/resend-verification`, {}, { withCredentials: true });
+}
+
 }

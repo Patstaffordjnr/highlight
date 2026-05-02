@@ -18,6 +18,7 @@ export class SignUpComponent implements OnInit {
   form: FormGroup;
   errorMessage: string = '';
   loading: boolean = false;
+  submitted: boolean = false;
 
   visibleRoles = [UserRole.USER, UserRole.BUSKER];
 
@@ -57,7 +58,7 @@ export class SignUpComponent implements OnInit {
     this.loading = true;
     try {
       await this.signUpClient.signIn(this.generateRequest());
-      this.routerService.toLoginPage();
+      this.submitted = true;
     } catch (err: any) {
       const msg = err?.error?.message || err?.error || null;
       if (err?.status === 409) {
