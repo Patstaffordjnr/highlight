@@ -39,12 +39,36 @@
   cursor: default;
 }
 .profile-image-container {
-  max-width: 100%; 
+  max-width: 100%;
   max-height: 100%;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.profile-image-container:hover .upload-overlay {
+  opacity: 1;
+}
+
+.upload-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.55);
+  color: white;
+  font-size: 0.78rem;
+  text-align: center;
+  padding: 6px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+}
+
+.upload-overlay.uploading {
+  opacity: 1;
 }
 
 .user-profile-img {

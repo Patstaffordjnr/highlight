@@ -5,7 +5,7 @@
         *ngFor="let busker of buskers; let i = index"
         [class.selected]="busker === selectedBusker"
         (click)="onSelect(busker)">
-        <img src="/assets/userprofile.jpg" class="busker-img" alt="Busker" />
+        <img [src]="busker.profileImageUrl || '/assets/userprofile.jpg'" class="busker-img" alt="Busker" />
         <div class="busker-name-overlay">
           {{ busker.displayName || busker.email }}
         </div>

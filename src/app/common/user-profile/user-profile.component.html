@@ -1,8 +1,13 @@
 <div class="user">
   <div class="item-1">
     <div class="profile-image-container">
-      <img src="/assets/userprofile.jpg" class="user-profile-img" alt="image">
+      <img [src]="profileImage" class="user-profile-img" alt="profile image">
+      <label class="upload-overlay" [class.uploading]="imageUploading">
+        <span>{{ imageUploading ? 'Uploading...' : 'Change photo' }}</span>
+        <input type="file" accept="image/*" (change)="onImageSelected($event)" [disabled]="imageUploading" hidden>
+      </label>
     </div>
+    <div *ngIf="imageUploadError" class="error-msg">{{ imageUploadError }}</div>
   </div>
 
   <!-- Unverified banner -->

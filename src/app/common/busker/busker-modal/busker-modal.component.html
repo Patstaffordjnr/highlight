@@ -9,7 +9,7 @@
         <div class="grid-item" id="item-1">
           <div class="event-image-container">
             <div class="event-image">
-              <img src="/assets/userprofile.jpg" class="user-img" alt="user profile" />
+              <img [src]="busker?.profileImageUrl || '/assets/userprofile.jpg'" class="user-img" alt="user profile" />
             </div>
           </div>
         </div>

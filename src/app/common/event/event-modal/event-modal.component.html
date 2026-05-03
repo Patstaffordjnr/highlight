@@ -40,6 +40,20 @@
   </div>
 </div>
 
+        <!-- USER ROLE  -->
+         <div class="grid-item" id="item-2point5">
+            <div class="event-type-container">
+            <div *ngIf="!isEditing" class="event-type-label">{{ currentEvent.eventType | titlecase }}</div>
+            <select *ngIf="isEditing" class="event-type-select" [(ngModel)]="currentEvent.eventType" (ngModelChange)="onEventTypeChange()">
+              <option value="BUSKER">Busker</option>
+              <option value="BAND">Band</option>
+              <option value="DJ">DJ</option>
+              <option value="PERFORMANCE">Performance</option>
+            </select>
+          </div>
+         </div>
+
+
         <!-- EVENT TITLE -->
         <div class="grid-item" id="item-3">
           <div class="event-title-container">
@@ -50,15 +64,6 @@
               type="text"
               [(ngModel)]="currentEvent.title"
               placeholder="Event title">
-          </div>
-          <div class="event-type-container">
-            <div *ngIf="!isEditing" class="event-type-label">{{ currentEvent.eventType | titlecase }}</div>
-            <select *ngIf="isEditing" class="event-type-select" [(ngModel)]="currentEvent.eventType" (ngModelChange)="onEventTypeChange()">
-              <option value="BUSKER">Busker</option>
-              <option value="BAND">Band</option>
-              <option value="DJ">DJ</option>
-              <option value="PERFORMANCE">Performance</option>
-            </select>
           </div>
         </div>
 

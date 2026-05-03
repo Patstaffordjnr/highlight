@@ -154,4 +154,10 @@ resendVerification(): Observable<void> {
   return this.http.post<void>(`${API}/user/resend-verification`, {}, { withCredentials: true });
 }
 
+uploadProfileImage(file: File): Observable<User> {
+  const formData = new FormData();
+  formData.append('file', file);
+  return this.http.post<User>(`${API}/user/profile/image`, formData, { withCredentials: true });
+}
+
 }

@@ -8,6 +8,8 @@ interface Busker {
   createdAt: number;
   updatedAt: number;
   bio?: string;
+  displayName?: string;
+  profileImageUrl?: string;
 }
 @Component({
   selector: 'app-buskers-mini-display',

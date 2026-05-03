@@ -9,6 +9,7 @@ export class User {
     public displayName?: string;
     public bio?: string;
     public verified?: boolean;
+    public profileImageUrl?: string;
     constructor(
         email: String,
         roles: UserRole[],
@@ -17,7 +18,8 @@ export class User {
         updatedAt?: number,
         displayName?: string,
         bio?: string,
-        verified?: boolean) {
+        verified?: boolean,
+        profileImageUrl?: string) {
             this.email = email;
             this.roles = roles;
             this.id = id;
@@ -26,5 +28,6 @@ export class User {
             this.displayName = displayName;
             this.bio = bio;
             this.verified = verified;
+            this.profileImageUrl = profileImageUrl;
     }
 }

@@ -28,6 +28,11 @@ export class UserProfileComponent implements OnInit {
   profileSaveSuccess = false;
   profileSaveError = '';
 
+  // Profile image
+  imageUploading = false;
+  imageUploadError = '';
+  readonly defaultImage = '/assets/userprofile.jpg';
+
   // Change password mode
   passwordMode = false;
   currentPassword = '';
@@ -55,11 +60,34 @@ export class UserProfileComponent implements OnInit {
       this.currentUser.displayName = (user as any).displayName ?? undefined;
       this.currentUser.bio = (user as any).bio ?? undefined;
       this.currentUser.verified = (user as any).verified ?? true;
+      this.currentUser.profileImageUrl = (user as any).profileImageUrl ?? undefined;
 
       this.userRoles = user.roles.map((r: any) => String(r)).filter((r: string) =>
         r === 'USER' || r === 'BUSKER' || r === 'ADMIN'
       );
     }
+  }
+
+  get profileImage(): string {
+    return this.currentUser.profileImageUrl ?? this.defaultImage;
+  }
+
+  onImageSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (!file) return;
+    this.imageUploading = true;
+    this.imageUploadError = '';
+    this.openHttpClientService.uploadProfileImage(file).subscribe({
+      next: (updated: User) => {
+        this.currentUser.profileImageUrl = updated.profileImageUrl;
+        this.imageUploading = false;
+      },
+      error: () => {
+        this.imageUploadError = 'Failed to upload image. Please try again.';
+        this.imageUploading = false;
+      }
+    });
   }
 
   resendVerification() {

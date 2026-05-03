@@ -8,6 +8,7 @@ export class Busker {
     public updatedAt?: number;
     public bio?: string;
     public displayName?: string;
+    public profileImageUrl?: string;
     constructor(
         email: String,
         roles: UserRole[],
@@ -15,7 +16,8 @@ export class Busker {
         createdAt?: number,
         updatedAt?: number,
         bio?: string,
-        displayName?: string
+        displayName?: string,
+        profileImageUrl?: string
     ) {
             this.email = email;
             this.roles = roles;
@@ -24,5 +26,6 @@ export class Busker {
             this.updatedAt = updatedAt;
             this.bio = bio;
             this.displayName = displayName;
+            this.profileImageUrl = profileImageUrl;
     }
 }
