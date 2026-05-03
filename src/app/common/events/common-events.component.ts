@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 export class CommonEventsComponent implements OnInit {
 
   @Input() events: AppEvent[] = [];
+  @Input() loading: boolean = false;
   @Output() selectedEvent = new EventEmitter<AppEvent>();
 
   constructor() {}

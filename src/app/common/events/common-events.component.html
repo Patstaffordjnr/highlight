@@ -1,5 +1,7 @@
 <div class="event-list-container">
-  <div class="event-list">
+  <div *ngIf="loading" class="loading-state">Loading events...</div>
+  <div *ngIf="!loading && events.length === 0" class="empty-state">No events found near you.</div>
+  <div class="event-list" *ngIf="!loading && events.length > 0">
     <div class="event-grid">
       <div class="event-item" *ngFor="let event of events; let i = index" [class.selected]="event === selectedEvent" (click)="onSelect(event)" >
         <div class="flex-grid top-section">
@@ -79,15 +81,6 @@
             </div>
           </div>
         </div>     -->
-      </div>
     </div>
   </div>
-
-
-<!-- <div class="eventPagination">
-    <button (click)="previousPageOfEvents()">Previous Page</button>
-     <button *ngFor="let pageNumber of pageNumberArray" [class.selected]="pageNumber === currentIndex" (click)="pageSelect(pageNumber)">
-      {{pageNumber}}
-     </button>
-     <button (click)="nextPageOfEvents()">Next Page</button>
-</div> -->
+</div>

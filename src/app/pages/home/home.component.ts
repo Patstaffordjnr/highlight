@@ -64,6 +64,7 @@ export class HomeComponent implements OnInit {
 
   events: AppEvent[] = [];
   allEvents: AppEvent[] = [];
+  eventsLoading = true;
   event!: AppEvent;
   activeFilter: EventFilter | null = null;
   private lastMapDetails: any[] = [];
@@ -96,9 +97,9 @@ ngOnInit() {
 }
 
 private fetchEvents(minLat: number, minLong: number, maxLat: number, maxLong: number) {
+  this.eventsLoading = true;
   this.openHttpClientService.getEvents(
     this.globalDate,
-    // this.globalDate = new Date(),
     minLat,
     minLong,
     maxLat,
@@ -107,10 +108,11 @@ private fetchEvents(minLat: number, minLong: number, maxLat: number, maxLong: nu
   ).subscribe({
     next: (events: AppEvent[]) => {
       this.allEvents = events;
+      this.eventsLoading = false;
       this.applyFilter();
     },
-    error: (error) => {
-      console.error('Error fetching events:', error);
+    error: () => {
+      this.eventsLoading = false;
     },
   });
 }

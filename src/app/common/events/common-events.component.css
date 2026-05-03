@@ -231,3 +231,13 @@
     gap: 16px;
   }
 }
+
+.loading-state, .empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 0.95rem;
+  color: #aaa;
+  padding: 40px;
+}
