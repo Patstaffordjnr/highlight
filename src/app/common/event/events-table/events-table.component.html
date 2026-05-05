@@ -5,12 +5,12 @@
       <div class="flex-grid">
         <div class="event-profile-image-container col">
           <div class="event-profile-image">
-            <!-- <a>USER Image</a> -->
+            <img [src]="event.profileImageUrl || '/assets/userprofile.jpg'" class="event-user-img" alt="user profile" />
           </div>
         </div>
         <div class="event-user-name-container col">
           <div class="event-user-name">
-            <a>USER Name</a>
+            <a>{{ event.userName || 'Unknown' }}</a>
           </div>
         </div>
       </div>
