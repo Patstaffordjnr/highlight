@@ -13,7 +13,6 @@ export class Event {
   public userId: string;
   public userName?: string;
   public address?: string;
-  public profileImageUrl?: string;
 
   constructor(
     createdAt: Date,
