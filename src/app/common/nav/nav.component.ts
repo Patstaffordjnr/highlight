@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AuthService } from '../../util/auth.service';
 import { RouterService } from '../../util/router.service';
 import { CurrentUserService } from 'src/app/util/can-activate.service';
+import { User } from 'src/app/model/user';
 
 @Component({
   selector: 'app-nav',
@@ -15,6 +16,8 @@ export class NavComponent implements OnInit, AfterViewInit {
   user = false;
   busker = false;
   admin = false;
+  profileModalOpen = false;
+  currentUser: User = { id: '', email: '', roles: [] };
 
   currentTranslate = 0;
   slider: HTMLElement | null = null;
@@ -32,6 +35,10 @@ export class NavComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.authService.isLoggedIn$.subscribe((loggedIn: boolean) => {
       this.isLoggedIn = loggedIn;
+      if (loggedIn) {
+        const u = this.currentUserService.getUser();
+        if (u) this.currentUser = u as User;
+      }
     });
 
     this.currentUserService.userRole$.subscribe(userRoles => {
@@ -40,6 +47,12 @@ export class NavComponent implements OnInit, AfterViewInit {
       this.busker = this.userRoles.includes('BUSKER');
       this.user = this.userRoles.includes('USER');
     });
+  }
+
+  openProfileModal() {
+    const u = this.currentUserService.getUser();
+    if (u) this.currentUser = u as User;
+    this.profileModalOpen = true;
   }
 
   ngAfterViewInit() {
@@ -111,6 +124,10 @@ export class NavComponent implements OnInit, AfterViewInit {
     this.x = Math.min(maxTranslate, Math.max(this.x, minTranslate));
     this.innerSlider.style.transform = `translateX(${this.x}px)`;
     if (save) this.currentTranslate = this.x;
+  }
+
+  onProfileUpdated(user: User) {
+    this.currentUserService.setUser(user);
   }
 
   logout() {

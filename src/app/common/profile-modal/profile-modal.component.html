@@ -1,0 +1,131 @@
+<div class="event-modal" *ngIf="isOpen" (click)="onBackdropClick($event)">
+  <div #modalContent class="modal" (click)="$event.stopPropagation()">
+    <div class="item-2">
+      <div class="item-2-container">
+
+        <!-- POSITIONING MODE -->
+        <div class="position-panel" *ngIf="positioning">
+          <p class="position-hint">Drag to position · + / − to zoom</p>
+          <div class="frame-row">
+            <div class="frame-wrap">
+              <div class="frame-preview frame-main" (mousedown)="onDragStart($event)" [ngStyle]="getFrameBgStyle(100, 100)"></div>
+              <span class="frame-label">Profile</span>
+            </div>
+            <div class="frame-wrap">
+              <div class="frame-preview frame-card" [ngStyle]="getFrameBgStyle(58, 58)"></div>
+              <span class="frame-label">Card</span>
+            </div>
+            <div class="frame-wrap">
+              <div class="frame-preview frame-nav" [ngStyle]="getFrameBgStyle(36, 36)"></div>
+              <span class="frame-label">Button</span>
+            </div>
+          </div>
+          <div class="zoom-row">
+            <button class="zoom-btn" (click)="zoomOut()" [disabled]="zoom <= 1.0">−</button>
+            <span class="zoom-label">Zoom</span>
+            <button class="zoom-btn" (click)="zoomIn()" [disabled]="zoom >= 3.0">+</button>
+          </div>
+          <div class="btn-row">
+            <button class="action-btn" (click)="confirmPosition()" [disabled]="imageUploading">
+              {{ imageUploading ? 'Saving...' : 'Save Photo' }}
+            </button>
+            <button class="action-btn secondary" (click)="cancelPositioning()" [disabled]="imageUploading">Cancel</button>
+          </div>
+          <div class="error-msg" *ngIf="imageUploadError">{{ imageUploadError }}</div>
+        </div>
+
+        <!-- NORMAL MODE -->
+        <ng-container *ngIf="!positioning">
+
+        <!-- PROFILE IMAGE -->
+        <div class="grid-item" id="item-1">
+          <div class="img-upload-container">
+            <img [src]="profileImage" class="user-img" [ngStyle]="savedImgStyle" alt="profile" />
+            <label class="upload-overlay" *ngIf="editMode" [class.uploading]="imageUploading">
+              <span>{{ imageUploading ? 'Uploading...' : 'Change' }}</span>
+              <input type="file" accept="image/*" (change)="onImageSelected($event)" [disabled]="imageUploading" hidden>
+            </label>
+            <div class="error-msg" *ngIf="imageUploadError">{{ imageUploadError }}</div>
+          </div>
+        </div>
+
+        <!-- NAME -->
+        <div class="grid-item" id="item-2">
+          <div class="event-user-name-container">
+            <div class="event-user-name"><b>{{ displayLabel }}</b></div>
+          </div>
+        </div>
+
+        <!-- ROLES -->
+        <div class="grid-item" id="item-3">
+          <div class="event-title-container">
+            <div class="event-title">{{ userRoles.join(' · ') }}</div>
+          </div>
+        </div>
+
+        <!-- BIO -->
+        <div class="grid-item" id="item-4">
+          <div class="event-address">
+            <div class="event-adress">{{ currentUser.bio || 'No bio yet.' }}</div>
+          </div>
+        </div>
+
+        <!-- VERIFICATION BANNER -->
+        <div class="grid-item verify-item" *ngIf="!currentUser.verified && !editMode && !passwordMode">
+          <span>Email not verified.</span>
+          <button class="action-btn secondary small" (click)="resendVerification()" [disabled]="resendLoading || resendSent">
+            {{ resendSent ? 'Sent!' : 'Resend' }}
+          </button>
+        </div>
+
+        <!-- EDIT PROFILE -->
+        <div class="grid-item" id="item-5" *ngIf="!editMode && !passwordMode">
+          <div class="control-container">
+            <button class="action-btn" (click)="enterEditMode()">Edit Profile</button>
+            <button class="action-btn secondary" (click)="passwordMode = true">Change Password</button>
+          </div>
+        </div>
+
+        <!-- EDIT FORM -->
+        <ng-container *ngIf="editMode">
+          <div class="grid-item form-item" id="item-5">
+            <label>Display Name</label>
+            <input type="text" [(ngModel)]="editDisplayName" placeholder="Display name" />
+            <label>Bio</label>
+            <textarea [(ngModel)]="editBio" placeholder="Tell people about yourself" rows="2"></textarea>
+            <div class="error-msg" *ngIf="profileSaveError">{{ profileSaveError }}</div>
+            <div class="btn-row">
+              <button class="action-btn" (click)="saveProfile()">Save</button>
+              <button class="action-btn secondary" (click)="editMode = false">Cancel</button>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- CHANGE PASSWORD FORM -->
+        <ng-container *ngIf="passwordMode && !editMode">
+          <div class="grid-item form-item" id="item-5">
+            <label>Current Password</label>
+            <input type="password" [(ngModel)]="currentPassword" placeholder="Current password" />
+            <label>New Password</label>
+            <input type="password" [(ngModel)]="newPassword" placeholder="New password" />
+            <label>Confirm New Password</label>
+            <input type="password" [(ngModel)]="confirmNewPassword" placeholder="Confirm new password" />
+            <div class="error-msg" *ngIf="passwordSaveError">{{ passwordSaveError }}</div>
+            <div class="btn-row">
+              <button class="action-btn" (click)="savePassword()">Save</button>
+              <button class="action-btn secondary" (click)="passwordMode = false">Cancel</button>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- SUCCESS MESSAGES -->
+        <div class="grid-item success-item" *ngIf="profileSaveSuccess || passwordSaveSuccess">
+          <div class="success-msg">{{ profileSaveSuccess ? 'Profile saved!' : 'Password updated!' }}</div>
+        </div>
+
+        </ng-container><!-- end normal mode -->
+
+      </div>
+    </div>
+  </div>
+</div>

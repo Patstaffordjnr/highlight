@@ -154,6 +154,18 @@ resendVerification(): Observable<void> {
   return this.http.post<void>(`${API}/user/resend-verification`, {}, { withCredentials: true });
 }
 
+getBuskerUpcomingEvents(buskerId: string): Observable<any[]> {
+  return this.http.get<any[]>(`${API}/open/busker/${buskerId}/upcomingEvents`);
+}
+
+updateImagePosition(offsetX: number, offsetY: number, zoom: number): Observable<User> {
+  return this.http.put<User>(
+    `${API}/user/profile/image-position`,
+    { offsetX, offsetY, zoom },
+    { withCredentials: true, headers: { 'Content-Type': 'application/json' } }
+  );
+}
+
 uploadProfileImage(file: File): Observable<User> {
   const formData = new FormData();
   formData.append('file', file);

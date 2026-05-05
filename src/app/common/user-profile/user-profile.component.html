@@ -1,84 +1,31 @@
 <div class="user">
   <div class="item-1">
     <div class="profile-image-container">
-      <img [src]="profileImage" class="user-profile-img" alt="profile image">
-      <label class="upload-overlay" [class.uploading]="imageUploading">
-        <span>{{ imageUploading ? 'Uploading...' : 'Change photo' }}</span>
-        <input type="file" accept="image/*" (change)="onImageSelected($event)" [disabled]="imageUploading" hidden>
-      </label>
+      <img [src]="profileImage" class="user-profile-img"
+           [style.object-position]="imgPosition"
+           [style.transform]="imgTransform"
+           alt="profile image">
     </div>
-    <div *ngIf="imageUploadError" class="error-msg">{{ imageUploadError }}</div>
   </div>
 
   <!-- Unverified banner -->
-  <div class="verify-banner" *ngIf="currentUser.verified === false">
+  <!-- <div class="verify-banner" *ngIf="currentUser.verified === false">
     <span>Your email is not verified.</span>
     <button class="resend-btn" (click)="resendVerification()" [disabled]="resendLoading || resendSent">
       {{ resendSent ? 'Email sent!' : resendLoading ? 'Sending...' : 'Resend verification email' }}
     </button>
+  </div> -->
+
+  <div class="item item-2">
+    <a>{{ displayLabel }}</a>
   </div>
-
-  <!-- View mode -->
-  <ng-container *ngIf="!editMode">
-    <div class="item item-2">
-      <a>{{ displayLabel }}</a>
-    </div>
-    <div class="item item-3">
-      <a>{{ userRoles.join(' · ') }}</a>
-    </div>
-    <div class="item item-4">
-      <a>{{ currentUser.email }}</a>
-    </div>
-    <div class="item item-5">
-      <a>{{ currentUser.bio || 'No bio yet.' }}</a>
-    </div>
-    <div class="item item-6">
-      <button (click)="enterEditMode()">Edit Profile</button>
-      <button (click)="togglePasswordMode()">{{ passwordMode ? 'Cancel' : 'Change Password' }}</button>
-    </div>
-    <div *ngIf="profileSaveSuccess" class="item item-5 success-msg">
-      Profile saved successfully.
-    </div>
-    <div *ngIf="passwordSaveSuccess" class="item item-5 success-msg">
-      Password updated successfully.
-    </div>
-  </ng-container>
-
-  <!-- Edit profile mode -->
-  <ng-container *ngIf="editMode">
-    <div class="item item-5 edit-section">
-      <label>Display Name</label>
-      <input type="text" [(ngModel)]="editDisplayName" placeholder="Display name" />
-    </div>
-    <div class="item item-5 edit-section">
-      <label>Bio</label>
-      <textarea [(ngModel)]="editBio" placeholder="Tell people about yourself" rows="3"></textarea>
-    </div>
-    <div *ngIf="profileSaveError" class="item item-5 error-msg">{{ profileSaveError }}</div>
-    <div class="item item-5">
-      <button (click)="saveProfile()">Save</button>
-      <button (click)="cancelEditMode()">Cancel</button>
-    </div>
-  </ng-container>
-
-  <!-- Change password section -->
-  <ng-container *ngIf="passwordMode && !editMode">
-    <div class="item item-5 edit-section">
-      <label>Current Password</label>
-      <input type="password" [(ngModel)]="currentPassword" placeholder="Current password" />
-    </div>
-    <div class="item item-5 edit-section">
-      <label>New Password</label>
-      <input type="password" [(ngModel)]="newPassword" placeholder="New password" />
-    </div>
-    <div class="item item-5 edit-section">
-      <label>Confirm New Password</label>
-      <input type="password" [(ngModel)]="confirmNewPassword" placeholder="Confirm new password" />
-    </div>
-    <div *ngIf="passwordSaveError" class="item item-5 error-msg">{{ passwordSaveError }}</div>
-    <div class="item item-5">
-      <button (click)="savePassword()">Save Password</button>
-      <button (click)="togglePasswordMode()">Cancel</button>
-    </div>
-  </ng-container>
+  <div class="item item-3">
+    <a>{{ userRoles.join(' · ') }}</a>
+  </div>
+  <div class="item item-4">
+    <a>{{ currentUser.email }}</a>
+  </div>
+  <div class="item item-5">
+    <a>{{ currentUser.bio || 'No bio yet.' }}</a>
+  </div>
 </div>

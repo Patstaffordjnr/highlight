@@ -34,6 +34,7 @@ import { BuskersTableComponent } from './common/busker/buskers-table/buskers-tab
 import { BuskersMiniDisplayComponent } from './common/busker/buskers-mini-display/buskers-mini-display.component';
 import { BuskersTableControlComponent } from './common/busker/buskers-table-control/buskers-table-control.component';
 import { BuskerModalComponent } from './common/busker/busker-modal/busker-modal.component';
+import { ProfileModalComponent } from './common/profile-modal/profile-modal.component';
 import { EventListComponent } from './common/event/event-list/event-list.component';
 import { BuskerListComponent } from './common/busker/busker-list/busker-list.component';
 import { AdminComponent } from './pages/admin/admin.component';
@@ -67,6 +68,7 @@ import { AboutComponent } from './pages/about/about.component';
     EventsTableControlComponent,
     EventModalComponent,
        BuskerModalComponent,
+       ProfileModalComponent,
        
         //         BuskerListComponent,
         //  EventListComponent,

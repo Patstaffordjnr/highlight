@@ -10,6 +10,9 @@ export class User {
     public bio?: string;
     public verified?: boolean;
     public profileImageUrl?: string;
+    public imgOffsetX?: number;
+    public imgOffsetY?: number;
+    public imgZoom?: number;
     constructor(
         email: String,
         roles: UserRole[],

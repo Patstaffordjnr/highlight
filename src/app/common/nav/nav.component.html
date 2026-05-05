@@ -38,10 +38,18 @@
     <div *ngIf="isLoggedIn" class = "slider-img">
       <i (click)="logout()" class ="log-out">Log Out</i>
     </div>
-    <div class = "slider-img">
-      <i class = "profile"></i>
+    <div class="slider-img" *ngIf="isLoggedIn">
+      <i class="profile" (click)="openProfileModal()"></i>
     </div>
   </div>
 </div>
 </div>
 </div>
+
+<app-profile-modal
+  *ngIf="profileModalOpen"
+  [isOpen]="profileModalOpen"
+  [currentUser]="currentUser"
+  (close)="profileModalOpen = false"
+  (profileUpdated)="onProfileUpdated($event)">
+</app-profile-modal>

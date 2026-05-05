@@ -51,7 +51,7 @@ export class EventsTableControlComponent implements OnInit, OnDestroy {
     { label: 'Most Attended', value: 'attendance' }
   ];
   selectedSort: string = 'distance';
-  selectedWithin: number = 1;
+  selectedWithin: number = 8760;
   searchText: string = '';
 
   private subscriptions = new Subscription();
@@ -133,6 +133,16 @@ export class EventsTableControlComponent implements OnInit, OnDestroy {
     this.selectGenre = this.genreSet;
   }
 
+  private syncAllButton(): void {
+    const allOn = this.bandEventsVisible && this.buskerEventsVisible && this.djEventsVisible && this.performanceEventsVisible;
+    this.allEventsVisible = allOn;
+    if (allOn) {
+      this.genreSet.add('All');
+    } else {
+      this.genreSet.delete('All');
+    }
+  }
+
   private mapStringToEventType(genre: string): EventType {
     switch (genre.toLowerCase()) {
       case 'all': return EventType.ALL;
@@ -161,32 +171,28 @@ export class EventsTableControlComponent implements OnInit, OnDestroy {
   bandFunction() {
     this.bandEventsVisible = !this.bandEventsVisible;
     this.toggleGenreInSet('Band', this.bandEventsVisible);
-    this.allEventsVisible = false;
-    this.genreSet.delete('All');
+    this.syncAllButton();
     this.emitFilter();
   }
 
   buskerFunction() {
     this.buskerEventsVisible = !this.buskerEventsVisible;
     this.toggleGenreInSet('Busker', this.buskerEventsVisible);
-    this.allEventsVisible = false;
-    this.genreSet.delete('All');
+    this.syncAllButton();
     this.emitFilter();
   }
 
   djFunction() {
     this.djEventsVisible = !this.djEventsVisible;
     this.toggleGenreInSet('Dj', this.djEventsVisible);
-    this.allEventsVisible = false;
-    this.genreSet.delete('All');
+    this.syncAllButton();
     this.emitFilter();
   }
 
   performanceFunction() {
     this.performanceEventsVisible = !this.performanceEventsVisible;
     this.toggleGenreInSet('Performance', this.performanceEventsVisible);
-    this.allEventsVisible = false;
-    this.genreSet.delete('All');
+    this.syncAllButton();
     this.emitFilter();
   }
 
