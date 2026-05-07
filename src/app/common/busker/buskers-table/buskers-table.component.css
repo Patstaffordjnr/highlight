@@ -3,6 +3,28 @@
   width: 100%;
 }
 
+.busker-social-icons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  padding: 4px 0;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: #bbb;
+  cursor: default;
+}
+
+.social-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
 .busker-next-gig {
   font-size: 0.72rem;
   color: #4da6e8;
