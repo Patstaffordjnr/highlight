@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BuskerPlaceholderPipe } from '../busker-placeholder.pipe';
 
 interface Busker {
   id: string;
@@ -8,12 +9,17 @@ interface Busker {
   createdAt: number;
   updatedAt: number;
   bio?: string;
+  displayName?: string;
+  profileImageUrl?: string;
+  imgOffsetX?: number;
+  imgOffsetY?: number;
+  imgZoom?: number;
 }
 
 @Component({
   selector: 'app-buskers-table',
   standalone: true,
-  imports: [CommonModule],  // needed for *ngFor, *ngIf
+  imports: [CommonModule, BuskerPlaceholderPipe],
   templateUrl: './buskers-table.component.html',
   styleUrls: ['./buskers-table.component.css']
 })

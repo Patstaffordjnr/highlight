@@ -13,6 +13,10 @@ export class Event {
   public userId: string;
   public userName?: string;
   public address?: string;
+  public profileImageUrl?: string;
+  public imgOffsetX?: number;
+  public imgOffsetY?: number;
+  public imgZoom?: number;
 
   constructor(
     createdAt: Date,

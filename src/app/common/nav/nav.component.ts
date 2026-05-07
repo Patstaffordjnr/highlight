@@ -41,6 +41,10 @@ export class NavComponent implements OnInit, AfterViewInit {
       }
     });
 
+    this.currentUserService.user$.subscribe(user => {
+      if (user) this.currentUser = user as User;
+    });
+
     this.currentUserService.userRole$.subscribe(userRoles => {
       this.userRoles = userRoles || [];
       this.admin = this.userRoles.includes('ADMIN');

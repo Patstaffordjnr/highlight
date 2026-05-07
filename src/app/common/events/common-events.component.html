@@ -6,7 +6,13 @@
       <div class="event-item" *ngFor="let event of events; let i = index" [class.selected]="event === selectedEvent" (click)="onSelect(event)" >
         <div class="flex-grid top-section">
           <div class="event-profile-image-container col">
-            <div class="event-profile-image"></div>
+            <div class="event-profile-image">
+              <img [src]="event.profileImageUrl || '/assets/userprofile.jpg'"
+                   class="event-profile-img"
+                   [style.object-position]="(event.imgOffsetX ?? 50) + '% ' + (event.imgOffsetY ?? 50) + '%'"
+                   [style.transform]="event.imgZoom && event.imgZoom > 1.0 ? 'scale(' + event.imgZoom + ')' : 'none'"
+                   alt="profile">
+            </div>
           </div>
           <div class="event-user-details col">
             <div class="event-user-name-container">

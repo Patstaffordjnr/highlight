@@ -10,6 +10,9 @@ interface Busker {
   bio?: string;
   displayName?: string;
   profileImageUrl?: string;
+  imgOffsetX?: number;
+  imgOffsetY?: number;
+  imgZoom?: number;
 }
 @Component({
   selector: 'app-buskers-mini-display',

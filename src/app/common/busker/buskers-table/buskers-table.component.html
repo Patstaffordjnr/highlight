@@ -5,7 +5,10 @@
         <div class="flex-grid top-section">
           <div class="busker-profile-image-container col">
             <div class="busker-profile-image">
-              <img src="" alt="Busker" />
+              <img [src]="busker.profileImageUrl || (busker.id | buskerPlaceholder)"
+                   [style.object-position]="(busker.imgOffsetX ?? 50) + '% ' + (busker.imgOffsetY ?? 50) + '%'"
+                   [style.transform]="busker.imgZoom && busker.imgZoom > 1.0 ? 'scale(' + busker.imgZoom + ')' : 'none'"
+                   alt="Busker" />
             </div>
           </div>
           <div class="busker-user-details col">

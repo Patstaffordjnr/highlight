@@ -39,7 +39,13 @@
       <i (click)="logout()" class ="log-out">Log Out</i>
     </div>
     <div class="slider-img" *ngIf="isLoggedIn">
-      <i class="profile" (click)="openProfileModal()"></i>
+      <i class="profile" (click)="openProfileModal()">
+        <img [src]="currentUser.profileImageUrl || '/assets/userprofile.jpg'"
+             class="profile-img"
+             [style.object-position]="(currentUser.imgOffsetX ?? 50) + '% ' + (currentUser.imgOffsetY ?? 50) + '%'"
+             [style.transform]="currentUser.imgZoom && currentUser.imgZoom > 1.0 ? 'scale(' + currentUser.imgZoom + ')' : 'none'"
+             alt="profile">
+      </i>
     </div>
   </div>
 </div>

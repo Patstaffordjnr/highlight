@@ -69,7 +69,12 @@
   margin-right: 10px; 
 }
 
-.event-profile-image img {
+.event-profile-image {
+  width: 100%;
+  height: 100%;
+}
+
+.event-profile-img {
   width: 100%;
   height: 100%;
   object-fit: cover;

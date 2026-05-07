@@ -5,9 +5,11 @@
         *ngFor="let busker of buskers; let i = index"
         [class.selected]="busker === selectedBusker"
         (click)="onSelect(busker)">
-        <img  class="busker-img" alt="Busker" />
-        
-        <!-- <img [src]="busker.profileImageUrl || '/assets/userprofile.jpg'" class="busker-img" alt="Busker" /> -->
+        <img [src]="busker.profileImageUrl || (busker.id | buskerPlaceholder)"
+             class="busker-img"
+             [style.object-position]="(busker.imgOffsetX ?? 50) + '% ' + (busker.imgOffsetY ?? 50) + '%'"
+             [style.transform]="busker.imgZoom && busker.imgZoom > 1.0 ? 'scale(' + busker.imgZoom + ')' : 'none'"
+             alt="Busker" />
 
         <div class="busker-name-overlay">
           {{ busker.displayName || busker.email }}
