@@ -54,7 +54,7 @@ export class ProfileModalComponent implements OnInit, OnChanges {
   private dragStartMouseY = 0;
   private dragStartPosX = 50;
   private dragStartPosY = 50;
-  readonly MAIN_FRAME = 100;
+  readonly MAIN_FRAME = 88;
 
   constructor(private openHttpClientService: OpenHttpClientService) {}
 
@@ -187,7 +187,7 @@ export class ProfileModalComponent implements OnInit, OnChanges {
     const x = this.currentUser.imgOffsetX ?? 50;
     const y = this.currentUser.imgOffsetY ?? 50;
     const z = this.currentUser.imgZoom ?? 1.0;
-    const size = 125 * z;
+    const size = 88 * z;
     return {
       'position': 'absolute',
       'width': `${size}px`,

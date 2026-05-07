@@ -39,8 +39,8 @@
   cursor: default;
 }
 .profile-image-container {
-  width: 125px;
-  height: 125px;
+  width: 100px;
+  height: 100px;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -74,8 +74,8 @@
 }
 
 .user-profile-img {
-  width: 113px;
-  height: 113px;
+  width: 88px;
+  height: 88px;
   object-fit: cover;
   display: block;
   flex-shrink: 0;
