@@ -57,8 +57,8 @@
   position: relative;
   display: block;
   overflow: hidden;
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  aspect-ratio: 1;
   border-radius: 30% 10% 30% 10%;
   border: 6px solid whitesmoke;
 }
