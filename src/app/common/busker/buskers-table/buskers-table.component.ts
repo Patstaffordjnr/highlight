@@ -14,6 +14,8 @@ interface Busker {
   imgOffsetX?: number;
   imgOffsetY?: number;
   imgZoom?: number;
+  upcomingEventsCount?: number;
+  nextEventAt?: number;
 }
 
 @Component({

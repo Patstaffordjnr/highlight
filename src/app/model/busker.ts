@@ -12,6 +12,8 @@ export class Busker {
     public imgOffsetX?: number;
     public imgOffsetY?: number;
     public imgZoom?: number;
+    public upcomingEventsCount?: number;
+    public nextEventAt?: number;
     constructor(
         email: String,
         roles: UserRole[],

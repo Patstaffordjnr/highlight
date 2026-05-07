@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Busker } from '../../../model/busker';
 import { CurrentUserService } from 'src/app/util/can-activate.service';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './busker-modal.component.html',
   styleUrl: './busker-modal.component.css'
 })
-export class BuskerModalComponent implements OnInit {
+export class BuskerModalComponent implements OnInit, OnChanges {
   @Input() isOpen = false;
   @Output() close = new EventEmitter<void>();
   @Output() unfollowed = new EventEmitter<string>();
@@ -19,6 +19,8 @@ export class BuskerModalComponent implements OnInit {
 
   isFollowing = false;
   isLoggedIn = false;
+  upcomingEvents: any[] = [];
+  eventsLoading = false;
 
   get isOwnProfile(): boolean {
     const user = this.currentUserService.getUser();
@@ -31,6 +33,24 @@ export class BuskerModalComponent implements OnInit {
     private openHttpClientService: OpenHttpClientService,
     private router: Router
   ) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if ((changes['busker'] || changes['isOpen']) && this.isOpen && this.busker?.id) {
+      this.loadUpcomingEvents();
+    }
+  }
+
+  private loadUpcomingEvents() {
+    this.eventsLoading = true;
+    this.upcomingEvents = [];
+    this.openHttpClientService.getBuskerUpcomingEvents(String(this.busker!.id)).subscribe({
+      next: (events) => {
+        this.upcomingEvents = events;
+        this.eventsLoading = false;
+      },
+      error: () => { this.eventsLoading = false; }
+    });
+  }
 
   ngOnInit() {
     const user = this.currentUserService.getUser();

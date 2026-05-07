@@ -58,10 +58,18 @@
             <div>{{ busker.followers || 0 }}</div>
           </div>
           <div class="busker-events-text-container col">
-            <div class="busker-events-text">Events</div>
+            <div class="busker-events-text">Upcoming</div>
           </div>
           <div class="busker-events-count col">
-            <div>{{ busker.eventsCount || 0 }}</div>
+            <div>{{ busker.upcomingEventsCount || 0 }}</div>
+          </div>
+        </div>
+
+        <div class="flex-grid" *ngIf="busker.nextEventAt">
+          <div class="busker-next-gig-container col">
+            <div class="busker-next-gig">
+              Next: {{ busker.nextEventAt * 1000 | date: 'EEE d MMM, h:mm a' }}
+            </div>
           </div>
         </div>
       </div>

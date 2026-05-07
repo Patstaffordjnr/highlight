@@ -14,6 +14,9 @@
         <div class="busker-name-overlay">
           {{ busker.displayName || busker.email }}
         </div>
+        <div class="busker-gig-badge" *ngIf="busker.nextEventAt">
+          {{ busker.nextEventAt * 1000 | date: 'd MMM' }}
+        </div>
       </div>
     </div>
   </div>

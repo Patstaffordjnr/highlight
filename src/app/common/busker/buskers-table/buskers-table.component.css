@@ -3,6 +3,14 @@
   width: 100%;
 }
 
+.busker-next-gig {
+  font-size: 0.72rem;
+  color: #4da6e8;
+  font-weight: 600;
+  text-align: center;
+  padding: 2px 0 4px;
+}
+
 .col {
   flex: 1;
   display: flex;

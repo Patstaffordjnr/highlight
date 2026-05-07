@@ -67,6 +67,19 @@
   display: block;
 }
 
+.busker-gig-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
 .busker-name-overlay {
   position: absolute;
   bottom: 0;
