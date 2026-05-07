@@ -37,14 +37,6 @@ export class BuskerModalComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if ((changes['busker'] || changes['isOpen']) && this.isOpen && this.busker?.id) {
       this.loadUpcomingEvents();
-      this.isFollowing = false;
-      const user = this.currentUserService.getUser();
-      if (user) {
-        this.openHttpClientService.isFollowingBusker(String(this.busker!.id)).subscribe({
-          next: (following) => this.isFollowing = following,
-          error: () => this.isFollowing = false
-        });
-      }
     }
   }
 
