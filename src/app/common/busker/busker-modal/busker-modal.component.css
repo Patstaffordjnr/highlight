@@ -123,11 +123,22 @@ display: flex;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6c757d;
-  cursor: not-allowed;
+  color: #ccc;
+  cursor: default;
   opacity: 0.5;
   width: 36px;
   height: 36px;
+  text-decoration: none;
+}
+
+.social-icon.active {
+  color: #444;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.social-icon.active:hover {
+  color: #4da6e8;
 }
 
 .social-icon svg {

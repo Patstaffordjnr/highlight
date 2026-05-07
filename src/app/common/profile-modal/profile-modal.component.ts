@@ -21,6 +21,10 @@ export class ProfileModalComponent implements OnInit {
   editDisplayName = '';
   editBio = '';
   editLocation = '';
+  editInstagramUrl = '';
+  editTiktokUrl = '';
+  editYoutubeUrl = '';
+  editSpotifyUrl = '';
   profileSaveSuccess = false;
   profileSaveError = '';
 
@@ -68,6 +72,10 @@ export class ProfileModalComponent implements OnInit {
     this.editDisplayName = this.currentUser.displayName ?? '';
     this.editBio = this.currentUser.bio ?? '';
     this.editLocation = this.currentUser.location ?? '';
+    this.editInstagramUrl = this.currentUser.instagramUrl ?? '';
+    this.editTiktokUrl = this.currentUser.tiktokUrl ?? '';
+    this.editYoutubeUrl = this.currentUser.youtubeUrl ?? '';
+    this.editSpotifyUrl = this.currentUser.spotifyUrl ?? '';
     this.profileSaveSuccess = false;
     this.profileSaveError = '';
     this.editMode = true;
@@ -78,12 +86,20 @@ export class ProfileModalComponent implements OnInit {
     this.openHttpClientService.updateProfile(
       this.editDisplayName || null,
       this.editBio || null,
-      this.editLocation || null
+      this.editLocation || null,
+      this.editInstagramUrl || null,
+      this.editTiktokUrl || null,
+      this.editYoutubeUrl || null,
+      this.editSpotifyUrl || null
     ).subscribe({
       next: (updated: User) => {
         this.currentUser.displayName = updated.displayName;
         this.currentUser.bio = updated.bio;
         this.currentUser.location = updated.location;
+        this.currentUser.instagramUrl = updated.instagramUrl;
+        this.currentUser.tiktokUrl = updated.tiktokUrl;
+        this.currentUser.youtubeUrl = updated.youtubeUrl;
+        this.currentUser.spotifyUrl = updated.spotifyUrl;
         this.editMode = false;
         this.profileSaveSuccess = true;
         this.profileUpdated.emit(this.currentUser);

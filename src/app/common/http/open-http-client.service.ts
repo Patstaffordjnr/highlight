@@ -134,10 +134,10 @@ adminDeleteEvent(eventId: string): Observable<void> {
   return this.http.delete<void>(`${API}/admin/events/delete/${eventId}`, { withCredentials: true });
 }
 
-updateProfile(displayName: string | null, bio: string | null, location: string | null): Observable<User> {
+updateProfile(displayName: string | null, bio: string | null, location: string | null, instagramUrl: string | null, tiktokUrl: string | null, youtubeUrl: string | null, spotifyUrl: string | null): Observable<User> {
   return this.http.put<User>(
     `${API}/user/profile`,
-    { displayName, bio, location },
+    { displayName, bio, location, instagramUrl, tiktokUrl, youtubeUrl, spotifyUrl },
     { withCredentials: true, headers: { 'Content-Type': 'application/json' } }
   );
 }

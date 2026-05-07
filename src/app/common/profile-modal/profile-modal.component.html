@@ -96,6 +96,14 @@
             <input type="text" [(ngModel)]="editLocation" placeholder="City or area" />
             <label>Bio</label>
             <textarea [(ngModel)]="editBio" placeholder="Tell people about yourself" rows="3"></textarea>
+            <label>Instagram</label>
+            <input type="url" [(ngModel)]="editInstagramUrl" placeholder="https://instagram.com/yourhandle" />
+            <label>TikTok</label>
+            <input type="url" [(ngModel)]="editTiktokUrl" placeholder="https://tiktok.com/@yourhandle" />
+            <label>YouTube</label>
+            <input type="url" [(ngModel)]="editYoutubeUrl" placeholder="https://youtube.com/@yourchannel" />
+            <label>Spotify</label>
+            <input type="url" [(ngModel)]="editSpotifyUrl" placeholder="https://open.spotify.com/artist/..." />
             <div class="error-msg" *ngIf="profileSaveError">{{ profileSaveError }}</div>
             <div class="btn-row">
               <button class="action-btn" (click)="saveProfile()">Save</button>

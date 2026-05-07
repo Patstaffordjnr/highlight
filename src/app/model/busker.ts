@@ -8,6 +8,10 @@ export class Busker {
     public updatedAt?: number;
     public bio?: string;
     public location?: string;
+    public instagramUrl?: string;
+    public tiktokUrl?: string;
+    public youtubeUrl?: string;
+    public spotifyUrl?: string;
     public displayName?: string;
     public profileImageUrl?: string;
     public imgOffsetX?: number;

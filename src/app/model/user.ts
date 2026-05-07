@@ -9,6 +9,10 @@ export class User {
     public displayName?: string;
     public bio?: string;
     public location?: string;
+    public instagramUrl?: string;
+    public tiktokUrl?: string;
+    public youtubeUrl?: string;
+    public spotifyUrl?: string;
     public verified?: boolean;
     public profileImageUrl?: string;
     public imgOffsetX?: number;
