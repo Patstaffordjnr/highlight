@@ -61,13 +61,13 @@
 }
 
 .event-profile-image-container {
-  min-width: calc(50% - 10px);
+  width: 100px;
   height: 100px;
+  flex-shrink: 0;
   border-radius: 30% 10% 30% 10%;
   overflow: hidden;
   border: 6px solid whitesmoke;
-
-  margin-right: 10px; 
+  margin-right: 10px;
 }
 
 .event-profile-image {
