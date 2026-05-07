@@ -12,7 +12,8 @@
              alt="Busker" />
 
         <div class="busker-name-overlay">
-          {{ busker.displayName || busker.email }}
+          <span class="busker-overlay-name">{{ busker.displayName || busker.email }}</span>
+          <span class="busker-overlay-location" *ngIf="busker.location">{{ busker.location }}</span>
         </div>
         <div class="busker-gig-badge" *ngIf="busker.nextEventAt">
           {{ busker.nextEventAt * 1000 | date: 'd MMM' }}
