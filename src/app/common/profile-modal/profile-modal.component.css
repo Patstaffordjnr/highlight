@@ -251,6 +251,12 @@
   margin-top: 4px;
 }
 
+.password-hint {
+  font-size: 0.75rem;
+  color: #aaa;
+  margin-top: 2px;
+}
+
 .position-panel {
   grid-column: 1 / span 2;
   display: flex;

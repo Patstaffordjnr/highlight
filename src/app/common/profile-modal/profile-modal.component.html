@@ -83,7 +83,7 @@
         <div class="grid-item" id="item-5" *ngIf="!editMode && !passwordMode">
           <div class="control-container">
             <button class="action-btn" (click)="enterEditMode()">Edit Profile</button>
-            <button class="action-btn secondary" (click)="passwordMode = true">Change Password</button>
+            <button class="action-btn secondary" (click)="enterPasswordMode()">Change Password</button>
           </div>
         </div>
 
@@ -91,19 +91,19 @@
         <ng-container *ngIf="editMode">
           <div class="grid-item form-item" id="item-5">
             <label>Display Name</label>
-            <input type="text" [(ngModel)]="editDisplayName" placeholder="Display name" />
+            <input type="text" [(ngModel)]="editDisplayName" placeholder="Display name" maxlength="50" />
             <label>Location</label>
-            <input type="text" [(ngModel)]="editLocation" placeholder="City or area" />
+            <input type="text" [(ngModel)]="editLocation" placeholder="City or area" maxlength="100" />
             <label>Bio</label>
-            <textarea [(ngModel)]="editBio" placeholder="Tell people about yourself" rows="3"></textarea>
+            <textarea [(ngModel)]="editBio" placeholder="Tell people about yourself" rows="3" maxlength="500"></textarea>
             <label>Instagram</label>
-            <input type="url" [(ngModel)]="editInstagramUrl" placeholder="https://instagram.com/yourhandle" />
+            <input type="url" [(ngModel)]="editInstagramUrl" placeholder="https://instagram.com/yourhandle" maxlength="200" />
             <label>TikTok</label>
-            <input type="url" [(ngModel)]="editTiktokUrl" placeholder="https://tiktok.com/@yourhandle" />
+            <input type="url" [(ngModel)]="editTiktokUrl" placeholder="https://tiktok.com/@yourhandle" maxlength="200" />
             <label>YouTube</label>
-            <input type="url" [(ngModel)]="editYoutubeUrl" placeholder="https://youtube.com/@yourchannel" />
+            <input type="url" [(ngModel)]="editYoutubeUrl" placeholder="https://youtube.com/@yourchannel" maxlength="200" />
             <label>Spotify</label>
-            <input type="url" [(ngModel)]="editSpotifyUrl" placeholder="https://open.spotify.com/artist/..." />
+            <input type="url" [(ngModel)]="editSpotifyUrl" placeholder="https://open.spotify.com/artist/..." maxlength="200" />
             <div class="error-msg" *ngIf="profileSaveError">{{ profileSaveError }}</div>
             <div class="btn-row">
               <button class="action-btn" (click)="saveProfile()">Save</button>
@@ -118,7 +118,9 @@
             <label>Current Password</label>
             <input type="password" [(ngModel)]="currentPassword" placeholder="Current password" />
             <label>New Password</label>
-            <input type="password" [(ngModel)]="newPassword" placeholder="New password" />
+            <input type="password" [(ngModel)]="newPassword" placeholder="Min 8 chars, include a number" minlength="8" />
+            <div class="password-hint">Must be at least 8 characters and contain a number.</div>
+            <div class="error-msg" *ngIf="passwordStrengthError">{{ passwordStrengthError }}</div>
             <label>Confirm New Password</label>
             <input type="password" [(ngModel)]="confirmNewPassword" placeholder="Confirm new password" />
             <div class="error-msg" *ngIf="passwordSaveError">{{ passwordSaveError }}</div>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { User } from 'src/app/model/user';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
 
@@ -7,7 +7,7 @@ import { OpenHttpClientService } from 'src/app/common/http/open-http-client.serv
   templateUrl: './profile-modal.component.html',
   styleUrl: './profile-modal.component.css'
 })
-export class ProfileModalComponent implements OnInit {
+export class ProfileModalComponent implements OnInit, OnChanges {
   @Input() isOpen = false;
   @Input() currentUser: User = { id: '', email: '', roles: [] };
   @Output() close = new EventEmitter<void>();
@@ -34,6 +34,7 @@ export class ProfileModalComponent implements OnInit {
   confirmNewPassword = '';
   passwordSaveSuccess = false;
   passwordSaveError = '';
+  passwordStrengthError = '';
 
   imageUploading = false;
   imageUploadError = '';
@@ -63,6 +64,19 @@ export class ProfileModalComponent implements OnInit {
       .filter(r => r === 'USER' || r === 'BUSKER' || r === 'ADMIN');
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['isOpen']?.currentValue === true) {
+      this.resendSent = false;
+      this.profileSaveSuccess = false;
+      this.passwordSaveSuccess = false;
+      this.profileSaveError = '';
+      this.passwordSaveError = '';
+      this.passwordStrengthError = '';
+      this.editMode = false;
+      this.passwordMode = false;
+    }
+  }
+
   get displayLabel(): string {
     if (this.currentUser.displayName) return this.currentUser.displayName;
     return String(this.currentUser.email).split('@')[0];
@@ -77,8 +91,22 @@ export class ProfileModalComponent implements OnInit {
     this.editYoutubeUrl = this.currentUser.youtubeUrl ?? '';
     this.editSpotifyUrl = this.currentUser.spotifyUrl ?? '';
     this.profileSaveSuccess = false;
+    this.passwordSaveSuccess = false;
     this.profileSaveError = '';
+    this.passwordMode = false;
     this.editMode = true;
+  }
+
+  enterPasswordMode() {
+    this.currentPassword = '';
+    this.newPassword = '';
+    this.confirmNewPassword = '';
+    this.passwordSaveError = '';
+    this.passwordStrengthError = '';
+    this.passwordSaveSuccess = false;
+    this.profileSaveSuccess = false;
+    this.editMode = false;
+    this.passwordMode = true;
   }
 
   saveProfile() {
@@ -103,21 +131,37 @@ export class ProfileModalComponent implements OnInit {
         this.editMode = false;
         this.profileSaveSuccess = true;
         this.profileUpdated.emit(this.currentUser);
+        setTimeout(() => { this.profileSaveSuccess = false; }, 3000);
       },
       error: () => { this.profileSaveError = 'Failed to save. Please try again.'; }
     });
   }
 
+  validatePassword(password: string): string | null {
+    if (password.length < 8) return 'Password must be at least 8 characters.';
+    if (!/[0-9]/.test(password)) return 'Password must contain at least one number.';
+    if (!/[a-zA-Z]/.test(password)) return 'Password must contain at least one letter.';
+    return null;
+  }
+
   savePassword() {
     this.passwordSaveError = '';
+    this.passwordStrengthError = '';
+
+    if (!this.currentPassword) {
+      this.passwordSaveError = 'Current password is required.';
+      return;
+    }
+    const strengthError = this.validatePassword(this.newPassword);
+    if (strengthError) {
+      this.passwordStrengthError = strengthError;
+      return;
+    }
     if (this.newPassword !== this.confirmNewPassword) {
       this.passwordSaveError = 'Passwords do not match.';
       return;
     }
-    if (!this.newPassword) {
-      this.passwordSaveError = 'New password cannot be empty.';
-      return;
-    }
+
     this.openHttpClientService.updatePassword(this.currentPassword, this.newPassword).subscribe({
       next: () => {
         this.passwordMode = false;
@@ -125,11 +169,12 @@ export class ProfileModalComponent implements OnInit {
         this.newPassword = '';
         this.confirmNewPassword = '';
         this.passwordSaveSuccess = true;
+        setTimeout(() => { this.passwordSaveSuccess = false; }, 3000);
       },
       error: (err: any) => {
         const msg = err?.error?.message || err?.message;
-        this.passwordSaveError = msg && msg !== '[object Object]'
-          ? msg : 'Failed to update password.';
+        this.passwordSaveError = (msg && typeof msg === 'string' && !msg.includes('[object'))
+          ? msg : 'Failed to update password. Check your current password and try again.';
       }
     });
   }
@@ -157,6 +202,10 @@ export class ProfileModalComponent implements OnInit {
   onImageSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (!file) return;
+    if (file.size > 5 * 1024 * 1024) {
+      this.imageUploadError = 'Image must be under 5MB.';
+      return;
+    }
     this.selectedFile = file;
     this.imageUploadError = '';
     const reader = new FileReader();
