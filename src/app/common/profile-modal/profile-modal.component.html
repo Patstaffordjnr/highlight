@@ -40,7 +40,10 @@
         <!-- PROFILE IMAGE -->
         <div class="grid-item" id="item-1">
           <div class="img-upload-container">
-            <img [src]="profileImage" class="user-img" [ngStyle]="savedImgStyle" alt="profile" />
+            <img [src]="profileImage" class="user-img"
+                 [style.object-position]="savedImgPosition"
+                 [style.transform]="savedImgTransform"
+                 alt="profile" />
             <label class="upload-overlay" *ngIf="editMode" [class.uploading]="imageUploading">
               <span>{{ imageUploading ? 'Uploading...' : 'Change' }}</span>
               <input type="file" accept="image/*" (change)="onImageSelected($event)" [disabled]="imageUploading" hidden>

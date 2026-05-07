@@ -42,10 +42,7 @@
   width: 100px;
   height: 100px;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* position: relative; */
+  display: block;
   border-radius: 30% 10% 30% 10%;
   border: 6px solid whitesmoke;
 }
@@ -74,12 +71,10 @@
 }
 
 .user-profile-img {
-  width: 88px;
-  height: 88px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
-  flex-shrink: 0;
-  border-radius: 30% 10% 30% 10%;
 }
 
 .user-profile {

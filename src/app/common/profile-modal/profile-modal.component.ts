@@ -183,20 +183,15 @@ export class ProfileModalComponent implements OnInit, OnChanges {
     return this.currentUser.profileImageUrl ?? '/assets/userprofile.jpg';
   }
 
-  get savedImgStyle(): { [key: string]: string } {
+  get savedImgPosition(): string {
     const x = this.currentUser.imgOffsetX ?? 50;
     const y = this.currentUser.imgOffsetY ?? 50;
+    return `${x}% ${y}%`;
+  }
+
+  get savedImgTransform(): string {
     const z = this.currentUser.imgZoom ?? 1.0;
-    const size = 88 * z;
-    return {
-      'position': 'absolute',
-      'width': `${size}px`,
-      'height': `${size}px`,
-      'object-fit': 'cover',
-      'object-position': `${x}% ${y}%`,
-      'left': `${(x / 100) * (125 - size)}px`,
-      'top': `${(y / 100) * (125 - size)}px`
-    };
+    return z > 1.0 ? `scale(${z})` : 'none';
   }
 
   onImageSelected(event: Event) {
