@@ -8,6 +8,7 @@ interface Busker {
   createdAt: number;
   updatedAt: number;
   bio?: string;
+  location?: string;
   displayName?: string;
   profileImageUrl?: string;
   imgOffsetX?: number;

@@ -25,17 +25,17 @@
           </div>
         </div>
 
-        <!-- JOIN DATE -->
+        <!-- LOCATION -->
         <div class="grid-item" id="item-3">
-          <div class="event-title-container">
-            <div class="event-title">Joined {{ busker?.createdAt * 1000 | date: 'MMM yyyy' }}</div>
+          <div class="busker-location-container">
+            <div class="busker-location">{{ busker?.location || '' }}</div>
           </div>
         </div>
 
-        <!-- BIO -->
+        <!-- BIO / MESSAGE -->
         <div class="grid-item" id="item-4">
-          <div class="event-address">
-            <div class="event-adress">{{ busker?.bio || '' }}</div>
+          <div class="busker-bio-container">
+            <div class="busker-bio">{{ busker?.bio || '' }}</div>
           </div>
         </div>
 

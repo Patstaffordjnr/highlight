@@ -145,6 +145,32 @@ display: flex;
   padding-bottom: 16px;
 }
 
+.busker-location-container {
+  padding-right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.busker-location {
+  font-size: 0.78rem;
+  color: #888;
+  text-align: center;
+}
+
+.busker-bio-container {
+  padding: 0 12px 8px;
+  width: 100%;
+}
+
+.busker-bio {
+  font-size: 0.82rem;
+  color: #444;
+  font-style: italic;
+  text-align: center;
+  line-height: 1.4;
+}
+
 .event-user-name-container {
   padding-right: 16px;
 }

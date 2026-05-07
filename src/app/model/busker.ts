@@ -7,6 +7,7 @@ export class Busker {
     public createdAt?: number;
     public updatedAt?: number;
     public bio?: string;
+    public location?: string;
     public displayName?: string;
     public profileImageUrl?: string;
     public imgOffsetX?: number;

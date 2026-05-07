@@ -13,15 +13,17 @@
           </div>
           <div class="busker-user-details col">
             <div class="busker-user-name-container">
-              <div class="busker-user-name">
-                <a>{{ busker.name || busker.email }}</a>
-              </div>
+              <div class="busker-user-name">{{ busker.displayName || busker.email }}</div>
             </div>
-            <div class="busker-user-role-container">
-              <div class="busker-user-role">
-                <!-- <a *ngFor="let role of busker.roles">{{ role }}</a> -->
-              </div>
+            <div class="busker-user-location-container" *ngIf="busker.location">
+              <div class="busker-user-location">{{ busker.location }}</div>
             </div>
+          </div>
+        </div>
+
+        <div class="flex-grid" *ngIf="busker.bio">
+          <div class="busker-bio-container col">
+            <div class="busker-bio">{{ busker.bio }}</div>
           </div>
         </div>
 
