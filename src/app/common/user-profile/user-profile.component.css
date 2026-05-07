@@ -39,13 +39,11 @@
   cursor: default;
 }
 .profile-image-container {
+  position: relative;
   width: 125px;
   height: 125px;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* position: relative; */
+  display: block;
   border-radius: 30% 10% 30% 10%;
   border: 6px solid whitesmoke;
 }
