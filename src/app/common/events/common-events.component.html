@@ -7,7 +7,7 @@
         <div class="flex-grid top-section">
           <div class="event-profile-image-container col">
             <div class="event-profile-image">
-              <img [src]="event.profileImageUrl || '/assets/userprofile.jpg'"
+              <img [src]="event.profileImageUrl || (event.userId | buskerPlaceholder)"
                    class="event-profile-img"
                    [style.object-position]="(event.imgOffsetX ?? 50) + '% ' + (event.imgOffsetY ?? 50) + '%'"
                    [style.transform]="event.imgZoom && event.imgZoom > 1.0 ? 'scale(' + event.imgZoom + ')' : 'none'"
