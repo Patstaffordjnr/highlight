@@ -147,7 +147,7 @@ display: flex;
   border-radius: 30% 10% 30% 10%;
   overflow: hidden;
   border: 6px solid whitesmoke;
-
+  object-fit: cover;
 }
 
 #item-2{
