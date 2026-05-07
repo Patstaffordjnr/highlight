@@ -34,9 +34,20 @@ export class BuskerModalComponent implements OnInit, OnChanges {
     private router: Router
   ) {}
 
+  ngOnInit() {}
+
   ngOnChanges(changes: SimpleChanges) {
     if ((changes['busker'] || changes['isOpen']) && this.isOpen && this.busker?.id) {
+      const user = this.currentUserService.getUser();
+      this.isLoggedIn = !!user;
+      this.isFollowing = false;
       this.loadUpcomingEvents();
+      if (user) {
+        this.openHttpClientService.isFollowingBusker(String(this.busker.id)).subscribe({
+          next: (following) => this.isFollowing = following,
+          error: () => this.isFollowing = false
+        });
+      }
     }
   }
 
@@ -50,17 +61,6 @@ export class BuskerModalComponent implements OnInit, OnChanges {
       },
       error: () => { this.eventsLoading = false; }
     });
-  }
-
-  ngOnInit() {
-    const user = this.currentUserService.getUser();
-    this.isLoggedIn = !!user;
-    if (user && this.busker?.id) {
-      this.openHttpClientService.isFollowingBusker(String(this.busker.id)).subscribe({
-        next: (following) => this.isFollowing = following,
-        error: () => this.isFollowing = false
-      });
-    }
   }
 
   onFollowClick() {

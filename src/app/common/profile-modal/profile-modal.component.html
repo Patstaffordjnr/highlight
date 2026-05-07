@@ -8,15 +8,21 @@
           <p class="position-hint">Drag to position · + / − to zoom</p>
           <div class="frame-row">
             <div class="frame-wrap">
-              <div class="frame-preview frame-main" (mousedown)="onDragStart($event)" [ngStyle]="getFrameBgStyle(100, 100)"></div>
+              <div class="frame-preview frame-main" (mousedown)="onDragStart($event)">
+                <img [src]="previewUrl" class="preview-img" [ngStyle]="getPreviewImgStyle(100, 100)" />
+              </div>
               <span class="frame-label">Profile</span>
             </div>
             <div class="frame-wrap">
-              <div class="frame-preview frame-card" [ngStyle]="getFrameBgStyle(58, 58)"></div>
+              <div class="frame-preview frame-card">
+                <img [src]="previewUrl" class="preview-img" [ngStyle]="getPreviewImgStyle(58, 58)" />
+              </div>
               <span class="frame-label">Card</span>
             </div>
             <div class="frame-wrap">
-              <div class="frame-preview frame-nav" [ngStyle]="getFrameBgStyle(36, 36)"></div>
+              <div class="frame-preview frame-nav">
+                <img [src]="previewUrl" class="preview-img" [ngStyle]="getPreviewImgStyle(36, 36)" />
+              </div>
               <span class="frame-label">Button</span>
             </div>
           </div>

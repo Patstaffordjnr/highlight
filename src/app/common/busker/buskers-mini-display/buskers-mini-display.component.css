@@ -42,7 +42,7 @@
 .busker-item {
   position: relative;
   box-sizing: border-box;
-  border: 4px solid whitesmoke;
+  border: 6px solid whitesmoke;
   border-radius: 16px;
   width: 125px;
   aspect-ratio: 1 / 1;

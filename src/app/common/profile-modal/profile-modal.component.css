@@ -296,9 +296,14 @@
 
 .frame-preview {
   overflow: hidden;
-  background-repeat: no-repeat;
+  position: relative;
   outline: 2px dashed rgba(80, 80, 80, 0.35);
   outline-offset: 1px;
+}
+
+.preview-img {
+  display: block;
+  pointer-events: none;
 }
 
 .frame-main {

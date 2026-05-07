@@ -54,7 +54,7 @@ export class ProfileModalComponent implements OnInit, OnChanges {
   private dragStartMouseY = 0;
   private dragStartPosX = 50;
   private dragStartPosY = 50;
-  readonly MAIN_FRAME = 88;
+  readonly MAIN_FRAME = 100;
 
   constructor(private openHttpClientService: OpenHttpClientService) {}
 
@@ -220,20 +220,19 @@ export class ProfileModalComponent implements OnInit, OnChanges {
     reader.readAsDataURL(file);
   }
 
-  getFrameBgStyle(fw: number, fh: number): { [key: string]: string } {
+  getPreviewImgStyle(fw: number, fh: number): { [key: string]: string } {
     if (!this.naturalW || !this.naturalH) return {};
     const coverScale = Math.max(fw / this.naturalW, fh / this.naturalH) * this.zoom;
     const scaledW = this.naturalW * coverScale;
     const scaledH = this.naturalH * coverScale;
-    const maxOffsetX = fw - scaledW;
-    const maxOffsetY = fh - scaledH;
-    const offsetX = maxOffsetX !== 0 ? (this.posX / 100) * maxOffsetX : 0;
-    const offsetY = maxOffsetY !== 0 ? (this.posY / 100) * maxOffsetY : 0;
+    const overflowX = Math.max(0, scaledW - fw);
+    const overflowY = Math.max(0, scaledH - fh);
     return {
-      'background-image': `url(${this.previewUrl})`,
-      'background-size': `${scaledW}px ${scaledH}px`,
-      'background-position': `${offsetX}px ${offsetY}px`,
-      'background-repeat': 'no-repeat'
+      position: 'absolute',
+      width: scaledW + 'px',
+      height: scaledH + 'px',
+      left: -(this.posX / 100) * overflowX + 'px',
+      top: -(this.posY / 100) * overflowY + 'px',
     };
   }
 
@@ -251,18 +250,12 @@ export class ProfileModalComponent implements OnInit, OnChanges {
     if (!this.isDragging) return;
     const fw = this.MAIN_FRAME, fh = this.MAIN_FRAME;
     const coverScale = Math.max(fw / this.naturalW, fh / this.naturalH) * this.zoom;
-    const scaledW = this.naturalW * coverScale;
-    const scaledH = this.naturalH * coverScale;
-    const maxOffsetX = fw - scaledW;
-    const maxOffsetY = fh - scaledH;
-    const startOffsetX = maxOffsetX !== 0 ? (this.dragStartPosX / 100) * maxOffsetX : 0;
-    const startOffsetY = maxOffsetY !== 0 ? (this.dragStartPosY / 100) * maxOffsetY : 0;
+    const overflowX = Math.max(0, this.naturalW * coverScale - fw);
+    const overflowY = Math.max(0, this.naturalH * coverScale - fh);
     const dx = e.clientX - this.dragStartMouseX;
     const dy = e.clientY - this.dragStartMouseY;
-    const newOffsetX = this.clamp(startOffsetX + dx, maxOffsetX, 0);
-    const newOffsetY = this.clamp(startOffsetY + dy, maxOffsetY, 0);
-    this.posX = maxOffsetX !== 0 ? (newOffsetX / maxOffsetX) * 100 : 50;
-    this.posY = maxOffsetY !== 0 ? (newOffsetY / maxOffsetY) * 100 : 50;
+    this.posX = this.clamp(this.dragStartPosX - (overflowX > 0 ? (dx / overflowX) * 100 : 0), 0, 100);
+    this.posY = this.clamp(this.dragStartPosY - (overflowY > 0 ? (dy / overflowY) * 100 : 0), 0, 100);
   }
 
   @HostListener('document:mouseup')
@@ -299,8 +292,7 @@ export class ProfileModalComponent implements OnInit, OnChanges {
           },
           error: () => {
             this.imageUploading = false;
-            this.positioning = false;
-            this.profileUpdated.emit(this.currentUser);
+            this.imageUploadError = 'Image uploaded but position could not be saved. Please try repositioning.';
           }
         });
       },

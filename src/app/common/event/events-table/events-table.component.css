@@ -78,6 +78,7 @@
   align-items: center;
     max-height: 350px;
   max-width: 350px;
+
   
 }
 
@@ -107,6 +108,7 @@
   .event-user-name {
   background-color: none;
   font-weight: bold;
+  
   }
   
   .event-type-container {
