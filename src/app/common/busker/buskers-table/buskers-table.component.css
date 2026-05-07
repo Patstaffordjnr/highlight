@@ -66,10 +66,17 @@
   margin-right: 10px;
 }
 
+.busker-profile-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 .busker-profile-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .busker-user-details {
