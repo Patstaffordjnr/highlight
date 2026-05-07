@@ -20,6 +20,7 @@ export class ProfileModalComponent implements OnInit {
   editMode = false;
   editDisplayName = '';
   editBio = '';
+  editLocation = '';
   profileSaveSuccess = false;
   profileSaveError = '';
 
@@ -66,6 +67,7 @@ export class ProfileModalComponent implements OnInit {
   enterEditMode() {
     this.editDisplayName = this.currentUser.displayName ?? '';
     this.editBio = this.currentUser.bio ?? '';
+    this.editLocation = this.currentUser.location ?? '';
     this.profileSaveSuccess = false;
     this.profileSaveError = '';
     this.editMode = true;
@@ -75,11 +77,13 @@ export class ProfileModalComponent implements OnInit {
     this.profileSaveError = '';
     this.openHttpClientService.updateProfile(
       this.editDisplayName || null,
-      this.editBio || null
+      this.editBio || null,
+      this.editLocation || null
     ).subscribe({
       next: (updated: User) => {
         this.currentUser.displayName = updated.displayName;
         this.currentUser.bio = updated.bio;
+        this.currentUser.location = updated.location;
         this.editMode = false;
         this.profileSaveSuccess = true;
         this.profileUpdated.emit(this.currentUser);

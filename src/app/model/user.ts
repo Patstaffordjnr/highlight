@@ -8,6 +8,7 @@ export class User {
     public updatedAt?: number;
     public displayName?: string;
     public bio?: string;
+    public location?: string;
     public verified?: boolean;
     public profileImageUrl?: string;
     public imgOffsetX?: number;

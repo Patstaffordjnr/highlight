@@ -56,10 +56,11 @@
           </div>
         </div>
 
-        <!-- ROLES -->
+        <!-- ROLES / LOCATION -->
         <div class="grid-item" id="item-3">
           <div class="event-title-container">
             <div class="event-title">{{ userRoles.join(' · ') }}</div>
+            <div class="profile-location" *ngIf="currentUser.location">{{ currentUser.location }}</div>
           </div>
         </div>
 
@@ -91,8 +92,10 @@
           <div class="grid-item form-item" id="item-5">
             <label>Display Name</label>
             <input type="text" [(ngModel)]="editDisplayName" placeholder="Display name" />
+            <label>Location</label>
+            <input type="text" [(ngModel)]="editLocation" placeholder="City or area" />
             <label>Bio</label>
-            <textarea [(ngModel)]="editBio" placeholder="Tell people about yourself" rows="2"></textarea>
+            <textarea [(ngModel)]="editBio" placeholder="Tell people about yourself" rows="3"></textarea>
             <div class="error-msg" *ngIf="profileSaveError">{{ profileSaveError }}</div>
             <div class="btn-row">
               <button class="action-btn" (click)="saveProfile()">Save</button>
