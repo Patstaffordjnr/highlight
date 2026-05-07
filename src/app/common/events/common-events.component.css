@@ -108,6 +108,13 @@
   /* word-wrap: break-word; */
 }
 
+.event-type-label {
+  font-size: 0.72rem;
+  color: #888;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
 .event-title-container {
   width: 100%;
   /* display: flex;
