@@ -41,6 +41,8 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { UsersListComponent } from './common/users/users-list/users-list.component';
 import { VerifyComponent } from './pages/verify/verify.component';
 import { AboutComponent } from './pages/about/about.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { BuskerPlaceholderPipe } from './common/busker/busker-placeholder.pipe';
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { BuskerPlaceholderPipe } from './common/busker/busker-placeholder.pipe';
     BuskerComponent,
     AdminComponent,
     VerifyComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
 
 
     // Components

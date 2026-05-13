@@ -6,12 +6,12 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="field">
         <label for="email">Email</label>
-        <input id="email" type="email" formControlName="email" placeholder="you@example.com" autocomplete="email">
+        <input id="email" type="email" formControlName="email" placeholder="pat@highlight.ie" autocomplete="email">
       </div>
 
       <div class="field">
         <label for="password">Password</label>
-        <input id="password" type="password" formControlName="password" placeholder="Password" autocomplete="current-password">
+        <input id="password" type="password" formControlName="password" placeholder="••••••••••••••••••••••••" autocomplete="current-password">
       </div>
 
       <div class="error-msg" *ngIf="errorMessage">{{ errorMessage }}</div>
@@ -22,5 +22,6 @@
     </form>
 
     <p class="switch-link">Don't have an account? <a routerLink="/signup">Sign up</a></p>
+    <p class="switch-link"><a routerLink="/forgot-password">Forgot password?</a></p>
   </div>
 </div>
