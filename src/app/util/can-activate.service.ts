@@ -1,6 +1,6 @@
 import { Injectable, inject } from "@angular/core";
 import { User } from "../model/user";
-import { ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot } from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from "@angular/router";
 import { UserRole } from "../model/user-roles";
 import { BehaviorSubject, Observable } from "rxjs";
 
@@ -65,4 +65,25 @@ export const canActivateTeam: CanActivateFn = (
   state: RouterStateSnapshot,
 ) => {
   return inject(PermissionsService).canActivate(inject(CurrentUserService), state.url);
+};
+
+export const canActivateLoggedIn: CanActivateFn = () => {
+  const user = inject(CurrentUserService).getUser();
+  if (user) return true;
+  inject(Router).navigate(['/login']);
+  return false;
+};
+
+export const canActivateBusker: CanActivateFn = () => {
+  const user = inject(CurrentUserService).getUser();
+  if (user && (user.roles.includes(UserRole.BUSKER) || user.roles.includes(UserRole.ADMIN))) return true;
+  inject(Router).navigate(['/login']);
+  return false;
+};
+
+export const canActivateAdmin: CanActivateFn = () => {
+  const user = inject(CurrentUserService).getUser();
+  if (user && user.roles.includes(UserRole.ADMIN)) return true;
+  inject(Router).navigate(['/login']);
+  return false;
 };

@@ -23,6 +23,7 @@
         <div class="field">
           <label for="password">Password</label>
           <input id="password" type="password" formControlName="password" placeholder="At least 8 characters" autocomplete="new-password">
+          <div class="hint-msg" *ngIf="form.get('password').touched && form.get('password').invalid">Password must be at least 8 characters and contain a letter and a number.</div>
         </div>
 
         <div class="field">

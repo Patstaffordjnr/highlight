@@ -150,8 +150,8 @@ updatePassword(currentPassword: string, newPassword: string): Observable<void> {
   );
 }
 
-resendVerification(): Observable<void> {
-  return this.http.post<void>(`${API}/user/resend-verification`, {}, { withCredentials: true });
+resendVerification(email: string): Observable<void> {
+  return this.http.post<void>(`${API}/open/resend-verification`, { email }, { headers: { 'Content-Type': 'application/json' } });
 }
 
 getBuskerUpcomingEvents(buskerId: string): Observable<any[]> {

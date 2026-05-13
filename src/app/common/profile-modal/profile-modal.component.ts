@@ -311,7 +311,7 @@ export class ProfileModalComponent implements OnInit, OnChanges {
 
   resendVerification() {
     this.resendLoading = true;
-    this.openHttpClientService.resendVerification().subscribe({
+    this.openHttpClientService.resendVerification(this.currentUser.email as string).subscribe({
       next: () => { this.resendSent = true; this.resendLoading = false; },
       error: () => { this.resendLoading = false; }
     });

@@ -15,6 +15,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { VerifyComponent } from './pages/verify/verify.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { canActivateLoggedIn, canActivateBusker, canActivateAdmin } from './util/can-activate.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,10 +24,10 @@ const routes: Routes = [
   { path: 'signup', component: SignUpComponent },
   { path: 'login', component: LogInComponent },
   { path: 'mainmenu', component: NavComponent },
-  { path: 'user', component: UserComponent},
+  { path: 'user', component: UserComponent, canActivate: [canActivateLoggedIn] },
   { path: 'calendar', component: CalendarComponent},
-  { path: 'busker', component: BuskerComponent},
-  { path: 'admin', component: AdminComponent},
+  { path: 'busker', component: BuskerComponent, canActivate: [canActivateBusker] },
+  { path: 'admin', component: AdminComponent, canActivate: [canActivateAdmin] },
   { path: 'buskers', component: BuskersComponent},
   { path: 'about', component: AboutComponent},
   { path: 'verify', component: VerifyComponent},

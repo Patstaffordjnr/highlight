@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgFor } from '@angular/common';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { SignUpClient } from './sign-up.client';
@@ -8,6 +8,14 @@ import { UserRole } from 'src/app/model/user-roles';
 import { SignUpRequest } from './sign-up-request';
 import { minSelectedCheckboxes } from '../../util/validators/checkbox-validator';
 import { RouterService } from 'src/app/util/router.service';
+
+function passwordStrengthValidator(control: AbstractControl): ValidationErrors | null {
+  const value: string = control.value || '';
+  if (!/[a-zA-Z]/.test(value) || !/[0-9]/.test(value)) {
+    return { passwordStrength: true };
+  }
+  return null;
+}
 
 @Component({
   selector: 'app-sign-up',
@@ -30,7 +38,7 @@ export class SignUpComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private signUpClient: SignUpClient, private routerService: RouterService) {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(8), passwordStrengthValidator]],
       userRoles: new FormArray([], minSelectedCheckboxes(1))
     });
     this.addCheckboxes();

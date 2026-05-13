@@ -8,6 +8,7 @@ import { EventType } from 'src/app/model/event-types';
 import { Event as AppEvent } from 'src/app/model/event';
 import { Busker } from 'src/app/model/busker';
 import { AuthService } from 'src/app/util/auth.service';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import * as L from 'leaflet';
 import { EventModalComponent } from 'src/app/common/event/event-modal/event-modal.component';
@@ -47,7 +48,8 @@ export class BuskerComponent implements OnInit { // Implement OnInit
   constructor(
     private formBuilder: FormBuilder,
     private currentUserService: CurrentUserService,
-    private openHttpClientService: OpenHttpClientService
+    private openHttpClientService: OpenHttpClientService,
+    private router: Router
   ) {}
 
   // --- ngOnInit Logic (Copied from UserComponent) ---
@@ -59,10 +61,14 @@ export class BuskerComponent implements OnInit { // Implement OnInit
     this.loadEvents();
 
     // 3. Load User Profile
-    let user = await this.currentUserService.getUser()
+    let user = this.currentUserService.getUser();
+    if (!user) {
+      this.router.navigate(['/login']);
+      return;
+    }
 
     this.currentUser.id = user.id;
-    this.currentUser.email =  user.email;
+    this.currentUser.email = user.email;
     this.currentUser.roles = user.roles;
 
     // 3. Process Roles (Filter is used incorrectly, but the logic is kept for 1:1 copy)
