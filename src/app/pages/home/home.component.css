@@ -45,7 +45,6 @@
 .item-2 {
   overflow-y: auto;
   align-items: flex-start;
-  /* padding: 8px; */
   box-sizing: border-box;
   font-size: medium;
 }

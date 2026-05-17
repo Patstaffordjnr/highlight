@@ -39,6 +39,8 @@
   width: 100%;
   height: 100%;
   border: 6px solid whitesmoke;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
 }
 
 .user-profile {
@@ -51,7 +53,9 @@
 .item-2 {
   width: 100%;
   overflow-y: auto;
-    border: 6px solid whitesmoke;
+  border: 6px solid whitesmoke;
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
 }
 
 .map {
@@ -62,10 +66,12 @@
 
 .item-3 {
   overflow-y: hidden;
-   display: flex;
-     align-items: stretch;
+  display: flex;
+  align-items: stretch;
   justify-content: stretch;
   height: 100%;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
 }
 
 .buskers-mini {
@@ -76,8 +82,7 @@
   overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-    display: flex;
-
+  display: flex;
 }
 
 .events-mini::-webkit-scrollbar {
@@ -85,6 +90,16 @@
 }
 
 .item-4 {
+  overflow-y: auto;
+  align-items: flex-start;
+  grid-column: 3 / 4;
+  grid-row: 1 / 3;
+}
+
+.item-4 app-common-events {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .events {

@@ -1,3 +1,9 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .flex-grid {
   display: flex;
   width: 100%;
@@ -25,7 +31,6 @@
 }
 
 .event-list {
-  height: 100%;
   width: 100%;
 }
 

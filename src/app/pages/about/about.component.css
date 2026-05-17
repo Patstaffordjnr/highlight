@@ -21,6 +21,12 @@
   margin: 0 0 12px;
 }
 
+.header-image {
+  /* max-width: 120px; */
+  max-width: 500px;
+  height: auto;
+}
+
 .tagline {
   font-size: 1.15rem;
   color: #555;

@@ -21,8 +21,8 @@ export class LogInComponent {
   constructor(private formBuilder: FormBuilder, private loginClient: LoginClient, private routerService: RouterService, private authService: AuthService) {
 
     this.form = this.formBuilder.group({
-      email: [''],
-      password: [''],
+      email: ['patstaffordjnr@gmail.com'],
+      password: ['NewPass123'],
     });
   }
 
