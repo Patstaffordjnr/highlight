@@ -54,7 +54,6 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  
 }
 
 
@@ -220,6 +219,16 @@
   border: 2px solid #4caf50;
 }
 
+
+  .event-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-auto-rows: 260px;
+    gap: 16px;
+  }
+
+
+
+
 /* SM - Small tablets */
 @media (min-width: 576px) {
 
@@ -240,10 +249,7 @@
 
 /* LG */
 @media (min-width: 992px) {
-  .event-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-auto-rows: 200px;
-  }
+
 }
 
 /* XL */
@@ -253,11 +259,11 @@
 
 /* XXL */
 @media (min-width: 1400px) {
-  .event-grid {
+  /* .event-grid {
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     grid-auto-rows: 260px;
     gap: 16px;
-  }
+  } */
 }
 
 .loading-state, .empty-state {
