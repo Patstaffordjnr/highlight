@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AuthService } from '../../util/auth.service';
 import { RouterService } from '../../util/router.service';
 import { CurrentUserService } from 'src/app/util/can-activate.service';
+import { ProfileModalService } from 'src/app/util/profile-modal.service';
 import { User } from 'src/app/model/user';
 
 @Component({
@@ -29,10 +30,15 @@ export class NavComponent implements OnInit, AfterViewInit {
   constructor(
     private authService: AuthService,
     private currentUserService: CurrentUserService,
-    private routerService: RouterService
+    private routerService: RouterService,
+    private profileModalService: ProfileModalService
   ) {}
 
   ngOnInit() {
+    this.profileModalService.open$.subscribe(() => {
+      this.openProfileModal();
+    });
+
     this.authService.isLoggedIn$.subscribe((loggedIn: boolean) => {
       this.isLoggedIn = loggedIn;
       if (loggedIn) {

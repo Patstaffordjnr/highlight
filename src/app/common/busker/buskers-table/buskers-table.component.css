@@ -84,9 +84,8 @@
   flex-direction: column;
   justify-content: space-between;
   width: 50%;
-  word-wrap: break-word;
   overflow-wrap: break-word;
-  word-break: break-all;
+  word-break: break-word;
   white-space: normal;
 }
 
@@ -101,6 +100,7 @@
 
 .busker-user-name {
   font-weight: bold;
+  text-align: center;
 }
 
 .busker-user-location {

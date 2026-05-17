@@ -3,7 +3,7 @@
   display: flex;
   width: 100%;
   background-color: none;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
   }
   
   .col {
@@ -333,7 +333,7 @@ display: flex;
 
   .event-finish-time-container {
   background-color: none;
-  padding-top: 16px;
+  padding-top: 4px;
   }
 
   .event-finish-time {
@@ -409,7 +409,7 @@ display: flex;
   display: none;
 } */
 .control-container{
-  padding-top: 16px;
+  padding-top: 6px;
 }
 
 .follow-btn {

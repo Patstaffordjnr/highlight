@@ -22,7 +22,7 @@
 </div>
 </div>
 </div>
-<app-event-modal *ngIf="showEventModal" class="modal" [isOpen]="showEventModal" (close)="onEventModalClose()" (eventSaved)="onEventSaved()" [event]="event">
+<app-event-modal *ngIf="showEventModal" class="modal" [isOpen]="showEventModal" (close)="onEventModalClose()" (eventSaved)="onEventSaved()" [event]="event" (openBuskerProfile)="onOpenBusker($event)">
 </app-event-modal>
 <app-busker-modal *ngIf="showBuskerModal" class="modal" [isOpen]="showBuskerModal" (close)="showBuskerModal = false" (unfollowed)="onBuskerUnfollowed($event)" [busker]="busker">
 </app-busker-modal>

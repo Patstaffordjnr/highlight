@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   showModal = false;
   showBuskerModal = false;
   selectedBusker: Busker | null = null;
+  private buskerBeforeEvent: Busker | null = null;
   mapInstance!: L.Map;
   currentIndex = 0;
   noOfPages = 8;
@@ -339,6 +340,23 @@ onOpenBusker(userId: string) {
     },
     error: () => {}
   });
+}
+
+onBuskerEventSelected(event: any) {
+  this.buskerBeforeEvent = this.selectedBusker;
+  this.showBuskerModal = false;
+  this.event = event;
+  this.showModal = true;
+}
+
+onEventModalClose() {
+  this.showModal = false;
+  if (this.mapInstance) this.addMarkersToMap();
+  if (this.buskerBeforeEvent) {
+    this.selectedBusker = this.buskerBeforeEvent;
+    this.buskerBeforeEvent = null;
+    this.showBuskerModal = true;
+  }
 }
 
 

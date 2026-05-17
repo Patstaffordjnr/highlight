@@ -52,8 +52,10 @@
   [isOpen]="showModal"
   (close)="showModal = false"
   (eventSaved)="onEventSaved()"
-  [event]="event">
+  [event]="event"
+  (openBuskerProfile)="onOpenBusker($event)">
 </app-event-modal>
+<app-busker-modal [isOpen]="showBuskerModal" [busker]="selectedBusker" (close)="showBuskerModal = false"></app-busker-modal>
 <div class = "a"></div>
 
 

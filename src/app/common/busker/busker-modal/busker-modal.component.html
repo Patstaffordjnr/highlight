@@ -76,7 +76,7 @@
             <div *ngIf="eventsLoading" class="events-loading">Loading...</div>
             <div *ngIf="!eventsLoading && upcomingEvents.length === 0" class="events-empty">No upcoming gigs</div>
             <div class="events-list" *ngIf="!eventsLoading && upcomingEvents.length > 0">
-              <div class="event-row" *ngFor="let event of upcomingEvents">
+              <div class="event-row" *ngFor="let event of upcomingEvents" (click)="openEvent.emit(event)" style="cursor:pointer">
                 <div class="event-row-date">
                   <span class="event-day">{{ event.startAt * 1000 | date: 'd MMM' }}</span>
                   <span class="event-time">{{ event.startAt * 1000 | date: 'h:mm a' }}</span>

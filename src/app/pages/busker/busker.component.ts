@@ -21,6 +21,8 @@ import { markerIcons } from './../../common/map/map-icons';
 })
 export class BuskerComponent implements OnInit { // Implement OnInit
   showModal = false;
+  showBuskerModal = false;
+  selectedBusker: Busker | null = null;
   buskers: Busker[] = [];
   total: number = 0;
   
@@ -175,5 +177,16 @@ export class BuskerComponent implements OnInit { // Implement OnInit
   onEventSaved() {
     this.showModal = false;
     this.loadEvents();
+  }
+
+  onOpenBusker(userId: string) {
+    this.openHttpClientService.getBuskerById(userId).subscribe({
+      next: (busker) => {
+        this.selectedBusker = busker;
+        this.showModal = false;
+        this.showBuskerModal = true;
+      },
+      error: () => {}
+    });
   }
 }

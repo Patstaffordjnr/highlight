@@ -94,6 +94,8 @@
   align-items: flex-start;
   grid-column: 3 / 4;
   grid-row: 1 / 3;
+   box-sizing: border-box;
+  font-size: medium;
 }
 
 .item-4 app-common-events {

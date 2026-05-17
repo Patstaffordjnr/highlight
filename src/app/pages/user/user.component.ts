@@ -150,6 +150,17 @@ export class UserComponent implements OnInit {
     this.showBuskerModal = true;
   }
 
+  onOpenBusker(userId: string) {
+    this.openHttpClientService.getBuskerById(userId).subscribe({
+      next: (busker) => {
+        this.busker = busker;
+        this.showEventModal = false;
+        this.showBuskerModal = true;
+      },
+      error: () => {}
+    });
+  }
+
   onBuskerUnfollowed(buskerId: string) {
     this.buskers = this.buskers.filter(b => String(b.id) !== buskerId);
     this.showBuskerModal = false;

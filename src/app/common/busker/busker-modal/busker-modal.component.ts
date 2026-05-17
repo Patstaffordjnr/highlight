@@ -2,6 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, 
 import { Busker } from '../../../model/busker';
 import { CurrentUserService } from 'src/app/util/can-activate.service';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
+import { ProfileModalService } from 'src/app/util/profile-modal.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,6 +14,7 @@ export class BuskerModalComponent implements OnInit, OnChanges {
   @Input() isOpen = false;
   @Output() close = new EventEmitter<void>();
   @Output() unfollowed = new EventEmitter<string>();
+  @Output() openEvent = new EventEmitter<any>();
   @Input() busker: Busker | null = null;
 
   @ViewChild('modalContent', { static: false }) modalContentRef!: ElementRef;
@@ -31,6 +33,7 @@ export class BuskerModalComponent implements OnInit, OnChanges {
   constructor(
     private currentUserService: CurrentUserService,
     private openHttpClientService: OpenHttpClientService,
+    private profileModalService: ProfileModalService,
     private router: Router
   ) {}
 
@@ -38,6 +41,11 @@ export class BuskerModalComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if ((changes['busker'] || changes['isOpen']) && this.isOpen && this.busker?.id) {
+      if (this.isOwnProfile) {
+        this.close.emit();
+        this.profileModalService.open();
+        return;
+      }
       const user = this.currentUserService.getUser();
       this.isLoggedIn = !!user;
       this.isFollowing = false;
