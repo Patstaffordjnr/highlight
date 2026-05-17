@@ -30,6 +30,7 @@ export class EventModalComponent implements OnInit {
   @Output() close = new EventEmitter<void>();
   @Output() edit = new EventEmitter<AppEvent>();
   @Output() eventSaved = new EventEmitter<void>();
+  @Output() openBuskerProfile = new EventEmitter<string>();
 
   @ViewChild('modalContent', { static: false }) modalContentRef!: ElementRef;
 

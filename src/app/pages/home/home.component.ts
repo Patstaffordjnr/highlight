@@ -6,6 +6,7 @@ import { EventType } from 'src/app/model/event-types';
 import * as L from 'leaflet';
 import { EventModalComponent } from 'src/app/common/event/event-modal/event-modal.component';
 import { Event as AppEvent } from 'src/app/model/event';
+import { Busker } from 'src/app/model/busker';
 import { markerIcons } from './../../common/map/map-icons';
 import { MapService } from 'src/app/common/map/map-service';
 import { combineLatest } from 'rxjs';
@@ -27,6 +28,8 @@ export class HomeComponent implements OnInit {
   // maxLong
 
   showModal = false;
+  showBuskerModal = false;
+  selectedBusker: Busker | null = null;
   mapInstance!: L.Map;
   currentIndex = 0;
   noOfPages = 8;
@@ -325,6 +328,17 @@ private applyFilter(): void {
 onSelect(event: AppEvent) {
   this.event = event;
   this.showModal = true;
+}
+
+onOpenBusker(userId: string) {
+  this.openHttpClientService.getBuskerById(userId).subscribe({
+    next: (busker) => {
+      this.selectedBusker = busker;
+      this.showModal = false;
+      this.showBuskerModal = true;
+    },
+    error: () => {}
+  });
 }
 
 

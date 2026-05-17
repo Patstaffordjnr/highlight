@@ -150,6 +150,15 @@ display: flex;
   flex-shrink: 0;
 }
 
+.event-image-container.clickable {
+  cursor: pointer;
+}
+
+.event-image-container.clickable:hover {
+  border-color: #4da6e8;
+  transition: border-color 0.2s ease;
+}
+
 .event-image {
   width: 100%;
   height: 100%;

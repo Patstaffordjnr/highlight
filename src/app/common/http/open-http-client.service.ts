@@ -154,6 +154,10 @@ resendVerification(email: string): Observable<void> {
   return this.http.post<void>(`${API}/open/resend-verification`, { email }, { headers: { 'Content-Type': 'application/json' } });
 }
 
+getBuskerById(buskerId: string): Observable<any> {
+  return this.http.get<any>(`${API}/open/busker/${buskerId}`);
+}
+
 getBuskerUpcomingEvents(buskerId: string): Observable<any[]> {
   return this.http.get<any[]>(`${API}/open/busker/${buskerId}/upcomingEvents`);
 }

@@ -21,7 +21,7 @@
 
         <!-- USER IMAGE -->
         <div class="grid-item" id="item-1">
-          <div class="event-image-container">
+          <div class="event-image-container" (click)="!isCreateMode && openBuskerProfile.emit(event.userId)" [class.clickable]="!isCreateMode">
             <div class="event-image">
               <img [src]="event?.profileImageUrl || (event?.userId | buskerPlaceholder)"
                    class="user-img"
