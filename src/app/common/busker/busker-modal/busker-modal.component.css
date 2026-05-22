@@ -39,7 +39,8 @@ background: rgba(0,0,0,0.5);
 }
 
 .item-2 {
-min-width: 300px;
+width: min(300px, calc(100vw - 24px));
+min-width: 0;
 max-width: 300px;
 /* max-height: 300px; */
 padding-top: 16px;
@@ -47,8 +48,7 @@ background-color: white;
 border: 6px solid whitesmoke;
 border-radius: 25px;
 display: flex;
-  overflow: hidden;
-
+overflow: hidden;
 }
 
 .item-2-container {

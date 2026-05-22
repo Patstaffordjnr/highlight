@@ -1,13 +1,24 @@
 .ui {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  background-color: seagreen;
+      /* display: flex; */
+      
 }
 
 .content {
   width: 90vw;
-  height: 75vh;
+  
+    /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+  /* height: 75vh; */
+  background-color: tomato;
+    border-radius: 75px;
+
 }
 
 .home {
@@ -15,43 +26,49 @@
   height: 100%;
 }
 
-.container {
+/* .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   gap: 16px;
   width: 100%;
   height: 100%;
-}
+  background-color: gray;
+  border-radius: 100px;
+} */
 
-/* @media (max-width: 767px) {
-  .ui {
-    width: 100vw;
-    overflow-x: hidden;
-  }
-
-  .content {
-    width: 100vw;
-    height: auto;
-    box-sizing: border-box;
-  }
-
-  .home {
-    width: 100%;
-  }
 
   .container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 300px 300px;
-    gap: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    /* grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto; */
+    /* gap: 16px; */
     width: 100%;
+    height: 100%;
+
+    justify-content: center;
+
   }
 
-  .item {
-    width: 100%;
-    min-width: 0;
+   .container {
+    /* display: grid; */
+    /* grid-template-columns: 1fr; */
+    /* grid-template-rows: auto auto auto; */
+    /* gap: 16px; */
+    /* width: 100%;
+    height: 100%; */
   }
-} */
+
+  .item-2-container {
+    /* grid-column: 2 / 3;
+    grid-row: 1 / 4; */
+    width: 100%;
+    overflow-y: auto;
+    background-color: blue;
+  }
+
+
 
 .item {
   width: 100%;
@@ -61,66 +78,113 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: yellow;
 }
 
 .item-1-container {
+    height: 75vh;
+    width: 44vw;
+        padding-right: 8px;
+       
 }
 
 .item-1 {
   border: 6px solid whitesmoke;
   overflow: hidden;
+  min-width: 44vw;
 }
 
+.item-2-container{
+      height: 75vh;
+      width: 44vw;
+  background-color: blue;
+    padding-left: 8px;
+
+
+}
+
+  /* .item-2-container {
+    grid-column: 2 / 3;
+    grid-row: 1 / 4;
+  } */
+
+
 .item-2 {
-  overflow-y: auto;
+  /* overflow-y: auto;
   align-items: flex-start;
   box-sizing: border-box;
-  font-size: medium;
+  font-size: medium; */
+    /* max-width: 44vw;
+  background-color: indigo */
 }
 
 .item-2 app-common-events {
-  display: block;
+  /* display: block;
   width: 100%;
-  height: 100%;
+  height: 100%; */
+      /* max-width: 44vw; */
 }
 
 
 .item-3-container {
+    width: 90vw;
+
   display: flex;
   justify-content: center;
 }
 
+ .item-3-container {
+    /* grid-column: 1 / 2; */
+  }
+
+  .item-4-container {
+    /* grid-column: 1 / 2; */
+  }
+
+
+
 .item-3 {
-  width: 100%;
+  width: 90vw;
   height: 100%;
-  z-index: 0;
+  /* z-index: 0;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: center; */
+  background-color: orangered;
+    padding-right: 8px;
+  padding-left: 8px;
 }
 
 .item-4-container {
-  width: 100vw;
+  /* width: 90vw;
   display: flex;
-  justify-content: center;
+  justify-content: center; */
+  width: 100%;
+  background-color: midnightblue;
 }
 
 .item-4 {
-  width: 90%;
+  /* width: 90vw;
+
   height: 100%;
   z-index: 0;
   font-weight: bolder;
-  font-size: medium;
+  font-size: medium; */
+  background-color: yellow;
+  padding-right: 8px;
+  padding-left: 8px;
+
 }
 
 .home-address-and-date {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 90%;
+  width: 100%;
   padding-top: 16px;
-    font-weight: bolder;
-
+  padding-bottom: 16px;
+  font-weight: bolder;
+  
 }
 
 .map {
@@ -145,73 +209,83 @@
 
 @media (min-width: 360px) {
     .home{
-      background-color: limegreen
+      /* background-color: limegreen */
     }
-      .container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 16px;
-  }
+
+    /* .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 16px;
+    } */
+
+    /* .item-1-container { order:1; }
+.item-2-container { order: 3; }
+.item-3-container { order: 2; }
+.item-4-container { order: 4; } */
+
 }
 
 /* SM - Small tablets */
 @media (min-width: 576px) {
     .home{
-      background-color: wheat;
+      /* background-color: wheat; */
     }
 
-      .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 16px;
-  }
-  }
+    /* .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+      gap: 16px;
+    } */
+}
 
 /* MD - Tablets */
 @media (min-width: 768px) {
     .home{
-      background-color: turquoise;
+      /* background-color: turquoise; */
     }
+
+
+
 }
 
 /* LG - Small laptops */
 @media (min-width: 992px) {
     .home{
-      background-color: tomato;
+      /* background-color: tomato; */
     }
 
-      .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 16px;
-  }
+    /* .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+      gap: 16px;
+    } */
 }
 
 /* XL - Desktops */
 @media (min-width: 1200px) {
 
    .home{
-    background-color: tomato;
+    /* background-color: tomato; */
   }
 
-  .container {
+  /* .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     gap: 16px;
-  }
+  } */
 }
 
 /* XXL - Large desktops */
 @media (min-width: 1400px) {
   .home{
     width: 100%;
-    background-color: yellow;
+    /* background-color: yellow; */
   }
-
+/* 
   .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -222,16 +296,22 @@
   .item {
     width: 100%;
     height: 100%;
-  }
+  } */
 
-  .item-1 {
+  /* .item-1 {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
   }
 
+    .item-2-container {
+    grid-column: 2 / 3;
+    grid-row: 1 / 4; 
+  }
+
+
   .item-2 {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
-  }
-  
+  } */
+
 }
