@@ -1,3 +1,5 @@
+/* Base styles — mobile first (single column, stacked) */
+
 .ui {
   display: flex;
 }
@@ -31,21 +33,23 @@
 }
 
 .item-1-container {
-  height: 75vh;
-  width: 44vw;
-  padding-right: 8px;
+  order: 1;
+  width: 90vw;
+  height: 300px;
+  padding-bottom: 8px;
 }
 
 .item-1 {
   border: 6px solid whitesmoke;
   overflow: hidden;
-  min-width: 44vw;
 }
 
 .item-2-container {
-  height: 75vh;
-  width: 44vw;
-  padding-left: 8px;
+  order: 4;
+  width: 90vw;
+  height: 270px;
+  max-height: 270px;
+  overflow: hidden;
 }
 
 .item-2 {
@@ -59,10 +63,12 @@
   display: block;
   width: 100%;
   height: 100%;
-  max-width: 300px;
+  max-height: 270px;
+  overflow: hidden;
 }
 
 .item-3-container {
+  order: 2;
   width: 90vw;
   display: flex;
   justify-content: center;
@@ -76,6 +82,7 @@
 }
 
 .item-4-container {
+  order: 3;
   width: 100%;
 }
 
@@ -118,53 +125,15 @@
 }
 
 
-@media (min-width: 360px) {
-
-  .item-1-container { order: 1; }
-  .item-2-container { order: 4; }
-  .item-3-container { order: 2; }
-  .item-4-container { order: 3; }
-
-  .item-1-container {
-    height: 300px;
-    width: 300px;
-    padding-right: 0px;
-    padding-bottom: 8px;
-  }
-
-  .item-2-container {
-    min-width: 300px;
-    min-height: 270px;
-    padding-right: 0px;
-    padding-left: 0px;
-    height: 270px;
-    max-height: 270px;
-    overflow: hidden;
-  }
-
-  .item-2 app-common-events {
-    display: block;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    max-height: 270px;
-    max-width: 300px;
-  }
-
-}
-
-/* SM - Small tablets */
+/* SM - Small tablets and above (two column layout) */
 @media (min-width: 576px) {
 
-  .item-1-container { order: 0; }
-  .item-2-container { order: 0; }
-  .item-3-container { order: 0; }
-  .item-4-container { order: 0; }
-
   .item-1-container {
-    height: 330px;
-    width: 330px;
-    padding-right: 0px;
+    order: 0;
+    width: 44vw;
+    height: 75vh;
+    padding-right: 1vw;
+    padding-bottom: 0px;
   }
 
   .item-1 {
@@ -173,189 +142,46 @@
   }
 
   .item-2-container {
+    order: 0;
+    width: 44vw;
     height: 75vh;
-    width: 50vw;
-    display: flex;
-    justify-content: center;
-    padding-left: 0px;
-    max-height: 40h;
+    max-height: 75vh;
+    overflow: visible;
+    padding-left: 1vw;
   }
 
   .item-2 app-common-events {
     display: block;
-    max-width: 50vw;
+    max-width: 44vw;
     max-height: 75vh;
   }
 
   .item-2 {
     height: 75vh;
-    width: 50vw;
+    width: 44vw;
   }
 
   .item-3-container {
+    order: 0;
     width: 90vw;
     display: flex;
     justify-content: center;
+  }
+
+  .item-4-container {
+    order: 0;
   }
 
 }
 
 /* MD - Tablets */
-@media (min-width: 799px) {
-
-  .item-1-container {
-    height: 75vh;
-    width: 44vw;
-    padding-right: 8px;
-  }
-
-  .item-1 {
-    overflow: hidden;
-    min-width: 44vw;
-  }
-
-  .item-2-container {
-    height: 75vh;
-    width: 44vw;
-    padding-left: 8px;
-    max-height: 75vh;
-  }
-
-  .item-2 app-common-events {
-    display: block;
-    max-width: 44vw;
-    max-height: 75vh;
-  }
-
-  .item-2 {
-    height: 75vh;
-    width: 44vw;
-  }
-
-  .item-3-container {
-    width: 90vw;
-    display: flex;
-    justify-content: center;
-  }
-
-}
+@media (min-width: 768px) {}
 
 /* LG - Small laptops */
-@media (min-width: 992px) {
-
-  .item-1-container {
-    height: 75vh;
-    width: 44vw;
-    padding-right: 8px;
-  }
-
-  .item-1 {
-    overflow: hidden;
-    min-width: 44vw;
-  }
-
-  .item-2-container {
-    height: 75vh;
-    width: 44vw;
-    padding-left: 8px;
-    max-height: 75vh;
-  }
-
-  .item-2 app-common-events {
-    display: block;
-    max-width: 44vw;
-    max-height: 75vh;
-  }
-
-  .item-2 {
-    height: 75vh;
-    width: 44vw;
-  }
-
-  .item-3-container {
-    width: 90vw;
-    display: flex;
-    justify-content: center;
-  }
-
-}
+@media (min-width: 992px) {}
 
 /* XL - Desktops */
-@media (min-width: 1200px) {
-
-  .item-1-container {
-    height: 75vh;
-    width: 44vw;
-    padding-right: 8px;
-  }
-
-  .item-1 {
-    overflow: hidden;
-    min-width: 44vw;
-  }
-
-  .item-2-container {
-    height: 75vh;
-    width: 44vw;
-    padding-left: 8px;
-    max-height: 75vh;
-  }
-
-  .item-2 app-common-events {
-    display: block;
-    max-width: 44vw;
-    max-height: 75vh;
-  }
-
-  .item-2 {
-    height: 75vh;
-    width: 44vw;
-  }
-
-  .item-3-container {
-    width: 90vw;
-    display: flex;
-    justify-content: center;
-  }
-
-}
+@media (min-width: 1200px) {}
 
 /* XXL - Large desktops */
-@media (min-width: 1400px) {
-
-  .item-1-container {
-    height: 75vh;
-    width: 44vw;
-    padding-right: 8px;
-  }
-
-  .item-1 {
-    overflow: hidden;
-    min-width: 44vw;
-  }
-
-  .item-2-container {
-    height: 75vh;
-    width: 44vw;
-    padding-left: 8px;
-    max-height: 75vh;
-  }
-
-  .item-2 app-common-events {
-    display: block;
-    max-width: 44vw;
-    max-height: 75vh;
-  }
-
-  .item-2 {
-    height: 75vh;
-    width: 44vw;
-  }
-
-  .item-3-container {
-    width: 90vw;
-    display: flex;
-    justify-content: center;
-  }
-
-}
+@media (min-width: 1400px) {}
