@@ -1,11 +1,9 @@
 .ui {
   display: flex;
-  background-color: seagreen;
 }
 
 .content {
   width: 90vw;
-  background-color: tomato;
   border-radius: 75px;
 }
 
@@ -30,7 +28,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: yellow;
 }
 
 .item-1-container {
@@ -48,7 +45,6 @@
 .item-2-container {
   height: 75vh;
   width: 44vw;
-  background-color: blue;
   padding-left: 8px;
 }
 
@@ -57,25 +53,13 @@
   align-items: flex-start;
   box-sizing: border-box;
   font-size: medium;
-  /* max-width: 44vw; */
-  background-color: indigo;
-
-  /*
-  overflow-y: auto;
-  align-items: flex-start;
-  box-sizing: border-box;
-  font-size: medium;
-  max-width: 44vw;
-  background-color: indigo */
 }
 
 .item-2 app-common-events {
   display: block;
   width: 100%;
   height: 100%;
-  /* height: 300px; */
   max-width: 300px;
-  /* max-width: 44vw; */
 }
 
 .item-3-container {
@@ -87,21 +71,12 @@
 .item-3 {
   width: 90vw;
   height: 100%;
-  /* z-index: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center; */
-  background-color: orangered;
   padding-right: 8px;
   padding-left: 8px;
 }
 
 .item-4-container {
-  /* width: 90vw;
-  display: flex;
-  justify-content: center; */
   width: 100%;
-  /* background-color: midnightblue; */
 }
 
 .item-4 {
@@ -109,7 +84,6 @@
   z-index: 0;
   font-weight: bolder;
   font-size: medium;
-  background-color: yellow;
   padding-right: 8px;
   padding-left: 8px;
 }
@@ -157,11 +131,6 @@
     padding-right: 0px;
     padding-bottom: 8px;
   }
-/* 
-  .item-1 {
-    border: 6px solid whitesmoke;
-    overflow: hidden;
-  } */
 
   .item-2-container {
     min-width: 300px;
@@ -169,9 +138,8 @@
     padding-right: 0px;
     padding-left: 0px;
     height: 270px;
-       max-height: 270px;
+    max-height: 270px;
     overflow: hidden;
-    background-color: navy;
   }
 
   .item-2 app-common-events {
@@ -181,7 +149,6 @@
     overflow: hidden;
     max-height: 270px;
     max-width: 300px;
-
   }
 
 }
@@ -193,22 +160,163 @@
   .item-2-container { order: 0; }
   .item-3-container { order: 0; }
   .item-4-container { order: 0; }
+
+  .item-1-container {
+    height: 330px;
+    width: 330px;
+    padding-right: 0px;
+  }
+
+  .item-1 {
+    overflow: hidden;
+    min-width: 44vw;
+  }
+
+  .item-2-container {
+    height: 75vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    padding-left: 0px;
+    max-height: 40h;
+  }
+
+  .item-2 app-common-events {
+    display: block;
+    max-width: 50vw;
+    max-height: 75vh;
+  }
+
+  .item-2 {
+    height: 75vh;
+    width: 50vw;
+  }
+
+  .item-3-container {
+    width: 90vw;
+    display: flex;
+    justify-content: center;
+  }
+
 }
 
-
-
 /* MD - Tablets */
-@media (min-width: 768px) {
+@media (min-width: 799px) {
+
+  .item-1-container {
+    height: 75vh;
+    width: 44vw;
+    padding-right: 8px;
+  }
+
+  .item-1 {
+    overflow: hidden;
+    min-width: 44vw;
+  }
+
+  .item-2-container {
+    height: 75vh;
+    width: 44vw;
+    padding-left: 8px;
+    max-height: 75vh;
+  }
+
+  .item-2 app-common-events {
+    display: block;
+    max-width: 44vw;
+    max-height: 75vh;
+  }
+
+  .item-2 {
+    height: 75vh;
+    width: 44vw;
+  }
+
+  .item-3-container {
+    width: 90vw;
+    display: flex;
+    justify-content: center;
+  }
 
 }
 
 /* LG - Small laptops */
 @media (min-width: 992px) {
 
+  .item-1-container {
+    height: 75vh;
+    width: 44vw;
+    padding-right: 8px;
+  }
+
+  .item-1 {
+    overflow: hidden;
+    min-width: 44vw;
+  }
+
+  .item-2-container {
+    height: 75vh;
+    width: 44vw;
+    padding-left: 8px;
+    max-height: 75vh;
+  }
+
+  .item-2 app-common-events {
+    display: block;
+    max-width: 44vw;
+    max-height: 75vh;
+  }
+
+  .item-2 {
+    height: 75vh;
+    width: 44vw;
+  }
+
+  .item-3-container {
+    width: 90vw;
+    display: flex;
+    justify-content: center;
+  }
+
 }
 
 /* XL - Desktops */
 @media (min-width: 1200px) {
+
+  .item-1-container {
+    height: 75vh;
+    width: 44vw;
+    padding-right: 8px;
+  }
+
+  .item-1 {
+    overflow: hidden;
+    min-width: 44vw;
+  }
+
+  .item-2-container {
+    height: 75vh;
+    width: 44vw;
+    padding-left: 8px;
+    max-height: 75vh;
+  }
+
+  .item-2 app-common-events {
+    display: block;
+    max-width: 44vw;
+    max-height: 75vh;
+  }
+
+  .item-2 {
+    height: 75vh;
+    width: 44vw;
+  }
+
+  .item-3-container {
+    width: 90vw;
+    display: flex;
+    justify-content: center;
+  }
 
 }
 
@@ -229,26 +337,18 @@
   .item-2-container {
     height: 75vh;
     width: 44vw;
-    background-color: blue;
     padding-left: 8px;
-        /* height: 270px; */
-       max-height: 75vh;
-    
+    max-height: 75vh;
   }
 
   .item-2 app-common-events {
     display: block;
     max-width: 44vw;
-        max-height: 75vh;
-    /* width: 100%;
-    height: 100%; */
-    /* height: 75vh;
-    width: 44vw; */
-    background-color: ivory;
+    max-height: 75vh;
   }
 
-  .item-2{
-       height: 75vh;
+  .item-2 {
+    height: 75vh;
     width: 44vw;
   }
 
@@ -257,6 +357,5 @@
     display: flex;
     justify-content: center;
   }
-
 
 }
