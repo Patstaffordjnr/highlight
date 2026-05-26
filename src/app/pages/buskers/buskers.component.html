@@ -1,25 +1,42 @@
-<div class = "ui">
-<div class = "content"> 
-<div class="busker">
-<div class="container">
-    <div class="item item-1">
-      <app-user-profile  class = "user-profile"></app-user-profile>
-    </div>
-    <div class="item item-2">
-      <!-- <app-map class = "map"></app-map> -->
-    </div>
-    <div class="item item-3">
-         <app-buskers-mini-display class = "buskers-mini" [buskers]="buskers" (selectedBusker)="onSelect($event)"></app-buskers-mini-display>
-    </div>
-    <div class="item item-4">
-        <app-buskers-table class = "buskers" [buskers]="buskers"   (selectedBusker)="onSelect($event)"></app-buskers-table>
-    </div>
-</div>
-</div>
-<app-buskers-table-control (filterChange)="onFilterChange($event)"></app-buskers-table-control>
-</div>
-</div>
-<app-busker-modal class = "modal" [isOpen]="showModal" (close)="showModal = false " [busker]="busker">
-</app-busker-modal>
-<div class = "a"></div>
+<div class="ui">
+  <div class="content">
+    <div class="buskers">
+      <div class="container">
 
+        <div class="item-1-container">
+          <div class="item item-1">
+            <app-user-profile *ngIf="hasProfileImage" class="user-profile"></app-user-profile>
+          </div>
+        </div>
+
+        <div class="item-2-container">
+          <div class="item item-2">
+            <!-- map placeholder -->
+          </div>
+        </div>
+
+        <div class="item-3-container">
+          <div class="item item-3">
+            <!-- <app-buskers-mini-display class="buskers-mini" [buskers]="buskers" (selectedBusker)="onSelect($event)"></app-buskers-mini-display> -->
+          </div>
+        </div>
+
+        <div class="item-4-container">
+          <div class="item item-4">
+            <app-buskers-table class="buskers-table" [buskers]="buskers" (selectedBusker)="onSelect($event)"></app-buskers-table>
+          </div>
+        </div>
+
+        <div class="item-5-container">
+          <div class="item item-5">
+            <app-buskers-table-control (filterChange)="onFilterChange($event)"></app-buskers-table-control>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-busker-modal [isOpen]="showModal" (close)="showModal = false" [busker]="busker">
+</app-busker-modal>

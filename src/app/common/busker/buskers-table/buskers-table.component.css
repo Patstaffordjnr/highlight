@@ -1,3 +1,9 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .flex-grid {
   display: flex;
   width: 100%;
@@ -17,7 +23,7 @@
   box-sizing: border-box;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -27,22 +33,22 @@
 }
 
 .busker-list {
-  height: 100%;
   width: 100%;
 }
 
 .busker-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  height: 100%;
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-auto-rows: 260px;
   gap: 8px;
+  width: 100%;
 }
 
 .busker-item {
-  /* background-color: blue; */
   box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   border: 6px solid whitesmoke;
   border-radius: 16px;
   padding: 10px;
@@ -50,7 +56,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  aspect-ratio: 1 / 1;
 }
 
 .top-section {
@@ -99,21 +104,21 @@
 }
 
 .busker-user-name {
+  font-size: 1.3rem;
   font-weight: bold;
   text-align: center;
 }
 
 .busker-user-location {
-  font-size: 0.99rem;
+  font-size: 1.15rem;
   color: #888;
   text-align: center;
-  /* background-color: #4da6e8; */
   align-items: flex-end;
   min-width: 150px;
 }
 
 .busker-bio {
-  font-size: 0.75rem;
+  font-size: 1.1rem;
   color: #555;
   text-align: center;
   padding: 4px 10px;
@@ -121,11 +126,15 @@
 }
 
 .busker-next-gig {
-  font-size: 0.72rem;
+  font-size: 1.05rem;
   color: #4da6e8;
   font-weight: 600;
   text-align: center;
   padding: 2px 0 4px;
+}
+
+.busker-social-row {
+  display: none;
 }
 
 .busker-social-icons {
@@ -184,6 +193,17 @@
   font-weight: bold;
 }
 
+.busker-followers-text,
+.busker-events-text {
+  font-size: 1.1rem;
+}
+
+.busker-followers-count,
+.busker-events-count {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
 .busker-followers-text-container,
 .busker-events-text-container {
   justify-content: flex-start;
@@ -202,44 +222,40 @@
 
 /* SM */
 @media (min-width: 576px) {
+  .busker-user-name   { font-size: 1rem; }
+  .busker-user-location { font-size: 0.85rem; }
+  .busker-bio         { font-size: 0.8rem; }
+  .busker-next-gig    { font-size: 0.78rem; }
 }
 
 /* MD */
 @media (min-width: 768px) {
+  .busker-user-name   { font-size: 1.05rem; }
+  .busker-user-location { font-size: 0.9rem; }
+  .busker-bio         { font-size: 0.85rem; }
+  .busker-next-gig    { font-size: 0.82rem; }
 }
 
 /* LG */
 @media (min-width: 992px) {
+  .busker-user-name   { font-size: 1.1rem; }
+  .busker-user-location { font-size: 0.95rem; }
+  .busker-bio         { font-size: 0.9rem; }
+  .busker-next-gig    { font-size: 0.86rem; }
 }
 
 /* XL */
 @media (min-width: 1200px) {
+  .busker-user-name   { font-size: 1.15rem; }
+  .busker-user-location { font-size: 1rem; }
+  .busker-bio         { font-size: 0.95rem; }
+  .busker-next-gig    { font-size: 0.9rem; }
 }
 
 /* XXL */
 @media (min-width: 1400px) {
   .busker-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    grid-auto-rows: 260px;
     gap: 16px;
-  }
-
-  .busker-item {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  .busker-list {
-    height: 100%;
-    overflow-y: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .busker-list::-webkit-scrollbar {
-    display: none;
   }
 
 }

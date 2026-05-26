@@ -27,13 +27,10 @@
         </div>
 
         <div class="field">
-          <label>I am a...</label>
-          <div class="role-options" formArrayName="userRoles">
-            <label *ngFor="let role of visibleRoles; let i = index" class="role-label">
-              <input type="checkbox" [formControlName]="i">
-              <span>{{ roleLabels[role] }}</span>
-            </label>
-          </div>
+          <label class="role-label busker-checkbox">
+            <input type="checkbox" formControlName="isBusker">
+            <span>Busker / Performer</span>
+          </label>
         </div>
 
         <div class="error-msg" *ngIf="errorMessage">{{ errorMessage }}</div>

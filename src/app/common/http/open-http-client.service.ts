@@ -150,6 +150,14 @@ updatePassword(currentPassword: string, newPassword: string): Observable<void> {
   );
 }
 
+updateBuskerRole(isBusker: boolean): Observable<User> {
+  return this.http.put<User>(
+    `${API}/user/busker-role`,
+    { isBusker },
+    { withCredentials: true, headers: { 'Content-Type': 'application/json' } }
+  );
+}
+
 resendVerification(email: string): Observable<void> {
   return this.http.post<void>(`${API}/open/resend-verification`, { email }, { headers: { 'Content-Type': 'application/json' } });
 }

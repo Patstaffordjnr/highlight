@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgFor } from '@angular/common';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { FormArray } from '@angular/forms';
 import { SignUpClient } from './sign-up.client';
 import { UserRole } from 'src/app/model/user-roles';
 import { SignUpRequest } from './sign-up-request';
-import { minSelectedCheckboxes } from '../../util/validators/checkbox-validator';
 import { RouterService } from 'src/app/util/router.service';
 
 function passwordStrengthValidator(control: AbstractControl): ValidationErrors | null {
@@ -28,35 +25,20 @@ export class SignUpComponent implements OnInit {
   loading: boolean = false;
   submitted: boolean = false;
 
-  visibleRoles = [UserRole.USER, UserRole.BUSKER];
-
-  roleLabels: Record<string, string> = {
-    [UserRole.USER]: 'Music Fan',
-    [UserRole.BUSKER]: 'Busker / Performer',
-  };
-
   constructor(private formBuilder: FormBuilder, private signUpClient: SignUpClient, private routerService: RouterService) {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8), passwordStrengthValidator]],
-      userRoles: new FormArray([], minSelectedCheckboxes(1))
+      isBusker: [false]
     });
-    this.addCheckboxes();
-  }
-
-  private addCheckboxes() {
-    this.visibleRoles.forEach((_, i) => this.userRolesFormArray.push(new FormControl(i === 0)));
-  }
-
-  get userRolesFormArray() {
-    return this.form.controls['userRoles'] as FormArray;
   }
 
   generateRequest(): SignUpRequest {
-    const selectedRoles: UserRole[] = this.userRolesFormArray.value
-      .map((checked: boolean, i: number) => checked ? this.visibleRoles[i] : null)
-      .filter((v: UserRole | null) => v !== null);
-    return new SignUpRequest(this.form.get('email').value, selectedRoles, this.form.get('password').value);
+    const roles: UserRole[] = [UserRole.USER];
+    if (this.form.get('isBusker').value) {
+      roles.push(UserRole.BUSKER);
+    }
+    return new SignUpRequest(this.form.get('email').value, roles, this.form.get('password').value);
   }
 
   ngOnInit(): void {}

@@ -7,7 +7,7 @@
 }
 
 .card {
-  width: min(300px, 100%);
+  width: 330px;
   box-sizing: border-box;
   padding: 16px 16px;
   border: 3px solid #e8e8e8;
@@ -68,12 +68,8 @@ input[type="password"]:focus {
   border-color: #4da6e8;
 }
 
-.role-options {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 2px;
-  align-items: center;
+.busker-checkbox {
+  justify-content: center;
 }
 
 .role-label {

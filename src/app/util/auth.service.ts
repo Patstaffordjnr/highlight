@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { User } from '../model/user';
 import { CurrentUserService } from './can-activate.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +11,7 @@ import { CurrentUserService } from './can-activate.service';
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
 
-  constructor(private currentUserService: CurrentUserService) {}
+  constructor(private currentUserService: CurrentUserService, private http: HttpClient) {}
 
   get isLoggedIn$(): Observable<boolean> {
     return this.loggedIn.asObservable();
@@ -31,5 +33,13 @@ export class AuthService {
 
   getUser(): User | null {
     return this.currentUserService.getUser();
+  }
+
+  restoreSession(): Promise<void> {
+    return this.http
+      .get<User>(`${environment.apiUrl}/user/whoAmI`, { withCredentials: true })
+      .toPromise()
+      .then(user => { if (user) this.login(user); })
+      .catch(() => {});
   }
 }

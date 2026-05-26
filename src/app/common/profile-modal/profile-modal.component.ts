@@ -25,6 +25,7 @@ export class ProfileModalComponent implements OnInit, OnChanges {
   editTiktokUrl = '';
   editYoutubeUrl = '';
   editSpotifyUrl = '';
+  editIsBusker = false;
   profileSaveSuccess = false;
   profileSaveError = '';
 
@@ -90,6 +91,7 @@ export class ProfileModalComponent implements OnInit, OnChanges {
     this.editTiktokUrl = this.currentUser.tiktokUrl ?? '';
     this.editYoutubeUrl = this.currentUser.youtubeUrl ?? '';
     this.editSpotifyUrl = this.currentUser.spotifyUrl ?? '';
+    this.editIsBusker = this.currentUser.roles.map(r => String(r)).includes('BUSKER');
     this.profileSaveSuccess = false;
     this.passwordSaveSuccess = false;
     this.profileSaveError = '';
@@ -111,6 +113,9 @@ export class ProfileModalComponent implements OnInit, OnChanges {
 
   saveProfile() {
     this.profileSaveError = '';
+    const currentIsBusker = this.currentUser.roles.map(r => String(r)).includes('BUSKER');
+    const roleChanged = this.editIsBusker !== currentIsBusker;
+
     this.openHttpClientService.updateProfile(
       this.editDisplayName || null,
       this.editBio || null,
@@ -128,10 +133,25 @@ export class ProfileModalComponent implements OnInit, OnChanges {
         this.currentUser.tiktokUrl = updated.tiktokUrl;
         this.currentUser.youtubeUrl = updated.youtubeUrl;
         this.currentUser.spotifyUrl = updated.spotifyUrl;
-        this.editMode = false;
-        this.profileSaveSuccess = true;
-        this.profileUpdated.emit(this.currentUser);
-        setTimeout(() => { this.profileSaveSuccess = false; }, 3000);
+
+        if (roleChanged) {
+          this.openHttpClientService.updateBuskerRole(this.editIsBusker).subscribe({
+            next: (roleUpdated: User) => {
+              this.currentUser.roles = roleUpdated.roles;
+              this.userRoles = roleUpdated.roles.map(r => String(r)).filter(r => r === 'USER' || r === 'BUSKER' || r === 'ADMIN');
+              this.editMode = false;
+              this.profileSaveSuccess = true;
+              this.profileUpdated.emit(this.currentUser);
+              setTimeout(() => { this.profileSaveSuccess = false; }, 3000);
+            },
+            error: () => { this.profileSaveError = 'Profile saved but role update failed. Please try again.'; }
+          });
+        } else {
+          this.editMode = false;
+          this.profileSaveSuccess = true;
+          this.profileUpdated.emit(this.currentUser);
+          setTimeout(() => { this.profileSaveSuccess = false; }, 3000);
+        }
       },
       error: () => { this.profileSaveError = 'Failed to save. Please try again.'; }
     });

@@ -2,9 +2,10 @@ import { Component, OnInit, Output } from '@angular/core';
 import { OpenHttpClientService } from '../../common/http/open-http-client.service'
 import { EventType } from '../../model/event-types';
 import { BuskersTableControlComponent } from '../../common/busker/buskers-table-control/buskers-table-control.component';
-import { EventEmitter } from 'events';
+// import { EventEmitter } from 'events';
 import { Busker } from '../../model/busker';
 import { EventFilter } from '../../model/event-list-filter';
+import { CurrentUserService } from '../../util/can-activate.service';
 
 // interface Busker {
 //   id: string;
@@ -24,20 +25,23 @@ export class BuskersComponent implements OnInit {
 
 
   total: number = 0;
-  // Modal state is included for structure consistency, though not fully implemented
   showModal: boolean = false;
+  hasProfileImage = false;
 
   buskers: Busker[] = [];
   allBuskers: Busker[] = [];
   busker: Busker | null = null;
 
-
-
-  constructor(private openHttpClientService: OpenHttpClientService) {
-  }
+  constructor(
+    private openHttpClientService: OpenHttpClientService,
+    private currentUserService: CurrentUserService
+  ) {}
 
   ngOnInit(): void {
     this.loadBuskers(0, 20);
+    this.currentUserService.user$.subscribe(u => {
+      this.hasProfileImage = !!(u as any)?.profileImageUrl;
+    });
   }
 
   loadBuskers(page: number, size: number): void {

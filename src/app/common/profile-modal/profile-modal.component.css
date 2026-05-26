@@ -176,6 +176,23 @@
   border-radius: 6px;
 }
 
+.busker-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.busker-toggle-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #4da6e8;
+  cursor: pointer;
+}
+
 .btn-row {
   display: flex;
   gap: 8px;

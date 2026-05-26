@@ -1,51 +1,43 @@
-<!-- <div class="user">
-<div class="container">
-    <div class="item item-1">
-      <app-user-profile  class = "user-profile"></app-user-profile>
-    </div>
-    <div class="item item-2">
-      <app-map class = "map"></app-map>
-    </div>
-    <div class="item item-3">
-            <app-buskers-mini-display class = "buskers-mini" [buskers]="buskers"></app-buskers-mini-display>
+<div class="ui">
+  <div class="content">
+    <div class="busker">
+      <div class="container">
 
-    </div>
-    <div class="item item-4">
-      <app-common-events class = "events" [events]="events" (selectedEvent)="onSelect($event)"></app-common-events>
-    </div>
-</div>
-</div> -->
-<!-- <app-event-modal class = "modal" [isOpen]="showModal" (close)="showModal = false " [event]="event">
-</app-event-modal> -->
+        <div class="item-1-container">
+          <div class="item item-1">
+            <app-user-profile class="user-profile"></app-user-profile>
+          </div>
+        </div>
 
-<div class = "ui">
-<div class = "content">
-<div class="user">
-<div class="container">
-    <div class="item item-1">
-      <app-user-profile  class = "user-profile"></app-user-profile>
+        <div class="item-2-container">
+          <div class="item item-2">
+            <app-map class="map"
+              (mapInput)="onMapReady($event)"
+              (mapCenterChanged)="onMapMoved($event)"
+              (mapClicked)="onMapClicked($event)">
+            </app-map>
+          </div>
+        </div>
+
+        <div class="item-3-container">
+          <div class="item item-3">
+            <div class="control-container">
+              <div class="control" (click)="createEvent()"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item-4-container">
+          <div class="item item-4">
+            <app-common-events class="events" [events]="events" (selectedEvent)="onSelect($event)"></app-common-events>
+          </div>
+        </div>
+
+      </div>
     </div>
-    <div class="item item-2">
-<app-map  class = "map"
-  (mapInput)="onMapReady($event)"
-  (mapCenterChanged)="onMapMoved($event)"
-  (mapClicked)="onMapClicked($event)">
-</app-map>
-    </div>
-    <div class="item item-3">
-      <div class = "control-container" >
-  <div class = "control" (click)="createEvent()" >
   </div>
 </div>
-         <!-- <app-buskers-mini-display class = "buskers-mini" [buskers]="buskers"></app-buskers-mini-display> -->
-    </div>
-    <div class="item item-4">
-      <app-common-events class = "events" [events]="events" (selectedEvent)="onSelect($event)"></app-common-events>
-    </div>
-</div>
-</div>
-</div>
-</div>
+
 <app-event-modal
   *ngIf="showModal"
   class="modal"
@@ -56,6 +48,3 @@
   (openBuskerProfile)="onOpenBusker($event)">
 </app-event-modal>
 <app-busker-modal [isOpen]="showBuskerModal" [busker]="selectedBusker" (close)="showBuskerModal = false"></app-busker-modal>
-<div class = "a"></div>
-
-

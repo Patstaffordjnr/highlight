@@ -2,35 +2,29 @@
 <div #sliderRef class = "slider" [ngStyle]="{'margin-left': menuVisible ? 'auto' : '47%'}" >
   <div #innerSliderRef class = "slider-inner">
     <div *ngIf = "menuVisible">
-    <div  class = "slider-img">
-      <i  class = "home" routerLink = "/home">Home</i>
+    <div class="slider-img" routerLinkActive="nav-active">
+      <i class="home" routerLink="/home">Home</i>
     </div>
-    <div *ngIf="isLoggedIn" class = "slider-img">
-      <i class ="user" routerLink = "user">User</i>
+    <div *ngIf="isLoggedIn" class="slider-img" routerLinkActive="nav-active">
+      <i class="user" routerLink="user">User</i>
     </div>
-    <div *ngIf="busker" class = "slider-img">
-      <i class ="user" routerLink = "busker">Busker</i>
+    <div *ngIf="busker" class="slider-img" routerLinkActive="nav-active">
+      <i class="user" routerLink="busker">Busker</i>
     </div>
-    <div *ngIf="admin" class = "slider-img">
-      <i class ="user" routerLink = "admin">Admin</i>
+    <div *ngIf="admin" class="slider-img" routerLinkActive="nav-active">
+      <i class="user" routerLink="admin">Admin</i>
     </div>
-    <!-- <div class = "slider-img">
-      <i class ="events" routerLink = "events">Events</i>
-    </div> -->
-    <div class = "slider-img">
-      <i class ="buskers" routerLink = "buskers">Buskers</i>
-      </div>
-    <!-- <div  *ngIf="menuVisible"  class = "slider-img">
-    <i class ="users" routerLink = "users">Users</i>
-    </div> -->
-    <div *ngIf="!isLoggedIn" class = "slider-img">
-      <i class ="sign-up"  routerLink = "signup">Sign Up</i>
+    <div class="slider-img" routerLinkActive="nav-active">
+      <i class="buskers" routerLink="buskers">Buskers</i>
     </div>
-    <div  *ngIf="!isLoggedIn" class = "slider-img">
-      <i class ="log-in" routerLink = "login">Log In</i>
+    <div *ngIf="!isLoggedIn" class="slider-img" routerLinkActive="nav-active">
+      <i class="sign-up" routerLink="signup">Sign Up</i>
     </div>
-    <div class = "slider-img">
-      <i class ="about" routerLink = "about">About</i>
+    <div *ngIf="!isLoggedIn" class="slider-img" routerLinkActive="nav-active">
+      <i class="log-in" routerLink="login">Log In</i>
+    </div>
+    <div class="slider-img" routerLinkActive="nav-active">
+      <i class="about" routerLink="about">About</i>
     </div>
     <!-- <div class = "slider-img">
       <i class ="stafford">Stafford</i>

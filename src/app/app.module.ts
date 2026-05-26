@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { AppComponent } from './app.component';
+import { AuthService } from './util/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
@@ -114,7 +115,13 @@ import { BuskerPlaceholderPipe } from './common/busker/busker-placeholder.pipe';
     PermissionsService,
     GlobalDateService,
     EventService,
-    provideHttpClient(withInterceptorsFromDi())
+    provideHttpClient(withInterceptorsFromDi()),
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (authService: AuthService) => () => authService.restoreSession(),
+      deps: [AuthService],
+      multi: true
+    }
   ]
 })
 export class AppModule {}

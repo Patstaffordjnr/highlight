@@ -99,6 +99,10 @@
         <!-- EDIT FORM -->
         <ng-container *ngIf="editMode">
           <div class="grid-item form-item" id="item-5">
+            <label class="busker-toggle-label">
+              <input type="checkbox" [(ngModel)]="editIsBusker">
+              <span>I'm a busker / performer</span>
+            </label>
             <label>Display Name</label>
             <input type="text" [(ngModel)]="editDisplayName" placeholder="Display name" maxlength="50" />
             <label>Location</label>

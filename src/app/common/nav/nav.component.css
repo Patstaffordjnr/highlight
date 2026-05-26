@@ -23,7 +23,16 @@ i{
 }
 
 i:hover {
-  color: coral
+  color: coral;
+}
+
+.nav-active i {
+  text-decoration: underline;
+  color: inherit;
+}
+
+.nav-active i:hover {
+  color: inherit;
 }
 
 .slider {
