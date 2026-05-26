@@ -95,20 +95,19 @@
 
   .content {
     width: 90vw;
-    height: 75vh;
   }
 
   .item-1-container {
     order: 0;
-    width: 44vw;
-    height: 75vh;
+    width: 22.5vw;
+    height: 300px;
     padding-right: 1vw;
     padding-bottom: 0;
   }
 
   .item-1 {
     overflow: hidden;
-    min-width: 44vw;
+    min-width: 22.5vw;
   }
 
   .item-4-container {

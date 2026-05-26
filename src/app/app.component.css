@@ -5,12 +5,8 @@
     min-width: 100vw;
     padding: 0px;
     padding-left: 0px;
-      /* Fit below the navbar */
-  /* height: calc(100vh); */
-
-  /* Prevent grid from pushing taller than viewport */
-  box-sizing: border-box;
-  overflow: hidden;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 
   .header-container {
@@ -33,8 +29,5 @@
   }
   .footer-container {
     flex-shrink: 0;
-    z-index: -1;
-    
-
   }
   
