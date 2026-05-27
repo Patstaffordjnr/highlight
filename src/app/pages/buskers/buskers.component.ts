@@ -26,11 +26,13 @@ export class BuskersComponent implements OnInit {
 
   total: number = 0;
   showModal: boolean = false;
+  showEventModal: boolean = false;
   hasProfileImage = false;
 
   buskers: Busker[] = [];
   allBuskers: Busker[] = [];
   busker: Busker | null = null;
+  selectedEvent: any = null;
 
   constructor(
     private openHttpClientService: OpenHttpClientService,
@@ -61,6 +63,11 @@ export class BuskersComponent implements OnInit {
   onSelect(busker: Busker): void {
       this.busker = busker;
       this.showModal = true;
+  }
+
+  onOpenEvent(event: any): void {
+    this.selectedEvent = event;
+    this.showEventModal = true;
   }
 
 

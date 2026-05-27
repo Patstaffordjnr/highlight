@@ -38,5 +38,8 @@
   </div>
 </div>
 
-<app-busker-modal [isOpen]="showModal" (close)="showModal = false" [busker]="busker">
+<app-busker-modal [isOpen]="showModal" (close)="showModal = false" [busker]="busker" (openEvent)="onOpenEvent($event)">
 </app-busker-modal>
+
+<app-event-modal *ngIf="showEventModal" [isOpen]="showEventModal" [event]="selectedEvent" (close)="showEventModal = false">
+</app-event-modal>
