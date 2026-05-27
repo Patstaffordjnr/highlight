@@ -1,17 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
-import { UserProfileComponent } from 'src/app/common/user-profile/user-profile.component';
 import { User } from 'src/app/model/user';
 import { CurrentUserService } from 'src/app/util/can-activate.service';
 import { EventType } from 'src/app/model/event-types';
 import { Event as AppEvent } from 'src/app/model/event';
 import { Busker } from 'src/app/model/busker';
-import { AuthService } from 'src/app/util/auth.service';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import * as L from 'leaflet';
-import { EventModalComponent } from 'src/app/common/event/event-modal/event-modal.component';
 import { markerIcons } from './../../common/map/map-icons';
 
 @Component({
@@ -19,51 +14,30 @@ import { markerIcons } from './../../common/map/map-icons';
   templateUrl: './busker.component.html',
   styleUrl: './busker.component.css'
 })
-export class BuskerComponent implements OnInit { // Implement OnInit
+export class BuskerComponent implements OnInit {
   showModal = false;
   showBuskerModal = false;
   selectedBusker: Busker | null = null;
-  buskers: Busker[] = [];
-  total: number = 0;
-  
-  userRoles: string[] = []; // Changed to string[] for better type safety
-  currentUser: User = {
-    id: "string",
-    email: "string",
-    roles: [],
-  };
+
+  userRoles: string[] = [];
+  currentUser: User = { id: '', email: '', roles: [] };
+
   events: AppEvent[] = [];
-  form!: FormGroup; // Use ! if initialized elsewhere, or remove if not needed.
-                   // Since you commented out the form, I'll leave it as is.
+  event!: AppEvent;
 
-  event!: AppEvent; // Use ! since it's assigned in onSelect
-  
-  eventTypes: Set<string> = new Set(["Band", "Busker", "Dj", "Performance"]);
-  
   mapInstance!: L.Map;
-  mapDetails: any; 
-  markersLayer = L.layerGroup(); 
-  homeAddress: string = '';
+  markersLayer = L.layerGroup();
 
-  filteredEvents: AppEvent[] = []; 
-  
   constructor(
-    private formBuilder: FormBuilder,
     private currentUserService: CurrentUserService,
     private openHttpClientService: OpenHttpClientService,
     private router: Router
   ) {}
 
-  // --- ngOnInit Logic (Copied from UserComponent) ---
   async ngOnInit() {
-    // 1. Load Buskers
-    this.loadBuskers(0, 10);
-
-    // 2. Load this busker's events
     this.loadEvents();
 
-    // 3. Load User Profile
-    let user = this.currentUserService.getUser();
+    const user = this.currentUserService.getUser();
     if (!user) {
       this.router.navigate(['/login']);
       return;
@@ -73,55 +47,28 @@ export class BuskerComponent implements OnInit { // Implement OnInit
     this.currentUser.email = user.email;
     this.currentUser.roles = user.roles;
 
-    // 3. Process Roles (Filter is used incorrectly, but the logic is kept for 1:1 copy)
     this.currentUser.roles.forEach((userRole) => {
       const roleString = String(userRole);
-      if (roleString === "USER") {
+      if (roleString === 'USER') {
         this.userRoles = ['USER'];
-      } else if (roleString === "BUSKER") {
+      } else if (roleString === 'BUSKER') {
         this.userRoles = ['BUSKER'];
-      } else if (roleString === "ADMIN") {
+      } else if (roleString === 'ADMIN') {
         this.userRoles = ['ADMIN'];
       }
     });
   }
 
-  // --- Map and Event Logic (Same as UserComponent) ---
   onMapReady(map: L.Map) {
     this.mapInstance = map;
-    const center = this.mapInstance.getCenter();
-    // Add markers if events are already loaded
     if (this.events.length > 0) {
       this.addMarkersToMap();
     }
-  
-    // Reverse geocoding (copied 1:1)
-    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${center.lat}&lon=${center.lng}`)
-      .then(response => response.json())
-      .then(data => {
-        if (data.address) {
-          const addr = data.address;
-          const road = addr.road || addr.suburb || '';
-          const city = addr.city || addr.town || addr.village || addr.county || '';
-          const country = addr.country || '';
-          this.homeAddress = `${road ? road + ', ' : ''}${city}, ${country}`;
-        } else {
-          const parts = data.display_name.split(',').map((p: string) => p.trim());
-          const street = parts[0] || '';
-          const city = parts[2] || parts[3] || '';
-          const country = parts[parts.length - 1] || '';
-          this.homeAddress = `${street}, ${city}, ${country}`;
-        }
-      })
-      .catch(error => console.error('Reverse geocoding error:', error));
   }
-  
-  onMapMoved(event: { lat: number; lng: number }) {
-  }
-  
-  onMapClicked(event: { lat: number; lng: number }) {
-  }
-  
+
+  onMapMoved(_event: { lat: number; lng: number }) {}
+  onMapClicked(_event: { lat: number; lng: number }) {}
+
   private addMarkersToMap() {
     this.markersLayer.clearLayers();
     this.events.forEach(event => {
@@ -134,29 +81,16 @@ export class BuskerComponent implements OnInit { // Implement OnInit
     this.markersLayer.addTo(this.mapInstance);
   }
 
-    createEvent(){
-      this.event = null;
+  createEvent() {
+    this.event = null;
     this.showModal = true;
   }
-  
+
   onSelect(event: AppEvent) {
     this.event = event;
     this.showModal = true;
   }
-  
-  loadBuskers(page: number, size: number): void {
-    this.openHttpClientService.getBuskers(page, size).subscribe({
-      next: (response: { total: number, results: Busker[] }) => {
-        this.total = response.total;
-        this.buskers = response.results;
-      },
-      error: (err) => {
-        console.error('Error loading buskers:', err);
-      }
-    });
-  }
 
-  
   loadEvents() {
     this.openHttpClientService.getUserEvents(
       0, 50,
@@ -168,9 +102,7 @@ export class BuskerComponent implements OnInit { // Implement OnInit
           this.addMarkersToMap();
         }
       },
-      error: (error) => {
-        console.error('Error fetching events:', error);
-      }
+      error: (error) => console.error('Error fetching events:', error)
     });
   }
 

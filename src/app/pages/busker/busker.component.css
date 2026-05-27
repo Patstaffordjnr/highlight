@@ -1,4 +1,4 @@
-/* Base styles — mobile first (single column, stacked) */
+/* Base styles — mobile first */
 
 .ui {
   display: flex;
@@ -75,7 +75,6 @@
 }
 
 .item-3 {
-  /* border: 6px solid whitesmoke; */
   overflow: hidden;
 }
 
@@ -96,7 +95,7 @@
 
 .control::before,
 .control::after {
-  content: "";
+  content: '';
   position: absolute;
   background-color: black;
   border-radius: 3px;
@@ -146,10 +145,7 @@
   z-index: 1;
 }
 
-
-/* SM - Small tablets and above — switch to grid */
 @media (min-width: 576px) {
-
   .content {
     width: 90vw;
     height: 75vh;
@@ -209,17 +205,4 @@
     width: 100%;
     height: 100%;
   }
-
 }
-
-/* MD - Tablets */
-@media (min-width: 768px) {}
-
-/* LG - Small laptops */
-@media (min-width: 992px) {}
-
-/* XL - Desktops */
-@media (min-width: 1200px) {}
-
-/* XXL - Large desktops */
-@media (min-width: 1400px) {}

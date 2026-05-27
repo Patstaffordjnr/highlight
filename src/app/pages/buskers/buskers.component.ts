@@ -1,19 +1,9 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { OpenHttpClientService } from '../../common/http/open-http-client.service'
+import { Component, OnInit } from '@angular/core';
+import { OpenHttpClientService } from '../../common/http/open-http-client.service';
 import { EventType } from '../../model/event-types';
-import { BuskersTableControlComponent } from '../../common/busker/buskers-table-control/buskers-table-control.component';
-// import { EventEmitter } from 'events';
 import { Busker } from '../../model/busker';
 import { EventFilter } from '../../model/event-list-filter';
 import { CurrentUserService } from '../../util/can-activate.service';
-
-// interface Busker {
-//   id: string;
-//   email: string;
-//   roles: string[];
-//   createdAt: number;
-//   updatedAt: number;
-// }
 
 @Component({
   selector: 'app-buskers',
@@ -21,8 +11,7 @@ import { CurrentUserService } from '../../util/can-activate.service';
   styleUrls: ['./buskers.component.css']
 })
 export class BuskersComponent implements OnInit {
-  eventTypes: Set<string> = new Set(["Band", "Busker", "Dj", "Performance"]);
-
+  eventTypes: Set<string> = new Set(['Band', 'Busker', 'Dj', 'Performance']);
 
   total: number = 0;
   showModal: boolean = false;
@@ -53,16 +42,13 @@ export class BuskersComponent implements OnInit {
         this.allBuskers = response.results;
         this.buskers = [...this.allBuskers];
       },
-      error: (err) => {
-        console.error('Error loading buskers:', err);
-      }
+      error: (err) => console.error('Error loading buskers:', err)
     });
   }
 
-  // Method for selecting a busker and showing the modal (if implemented)
   onSelect(busker: Busker): void {
-      this.busker = busker;
-      this.showModal = true;
+    this.busker = busker;
+    this.showModal = true;
   }
 
   onOpenEvent(event: any): void {
@@ -70,30 +56,25 @@ export class BuskersComponent implements OnInit {
     this.showEventModal = true;
   }
 
+  onFilterChange(filter: EventFilter): void {
+    const searching = !!filter.search?.trim();
+    let result = [...this.allBuskers];
 
-onGenreChange(updatedGenres: Set<string>) {
-  this.eventTypes = new Set(['Band', 'Busker', 'Dj', 'Performance']);
-}
+    if (searching) {
+      const term = filter.search.trim().toLowerCase();
+      result = result.filter(b =>
+        b.email.toLowerCase().includes(term) ||
+        (b.displayName && b.displayName.toLowerCase().includes(term))
+      );
+    }
 
-onFilterChange(filter: EventFilter): void {
-  const searching = !!filter.search?.trim();
-  let result = [...this.allBuskers];
+    const genres = filter.genres;
+    if (!genres.has(EventType.ALL)) {
+      result = result.filter(b =>
+        b.roles.some(r => genres.has(String(r).toUpperCase() as any))
+      );
+    }
 
-  if (searching) {
-    const term = filter.search.trim().toLowerCase();
-    result = result.filter(b =>
-      b.email.toLowerCase().includes(term) ||
-      (b.displayName && b.displayName.toLowerCase().includes(term))
-    );
+    this.buskers = result;
   }
-
-  const genres = filter.genres;
-  if (!genres.has(EventType.ALL)) {
-    result = result.filter(b =>
-      b.roles.some(r => genres.has(String(r).toUpperCase() as any))
-    );
-  }
-
-  this.buskers = result;
-}
 }

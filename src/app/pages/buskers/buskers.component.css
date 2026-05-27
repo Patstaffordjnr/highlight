@@ -1,4 +1,4 @@
-/* Base styles — mobile first (single column, stacked) */
+/* Base styles — mobile first */
 
 .ui {
   display: flex;
@@ -89,10 +89,7 @@
   z-index: 1;
 }
 
-
-/* SM - Small tablets and above (two column layout) */
 @media (min-width: 576px) {
-
   .content {
     width: 90vw;
   }
@@ -135,17 +132,4 @@
     order: 0;
     width: 90vw;
   }
-
 }
-
-/* MD - Tablets */
-@media (min-width: 768px) {}
-
-/* LG - Small laptops */
-@media (min-width: 992px) {}
-
-/* XL - Desktops */
-@media (min-width: 1200px) {}
-
-/* XXL - Large desktops */
-@media (min-width: 1400px) {}

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes,RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { NavComponent } from './common/nav/nav.component';
 import { LogInComponent } from './pages/log-in/log-in.component';
@@ -25,12 +25,12 @@ const routes: Routes = [
   { path: 'login', component: LogInComponent },
   { path: 'mainmenu', component: NavComponent },
   { path: 'user', component: UserComponent, canActivate: [canActivateLoggedIn] },
-  { path: 'calendar', component: CalendarComponent},
+  { path: 'calendar', component: CalendarComponent },
   { path: 'busker', component: BuskerComponent, canActivate: [canActivateBusker] },
   { path: 'admin', component: AdminComponent, canActivate: [canActivateAdmin] },
-  { path: 'buskers', component: BuskersComponent},
-  { path: 'about', component: AboutComponent},
-  { path: 'verify', component: VerifyComponent},
+  { path: 'buskers', component: BuskersComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'verify', component: VerifyComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
 ];
@@ -42,9 +42,5 @@ const routes: Routes = [
     CommonModule
   ],
   exports: [RouterModule]
-
 })
-
-export class AppRoutingModule { 
-  
-}
+export class AppRoutingModule {}

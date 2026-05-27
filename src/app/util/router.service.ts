@@ -5,13 +5,13 @@ import { CurrentUserService } from './can-activate.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
-
 @Injectable()
 export class RouterService {
-
-  constructor(protected router: Router, private currentUserService: CurrentUserService, private http: HttpClient) {
-
-  }
+  constructor(
+    protected router: Router,
+    private currentUserService: CurrentUserService,
+    private http: HttpClient
+  ) {}
 
   setUser(user: User) {
     this.currentUserService.setUser(user);
@@ -21,46 +21,25 @@ export class RouterService {
     this.router.navigate(['/login']);
   }
 
-
   toHomePage() {
     this.router.navigate(['/home']);
   }
-
-  // toGoogleMapsPage() {
-  //   this.router.navigate(['/googlemap']);
-  // }
-
 
   toSignUpPage() {
     this.router.navigate(['/signup']);
   }
 
-  // toCreateEventPage() {
-  //   this.router.navigate(['/createevent']);
-  // }
-
-  // toEventsPage() {
-  //   this.router.navigate(['/events']);
-  // }
-
-  // toEventTablePage() {
-  //   this.router.navigate(['/eventtable']);
-  // }
-
   async clearCookie(): Promise<void> {
-    let response = await this.http.get<any>(`${environment.apiUrl}/api/auth/logout`, { withCredentials: true }).toPromise();
+    await this.http.get<any>(`${environment.apiUrl}/api/auth/logout`, { withCredentials: true }).toPromise();
   }
-  
-  async toLogoutPage(): Promise<void> {    
+
+  async toLogoutPage(): Promise<void> {
     this.clearCookie();
     this.currentUserService.setUser(null);
-    // this.toLoginPage();
     this.toHomePage();
   }
-
 
   async toAdminHomePage(): Promise<void> {
     this.router.navigate(['/admin/home']);
   }
-
 }

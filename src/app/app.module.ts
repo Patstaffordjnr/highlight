@@ -18,11 +18,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { MapComponent } from './common/map/map.component';
 import { EventService } from './common/event/event-service';
 import { EventsTableComponent } from './common/event/events-table/events-table.component';
-
 import { ProgressBarComponent } from './common/progress-bar/progress-bar.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { UserComponent } from './pages/user/user.component';
-
 import { EventsTableControlComponent } from './common/event/events-table-control/events-table-control.component';
 import { EventsComponent } from './pages/events/events.component';
 import { GlobalDateService } from './pages/home/global-date.service';
@@ -45,9 +43,10 @@ import { AboutComponent } from './pages/about/about.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { BuskerPlaceholderPipe } from './common/busker/busker-placeholder.pipe';
+
 @NgModule({
   declarations: [
-            BuskersMiniDisplayComponent,
+    BuskersMiniDisplayComponent,
 
     // Pages
     EventsComponent,
@@ -57,7 +56,6 @@ import { BuskerPlaceholderPipe } from './common/busker/busker-placeholder.pipe';
     VerifyComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-
 
     // Components
     AppComponent,
@@ -73,13 +71,10 @@ import { BuskerPlaceholderPipe } from './common/busker/busker-placeholder.pipe';
     UserComponent,
     EventsTableControlComponent,
     EventModalComponent,
-       BuskerModalComponent,
-       ProfileModalComponent,
-       
-        //         BuskerListComponent,
-        //  EventListComponent,
-         
+    BuskerModalComponent,
+    ProfileModalComponent,
   ],
+
   bootstrap: [AppComponent],
 
   imports: [
@@ -91,21 +86,18 @@ import { BuskerPlaceholderPipe } from './common/busker/busker-placeholder.pipe';
     EventsTableComponent,
     CommonEventsComponent,
     UserProfileComponent,
-        BuskersTableComponent,
-        BuskersTableControlComponent,
-               BuskerListComponent,
-         EventListComponent,
-                  UsersListComponent,
-                  AboutComponent,
-                  BuskerPlaceholderPipe,
-
+    BuskersTableComponent,
+    BuskersTableControlComponent,
+    BuskerListComponent,
+    EventListComponent,
+    UsersListComponent,
+    AboutComponent,
+    BuskerPlaceholderPipe,
   ],
 
   exports: [
-    MapComponent,           // ✅ now export
-    EventModalComponent,    // ✅ now export
-    // BuskerModalComponent,
-    //  EventListComponent, 
+    MapComponent,
+    EventModalComponent,
   ],
 
   providers: [

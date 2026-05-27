@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GlobalDateService } from './global-date.service'
-import { Subscription } from 'rxjs';
+import { GlobalDateService } from './global-date.service';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
 import { EventType } from 'src/app/model/event-types';
 import * as L from 'leaflet';
-import { EventModalComponent } from 'src/app/common/event/event-modal/event-modal.component';
 import { Event as AppEvent } from 'src/app/model/event';
 import { Busker } from 'src/app/model/busker';
 import { markerIcons } from './../../common/map/map-icons';
@@ -12,39 +10,24 @@ import { MapService } from 'src/app/common/map/map-service';
 import { combineLatest } from 'rxjs';
 import { EventFilter } from 'src/app/model/event-list-filter';
 
-
 @Component({
   selector: 'app-home',
-  // standalone: true,
-  // imports: [],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-  
-  // minLat
-  // maxLat
-  // minLong
-  // maxLong
-
   showModal = false;
   showBuskerModal = false;
   selectedBusker: Busker | null = null;
   private buskerBeforeEvent: Busker | null = null;
   mapInstance!: L.Map;
-  currentIndex = 0;
-  noOfPages = 8;
 
   showDateControls = false;
   globalDate = new Date();
-
-
-  mapDetails: any; // could be {lat, lng, bounds, etc.}
-  markersLayer = L.layerGroup(); // This layer will hold all markers
+  mapDetails: any;
+  markersLayer = L.layerGroup();
   homeAddress: string = '';
 
-  distances: number[] = [1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 50];
-  selectedDistance: number = 5; // default
   withinOptions: { label: string, value: number }[] = [
     { label: '30 minutes', value: 0.5 },
     { label: '1 hour', value: 1 },
@@ -53,18 +36,20 @@ export class HomeComponent implements OnInit {
     { label: '12 hours', value: 12 },
     { label: '24 hours', value: 24 },
     { label: '2 days', value: 48 },
-    { label: '1 week', value: 168 },      // 7 * 24
-    { label: '1 month', value: 720 }      // Approx: 30 * 24
+    { label: '1 week', value: 168 },
+    { label: '1 month', value: 720 }
   ];
+
   sortOptions: { label: string, value: string }[] = [
-    { label: 'Starting', value: 'starting' },   
-    { label: 'Ending', value: 'ending' },   
-    { label: 'Nearest', value: 'distance' },        
-    { label: 'Most Followers', value: 'followers' }, 
-    { label: 'Most Attended', value: 'attendance' } 
+    { label: 'Starting', value: 'starting' },
+    { label: 'Ending', value: 'ending' },
+    { label: 'Nearest', value: 'distance' },
+    { label: 'Most Followers', value: 'followers' },
+    { label: 'Most Attended', value: 'attendance' }
   ];
-  selectedSort: string = 'distance'; 
-  selectedWithin: number = 1; 
+
+  selectedSort: string = 'distance';
+  selectedWithin: number = 1;
 
   events: AppEvent[] = [];
   allEvents: AppEvent[] = [];
@@ -73,291 +58,228 @@ export class HomeComponent implements OnInit {
   activeFilter: EventFilter | null = null;
   private lastMapDetails: any[] = [];
 
-  private subscription!: Subscription;
+  constructor(
+    private globalDateService: GlobalDateService,
+    private openHttpClientService: OpenHttpClientService,
+    private mapService: MapService
+  ) {}
 
- constructor(private globalDateService: GlobalDateService,
-  private openHttpClientService: OpenHttpClientService,
-  private mapService: MapService) {
-}
+  ngOnInit() {
+    this.globalDateService.globalDate$.subscribe((globalDate) => {
+      if (globalDate) {
+        this.globalDate = globalDate;
+      }
+    });
 
-ngOnInit() {
-  this.globalDateService.globalDate$.subscribe((globalDate) => {
-    if (globalDate) {
-      this.globalDate = globalDate;
-    }
-  });
-
-  // Use combineLatest to fetch events on changes to date or map details
-  combineLatest([
-    this.globalDateService.globalDate$,
-    this.mapService.mapCurrentLocationDetails$
-  ]).subscribe(([globalDate, details]) => {
-    if (globalDate && details && details.length >= 5) {
-      this.lastMapDetails = details;
-      const [bounds, minLat, maxLat, minLong, maxLong] = details;
-      this.fetchEvents(minLat, minLong, maxLat, maxLong);
-    }
-  });
-}
-
-private fetchEvents(minLat: number, minLong: number, maxLat: number, maxLong: number) {
-  this.eventsLoading = true;
-  this.openHttpClientService.getEvents(
-    this.globalDate,
-    minLat,
-    minLong,
-    maxLat,
-    maxLong,
-    [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
-  ).subscribe({
-    next: (events: AppEvent[]) => {
-      this.allEvents = events;
-      this.eventsLoading = false;
-      this.applyFilter();
-    },
-    error: () => {
-      this.eventsLoading = false;
-    },
-  });
-}
-
-
-// ngOnInit() {
-//   this.globalDateService.globalDate$.subscribe((globalDate) => {
-//     if (globalDate) {
-//       this.globalDate = globalDate;
-//     }
-//   });
-
-//   this.mapService.mapCurrentLocationDetails$.subscribe((details) => {
-//     if (!details || details.length < 5) return;
-
-//     const [bounds, minLat, maxLat, minLong, maxLong] = details;
-
-//     console.log('Fetching with bounds:', { minLat, maxLat, minLong, maxLong });
-
-
-//     this.openHttpClientService.getEvents(
-//       new Date(2026, 2, 28, 23, 0, 0),
-  
-//       minLat,
-//       minLong,
-//       maxLat,
-//       maxLong,
-//       [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
-//     ).subscribe({
-//       next: (events: AppEvent[]) => {
-//         console.log('Events received:', events);  // ← THIS WILL SHOW DATA
-//         this.events = events;
-//         if (this.mapInstance) {
-//           this.addMarkersToMap();
-//         }
-//       },
-//       error: (error) => {
-//         console.error('Error fetching events:', error);
-//       },
-//     });
-//   });
-// }
-
-
-onMapReady(map: L.Map) {
-  this.mapInstance = map;
-  const center = this.mapInstance.getCenter();
-  // console.log('Center:', center.lat, center.lng);
-
-  // Only add markers once events exist
-  if (this.events.length > 0) {
-    this.addMarkersToMap();
+    combineLatest([
+      this.globalDateService.globalDate$,
+      this.mapService.mapCurrentLocationDetails$
+    ]).subscribe(([globalDate, details]) => {
+      if (globalDate && details && details.length >= 5) {
+        this.lastMapDetails = details;
+        const [, minLat, maxLat, minLong, maxLong] = details;
+        this.fetchEvents(minLat, minLong, maxLat, maxLong);
+      }
+    });
   }
 
-  // Reverse geocoding (unchanged)
-  fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${center.lat}&lon=${center.lng}`)
-    .then(response => response.json())
-    .then(data => {
-      if (data.address) {
-        const addr = data.address;
-        const road = addr.road || addr.suburb || '';
-        const city = addr.city || addr.town || addr.village || addr.county || '';
-        const country = addr.country || '';
-        this.homeAddress = `${road ? road + ', ' : ''}${city}, ${country}`;
-      } else {
-        const parts = data.display_name.split(',').map((p: string) => p.trim());
-        const street = parts[0] || '';
-        const city = parts[2] || parts[3] || '';
-        const country = parts[parts.length - 1] || '';
-        this.homeAddress = `${street}, ${city}, ${country}`;
+  private fetchEvents(minLat: number, minLong: number, maxLat: number, maxLong: number) {
+    this.eventsLoading = true;
+    this.openHttpClientService.getEvents(
+      this.globalDate,
+      minLat, minLong, maxLat, maxLong,
+      [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
+    ).subscribe({
+      next: (events: AppEvent[]) => {
+        this.allEvents = events;
+        this.eventsLoading = false;
+        this.applyFilter();
+      },
+      error: () => {
+        this.eventsLoading = false;
       }
-    })
-    .catch(error => console.error('Reverse geocoding error:', error));
-}
+    });
+  }
 
+  onMapReady(map: L.Map) {
+    this.mapInstance = map;
+    const center = this.mapInstance.getCenter();
 
-onMapMoved(event: { lat: number; lng: number }) {
-  // console.log('Home Map moved to:', event);
-}
+    if (this.events.length > 0) {
+      this.addMarkersToMap();
+    }
 
-onMapClicked(event: { lat: number; lng: number }) {
-  // console.log('Home Clicked:', event);
-}
+    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${center.lat}&lon=${center.lng}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.address) {
+          const addr = data.address;
+          const road = addr.road || addr.suburb || '';
+          const city = addr.city || addr.town || addr.village || addr.county || '';
+          const country = addr.country || '';
+          this.homeAddress = `${road ? road + ', ' : ''}${city}, ${country}`;
+        } else {
+          const parts = data.display_name.split(',').map((p: string) => p.trim());
+          const street = parts[0] || '';
+          const city = parts[2] || parts[3] || '';
+          const country = parts[parts.length - 1] || '';
+          this.homeAddress = `${street}, ${city}, ${country}`;
+        }
+      })
+      .catch(error => console.error('Reverse geocoding error:', error));
+  }
 
+  onMapMoved(_event: { lat: number; lng: number }) {}
+  onMapClicked(_event: { lat: number; lng: number }) {}
 
-toggleDateControls() {
+  toggleDateControls() {
     this.globalDateService.toggle();
-}
+  }
 
+  private addMarkersToMap() {
+    this.markersLayer.clearLayers();
+    this.events.forEach(event => {
+      const icon = markerIcons[event.eventType as keyof typeof markerIcons];
+      L.marker([event.lat, event.long], { icon })
+        .addTo(this.markersLayer)
+        .bindPopup(`<b>${event.title}</b><br>${event.eventType}`)
+        .on('click', () => this.onSelect(event));
+    });
+    this.markersLayer.addTo(this.mapInstance);
+  }
 
-private addMarkersToMap() {
-  this.markersLayer.clearLayers();
-  this.events.forEach(event => {
-    const icon = markerIcons[event.eventType as keyof typeof markerIcons];
-    L.marker([event.lat, event.long], { icon })
-      .addTo(this.markersLayer)
-      .bindPopup(`<b>${event.title}</b><br>${event.eventType}`)
-      .on('click', () => this.onSelect(event));
-  });
-  this.markersLayer.addTo(this.mapInstance);
-}
+  onTimeSelected(selectedDate: Date) {
+    const updatedGlobalDate = new Date(
+      this.globalDate.getFullYear(),
+      this.globalDate.getMonth(),
+      this.globalDate.getDate(),
+      selectedDate.getHours(),
+      selectedDate.getMinutes(),
+      0
+    );
+    this.globalDate = updatedGlobalDate;
+    this.globalDateService.upDateTime(updatedGlobalDate);
+  }
 
-
-onTimeSelected(selectedDate: Date) {
-  const updatedGlobalDate = new Date(
-    this.globalDate.getFullYear(), 
-    this.globalDate.getMonth(),
-    this.globalDate.getDate(),
-    selectedDate.getHours(),
-    selectedDate.getMinutes(),
-  0
-);
-this.globalDate = updatedGlobalDate;
-  this.globalDateService.upDateTime(updatedGlobalDate);
-}
-
-onDateSelected(selectedDate: Date): void {
-  if (!selectedDate) return;
-  const updatedGlobalDate = new Date(
-    selectedDate.getFullYear(),
-    selectedDate.getMonth(),
-    selectedDate.getDate(),
-    this.globalDate.getHours(),
-    this.globalDate.getMinutes(),
-    0
-  );
-  this.globalDate = updatedGlobalDate;
-  this.globalDateService.upDate(updatedGlobalDate);
-
-  if (this.globalDate.getTime() !== updatedGlobalDate.getTime()) {
+  onDateSelected(selectedDate: Date): void {
+    if (!selectedDate) return;
+    const updatedGlobalDate = new Date(
+      selectedDate.getFullYear(),
+      selectedDate.getMonth(),
+      selectedDate.getDate(),
+      this.globalDate.getHours(),
+      this.globalDate.getMinutes(),
+      0
+    );
+    this.globalDate = updatedGlobalDate;
     this.globalDateService.upDate(updatedGlobalDate);
   }
-}
 
-onFilterChange(filter: EventFilter) {
-  this.activeFilter = filter;
-  this.applyFilter();
-}
+  onFilterChange(filter: EventFilter) {
+    this.activeFilter = filter;
+    this.applyFilter();
+  }
 
-private applyFilter(): void {
-  const now = Date.now() / 1000;
-  let result = [...this.allEvents];
+  private applyFilter(): void {
+    const now = Date.now() / 1000;
+    let result = [...this.allEvents];
 
-  if (this.activeFilter) {
-    const searching = !!this.activeFilter.search?.trim();
+    if (this.activeFilter) {
+      const searching = !!this.activeFilter.search?.trim();
 
-    if (!searching) {
-      const cutoff = now + this.activeFilter.within * 3600;
-      result = result.filter(e => (e.endAt as any) >= now && (e.startAt as any) <= cutoff);
-    }
-
-    const genres = this.activeFilter.genres;
-    if (!genres.has(EventType.ALL)) {
-      result = result.filter(e => genres.has(e.eventType as EventType));
-    }
-
-    if (searching) {
-      const term = this.activeFilter.search.trim().toLowerCase();
-      result = result.filter(e =>
-        e.title?.toLowerCase().includes(term) ||
-        e.address?.toLowerCase().includes(term) ||
-        e.userName?.toLowerCase().includes(term)
-      );
-
-      if (result.length === 0) {
-        this.openHttpClientService.searchEvents(this.activeFilter.search.trim()).subscribe({
-          next: (events: AppEvent[]) => {
-            this.allEvents = [...this.allEvents, ...events.filter(e => !this.allEvents.some(a => a.id === e.id))];
-            this.events = events;
-            if (this.mapInstance) this.addMarkersToMap();
-          },
-          error: (error) => console.error('Global search error:', error)
-        });
-        return;
+      if (!searching) {
+        const cutoff = now + this.activeFilter.within * 3600;
+        result = result.filter(e => (e.endAt as any) >= now && (e.startAt as any) <= cutoff);
       }
-    }
 
-    switch (this.activeFilter.sort) {
-      case 'ending':
-        result.sort((a, b) => (a.endAt as any) - (b.endAt as any));
-        break;
-      case 'distance': {
-        const details = this.lastMapDetails;
-        if (details?.length >= 5) {
-          const [, minLat, maxLat, minLong, maxLong] = details;
-          const centerLat = (minLat + maxLat) / 2;
-          const centerLng = (minLong + maxLong) / 2;
-          result.sort((a, b) => {
-            const distA = Math.hypot(a.lat - centerLat, a.long - centerLng);
-            const distB = Math.hypot(b.lat - centerLat, b.long - centerLng);
-            return distA - distB;
+      const genres = this.activeFilter.genres;
+      if (!genres.has(EventType.ALL)) {
+        result = result.filter(e => genres.has(e.eventType as EventType));
+      }
+
+      if (searching) {
+        const term = this.activeFilter.search.trim().toLowerCase();
+        result = result.filter(e =>
+          e.title?.toLowerCase().includes(term) ||
+          e.address?.toLowerCase().includes(term) ||
+          e.userName?.toLowerCase().includes(term)
+        );
+
+        if (result.length === 0) {
+          this.openHttpClientService.searchEvents(this.activeFilter.search.trim()).subscribe({
+            next: (events: AppEvent[]) => {
+              this.allEvents = [...this.allEvents, ...events.filter(e => !this.allEvents.some(a => a.id === e.id))];
+              this.events = events;
+              if (this.mapInstance) this.addMarkersToMap();
+            },
+            error: (error) => console.error('Global search error:', error)
           });
-        } else {
-          result.sort((a, b) => (a.startAt as any) - (b.startAt as any));
+          return;
         }
-        break;
       }
-      default:
-        result.sort((a, b) => (a.startAt as any) - (b.startAt as any));
+
+      switch (this.activeFilter.sort) {
+        case 'ending':
+          result.sort((a, b) => (a.endAt as any) - (b.endAt as any));
+          break;
+        case 'distance': {
+          const details = this.lastMapDetails;
+          if (details?.length >= 5) {
+            const [, minLat, maxLat, minLong, maxLong] = details;
+            const centerLat = (minLat + maxLat) / 2;
+            const centerLng = (minLong + maxLong) / 2;
+            result.sort((a, b) => {
+              const distA = Math.hypot(a.lat - centerLat, a.long - centerLng);
+              const distB = Math.hypot(b.lat - centerLat, b.long - centerLng);
+              return distA - distB;
+            });
+          } else {
+            result.sort((a, b) => (a.startAt as any) - (b.startAt as any));
+          }
+          break;
+        }
+        default:
+          result.sort((a, b) => (a.startAt as any) - (b.startAt as any));
+      }
+    }
+
+    const limit = window.innerWidth >= 1400 ? 24 : 16;
+    this.events = result.slice(0, limit);
+    if (this.mapInstance) {
+      this.addMarkersToMap();
     }
   }
 
-  const limit = window.innerWidth >= 1400 ? 24 : 16;
-  this.events = result.slice(0, limit);
-  if (this.mapInstance) {
-    this.addMarkersToMap();
+  onSelect(event: AppEvent) {
+    this.event = event;
+    this.showModal = true;
   }
-}
 
-onSelect(event: AppEvent) {
-  this.event = event;
-  this.showModal = true;
-}
+  onOpenBusker(userId: string) {
+    this.openHttpClientService.getBuskerById(userId).subscribe({
+      next: (busker) => {
+        this.selectedBusker = busker;
+        this.showModal = false;
+        this.showBuskerModal = true;
+      },
+      error: () => {}
+    });
+  }
 
-onOpenBusker(userId: string) {
-  this.openHttpClientService.getBuskerById(userId).subscribe({
-    next: (busker) => {
-      this.selectedBusker = busker;
-      this.showModal = false;
+  onBuskerEventSelected(event: any) {
+    this.buskerBeforeEvent = this.selectedBusker;
+    this.showBuskerModal = false;
+    this.event = event;
+    this.showModal = true;
+  }
+
+  onEventModalClose() {
+    this.showModal = false;
+    if (this.mapInstance) this.addMarkersToMap();
+    if (this.buskerBeforeEvent) {
+      this.selectedBusker = this.buskerBeforeEvent;
+      this.buskerBeforeEvent = null;
       this.showBuskerModal = true;
-    },
-    error: () => {}
-  });
-}
-
-onBuskerEventSelected(event: any) {
-  this.buskerBeforeEvent = this.selectedBusker;
-  this.showBuskerModal = false;
-  this.event = event;
-  this.showModal = true;
-}
-
-onEventModalClose() {
-  this.showModal = false;
-  if (this.mapInstance) this.addMarkersToMap();
-  if (this.buskerBeforeEvent) {
-    this.selectedBusker = this.buskerBeforeEvent;
-    this.buskerBeforeEvent = null;
-    this.showBuskerModal = true;
+    }
   }
-}
-
-
 }

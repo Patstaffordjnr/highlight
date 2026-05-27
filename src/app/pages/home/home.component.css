@@ -1,4 +1,4 @@
-/* Base styles — mobile first (single column, stacked) */
+/* Base styles — mobile first */
 
 .ui {
   display: flex;
@@ -111,10 +111,6 @@
   z-index: 0;
 }
 
-.events-mini::-webkit-scrollbar {
-  display: none;
-}
-
 .modal {
   z-index: 1;
 }
@@ -124,16 +120,13 @@
   justify-content: center;
 }
 
-
-/* SM - Small tablets and above (two column layout) */
 @media (min-width: 576px) {
-
   .item-1-container {
     order: 0;
     width: 44vw;
     height: 75vh;
     padding-right: 1vw;
-    padding-bottom: 0px;
+    padding-bottom: 0;
   }
 
   .item-1 {
@@ -171,17 +164,4 @@
   .item-4-container {
     order: 0;
   }
-
 }
-
-/* MD - Tablets */
-@media (min-width: 768px) {}
-
-/* LG - Small laptops */
-@media (min-width: 992px) {}
-
-/* XL - Desktops */
-@media (min-width: 1200px) {}
-
-/* XXL - Large desktops */
-@media (min-width: 1400px) {}

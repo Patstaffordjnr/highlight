@@ -1,9 +1,8 @@
-import { Injectable, inject } from "@angular/core";
-import { User } from "../model/user";
-import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from "@angular/router";
-import { UserRole } from "../model/user-roles";
-import { BehaviorSubject, Observable } from "rxjs";
-
+import { Injectable, inject } from '@angular/core';
+import { User } from '../model/user';
+import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
+import { UserRole } from '../model/user-roles';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CurrentUserService {
@@ -13,10 +12,9 @@ export class CurrentUserService {
   user$: Observable<User | null> = this.currentUserSubject.asObservable();
   userRole$: Observable<UserRole[] | null> = this.userRolesSubject.asObservable();
 
-
   setUser(user: User): void {
     this.currentUserSubject.next(user);
-    this.userRolesSubject.next(user.roles);
+    this.userRolesSubject.next(user?.roles ?? null);
   }
 
   clearUser(): void {
@@ -25,11 +23,7 @@ export class CurrentUserService {
   }
 
   getUser(): User | null {
-
-    if(this.currentUserSubject.value) {
-        return this.currentUserSubject.value;
-    }
-    else return ;
+    return this.currentUserSubject.value ?? null;
   }
 }
 
@@ -37,21 +31,17 @@ export class CurrentUserService {
 export class PermissionsService {
   canActivate(currentUser: CurrentUserService, url: string): boolean {
     const user = currentUser.getUser();
-
     if (!user) return false;
 
-    if (url === "/home" && [UserRole.ADMIN, UserRole.BUSKER, UserRole.USER].some(r => user.roles.includes(r))) {
+    if (url === '/home' && [UserRole.ADMIN, UserRole.BUSKER, UserRole.USER].some(r => user.roles.includes(r))) {
       return true;
     }
-
-    if (url === "/admin/home" && user.roles.includes(UserRole.ADMIN)) {
+    if (url === '/admin/home' && user.roles.includes(UserRole.ADMIN)) {
       return true;
     }
-
-    if (url === "/createevent" && [UserRole.ADMIN, UserRole.BUSKER].some(r => user.roles.includes(r))) {
+    if (url === '/createevent' && [UserRole.ADMIN, UserRole.BUSKER].some(r => user.roles.includes(r))) {
       return true;
     }
-
     return false;
   }
 
