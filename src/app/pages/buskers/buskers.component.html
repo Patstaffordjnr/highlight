@@ -3,9 +3,9 @@
     <div class="buskers">
       <div class="container">
 
-        <div class="item-1-container">
+        <div class="item-1-container" *ngIf="hasProfileImage" >
           <div class="item item-1">
-            <app-user-profile *ngIf="hasProfileImage" class="user-profile"></app-user-profile>
+            <app-user-profile class="user-profile"></app-user-profile>
           </div>
         </div>
 

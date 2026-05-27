@@ -1,28 +1,18 @@
 .about {
-  /* max-width: 600px; */
   margin: 0 auto;
   padding: 40px 24px 80px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Hero */
+
 .hero {
   text-align: center;
   padding: 60px 0 40px;
-  border-bottom: 2px solid whitesmoke;
-  margin-bottom: 48px;
-}
-
-.hero h1 {
-  font-size: 3.5rem;
-  font-weight: 800;
-  letter-spacing: -2px;
-  color: #111;
-  margin: 0 0 12px;
+  /* border-bottom: 2px solid whitesmoke; */
+  /* margin-bottom: 48px; */
 }
 
 .header-image {
-  /* max-width: 120px; */
   max-width: 200px;
   height: auto;
 }
@@ -34,29 +24,19 @@
   line-height: 1.5;
 }
 
-/* Sections */
+
 .section {
   margin-bottom: 48px;
 }
 
-.section h2 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #111;
-  margin: 0 0 12px;
-}
 
 
 /* SM - Small tablets and above — switch to grid */
 @media (min-width: 576px) {
-
 
 .header-image {
   /* max-width: 120px; */
   max-width: 400px;
   height: auto;
 }
-
-
-
 }
