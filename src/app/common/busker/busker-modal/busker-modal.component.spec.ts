@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BuskerModalComponent } from './busker-modal.component';
+import { AppModule } from '../../../app.module';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('BuskerModalComponent', () => {
   let component: BuskerModalComponent;
@@ -8,7 +10,8 @@ describe('BuskerModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BuskerModalComponent]
+      imports: [AppModule],
+      providers: [provideHttpClientTesting()]
     })
     .compileComponents();
 

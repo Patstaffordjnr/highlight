@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EventModalComponent } from './event-modal.component';
+import { AppModule } from '../../../app.module';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('EventModalComponent', () => {
   let component: EventModalComponent;
@@ -8,7 +10,8 @@ describe('EventModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EventModalComponent]
+      imports: [AppModule],
+      providers: [provideHttpClientTesting()]
     })
     .compileComponents();
 

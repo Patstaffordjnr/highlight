@@ -96,12 +96,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [
-
-  "src/assets/js/gmaps.js"
-
-              
-            ]
+            "scripts": []
           }
         },
         "e2e": {

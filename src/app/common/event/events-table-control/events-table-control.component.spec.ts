@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EventsTableControlComponent } from './events-table-control.component';
+import { AppModule } from '../../../app.module';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('EventsTableControlComponent', () => {
   let component: EventsTableControlComponent;
@@ -8,7 +10,8 @@ describe('EventsTableControlComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EventsTableControlComponent]
+      imports: [AppModule],
+      providers: [provideHttpClientTesting()]
     })
     .compileComponents();
 
