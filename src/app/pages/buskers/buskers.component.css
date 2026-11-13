@@ -85,10 +85,6 @@
   padding-left: 8px;
 }
 
-.modal {
-  z-index: 1;
-}
-
 @media (min-width: 576px) {
   .content {
     width: 90vw;

@@ -161,37 +161,7 @@
 
 
 
-/* NOT USED BELOW */
 
-.busker-user-role-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  background-color: #4da6e8;
-}
-
-.busker-user-role {
-  color: #222;
-}
-
-.busker-email {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  word-break: break-all;
-  white-space: normal;
-  padding: 0 10px;
-}
-
-.busker-created-text-container,
-.busker-address-text-container {
-  justify-content: flex-start;
-  padding-left: 10px;
-}
-
-.busker-created-date,
-.busker-address {
-  font-weight: bold;
-}
 
 .busker-followers-text,
 .busker-events-text {
@@ -208,16 +178,6 @@
 .busker-events-text-container {
   justify-content: flex-start;
   padding-left: 10px;
-}
-
-.buskerPagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.buskerPagination button.selected {
-  font-weight: bold;
 }
 
 /* SM */

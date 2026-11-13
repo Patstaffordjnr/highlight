@@ -66,9 +66,6 @@ export class BuskerComponent implements OnInit {
     }
   }
 
-  onMapMoved(_event: { lat: number; lng: number }) {}
-  onMapClicked(_event: { lat: number; lng: number }) {}
-
   private addMarkersToMap() {
     this.markersLayer.clearLayers();
     this.events.forEach(event => {

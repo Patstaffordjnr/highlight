@@ -13,7 +13,6 @@ import { EventType } from 'src/app/model/event-types';
 export class EventsTableControlComponent implements OnInit, OnDestroy {
 
   genreSet: Set<string> = new Set(['All', 'Band', 'Busker', 'Dj', 'Performance']);
-  selectGenre: Set<string> = new Set();
 
   @Input() homeAddress: string = '';
   @Output() filterChange = new EventEmitter<EventFilter>();
@@ -26,8 +25,6 @@ export class EventsTableControlComponent implements OnInit, OnDestroy {
 
   showDateControls = false;
   globalDate: Date;
-
-  mapDetails: String[] = [];
 
   distances: number[] = [1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 50];
   selectedDistance: number = 5;
@@ -67,8 +64,6 @@ export class EventsTableControlComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(
       this.mapService?.mapCurrentLocationDetails$.subscribe((details) => {
-        this.mapDetails = details;
-
         const addressString = details?.[5];
 
         if (addressString) {
@@ -130,7 +125,6 @@ export class EventsTableControlComponent implements OnInit, OnDestroy {
     } else {
       this.genreSet.delete(genre);
     }
-    this.selectGenre = this.genreSet;
   }
 
   private syncAllButton(): void {
@@ -196,11 +190,11 @@ export class EventsTableControlComponent implements OnInit, OnDestroy {
     this.emitFilter();
   }
 
-  onDistanceChange(event: Event) {
+  onDistanceChange() {
     this.emitFilter();
   }
 
-  onWithinChange(event: Event) {
+  onWithinChange() {
     this.emitFilter();
   }
 
@@ -210,7 +204,7 @@ export class EventsTableControlComponent implements OnInit, OnDestroy {
     this.emitFilter();
   }
 
-  onSearchChange(event: Event) {
+  onSearchChange() {
     this.emitFilter();
   }
 

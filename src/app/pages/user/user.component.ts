@@ -7,7 +7,6 @@ import { Busker } from '../../model/busker';
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { markerIcons } from './../../common/map/map-icons';
-import { UserRole } from '../../model/user-roles';
 
 @Component({
   selector: 'app-user',
@@ -21,7 +20,6 @@ export class UserComponent implements OnInit {
 
   busker: User | null = null;
   buskers: Busker[] = [];
-  total: number = 0;
 
   userRoles: string[] = [];
   currentUser: User = {
@@ -129,9 +127,6 @@ export class UserComponent implements OnInit {
       })
       .catch(error => console.error('Reverse geocoding error:', error));
   }
-
-  onMapMoved(event: { lat: number; lng: number }) {}
-  onMapClicked(event: { lat: number; lng: number }) {}
 
   private addMarkersToMap() {
     this.markersLayer.clearLayers();

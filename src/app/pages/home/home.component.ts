@@ -22,34 +22,9 @@ export class HomeComponent implements OnInit {
   private buskerBeforeEvent: Busker | null = null;
   mapInstance!: L.Map;
 
-  showDateControls = false;
   globalDate = new Date();
-  mapDetails: any;
   markersLayer = L.layerGroup();
   homeAddress: string = '';
-
-  withinOptions: { label: string, value: number }[] = [
-    { label: '30 minutes', value: 0.5 },
-    { label: '1 hour', value: 1 },
-    { label: '2 hours', value: 2 },
-    { label: '3 hours', value: 3 },
-    { label: '12 hours', value: 12 },
-    { label: '24 hours', value: 24 },
-    { label: '2 days', value: 48 },
-    { label: '1 week', value: 168 },
-    { label: '1 month', value: 720 }
-  ];
-
-  sortOptions: { label: string, value: string }[] = [
-    { label: 'Starting', value: 'starting' },
-    { label: 'Ending', value: 'ending' },
-    { label: 'Nearest', value: 'distance' },
-    { label: 'Most Followers', value: 'followers' },
-    { label: 'Most Attended', value: 'attendance' }
-  ];
-
-  selectedSort: string = 'distance';
-  selectedWithin: number = 1;
 
   events: AppEvent[] = [];
   allEvents: AppEvent[] = [];
@@ -129,9 +104,6 @@ export class HomeComponent implements OnInit {
       .catch(error => console.error('Reverse geocoding error:', error));
   }
 
-  onMapMoved(_event: { lat: number; lng: number }) {}
-  onMapClicked(_event: { lat: number; lng: number }) {}
-
   toggleDateControls() {
     this.globalDateService.toggle();
   }
@@ -146,33 +118,6 @@ export class HomeComponent implements OnInit {
         .on('click', () => this.onSelect(event));
     });
     this.markersLayer.addTo(this.mapInstance);
-  }
-
-  onTimeSelected(selectedDate: Date) {
-    const updatedGlobalDate = new Date(
-      this.globalDate.getFullYear(),
-      this.globalDate.getMonth(),
-      this.globalDate.getDate(),
-      selectedDate.getHours(),
-      selectedDate.getMinutes(),
-      0
-    );
-    this.globalDate = updatedGlobalDate;
-    this.globalDateService.upDateTime(updatedGlobalDate);
-  }
-
-  onDateSelected(selectedDate: Date): void {
-    if (!selectedDate) return;
-    const updatedGlobalDate = new Date(
-      selectedDate.getFullYear(),
-      selectedDate.getMonth(),
-      selectedDate.getDate(),
-      this.globalDate.getHours(),
-      this.globalDate.getMinutes(),
-      0
-    );
-    this.globalDate = updatedGlobalDate;
-    this.globalDateService.upDate(updatedGlobalDate);
   }
 
   onFilterChange(filter: EventFilter) {

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { User } from 'src/app/model/user';
 import { CurrentUserService } from 'src/app/util/can-activate.service';
-import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,17 +15,9 @@ export class UserProfileComponent implements OnInit {
   userRoles: string[] = [];
   currentUser: User = { id: '', email: '', roles: [] };
 
-  imageUploading = false;
-  imageUploadError = '';
   readonly defaultImage = '/assets/userprofile.jpg';
 
-  resendLoading = false;
-  resendSent = false;
-
-  constructor(
-    private currentUserService: CurrentUserService,
-    private openHttpClientService: OpenHttpClientService
-  ) {}
+  constructor(private currentUserService: CurrentUserService) {}
 
   ngOnInit() {
     this.currentUserService.user$.subscribe(user => {
@@ -66,31 +57,5 @@ export class UserProfileComponent implements OnInit {
   get displayLabel(): string {
     if (this.currentUser.displayName) return this.currentUser.displayName;
     return String(this.currentUser.email).split('@')[0];
-  }
-
-  onImageSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    const file = input.files?.[0];
-    if (!file) return;
-    this.imageUploading = true;
-    this.imageUploadError = '';
-    this.openHttpClientService.uploadProfileImage(file).subscribe({
-      next: (updated: User) => {
-        this.currentUser.profileImageUrl = updated.profileImageUrl;
-        this.imageUploading = false;
-      },
-      error: () => {
-        this.imageUploadError = 'Failed to upload image. Please try again.';
-        this.imageUploading = false;
-      }
-    });
-  }
-
-  resendVerification() {
-    this.resendLoading = true;
-    this.openHttpClientService.resendVerification(this.currentUser.email as string).subscribe({
-      next: () => { this.resendSent = true; this.resendLoading = false; },
-      error: () => { this.resendLoading = false; }
-    });
   }
 }

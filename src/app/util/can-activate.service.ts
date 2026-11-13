@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { User } from '../model/user';
-import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
 import { UserRole } from '../model/user-roles';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -26,36 +26,6 @@ export class CurrentUserService {
     return this.currentUserSubject.value ?? null;
   }
 }
-
-@Injectable({ providedIn: 'root' })
-export class PermissionsService {
-  canActivate(currentUser: CurrentUserService, url: string): boolean {
-    const user = currentUser.getUser();
-    if (!user) return false;
-
-    if (url === '/home' && [UserRole.ADMIN, UserRole.BUSKER, UserRole.USER].some(r => user.roles.includes(r))) {
-      return true;
-    }
-    if (url === '/admin/home' && user.roles.includes(UserRole.ADMIN)) {
-      return true;
-    }
-    if (url === '/createevent' && [UserRole.ADMIN, UserRole.BUSKER].some(r => user.roles.includes(r))) {
-      return true;
-    }
-    return false;
-  }
-
-  canMatch(): boolean {
-    return true;
-  }
-}
-
-export const canActivateTeam: CanActivateFn = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot,
-) => {
-  return inject(PermissionsService).canActivate(inject(CurrentUserService), state.url);
-};
 
 export const canActivateLoggedIn: CanActivateFn = () => {
   const user = inject(CurrentUserService).getUser();

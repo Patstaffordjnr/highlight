@@ -17,10 +17,6 @@ export class AuthService {
     return this.loggedIn.asObservable();
   }
 
-  isAuthenticated(): boolean {
-    return this.loggedIn.value;
-  }
-
   login(user: User) {
     this.currentUserService.setUser(user);
     this.loggedIn.next(true);
@@ -29,10 +25,6 @@ export class AuthService {
   logout() {
     this.currentUserService.clearUser();
     this.loggedIn.next(false);
-  }
-
-  getUser(): User | null {
-    return this.currentUserService.getUser();
   }
 
   restoreSession(): Promise<void> {

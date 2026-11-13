@@ -12,18 +12,13 @@ import { FooterComponent } from './common/footer/footer.component';
 import { HeaderComponent } from './common/header/header.component';
 import { RouterService } from './util/router.service';
 import { ErrorInterceptor } from './util/interceptors/noop-interceptor.service';
-import { CurrentUserService, PermissionsService } from './util/can-activate.service';
 import { CalendarComponent } from './common/calendar/calendar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MapComponent } from './common/map/map.component';
-import { EventService } from './common/event/event-service';
-import { EventsTableComponent } from './common/event/events-table/events-table.component';
 import { ProgressBarComponent } from './common/progress-bar/progress-bar.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { UserComponent } from './pages/user/user.component';
 import { EventsTableControlComponent } from './common/event/events-table-control/events-table-control.component';
 import { EventsComponent } from './pages/events/events.component';
-import { GlobalDateService } from './pages/home/global-date.service';
 import { CommonEventsComponent } from './common/events/common-events.component';
 import { UserProfileComponent } from './common/user-profile/user-profile.component';
 import { EventModalComponent } from './common/event/event-modal/event-modal.component';
@@ -34,10 +29,7 @@ import { BuskersMiniDisplayComponent } from './common/busker/buskers-mini-displa
 import { BuskersTableControlComponent } from './common/busker/buskers-table-control/buskers-table-control.component';
 import { BuskerModalComponent } from './common/busker/busker-modal/busker-modal.component';
 import { ProfileModalComponent } from './common/profile-modal/profile-modal.component';
-import { EventListComponent } from './common/event/event-list/event-list.component';
-import { BuskerListComponent } from './common/busker/busker-list/busker-list.component';
 import { AdminComponent } from './pages/admin/admin.component';
-import { UsersListComponent } from './common/users/users-list/users-list.component';
 import { VerifyComponent } from './pages/verify/verify.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
@@ -82,31 +74,17 @@ import { BuskerPlaceholderPipe } from './common/busker/busker-placeholder.pipe';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    DragDropModule,
-    EventsTableComponent,
     CommonEventsComponent,
     UserProfileComponent,
     BuskersTableComponent,
     BuskersTableControlComponent,
-    BuskerListComponent,
-    EventListComponent,
-    UsersListComponent,
     AboutComponent,
     BuskerPlaceholderPipe,
-  ],
-
-  exports: [
-    MapComponent,
-    EventModalComponent,
   ],
 
   providers: [
     RouterService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    CurrentUserService,
-    PermissionsService,
-    GlobalDateService,
-    EventService,
     provideHttpClient(withInterceptorsFromDi()),
     {
       provide: APP_INITIALIZER,

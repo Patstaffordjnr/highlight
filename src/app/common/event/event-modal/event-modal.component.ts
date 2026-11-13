@@ -8,7 +8,6 @@ import { User } from 'src/app/model/user';
 import { UserRole } from 'src/app/model/user-roles';
 import { OpenHttpClientService } from 'src/app/common/http/open-http-client.service';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-event-modal',
@@ -65,11 +64,8 @@ export class EventModalComponent implements OnInit {
     userId: ''
   };
 
-  markersLayer = L.layerGroup();
-
   constructor(
     private currentUserService: CurrentUserService,
-    private elementRef: ElementRef,
     private openHttpClientService: OpenHttpClientService,
     private router: Router
   ) {}
@@ -155,20 +151,6 @@ export class EventModalComponent implements OnInit {
     });
   }
 
-  private async fetchUserName(userId: string): Promise<void> {
-    try {
-      const response = await fetch(
-        `${environment.apiUrl}/user/${userId}`,
-        { credentials: 'include' }
-      );
-      const user = await response.json();
-      this.userName = String(user.email) || 'Unknown';
-    } catch (error) {
-      console.error('Failed to fetch username:', error);
-      this.userName = 'Unknown';
-    }
-  }
-
   private async reverseGeocode(lat: number, lng: number): Promise<string> {
     try {
       const response = await fetch(
@@ -199,9 +181,6 @@ export class EventModalComponent implements OnInit {
   onEditClick() {
     this.isEditing = true;
   }
-
-  toggleStartDateControls() {}
-  toggleFinishDateControls() {}
 
   onEventTypeChange() {
     if (this.originalMarker) {
@@ -360,7 +339,7 @@ export class EventModalComponent implements OnInit {
             const { latitude, longitude } = position.coords;
             this.mapInstance.setView([latitude, longitude], 13);
           },
-          (error) => {
+          () => {
             this.mapInstance.setView([53.3498, -6.2603], 13);
           }
         );
@@ -404,9 +383,6 @@ export class EventModalComponent implements OnInit {
     this.mapInitialized = false;
     this.close.emit();
   }
-
-  onMapMoved(event: { lat: number; lng: number }) {}
-  onMapClicked(event: { lat: number; lng: number }) {}
 
   onBackdropClick(event: MouseEvent) {
     const modalEl = this.modalContentRef?.nativeElement;

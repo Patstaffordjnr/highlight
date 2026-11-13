@@ -43,8 +43,4 @@ export class GlobalDateService {
   toggle() {
     this._showDateControls.next(!this._showDateControls.value);
   }
-
-  setVisibility(state: boolean) {
-    this._showDateControls.next(state);
-  }
 }

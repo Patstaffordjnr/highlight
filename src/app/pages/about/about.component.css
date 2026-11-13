@@ -24,13 +24,6 @@
   line-height: 1.5;
 }
 
-
-.section {
-  margin-bottom: 48px;
-}
-
-
-
 /* SM - Small tablets and above — switch to grid */
 @media (min-width: 576px) {
 

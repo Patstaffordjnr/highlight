@@ -1,7 +1,3 @@
-.hidden {
-  display: none;
-}
-
 .home-control {
   width: 100%;
   display: flex;
@@ -16,25 +12,6 @@
   flex-wrap: wrap;
 }
 
-
-.home-control-address {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
-}
-
-.address {
-  font-weight: bolder;
-}
-
-.home-control-global-date {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  font-weight: bolder;
-  width: 100%;
-}
 
 .progress-bar-container,
 .calendar-container {
@@ -224,17 +201,6 @@
 
 /* XXL - Large screens / 4K */
 @media (min-width: 1400px) {
-  .home-control-address {
-    display: flex;
-    justify-content: flex-start;
-    text-align: left;
-    width: 50%;
-  }
-  .home-control-global-date {
-    display: flex;
-    justify-content: center;
-    width: 25%;
-  }
   .home-control-genre {
     width: 100%;
     margin-left: auto;

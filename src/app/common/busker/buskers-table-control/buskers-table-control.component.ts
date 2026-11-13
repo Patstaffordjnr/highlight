@@ -1,5 +1,5 @@
 
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GlobalDateService } from 'src/app/pages/home/global-date.service';
 import { MapService } from '../../map/map-service';
@@ -18,9 +18,7 @@ import { CommonModule } from '@angular/common';
 export class BuskersTableControlComponent implements OnInit, OnDestroy{
 
   genreSet: Set<string> = new Set(['All', 'Band', 'Busker', 'Dj', 'Performance']);
-  selectGenre: Set<string> = new Set();
 
-  @Input() homeAddress: string = '';
   @Output() filterChange = new EventEmitter<EventFilter>();
   
   allEventsVisible = true;
@@ -32,21 +30,9 @@ export class BuskersTableControlComponent implements OnInit, OnDestroy{
   showDateControls = false;
   globalDate: Date;
   
-  mapDetails: String[] = [];
+  homeAddress: string = '';
   
-  distances: number[] = [1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 50];
   selectedDistance: number = 5; // default
-  withinOptions: { label: string, value: number }[] = [
-    { label: '30 minutes', value: 0.5 },
-    { label: '1 hour', value: 1 },
-    { label: '2 hours', value: 2 },
-    { label: '3 hours', value: 3 },
-    { label: '12 hours', value: 12 },
-    { label: '24 hours', value: 24 },
-    { label: '2 days', value: 48 },
-    { label: '1 week', value: 168 },      // 7 * 24
-    { label: '1 month', value: 720 }      // Approx: 30 * 24
-  ];
   sortOptions: { label: string, value: string }[] = [
     { label: 'Starting', value: 'starting' },   
     { label: 'Ending', value: 'ending' },   
@@ -68,9 +54,6 @@ export class BuskersTableControlComponent implements OnInit, OnDestroy{
    });
 
    this.subscription = this.mapService?.mapCurrentLocationDetails$.subscribe((details) => {
-    this.mapDetails = details;
-    // console.log(details);
-  
     const addressString = details?.[5]; // safely access index 5
   
     if (addressString) {
@@ -99,10 +82,6 @@ export class BuskersTableControlComponent implements OnInit, OnDestroy{
       .subscribe((visible) => {
         this.showDateControls = visible;
       });
- }
-
- toggleDateControls() {
-   this.showDateControls = !this.showDateControls;
  }
 
  private emitFilter(): void {
@@ -145,7 +124,6 @@ onTimeSelected(selectedTime: Date) {
   } else {
     this.genreSet.delete(genre);
   }
-  this.selectGenre = this.genreSet;
 }
 
 private mapStringToEventType(genre: string): EventType {
@@ -206,19 +184,11 @@ performanceFunction() {
   this.emitFilter();
 }
 
-  onDistanceChange(event: Event) {
+  onSortChange() {
     this.emitFilter();
   }
 
-  onWithinChange(event: Event) {
-    this.emitFilter();
-  }
-
-  onSortChange(event: Event) {
-    this.emitFilter();
-  }
-
-  onSearchChange(event: Event) {
+  onSearchChange() {
     this.emitFilter();
   }
 

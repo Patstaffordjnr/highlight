@@ -1,17 +1,6 @@
   <div class = "home-control">
 
 <div class = "control-row-one"> 
-<!-- <div class = "home-control-address">
-<div class= "address">
-<a>{{homeAddress}}</a>
-</div>
-</div>
-&nbsp;
-
-<div class = "home-control-global-date">
-<div class= "global-date">
-<a class = "global-date-text" (click)="toggleDateControls()">{{globalDate | date:'HH:mm EEE MMM d y'}}</a></div>
-</div> -->
 <br>
 
 
@@ -59,13 +48,13 @@
     <input type="text"
            placeholder="Search…"
            [(ngModel)]="searchText"
-           (input)="onSearchChange($event)">
+           (input)="onSearchChange()">
   </div>
 </div>
   <div class = "home-control-distance">
     <div class = "distance">
       <label for="distance">Distance :&nbsp;</label>
-      <select id="distance" [(ngModel)]="selectedDistance" name="distance" (change)="onDistanceChange($event)">
+      <select id="distance" [(ngModel)]="selectedDistance" name="distance" (change)="onDistanceChange()">
       <option *ngFor="let d of distances" [value]="d">{{d}} km</option>
       </select>&nbsp;
     </div>
@@ -73,7 +62,7 @@
   <div class = "home-control-within">
     <div class = "within">
       <label for="within-select">Within : &nbsp;</label>
-      <select id="within-select" [(ngModel)]="selectedWithin" name="within" (change)="onWithinChange($event)">
+      <select id="within-select" [(ngModel)]="selectedWithin" name="within" (change)="onWithinChange()">
         <option *ngFor="let option of withinOptions" [value]="option.value">
           {{ option.label }}
         </option>

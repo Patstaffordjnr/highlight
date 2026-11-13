@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LoginRequest } from './login-request';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LoginClient } from './log-in.client';

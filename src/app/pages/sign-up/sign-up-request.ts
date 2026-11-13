@@ -1,4 +1,3 @@
-import { User } from "src/app/model/user";
 import { UserRole } from "src/app/model/user-roles";
 
 export class SignUpRequest {

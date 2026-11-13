@@ -17,12 +17,6 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'highlight'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('highlight');
-  });
-
   it('should render the app shell', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();

@@ -1,18 +1,4 @@
 
-.flex-grid {
-  display: flex;
-  width: 100%;
-  background-color: none;
-  margin-bottom: 10px;
-  }
-
-  .col {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  }
-
 .event-modal {
 position: fixed;
 inset: 0;
@@ -217,15 +203,6 @@ overflow: hidden;
   overflow-wrap: break-word;
   word-break: break-all;
   min-width: 0;
-}
-
-.event-title-container {
-  padding-right: 16px;
-}
-
-.event-address {
-  padding-left: 10px;
-  padding-bottom: 16px;
 }
 
 .control-container {

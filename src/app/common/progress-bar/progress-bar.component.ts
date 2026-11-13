@@ -81,7 +81,7 @@ export class ProgressBarComponent implements OnInit, AfterViewInit, OnChanges, O
     this.updateFromClientX(event.clientX);
   }
 
-  mouseup(event: MouseEvent): void {
+  mouseup(): void {
     if (!this.isDragging) return;
     this.isDragging = false;
     document.removeEventListener('mousemove', this.mousemoveBound);
@@ -103,7 +103,7 @@ export class ProgressBarComponent implements OnInit, AfterViewInit, OnChanges, O
     this.updateFromClientX(touch.clientX);
   }
 
-  touchend(event: TouchEvent): void {
+  touchend(): void {
     if (!this.isDragging) return;
     this.isDragging = false;
     document.removeEventListener('touchmove', this.touchmoveBound);

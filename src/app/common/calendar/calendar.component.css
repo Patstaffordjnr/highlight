@@ -81,24 +81,6 @@
   justify-content: center;
 }
 
-.start-date {
-  background-color: orange;
-  color: white;
-  display: flex;
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
-}
-
-.end-date {
-  background-color: blue;
-  color: white;
-  display: flex;
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
-}
-
 .key-date{
   background-color: green;
   color: white;
@@ -108,15 +90,6 @@
   justify-content: center;
   font-weight: bold;
 }
-
-.start-circle {
-  background-color: green;
-}
-.end-circle {
-  background-color: red;
-}
-
-
 
 .past-day {
   color: #ccc;

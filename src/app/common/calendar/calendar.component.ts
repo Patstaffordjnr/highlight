@@ -18,10 +18,8 @@ export class CalendarComponent implements OnInit, OnChanges {
   currentDate: Date = new Date();
 
   allDates: Map<string, boolean> = new Map();
-  temp = false;
 
   selectedDayOnCalendar: Date = new Date;
-  selectedDay = Number(this.selectedDayOnCalendar.getDate());
 
   constructor() {
     this.initializeCalendar();
@@ -59,8 +57,8 @@ export class CalendarComponent implements OnInit, OnChanges {
         this.userDate.getSeconds()
       );
       this.calendarMonths.push(monthOfLoop);
-      this.calendarMonthDaysArr.push(this.getNumberOfDays(monthOfLoop.getMonth() + 1, monthOfLoop.getFullYear()));
-      let noOfDaysAMonth = this.getNumberOfDays(monthOfLoop.getMonth() + 1, monthOfLoop.getFullYear());
+      this.calendarMonthDaysArr.push(this.getNumberOfDays(monthOfLoop));
+      let noOfDaysAMonth = this.getNumberOfDays(monthOfLoop);
       for (let i = 0; i < noOfDaysAMonth; i++) {
         this.allDates.set(this.generateKey(monthOfLoop.getFullYear(), monthOfLoop.getMonth(), (i + 1)), false);
       }
@@ -68,11 +66,8 @@ export class CalendarComponent implements OnInit, OnChanges {
     }
   }
 
-  getNumberOfDays(month: number, year: number): number {
-    return new Date(year, month, 0).getDate();
-  }
-
-  monthSelect(month: Date): void {
+  getNumberOfDays(month: Date): number {
+    return new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
   }
 
   daySelect(year: number, month: number, day: number): void {

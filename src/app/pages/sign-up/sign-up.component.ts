@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
+import { Component } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { SignUpClient } from './sign-up.client';
 import { UserRole } from 'src/app/model/user-roles';
 import { SignUpRequest } from './sign-up-request';
-import { RouterService } from 'src/app/util/router.service';
 
 function passwordStrengthValidator(control: AbstractControl): ValidationErrors | null {
   const value: string = control.value || '';
@@ -19,13 +18,13 @@ function passwordStrengthValidator(control: AbstractControl): ValidationErrors |
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent {
   form: FormGroup;
   errorMessage: string = '';
   loading: boolean = false;
   submitted: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private signUpClient: SignUpClient, private routerService: RouterService) {
+  constructor(private formBuilder: FormBuilder, private signUpClient: SignUpClient) {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8), passwordStrengthValidator]],
@@ -40,8 +39,6 @@ export class SignUpComponent implements OnInit {
     }
     return new SignUpRequest(this.form.get('email').value, roles, this.form.get('password').value);
   }
-
-  ngOnInit(): void {}
 
   async onSubmit() {
     this.errorMessage = '';

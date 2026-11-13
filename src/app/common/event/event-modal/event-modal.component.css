@@ -12,32 +12,6 @@
   justify-content: center;
   align-items: center;
   }
-  
-  .row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  flex-basis: 50;
-  width: 25%;
-  flex-basis: 75%;
-  }
-  
-  .column {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 25%;
-  flex: 1;
-  }
-  
-  .columnTop {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 25%;
-  flex: 1;
-  }
-
-.close-btn {
-}
 
 .event-modal {
 position: fixed;
@@ -125,19 +99,6 @@ display: flex;
   grid-template-rows: auto auto auto;
   gap: 6px;
 }
-
-/* 
-.item-2point5 {
-min-width: 300px;
-max-width: 300px;
-background-color: white;
-border: 6px solid whitesmoke;
-background-color: tomato;
-border-radius: 25px;
-display: flex;
-} */
-
-
 
 .grid-item {
   grid-column: 1;
@@ -234,22 +195,6 @@ display: flex;
   font-weight: bold;
   }
 
-  .event-user-name-input{
-
-  }
-
-  .event-user-name-input{
-  }
-  
-  .event-type-container {
-  background-color: darkcyan;
-  margin-top: 6px;
-  }
-
-  .event-type {
-  background-color: none;
-  }
-
   .event-type-label {
     font-size: 1rem;
     font-weight: 700;
@@ -277,14 +222,6 @@ display: flex;
   
   .event-title {
   background-color: none;
-  }
-
-  .event-title-input{
-  }
-
-  .event-address-container {
-  background-color: none;
-  justify-content: left;
   }
 
   .event-address {
@@ -370,14 +307,6 @@ display: flex;
   padding-top: 16px;
 }
 
-.calendar-start{
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  width: 100%; 
-  margin: 0 auto;
-}
-
 .progress-bar-container-end{
   display: flex;
   justify-content: center;
@@ -395,32 +324,6 @@ display: flex;
   padding-top: 16px;
 }
 
-.calendar-end{
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  width: 100%; 
-  margin: 0 auto;
-}
-.calendar-start-scroll,
-/* .calendar-end-scroll {
-  max-width: 300px;
-  height: 230px;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-  border: 6px solid whitesmoke;
-  border-radius: 16px;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-
-  overscroll-behavior: contain;
-}
-
-.calendar-start-scroll::-webkit-scrollbar,
-.calendar-end-scroll::-webkit-scrollbar {
-  display: none;
-} */
 .control-container{
   padding-top: 6px;
 }
@@ -436,10 +339,6 @@ display: flex;
 
 .follow-btn.following {
   background: #495057;
-}
-
-.hidden {
-  display: none;
 }
 
 /* SM - Small tablets */

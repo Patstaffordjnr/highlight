@@ -1,7 +1,7 @@
 <div class = "calendar-component-container" [class]="containerClass">
   <div class="calendar-div">
     <div class="calendar-container">
-    <div *ngFor="let calendarPage of calendarMonths; let monthIndex = index" (click)="monthSelect(calendarPage)">
+    <div *ngFor="let calendarPage of calendarMonths; let monthIndex = index">
       <div class="month-container">
         <p class = "month-display">
           {{ calendarPage.toLocaleString('default', { month: 'long', year: 'numeric' }) }}
