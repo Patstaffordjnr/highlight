@@ -1,0 +1,442 @@
+<div class="settings-page" *ngIf="user; else loading">
+  <div class="settings">
+
+    <!-- ============================= -->
+    <!-- SETTINGS INDEX (LIST VIEW)     -->
+    <!-- ============================= -->
+    <ng-container *ngIf="!activeSection">
+      <header class="settings-header">
+        <h1>Settings</h1>
+        <p>Manage your profile, account and preferences.</p>
+      </header>
+
+      <div class="identity-card">
+        <div class="avatar-wrap">
+          <img
+            [src]="profileImage"
+            class="avatar"
+            [style.object-position]="(user.imgOffsetX ?? 50) + '% ' + (user.imgOffsetY ?? 50) + '%'"
+            [style.transform]="user.imgZoom && user.imgZoom > 1.0 ? 'scale(' + user.imgZoom + ')' : 'none'"
+            alt="Profile picture">
+        </div>
+        <div class="identity-meta">
+          <div class="identity-name">{{ displayLabel }}</div>
+          <div class="muted">{{ user.email }}</div>
+          <div class="identity-roles">
+            <span class="role-chip" *ngIf="isBusker">Busker</span>
+            <span class="role-chip" *ngIf="isAdmin">Admin</span>
+            <span class="role-chip role-chip-muted" *ngIf="!isBusker && !isAdmin">Listener</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="section-list" aria-label="Settings categories">
+        <button
+          type="button"
+          class="section-row"
+          *ngFor="let section of sections; trackBy: trackBySectionId"
+          (click)="selectSection(section.id)">
+          <span class="section-icon" aria-hidden="true">{{ section.icon }}</span>
+          <span class="section-text">
+            <span class="section-title">
+              {{ section.title }}
+              <span class="chip" *ngIf="section.comingSoon">Coming soon</span>
+            </span>
+            <span class="section-desc">{{ section.description }}</span>
+          </span>
+          <span class="chevron" aria-hidden="true">›</span>
+        </button>
+      </nav>
+
+      <p class="list-footnote">
+        Sections marked <strong>Coming soon</strong> are planned. The category list shows
+        everything we intend to support as the app grows.
+      </p>
+    </ng-container>
+
+    <!-- ============================= -->
+    <!-- SECTION DETAIL VIEW           -->
+    <!-- ============================= -->
+    <ng-container *ngIf="activeSection">
+      <div class="detail-top">
+        <button type="button" class="back-btn" (click)="backToList()" aria-label="Back to settings">
+          ←
+        </button>
+        <div class="detail-heading">
+          <h1>{{ activeSectionMeta?.title }}</h1>
+          <p>{{ activeSectionMeta?.description }}</p>
+        </div>
+      </div>
+
+      <!-- PROFILE -->
+      <section class="panel" *ngIf="activeSection === 'profile'">
+        <div class="avatar-row">
+          <div class="avatar-wrap">
+            <img
+              [src]="profileImage"
+              class="avatar"
+              [style.object-position]="(user.imgOffsetX ?? 50) + '% ' + (user.imgOffsetY ?? 50) + '%'"
+              [style.transform]="user.imgZoom && user.imgZoom > 1.0 ? 'scale(' + user.imgZoom + ')' : 'none'"
+              alt="Profile picture">
+          </div>
+          <div class="avatar-meta">
+            <div class="avatar-name">{{ displayLabel }}</div>
+            <div class="muted">{{ user.email }}</div>
+            <label class="upload-btn">
+              {{ avatarUploading ? 'Uploading…' : 'Change photo' }}
+              <input
+                type="file"
+                accept="image/png,image/jpeg,image/webp"
+                (change)="onAvatarSelected($event)"
+                [disabled]="avatarUploading"
+                hidden>
+            </label>
+            <div class="muted">Square images look best. JPG, PNG or WebP.</div>
+            <div class="error-msg" *ngIf="avatarError">{{ avatarError }}</div>
+          </div>
+        </div>
+
+        <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="form">
+          <div class="grid">
+            <label class="field">
+              <span>Display name</span>
+              <input type="text" formControlName="displayName" maxlength="50" placeholder="How should we call you?">
+              <small class="hint" *ngIf="profileForm.get('displayName')?.touched && profileForm.get('displayName')?.invalid">
+                Display name must be 50 characters or fewer.
+              </small>
+            </label>
+
+            <label class="field">
+              <span>Location</span>
+              <input type="text" formControlName="location" maxlength="100" placeholder="City or area">
+              <small class="hint" *ngIf="profileForm.get('location')?.touched && profileForm.get('location')?.invalid">
+                Location must be 100 characters or fewer.
+              </small>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Bio</span>
+            <textarea formControlName="bio" rows="3" maxlength="500" placeholder="Tell people a little about yourself"></textarea>
+            <small class="hint" *ngIf="profileForm.get('bio')?.touched && profileForm.get('bio')?.invalid">
+              Bio must be 500 characters or fewer.
+            </small>
+          </label>
+
+          <div class="grid">
+            <label class="field">
+              <span>Instagram</span>
+              <input type="url" formControlName="instagramUrl" maxlength="200" placeholder="https://instagram.com/yourhandle">
+            </label>
+
+            <label class="field">
+              <span>TikTok</span>
+              <input type="url" formControlName="tiktokUrl" maxlength="200" placeholder="https://tiktok.com/@yourhandle">
+            </label>
+
+            <label class="field">
+              <span>YouTube</span>
+              <input type="url" formControlName="youtubeUrl" maxlength="200" placeholder="https://youtube.com/@yourchannel">
+            </label>
+
+            <label class="field">
+              <span>Spotify</span>
+              <input type="url" formControlName="spotifyUrl" maxlength="200" placeholder="https://open.spotify.com/artist/...">
+            </label>
+          </div>
+
+          <div class="actions">
+            <button type="submit" [disabled]="profileSaving || profileForm.invalid">
+              {{ profileSaving ? 'Saving...' : 'Save profile' }}
+            </button>
+            <span class="success-msg" *ngIf="profileSaved">Profile saved!</span>
+          </div>
+
+          <div class="error-msg" *ngIf="profileError">{{ profileError }}</div>
+        </form>
+      </section>
+
+      <!-- ACCOUNT & SECURITY -->
+      <section class="panel" *ngIf="activeSection === 'account'">
+        <div class="readonly-row">
+          <span>Email</span>
+          <strong>{{ user.email }}</strong>
+        </div>
+
+        <div class="readonly-row">
+          <span>Email status</span>
+          <strong class="status-text" [class.verified]="user.verified">
+            {{ user.verified ? 'Verified' : 'Not verified' }}
+          </strong>
+        </div>
+
+        <div class="note" *ngIf="!user.verified">
+          <p>Verify your email so we can send password resets and event reminders.</p>
+          <button type="button" class="secondary-btn" (click)="resendVerification()" [disabled]="verificationSending">
+            {{ verificationSending ? 'Sending…' : 'Resend verification email' }}
+          </button>
+          <span class="success-msg" *ngIf="verificationSent">Verification email sent!</span>
+          <div class="error-msg" *ngIf="verificationError">{{ verificationError }}</div>
+        </div>
+
+        <form [formGroup]="passwordForm" (ngSubmit)="savePassword()" class="form password-form">
+          <h2>Change password</h2>
+
+          <label class="field">
+            <span>Current password</span>
+            <input type="password" formControlName="currentPassword" autocomplete="current-password" placeholder="Current password">
+          </label>
+
+          <div class="grid">
+            <label class="field">
+              <span>New password</span>
+              <input type="password" formControlName="newPassword" autocomplete="new-password" placeholder="At least 8 characters">
+              <small class="hint" *ngIf="passwordForm.get('newPassword')?.touched && passwordForm.get('newPassword')?.invalid">
+                Use at least 8 characters, including a letter and a number.
+              </small>
+            </label>
+
+            <label class="field">
+              <span>Confirm new password</span>
+              <input type="password" formControlName="confirmPassword" autocomplete="new-password" placeholder="Repeat new password">
+            </label>
+          </div>
+
+          <div class="error-msg" *ngIf="passwordMismatch">Passwords do not match.</div>
+
+          <div class="actions">
+            <button type="submit" [disabled]="passwordSaving || passwordForm.invalid">
+              {{ passwordSaving ? 'Updating...' : 'Update password' }}
+            </button>
+            <span class="success-msg" *ngIf="passwordSaved">Password updated!</span>
+          </div>
+
+          <div class="error-msg" *ngIf="passwordError">{{ passwordError }}</div>
+        </form>
+
+        <div class="planned">
+          <h3>Planned here</h3>
+          <ul>
+            <li>Active sessions and devices (see where you're signed in and sign out remotely).</li>
+            <li>Two-factor authentication.</li>
+            <li>Recent security activity and sign-in alerts.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- EVENTS & CALENDAR -->
+      <section class="panel" *ngIf="activeSection === 'events'">
+        <div class="note">
+          <p>Controls for the events you follow and how we remind you about them.</p>
+          <div class="actions">
+            <a routerLink="/events" class="link-btn">Browse events</a>
+            <a routerLink="/user" class="link-btn secondary">My events</a>
+          </div>
+        </div>
+
+        <div class="planned">
+          <h3>Planned here</h3>
+          <ul>
+            <li>Reminders before events you follow (email and push).</li>
+            <li>Calendar sync — add followed events to Google Calendar, Apple Calendar or an ICS feed.</li>
+            <li>Default filters for the events page (event type, distance, date range).</li>
+            <li>Choose whether past events stay visible on your map and lists.</li>
+            <li>Manage followed buskers and unfollow in bulk.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- BUSKER -->
+      <section class="panel" *ngIf="activeSection === 'busker'">
+        <div class="status-row">
+          <div>
+            <strong>Busker mode</strong>
+            <p class="muted">Busker mode lets you publish gigs, appear in the busker directory and receive follows.</p>
+          </div>
+          <span class="status-pill" [class.on]="isBusker">{{ isBusker ? 'Enabled' : 'Off' }}</span>
+        </div>
+
+        <div class="actions" *ngIf="!isBusker">
+          <button type="button" (click)="becomeBusker()" [disabled]="buskerSaving">
+            {{ buskerSaving ? 'Enabling…' : 'Become a busker' }}
+          </button>
+          <span class="hint">You can keep using Highlight as a listener too.</span>
+        </div>
+
+        <div class="actions" *ngIf="isBusker">
+          <a routerLink="/busker" class="link-btn">Open busker dashboard</a>
+          <button type="button" class="secondary-btn" (click)="selectSection('archive')">View gig archive</button>
+        </div>
+
+        <div class="error-msg" *ngIf="buskerError">{{ buskerError }}</div>
+
+        <div class="planned">
+          <h3>Planned here</h3>
+          <ul>
+            <li>Default event type, duration and venue for new gigs.</li>
+            <li>Payments and tips — connect a payout account and show a tip link.</li>
+            <li>Stats — gigs played, cities played, followers and event views.</li>
+            <li>Public busker profile controls (photos, setlist, press kit).</li>
+            <li>Band or team access — invite a manager or bandmate to help run your page.</li>
+            <li>Artist verification badge.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- GIG ARCHIVE -->
+      <section class="panel" *ngIf="activeSection === 'archive'">
+        <div class="archive-head">
+          <div>
+            <h2>Past gigs</h2>
+            <p class="muted">Every gig you have played, newest first.</p>
+          </div>
+          <span class="archive-count" *ngIf="archiveTotal > 0">{{ archiveTotal }} total</span>
+        </div>
+
+        <div class="archive-state" *ngIf="archiveLoading">Loading your gigs…</div>
+
+        <div class="archive-state" *ngIf="!archiveLoading && archiveLoaded && archiveTotal === 0">
+          <p>No past gigs yet.</p>
+          <p class="muted">Gigs move here automatically once they have finished.</p>
+        </div>
+
+        <div class="archive-list" *ngIf="!archiveLoading && archiveGroups.length > 0">
+          <div class="archive-group" *ngFor="let group of archiveGroups">
+            <div class="archive-year">{{ group.year }}</div>
+
+            <div class="archive-row" *ngFor="let event of group.events">
+              <div class="archive-date">
+                <span class="archive-day">{{ event.startAt * 1000 | date: 'd MMM' }}</span>
+                <span class="archive-time">{{ event.startAt * 1000 | date: 'h:mm a' }}</span>
+              </div>
+              <div class="archive-info">
+                <span class="archive-title">{{ event.title }}</span>
+                <span class="archive-address">{{ event.address || 'No venue' }}</span>
+              </div>
+              <span class="archive-type">{{ event.eventType | titlecase }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions" *ngIf="!archiveLoading && archiveTotal > 0">
+          <button
+            type="button"
+            class="secondary-btn"
+            *ngIf="archiveLoadedCount < archiveTotal"
+            (click)="loadMoreArchive()"
+            [disabled]="archiveLoadingMore">
+            {{ archiveLoadingMore ? 'Loading…' : 'Load more' }}
+          </button>
+          <span class="hint" *ngIf="archiveLoadedCount >= archiveTotal">
+            Showing all {{ archiveTotal }} past gigs.
+          </span>
+          <span class="hint" *ngIf="archiveLoadedCount < archiveTotal">
+            {{ archiveLoadedCount }} of {{ archiveTotal }} loaded.
+          </span>
+        </div>
+
+        <div class="error-msg" *ngIf="archiveError">{{ archiveError }}</div>
+      </section>
+
+      <!-- NOTIFICATIONS -->
+      <section class="panel" *ngIf="activeSection === 'notifications'">
+        <div class="note">
+          <p>Choose how we reach you. Security and account messages will always be sent.</p>
+        </div>
+
+        <div class="planned">
+          <h3>Planned here</h3>
+          <ul>
+            <li>Channel toggles: email, push and in-app.</li>
+            <li>Event reminders for events you follow.</li>
+            <li>New events from buskers you follow.</li>
+            <li>New events near your saved location.</li>
+            <li>Weekly digest of upcoming gigs.</li>
+            <li>Product news and tips (opt-in only).</li>
+            <li>A single "pause all non-essential notifications" switch.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- PRIVACY -->
+      <section class="panel" *ngIf="activeSection === 'privacy'">
+        <div class="planned">
+          <h3>Planned here</h3>
+          <ul>
+            <li>Profile visibility — public, signed-in users only, or private.</li>
+            <li>Who can follow you and who can contact you.</li>
+            <li>Show or hide your city and exact location.</li>
+            <li>Discoverability in search and the busker directory.</li>
+            <li>Blocked users.</li>
+            <li>Download a copy of your data.</li>
+            <li>Delete your account and data (also available under Session &amp; Danger Zone).</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- PREFERENCES -->
+      <section class="panel" *ngIf="activeSection === 'preferences'">
+        <div class="planned">
+          <h3>Planned here</h3>
+          <ul>
+            <li>Language and region.</li>
+            <li>Light / dark / system theme.</li>
+            <li>Distance units (km or miles).</li>
+            <li>Default location for the map.</li>
+            <li>Map behaviour — remember last position, ask for location on load, or always start in Dublin.</li>
+            <li>Reduced motion and other accessibility options.</li>
+            <li>Default busker page to "Upcoming" or "Past".</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ADMIN -->
+      <section class="panel" *ngIf="activeSection === 'admin'">
+        <div class="note">
+          <p>Admin controls are kept separate from personal settings.</p>
+          <div class="actions">
+            <a routerLink="/admin" class="link-btn">Open admin dashboard</a>
+          </div>
+        </div>
+
+        <div class="planned">
+          <h3>Planned here</h3>
+          <ul>
+            <li>User roles and permissions.</li>
+            <li>Event moderation and takedown.</li>
+            <li>Reported content and abuse handling.</li>
+            <li>Platform announcements.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SESSION & DANGER ZONE -->
+      <section class="panel" *ngIf="activeSection === 'session'">
+        <div class="status-row">
+          <div>
+            <strong>Log out</strong>
+            <p class="muted">Sign out of Highlight on this device.</p>
+          </div>
+          <button type="button" class="danger-btn" (click)="logout()">Log out</button>
+        </div>
+
+        <div class="planned danger-zone">
+          <h3>Danger zone</h3>
+          <ul>
+            <li><strong>Delete account</strong> — permanently remove your profile, events and follows. <em>Not built yet.</em></li>
+            <li><strong>Export my data</strong> — download a copy of your profile and activity.</li>
+            <li><strong>Active sessions</strong> — see every device signed in to your account.</li>
+          </ul>
+          <p class="hint">Destructive actions will always ask for confirmation and your password.</p>
+        </div>
+      </section>
+    </ng-container>
+
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="settings-page">
+    <p class="muted">Loading settings…</p>
+  </div>
+</ng-template>

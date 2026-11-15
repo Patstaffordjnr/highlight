@@ -14,6 +14,11 @@
         <input id="password" type="password" formControlName="password" placeholder="••••••••••••••••••••••••" autocomplete="current-password">
       </div>
 
+      <label class="remember-row">
+        <input type="checkbox" formControlName="rememberMe">
+        <span>Remember me for 30 days</span>
+      </label>
+
       <div class="error-msg" *ngIf="errorMessage">{{ errorMessage }}</div>
 
       <button type="submit" [disabled]="!form.valid || loading">
@@ -21,7 +26,8 @@
       </button>
     </form>
 
-    <p class="switch-link">Don't have an account? <a routerLink="/signup">Sign up</a></p>
-    <p class="switch-link-ii"><a routerLink="/forgot-password">Forgot password?</a></p>
+    <p class="switch-link">
+    <a routerLink="/signup">Sign up?</a>&nbsp;<br><br><a routerLink="/forgot-password">Forgot password?</a>
+    </p>
   </div>
 </div>

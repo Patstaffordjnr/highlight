@@ -12,6 +12,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { VerifyComponent } from './pages/verify/verify.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 import { canActivateLoggedIn, canActivateBusker, canActivateAdmin } from './util/can-activate.service';
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'signup', component: SignUpComponent },
   { path: 'login', component: LogInComponent },
   { path: 'user', component: UserComponent, canActivate: [canActivateLoggedIn] },
+  { path: 'settings', component: SettingsComponent, canActivate: [canActivateLoggedIn] },
   { path: 'busker', component: BuskerComponent, canActivate: [canActivateBusker] },
   { path: 'admin', component: AdminComponent, canActivate: [canActivateAdmin] },
   { path: 'buskers', component: BuskersComponent },

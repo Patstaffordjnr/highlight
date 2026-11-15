@@ -69,7 +69,8 @@ export class UserComponent implements OnInit {
   loadOwnedEvents() {
     this.openHttpClientService.getUserEvents(
       0, 50,
-      [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
+      [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE],
+      'upcoming'
     ).subscribe({
       next: (response: any) => {
         this.ownedEvents = response.results || response;
@@ -90,9 +91,18 @@ export class UserComponent implements OnInit {
   }
 
   private mergeEvents() {
-    const followed = this.followedEvents.filter(f => !this.ownedEvents.some(o => o.id === f.id));
-    this.events = [...this.ownedEvents, ...followed];
+    const owned = this.ownedEvents.filter(event => this.isUpcoming(event));
+    const followed = this.followedEvents.filter(
+      event => this.isUpcoming(event) && !owned.some(o => o.id === event.id)
+    );
+    // Finished gigs are archived in Settings → Gig archive, not shown on the live dashboard.
+    this.events = [...owned, ...followed]
+      .sort((a, b) => Number(a.startAt) - Number(b.startAt));
     if (this.mapInstance) this.addMarkersToMap();
+  }
+
+  private isUpcoming(event: AppEvent): boolean {
+    return Number(event.endAt) >= Date.now() / 1000;
   }
 
   onEventSaved() {

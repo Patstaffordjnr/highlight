@@ -49,10 +49,16 @@ getUsers(pageNumber: number, pageSize: number) {
   return this.http.get<any>(`${API}/admin/users/getUsers`, { params, withCredentials: true });
 }
 
-getUserEvents(pageNumber: number, pageSize: number, eventTypes: EventType[]): Observable<any> {
+getUserEvents(
+  pageNumber: number,
+  pageSize: number,
+  eventTypes: EventType[],
+  scope: 'all' | 'upcoming' | 'past' = 'all'
+): Observable<any> {
   let params = new HttpParams()
     .set('pageNumber', pageNumber.toString())
-    .set('pageSize', pageSize.toString());
+    .set('pageSize', pageSize.toString())
+    .set('scope', scope);
 
   eventTypes.forEach(type => {
     params = params.append('eventTypes', type);

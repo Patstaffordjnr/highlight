@@ -30,6 +30,7 @@ width: 330px;
 height: 330px;
 min-width: 0;
 padding-top: 16px;
+padding-left: 16px;
 background-color: white;
 border: 6px solid whitesmoke;
 border-radius: 25px;

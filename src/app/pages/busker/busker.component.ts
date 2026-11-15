@@ -91,10 +91,14 @@ export class BuskerComponent implements OnInit {
   loadEvents() {
     this.openHttpClientService.getUserEvents(
       0, 50,
-      [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE]
+      [EventType.BUSKER, EventType.BAND, EventType.DJ, EventType.PERFORMANCE],
+      'upcoming'
     ).subscribe({
       next: (response: any) => {
-        this.events = response.results || response;
+        const now = Date.now() / 1000;
+        const events: AppEvent[] = response.results || response;
+        // Keep finished gigs out of the live dashboard; they live in Settings → Gig archive.
+        this.events = events.filter(event => Number(event.endAt) >= now);
         if (this.mapInstance) {
           this.addMarkersToMap();
         }

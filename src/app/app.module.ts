@@ -34,6 +34,7 @@ import { VerifyComponent } from './pages/verify/verify.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 import { BuskerPlaceholderPipe } from './common/busker/busker-placeholder.pipe';
 
 @NgModule({
@@ -48,6 +49,7 @@ import { BuskerPlaceholderPipe } from './common/busker/busker-placeholder.pipe';
     VerifyComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    SettingsComponent,
 
     // Components
     AppComponent,

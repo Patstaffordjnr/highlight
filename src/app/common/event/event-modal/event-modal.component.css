@@ -44,11 +44,17 @@ background: rgba(0,0,0,0.5);
 .item-1 {
 
 min-width: 300px;
-min-height: 300px;
-max-height: 300px;
+/* Explicit height so the map's percentage height resolves. */
+height: 300px;
 
 border: 6px solid whitesmoke;
 border-radius: 25px;
+/* Center the fixed-width map so its side insets match the details card. */
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+box-sizing: border-box;
 }
 
 .item-1-container{
@@ -62,12 +68,13 @@ z-index: 9;
 }
 
 .mapContainer {
+/* Fill the bordered map container edge to edge - no side padding. */
 width: 100%;
-min-width: 300px;
-min-height: 300px;
-height: 100vh;
-max-width: 300px;
-max-height: 300px;
+min-width: 0;
+min-height: 0;
+height: 100%;
+max-width: none;
+max-height: none;
 background-color: beige;
 }
 
@@ -83,13 +90,20 @@ max-width: 300px; */
 
 min-height: 300px;
 min-width: 300px;
-max-height: 300px;
+/* Let the card grow to fit edit/create controls (calendars, time pickers, actions). */
+height: auto;
+max-height: none;
 max-width: 300px;
 
 background-color: white;
 border: 6px solid whitesmoke;
 border-radius: 25px;
 display: flex;
+/* Breathing room between the card edge and the details grid.
+   Side insets match the busker modal's 16px padding. */
+padding: 16px 16px 12px;
+/* Don't let the modal's flex column squash the card in edit/create mode. */
+flex-shrink: 0;
 }
 
 .item-2-container {
@@ -97,7 +111,9 @@ display: flex;
   display: grid;
   grid-template-columns: 1fr 1fr ;
   grid-template-rows: auto auto auto;
-  gap: 6px;
+  /* Match the busker modal's internal spacing. */
+  gap: 10px;
+  box-sizing: border-box;
 }
 
 .grid-item {
@@ -350,12 +366,7 @@ display: flex;
   @media (min-width: 768px) {
 .item-1 {
 min-width: 350px;
-min-height: 350px;
-}
-.mapContainer {
-max-width: 350px;
-/* max-height: 400px; */
-
+height: 350px;
 }
 .item-2 {
 max-width: 350px;
@@ -368,12 +379,7 @@ max-width: 350px;
   @media (min-width: 992px) {
 .item-1 {
 min-width: 350px;
-min-height: 350px;
-}
-.mapContainer {
-max-width: 350px;
-/* max-height: 400px; */
-
+height: 350px;
 }
 .item-2 {
 max-width: 350px;
@@ -385,12 +391,7 @@ max-width: 350px;
   @media (min-width: 1200px) {
 .item-1 {
 min-width: 350px;
-min-height: 350px;
-}
-.mapContainer {
-max-width:350px;
-max-height: 350px;
-
+height: 350px;
 }
 .item-2 {
 max-width: 350px;
@@ -425,12 +426,7 @@ max-width: 350px;
   @media (min-width: 1400px) {
 .item-1 {
 min-width: 350px;
-min-height: 350px;
-}
-.mapContainer {
-max-width:350px;
-max-height: 350px;
-
+height: 350px;
 }
 .item-2 {
 max-width: 350px;
