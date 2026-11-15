@@ -22,14 +22,22 @@ export class ForgotPasswordComponent {
   }
 
   async onSubmit() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
     this.errorMessage = '';
     this.loading = true;
     try {
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
       await this.http.post(`${environment.apiUrl}/open/forgot-password`, { email: this.form.get('email')!.value }, { headers }).toPromise();
       this.submitted = true;
-    } catch {
-      this.submitted = true;
+    } catch (err: any) {
+      const msg = err?.error?.message || err?.error || null;
+      this.errorMessage = typeof msg === 'string' && msg
+        ? msg
+        : 'Could not send the reset link. Please try again later.';
     } finally {
       this.loading = false;
     }

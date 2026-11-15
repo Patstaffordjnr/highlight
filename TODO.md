@@ -47,5 +47,5 @@ _Last updated: 2026-11-14_
 
 ## Smaller fixes
 
-- [ ] **Forgot Password page lies on error:** `forgot-password.component.ts` sets `submitted = true` in its `catch`, so it shows "reset link is on its way" even when the API call fails.
+- [x] **Forgot Password page lies on error:** now only shows success when the API call succeeds; failures show the API message or a retry notice. Also fixed `ErrorInterceptor` to rethrow the original `HttpErrorResponse` (it used the RxJS 7 `throwError(() => err)` form while the app runs RxJS 6, so every `catch` received a function and lost `status`/`error`). Added a regression spec.
 - [ ] **Bootstrap admin role:** `admin@highlight.ie` is created as `USER` only because `registerUser` filters out `ADMIN`; decide how the initial admin should receive the `ADMIN` role.
